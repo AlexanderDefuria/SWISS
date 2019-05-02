@@ -1,0 +1,16 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
+
+
+
+{% if team_list %}
+    <ol>
+    <h1 class="title">Teams</h1>
+    {% for team in team_list %}
+        <li><a href="{% url 'entry:auto' team.pk %}">{{ team.name }}</a></li>
+    {% endfor %}
+    </ol>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}

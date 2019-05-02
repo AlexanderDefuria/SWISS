@@ -1,0 +1,122 @@
+
+
+.title {
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    text-align: center;
+    font-family: "Arial";
+    font-style: normal;
+    /* font-size: calc([minimum _size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) /
+                ([maximum viewport width] - [minimum viewport width])));  */
+    font-size: calc(36px + (100 - 36) * ((85vw - 300px) / (1600 - 300)));
+}
+
+.container {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-template-areas:
+    'header header header'
+    'left middle  right'
+    'footer footer footer';
+}
+
+
+
+img{
+    width:70%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+body {
+    background: lightyellow;
+}
+
+
+.button_group{
+    width: 100%;
+    display: flex;
+}
+
+.left,
+.middle,
+.right {
+  padding: 10px;
+}
+
+.left{
+    display: block;
+    grid-area: left;
+}
+.center{
+    display: block;
+    grid-area: middle;
+}
+.right{
+    display: block;
+    grid-area: right;
+}
+
+.cargo-img {
+    width: 20vw;
+    grid-area: left;
+}
+
+.hatch-img {
+    width: 20vw;
+    grid-area: right;
+}
+
+
+
+.display_current_value{
+    font-family: 'Lato', sans-serif;
+	font-size: 1em;
+    font-weight: 300;
+    text-align: center;
+	border: 0;
+	padding: 1em 2em;
+    margin: 0.5em 0;
+	width: 100%;
+    background: rgba(0,0,0,0.1);
+}
+
+button {
+	font-family: 'Lato', sans-serif;
+	font-size: 1em;
+    font-weight: 300;
+	border: 0;
+	padding: 1em 2em;
+    margin: 0.5em 0;
+	width: 100%;
+    background: rgba(0,0,0,0.1);
+    -webkit-transition:.2s;
+}
+button:hover{
+    background: rgba(0,0,0,0.3);
+}
+button:active{
+    background: rgba(0,0,0,0.55);
+}
+
+.counter{
+    font-family: "Lato", sans-serif;
+    font-style: normal;
+	font-size: 30px;
+	text-align: center;
+    width: 100%;
+    display: flex;
+    background: rgba(0,0,0,0.1);
+    padding: 2em 0;
+    margin: 0.25em 0;
+
+}
+
+form{
+    max-width: 1600px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+

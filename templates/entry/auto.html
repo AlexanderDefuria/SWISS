@@ -1,0 +1,96 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" href="{% static "entry/style.css" %}">
+<script type="text/javascript" src="{% static 'entry/counter.js' %}"></script>
+
+
+<h1 class="title">{{ team.name }}</h1>
+
+<form action="{% url 'entry:write_cargo' team.id %}" method="post">
+    {% csrf_token %}
+
+    <div class = "container">
+
+        <div class="left">
+            <img class="cargo-img" src="{% static "entry/images/Cargo.jpg" %}" alt="Cargo Image" >
+            <div >
+                <div class="button_group">
+                    <button id="FirstRocketCargo-add" type="button" onClick="add('FirstRocketCargo')">Add</button>
+                    <div id="FirstRocketCargo-label" class="display_current_value">0</div>
+                    <input id="FirstRocketCargo" class="number-form" type="hidden" name="FirstRocketCargo" min="0" max="4" default="0">
+                    <button id="FirstRocketCargo-sub" type="button" onClick="subtract('FirstRocketCargo')">Subtract</button>
+
+                </div>
+                <div class="button_group">
+                    <button id="SecondRocketCargo-add" type="button" onClick="add('SecondRocketCargo')">Add</button>
+                    <div id="SecondRocketCargo-label" class="display_current_value">0</div>
+                    <input id="SecondRocketCargo" class="number-form" type="hidden" name="SecondRocketCargo" min="0" max="4" default="0">
+                    <button id="SecondRocketCargo-sub" type="button" onClick="subtract('SecondRocketCargo')">Subtract</button>
+
+                </div>
+                <div class="button_group">
+                    <button id="ThirdRocketCargo-add" type="button" onClick="add('ThirdRocketCargo')">Add</button>
+                    <div id="ThirdRocketCargo-label" class="display_current_value">0</div>
+                    <input id="ThirdRocketCargo" class="number-form" type="hidden" name="ThirdRocketCargo" min="0" max="4" default="0">
+                    <button id="ThirdRocketCargo-sub" type="button" onClick="subtract('ThirdRocketCargo')">Subtract</button>
+
+                </div>
+            </div>
+        </div>
+
+
+        <img src="{% static "entry/images/Rocket.png" %}" alt="Red Rocket" class="center">
+
+
+        <div class="right">
+            <img class="hatch-img" src="{% static "entry/images/Hatch.jpg" %}" alt="Hatch Image" >
+            <div>
+                <div class="button_group">
+                    <button id="FirstRocketHatch-add" type="button" onClick="add('FirstRocketHatch')">Add</button>
+                    <div id="FirstRocketHatch-label" class="display_current_value">0</div>
+                    <input id="FirstRocketHatch" class="number-form" type="hidden" name="FirstRocketHatch" min="0" max="4" default="0">
+                    <button id="FirstRocketHatch-sub" type="button" onClick="subtract('FirstRocketHatch')">Subtract</button>
+                </div>
+                <div class="button_group">
+                    <button id="SecondRocketHatch-add" type="button" onClick="add('SecondRocketHatch')">Add</button>
+                    <div id="SecondRocketHatch-label" class="display_current_value">0</div>
+                    <input id="SecondRocketHatch" class="number-form" type="hidden" name="SecondRocketHatch" min="0" max="4" default="0">
+                    <button id="SecondRocketHatch-sub" type="button" onClick="subtract('SecondRocketHatch')">Subtract</button>
+                </div>
+                <div class="button_group">
+                    <button id="ThirdRocketHatch-add" type="button" onClick="add('ThirdRocketHatch')">Add</button>
+                    <div id="ThirdRocketHatch-label" class="display_current_value">0</div>
+                    <input id="ThirdRocketHatch" class="number-form" type="hidden" name="ThirdRocketHatch" min="0" max="4" default="0">
+                    <button id="ThirdRocketHatch-sub" type="button" onClick="subtract('ThirdRocketHatch')">Subtract</button>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <button type="submit" value="Post">Submit</button>
+</form>
+
+
+
+<!--
+        <div class="column" >
+            <ol>
+                <label> First Cargo: {{ team.first_cargo }} </label><br>
+                <label> Second Cargo: {{ team.second_cargo }} </label><br>
+                <label> Third Cargo: {{ team.third_cargo }} </label><br>
+                <label> Ship Cargo: {{ team.ship_cargo }} </label><br>
+            </ol>
+        </div>
+        -->
+
+
+
+
+
+
+
+
