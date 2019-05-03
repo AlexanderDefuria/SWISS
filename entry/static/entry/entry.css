@@ -13,7 +13,7 @@
 
 .container {
     display: grid;
-    grid-column-gap: 10px;
+    grid-column-gap: 0.5%;
     grid-template-areas:
     'header header header'
     'left middle  right'
@@ -58,12 +58,12 @@ body {
 }
 
 .cargo-img {
-    width: 20vw;
+    width: 15vw;
     grid-area: left;
 }
 
 .hatch-img {
-    width: 20vw;
+    width: 15vw;
     grid-area: right;
 }
 
@@ -117,9 +117,16 @@ form{
     margin-left: auto;
 }
 
-div#multiColumn {
-    column-count: 3;
-    column-gap: 20px;
+@media only screen and (max-width: 800px) {
+    .container {
+        grid-template-areas:
+            'header header header'
+            'left left left'
+            'middle middle  middle'
+            'right right right'
+            'footer footer footer';
+    }
 }
+
 
 
