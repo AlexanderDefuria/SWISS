@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
-# Application definition
+# Application definitiodbn
 
 INSTALLED_APPS = [
     'entry.apps.EntryConfig',
