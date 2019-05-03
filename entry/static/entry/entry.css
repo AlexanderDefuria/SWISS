@@ -21,7 +21,6 @@
 }
 
 
-
 img{
     width:70%;
     margin-left: auto;
@@ -67,7 +66,6 @@ body {
     width: 20vw;
     grid-area: right;
 }
-
 
 
 .display_current_value{
@@ -117,6 +115,11 @@ form{
     max-width: 1600px;
     margin-right: auto;
     margin-left: auto;
+}
+
+div#multiColumn {
+    column-count: 3;
+    column-gap: 20px;
 }
 
 
