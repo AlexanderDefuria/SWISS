@@ -12,7 +12,6 @@ var values = {
 }
 
 function add(name)  {
-    console.log(name);
     values[name] += 1;
     if(values[name] > 8) values[name] = 8;
     document.getElementById(name.concat('-label')).innerHTML = values[name];
