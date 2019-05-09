@@ -26,21 +26,20 @@ function subtract(name) {
 }
 
 
-var display_on;
 
-function toggleInput(elementID) {
+
+function toggleInputDisplay(elementID, defaultStyle) {
 
     var cargo = document.getElementById(elementID + "_cargo");
     var hatch = document.getElementById(elementID + "_hatch");
-    var temp = document.getElementById(elementID + "_cargo");
 
-    console.log(cargo.style.display);
-
-    cargo.style.display = hatch.style.display;
-    hatch.style.display = temp.style.display;
-
-
-
+    if (cargo.style.display === "none") {
+        cargo.style.display = defaultStyle;
+        hatch.style.display = "none";
+    } else  {
+        cargo.style.display = "none";
+        hatch.style.display = defaultStyle;
+    }
 
 
 }

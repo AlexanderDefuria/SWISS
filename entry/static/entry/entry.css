@@ -16,9 +16,8 @@
     grid-column-gap: 0.5%;
     grid-template-areas:
     'header header header'
-    'subhead subhead subhead'
-    'left middle right'
-    'left middle right'
+    'left left right'
+    'left left right'
     'footer footer footer';
 }
 
@@ -41,9 +40,7 @@ body {
 }
 
 .left,
-.center,
-.right,
-.subhead {
+.right{
   padding: 10px;
 }
 
@@ -52,15 +49,10 @@ body {
     grid-area: subhead;
 }
 
+
 .left{
     display: block;
     grid-area: left;
-    color: red;
-}
-.center{
-    display: block;
-    grid-area: middle;
-    color: blue;
 }
 .right{
     display: block;
@@ -75,6 +67,16 @@ body {
 
 }
 
+.input_heading{
+    font-family: 'Lato', sans-serif;
+    font-size: 1vw;
+    font-weight: 300;
+    text-align: left;
+	border: 0;
+	padding: 0.5vw 1vh;
+	width: 100%;
+    display: flex;
+}
 
 .display_current_value{
     font-family: 'Lato', sans-serif;
