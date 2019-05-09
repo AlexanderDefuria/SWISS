@@ -1,5 +1,4 @@
 
-
 var values = {
     ThirdRocketCargo: 0,
     SecondRocketCargo: 0,
@@ -9,14 +8,14 @@ var values = {
     FirstRocketHatch: 0,
     SecondRocketHatch: 0,
     ThirdRocketHatch: 0,
-}
+};
 
 function add(name)  {
     values[name] += 1;
     if(values[name] > 8) values[name] = 8;
     document.getElementById(name.concat('-label')).innerHTML = values[name];
     document.getElementById(name).value = values[name];
-};
+}
 
 function subtract(name) {
     values[name] -= 1;
@@ -24,5 +23,24 @@ function subtract(name) {
     document.getElementById(name.concat('-label')).innerHTML = values[name];
     document.getElementById(name).value = values[name];
 
-};
+}
 
+
+var display_on;
+
+function toggleInput(elementID) {
+
+    var cargo = document.getElementById(elementID + "_cargo");
+    var hatch = document.getElementById(elementID + "_hatch");
+    var temp = document.getElementById(elementID + "_cargo");
+
+    console.log(cargo.style.display);
+
+    cargo.style.display = hatch.style.display;
+    hatch.style.display = temp.style.display;
+
+
+
+
+
+}

@@ -16,7 +16,9 @@
     grid-column-gap: 0.5%;
     grid-template-areas:
     'header header header'
-    'left middle  right'
+    'subhead subhead subhead'
+    'left middle right'
+    'left middle right'
     'footer footer footer';
 }
 
@@ -39,32 +41,38 @@ body {
 }
 
 .left,
-.middle,
-.right {
+.center,
+.right,
+.subhead {
   padding: 10px;
+}
+
+.subhead {
+    display: block;
+    grid-area: subhead;
 }
 
 .left{
     display: block;
     grid-area: left;
+    color: red;
 }
 .center{
     display: block;
     grid-area: middle;
+    color: blue;
 }
 .right{
     display: block;
     grid-area: right;
 }
 
-.cargo-img {
-    width: 15vw;
-    grid-area: left;
+.rocket_input{
+
 }
 
-.hatch-img {
-    width: 15vw;
-    grid-area: right;
+.cargo_input{
+
 }
 
 

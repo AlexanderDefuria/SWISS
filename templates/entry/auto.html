@@ -4,46 +4,41 @@
 <script type="text/javascript" src="{% static 'entry/counter.js' %}"></script>
 
 
-<h1 class="title">{{ team.name }}</h1>
+<h1 class="title">{{ team.name }} - {{ team.number }}</h1>
+
+
+
+<button onclick='toggleInput("rocket")'></button>
+
+
 
 <form action="{% url 'entry:write_cargo' team.id %}" method="post">
     {% csrf_token %}
 
-    <div class = "container">
+    <div id="test" class="container">
 
-        <div class="left">
-            <img class="cargo-img" src="{% static "entry/images/Cargo.jpg" %}" alt="Cargo Image" >
-            <div >
-                <div class="button_group">
+        <div id="rocket_cargo" class="left" >
+                <div class="button_group" >
                     <button id="FirstRocketCargo-add" type="button" onClick="add('FirstRocketCargo')">Add</button>
                     <div id="FirstRocketCargo-label" class="display_current_value">0</div>
                     <input id="FirstRocketCargo" class="number-form" type="hidden" name="FirstRocketCargo" min="0" max="4" default="0">
                     <button id="FirstRocketCargo-sub" type="button" onClick="subtract('FirstRocketCargo')">Subtract</button>
-
                 </div>
                 <div class="button_group">
                     <button id="SecondRocketCargo-add" type="button" onClick="add('SecondRocketCargo')">Add</button>
                     <div id="SecondRocketCargo-label" class="display_current_value">0</div>
                     <input id="SecondRocketCargo" class="number-form" type="hidden" name="SecondRocketCargo" min="0" max="4" default="0">
                     <button id="SecondRocketCargo-sub" type="button" onClick="subtract('SecondRocketCargo')">Subtract</button>
-
                 </div>
                 <div class="button_group">
                     <button id="ThirdRocketCargo-add" type="button" onClick="add('ThirdRocketCargo')">Add</button>
                     <div id="ThirdRocketCargo-label" class="display_current_value">0</div>
                     <input id="ThirdRocketCargo" class="number-form" type="hidden" name="ThirdRocketCargo" min="0" max="4" default="0">
                     <button id="ThirdRocketCargo-sub" type="button" onClick="subtract('ThirdRocketCargo')">Subtract</button>
-
                 </div>
-            </div>
         </div>
 
-
-        <img src="{% static "entry/images/Rocket.png" %}" alt="Red Rocket" class="center">
-
-
-        <div class="right">
-            <img class="hatch-img" src="{% static "entry/images/Hatch.jpg" %}" alt="Hatch Image" >
+        <div id="rocket_hatch" class="center" style="display: none">
             <div>
                 <div class="button_group">
                     <button id="FirstRocketHatch-add" type="button" onClick="add('FirstRocketHatch')">Add</button>
@@ -67,7 +62,7 @@
             </div>
         </div>
 
-
+        <img src="{% static "entry/images/Rocket.png" %}" alt="Red Rocket" class="right">
 
     </div>
 
@@ -75,24 +70,3 @@
 
     <button type="submit" value="Post">Submit</button>
 </form>
-
-
-
-<!--
-        <div class="column" >
-            <ol>
-                <label> First Cargo: {{ team.first_cargo }} </label><br>
-                <label> Second Cargo: {{ team.second_cargo }} </label><br>
-                <label> Third Cargo: {{ team.third_cargo }} </label><br>
-                <label> Ship Cargo: {{ team.ship_cargo }} </label><br>
-            </ol>
-        </div>
-        -->
-
-
-
-
-
-
-
-
