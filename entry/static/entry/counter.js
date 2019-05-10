@@ -26,20 +26,30 @@ function subtract(name) {
 }
 
 
-
-
-function toggleInputDisplay(elementID, defaultStyle) {
+function toggleInputDisplay(elementID, target, defaultStyle) {
 
     var cargo = document.getElementById(elementID + "_cargo");
     var hatch = document.getElementById(elementID + "_hatch");
+    var cargo_button = document.getElementById( "cargo_button")
+    var hatch_button = document.getElementById( "hatch_button")
 
-    if (cargo.style.display === "none") {
+
+    if (target === "cargo") {
         cargo.style.display = defaultStyle;
+        cargo_button.style.opacity = "1";
         hatch.style.display = "none";
-    } else  {
+        hatch_button.style.opacity = "0.4";
+
+    } else  if (target === "hatch") {
         cargo.style.display = "none";
+        cargo_button.style.opacity = "0.4";
         hatch.style.display = defaultStyle;
+        hatch_button.style.opacity = "1";
     }
+
+}
+
+function setAllianceColour(colour){
 
 
 }
