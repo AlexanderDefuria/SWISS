@@ -8,25 +8,38 @@
 
 
 
-
-
-
-<form action="{% url 'entry:write_cargo' team.id %}" method="post">
+<form action="{% url 'entry:write_auto' team.id %}" method="post">
     {% csrf_token %}
 
     <div id="test" class="container">
+
+        <div class="match">
+            <input id="MatchNumber" type="text" class="match_number">
+        </div>
+
+        <div class="center">
+            <div class="button_group">
+                <button type="button" id="level_two_l" class="level" onclick='selectLevel("level_two_l", "level")'>2 Left</button>
+                <button type="button" id="level_one" class="level" onclick='selectLevel(id, "level")'>1</button>
+                <button type="button" id="level_two_r" class="level" onclick='selectLevel(id, "level")'>2 Right</button>
+            </div>
+        </div>
+
+
+
+        <img src="{% static "entry/images/Rocket.png" %}" alt="Red Rocket" class="right">
 
 
         <div class="left">
 
             <div class="button_group">
-                <button type="button" id="cargo_button" class="toggle button" onclick='toggleInputDisplay("rocket", "cargo", "block")' style="background-color: orange">Cargo</button>
-                <button type="button" id="hatch_button" class="toggle button" onclick='toggleInputDisplay("rocket", "hatch", "block")' style="background-color: yellow">Hatch</button>
+                <button type="button" id="rocket_cargo_button" class="toggle button" onclick='toggleInputDisplay("rocket", "cargo", "block")' style="background-color: orange; opacity: 1;">Cargo</button>
+                <button type="button" id="rocket_hatch_button" class="toggle button" onclick='toggleInputDisplay("rocket", "hatch", "block")' style="background-color: yellow">Hatch</button>
             </div>
             <hr>
 
 
-            <div id="rocket_cargo" >
+            <div id="rocket_cargo">
                 <div class="button_group" >
                     <button id="FirstRocketCargo-add" type="button" onClick="add('FirstRocketCargo')">Add</button>
                     <div id="FirstRocketCargo-label" class="display_current_value">0</div>
@@ -68,10 +81,46 @@
                     <button id="ThirdRocketHatch-sub" type="button" onClick="subtract('ThirdRocketHatch')">Subtract</button>
                 </div>
             </div>
+            <br><br>
+
+
+
+            <div class="button_group">
+                <button type="button" id="ship_cargo_button" class="toggle button" onclick='toggleInputDisplay("ship", "cargo", "block")' style="background-color: orange; opacity: 1;">Cargo</button>
+                <button type="button" id="ship_hatch_button" class="toggle button" onclick='toggleInputDisplay("ship", "hatch", "block")' style="background-color: yellow">Hatch</button>
+            </div>
+            <hr>
+
+
+            <div id="ship_cargo">
+                <div class="button_group" >
+                    <button id="ShipCargo-add" type="button" onClick="add('ShipCargo')">Add</button>
+                    <div id="ShipCargo-label" class="display_current_value">0</div>
+                    <input id="ShipCargo" class="number-form" type="hidden" name="ShipCargo" min="0" max="8" default="0">
+                    <button id="ShipCargo-sub" type="button" onClick="subtract('ShipCargo')">Subtract</button>
+                </div>
+            </div>
+
+
+            <div id="ship_hatch" style="display: none">
+                <div class="button_group" >
+                    <button id="ShipHatch-add" type="button" onClick="add('ShipHatch')">Add</button>
+                    <div id="ShipHatch-label" class="display_current_value">0</div>
+                    <input id="ShipHatch" class="number-form" type="hidden" name="ShipHatch" min="0" max="8" default="0">
+                    <button id="ShipHatch-sub" type="button" onClick="subtract('ShipHatch')">Subtract</button>
+                </div>
+            </div>
+            <br>
+
+            <img src="{% static "entry/images/CargoShip.png" %}" alt="Red CargoShip">
+
+
+
+
         </div>
 
 
-        <img src="{% static "entry/images/Rocket.png" %}" alt="Red Rocket" class="right">
+
 
     </div>
 

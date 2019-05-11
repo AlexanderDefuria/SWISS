@@ -3,8 +3,8 @@ var values = {
     ThirdRocketCargo: 0,
     SecondRocketCargo: 0,
     FirstRocketCargo: 0,
-    CargoShipCargo: 0,
-    CargoShipHatch: 0,
+    ShipCargo: 0,
+    ShipHatch: 0,
     FirstRocketHatch: 0,
     SecondRocketHatch: 0,
     ThirdRocketHatch: 0,
@@ -30,8 +30,8 @@ function toggleInputDisplay(elementID, target, defaultStyle) {
 
     var cargo = document.getElementById(elementID + "_cargo");
     var hatch = document.getElementById(elementID + "_hatch");
-    var cargo_button = document.getElementById( "cargo_button")
-    var hatch_button = document.getElementById( "hatch_button")
+    var cargo_button = document.getElementById( elementID + "_cargo_button")
+    var hatch_button = document.getElementById( elementID + "_hatch_button")
 
 
     if (target === "cargo") {
@@ -49,7 +49,14 @@ function toggleInputDisplay(elementID, target, defaultStyle) {
 
 }
 
-function setAllianceColour(colour){
+function selectLevel(elementID, class_name){
+    var element_list = document.getElementsByClassName("level");
 
+    for (var i = 0; i < element_list.length; i++){
+        console.log(element_list[i])
+        element_list[i].style.opacity = "0.3";
+    }
 
+    var x = document.getElementById(elementID);
+    x.style.opacity = "1";
 }

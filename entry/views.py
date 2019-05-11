@@ -2,11 +2,13 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic
 
-from entry.models import Team
+from entry.models import Team, Match
+
+latest_match = 0
 
 
-def write_cargo(request, pk):
-    print("adding to database")
+def write_teleop(request, pk):
+    print("Adding teleop phase to database")
     if request.method == 'POST':
 
         team = Team.objects.get(id=pk)
@@ -36,6 +38,29 @@ def write_cargo(request, pk):
         return HttpResponseRedirect(reverse_lazy('entry:team_list'))
 
 
+def write_auto(request, pk):
+    print("Adding auto phase to database")
+    if request.method == 'POST':
+        team = Team.objects.get(id=pk)
+        print(team)
+
+        match = Match()
+        match.match_number = make_int(request.POST.get('MatchNumber', 0))
+
+        # Autonomous
+        team.auto_cargo = team.auto_cargo + make_int(request.POST.get('AutoCargo', 0))
+        team.auto_hatch = team.auto_hatch + make_int(request.POST.get('AutoHatch', 0))
+
+        team.save()
+
+        print('Success')
+        return HttpResponseRedirect('/entry/' + str(team.pk) + '/teleop/' + str(match.match_number))
+
+    else:
+        print('Fail')
+        return HttpResponseRedirect(reverse_lazy('entry:team_list'))
+
+
 def make_int(s):
     s = str(s)
     s = s.strip()
@@ -53,3 +78,8 @@ class TeamNumberList(generic.ListView):
 class Auto(generic.DetailView):
     model = Team
     template_name = 'entry/auto.html'
+
+
+class Teleop(generic.DetailView):
+    model = Team
+    template_name = 'entry/teleop.html'
