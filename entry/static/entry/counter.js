@@ -49,14 +49,76 @@ function toggleInputDisplay(elementID, target, defaultStyle) {
 
 }
 
-function selectLevel(elementID, class_name){
-    var element_list = document.getElementsByClassName("level");
+function selectLevel(elementID, class_name, value, toassign){
+    var element_list = document.getElementsByClassName(class_name);
 
     for (var i = 0; i < element_list.length; i++){
-        console.log(element_list[i])
+        console.log(element_list[i]);
         element_list[i].style.opacity = "0.3";
+        element_list[i].value = "";
+        element_list[i].style.backgroundColor = "";
     }
 
     var x = document.getElementById(elementID);
     x.style.opacity = "1";
+    x
+
+    if (value !== -1) {
+        document.getElementById("StartingLevel").value = "2";
+    }
+
+}
+
+var on = false;
+var startTime;
+var time = 0;
+
+function toggleTimer(elementID){
+    if (on === false){
+        startTime = Date.now();
+        on = true;
+        document.getElementById(elementID).style.backgroundColor = "lightcoral";
+        document.getElementById(elementID).textContent = "Stop Timing Defense";
+
+    } else {
+        time += Date.now() - startTime;
+        on = false;
+        document.getElementById(elementID).style.backgroundColor = "lightgreen";
+        document.getElementById(elementID).textContent = "Resume Defense Timer";
+    }
+
+
+
+}
+
+function checkInputValues(mandatory_list) {
+
+    var pass = true;
+
+    for (var i = 0; i < mandatory_list.length; i++){
+
+        var element = document.getElementById(mandatory_list[i]);
+
+        if(element.value === element.defaultValue){
+            var indicate_list = document.getElementsByClassName(element.className)
+
+            for (var x = 0; x < indicate_list.length; x++) {
+                document.getElementById(indicate_list[x].id).style.backgroundColor = "red";
+                document.getElementById(indicate_list[x].id).style.borderColor = "red";
+            }
+
+            pass = false;
+        }
+    }
+
+    // TODO re-enable the check, disabled to speed up internal testing
+    if (true) {
+        console.log("Success");
+        document.getElementById("form").submit()
+    } else {
+        console.log("Failed Input");
+        window.scrollTo(0,0)
+    }
+
+
 }

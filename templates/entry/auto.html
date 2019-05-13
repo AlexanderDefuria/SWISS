@@ -8,26 +8,27 @@
 
 
 
-<form action="{% url 'entry:write_auto' team.id %}" method="post">
+<form action="{% url 'entry:write_auto' team.id %}" method="post" id="form">
     {% csrf_token %}
 
     <div id="test" class="container">
 
         <div class="match">
-            <input id="MatchNumber" type="text" class="match_number">
+            <input id="MatchNumber" name="MatchNumber" type="text" class="match_number">
         </div>
 
         <div class="center">
             <div class="button_group">
-                <button type="button" id="level_two_l" class="level" onclick='selectLevel("level_two_l", "level")'>2 Left</button>
-                <button type="button" id="level_one" class="level" onclick='selectLevel(id, "level")'>1</button>
-                <button type="button" id="level_two_r" class="level" onclick='selectLevel(id, "level")'>2 Right</button>
+                <input id="StartingLevel" name="StartingLevel" class="level" type="text" min="0" max="2" default="0" style="display:none ">
+                <button type="button" id="level_one" class="level" onclick='selectLevel(id, "level", 1, "StartingLevel")'>First Level</button>
+                <button type="button" id="level_two" class="level" onclick='selectLevel(id, "level", 2, "StartingLevel")'>Second Level</button>
             </div>
         </div>
 
 
-
-        <img src="{% static "entry/images/Rocket.png" %}" alt="Red Rocket" class="right">
+        <div class="right">
+            <img src="{% static "entry/images/Rocket.png" %}" alt="Red Rocket" class="img">
+        </div>
 
 
         <div class="left">
@@ -112,7 +113,7 @@
             </div>
             <br>
 
-            <img src="{% static "entry/images/CargoShip.png" %}" alt="Red CargoShip">
+            <img src="{% static "entry/images/CargoShip.png" %}" alt="Red CargoShip" class="img">
 
 
 
@@ -126,5 +127,5 @@
 
 
 
-    <button type="submit" value="Post">Submit</button>
+    <button type="button" onClick='checkInputValues(["MatchNumber", "StartingLevel"])'>Submit</button>
 </form>

@@ -14,6 +14,8 @@
 .container {
     display: grid;
     grid-column-gap: 0.5%;
+    margin-right: auto;
+    margin-left: auto;
     grid-template-areas:
     'header header header'
     'match center center'
@@ -23,7 +25,7 @@
 }
 
 
-img{
+.img{
     width:80%;
     margin-left: auto;
     margin-right: auto;
@@ -102,7 +104,6 @@ body {
 }
 
 
-
 button {
 	font-family: 'Lato', sans-serif;
 	font-size: 1em;
@@ -139,17 +140,32 @@ form{
     margin-right: auto;
     margin-left: auto;
 }
+.timer {
+    display: block;
+    background-color: lightgreen;
+    width: 80%;
+    height: 10%;
+    min-height: 100px;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 25px;
+}
 
-@media only screen and (max-width: 800px) {
+@media (max-width: 1100px) {
+
+    .img {
+        display: none;
+    }
+
     .container {
+        max-width: 800px;
         grid-template-areas:
             'header header header'
             'match match match'
             'center center center'
             'left left left'
             'middle middle  middle'
-            'right right right'
-            'footer footer footer';
+            'right right right';
     }
 }
 
@@ -164,6 +180,10 @@ form{
     padding: 0.75em 0;
     text-align: center;
 }
+
+
+
+
 
 
 

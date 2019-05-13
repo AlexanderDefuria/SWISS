@@ -13,8 +13,13 @@
 
     <div id="test" class="container">
 
-        <img src="{% static "entry/images/Rocket.png" %}" alt="Red Rocket" class="right">
+        <div class="right">
 
+            <button type="button" id="defense_timer" onClick="toggleTimer(id)" class="timer">Start Defense Timer</button>
+
+            <img src="{% static "entry/images/Rocket.png" %}" alt="Red Rocket" class="right img">
+
+        </div>
 
         <div class="left">
 
@@ -98,19 +103,12 @@
             </div>
             <br>
 
-            <img src="{% static "entry/images/CargoShip.png" %}" alt="Red CargoShip">
-
-
-
+            <img src="{% static "entry/images/CargoShip.png" %}" alt="Red CargoShip" class="img">
 
         </div>
 
-
-
-
     </div>
 
-
-
-    <button type="submit" value="Post">Submit</button>
+    <br>
+    <button type="submit" value="Post" onClick="checkInputValues()">Submit</button>
 </form>
