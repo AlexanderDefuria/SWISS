@@ -167,6 +167,10 @@ form{
             'middle middle  middle'
             'right right right';
     }
+
+    .timer {
+        width: 100%;
+    }
 }
 
 .level {

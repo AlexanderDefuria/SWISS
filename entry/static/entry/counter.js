@@ -10,16 +10,16 @@ var values = {
     ThirdRocketHatch: 0,
 };
 
-function add(name)  {
+function add(name, max)  {
     values[name] += 1;
-    if(values[name] > 8) values[name] = 8;
+    if(values[name] > max) values[name] = max;
     document.getElementById(name.concat('-label')).innerHTML = values[name];
     document.getElementById(name).value = values[name];
 }
 
-function subtract(name) {
+function subtract(name, min) {
     values[name] -= 1;
-    if(values[name] < 0) values[name] = 0;
+    if(values[name] < min) values[name] = min;
     document.getElementById(name.concat('-label')).innerHTML = values[name];
     document.getElementById(name).value = values[name];
 
@@ -112,7 +112,8 @@ function checkInputValues(mandatory_list) {
     }
 
     // TODO re-enable the check, disabled to speed up internal testing
-    if (true) {
+    // Use variable 'pass' to check
+    if (pass) {
         console.log("Success");
         document.getElementById("form").submit()
     } else {

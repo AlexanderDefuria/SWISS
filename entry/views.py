@@ -1,6 +1,10 @@
-from django.http import HttpResponseRedirect
+import os
+
+from django.conf import settings
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.urls import reverse_lazy
 from django.views import generic
+from peewee import sqlite3
 
 from entry.models import Team, Match
 
@@ -105,6 +109,18 @@ def write_auto(request, pk):
         return HttpResponseRedirect(reverse_lazy('entry:team_list'))
 
 
+def download(request):
+    path = './db.sqlite3'
+
+    file_path = os.path.join(settings.MEDIA_ROOT, path)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
+
+
 def make_int(s):
     s = str(s)
     s = s.strip()
@@ -127,3 +143,7 @@ class Auto(generic.DetailView):
 class Teleop(generic.DetailView):
     model = Team
     template_name = 'entry/teleop.html'
+
+
+class EventSetup(generic.TemplateView):
+    template_name = 'entry/event-setup.html'

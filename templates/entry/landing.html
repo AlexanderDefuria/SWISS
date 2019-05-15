@@ -1,6 +1,6 @@
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'entry/landing.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/entry.css' %}">
 
 
 
@@ -8,13 +8,26 @@
 
     <h1 class="title">Teams</h1>
 
-    <div id="multiColumn">
-        <ol>
-        {% for team in team_list %}
-            <li><a href="{% url 'entry:auto' team.pk %}">{{ team.name }}</a></li>
-        {% endfor %}
-        </ol>
+    <button onclick="location.href='{% url 'entry:download_event' %}'" id="myButton" >Download</button>
+
+    <div id="multiColumn" class="container">
+        <div class="right">
+            <ol>
+            {% for team in team_list %}
+                <li><a href="{% url 'entry:auto' team.pk %}">{{ team.name }}</a></li>
+            {% endfor %}
+            </ol>
+        </div>
+        <div class="left">
+            <ol>
+            {% for team in team_list %}
+                <li><a href="{% url 'entry:auto' team.pk %}">{{ team.name }}</a></li>
+            {% endfor %}
+            </ol>
+        </div>
     </div>
+
+
 {% else %}
     <p>No polls are available.</p>
 {% endif %}

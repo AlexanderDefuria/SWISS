@@ -8,5 +8,7 @@ urlpatterns = [
     path('<slug:pk>/auto', views.Auto.as_view(), name='auto'),
     path('<slug:pk>/auto/submit', views.write_auto, name='write_auto'),
     path('<slug:pk>/teleop/<slug:match_number>', views.Teleop.as_view(), name='teleop'),
-    path('<slug:pk>/teleop/', views.write_teleop, name='write_teleop')
+    path('<slug:pk>/teleop/', views.write_teleop, name='write_teleop'),
+    path('event-setup', views.EventSetup.as_view(), name='event-setup'),
+    path('download', views.download, name='download_event')
 ]
