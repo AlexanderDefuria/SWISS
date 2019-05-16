@@ -4,8 +4,6 @@ from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.urls import reverse_lazy
 from django.views import generic
-from peewee import sqlite3
-
 from entry.models import Team, Match
 
 
