@@ -15,10 +15,14 @@ class Event(models.Model):
 class Team(models.Model):
     number = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
     name = models.CharField(default="team", max_length=40)
-    event_one = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
+    cur_event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
+    event_one = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
+    event_two = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
+    event_three = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
+    event_four = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
 
     def __str__(self):
-        return str(self.number)
+        return str(self.number) + "\t\t" + str(self.name)
 
 
 class Match(models.Model):
