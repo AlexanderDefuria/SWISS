@@ -106,9 +106,11 @@ def make_int(s):
 class TeamNumberList(generic.ListView):
     template_name = 'entry/landing.html'
     context_object_name = "team_list"
+    model = Team
 
     def get_queryset(self):
-        return Team.objects.order_by('name')
+        x = Team.objects.filter(cur_event_id=config.current_event_id)
+        return x.order_by('number')
 
 
 class Auto(generic.DetailView):

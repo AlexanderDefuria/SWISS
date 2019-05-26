@@ -5,7 +5,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class Event(models.Model):
     name = models.TextField(default="NA")
     TBA_key = models.TextField(default="NA")
-    TBA_id = models.TextField(default="NA")
     TBA_eventType = models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
 
     def __str__(self):
@@ -20,6 +19,7 @@ class Team(models.Model):
     event_two = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
     event_three = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
     event_four = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
+    TBA_key = models.CharField(default="NA", max_length=40)
 
     def __str__(self):
         return str(self.number) + "\t\t" + str(self.name)

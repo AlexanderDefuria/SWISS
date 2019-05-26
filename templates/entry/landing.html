@@ -1,6 +1,6 @@
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'entry/entry.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/landing.css' %}">
 <link rel="shortcut icon" type="image/png" href="{% static 'entry/images/favicon.png' %}"/>
 
 {% if team_list %}
@@ -10,20 +10,14 @@
     <button onclick="location.href='{% url 'entry:download_event' %}'" id="myButton" >Download</button>
 
     <div id="multiColumn" class="container">
-        <div class="right">
-            <ol>
-            {% for team in team_list %}
-                <li><a href="{% url 'entry:auto' team.pk %}">{{ team.name }}</a></li>
-            {% endfor %}
-            </ol>
-        </div>
         <div class="left">
             <ol>
             {% for team in team_list %}
-                <li><a href="{% url 'entry:auto' team.pk %}">{{ team.name }}</a></li>
+                <li><a href="{% url 'entry:auto' team.pk %}">{{ team.number }} - {{ team.name }}</a></li>
             {% endfor %}
             </ol>
         </div>
+
     </div>
 
 
