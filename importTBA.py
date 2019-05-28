@@ -3,6 +3,8 @@ from tbaapiv3client import ApiException
 import sqlite3
 import json
 from entry import config
+import datetime
+import os
 
 configuration = tba.Configuration()
 configuration.api_key['X-TBA-Auth-Key'] = 'TaaEaU05CN3V89QGeDEKDSPYtfsFTAX0L8aNgAmjSAecJd2GpX4Avj5gQLjKKKls'
@@ -36,11 +38,11 @@ def import_events():
             event = json.loads(event)
             event_data.append(event)
 
-            data = [(str(event["name"]), str(event["key"]), str(event["event_type"]))]
+            data = [(str(event["name"]), str(event["key"]), str(event["event_type"]), get_date(event["start_date"]))]
 
             conn = sqlite3.connect("db.sqlite3")
             c = conn.cursor()
-            c.executemany("INSERT INTO entry_event VALUES (NULL,?,?,?)", data)
+            c.executemany("INSERT INTO entry_event VALUES (NULL,?,?,?,?)", data)
             conn.commit()
 
         conn.close()
@@ -83,6 +85,37 @@ def import_teams():
         print("Exception when calling TBAApi->get_status: %s\n" % e)
 
 
+def import_schedule():
+    try:
+        team_list = district_api.get_district_teams_simple('2019ont')
+
+        conn = sqlite3.connect("db.sqlite3")
+        c = conn.cursor()
+        write = conn.cursor()
+        events = []
+
+        for row in c.execute('SELECT TBA_key FROM entry_event WHERE id!=0'):
+            #print(row[0])
+
+            event = json.loads(clean_request(event_api.get_event_simple(row[0])))
+            date = get_date(event["start_date"])
+            events.append(date)
+
+        events.sort()
+        event_dates = events
+        events.clear()
+
+        for event in event_dates:
+            print(event)
+            events.append(c.execute('SELECT TBA_key FROM entry_event WHERE start=?', (event,)))
+
+        print(events)
+
+
+    except ApiException as e:
+        print("Exception when calling TBAApi->get_status: %s\n" % e)
+
+
 def clean_request(item):
 
     index = 0
@@ -109,6 +142,24 @@ def clean_request(item):
     return str(item)
 
 
+def get_date(raw):
+
+    raw = raw.split(',')
+
+    date = datetime.date(int(raw[0]),int(raw[1]),int(raw[2]))
+    print(date)
+    return date
+
+
+def authenticate():
+    if input("Are you sure you wish to clear the database and import new? [YES I AM SURE]/[NOT SURE]") == "YES I AM SURE":
+        if input("ARE YOU 100% CERTAIN? [YES I AM CERTAIN]/[NOT SURE]") == "YES I AM CERTAIN":
+            if input("Password: ") == "admin2019":
+                import_events()
+                import_teams()
+                import_schedule()
+
+
 # import_events()
 # import_teams()
-
+import_schedule()

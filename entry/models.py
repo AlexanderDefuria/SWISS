@@ -1,9 +1,11 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+import datetime
 
 
 class Event(models.Model):
     name = models.TextField(default="NA")
+    start = models.DateTimeField(default=datetime.date(9999, 12, 31))
     TBA_key = models.TextField(default="NA")
     TBA_eventType = models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
 
@@ -56,6 +58,27 @@ class Match(models.Model):
 
     def __str__(self):
         return self.team.name + "  Match: " + str(self.match_number)
+
+
+class Schedule(models.Model):
+    match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(0)])
+
+    # Match Type: 0 - Practice Match --- 1 - Qualification Match --- 2 - Playoff Match
+    type = models.IntegerField(default=1, validators=[MaxValueValidator(2), MinValueValidator(0)])
+
+    red1 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
+    red2 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
+    red3 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
+    blue1 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
+    blue2 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
+    blue3 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
+    red_score = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
+    blue_score = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
+    played = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.match_number
+
 
 
 
