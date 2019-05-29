@@ -102,8 +102,53 @@ def import_schedule():
         for event in events:
             c.execute('SELECT TBA_key FROM entry_event WHERE start=?', (event[4],))
             conn.commit()
+            event_key = c.fetchone()[0]
+            teams = event_api.get_event_teams_simple(event_key)
+
+            c.execute("SELECT id FROM entry_event WHERE TBA_key=?", (event_key,))
             event_id = c.fetchone()[0]
-            event_matches = (event_api.get_event_matches_keys(event_id))
+
+            for team in teams:
+
+                cur_team = clean_request(team)
+
+                first_remove = str(cur_team)[str(cur_team).find('name'):]
+                second_replace = str(cur_team)[str(cur_team).find('nickname'):]
+
+                cur_team = cur_team.replace(first_remove, '')
+                cur_team = cur_team + second_replace
+
+                cur_team = json.loads(cur_team)
+
+                data = [(str(cur_team["key"]),)]
+                data2 = [(event_id, cur_team["key"],)]
+                print(data2)
+
+                try:
+                    c.execute('SELECT event_one_id FROM entry_team WHERE TBA_key=?', data[0])
+                    if c.fetchone()[0] == 0:
+                        c.execute('UPDATE entry_team SET event_one_id = ? WHERE TBA_key = ?', data2[0])
+                        conn.commit()
+                    else:
+                        c.execute('SELECT event_two_id FROM entry_team WHERE TBA_key=?', data[0])
+                        if c.fetchone()[0] == 0:
+                            c.execute('UPDATE entry_team SET event_two_id = ? WHERE TBA_key=?', data2[0])
+                            conn.commit()
+                        else:
+                            c.execute('SELECT event_three_id FROM entry_team WHERE TBA_key=?', data[0])
+                            if c.fetchone()[0] == 0:
+                                c.execute('UPDATE entry_team SET event_three_id = ? WHERE TBA_key=?', data2[0])
+                                conn.commit()
+                            else:
+                                c.execute('SELECT event_four_id FROM entry_team WHERE TBA_key=?', data[0])
+                                if c.fetchone()[0] == 0:
+                                    c.execute('UPDATE entry_team SET event_four_id = ? WHERE TBA_key=?', data2[0])
+                                    conn.commit()
+
+                except TypeError as e:
+                    e = 1
+
+            event_matches = (event_api.get_event_matches_keys(event_key))
 
             for match_key in event_matches:
                 print(match_key)
@@ -116,7 +161,7 @@ def import_schedule():
                 match_data = [(None, (match['match_number']), get_teams(0, 0, match, c),
                                get_teams(0, 1, match, c), get_teams(0, 2, match, c), get_teams(1, 0, match, c),
                                get_teams(1, 1, match, c), get_teams(1, 2, match, c), get_score(match, 0),
-                               get_score(match, 1), True, match_key, event_id[0],)]
+                               get_score(match, 1), True, match_key, event_key[0],)]
 
                 conn.commit()
                 c.executemany("INSERT INTO entry_schedule VALUES (?, ? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", match_data)
@@ -205,7 +250,7 @@ def authenticate():
 
 def full_reset():
 
-    os.system('python3 manage.py flush')
+    #os.system('python3 manage.py flush')
 
     conn = sqlite3.connect('db.sqlite3')
     c = conn.cursor()
