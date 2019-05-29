@@ -3,7 +3,7 @@ from tbaapiv3client import ApiException
 import sqlite3
 import json
 from entry import config
-import datetime
+import operator
 import os
 
 configuration = tba.Configuration()
@@ -12,6 +12,7 @@ configuration.api_key['X-TBA-Auth-Key'] = 'TaaEaU05CN3V89QGeDEKDSPYtfsFTAX0L8aNg
 
 district_api = tba.DistrictApi(tba.ApiClient(configuration))
 event_api = tba.EventApi(tba.ApiClient(configuration))
+match_api = tba.MatchApi(tba.ApiClient(configuration))
 district_key = '2019ont'
 event_key = config.current_event_key
 event_data = []
@@ -87,30 +88,39 @@ def import_teams():
 
 def import_schedule():
     try:
-        team_list = district_api.get_district_teams_simple('2019ont')
-
         conn = sqlite3.connect("db.sqlite3")
         c = conn.cursor()
-        write = conn.cursor()
         events = []
 
-        for row in c.execute('SELECT TBA_key FROM entry_event WHERE id!=0'):
-            #print(row[0])
+        for row in c.execute('SELECT * FROM entry_event WHERE id!=0'):
+            print(row)
+            events.append(row)
 
-            event = json.loads(clean_request(event_api.get_event_simple(row[0])))
-            date = get_date(event["start_date"])
-            events.append(date)
-
-        events.sort()
-        event_dates = events
-        events.clear()
-
-        for event in event_dates:
-            print(event)
-            events.append(c.execute('SELECT TBA_key FROM entry_event WHERE start=?', (event,)))
-
+        events.sort(key=operator.itemgetter(4))
         print(events)
 
+        for event in events:
+            c.execute('SELECT TBA_key FROM entry_event WHERE start=?', (event[4],))
+            conn.commit()
+            event_id = c.fetchone()[0]
+            event_matches = (event_api.get_event_matches_keys(event_id))
+
+            for match_key in event_matches:
+                print(match_key)
+
+                match = json.loads(clean_request(match_api.get_match_simple(match_key)))
+
+                c.execute("SELECT id FROM entry_event WHERE TBA_key=?", (match['event_key'],))
+                event_id = c.fetchone()
+
+                match_data = [(None, (match['match_number']), get_teams(0, 0, match, c),
+                               get_teams(0, 1, match, c), get_teams(0, 2, match, c), get_teams(1, 0, match, c),
+                               get_teams(1, 1, match, c), get_teams(1, 2, match, c), get_score(match, 0),
+                               get_score(match, 1), True, match_key, event_id[0],)]
+
+                conn.commit()
+                c.executemany("INSERT INTO entry_schedule VALUES (?, ? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", match_data)
+                conn.commit()
 
     except ApiException as e:
         print("Exception when calling TBAApi->get_status: %s\n" % e)
@@ -133,8 +143,8 @@ def clean_request(item):
                     item = item[:index] + item[index:]
                 else:
                     item = item[:index] + '"' + item[index+1:]
-            except IndexError:
-                1 + 1
+            except IndexError as e:
+                e = 1
         index += 1
 
     item = item.replace('"The Cybernauts"', ' ')
@@ -144,11 +154,44 @@ def clean_request(item):
 
 def get_date(raw):
 
-    raw = raw.split(',')
+    raw = raw.replace(',', '')
+    test = raw.split(" ")
+    if len(test[1]) != 2:
+        test[1] = '0' + test[1]
+    if len(test[2]) != 2:
+        test[2] = '0' + test[2]
 
-    date = datetime.date(int(raw[0]),int(raw[1]),int(raw[2]))
-    print(date)
-    return date
+    value = test[0] + test[1] + test[2]
+
+    return value
+
+
+def get_teams(alliance, place, match, c):
+    # 0 for blue
+    # 1 for red
+    data = 0
+
+    if alliance == 0:
+        data = (str(match['alliances']['blue']['team_keys'][place]),)
+    else:
+        data = (str(match['alliances']['red']['team_keys'][place]),)
+    c.execute('SELECT number FROM entry_team WHERE TBA_key=?', data)
+    result = c.fetchone()
+    print(result)
+    try:
+        return int(result[0])
+    except TypeError:
+        return 0
+
+
+def get_score(match, alliance):
+    # 0 for blue
+    # 1 for red
+
+    if alliance == 0:
+        return match['alliances']['blue']['score']
+
+    return match['alliances']['red']['score']
 
 
 def authenticate():
@@ -160,6 +203,23 @@ def authenticate():
                 import_schedule()
 
 
-# import_events()
-# import_teams()
+def full_reset():
+
+    os.system('python3 manage.py flush')
+
+    conn = sqlite3.connect('db.sqlite3')
+    c = conn.cursor()
+
+    c.execute("INSERT INTO entry_event VALUES (0,0,0,0,0)")
+    conn.commit()
+    c.execute("INSERT INTO entry_team VALUES (0,0,0,0,0,0,0,0,0)")
+    conn.commit()
+    c.execute("INSERT INTO entry_schedule VALUES (0,0,0,0,0,0,0,0,0,0,0,0,0)")
+    conn.commit()
+    conn.close()
+
+
+full_reset()
+import_events()
+import_teams()
 import_schedule()

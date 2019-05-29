@@ -53,7 +53,7 @@ def write_auto(request, pk):
         # Match Setup
         match = Match()
         match.match_number = make_int(request.POST.get('MatchNumber', 0))
-        match.event_id = config.get_event(config.current_event)
+        match.event_id = config.current_event_id
         if match.event_id != team.cur_event:
             raise Http404
         match.team_id = team.id

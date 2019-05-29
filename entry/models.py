@@ -5,9 +5,9 @@ import datetime
 
 class Event(models.Model):
     name = models.TextField(default="NA")
-    start = models.DateTimeField(default=datetime.date(9999, 12, 31))
     TBA_key = models.TextField(default="NA")
     TBA_eventType = models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
+    start = models.IntegerField(default=0, validators=[MaxValueValidator(100000000), MinValueValidator(0)])
 
     def __str__(self):
         return self.name
@@ -21,7 +21,7 @@ class Team(models.Model):
     event_two = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
     event_three = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
     event_four = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
-    TBA_key = models.CharField(default="NA", max_length=40)
+    TBA_key = models.TextField(default="NA", max_length=40)
 
     def __str__(self):
         return str(self.number) + "\t\t" + str(self.name)
@@ -62,9 +62,8 @@ class Match(models.Model):
 
 class Schedule(models.Model):
     match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(0)])
-
-    # Match Type: 0 - Practice Match --- 1 - Qualification Match --- 2 - Playoff Match
-    type = models.IntegerField(default=1, validators=[MaxValueValidator(2), MinValueValidator(0)])
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
+    TBA_key = models.TextField(default="NA", max_length=40)
 
     red1 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
     red2 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
