@@ -8,6 +8,7 @@ class Event(models.Model):
     TBA_key = models.TextField(default="NA")
     TBA_eventType = models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
     start = models.IntegerField(default=0, validators=[MaxValueValidator(100000000), MinValueValidator(0)])
+    imported = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -16,7 +17,7 @@ class Event(models.Model):
 class Team(models.Model):
     number = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
     name = models.CharField(default="team", max_length=40)
-    cur_event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
+    event_five = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
     event_one = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
     event_two = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
     event_three = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')

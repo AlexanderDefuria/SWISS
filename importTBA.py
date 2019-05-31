@@ -29,6 +29,9 @@ def import_events():
         event_list = district_api.get_district_events_simple(district_key)
         # print(api_response)
 
+        conn = sqlite3.connect("db.sqlite3")
+        c = conn.cursor()
+
         for event in event_list:
 
             event = clean_request(event)
@@ -41,9 +44,7 @@ def import_events():
 
             data = [(str(event["name"]), str(event["key"]), str(event["event_type"]), get_date(event["start_date"]))]
 
-            conn = sqlite3.connect("db.sqlite3")
-            c = conn.cursor()
-            c.executemany("INSERT INTO entry_event VALUES (NULL,?,?,?,?)", data)
+            c.executemany("INSERT INTO entry_event VALUES (NULL,?,?,?,?,FALSE)", data)
             conn.commit()
 
         conn.close()
@@ -77,7 +78,7 @@ def import_teams():
 
             conn = sqlite3.connect("db.sqlite3")
             c = conn.cursor()
-            c.executemany("INSERT INTO entry_team VALUES (NULL,?,?,0,0,0,0,0,?)", data)
+            c.executemany("INSERT INTO entry_team VALUES (NULL,?,?,0,0,0,0,?,0)", data)
             conn.commit()
 
             print(team)
@@ -100,9 +101,12 @@ def import_schedule():
         print(events)
 
         for event in events:
-            c.execute('SELECT TBA_key FROM entry_event WHERE start=?', (event[4],))
-            conn.commit()
+            c.execute('SELECT TBA_key FROM entry_event WHERE start=? AND imported=FALSE', (event[4],))
             event_key = c.fetchone()[0]
+            data = [(True, event_key,)]
+            c.execute('UPDATE entry_event SET imported = ? WHERE TBA_key = ?', data[0])
+            conn.commit()
+
             teams = event_api.get_event_teams_simple(event_key)
 
             c.execute("SELECT id FROM entry_event WHERE TBA_key=?", (event_key,))
@@ -156,7 +160,6 @@ def import_schedule():
                 match = json.loads(clean_request(match_api.get_match_simple(match_key)))
 
                 c.execute("SELECT id FROM entry_event WHERE TBA_key=?", (match['event_key'],))
-                event_id = c.fetchone()
 
                 match_data = [(None, (match['match_number']), get_teams(0, 0, match, c),
                                get_teams(0, 1, match, c), get_teams(0, 2, match, c), get_teams(1, 0, match, c),
@@ -222,7 +225,6 @@ def get_teams(alliance, place, match, c):
         data = (str(match['alliances']['red']['team_keys'][place]),)
     c.execute('SELECT number FROM entry_team WHERE TBA_key=?', data)
     result = c.fetchone()
-    print(result)
     try:
         return int(result[0])
     except TypeError:
@@ -250,12 +252,12 @@ def authenticate():
 
 def full_reset():
 
-    #os.system('python3 manage.py flush')
+    os.system('python3 manage.py flush')
 
     conn = sqlite3.connect('db.sqlite3')
     c = conn.cursor()
 
-    c.execute("INSERT INTO entry_event VALUES (0,0,0,0,0)")
+    c.execute("INSERT INTO entry_event VALUES (0,0,0,0,0,FALSE)")
     conn.commit()
     c.execute("INSERT INTO entry_team VALUES (0,0,0,0,0,0,0,0,0)")
     conn.commit()
