@@ -10,5 +10,11 @@
         <property name="enable_load_extension" value="true" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="herokuDB" uuid="269b0219-28bf-448e-8488-cb51660d43d4">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://ec2-54-225-72-238.compute-1.amazonaws.com:5432/daov07gicq7lun</jdbc-url>
+    </data-source>
   </component>
 </project>
