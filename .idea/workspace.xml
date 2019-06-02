@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23269149-9d46-48cd-acf7-10f6547203a0" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRC-Scouting/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/FRC-Scouting/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datadump.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/entry/models.py" afterDir="false" />
+>>>>>>> 2647a5ddaa6a003d543d601fee5bcee477ca38ea
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -93,8 +103,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FRC-Scouting/settings.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="517">
               <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+=======
+            <state relative-caret-position="228">
+              <caret line="44" column="49" selection-start-line="44" selection-start-column="49" selection-end-line="44" selection-end-column="49" />
+>>>>>>> 2647a5ddaa6a003d543d601fee5bcee477ca38ea
               <folding>
                 <element signature="e#311#320#0" expanded="true" />
               </folding>
@@ -368,12 +383,20 @@
       <workItem from="1559269716196" duration="2681000" />
       <workItem from="1559312847825" duration="632000" />
       <workItem from="1559359234159" duration="21000" />
+<<<<<<< HEAD
       <workItem from="1559395494653" duration="11206000" />
+=======
+      <workItem from="1559395494653" duration="9798000" />
+>>>>>>> 2647a5ddaa6a003d543d601fee5bcee477ca38ea
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="133174000" />
+=======
+    <option name="totallyTimeSpent" value="131766000" />
+>>>>>>> 2647a5ddaa6a003d543d601fee5bcee477ca38ea
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -403,7 +426,11 @@
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3293348" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053364" side_tool="true" weight="0.35038084" />
       <window_info anchor="bottom" id="Database Changes" order="11" weight="0.32861805" />
+<<<<<<< HEAD
       <window_info active="true" anchor="bottom" x="-263" y="452" width="1920" height="1009" id="Terminal" order="12" sideWeight="0.4994664" visible="true" weight="0.1308615" />
+=======
+      <window_info active="true" anchor="bottom" x="-263" y="452" width="1920" height="1009" id="Terminal" order="12" sideWeight="0.4994664" visible="true" weight="0.3838604" />
+>>>>>>> 2647a5ddaa6a003d543d601fee5bcee477ca38ea
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.32861805" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -522,6 +549,7 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/entry/static/entry/entry.css">
+<<<<<<< HEAD
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="64" column="12" lean-forward="true" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
@@ -544,6 +572,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/entry/static/entry/counter.js">
       <provider selected="true" editor-type-id="text-editor">
+=======
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="64" column="12" lean-forward="true" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entry/static/entry/landing.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/models.py" />
+    <entry file="file://$PROJECT_DIR$/templates/entry/auto.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
+          <folding>
+            <element signature="n#div#0;n#form#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entry/static/entry/counter.js">
+      <provider selected="true" editor-type-id="text-editor">
+>>>>>>> 2647a5ddaa6a003d543d601fee5bcee477ca38ea
         <state relative-caret-position="705">
           <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
         </state>
@@ -718,6 +770,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/entry/models.py">
+<<<<<<< HEAD
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-582">
           <caret line="18" column="57" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
@@ -729,6 +782,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
+=======
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-582">
+          <caret line="18" column="57" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Procfile">
+      <provider selected="true" editor-type-id="text-editor">
+>>>>>>> 2647a5ddaa6a003d543d601fee5bcee477ca38ea
         <state>
           <caret column="26" selection-start-column="26" selection-end-column="26" />
         </state>
@@ -736,8 +802,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FRC-Scouting/settings.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="517">
           <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+=======
+        <state relative-caret-position="228">
+          <caret line="44" column="49" selection-start-line="44" selection-start-column="49" selection-end-line="44" selection-end-column="49" />
+>>>>>>> 2647a5ddaa6a003d543d601fee5bcee477ca38ea
           <folding>
             <element signature="e#311#320#0" expanded="true" />
           </folding>
