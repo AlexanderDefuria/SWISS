@@ -109,7 +109,7 @@ class TeamNumberList(generic.ListView):
     model = Team
 
     def get_queryset(self):
-        x = Team.objects.filter(cur_event_id=config.current_event_id)
+        x = Team.objects.all()
         return x.order_by('number')
 
 

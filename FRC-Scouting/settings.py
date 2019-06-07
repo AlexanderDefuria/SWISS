@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -81,14 +80,6 @@ DATABASES = {
        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-    #'default': {
-    #    'NAME': 'daov07gicq7lun',
-    #    'ENGINE': 'django.db.backends.postgresql',
-    #    'USER': 'iustwmotvsrzat',
-    #    'PASSWORD': '1060df12c50ecc4ea4eae2f14b4e2cab6301b183e0b143c9570dd92782c432f7',
-    #    'HOST': 'ec2-54-225-72-238.compute-1.amazonaws.com',
-    #    'PORT': '5432'
-    #}
 }
 
 
