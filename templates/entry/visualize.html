@@ -1,0 +1,12 @@
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'entry/entry.css' %}">
+<link rel="shortcut icon" type="image/png" href="{% static 'entry/images/favicon.png' %}"/>
+
+<script type="text/javascript" src="{% static 'entry/pandas.js' %}"></script>
+
+<img src="{% static "entry/images/test.png" %}" id="test">
+<button onclick=updateImage("test","{% static 'entry/images/test.png' %}")>Test</button>
+
+

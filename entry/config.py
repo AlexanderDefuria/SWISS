@@ -2,7 +2,7 @@
 import sqlite3
 
 current_event_key = 'No Event'
-current_event_id = 0
+current_event_id = 224
 current_district_key = '2019ont'
 
 

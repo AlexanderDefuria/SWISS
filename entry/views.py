@@ -54,7 +54,7 @@ def write_auto(request, pk):
         match = Match()
         match.match_number = make_int(request.POST.get('MatchNumber', 0))
         match.event_id = config.current_event_id
-        if match.event_id != team.cur_event:
+        if match.event_id != config.current_event_id:
             raise Http404
         match.team_id = team.id
 
@@ -85,6 +85,10 @@ def write_auto(request, pk):
         return HttpResponseRedirect(reverse_lazy('entry:team_list'))
 
 
+def view_matches(request):
+    return HttpResponseRedirect(reverse_lazy('entry:view_matches'))
+
+
 def download(request):
     path = './db.sqlite3'
 
@@ -109,7 +113,11 @@ class TeamNumberList(generic.ListView):
     model = Team
 
     def get_queryset(self):
-        x = Team.objects.all()
+        x = Team.objects.filter(event_one_id=config.current_event_id)
+        x = x | Team.objects.filter(event_two_id=config.current_event_id)
+        x = x | Team.objects.filter(event_three_id=config.current_event_id)
+        x = x | Team.objects.filter(event_four_id=config.current_event_id)
+        x = x | Team.objects.filter(event_five_id=config.current_event_id)
         return x.order_by('number')
 
 
@@ -125,3 +133,7 @@ class Teleop(generic.DetailView):
 
 class EventSetup(generic.TemplateView):
     template_name = 'entry/event-setup.html'
+
+
+class Visualize(generic.TemplateView):
+    template_name = 'entry/visualize.html'

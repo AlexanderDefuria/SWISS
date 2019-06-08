@@ -1,13 +1,17 @@
 {% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'entry/landing.css' %}">
+
 <link rel="shortcut icon" type="image/png" href="{% static 'entry/images/favicon.png' %}"/>
 
 {% if team_list %}
 
     <h1 class="title">Teams</h1>
 
-    <button onclick="location.href='{% url 'entry:download_event' %}'" id="myButton" >Download</button>
+    <div class="container">
+        <button class="right" onclick="location.href='{% url 'entry:download_event' %}'" id="myButton" >Download</button>
+        <button class="left" onclick="location.href='{% url 'entry:view_matches' %}'" id="myButton" >View Data</button>
+    </div>
 
     <div id="multiColumn" class="container">
         <div class="left">
