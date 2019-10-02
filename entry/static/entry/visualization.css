@@ -11,24 +11,48 @@
     font-size: calc(36px + (100 - 36) * ((85vw - 300px) / (1600 - 300)));
 }
 
-.container {
+.container,
+.graphsetting{
     display: grid;
     grid-column-gap: 0.5%;
     margin-right: auto;
     margin-left: auto;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     grid-template-areas:
             'header header'
             'subheader subheader'
             'left right'
-            'left right';
+            'left right'
+            'bot bot';
+}
+
+.graphsetting{
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-areas:
+            'left center right'
+            'left center right';
+    margin: 10px;
+    height: 50%;
+    justify-self: center;
+    align-content: center;
+}
+
+.teamlist{
+    display: block;
+    max-width: 30%;
+    margin: 15px;
+    grid-area: left;
+    grid-row: 1/3;
 }
 
 
 .img{
-    width:80%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
     display: block;
+    align-content: center;
+    justify-content: center;
 }
 
 body {
@@ -49,12 +73,28 @@ body {
 }
 
 .left{
-    display: block;
+    display: flex;
     grid-area: left;
 }
 .right{
-    display: block;
+    display: flex;
     grid-area: right;
+}
+
+
+
+.header{
+    display: block;
+    margin-top: 1vw;
+    margin-bottom: 0.5vw;
+    text-align: center;
+    font-family: "Arial", serif;
+    font-style: normal;
+    font-weight: 500;
+    grid-column: 1/3;
+    /* font-size: calc([minimum _size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) /
+                ([maximum viewport width] - [minimum viewport width])));  */
+    font-size: calc(25px + (100 - 36) * ((60vw - 300px) / (1600 - 300)));
 }
 
 .input_heading{
@@ -80,12 +120,6 @@ body {
     background: rgba(0,0,0,0.1);
 }
 
-.toggle {
-    opacity: 0.5;
-
-}
-
-
 button {
 	font-family: 'Lato', sans-serif;
 	font-size: 1em;
@@ -94,14 +128,25 @@ button {
 	padding: 1em 2em;
     margin: 0.5em 0;
 	width: 100%;
-    background: rgba(0,0,0,0.1);
+    opacity: .5;
+    background: rgb(173,216,230);
     -webkit-transition:.2s;
 }
 button:hover{
-    background: rgba(0,0,0,0.3);
+    opacity: .75;
+    background: rgb(173,216,230);
 }
 button:active{
-    background: rgba(0,0,0,0.55);
+    opacity: 1.0;
+    background: rgb(173,216,230);
+}
+
+.bot{
+    grid-column: 1/3;
+    display: flex;
+    grid-area: bot;
+    width: 50%;
+    justify-self: center;
 }
 
 .counter{
@@ -117,27 +162,44 @@ button:active{
 
 }
 
-form{
-    max-width: 1600px;
-    margin-right: auto;
-    margin-left: auto;
-}
-.timer {
-    display: block;
-    background-color: lightgreen;
-    width: 80%;
-    height: 10%;
-    min-height: 100px;
-    margin-right: auto;
-    margin-left: auto;
-    font-size: 25px;
+.box {
+    width: 100%;
+    border: 0px solid green;
+    padding: 20px;
+    margin: 10px;
 }
 
-.box {
-  border: 15px solid green;
-  padding: 50px;
-  margin: 20px;
+.hidden{
+    display: none;
 }
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    height: 7%;
+    margin: 10px;
+    justify-self: center;
+}
+input[type="radio"]{
+
+}
+
+.right-options{
+    grid-area: right;
+}
+
+.center-options{
+    grid-area: center;
+}
+
+.right-options,
+.center-options{
+    width: 100%;
+    max-height: 100%;
+    margin: 10px;
+
+
+}
+
 
 
 

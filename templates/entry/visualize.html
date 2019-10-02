@@ -8,20 +8,83 @@
 
 
 <div id="layout" class="container">
+
+    <div class="header">
+        Data Visualization
+    </div>
+
     <div class="left">
         <div class="box">
+            <img src="{% static "entry/images/my_plot.png" %}" id="test" class="img" alt="Graph">
 
         </div>
     </div>
 
     <div class="right">
         <div class="box">
-            <button onclick="updateImage()"></button>
+            <div class="button_group" id="GraphToggle">
+                <button type="button" id="teams"   class="button" onclick='toggle("GraphToggle",this,1)'>Teams</button>
+                <button type="button" id="matches" class="button" onclick='toggle("GraphToggle",this,2)'>Matches</button>
+                <button type="button" id="scoring" class="button" onclick='toggle("GraphToggle",this,3)'>Scoring</button>
+                <input  id="GraphSelection" type="number" class="hidden" value=0>
+            </div>
+
+
+            <div id="1" class="graphsetting" style="display: none">
+                <div class="teamlist">
+                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team1"><label>Team 1</label>
+                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team2"><label>Team 2</label>
+                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team3"><label>Team 3</label>
+                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team4"><label>Team 4</label>
+                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team5"><label>Team 5</label>
+                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team6"><label>Team 6</label>
+
+                </div>
+
+                <div class="center-options">
+                    <input type="radio" class="hidden" id="totalhatchesIN" value="false">
+                    <button type="button" id="totalhatches" onclick="select(this)">Total Hatches</button>
+                    <input type="radio" class="hidden" id="averagehatchesIN" value="false">
+                    <button type="button" id="averagehatches" onclick="select(this)">Average Hatches</button>
+                    <input type="radio" class="hidden" id="winrateIN" value="false">
+                    <button type="button" id="winrate" onclick="select(this)">Win Rate</button>
+                    <input type="radio" class="hidden" id="winslossesIN" value="false">
+                    <button type="button" id="winslosses" onclick="select(this)">Wins vs Losses</button>
+                </div>
+
+                <div class="right-options">
+                    <input type="radio" class="hidden" id="totalcargoIN" value="false">
+                    <button type="button" id="totalcargo" onclick="select(this)">Total Cargo</button>
+                    <input type="radio" class="hidden" id="averagecargoIN" value="false">
+                    <button type="button" id="averagecargo" onclick="select(this)">Average Cargo</button>
+                    <input type="radio" class="hidden" id="totaldefenseIN" value="false">
+                    <button type="button" id="totaldefense" onclick="select(this)">Total Defense</button>
+                    <input type="radio" class="hidden" id="averagedefenseIN" value="false">
+                    <button type="button" id="averagedefense" onclick="select(this)">Average Defense</button>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div id="2" style="display: none">
+                <button>2</button>
+            </div>
+
+
+            <div id="3" style="display: none">
+                <button>3</button>
+            </div>
         </div>
+
+    </div>
+
+    <div class="bot">
+            <button onclick="updateImage()" style="background: lightgreen; opacity: 1">Update Graph</button>
     </div>
 </div>
 
 
-<img src="{% static "entry/images/my_plot.png" %}" id="test">
-<button onclick=updateImage("test","{% static 'entry/images/my_plot.png' %}")>Test</button>
 

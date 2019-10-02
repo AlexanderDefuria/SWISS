@@ -1,3 +1,4 @@
+import base64
 import os
 
 from django.conf import settings
@@ -11,6 +12,7 @@ from entry import config
 
 from django_ajax.decorators import ajax
 from PIL import Image
+from django.views.decorators.csrf import csrf_exempt
 
 
 def write_teleop(request, pk):
@@ -97,15 +99,20 @@ def view_matches(request):
 
 
 @ajax
+@csrf_exempt
 def updategraph(request):
 
-    print("dddddddd")
+    print(request.read())
 
-    img = Image.open('../static/entry/images/test.png')
-    response = HttpResponse(content_type='image/png')
-    img.save(response, "PNG")
 
-    return response
+    try:
+        image_data = base64.b64encode(open("entry/static/entry/images/test.png", "rb").read())
+        print(type(image_data))
+        return HttpResponse(image_data, content_type="image/png")
+    except IOError:
+        print("Image not found")
+        return Http404
+
 
 
 def download(request):
