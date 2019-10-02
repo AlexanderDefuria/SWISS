@@ -2,10 +2,15 @@ import os
 
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse, Http404
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
+
 from entry.models import Team, Match
 from entry import config
+
+from django_ajax.decorators import ajax
+from PIL import Image
 
 
 def write_teleop(request, pk):
@@ -86,7 +91,21 @@ def write_auto(request, pk):
 
 
 def view_matches(request):
+    if request.method == 'GET':
+        print("POSTED")
     return HttpResponseRedirect(reverse_lazy('entry:view_matches'))
+
+
+@ajax
+def updategraph(request):
+
+    print("dddddddd")
+
+    img = Image.open('../static/entry/images/test.png')
+    response = HttpResponse(content_type='image/png')
+    img.save(response, "PNG")
+
+    return response
 
 
 def download(request):
@@ -137,3 +156,4 @@ class EventSetup(generic.TemplateView):
 
 class Visualize(generic.TemplateView):
     template_name = 'entry/visualize.html'
+

@@ -9,6 +9,7 @@ urlpatterns = [
     path('<slug:pk>/auto/submit', views.write_auto, name='write_auto'),
     path('<slug:pk>/teleop/<slug:match_number>', views.Teleop.as_view(), name='teleop'),
     path('<slug:pk>/teleop/', views.write_teleop, name='write_teleop'),
-    path('visual', views.Visualize.as_view(), name='view_matches'),
+    path('visual/', views.Visualize.as_view(), name='view_matches'),
+    path('visual/update/', views.updategraph, name='update_graph'),
     path('download', views.download, name='download_event')
 ]

@@ -1,12 +1,27 @@
 
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'entry/entry.css' %}">
+<script src="{% static 'entry/jquery.min.js' %}" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'entry/visualization.css' %}">
 <link rel="shortcut icon" type="image/png" href="{% static 'entry/images/favicon.png' %}"/>
+<script type="text/javascript" src="{% static 'entry/visualization.js' %}"></script>
 
-<script type="text/javascript" src="{% static 'entry/pandas.js' %}"></script>
 
-<img src="{% static "entry/images/test.png" %}" id="test">
-<button onclick=updateImage("test","{% static 'entry/images/test.png' %}")>Test</button>
+<div id="layout" class="container">
+    <div class="left">
+        <div class="box">
 
+        </div>
+    </div>
+
+    <div class="right">
+        <div class="box">
+            <button onclick="updateImage()"></button>
+        </div>
+    </div>
+</div>
+
+
+<img src="{% static "entry/images/my_plot.png" %}" id="test">
+<button onclick=updateImage("test","{% static 'entry/images/my_plot.png' %}")>Test</button>
 
