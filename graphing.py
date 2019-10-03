@@ -23,13 +23,21 @@ def create_teams_graph(form_data):
     for x in to_pop:
         form_data.pop(x)
 
-    print(data_needed)
+    #print(data_needed)
 
-    df = pd.DataFrame({'Teams':team_list})
+    compiled = get_data_from_db(data_needed, team_list)
+
+    print(compiled)
+
+    dataframe = {'Teams': team_list,}
+
+    #print(dataframe)
+
+    df = pd.DataFrame(dataframe)
 
     print(df)
 
-    get_data_from_db(data_needed, team_list)
+
 
     return
 
@@ -37,35 +45,43 @@ def create_teams_graph(form_data):
 def get_data_from_db(data_needed, team_list):
     conn = sqlite3.connect("db.sqlite3")
     c = conn.cursor()
-
+    index = -1
     for x in data_needed:
+        index += 1
         if x == 'totalHatches' or x == 'averageHatches':
-            data_needed[x] = 'first_hatch'
+            data_needed[index] = 'first_hatch'
             data_needed.append('second_hatch')
             data_needed.append('third_hatch')
+            data_needed.append('cargo_hatch')
         elif x == 'totalCargo' or x == 'averageCargo':
-            data_needed[x] = 'first_cargo'
+            data_needed[index] = 'first_cargo'
             data_needed.append('second_cargo')
             data_needed.append('third_cargo')
+            data_needed.append('ship_cargo')
         elif x == 'totalDefense' or x == 'averageDefense':
-            data_needed[x] = 'defense_time'
+            data_needed[index] = 'defense_time'
 
-    compiled = dict.fromkeys(team_list, 1)
+    compiled = dict.fromkeys(data_needed, list)
 
     for team in team_list:
-        data = []
 
         c.execute("SELECT id FROM entry_team WHERE number=?", (int(team),))
 
-        team_id = c.fetchall()
+        team_id = c.fetchone()[0]
 
         for data_field in data_needed:
+
+            #print(team_id)
 
             if 'win' in data_field:
                 continue
 
-            c.executemany("SELECT ? FROM entry_match WHERE team_id=?", (data_field,int(team),))
+            c.execute("SELECT " + data_field + " FROM entry_match WHERE team_id=?", (int(team_id),))
 
+            try:
+                for x in c.fetchall()[0]:
+                    compiled[data_field] += x
+            except IndexError:
+                compiled[data_field] += 0
 
-
-    return
+    return compiled

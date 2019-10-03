@@ -14,8 +14,8 @@ function updateImage(){
                 'totalCargo':       document.getElementById("totalcargoIN").value,
                 'averageHatches':   document.getElementById("averagehatchesIN").value,
                 'averageCargo':     document.getElementById("averagecargoIN").value,
-                'winrate':          document.getElementById("winrateIN").value,
-                'winslosses':       document.getElementById("winslossesIN").value,
+                //'winrate':          document.getElementById("winrateIN").value,
+                //'winslosses':       document.getElementById("winslossesIN").value,
                 'totalDefense':     document.getElementById("totaldefenseIN").value,
                 'averageDefense':   document.getElementById("averagedefenseIN").value,
 
