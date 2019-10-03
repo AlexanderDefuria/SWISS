@@ -1,6 +1,5 @@
 function updateImage(){
 
-
     $.ajax({
         url: 'update/',
         type: 'post',
@@ -17,14 +16,14 @@ function updateImage(){
                 'averageCargo':     document.getElementById("averagecargoIN").value,
                 'winrate':          document.getElementById("winrateIN").value,
                 'winslosses':       document.getElementById("winslossesIN").value,
-                'totalDefense':      document.getElementById("totaldefenseIN").value,
+                'totalDefense':     document.getElementById("totaldefenseIN").value,
                 'averageDefense':   document.getElementById("averagedefenseIN").value,
 
                 },
         dataType: "json",
         success: function(data) {
             //console.log(data.content);
-            document.getElementById("test").src = "data:image/png;base64," + data.content;
+            //document.getElementById("test").src = "data:image/png;base64," + data.content;
         },
         failure: function (data) {
             console.log("Failed");

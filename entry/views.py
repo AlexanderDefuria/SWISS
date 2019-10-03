@@ -2,8 +2,7 @@ import base64
 import os
 
 from django.conf import settings
-from django.http import HttpResponseRedirect, HttpResponse, Http404
-from django.shortcuts import render
+from django.http import HttpResponseRedirect, HttpResponse, Http404, QueryDict
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -11,8 +10,8 @@ from entry.models import Team, Match
 from entry import config
 
 from django_ajax.decorators import ajax
-from PIL import Image
 from django.views.decorators.csrf import csrf_exempt
+from graphing import *
 
 
 def write_teleop(request, pk):
@@ -102,17 +101,15 @@ def view_matches(request):
 @csrf_exempt
 def updategraph(request):
 
-    print(request.read())
-
+    data = dict(QueryDict(request.body.decode()))
+    create_teams_graph(data)
 
     try:
         image_data = base64.b64encode(open("entry/static/entry/images/test.png", "rb").read())
-        print(type(image_data))
         return HttpResponse(image_data, content_type="image/png")
     except IOError:
         print("Image not found")
         return Http404
-
 
 
 def download(request):
@@ -163,4 +160,5 @@ class EventSetup(generic.TemplateView):
 
 class Visualize(generic.TemplateView):
     template_name = 'entry/visualize.html'
+
 
