@@ -1,7 +1,5 @@
 import sqlite3
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 
 
 def create_teams_graph(form_data):
@@ -23,14 +21,15 @@ def create_teams_graph(form_data):
     for x in to_pop:
         form_data.pop(x)
 
-    print(data_needed)
+    df = pd.DataFrame(get_data_from_db(data_needed, team_list))
 
-    df = pd.DataFrame({'Teams':team_list})
+    print("\nDataFrame:\n" + str(df))
 
-    print(df)
+    fig = df.plot(kind='bar', rot=-20).get_figure()
+    fig.dpi = 288
+    fig.savefig('entry/static/entry/images/test.png')
 
-    get_data_from_db(data_needed, team_list)
-
+    print("")
     return
 
 
@@ -38,34 +37,47 @@ def get_data_from_db(data_needed, team_list):
     conn = sqlite3.connect("db.sqlite3")
     c = conn.cursor()
 
+    index = 0
     for x in data_needed:
         if x == 'totalHatches' or x == 'averageHatches':
-            data_needed[x] = 'first_hatch'
+            data_needed[index] = 'first_hatch'
             data_needed.append('second_hatch')
             data_needed.append('third_hatch')
         elif x == 'totalCargo' or x == 'averageCargo':
-            data_needed[x] = 'first_cargo'
+            data_needed[index] = 'first_cargo'
             data_needed.append('second_cargo')
             data_needed.append('third_cargo')
         elif x == 'totalDefense' or x == 'averageDefense':
-            data_needed[x] = 'defense_time'
+            data_needed[index] = 'defense_time'
 
-    compiled = dict.fromkeys(team_list, 1)
+        index += 1
 
+    compiled = []
+    compiled_dict = dict.fromkeys(team_list)
+
+    compiled_index = 0
     for team in team_list:
-        data = []
+
+        compiled.append(dict.fromkeys(data_needed, 0))
 
         c.execute("SELECT id FROM entry_team WHERE number=?", (int(team),))
 
-        team_id = c.fetchall()
+        team_id = c.fetchone()
 
         for data_field in data_needed:
 
             if 'win' in data_field:
                 continue
 
-            c.executemany("SELECT ? FROM entry_match WHERE team_id=?", (data_field,int(team),))
+            c.execute("SELECT %s FROM entry_match WHERE team_id=?" % (data_field,), team_id)
 
+            each_match = c.fetchall()
 
+            for item in each_match:
+                compiled[compiled_index][data_field] += item[0]
 
-    return
+        compiled_dict[team] = compiled[compiled_index]
+
+        compiled_index += 1
+
+    return compiled_dict

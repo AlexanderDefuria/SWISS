@@ -23,7 +23,7 @@ function updateImage(){
         dataType: "json",
         success: function(data) {
             //console.log(data.content);
-            //document.getElementById("test").src = "data:image/png;base64," + data.content;
+            document.getElementById("test").src = "data:image/png;base64," + data.content;
         },
         failure: function (data) {
             console.log("Failed");
