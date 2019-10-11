@@ -21,11 +21,11 @@
     align-content: space-evenly;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     grid-template-areas:
-            'header  header  header header header'
-            'subheader subheader subheader subheader subheader'
-            'left left left right right'
-            'left left left right right'
-            ' bot bot bot bot bot';
+            'header header'
+            'subheader subheader'
+            'left right'
+            'left right'
+            'bot bot';
 }
 
 .graphsetting{
@@ -91,7 +91,7 @@ body {
     font-family: "Arial", serif;
     font-style: normal;
     font-weight: 500;
-    grid-column: 1/6;
+    grid-column: 1/3;
     /* font-size: calc([minimum _size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) /
                 ([maximum viewport width] - [minimum viewport width])));  */
     font-size: calc(25px + (100 - 36) * ((60vw - 300px) / (1600 - 300)));

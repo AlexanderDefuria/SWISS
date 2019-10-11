@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9cdb9e67-6604-4543-b1a1-a12859bc1b87" name="Default Changelist" comment="">
+    <list default="true" id="23269149-9d46-48cd-acf7-10f6547203a0" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entry/static/entry/images/test.png" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/images/test.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entry/static/entry/visualization.css" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/visualization.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entry/static/entry/visualization.js" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/visualization.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphing.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/viewDB.py" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRC-Scouting/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/FRC-Scouting/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datadump.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/entry/models.py" afterDir="false" />
+>>>>>>> 2647a5ddaa6a003d543d601fee5bcee477ca38ea
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,12 +50,240 @@
     </expand>
     <select />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/importTBA.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1972">
+              <caret line="33" selection-start-line="33" selection-end-line="33" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://269b0219-28bf-448e-8488-cb51660d43d4/database/daov07gicq7lun/schema/public/table/entry_event">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state projectRestartId="30abe84e-8e5d-4b8a-a5a6-e6636b09d1aa">
+              <filtering>
+                <filter text="" />
+              </filtering>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/entry/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-582">
+              <caret line="18" column="57" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor />
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/FRC-Scouting/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="517">
+              <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+=======
+            <state relative-caret-position="228">
+              <caret line="44" column="49" selection-start-line="44" selection-start-column="49" selection-end-line="44" selection-end-column="49" />
+>>>>>>> 2647a5ddaa6a003d543d601fee5bcee477ca38ea
+              <folding>
+                <element signature="e#311#320#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Procfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="26" selection-start-column="26" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/269b0219-28bf-448e-8488-cb51660d43d4/console.sql">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Level</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1RyxYOxFv9Jv1AzX6e0D76OHnO3" />
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/templates/polls/detail.html" />
+        <option value="$PROJECT_DIR$/templates/polls/results.html" />
+        <option value="$PROJECT_DIR$/polls/urls.py" />
+        <option value="$PROJECT_DIR$/polls/tests.py" />
+        <option value="$PROJECT_DIR$/templates/polls/style.css" />
+        <option value="$PROJECT_DIR$/templates/polls/index.html" />
+        <option value="$PROJECT_DIR$/polls/static/polls/style.css" />
+        <option value="$PROJECT_DIR$/manage.py" />
+        <option value="$PROJECT_DIR$/polls/models.py" />
+        <option value="$PROJECT_DIR$/polls/apps.py" />
+        <option value="$PROJECT_DIR$/polls/admin.py" />
+        <option value="$PROJECT_DIR$/entry/static/entry/f.js" />
+        <option value="$PROJECT_DIR$/polls/forms.py" />
+        <option value="$PROJECT_DIR$/polls/views.py" />
+        <option value="$PROJECT_DIR$/templates/polls/name.html" />
+        <option value="$PROJECT_DIR$/templates/polls/input.html" />
+        <option value="$PROJECT_DIR$/entry/static/entry/teststyle.css" />
+        <option value="$PROJECT_DIR$/entry/static/entry/js.js" />
+        <option value="$PROJECT_DIR$/templates/entry/index.html" />
+        <option value="$PROJECT_DIR$/entry/forms.py" />
+        <option value="$PROJECT_DIR$/basicform/urls.html" />
+        <option value="$PROJECT_DIR$/basicform/models.py" />
+        <option value="$PROJECT_DIR$/basicform/urls.py" />
+        <option value="$PROJECT_DIR$/basicform/views.py" />
+        <option value="$PROJECT_DIR$/mysite/urls.py" />
+        <option value="$PROJECT_DIR$/mitchel.py" />
+        <option value="$PROJECT_DIR$/entry/admin.py" />
+        <option value="$PROJECT_DIR$/templates/entry/prematch.html" />
+        <option value="$PROJECT_DIR$/templates/entry/teleop.html" />
+        <option value="$PROJECT_DIR$/entry/urls.py" />
+        <option value="$PROJECT_DIR$/entry/views.py" />
+        <option value="$PROJECT_DIR$/mysite/settings.py" />
+        <option value="$PROJECT_DIR$/entry/static/entry/style.css" />
+        <option value="$PROJECT_DIR$/entry/static/entry/landing.css" />
+        <option value="$PROJECT_DIR$/templates/entry/landing.html" />
+        <option value="$PROJECT_DIR$/entry/static/entry/entry.css" />
+        <option value="$PROJECT_DIR$/templates/entry/auto.html" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
+        <option value="$PROJECT_DIR$/entry/static/entry/counter.js" />
+        <option value="1a2e4f18-b858-46c8-89a8-88261717c444/schema/main/table/entry_team.sql" />
+        <option value="$PROJECT_DIR$/entry/models.py" />
+        <option value="$PROJECT_DIR$/importTBA.py" />
+        <option value="$PROJECT_DIR$/Procfile" />
+        <option value="$PROJECT_DIR$/FRC-Scouting/settings.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="261" />
+    <option name="y" value="269" />
+    <option name="width" value="1440" />
+    <option name="height" value="789" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="FRC-Scouting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FRC-Scouting" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FRC-Scouting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FRC-Scouting" type="462c0819:PsiDirectoryNode" />
+              <item name="entry" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FRC-Scouting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FRC-Scouting" type="462c0819:PsiDirectoryNode" />
+              <item name="entry" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FRC-Scouting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FRC-Scouting" type="462c0819:PsiDirectoryNode" />
+              <item name="entry" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="entry" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FRC-Scouting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FRC-Scouting" type="462c0819:PsiDirectoryNode" />
+              <item name="entry" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="entry" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FRC-Scouting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FRC-Scouting" type="462c0819:PsiDirectoryNode" />
+              <item name="FRC-Scouting" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql&#10;sqlite&#10;postgresql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/Edit As Language" value="AngularJS" />
+    <property name="database.console.LAST_STATE" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MitchCPT" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.django.DjangoModulesConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/entry/static/entry/images" />
+      <recent name="$PROJECT_DIR$/entry/static/entry" />
+      <recent name="$PROJECT_DIR$/templates/basicform" />
+      <recent name="$PROJECT_DIR$/polls/static/polls" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/entry/static/entry" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -64,61 +297,523 @@
       </list>
     </option>
   </component>
-  <component name="ServiceViewManager">
-    <option name="allServicesViewState">
-      <serviceView>
-        <treeState>
-          <expand>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@16544253" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@16544253" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@7154a882" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@16544253" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@141d1095" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-          </expand>
-          <select />
-        </treeState>
-      </serviceView>
-    </option>
+  <component name="RunManager" selected="Django server.mysite">
+    <configuration name="mitchel" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="FRC-Scouting" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mitchel.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="mysite" type="Python.DjangoServer" factoryName="Django server">
+      <module name="FRC-Scouting" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="mysite.settings" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Django server.mysite" />
+      <item itemvalue="Python.mitchel" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.mitchel" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9cdb9e67-6604-4543-b1a1-a12859bc1b87" name="Default Changelist" comment="" />
-      <created>1570653127917</created>
+      <changelist id="23269149-9d46-48cd-acf7-10f6547203a0" name="Default Changelist" comment="" />
+      <created>1554415975022</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1570653127917</updated>
-      <workItem from="1570653130848" duration="47000" />
-      <workItem from="1570653186747" duration="9932000" />
-      <workItem from="1570663824735" duration="246000" />
+      <updated>1554415975022</updated>
+      <workItem from="1554415981632" duration="6048000" />
+      <workItem from="1554501074134" duration="7548000" />
+      <workItem from="1554509551676" duration="40000" />
+      <workItem from="1554579463155" duration="520000" />
+      <workItem from="1554579995440" duration="16228000" />
+      <workItem from="1554651112199" duration="19734000" />
+      <workItem from="1554772923067" duration="5915000" />
+      <workItem from="1555700748121" duration="1431000" />
+      <workItem from="1555714475213" duration="3652000" />
+      <workItem from="1555720968969" duration="20000" />
+      <workItem from="1556128329809" duration="3376000" />
+      <workItem from="1556244847409" duration="7481000" />
+      <workItem from="1556308195979" duration="25897000" />
+      <workItem from="1556750179866" duration="14263000" />
+      <workItem from="1556914473865" duration="4970000" />
+      <workItem from="1559268191482" duration="1511000" />
+      <workItem from="1559269716196" duration="2681000" />
+      <workItem from="1559312847825" duration="632000" />
+      <workItem from="1559359234159" duration="21000" />
+<<<<<<< HEAD
+      <workItem from="1559395494653" duration="11206000" />
+=======
+      <workItem from="1559395494653" duration="9798000" />
+>>>>>>> 2647a5ddaa6a003d543d601fee5bcee477ca38ea
     </task>
     <servers />
+  </component>
+  <component name="TimeTrackingManager">
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="133174000" />
+=======
+    <option name="totallyTimeSpent" value="131766000" />
+>>>>>>> 2647a5ddaa6a003d543d601fee5bcee477ca38ea
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49768874" visible="true" weight="0.19477054" />
+      <window_info id="Structure" order="1" sideWeight="0.5023112" side_tool="true" weight="0.14781217" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Database Console" order="0" weight="0.3293348" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.3293348" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.3286991" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.39934713" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.3297062" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.3293348" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053364" side_tool="true" weight="0.35038084" />
+      <window_info anchor="bottom" id="Database Changes" order="11" weight="0.32861805" />
+<<<<<<< HEAD
+      <window_info active="true" anchor="bottom" x="-263" y="452" width="1920" height="1009" id="Terminal" order="12" sideWeight="0.4994664" visible="true" weight="0.1308615" />
+=======
+      <window_info active="true" anchor="bottom" x="-263" y="452" width="1920" height="1009" id="Terminal" order="12" sideWeight="0.4994664" visible="true" weight="0.3838604" />
+>>>>>>> 2647a5ddaa6a003d543d601fee5bcee477ca38ea
+      <window_info anchor="bottom" id="Python Console" order="13" weight="0.32861805" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.32977587" />
+      <window_info anchor="right" id="Database" order="4" sideWeight="0.49918962" visible="true" weight="0.3340448" />
+      <window_info anchor="right" x="0" y="0" width="430" height="853" id="Documentation" order="5" sideWeight="0.5008104" side_tool="true" weight="0.18676628" />
+    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/.." />
+    </ignored-roots>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/mysite$mitchel.coverage" NAME="mitchel Coverage Results" MODIFIED="1556130702188" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>co</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/basicform/models.py" />
+    <entry file="file://$PROJECT_DIR$/basicform/views.py" />
+    <entry file="file://$PROJECT_DIR$/basicform/urls.py" />
+    <entry file="file://$PROJECT_DIR$/templates/basicform/urls.html" />
+    <entry file="das://1a2e4f18-b858-46c8-89a8-88261717c444/schema/main/table/basicform_post.sql" />
+    <entry file="file://$PROJECT_DIR$/entry/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/polls/index.html" />
+    <entry file="file://$PROJECT_DIR$/polls/views.py" />
+    <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/django/core/handlers/exception.py" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/1a2e4f18-b858-46c8-89a8-88261717c444/console.sql" />
+    <entry file="file://$PROJECT_DIR$/mitchel.py" />
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="21" selection-start-column="21" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FRC-Scouting/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FRC-Scouting/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="36" lean-forward="true" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+          <folding>
+            <element signature="e#630#662#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entry/static/entry/images/2019Field.jpeg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entry/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entry/static/entry/images/HABplatform.jpeg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/entry/teleop.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/entry/prematch.html" />
+    <entry file="file://$PROJECT_DIR$/entry/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entry/static/entry/images/Rocket.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entry/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FRC-Scouting/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entry/static/entry/entry.css">
+<<<<<<< HEAD
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="64" column="12" lean-forward="true" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entry/static/entry/landing.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/models.py" />
+    <entry file="file://$PROJECT_DIR$/templates/entry/auto.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
+          <folding>
+            <element signature="n#div#0;n#form#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entry/static/entry/counter.js">
+      <provider selected="true" editor-type-id="text-editor">
+=======
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="64" column="12" lean-forward="true" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entry/static/entry/landing.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/models.py" />
+    <entry file="file://$PROJECT_DIR$/templates/entry/auto.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
+          <folding>
+            <element signature="n#div#0;n#form#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entry/static/entry/counter.js">
+      <provider selected="true" editor-type-id="text-editor">
+>>>>>>> 2647a5ddaa6a003d543d601fee5bcee477ca38ea
+        <state relative-caret-position="705">
+          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/entry/landing.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://1a2e4f18-b858-46c8-89a8-88261717c444/schema/main/table/django_admin_log">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="e7a627e8-669c-4ac9-9c52-0d95de89365f">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://1a2e4f18-b858-46c8-89a8-88261717c444/schema/main/table/django_content_type">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="e7a627e8-669c-4ac9-9c52-0d95de89365f">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://1a2e4f18-b858-46c8-89a8-88261717c444/schema/main/table/django_session">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="e7a627e8-669c-4ac9-9c52-0d95de89365f">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://1a2e4f18-b858-46c8-89a8-88261717c444/schema/main/table/auth_permission">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="e7a627e8-669c-4ac9-9c52-0d95de89365f">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.local/lib/python3.7/site-packages/pandas/core/frame.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="2926" selection-start-line="2926" selection-end-line="2926" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/viewDB.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://1a2e4f18-b858-46c8-89a8-88261717c444/schema/main/table/entry_team.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="das://1a2e4f18-b858-46c8-89a8-88261717c444/schema/main/table/entry_event">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="30abe84e-8e5d-4b8a-a5a6-e6636b09d1aa">
+          <filtering />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/269b0219-28bf-448e-8488-cb51660d43d4/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="das://269b0219-28bf-448e-8488-cb51660d43d4/database/daov07gicq7lun/schema/public/table/table_name">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="30abe84e-8e5d-4b8a-a5a6-e6636b09d1aa">
+          <filtering>
+            <filter text="" />
+          </filtering>
+          <column-attributes>
+            <column name="ctid" enabled="false" position="-1" />
+          </column-attributes>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://1a2e4f18-b858-46c8-89a8-88261717c444/schema/main/table/entry_match">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="30abe84e-8e5d-4b8a-a5a6-e6636b09d1aa">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://1a2e4f18-b858-46c8-89a8-88261717c444/schema/main/table/entry_schedule">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="30abe84e-8e5d-4b8a-a5a6-e6636b09d1aa">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://1a2e4f18-b858-46c8-89a8-88261717c444/schema/main/table/entry_team">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="30abe84e-8e5d-4b8a-a5a6-e6636b09d1aa">
+          <filtering>
+            <filter text="" />
+          </filtering>
+          <column-attributes>
+            <column name="event_four_id" position="7" />
+            <column name="event_two_id" position="5" />
+            <column name="TBA_key" position="9" />
+            <column name="event_five_id" position="8" />
+          </column-attributes>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://269b0219-28bf-448e-8488-cb51660d43d4/database/daov07gicq7lun/schema/public/table/entry_schedule">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="30abe84e-8e5d-4b8a-a5a6-e6636b09d1aa">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://269b0219-28bf-448e-8488-cb51660d43d4/database/daov07gicq7lun/schema/public/table/entry_event">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="30abe84e-8e5d-4b8a-a5a6-e6636b09d1aa">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/importTBA.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1972">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dump.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-315" />
+      </provider>
+    </entry>
+    <entry file="das://269b0219-28bf-448e-8488-cb51660d43d4/database/daov07gicq7lun/schema/public/table/entry_team">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="30abe84e-8e5d-4b8a-a5a6-e6636b09d1aa">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entry/models.py">
+<<<<<<< HEAD
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-582">
+          <caret line="18" column="57" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Procfile">
+      <provider selected="true" editor-type-id="text-editor">
+=======
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-582">
+          <caret line="18" column="57" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Procfile">
+      <provider selected="true" editor-type-id="text-editor">
+>>>>>>> 2647a5ddaa6a003d543d601fee5bcee477ca38ea
+        <state>
+          <caret column="26" selection-start-column="26" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FRC-Scouting/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="517">
+          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+=======
+        <state relative-caret-position="228">
+          <caret line="44" column="49" selection-start-line="44" selection-start-column="49" selection-end-line="44" selection-end-column="49" />
+>>>>>>> 2647a5ddaa6a003d543d601fee5bcee477ca38ea
+          <folding>
+            <element signature="e#311#320#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
