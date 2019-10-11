@@ -105,7 +105,7 @@ def updategraph(request):
     create_teams_graph(data)
 
     try:
-        image_data = base64.b64encode(open("entry/static/entry/images/test.png", "rb").read())
+        image_data = base64.b64encode(open("entry/static/entry/images/dynamic_plot.png", "rb").read())
         return HttpResponse(image_data, content_type="image/png")
     except IOError:
         print("Image not found")

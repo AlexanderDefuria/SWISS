@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cdb9e67-6604-4543-b1a1-a12859bc1b87" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/entry/static/entry/images/dynamic_plot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entry/static/entry/images/test.png" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/images/test.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entry/static/entry/visualization.css" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/visualization.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entry/static/entry/visualization.js" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/visualization.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphing.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/viewDB.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/static/entry/images/my_plot.png" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/images/blank_plot.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/static/entry/images/test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/entry/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/entry/visualize.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entry/visualize.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +45,13 @@
       </path>
     </expand>
     <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
