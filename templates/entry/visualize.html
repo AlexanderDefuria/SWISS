@@ -23,44 +23,69 @@
     <div class="right">
         <div class="box">
             <div class="button_group" id="GraphToggle">
-                <button type="button" id="teams"   class="button" onclick='toggle("GraphToggle",this,1)'>Teams</button>
-                <button type="button" id="matches" class="button" onclick='toggle("GraphToggle",this,2)'>Matches</button>
-                <button type="button" id="scoring" class="button" onclick='toggle("GraphToggle",this,3)'>Scoring</button>
+                <button type="button" id="total"   class="button" onclick='toggle("GraphToggle",this,1)'>Team Totals</button>
+                <button type="button" id="average" class="button" onclick='toggle("GraphToggle",this,2)'>Team Averages</button>
+                <button type="button" id="history" class="button" onclick='toggle("GraphToggle",this,3)'>Team History</button>
                 <input  id="GraphSelection" type="number" class="hidden" value=0>
             </div>
 
 
             <div id="1" class="graphsetting" style="display: none">
                 <div class="teamlist">
-                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team1"><label>Team 1</label>
-                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team2"><label>Team 2</label>
-                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team3"><label>Team 3</label>
-                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team4"><label>Team 4</label>
-                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team5"><label>Team 5</label>
-                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team6"><label>Team 6</label>
-
+                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team1">
+                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team2">
+                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team3">
+                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team4">
+                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team5">
+                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team6">
                 </div>
 
                 <div class="center-options">
-                    <input type="radio" class="hidden" id="totalhatchesIN" value="false">
-                    <button type="button" id="totalhatches" onclick="select(this)">Total Hatches</button>
-                    <input type="radio" class="hidden" id="averagehatchesIN" value="false">
-                    <button type="button" id="averagehatches" onclick="select(this)">Average Hatches</button>
-                    <input type="radio" class="hidden" id="winrateIN" value="false">
-                    <button type="button" id="winrate" onclick="select(this)">Win Rate</button>
-                    <input type="radio" class="hidden" id="winslossesIN" value="false">
-                    <button type="button" id="winslosses" onclick="select(this)">Wins vs Losses</button>
+                    <input type="radio" class="hidden" id="total_hatchIN" value="false">
+                    <button type="button" id="total_hatch" onclick="select(this)">Total Hatches</button>
+                    <input type="radio" class="hidden" id="first_hatchIN" value="false">
+                    <button type="button" id="first_hatch" onclick="select(this)">First Hatch</button>
+                    <input type="radio" class="hidden" id="second_hatchIN" value="false">
+                    <button type="button" id="second_hatch" onclick="select(this)">Second Hatch</button>
+                    <input type="radio" class="hidden" id="third_hatchIN" value="false">
+                    <button type="button" id="third_hatch" onclick="select(this)">Third Hatch</button>
+                    <input type="radio" class="hidden" id="ship_hatchIN" value="false">
+                    <button type="button" id="ship_hatch" onclick="select(this)">Auto Hatch</button>
+                    <input type="radio" class="hidden" id="auto_hatchIN" value="false">
+                    <button type="button" id="auto_hatch" onclick="select(this)">Auto Hatch</button>
+
+                    <input type="radio" class="hidden" id="first_startIN" value="false">
+                    <button type="button" id="first_start" onclick="select(this)">First Start</button>
+
+                    <input type="radio" class="hidden" id="defense_timeIN" value="false">
+                    <button type="button" id="defense_time" onclick="select(this)">Second Start</button>
+
+                    <input type="radio" class="hidden" id="climbIN" value="false">
+                    <button type="button" id="climb" onclick="select(this)">Second Start</button>
+
                 </div>
 
                 <div class="right-options">
-                    <input type="radio" class="hidden" id="totalcargoIN" value="false">
-                    <button type="button" id="totalcargo" onclick="select(this)">Total Cargo</button>
-                    <input type="radio" class="hidden" id="averagecargoIN" value="false">
-                    <button type="button" id="averagecargo" onclick="select(this)">Average Cargo</button>
-                    <input type="radio" class="hidden" id="totaldefenseIN" value="false">
-                    <button type="button" id="totaldefense" onclick="select(this)">Total Defense</button>
-                    <input type="radio" class="hidden" id="averagedefenseIN" value="false">
-                    <button type="button" id="averagedefense" onclick="select(this)">Average Defense</button>
+                    <input type="radio" class="hidden" id="total_cargoIN" value="false">
+                    <button type="button" id="total_cargo" onclick="select(this)">Total Cargo</button>
+                    <input type="radio" class="hidden" id="first_cargoIN" value="false">
+                    <button type="button" id="first_cargo" onclick="select(this)">First Cargo</button>
+                    <input type="radio" class="hidden" id="second_cargoIN" value="false">
+                    <button type="button" id="second_cargo" onclick="select(this)">Second Cargo</button>
+                    <input type="radio" class="hidden" id="third_cargoIN" value="false">
+                    <button type="button" id="third_cargo" onclick="select(this)">Third Cargo</button>
+                    <input type="radio" class="hidden" id="ship_cargoIN" value="false">
+                    <button type="button" id="ship_cargo" onclick="select(this)">Auto Cargo</button>
+                    <input type="radio" class="hidden" id="auto_cargoIN" value="false">
+                    <button type="button" id="auto_cargo" onclick="select(this)">Auto Cargo</button>
+
+                    <input type="radio" class="hidden" id="second_startIN" value="false">
+                    <button type="button" id="second_start" onclick="select(this)">Second Start</button>
+
+                    <input type="radio" class="hidden" id="winsIN" value="false">
+                    <button type="button" id="wins" onclick="select(this)">Second Start</button>
+
+
 
 
                 </div>

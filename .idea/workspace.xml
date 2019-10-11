@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cdb9e67-6604-4543-b1a1-a12859bc1b87" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/entry/static/entry/images/dynamic_plot.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entry/migrations/0002_auto_20191011_1636.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/point_breakdown.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entry/static/entry/images/my_plot.png" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/images/blank_plot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entry/static/entry/images/test.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entry/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/entry/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/entry/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/entry/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/static/entry/counter.js" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/counter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/static/entry/images/dynamic_plot.png" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/images/dynamic_plot.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/static/entry/visualization.js" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/visualization.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphing.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/importTBA.py" beforeDir="false" afterPath="$PROJECT_DIR$/importTBA.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/entry/visualize.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entry/visualize.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,12 +48,27 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
+        <item name="entry_match: table" type="3d80ac25:SqliteImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
+        <item name="entry_schedule: table" type="3d80ac25:SqliteImplModel$Table" />
+      </path>
     </expand>
     <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTTP Request" />
         <option value="Python Script" />
       </list>
     </option>
@@ -57,7 +77,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1RyxYOxFv9Jv1AzX6e0D76OHnO3" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RunDashboard">
@@ -128,5 +152,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

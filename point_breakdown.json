@@ -1,0 +1,28 @@
+{
+  "teleop": [
+    {
+      "first_cargo": 3,
+      "second_cargo": 3,
+      "third_cargo": 3,
+      "ship_cargo": 3,
+      "auto_cargo": 3,
+      "first_hatch": 2,
+      "second_hatch": 2,
+      "third_hatch": 2,
+      "ship_hatch": 2,
+      "climb_one": 3,
+      "climb_two": 6,
+      "climb_three": 12
+    }
+  ],
+
+  "autonomous": [
+    {
+      "auto_cargo": 3,
+      "auto_hatch": 2,
+      "first_start": 3,
+      "second_start": 6
+
+    }
+  ]
+}

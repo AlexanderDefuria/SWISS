@@ -10,14 +10,29 @@ function updateImage(){
                 'team4':            document.getElementById("team4").valueAsNumber,
                 'team5':            document.getElementById("team5").valueAsNumber,
                 'team6':            document.getElementById("team6").valueAsNumber,
-                'totalHatches':     document.getElementById("totalhatchesIN").value,
-                'totalCargo':       document.getElementById("totalcargoIN").value,
-                'averageHatches':   document.getElementById("averagehatchesIN").value,
-                'averageCargo':     document.getElementById("averagecargoIN").value,
-                'winrate':          document.getElementById("winrateIN").value,
-                'winslosses':       document.getElementById("winslossesIN").value,
-                'totalDefense':     document.getElementById("totaldefenseIN").value,
-                'averageDefense':   document.getElementById("averagedefenseIN").value,
+
+                'totalHatch':     document.getElementById("total_hatchIN").value,
+                'first_hatch':      document.getElementById("first_hatchIN").value,
+                'second_hatch':     document.getElementById("second_hatchIN").value,
+                'third_hatch':      document.getElementById("third_hatchIN").value,
+                'ship_hatch':       document.getElementById("ship_hatchIN").value,
+
+                'totalCargo':       document.getElementById("total_cargoIN").value,
+                'first_cargo':      document.getElementById("first_cargoIN").value,
+                'second_cargo':     document.getElementById("second_cargoIN").value,
+                'third_cargo':      document.getElementById("third_cargoIN").value,
+                'ship_cargo':       document.getElementById("ship_cargoIN").value,
+
+                'auto_cargo':       document.getElementById("auto_cargoIN").value,
+                'auto_hatch':       document.getElementById("auto_hatchIN").value,
+                'first_start':      document.getElementById("first_startIN").value,
+                'second_start':     document.getElementById("second_startIN").value,
+
+                'climb':            document.getElementById("climbIN").value,
+
+                'wins':             document.getElementById("winsIN").value,
+
+                'defense_time':     document.getElementById("defense_timeIN").value,
 
                 },
         dataType: "json",

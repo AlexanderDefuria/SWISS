@@ -1,5 +1,6 @@
 import sqlite3
 import pandas as pd
+from entry import config
 
 
 def create_teams_graph(form_data):
@@ -21,7 +22,6 @@ def create_teams_graph(form_data):
     for x in to_pop:
         form_data.pop(x)
 
-
     df = pd.DataFrame(get_data_from_db(data_needed, team_list))
 
     print("\nDataFrame:\n" + str(df))
@@ -30,7 +30,6 @@ def create_teams_graph(form_data):
     fig.dpi = 288
     fig.savefig('entry/static/entry/images/dynamic_plot.png')
 
-
     print("")
     return
 
@@ -38,11 +37,9 @@ def create_teams_graph(form_data):
 def get_data_from_db(data_needed, team_list):
     conn = sqlite3.connect("db.sqlite3")
     c = conn.cursor()
-
     index = 0
 
     for x in data_needed:
-
         if x == 'totalHatches' or x == 'averageHatches':
             data_needed[index] = 'first_hatch'
             data_needed.append('second_hatch')
@@ -60,37 +57,25 @@ def get_data_from_db(data_needed, team_list):
 
     compiled = []
     compiled_dict = dict.fromkeys(team_list)
-
     compiled_index = 0
 
-
-
     for team in team_list:
-
-        print("Team LISt:" + str(team))
-
         compiled.append(dict.fromkeys(data_needed, 0))
 
         c.execute("SELECT id FROM entry_team WHERE number=?", (int(team),))
-
         team_id = c.fetchone()[0]
 
         for data_field in data_needed:
-
             if 'win' in data_field:
                 continue
 
-            c.execute("SELECT %s FROM entry_match WHERE team_id=?" % data_field, (team_id,))
-
+            c.execute("SELECT %s FROM entry_match WHERE team_id=? AND event_id=?" % data_field, (team_id, config.current_event_id))
             each_match = c.fetchall()
-
-            print(compiled)
 
             for item in each_match:
                 compiled[compiled_index][data_field] += item[0]
 
         compiled_dict[team] = compiled[compiled_index]
-
         compiled_index += 1
 
     return compiled_dict

@@ -24,40 +24,43 @@ def change_district(new_district_key):
     district_key = new_district_key
 
 
+def import_event(connection, event):
+    c = connection.cursor()
+
+    event = clean_request(event)
+
+    print(" ")
+    print(str(event))
+
+    event = json.loads(event)
+    event_data.append(event)
+
+    data = [(str(event["name"]), str(event["key"]), str(event["event_type"]), get_date(event["start_date"]))]
+
+    c.executemany("INSERT INTO entry_event VALUES (NULL,?,?,?,?,FALSE)", data)
+    connection.commit()
+
+
 def import_events():
     try:
         event_list = district_api.get_district_events_simple(district_key)
         # print(api_response)
 
         conn = sqlite3.connect("db.sqlite3")
-        c = conn.cursor()
 
         for event in event_list:
-
-            event = clean_request(event)
-
-            print(" ")
-            print(str(event))
-
-            event = json.loads(event)
-            event_data.append(event)
-
-            data = [(str(event["name"]), str(event["key"]), str(event["event_type"]), get_date(event["start_date"]))]
-
-            c.executemany("INSERT INTO entry_event VALUES (NULL,?,?,?,?,FALSE)", data)
-            conn.commit()
+            import_event(conn, event)
 
         conn.close()
         print("\nDone")
 
     except ApiException as e:
-        conn.close()
         print("Exception when calling TBAApi->get_status: %s\n" % e)
 
 
 def import_teams():
     try:
-        team_list = district_api.get_district_teams_simple('2019ont')
+        team_list = district_api.get_district_teams_simple(config.current_district_key)
 
         for team in team_list:
 
@@ -164,7 +167,7 @@ def import_schedule():
                 match_data = [(None, (match['match_number']), get_teams(0, 0, match, c),
                                get_teams(0, 1, match, c), get_teams(0, 2, match, c), get_teams(1, 0, match, c),
                                get_teams(1, 1, match, c), get_teams(1, 2, match, c), get_score(match, 0),
-                               get_score(match, 1), True, match_key, event_key[0],)]
+                               get_score(match, 1), True, match_key, event_id)]
 
                 conn.commit()
                 c.executemany("INSERT INTO entry_schedule VALUES (?, ? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", match_data)

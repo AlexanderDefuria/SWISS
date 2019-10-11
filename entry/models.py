@@ -30,7 +30,7 @@ class Team(models.Model):
     def __str__(self):
         return str(self.number) + "\t\t" + str(self.name)
 
-
+#TODO Adjust for 2020 
 class Match(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
@@ -48,7 +48,7 @@ class Match(models.Model):
     first_hatch = models.IntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
     second_hatch = models.IntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
     third_hatch = models.IntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
-    cargo_hatch = models.IntegerField(default=0, validators=[MaxValueValidator(8), MinValueValidator(0)])
+    ship_hatch = models.IntegerField(default=0, validators=[MaxValueValidator(8), MinValueValidator(0)])
 
     # Climb
     climb = models.IntegerField(default=0, validators=[MaxValueValidator(3), MinValueValidator(0)])

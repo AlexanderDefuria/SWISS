@@ -111,8 +111,6 @@ function checkInputValues(mandatory_list) {
         }
     }
 
-    // TODO re-enable the check, disabled to speed up internal testing
-    // Use variable 'pass' to check
     if (pass) {
         console.log("Success");
         document.getElementById("form").submit()
