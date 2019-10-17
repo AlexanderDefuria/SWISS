@@ -81,7 +81,7 @@ def import_teams():
 
             conn = sqlite3.connect("db.sqlite3")
             c = conn.cursor()
-            c.executemany("INSERT INTO entry_team VALUES (NULL,?,?,0,0,0,0,?,0)", data)
+            c.executemany("INSERT INTO entry_team VALUES (NULL,?,?,?,0,0,0,0)", data)
             conn.commit()
 
             print(team)
@@ -164,13 +164,21 @@ def import_schedule():
 
                 c.execute("SELECT id FROM entry_event WHERE TBA_key=?", (match['event_key'],))
 
-                match_data = [(None, (match['match_number']), get_teams(0, 0, match, c),
-                               get_teams(0, 1, match, c), get_teams(0, 2, match, c), get_teams(1, 0, match, c),
-                               get_teams(1, 1, match, c), get_teams(1, 2, match, c), get_score(match, 0),
-                               get_score(match, 1), True, match_key, event_id)]
+                match_data = [(None, (match['match_number']),
+                               match_key,
+                               get_score(match, 0),  # Blue
+                               get_score(match, 1),  # Blue
+                               get_teams(0, 0, match, c),   # Blue Team 1
+                               get_teams(0, 1, match, c),   # Blue Team 2
+                               get_teams(0, 2, match, c),   # Blue Team 3
+                               event_id,
+                               get_teams(1, 0, match, c),   # Red  Team 1
+                               get_teams(1, 1, match, c),   # Red  Team 2
+                               get_teams(1, 2, match, c)   # Red  Team 3
+                               )]
 
                 conn.commit()
-                c.executemany("INSERT INTO entry_schedule VALUES (?, ? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", match_data)
+                c.executemany("INSERT INTO entry_schedule VALUES (?, ? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", match_data)
                 conn.commit()
 
     except ApiException as e:
@@ -244,15 +252,6 @@ def get_score(match, alliance):
     return match['alliances']['red']['score']
 
 
-def authenticate():
-    if input("Are you sure you wish to clear the database and import new? [YES I AM SURE]/[NOT SURE]") == "YES I AM SURE":
-        if input("ARE YOU 100% CERTAIN? [YES I AM CERTAIN]/[NOT SURE]") == "YES I AM CERTAIN":
-            if input("Password: ") == "admin2019":
-                import_events()
-                import_teams()
-                import_schedule()
-
-
 def full_reset():
 
     os.system('python3 manage.py flush')
@@ -262,9 +261,9 @@ def full_reset():
 
     c.execute("INSERT INTO entry_event VALUES (0,0,0,0,0,FALSE)")
     conn.commit()
-    c.execute("INSERT INTO entry_team VALUES (0,0,0,0,0,0,0,0,0)")
+    c.execute("INSERT INTO entry_team VALUES (0,0,0,0,0,0,0,0)")
     conn.commit()
-    c.execute("INSERT INTO entry_schedule VALUES (0,0,0,0,0,0,0,0,0,0,0,0,0)")
+    c.execute("INSERT INTO entry_schedule VALUES (0,0,0,0,0,0,0,0,0,0,0,0)")
     conn.commit()
     conn.close()
 

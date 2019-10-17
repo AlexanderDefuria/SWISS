@@ -13,16 +13,11 @@
         <button class="left" onclick="location.href='{% url 'entry:view_matches' %}'" id="myButton" >View Data</button>
     </div>
 
-    <div id="multiColumn" class="container">
-        <div class="left">
-            <ol>
-            {% for team in team_list %}
-                <li><a href="{% url 'entry:auto' team.pk %}">{{ team.number }} - {{ team.name }}</a></li>
-            {% endfor %}
-            </ol>
-        </div>
-
-    </div>
+    <ol>
+        {% for team in team_list %}
+            <li><a href="{% url 'entry:auto' team.pk %}">{{ team.number }} - {{ team.name }}</a></li>
+        {% endfor %}
+    </ol>
 
 
 {% else %}

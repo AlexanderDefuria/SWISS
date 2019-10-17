@@ -24,7 +24,6 @@ class Team(models.Model):
     event_four = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
 
     TBA_key = models.TextField(default="NA", max_length=40)
-    event_five = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
 
 
     def __str__(self):
@@ -77,7 +76,6 @@ class Schedule(models.Model):
     blue3 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
     red_score = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
     blue_score = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
-    played = models.BooleanField(default=False)
 
     def __str__(self):
         return self.match_number

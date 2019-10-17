@@ -140,7 +140,6 @@ class TeamNumberList(generic.ListView):
         x = x | Team.objects.filter(event_two_id=config.current_event_id)
         x = x | Team.objects.filter(event_three_id=config.current_event_id)
         x = x | Team.objects.filter(event_four_id=config.current_event_id)
-        x = x | Team.objects.filter(event_five_id=config.current_event_id)
         return x.order_by('number')
 
 
