@@ -6,12 +6,11 @@ from django.http import HttpResponseRedirect, HttpResponse, Http404, QueryDict
 from django.urls import reverse_lazy
 from django.views import generic
 
-from entry.models import Team, Match
-from entry import config
+from code.entry import Team, Match
 
 from django_ajax.decorators import ajax
 from django.views.decorators.csrf import csrf_exempt
-from graphing import *
+from code.graphing import *
 
 
 def write_teleop(request, pk):

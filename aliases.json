@@ -1,0 +1,20 @@
+{
+  "first_cargo": {
+    "Alias": "First Cargo",
+    "Points": 3
+  },
+  "second_cargo": "Second Cargo",
+  "third_cargo": "Third Cargo",
+  "ship_cargo": "Ship Cargo",
+  "auto_cargo": "Auto Cargo",
+  "first_hatch": "First Hatch",
+  "second_hatch": "Second Hatch",
+  "third_hatch": "Third Hatch",
+  "ship_hatch": "Ship Hatch",
+  "auto_hatch": "Auto Hatch",
+  "climb_one": "Climb One",
+  "climb_two": "Climb Two",
+  "climb_three": "Climb Three",
+  "first_start": "First Start",
+  "second_start": "Second Start"
+}

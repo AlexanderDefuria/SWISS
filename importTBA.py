@@ -2,7 +2,7 @@ import tbaapiv3client as tba
 from tbaapiv3client import ApiException
 import sqlite3
 import json
-from entry import config
+from code.entry import config
 import operator
 import os
 

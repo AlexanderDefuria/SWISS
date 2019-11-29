@@ -1,4 +1,6 @@
 import sqlite3
+
+import matplotlib.pyplot as plt
 import pandas as pd
 from entry import config
 
@@ -32,6 +34,8 @@ def create_teams_graph(form_data):
         fig.savefig('entry/static/entry/images/dynamic_plot.png')
     except TypeError:
         print("\n\nEmpty Dataframe  .........  Therefore there is no updated graph")
+        img = plt.imread('entry/static/entry/images/blank_plot.png')
+        plt.imsave('entry/static/entry/images/dynamic_plot.png', img)
 
     print("")
     return
