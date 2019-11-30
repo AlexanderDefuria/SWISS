@@ -2,11 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cdb9e67-6604-4543-b1a1-a12859bc1b87" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/namingconventions-191129" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scoring.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/FRC-Scouting.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FRC-Scouting.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/269b0219-28bf-448e-8488-cb51660d43d4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/269b0219-28bf-448e-8488-cb51660d43d4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/alexander.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/alexander.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRC-Scouting/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/FRC-Scouting/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aliases.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/entry/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entry/static/entry/images/dynamic_plot.png" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/images/dynamic_plot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entry/static/entry/visualization.js" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/visualization.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/entry/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphing.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/importTBA.py" beforeDir="false" afterPath="$PROJECT_DIR$/importTBA.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/point_breakdown.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/entry/teleop.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entry/teleop.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/bin/activate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/bin/activate.csh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/bin/activate.fish" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/bin/python" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/bin/python3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/bin/python3.7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib64" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/pyvenv.cfg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +64,9 @@
     </expand>
     <select />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -63,6 +86,12 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/code" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -104,6 +133,13 @@
       <workItem from="1572444432383" duration="413000" />
       <workItem from="1572493398864" duration="363000" />
       <workItem from="1572995244246" duration="505000" />
+      <workItem from="1573416194302" duration="1955000" />
+      <workItem from="1574283852694" duration="952000" />
+      <workItem from="1574528038389" duration="267000" />
+      <workItem from="1574547354450" duration="999000" />
+      <workItem from="1575062274181" duration="181000" />
+      <workItem from="1575066753664" duration="221000" />
+      <workItem from="1575067088504" duration="4394000" />
     </task>
     <servers />
   </component>

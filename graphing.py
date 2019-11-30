@@ -18,6 +18,7 @@ def create_teams_graph(form_data):
             to_pop.append(x)
         elif 'team' in x:
             team_list.append(form_data[x])
+
         elif 'type' not in x:
             data_needed.append(x)
 
@@ -91,4 +92,5 @@ def get_data_from_db(data_needed, team_list):
         compiled_dict[team] = compiled[compiled_index]
         compiled_index += 1
 
+    print(compiled_dict)
     return compiled_dict

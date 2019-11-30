@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'FRC-Scouting.wsgi.application'
 DATABASES = {
     'default': {
        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'code/db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

@@ -2,7 +2,7 @@ import tbaapiv3client as tba
 from tbaapiv3client import ApiException
 import sqlite3
 import json
-from code.entry import config
+from entry import config
 import operator
 import os
 
@@ -17,6 +17,7 @@ district_key = '2019ont'
 event_key = config.current_event_key
 event_data = []
 district_teams = []
+event_list = []
 
 
 def change_district(new_district_key):
@@ -63,7 +64,6 @@ def import_teams():
         team_list = district_api.get_district_teams_simple(config.current_district_key)
 
         for team in team_list:
-
             team = clean_request(team)
 
             first_remove = str(team)[str(team).find('name'):]

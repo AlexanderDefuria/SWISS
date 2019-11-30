@@ -1,9 +1,18 @@
 
 import sqlite3
 
+
+
+
+
 current_event_key = '2019onto3'
 current_event_id = 11
 current_district_key = '2019ont'
+
+
+
+
+
 
 
 def get_event_id(event_name_arg):
