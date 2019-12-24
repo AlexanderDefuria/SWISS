@@ -1,31 +1,53 @@
 
 var values = {
-    ThirdRocketCargo: 0,
-    SecondRocketCargo: 0,
-    FirstRocketCargo: 0,
-    ShipCargo: 0,
-    ShipHatch: 0,
-    FirstRocketHatch: 0,
-    SecondRocketHatch: 0,
-    ThirdRocketHatch: 0,
+    third_cargo: 0,
+    second_cargo: 0,
+    first_cargo: 0,
+    ship_cargo: 0,
+    ship_hatch: 0,
+    first_hatch: 0,
+    second_hatch: 0,
+    third_hatch: 0,
+    time: 0,
+    match_good: false,
 };
 
+function checkMatch(){
+
+    $.ajax({
+        url: 'check/',
+        type: 'post',
+        data: {
+            'match_number': document.getElementById("match_number").value,
+        },
+        dataType: "json",
+        success: function (data) {
+            values['match_good'] = $.parseJSON(data.content)['result'];
+            if (values['match_good']) console.log("Match number is acceptable")
+            else window.alert("Please Confirm The Match Number")
+        },
+        failure: function (data) {
+            console.log("No Match Confirmation");
+        },
+
+    });
+
+}
+
+
 function add(name, max)  {
-    values[name] += 1;
-    if(values[name] > max) values[name] = max;
+    if(values[name] >= max) values[name] = max;
+    else values[name] += 1;
     document.getElementById(name.concat('-label')).innerHTML = values[name];
     document.getElementById(name).value = values[name];
 }
-
 function subtract(name, min) {
-    values[name] -= 1;
-    if(values[name] < min) values[name] = min;
+    if(values[name] <= min) values[name] = min;
+    else values[name] -= 1;
     document.getElementById(name.concat('-label')).innerHTML = values[name];
     document.getElementById(name).value = values[name];
 
 }
-
-
 function toggleInputDisplay(elementID, target, defaultStyle) {
 
     var cargo = document.getElementById(elementID + "_cargo");
@@ -48,7 +70,6 @@ function toggleInputDisplay(elementID, target, defaultStyle) {
     }
 
 }
-
 function selectLevel(elementID, class_name, value, toassign){
     var element_list = document.getElementsByClassName(class_name);
 
@@ -61,17 +82,16 @@ function selectLevel(elementID, class_name, value, toassign){
 
     var x = document.getElementById(elementID);
     x.style.opacity = "1";
-    x
+
 
     if (value !== -1) {
-        document.getElementById("StartingLevel").value = "2";
+        document.getElementById("starting_level").value = "2";
     }
 
 }
 
 var on = false;
 var startTime;
-var time = 0;
 
 function toggleTimer(elementID){
     if (on === false){
@@ -81,7 +101,7 @@ function toggleTimer(elementID){
         document.getElementById(elementID).textContent = "Stop Timing Defense";
 
     } else {
-        time += Date.now() - startTime;
+        values['time'] += Date.now() - startTime;
         on = false;
         document.getElementById(elementID).style.backgroundColor = "lightgreen";
         document.getElementById(elementID).textContent = "Resume Defense Timer";
@@ -90,26 +110,32 @@ function toggleTimer(elementID){
 
 
 }
-
 function checkInputValues(mandatory_list) {
 
     var pass = true;
 
-    for (var i = 0; i < mandatory_list.length; i++){
-
-        var element = document.getElementById(mandatory_list[i]);
-
-        if(element.value === element.defaultValue){
-            var indicate_list = document.getElementsByClassName(element.className)
-
-            for (var x = 0; x < indicate_list.length; x++) {
-                document.getElementById(indicate_list[x].id).style.backgroundColor = "red";
-                document.getElementById(indicate_list[x].id).style.borderColor = "red";
-            }
-
-            pass = false;
-        }
+    if (!values['match_good']){
+        pass = false;
+        document.getElementById('match_number').style.backgroundColor = "red";
     }
+
+    if (mandatory_list !== undefined )
+        for (var i = 0; i < mandatory_list.length; i++){
+
+            var element = document.getElementById(mandatory_list[i]);
+
+            if(element.value === element.defaultValue){
+                var indicate_list = document.getElementsByClassName(element.className);
+
+                for (var x = 0; x < indicate_list.length; x++) {
+                    document.getElementById(indicate_list[x].id).style.backgroundColor = "red";
+                    document.getElementById(indicate_list[x].id).style.borderColor = "red";
+                }
+
+                pass = false;
+            }
+        }
+
 
     if (pass) {
         console.log("Success");

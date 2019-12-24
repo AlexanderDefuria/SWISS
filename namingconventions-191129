@@ -18,6 +18,32 @@ id="ship_cargo"
 id="ship_hatch"
 
 
+---HTML-VISUALIZE---
+team1               team1
+team2               team2
+team3               team3
+team4               team4
+team5               team5
+team6               team6
+total_hatch          total_hatchIN
+first_hatch         first_hatchIN
+second_hatch        second_hatchIN
+third_hatch         third_hatchIN
+ship_hatch          ship_hatchIN
+total_cargo          total_cargoIN
+first_cargo         first_cargoIN
+second_cargo        second_cargoIN
+third_cargo         third_cargoIN
+ship_cargo          ship_cargoIN
+auto_cargo          auto_cargoIN
+auto_hatch          auto_hatchIN
+first_start         first_startIN
+second_start        second_startIN
+climb               climbIN
+wins                winsIN
+defense_time        defense_timeIN
+
+
 ---MODELS-MATCH---
 team
 event
@@ -46,7 +72,7 @@ team3               team3
 team4               team4
 team5               team5
 team6               team6
-totalHatch          total_hatchIN
+total_hatch         total_hatchIN
 first_hatch         first_hatchIN
 second_hatch        second_hatchIN
 third_hatch         third_hatchIN

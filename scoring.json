@@ -73,5 +73,17 @@
     "alias": "Second Start",
     "points": 6,
     "weight": 1
+  },
+  "defense_time": {
+    "alias": "Defense Time"
+  },
+  "totalHatch": {
+    "alias": "Total Hatch"
+  },
+  "totalCargo": {
+    "alias": "Total Cargo"
+  },
+  "wins": {
+    "alias": "Wins"
   }
 }

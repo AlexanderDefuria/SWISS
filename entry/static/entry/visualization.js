@@ -11,7 +11,7 @@ function updateImage(){
                 'team5':            document.getElementById("team5").valueAsNumber,
                 'team6':            document.getElementById("team6").valueAsNumber,
 
-                'totalHatch':       document.getElementById("total_hatchIN").value,
+                'total_hatch':       document.getElementById("total_hatchIN").value,
                 'first_hatch':      document.getElementById("first_hatchIN").value,
                 'second_hatch':     document.getElementById("second_hatchIN").value,
                 'third_hatch':      document.getElementById("third_hatchIN").value,

@@ -1,4 +1,5 @@
 import sqlite3
+import json
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -46,6 +47,11 @@ def get_data_from_db(data_needed, team_list):
     conn = sqlite3.connect("db.sqlite3")
     c = conn.cursor()
 
+    aliases = {}
+    with open('scoring.json', 'r') as myfile:
+        data = myfile.read()
+        aliases = json.loads(data)
+
     compiled = []
     compiled_dict = dict.fromkeys(team_list)
     compiled_index = 0
@@ -61,26 +67,26 @@ def get_data_from_db(data_needed, team_list):
                 continue
 
             if 'total' in data_field:
-                if 'Hatch' in data_field:
+                if 'hatch' in data_field:
                     gamepeice = "hatch"
-                elif 'Cargo' in data_field:
+                elif 'cargo' in data_field:
                     gamepeice = 'cargo'
                 else:
                     continue
 
                 c.execute("SELECT %s FROM entry_match WHERE team_id=? AND event_id=?" % ("first_" + gamepeice),
                           (team_id, config.current_event_id))
-                totalHatchValue = c.fetchone()[0]
+                totalValue = c.fetchone()[0]
                 c.execute("SELECT %s FROM entry_match WHERE team_id=? AND event_id=?" % ("second_" + gamepeice),
                           (team_id, config.current_event_id))
-                totalHatchValue += c.fetchone()[0]
+                totalValue += c.fetchone()[0]
                 c.execute("SELECT %s FROM entry_match WHERE team_id=? AND event_id=?" % ("third_" + gamepeice),
                           (team_id, config.current_event_id))
-                totalHatchValue += c.fetchone()[0]
+                totalValue += c.fetchone()[0]
                 c.execute("SELECT %s FROM entry_match WHERE team_id=? AND event_id=?" % ("ship_" + gamepeice),
                           (team_id, config.current_event_id))
-                totalHatchValue += c.fetchone()[0]
-                compiled[compiled_index][data_field] = totalHatchValue
+                totalValue += c.fetchone()[0]
+                compiled[compiled_index][data_field] = totalValue
                 continue
 
             c.execute("SELECT %s FROM entry_match WHERE team_id=? AND event_id=?" % data_field, (team_id, config.current_event_id))
@@ -92,5 +98,5 @@ def get_data_from_db(data_needed, team_list):
         compiled_dict[team] = compiled[compiled_index]
         compiled_index += 1
 
-    print(compiled_dict)
     return compiled_dict
+

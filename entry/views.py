@@ -12,6 +12,7 @@ from entry import config
 from django_ajax.decorators import ajax
 from django.views.decorators.csrf import csrf_exempt
 from graphing import *
+from json import dumps
 
 
 def write_teleop(request, pk):
@@ -23,23 +24,17 @@ def write_teleop(request, pk):
 
         print(team)
 
-        # Ship Cargo
-        match.ship_cargo = make_int(request.POST.get('ShipCargo', 0))
-        # First Cargo
-        match.first_cargo = make_int(request.POST.get('FirstRocketCargo', 0))
-        # Second Cargo
-        match.second_cargo = make_int(request.POST.get('SecondRocketCargo', 0))
-        # Third Cargo
-        match.third_cargo = make_int(request.POST.get('ThirdRocketCargo', 0))
+        match.ship_cargo = make_int(request.POST.get('ship_cargo', 0))
+        match.first_cargo = make_int(request.POST.get('first_cargo', 0))
+        match.second_cargo = make_int(request.POST.get('second_cargo', 0))
+        match.third_cargo = make_int(request.POST.get('third_cargo', 0))
 
-        # Ship Hatch
-        match.ship_hatch = make_int(request.POST.get('ShipHatch', 0))
-        # First Hatch
-        match.first_hatch = make_int(request.POST.get('FirstRocketHatch', 0))
-        # Second Hatch
-        match.second_hatch = make_int(request.POST.get('SecondRocketHatch', 0))
-        # Third Hatch
-        match.third_hatch = make_int(request.POST.get('ThirdRocketHatch', 0))
+        match.ship_hatch = make_int(request.POST.get('ship_hatch', 0))
+        match.first_hatch = make_int(request.POST.get('first_hatch', 0))
+        match.second_hatch = make_int(request.POST.get('second_hatch', 0))
+        match.third_hatch = make_int(request.POST.get('third_hatch', 0))
+
+        match.defense_time = make_int(request.POST.get('defense_time', 0))
 
         match.save()
 
@@ -72,14 +67,14 @@ def write_auto(request, pk):
             match.second_start = True
 
         # Autonomous Match
-        match.auto_cargo += make_int(request.POST.get('FirstRocketCargo', 0))
-        match.auto_cargo += make_int(request.POST.get('SecondRocketCargo', 0))
-        match.auto_cargo += make_int(request.POST.get('ThirdRocketCargo', 0))
-        match.auto_cargo += make_int(request.POST.get('ShipCargo', 0))
-        match.auto_hatch += make_int(request.POST.get('FirstHatch', 0))
-        match.auto_hatch += make_int(request.POST.get('SecondHatch', 0))
-        match.auto_hatch += make_int(request.POST.get('ThirdHatch', 0))
-        match.auto_hatch += make_int(request.POST.get('ShipHatch', 0))
+        match.auto_cargo += make_int(request.POST.get('first_cargo', 0))
+        match.auto_cargo += make_int(request.POST.get('second_cargo', 0))
+        match.auto_cargo += make_int(request.POST.get('third_cargo', 0))
+        match.auto_cargo += make_int(request.POST.get('ship_cargo', 0))
+        match.auto_hatch += make_int(request.POST.get('first_hatch', 0))
+        match.auto_hatch += make_int(request.POST.get('second_hatch', 0))
+        match.auto_hatch += make_int(request.POST.get('third_hatch', 0))
+        match.auto_hatch += make_int(request.POST.get('ship_hatch', 0))
 
         match.save()
 
@@ -99,9 +94,8 @@ def view_matches(request):
 
 @ajax
 @csrf_exempt
-def updategraph(request):
-
-    data = dict(QueryDict(request.body.decode()))
+def update_graph(request):
+    data = decode_ajax(request)
     create_teams_graph(data)
 
     try:
@@ -110,6 +104,31 @@ def updategraph(request):
     except IOError:
         print("Image not found")
         return Http404
+
+
+@ajax
+@csrf_exempt
+def validate_match(request, pk):
+    # The parsing of the db to check if a team has played at a particular match already is done server side
+    # The ajax post sends only the match number in a JSON file to comply with AJAX datatype specification
+    # dumps() is to convert dictionary into JSON format for HttpResponse to keep it simple stupid
+    data = decode_ajax(request)['match_number']
+    provided_match_number = make_int(data[0])
+    print(provided_match_number)
+    result = {'result': False}
+
+
+
+    if not get_present_teams().filter(match=provided_match_number).exists():
+        result['result'] = True
+
+    print(result)
+
+    return HttpResponse(dumps(result), content_type="application/json")
+
+
+def decode_ajax(request):
+    return dict(QueryDict(request.body.decode()))
 
 
 def download(request):
@@ -130,17 +149,21 @@ def make_int(s):
     return int(s) if s else 0
 
 
+def get_present_teams():
+    x = Team.objects.filter(event_one_id=config.current_event_id)
+    x = x | Team.objects.filter(event_two_id=config.current_event_id)
+    x = x | Team.objects.filter(event_three_id=config.current_event_id)
+    x = x | Team.objects.filter(event_four_id=config.current_event_id)
+    return x.order_by('number')
+
+
 class TeamNumberList(generic.ListView):
     template_name = 'entry/landing.html'
     context_object_name = "team_list"
     model = Team
 
     def get_queryset(self):
-        x = Team.objects.filter(event_one_id=config.current_event_id)
-        x = x | Team.objects.filter(event_two_id=config.current_event_id)
-        x = x | Team.objects.filter(event_three_id=config.current_event_id)
-        x = x | Team.objects.filter(event_four_id=config.current_event_id)
-        return x.order_by('number')
+        return get_present_teams()
 
 
 class Auto(generic.DetailView):
@@ -159,5 +182,3 @@ class EventSetup(generic.TemplateView):
 
 class Visualize(generic.TemplateView):
     template_name = 'entry/visualize.html'
-
-

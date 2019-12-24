@@ -9,14 +9,14 @@
 
 
 
-<form action="{% url 'entry:write_teleop' team.id %}" method="post">
+<form id="form" action="{% url 'entry:write_teleop' team.id %}" method="post">
     {% csrf_token %}
 
     <div id="test" class="container">
 
         <div class="right">
 
-            <button type="button"  onClick="toggleTimer(id)" class="timer">Start Defense Timer</button>
+            <button id="defense_time"  type="button"  onClick="toggleTimer(id)" class="timer">Start Defense Timer</button>
 
             <img src="{% static "entry/images/Rocket.png" %}" alt="Red Rocket" class="right img">
 
@@ -33,44 +33,44 @@
 
             <div id="rocket_cargo">
                 <div class="button_group" >
-                    <button id="FirstRocketCargo-add" type="button" onClick="add('FirstRocketCargo', 4)">Add</button>
-                    <div id="FirstRocketCargo-label" class="display_current_value">0</div>
-                    <input id="FirstRocketCargo" class="number-form" type="hidden" name="FirstRocketCargo" min="0" max="8" default="0">
-                    <button id="FirstRocketCargo-sub" type="button" onClick="subtract('FirstRocketCargo', 0)">Subtract</button>
+                    <button id="first_cargo-add" type="button" onClick="add('first_cargo', 4)">Add</button>
+                    <div id="first_cargo-label" class="display_current_value">0</div>
+                    <input id="first_cargo" class="number-form" type="hidden" name="first_cargo" min="0" max="8" default="0">
+                    <button id="first_cargo-sub" type="button" onClick="subtract('first_cargo', 0)">Subtract</button>
                 </div>
                 <div class="button_group">
-                    <button id="SecondRocketCargo-add" type="button" onClick="add('SecondRocketCargo', 4)">Add</button>
-                    <div id="SecondRocketCargo-label" class="display_current_value">0</div>
-                    <input id="SecondRocketCargo" class="number-form" type="hidden" name="SecondRocketCargo" min="0" max="8" default="0">
-                    <button id="SecondRocketCargo-sub" type="button" onClick="subtract('SecondRocketCargo', 0)">Subtract</button>
+                    <button id="second_cargo-add" type="button" onClick="add('second_cargo', 4)">Add</button>
+                    <div id="second_cargo-label" class="display_current_value">0</div>
+                    <input id="second_cargo" class="number-form" type="hidden" name="second_cargo" min="0" max="8" default="0">
+                    <button id="second_cargo-sub" type="button" onClick="subtract('second_cargo', 0)">Subtract</button>
                 </div>
                 <div class="button_group">
-                    <button id="ThirdRocketCargo-add" type="button" onClick="add('ThirdRocketCargo', 4)">Add</button>
-                    <div id="ThirdRocketCargo-label" class="display_current_value">0</div>
-                    <input id="ThirdRocketCargo" class="number-form" type="hidden" name="ThirdRocketCargo" min="0" max="8" default="0">
-                    <button id="ThirdRocketCargo-sub" type="button" onClick="subtract('ThirdRocketCargo', 0)">Subtract</button>
+                    <button id="third_cargo-add" type="button" onClick="add('third_cargo', 4)">Add</button>
+                    <div id="third_cargo-label" class="display_current_value">0</div>
+                    <input id="third_cargo" class="number-form" type="hidden" name="third_cargo" min="0" max="8" default="0">
+                    <button id="third_cargo-sub" type="button" onClick="subtract('third_cargo', 0)">Subtract</button>
                 </div>
             </div>
 
 
             <div id="rocket_hatch" style="display: none">
                 <div class="button_group">
-                    <button id="FirstRocketHatch-add" type="button" onClick="add('FirstRocketHatch', 4)">Add</button>
-                    <div id="FirstRocketHatch-label" class="display_current_value">0</div>
-                    <input id="FirstRocketHatch" class="number-form" type="hidden" name="FirstRocketHatch" min="0" max="8" default="0">
-                    <button id="FirstRocketHatch-sub" type="button" onClick="subtract('FirstRocketHatch', 0)">Subtract</button>
+                    <button id="first_hatch-add" type="button" onClick="add('first_hatch', 4)">Add</button>
+                    <div id="first_hatch-label" class="display_current_value">0</div>
+                    <input id="first_hatch" class="number-form" type="hidden" name="first_hatch" min="0" max="8" default="0">
+                    <button id="first_hatch-sub" type="button" onClick="subtract('first_hatch', 0)">Subtract</button>
                 </div>
                 <div class="button_group">
-                    <button id="SecondRocketHatch-add" type="button" onClick="add('SecondRocketHatch', 4)">Add</button>
-                    <div id="SecondRocketHatch-label" class="display_current_value">0</div>
-                    <input id="SecondRocketHatch" class="number-form" type="hidden" name="SecondRocketHatch" min="0" max="8" default="0">
-                    <button id="SecondRocketHatch-sub" type="button" onClick="subtract('SecondRocketHatch', 0)">Subtract</button>
+                    <button id="second_hatch-add" type="button" onClick="add('second_hatch', 4)">Add</button>
+                    <div id="second_hatch-label" class="display_current_value">0</div>
+                    <input id="second_hatch" class="number-form" type="hidden" name="second_hatch" min="0" max="8" default="0">
+                    <button id="second_hatch-sub" type="button" onClick="subtract('second_hatch', 0)">Subtract</button>
                 </div>
                 <div class="button_group">
-                    <button id="ThirdRocketHatch-add" type="button" onClick="add('ThirdRocketHatch', 4)">Add</button>
-                    <div id="ThirdRocketHatch-label" class="display_current_value">0</div>
-                    <input id="ThirdRocketHatch" class="number-form" type="hidden" name="ThirdRocketHatch" min="0" max="8" default="0">
-                    <button id="ThirdRocketHatch-sub" type="button" onClick="subtract('ThirdRocketHatch', 0)">Subtract</button>
+                    <button id="third_hatch-add" type="button" onClick="add('third_hatch', 4)">Add</button>
+                    <div id="third_hatch-label" class="display_current_value">0</div>
+                    <input id="third_hatch" class="number-form" type="hidden" name="third_hatch" min="0" max="8" default="0">
+                    <button id="third_hatch-sub" type="button" onClick="subtract('third_hatch', 0)">Subtract</button>
                 </div>
             </div>
             <br><br>
@@ -86,20 +86,20 @@
 
             <div id="ship_cargo">
                 <div class="button_group" >
-                    <button id="ShipCargo-add" type="button" onClick="add('ShipCargo', 8)">Add</button>
-                    <div id="ShipCargo-label" class="display_current_value">0</div>
-                    <input id="ShipCargo" class="number-form" type="hidden" name="ShipCargo" min="0" max="8" default="0">
-                    <button id="ShipCargo-sub" type="button" onClick="subtract('ShipCargo', 0)">Subtract</button>
+                    <button id="ship_cargo-add" type="button" onClick="add('ship_cargo', 8)">Add</button>
+                    <div id="ship_cargo-label" class="display_current_value">0</div>
+                    <input id="ship_cargo" class="number-form" type="hidden" name="ship_cargo" min="0" max="8" default="0">
+                    <button id="ship_cargo-sub" type="button" onClick="subtract('ship_cargo', 0)">Subtract</button>
                 </div>
             </div>
 
 
             <div id="ship_hatch" style="display: none">
                 <div class="button_group" >
-                    <button id="ShipHatch-add" type="button" onClick="add('ShipHatch', 8)">Add</button>
-                    <div id="ShipHatch-label" class="display_current_value">0</div>
-                    <input id="ShipHatch" class="number-form" type="hidden" name="ShipHatch" min="0" max="8" default="0">
-                    <button id="ShipHatch-sub" type="button" onClick="subtract('ShipHatch', 0)">Subtract</button>
+                    <button id="ship_hatch-add" type="button" onClick="add('ship_hatch', 8)">Add</button>
+                    <div id="ship_hatch-label" class="display_current_value">0</div>
+                    <input id="ship_hatch" class="number-form" type="hidden" name="ship_hatch" min="0" max="8" default="0">
+                    <button id="ship_hatch-sub" type="button" onClick="subtract('ship_hatch', 0)">Subtract</button>
                 </div>
             </div>
             <br>
