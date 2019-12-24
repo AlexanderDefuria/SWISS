@@ -23,6 +23,7 @@ def write_teleop(request, pk):
         match = Match.objects.filter(team_id=team.id).latest('match_number')
 
         print(team)
+        print(request.POST)
 
         match.ship_cargo = make_int(request.POST.get('ship_cargo', 0))
         match.first_cargo = make_int(request.POST.get('first_cargo', 0))
@@ -30,6 +31,7 @@ def write_teleop(request, pk):
         match.third_cargo = make_int(request.POST.get('third_cargo', 0))
 
         match.ship_hatch = make_int(request.POST.get('ship_hatch', 0))
+
         match.first_hatch = make_int(request.POST.get('first_hatch', 0))
         match.second_hatch = make_int(request.POST.get('second_hatch', 0))
         match.third_hatch = make_int(request.POST.get('third_hatch', 0))
@@ -112,17 +114,14 @@ def validate_match(request, pk):
     # The parsing of the db to check if a team has played at a particular match already is done server side
     # The ajax post sends only the match number in a JSON file to comply with AJAX datatype specification
     # dumps() is to convert dictionary into JSON format for HttpResponse to keep it simple stupid
+
     data = decode_ajax(request)['match_number']
     provided_match_number = make_int(data[0])
-    print(provided_match_number)
     result = {'result': False}
 
-
-
-    if not get_present_teams().filter(match=provided_match_number).exists():
-        result['result'] = True
-
-    print(result)
+    if not Match.objects.filter(team_id=pk, event_id=config.current_event_id, match_number=provided_match_number).exists():
+        if Match.objects.filter(match_number=provided_match_number).count() < 6:
+            result['result'] = True
 
     return HttpResponse(dumps(result), content_type="application/json")
 

@@ -17,7 +17,7 @@ function updateImage(){
                 'third_hatch':      document.getElementById("third_hatchIN").value,
                 'ship_hatch':       document.getElementById("ship_hatchIN").value,
 
-                'totalCargo':       document.getElementById("total_cargoIN").value,
+                'total_cargo':       document.getElementById("total_cargoIN").value,
                 'first_cargo':      document.getElementById("first_cargoIN").value,
                 'second_cargo':     document.getElementById("second_cargoIN").value,
                 'third_cargo':      document.getElementById("third_cargoIN").value,

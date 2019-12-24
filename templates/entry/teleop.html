@@ -16,7 +16,8 @@
 
         <div class="right">
 
-            <button id="defense_time"  type="button"  onClick="toggleTimer(id)" class="timer">Start Defense Timer</button>
+            <button id="defense_time-toggle"  type="button"  onClick="toggleTimer('defense_time')" class="timer">Start Defense Timer</button>
+            <input id="defense_time" class="number-form" type="hidden" name="defense_time" min="0" max="135000" default="0">
 
             <img src="{% static "entry/images/Rocket.png" %}" alt="Red Rocket" class="right img">
 
@@ -25,13 +26,13 @@
         <div class="left">
 
             <div class="button_group">
-                <button type="button" id="rocket_cargo_button" class="toggle button" onclick='toggleInputDisplay("rocket", "cargo", "block")' style="background-color: orange; opacity: 1;">Cargo</button>
-                <button type="button" id="rocket_hatch_button" class="toggle button" onclick='toggleInputDisplay("rocket", "hatch", "block")' style="background-color: yellow">Hatch</button>
+                <button type="button" id="rocket_cargo_button" class="toggle button" onclick='toggleInputDisplay("rocket", "cargo_div", "block")' style="background-color: orange; opacity: 1;">Cargo</button>
+                <button type="button" id="rocket_hatch_button" class="toggle button" onclick='toggleInputDisplay("rocket", "hatch_div", "block")' style="background-color: yellow">Hatch</button>
             </div>
             <hr>
 
 
-            <div id="rocket_cargo">
+            <div id="rocket_cargo_div">
                 <div class="button_group" >
                     <button id="first_cargo-add" type="button" onClick="add('first_cargo', 4)">Add</button>
                     <div id="first_cargo-label" class="display_current_value">0</div>
@@ -53,7 +54,7 @@
             </div>
 
 
-            <div id="rocket_hatch" style="display: none">
+            <div id="rocket_hatch_div" style="display: none">
                 <div class="button_group">
                     <button id="first_hatch-add" type="button" onClick="add('first_hatch', 4)">Add</button>
                     <div id="first_hatch-label" class="display_current_value">0</div>
@@ -78,13 +79,13 @@
 
 
             <div class="button_group">
-                <button type="button" id="ship_cargo_button" class="toggle button" onclick='toggleInputDisplay("ship", "cargo", "block")' style="background-color: orange; opacity: 1;">Cargo</button>
-                <button type="button" id="ship_hatch_button" class="toggle button" onclick='toggleInputDisplay("ship", "hatch", "block")' style="background-color: yellow">Hatch</button>
+                <button type="button" id="ship_cargo_button" class="toggle button" onclick='toggleInputDisplay("ship", "cargo_div", "block")' style="background-color: orange; opacity: 1;">Cargo</button>
+                <button type="button" id="ship_hatch_button" class="toggle button" onclick='toggleInputDisplay("ship", "hatch_div", "block")' style="background-color: yellow">Hatch</button>
             </div>
             <hr>
 
 
-            <div id="ship_cargo">
+            <div id="ship_cargo_div">
                 <div class="button_group" >
                     <button id="ship_cargo-add" type="button" onClick="add('ship_cargo', 8)">Add</button>
                     <div id="ship_cargo-label" class="display_current_value">0</div>
@@ -94,11 +95,11 @@
             </div>
 
 
-            <div id="ship_hatch" style="display: none">
+            <div id="ship_hatch_div" style="display: none">
                 <div class="button_group" >
-                    <button id="ship_hatch-add" type="button" onClick="add('ship_hatch', 8)">Add</button>
+                    <button id="ship_hatch-add" type="button" onClick='add("ship_hatch", 8)'>Add</button>
                     <div id="ship_hatch-label" class="display_current_value">0</div>
-                    <input id="ship_hatch" class="number-form" type="hidden" name="ship_hatch" min="0" max="8" default="0">
+                    <input id="ship_hatch" class="number-form" type="hidden" name="ship_hatch" min="0" max="8" default=6>
                     <button id="ship_hatch-sub" type="button" onClick="subtract('ship_hatch', 0)">Subtract</button>
                 </div>
             </div>
@@ -111,5 +112,5 @@
     </div>
 
     <br>
-    <button type="submit" value="Post" onClick="checkInputValues()">Submit</button>
+    <button type="submit" value="submit" onClick="checkInputValues()">Submit</button>
 </form>

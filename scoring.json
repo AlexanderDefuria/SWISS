@@ -77,10 +77,10 @@
   "defense_time": {
     "alias": "Defense Time"
   },
-  "totalHatch": {
+  "total_hatch": {
     "alias": "Total Hatch"
   },
-  "totalCargo": {
+  "total_cargo": {
     "alias": "Total Cargo"
   },
   "wins": {

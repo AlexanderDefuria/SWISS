@@ -35,13 +35,13 @@
         <div class="left">
 
             <div class="button_group">
-                <button type="button" id="rocket_cargo_button" class="toggle button" onclick='toggleInputDisplay("rocket", "cargo", "block")' style="background-color: orange; opacity: 1;">Cargo</button>
-                <button type="button" id="rocket_hatch_button" class="toggle button" onclick='toggleInputDisplay("rocket", "hatch", "block")' style="background-color: yellow">Hatch</button>
+                <button type="button" id="rocket_cargo_button" class="toggle button" onclick='toggleInputDisplay("rocket", "cargo_div", "block")' style="background-color: orange; opacity: 1;">Cargo</button>
+                <button type="button" id="rocket_hatch_button" class="toggle button" onclick='toggleInputDisplay("rocket", "hatch_div", "block")' style="background-color: yellow">Hatch</button>
             </div>
             <hr>
 
 
-            <div id="rocket_cargo">
+            <div id="rocket_cargo_div">
                 <div class="button_group" >
                     <button id="first_cargo-add" type="button" onClick="add('first_cargo', 4)">Add</button>
                     <div id="first_cargo-label" class="display_current_value">0</div>
@@ -63,7 +63,7 @@
             </div>
 
 
-            <div id="rocket_hatch" style="display: none">
+            <div id="rocket_hatch_div" style="display: none">
                 <div class="button_group">
                     <button id="first_hatch-add" type="button" onClick="add('first_hatch', 4)">Add</button>
                     <div id="first_hatch-label" class="display_current_value">0</div>
@@ -94,7 +94,7 @@
             <hr>
 
 
-            <div id="ship_cargo">
+            <div id="ship_cargo_div">
                 <div class="button_group" >
                     <button id="ship_cargo-add" type="button" onClick="add('ship_cargo', 8)">Add</button>
                     <div id="ship_cargo-label" class="display_current_value">0</div>
@@ -104,7 +104,7 @@
             </div>
 
 
-            <div id="ship_hatch" style="display: none">
+            <div id="ship_hatch_div" style="display: none">
                 <div class="button_group" >
                     <button id="ship_hatch-add" type="button" onClick="add('ship_hatch', 8)">Add</button>
                     <div id="ship_hatch-label" class="display_current_value">0</div>

@@ -40,6 +40,7 @@ function add(name, max)  {
     else values[name] += 1;
     document.getElementById(name.concat('-label')).innerHTML = values[name];
     document.getElementById(name).value = values[name];
+    console.log(values);
 }
 function subtract(name, min) {
     if(values[name] <= min) values[name] = min;
@@ -50,19 +51,19 @@ function subtract(name, min) {
 }
 function toggleInputDisplay(elementID, target, defaultStyle) {
 
-    var cargo = document.getElementById(elementID + "_cargo");
-    var hatch = document.getElementById(elementID + "_hatch");
+    var cargo = document.getElementById(elementID + "_cargo_div");
+    var hatch = document.getElementById(elementID + "_hatch_div");
     var cargo_button = document.getElementById( elementID + "_cargo_button")
     var hatch_button = document.getElementById( elementID + "_hatch_button")
 
 
-    if (target === "cargo") {
+    if (target === "cargo_div") {
         cargo.style.display = defaultStyle;
         cargo_button.style.opacity = "1";
         hatch.style.display = "none";
         hatch_button.style.opacity = "0.4";
 
-    } else  if (target === "hatch") {
+    } else  if (target === "hatch_div") {
         cargo.style.display = "none";
         cargo_button.style.opacity = "0.4";
         hatch.style.display = defaultStyle;
@@ -94,18 +95,24 @@ var on = false;
 var startTime;
 
 function toggleTimer(elementID){
+
+    var element_display = elementID.concat('-toggle');
+    var element = elementID;
+
     if (on === false){
         startTime = Date.now();
         on = true;
-        document.getElementById(elementID).style.backgroundColor = "lightcoral";
-        document.getElementById(elementID).textContent = "Stop Timing Defense";
+        document.getElementById(element_display).style.backgroundColor = "lightcoral";
+        document.getElementById(element_display).textContent = "Stop Timing Defense";
 
     } else {
         values['time'] += Date.now() - startTime;
         on = false;
-        document.getElementById(elementID).style.backgroundColor = "lightgreen";
-        document.getElementById(elementID).textContent = "Resume Defense Timer";
+        document.getElementById(element_display).style.backgroundColor = "lightgreen";
+        document.getElementById(element_display).textContent = "Resume Defense Timer";
     }
+
+    document.getElementById(element).value = values['time'];
 
 
 
@@ -139,6 +146,7 @@ function checkInputValues(mandatory_list) {
 
     if (pass) {
         console.log("Success");
+        console.log(values);
         document.getElementById("form").submit()
     } else {
         console.log("Failed Input");
