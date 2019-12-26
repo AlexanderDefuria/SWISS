@@ -1,14 +1,11 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
-<<<<<<< HEAD
     <inspection_tool class="DuplicatedCode" enabled="true" level="WEAK WARNING" enabled_by_default="true">
       <Languages>
         <language minSize="49" name="Python" />
       </Languages>
     </inspection_tool>
-=======
->>>>>>> master
     <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredPackages">
         <value>
@@ -23,7 +20,6 @@
         </value>
       </option>
     </inspection_tool>
-<<<<<<< HEAD
     <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
       <option name="ignoredErrors">
         <list>
@@ -31,7 +27,5 @@
         </list>
       </option>
     </inspection_tool>
-=======
->>>>>>> master
   </profile>
 </component>
