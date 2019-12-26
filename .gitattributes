@@ -3,7 +3,7 @@
 # and leave all files detected as binary untouched.
 *               text=auto
 
-jquery.min.js linguist-vendored=false
+jquery.min.js linguist-vendored=true
 
 #
 # Exclude files from exporting
