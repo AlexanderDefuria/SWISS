@@ -80,9 +80,25 @@ li {
         column-count: 2;
         font-size: 120%;
     }
+}
 
+table{
+    border-spacing: 0px;
+}
 
+td {
+    border-style: solid;
+    border-width: thin;
+    border-color: dimgray;
+    width: max-content;
+}
 
+td.red {
+    background-color: #fee;
+}
+
+td.blue {
+    background-color: #eef;
 }
 
 

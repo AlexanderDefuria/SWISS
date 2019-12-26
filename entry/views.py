@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse, Http404, QueryDict
 from django.urls import reverse_lazy
 from django.views import generic
 
-from entry.models import Team, Match
+from entry.models import Team, Match, Event, Schedule
 from entry import config
 
 from django_ajax.decorators import ajax
@@ -119,7 +119,8 @@ def validate_match(request, pk):
     provided_match_number = make_int(data[0])
     result = {'result': False}
 
-    if not Match.objects.filter(team_id=pk, event_id=config.current_event_id, match_number=provided_match_number).exists():
+    if not Match.objects.filter(team_id=pk, event_id=config.current_event_id,
+                                match_number=provided_match_number).exists():
         if Match.objects.filter(match_number=provided_match_number).count() < 6:
             result['result'] = True
 
@@ -181,3 +182,14 @@ class EventSetup(generic.TemplateView):
 
 class Visualize(generic.TemplateView):
     template_name = 'entry/visualize.html'
+
+
+class ScheduleView(generic.ListView):
+    template_name = 'entry/schedule.html'
+    context_object_name = "schedule"
+    model = Schedule
+
+    def get_queryset(self):
+
+        return Schedule.objects.filter(event_id=config.current_event_id).order_by("match_type")
+

@@ -13,7 +13,7 @@ configuration.api_key['X-TBA-Auth-Key'] = 'TaaEaU05CN3V89QGeDEKDSPYtfsFTAX0L8aNg
 district_api = tba.DistrictApi(tba.ApiClient(configuration))
 event_api = tba.EventApi(tba.ApiClient(configuration))
 match_api = tba.MatchApi(tba.ApiClient(configuration))
-district_key = '2019ont'
+district_key = config.current_district_key
 event_key = config.current_event_key
 event_data = []
 district_teams = []
@@ -164,10 +164,22 @@ def import_schedule():
 
                 c.execute("SELECT id FROM entry_event WHERE TBA_key=?", (match['event_key'],))
 
-                match_data = [(None, (match['match_number']),
+                match_type = match_key.split('_')[1]
+                match_type = match_type.split('m')[0]
+                if match_type.__contains__('qf'):
+                    match_type = 200 + match['match_number']
+                elif match_type.__contains__('sf'):
+                    match_type = 300 + match['match_number']
+                elif match_type.__contains__('q'):
+                    match_type = 100 + match['match_number']
+                elif match_type.__contains__('f'):
+                    match_type = 400 + match['match_number']
+
+                match_data = [((match['match_number']),
+                               match_type,
                                match_key,
                                get_score(match, 0),  # Blue
-                               get_score(match, 1),  # Blue
+                               get_score(match, 1),  # Red
                                get_teams(0, 0, match, c),   # Blue Team 1
                                get_teams(0, 1, match, c),   # Blue Team 2
                                get_teams(0, 2, match, c),   # Blue Team 3
@@ -178,8 +190,7 @@ def import_schedule():
                                )]
 
                 conn.commit()
-                c.executemany("INSERT INTO entry_schedule VALUES (?, ? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", match_data)
-                conn.commit()
+                insert_schedule(conn, match_data)
 
     except ApiException as e:
         print("Exception when calling TBAApi->get_status: %s\n" % e)
@@ -263,9 +274,22 @@ def full_reset():
     conn.commit()
     c.execute("INSERT INTO entry_team VALUES (0,0,0,0,0,0,0,0)")
     conn.commit()
-    c.execute("INSERT INTO entry_schedule VALUES (0,0,0,0,0,0,0,0,0,0,0,0)")
+    c.execute("INSERT INTO entry_schedule VALUES (0,0,0,0,0,0,0,0,0,0,0,0,0)")
     conn.commit()
     conn.close()
+
+
+def insert_schedule(conn, match):
+    """
+    Create a new project into the projects table
+    :param conn:
+    :param match:
+    """
+    sql = ''' INSERT INTO main.entry_schedule(match_number,match_type,TBA_key,blue_score,red_score,blue1_id,blue2_id,blue3_id,event_id,red1_id,red2_id,red3_id)
+              VALUES(?,?,?,?,?,?,?,?,?,?,?,?) '''
+    cur = conn.cursor()
+    cur.executemany(sql, match)
+    return
 
 
 full_reset()

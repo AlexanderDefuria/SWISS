@@ -1,0 +1,44 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'entry/landing.css' %}">
+<link rel="shortcut icon" type="image/png" href="{% static 'entry/images/favicon.png' %}"/>
+
+{% if schedule %}
+
+    <h1 class="title">Schedule</h1>
+
+
+    <table>
+        <tr>
+            <th>Match</th>
+            <th>Red 1</th>
+            <th>Red 2</th>
+            <th>Red 3</th>
+            <th>Blue 1</th>
+            <th>Blue 2</th>
+            <th>Blue 3</th>
+            <th>TBA Key</th>
+        </tr>
+        {% for match in object_list %}
+            <tr>
+                <td>{{ match.match_number }}</td>
+                <td class="red" >{{ match.red1_id }}</td>
+                <td class="red" >{{ match.red2_id }}</td>
+                <td class="red" >{{ match.red3_id }}</td>
+                <td class="blue" >{{ match.blue1_id }}</td>
+                <td class="blue" >{{ match.blue2_id }}</td>
+                <td class="blue" >{{ match.blue3_id }}</td>
+                <td>{{ match.TBA_key }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+
+
+
+
+
+{% else %}
+    <p>No matches are available.</p>
+{% endif %}

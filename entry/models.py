@@ -25,15 +25,35 @@ class Team(models.Model):
 
     TBA_key = models.TextField(default="NA", max_length=40)
 
-
     def __str__(self):
         return str(self.number) + "\t\t" + str(self.name)
 
-#TODO Adjust for 2020 
+
+class Schedule(models.Model):
+    match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(0)])
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
+    TBA_key = models.TextField(default="NA", max_length=40)
+    match_type = models.IntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+
+    red1 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
+    red2 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
+    red3 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
+    blue1 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
+    blue2 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
+    blue3 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
+    red_score = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
+    blue_score = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
+
+    def __str__(self):
+        return self.match_number
+
+
+# TODO Adjust for 2020
 class Match(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
     match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(0)])
+    schedule_id = models.ForeignKey(Schedule, on_delete=models.CASCADE, default=0)
 
     # Cargo
     auto_cargo = models.IntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
@@ -63,22 +83,6 @@ class Match(models.Model):
         return self.team.name + "  Match: " + str(self.match_number)
 
 
-class Schedule(models.Model):
-    match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(0)])
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
-    TBA_key = models.TextField(default="NA", max_length=40)
-
-    red1 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
-    red2 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
-    red3 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
-    blue1 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
-    blue2 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
-    blue3 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
-    red_score = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
-    blue_score = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
-
-    def __str__(self):
-        return self.match_number
 
 
 

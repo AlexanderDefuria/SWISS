@@ -2,19 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cdb9e67-6604-4543-b1a1-a12859bc1b87" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/DatabaseLayout_191224.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/191216.sqlite3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entry/migrations/0003_schedule_match_type.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/entry/schedule.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demonstration/2019-10-30 10-10-53.mkv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/entry/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entry/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/entry/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entry/static/entry/counter.js" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/counter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entry/static/entry/images/dynamic_plot.png" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/images/dynamic_plot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entry/static/entry/visualization.js" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/visualization.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/entry/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/static/entry/entry.css" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/entry.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/static/entry/images/blank_plot.png" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/images/blank_plot.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/static/entry/landing.css" beforeDir="false" afterPath="$PROJECT_DIR$/entry/static/entry/landing.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/entry/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entry/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/entry/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphing.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/namingconventions-191129" beforeDir="false" afterPath="$PROJECT_DIR$/namingconventions-191224" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scoring.json" beforeDir="false" afterPath="$PROJECT_DIR$/scoring.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/entry/auto.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entry/auto.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/entry/teleop.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entry/teleop.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/importTBA.py" beforeDir="false" afterPath="$PROJECT_DIR$/importTBA.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/namingconventions-191224" beforeDir="false" afterPath="$PROJECT_DIR$/namingconventions-191224" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/entry/endgame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/entry/landing.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entry/landing.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +71,7 @@
       <list>
         <option value="HTTP Request" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -81,13 +89,19 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/code" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/entry/static/entry/images" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -95,32 +109,7 @@
       <list>
         <serviceView>
           <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:db" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:db" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@12f80349" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:db" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@378b05c" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:db" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@496a26d4" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:db" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@4bcb85c5" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </treeState>
         </serviceView>
@@ -154,7 +143,10 @@
       <workItem from="1575067088504" duration="8846000" />
       <workItem from="1576547754448" duration="12000" />
       <workItem from="1577130828929" duration="13130000" />
-      <workItem from="1577194099007" duration="14390000" />
+      <workItem from="1577194099007" duration="15216000" />
+      <workItem from="1577234081176" duration="826000" />
+      <workItem from="1577240439396" duration="4296000" />
+      <workItem from="1577383180638" duration="10147000" />
     </task>
     <servers />
   </component>
@@ -182,30 +174,42 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2475" y="215" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577130850101" />
-    <state width="1291" height="257" key="GridCell.Tab.0.bottom" timestamp="1577225208910">
+    <state x="2613" y="302" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1577396492493">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1291" height="257" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577225208910" />
-    <state width="1291" height="257" key="GridCell.Tab.0.center" timestamp="1577225208910">
+    <state x="2613" y="302" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577396492493" />
+    <state width="1291" height="257" key="GridCell.Tab.0.bottom" timestamp="1577393929905">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1291" height="257" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577225208910" />
-    <state width="1291" height="257" key="GridCell.Tab.0.left" timestamp="1577225208910">
+    <state width="1291" height="257" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577393929905" />
+    <state width="1291" height="257" key="GridCell.Tab.0.center" timestamp="1577393929905">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1291" height="257" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577225208910" />
-    <state width="1291" height="257" key="GridCell.Tab.0.right" timestamp="1577225208910">
+    <state width="1291" height="257" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577393929905" />
+    <state width="1291" height="257" key="GridCell.Tab.0.left" timestamp="1577393929905">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1291" height="257" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577225208910" />
-    <state x="2536" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1577194100880">
+    <state width="1291" height="257" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577393929905" />
+    <state width="1291" height="257" key="GridCell.Tab.0.right" timestamp="1577393929905">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2536" y="367" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577194100880" />
-    <state x="120" y="162" width="1654" height="707" key="dock-window-1" timestamp="1577227565611">
+    <state width="1291" height="257" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577393929905" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1577242125491">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577242125491" />
+    <state x="2592" y="277" width="566" height="559" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1577387536790">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2592" y="277" width="566" height="559" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577387536790" />
+    <state x="2536" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1577383190472">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2536" y="367" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577383190472" />
+    <state x="984" y="62" width="743" height="946" key="dock-window-1" timestamp="1577396103712">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="120" y="162" width="1654" height="707" key="dock-window-1/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577227565611" />
+    <state x="984" y="62" width="743" height="946" key="dock-window-1/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577396103712" />
     <state x="246" y="37" width="520" height="557" key="dock-window-2" timestamp="1577224777362">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -214,9 +218,9 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="786" y="37" width="752" height="563" key="dock-window-3/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577224777362" />
-    <state x="2543" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1577227234146">
+    <state x="2543" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1577242120981">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2543" y="259" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577227234146" />
+    <state x="2543" y="259" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577242120981" />
   </component>
 </project>
