@@ -1,14 +1,15 @@
-import tbaapiv3client as tba
-from tbaapiv3client import ApiException
-import sqlite3
 import json
-from apps.entry import config
 import operator
 import os
+import sqlite3
+
+import tbaapiv3client as tba
+from tbaapiv3client import ApiException
+
+from apps import config
 
 configuration = tba.Configuration()
 configuration.api_key['X-TBA-Auth-Key'] = 'TaaEaU05CN3V89QGeDEKDSPYtfsFTAX0L8aNgAmjSAecJd2GpX4Avj5gQLjKKKls'
-
 
 district_api = tba.DistrictApi(tba.ApiClient(configuration))
 event_api = tba.EventApi(tba.ApiClient(configuration))
@@ -180,13 +181,13 @@ def import_schedule():
                                match_key,
                                get_score(match, 0),  # Blue
                                get_score(match, 1),  # Red
-                               get_teams(0, 0, match, c),   # Blue Team 1
-                               get_teams(0, 1, match, c),   # Blue Team 2
-                               get_teams(0, 2, match, c),   # Blue Team 3
+                               get_teams(0, 0, match, c),  # Blue Team 1
+                               get_teams(0, 1, match, c),  # Blue Team 2
+                               get_teams(0, 2, match, c),  # Blue Team 3
                                event_id,
-                               get_teams(1, 0, match, c),   # Red  Team 1
-                               get_teams(1, 1, match, c),   # Red  Team 2
-                               get_teams(1, 2, match, c)   # Red  Team 3
+                               get_teams(1, 0, match, c),  # Red  Team 1
+                               get_teams(1, 1, match, c),  # Red  Team 2
+                               get_teams(1, 2, match, c)  # Red  Team 3
                                )]
 
                 conn.commit()
@@ -197,7 +198,6 @@ def import_schedule():
 
 
 def clean_request(item):
-
     index = 0
 
     item = str(item)
@@ -212,7 +212,7 @@ def clean_request(item):
                 if item[index - 1].isalnum() and item[index + 1].isalnum():
                     item = item[:index] + item[index:]
                 else:
-                    item = item[:index] + '"' + item[index+1:]
+                    item = item[:index] + '"' + item[index + 1:]
             except IndexError as e:
                 e = 1
         index += 1
@@ -223,7 +223,6 @@ def clean_request(item):
 
 
 def get_date(raw):
-
     raw = raw.replace(',', '')
     test = raw.split(" ")
     if len(test[1]) != 2:
@@ -264,7 +263,6 @@ def get_score(match, alliance):
 
 
 def full_reset():
-
     os.system('python3 manage.py flush')
 
     conn = sqlite3.connect('db.sqlite3')
@@ -285,7 +283,7 @@ def insert_schedule(conn, match):
     :param conn:
     :param match:
     """
-    sql = ''' INSERT INTO main.entry_schedule(match_number,match_type,TBA_key,blue_score,red_score,blue1_id,blue2_id,blue3_id,event_id,red1_id,red2_id,red3_id)
+    sql = ''' INSERT INTO main.entry_schedule(match_number,match_type,TBA_key,blue_score,red_score,blue1,blue2,blue3,event_id,red1,red2,red3)
               VALUES(?,?,?,?,?,?,?,?,?,?,?,?) '''
     cur = conn.cursor()
     cur.executemany(sql, match)

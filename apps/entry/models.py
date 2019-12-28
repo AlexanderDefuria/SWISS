@@ -1,6 +1,5 @@
-from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
-import datetime
+from django.db import models
 
 
 class Event(models.Model):
@@ -35,12 +34,12 @@ class Schedule(models.Model):
     TBA_key = models.TextField(default="NA", max_length=40)
     match_type = models.IntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
 
-    red1 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
-    red2 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
-    red3 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
-    blue1 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
-    blue2 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
-    blue3 = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
+    red1 = models.IntegerField(Team, default=0)
+    red2 = models.IntegerField(Team, default=0)
+    red3 = models.IntegerField(Team,  default=0)
+    blue1 = models.IntegerField(Team,  default=0)
+    blue2 = models.IntegerField(Team,  default=0)
+    blue3 = models.IntegerField(Team,  default=0)
     red_score = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
     blue_score = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
 
@@ -72,18 +71,13 @@ class Match(models.Model):
     climb = models.IntegerField(default=0, validators=[MaxValueValidator(3), MinValueValidator(0)])
 
     # Start
-    first_start = models.BooleanField(default=True)
-    second_start = models.BooleanField(default=False)
+    start = models.IntegerField(default=0, validators=[MaxValueValidator(2), MinValueValidator(0)])
 
     # Defense
     defense_time = models.IntegerField(default=0, validators=[MaxValueValidator(135000), MinValueValidator(1)])
 
+    # Comments
+    comments = models.TextField(default="")
+
     def __str__(self):
         return self.team.name + "  Match: " + str(self.match_number)
-
-
-
-
-
-
-

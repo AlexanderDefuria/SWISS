@@ -13,5 +13,5 @@ urlpatterns = [
     path('visual/', views.Visualize.as_view(), name='view_matches'),
     path('visual/update/', views.update_graph, name='update_graph'),
     path('download', views.download, name='download_event'),
-    path('schedule/', views.ScheduleView.as_view(), name='team_list')
+    path('schedule/', views.ScheduleView.as_view(), name='schedule')
 ]

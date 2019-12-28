@@ -107,10 +107,27 @@
 
             <img src="{% static "CargoShip.png" %}" alt="Red CargoShip" class="img">
 
+            <br>
+
+            <div id="climb_div">
+                <div class="button_group">
+                    <input id="climb_level" name="climb_level" class="level" type="text" min="0" max="3" value="0" style="display:none ">
+                    <button type="button" id="level_one" class="level" onclick='selectLevel(id, "level", 1, "climb_level")'>First Level</button>
+                    <button type="button" id="level_two" class="level" onclick='selectLevel(id, "level", 2, "climb_level")'>Second Level</button>
+                    <button type="button" id="level_three" class="level" onclick='selectLevel(id, "level", 3, "climb_level")'>Third Level</button>
+                </div>
+            </div>
+
         </div>
 
     </div>
 
     <br>
     <button type="submit" value="submit" onClick="checkInputValues()">Submit</button>
+    <br>
+    <br>
+
+    <textarea name="comments" id="comments"> </textarea>
+
+
 </form>

@@ -4,5 +4,5 @@ from . import views
 
 app_name = 'setup'
 urlpatterns = [
-    path('', views.Import_TBA.as_view(), name='team_list'),
+    path('', views.Setup.as_view(), name='team_list'),
 ]

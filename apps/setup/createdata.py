@@ -1,5 +1,5 @@
-import sqlite3
 import random as rand
+import sqlite3
 
 conn = sqlite3.connect("db.sqlite3")
 c = conn.cursor()
@@ -14,10 +14,10 @@ while index < 100:
     teams = c.fetchall()
     team = rand.choice(teams)
 
-    data = [None, match, rand.randint(0, 4),rand.randint(0, 4),rand.randint(0, 4),rand.randint(0, 8),
-            rand.randint(0, 4),rand.randint(0, 4),rand.randint(0, 4),rand.randint(0, 8),rand.randint(0, 4),
-            rand.randint(0, 4),rand.randint(0, 3), bool(rand.getrandbits(1)), bool(rand.getrandbits(1)),
-            rand.randint(0,50000), 230, team[0]]
+    data = [None, match, rand.randint(0, 4), rand.randint(0, 4), rand.randint(0, 4), rand.randint(0, 8),
+            rand.randint(0, 4), rand.randint(0, 4), rand.randint(0, 4), rand.randint(0, 8), rand.randint(0, 4),
+            rand.randint(0, 4), rand.randint(0, 3), bool(rand.getrandbits(1)), bool(rand.getrandbits(1)),
+            rand.randint(0, 50000), 230, team[0]]
 
     print(data[17])
 
@@ -27,7 +27,6 @@ while index < 100:
     index += 1
 
 conn.close()
-
 
 ################################################################################################################
 

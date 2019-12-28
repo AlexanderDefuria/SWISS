@@ -1,13 +1,13 @@
-import sqlite3
 import json
+import sqlite3
 
 import matplotlib.pyplot as plt
 import pandas as pd
-from apps.entry import config
+
+from apps import config
 
 
 def create_teams_graph(form_data):
-
     team_list = []
     data_needed = []
     to_pop = []
@@ -61,7 +61,6 @@ def get_data_from_db(data_needed, team_list):
 
         for data_field in data_needed:
 
-
             # Skip over wins for now
             if 'win' in data_field:
                 continue
@@ -110,7 +109,8 @@ def get_data_from_db(data_needed, team_list):
             # Regular fields
             # Data fields for each match
             print("data_field:  " + data_field)
-            c.execute("SELECT %s FROM entry_match WHERE team_id=? AND event_id=?" % data_field, (team_id, config.current_event_id))
+            c.execute("SELECT %s FROM entry_match WHERE team_id=? AND event_id=?" % data_field,
+                      (team_id, config.current_event_id))
             each_match = c.fetchall()
 
             for item in each_match:
@@ -125,4 +125,3 @@ def get_data_from_db(data_needed, team_list):
     print(compiled_dict)
 
     return compiled_dict
-

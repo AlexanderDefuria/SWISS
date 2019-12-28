@@ -84,9 +84,8 @@ function selectLevel(elementID, class_name, value, toassign){
     var x = document.getElementById(elementID);
     x.style.opacity = "1";
 
-
     if (value !== -1) {
-        document.getElementById("starting_level").value = "2";
+        document.getElementById(toassign).value = value;
     }
 
 }

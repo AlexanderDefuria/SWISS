@@ -25,12 +25,12 @@ team3               team3
 team4               team4
 team5               team5
 team6               team6
-total_hatch          total_hatchIN
+total_hatch         total_hatchIN
 first_hatch         first_hatchIN
 second_hatch        second_hatchIN
 third_hatch         third_hatchIN
 ship_hatch          ship_hatchIN
-total_cargo          total_cargoIN
+total_cargo         total_cargoIN
 first_cargo         first_cargoIN
 second_cargo        second_cargoIN
 third_cargo         third_cargoIN
@@ -42,6 +42,7 @@ second_start        second_startIN
 climb               climbIN
 wins                winsIN
 defense_time        defense_timeIN
+comments
 
 
 ---MODELS-MATCH---
@@ -62,7 +63,7 @@ climb
 first_start
 second_start
 defense_time
-
+comments
 
 ---VISUALIZATION-JS---
 type                GraphSelection

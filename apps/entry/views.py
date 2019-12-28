@@ -1,17 +1,17 @@
 import base64
 import os
+from json import dumps
 
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse, Http404, QueryDict
 from django.urls import reverse_lazy
 from django.views import generic
-
-from apps.entry.models import Team, Match, Schedule
-
-from django_ajax.decorators import ajax
 from django.views.decorators.csrf import csrf_exempt
+from django_ajax.decorators import ajax
+
+from apps import config
 from apps.entry.graphing import *
-from json import dumps
+from apps.entry.models import Team, Match, Schedule
 
 
 def write_teleop(request, pk):
@@ -37,6 +37,10 @@ def write_teleop(request, pk):
 
         match.defense_time = make_int(request.POST.get('defense_time', 0))
 
+        match.climb = make_int(request.POST.get('climb_level', 0))
+
+        match.comments = request.POST.get('comments', 0)
+
         match.save()
 
         print('Success')
@@ -60,12 +64,7 @@ def write_auto(request, pk):
             raise Http404
         match.team_id = team.id
 
-        if make_int(request.POST.get('StartingLevel', 0)) == 1:
-            match.first_start = True
-            match.second_start = False
-        else:
-            match.first_start = False
-            match.second_start = True
+        match.start = make_int(request.POST.get('starting_level'))
 
         # Autonomous Match
         match.auto_cargo += make_int(request.POST.get('first_cargo', 0))
@@ -76,8 +75,6 @@ def write_auto(request, pk):
         match.auto_hatch += make_int(request.POST.get('second_hatch', 0))
         match.auto_hatch += make_int(request.POST.get('third_hatch', 0))
         match.auto_hatch += make_int(request.POST.get('ship_hatch', 0))
-
-        print(match.schedule_id)
 
         match.save()
 
@@ -191,6 +188,4 @@ class ScheduleView(generic.ListView):
     model = Schedule
 
     def get_queryset(self):
-
         return Schedule.objects.filter(event_id=config.current_event_id).order_by("match_type")
-

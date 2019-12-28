@@ -1,0 +1,92 @@
+
+table{
+    width: 90%;
+    display: table;
+    align-content: space-evenly;
+}
+
+th{
+    width: 50%;
+    display: table-cell;
+    opacity: 0;
+}
+
+td{
+    text-align: center;
+    vertical-align: text-top;
+}
+
+tr{
+    height: 20vh;
+}
+
+body{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+button{
+	font-family: 'Lato', sans-serif;
+	font-size: 1.5em;
+    font-weight: 300;
+	border: 0;
+	padding: 1em 2em;
+    margin: 2vh 1vw;
+    width: 40vw;
+    height: 80%;
+    background: rgba(0,0,0,0.1);
+    -webkit-transition:.2s;
+    max-height: 14vh;
+    min-height: 11vh;
+    vertical-align: center;
+}
+button:hover{
+    background: rgba(0,0,0,0.3);
+}
+button:active{
+    background: rgba(0,0,0,0.55);
+}
+
+progress{
+    width: 90%;
+    margin: 5vw;
+    display: none;
+
+}
+
+div{
+    text-align: center;
+}
+
+.title {
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    text-align: center;
+	font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    opacity: 80%;
+    /* font-size: calc([minimum _size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) /
+                ([maximum viewport width] - [minimum viewport width])));  */
+    font-size: calc(36px + (100 - 36) * ((85vw - 300px) / (1600 - 300)));
+}
+
+.popup-content{
+    width: 40vw;
+    display: none;
+}
+
+.popup-button{
+    min-height: 6vh;
+    min-width: 40%;
+    width: 45%;
+    height: 6vh;
+    font-size: 0.9em;
+
+}
+
+.event-list{
+    display: inline-block;
+    width: 45%;
+}

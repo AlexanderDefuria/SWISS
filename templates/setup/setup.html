@@ -1,0 +1,43 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'setup/setup.css' %}"/>
+<script type="text/javascript" src="{% static 'setup/setup.js' %}">  </script>
+<link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}"/>
+
+
+<div>
+    <h1 class="title">Setup</h1>
+    <table>
+        <tr>
+            <td id="change_event">
+                <button onclick="toggle_selection('change_event')">Change Event</button>
+            </td>
+            <td>
+                <button>Edit Teams</button>
+            </td>
+            <td class="popup-content" id="change_event_menu">
+                <div>
+                    {% if event_list %}
+                        {% for event in event_list %}
+                            {% if event.TBA_key != "0" %}
+                                <button  class="event-list" onclick="select_event({{ event.TBA_key }})"> {{ event.name }} </button>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <p>No events are available, check database manually.</p>
+                    {%  endif %}
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button>Import TBA</button>
+            </td>
+            <td>
+                <button>Edit Matches</button>
+            </td>
+        </tr>
+    </table>
+
+    <progress value=0.9> </progress>
+</div>
