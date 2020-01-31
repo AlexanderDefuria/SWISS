@@ -31,8 +31,8 @@ def import_event(connection, event):
 
     event = clean_request(event)
 
-    print(" ")
-    print(str(event))
+    #print(" ")
+    #print(str(event))
 
     event = json.loads(event)
     event_data.append(event)
@@ -54,7 +54,7 @@ def import_events():
             import_event(conn, event)
 
         conn.close()
-        print("\nDone")
+        print("\nDone Event List")
 
     except ApiException as e:
         print("Exception when calling TBAApi->get_status: %s\n" % e)
@@ -63,6 +63,8 @@ def import_events():
 def import_teams():
     try:
         team_list = district_api.get_district_teams_simple(config.current_district_key)
+        conn = sqlite3.connect("db.sqlite3")
+        c = conn.cursor()
 
         for team in team_list:
             team = clean_request(team)
@@ -80,12 +82,10 @@ def import_teams():
 
             data = [(team["team_number"], team["nickname"], team["key"])]
 
-            conn = sqlite3.connect("db.sqlite3")
-            c = conn.cursor()
             c.executemany("INSERT INTO entry_team VALUES (NULL,?,?,?,0,0,0,0)", data)
             conn.commit()
 
-            print(team)
+            #print(team)
 
     except ApiException as e:
         print("Exception when calling TBAApi->get_status: %s\n" % e)
@@ -218,6 +218,7 @@ def clean_request(item):
         index += 1
 
     item = item.replace('"The Cybernauts"', ' ')
+    item = item.replace('"Team 7509"', '')
 
     return str(item)
 

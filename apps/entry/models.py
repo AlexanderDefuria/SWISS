@@ -21,6 +21,7 @@ class Team(models.Model):
     event_two = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
     event_three = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
     event_four = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
+    event_five = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
 
     TBA_key = models.TextField(default="NA", max_length=40)
 
@@ -53,28 +54,27 @@ class Match(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
     match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(0)])
 
-    # Cargo
-    auto_cargo = models.IntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
-    first_cargo = models.IntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
-    second_cargo = models.IntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
-    third_cargo = models.IntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
-    ship_cargo = models.IntegerField(default=0, validators=[MaxValueValidator(8), MinValueValidator(0)])
+    # Power Cells
+    outer = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
+    low = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
+    inner = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
+    outer_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
+    low_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
+    inner_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
 
-    # Hatches
-    auto_hatch = models.IntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
-    first_hatch = models.IntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
-    second_hatch = models.IntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
-    third_hatch = models.IntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
-    ship_hatch = models.IntegerField(default=0, validators=[MaxValueValidator(8), MinValueValidator(0)])
+    # Auto Positioning
+    
 
-    # Climb
-    climb = models.IntegerField(default=0, validators=[MaxValueValidator(3), MinValueValidator(0)])
-
-    # Start
-    start = models.IntegerField(default=0, validators=[MaxValueValidator(2), MinValueValidator(0)])
+    # Gameplay Stats
+    wheel_rating = models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(1)])
+    balls_collected = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
+    full_cycles = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
+    fouls = models.IntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
 
     # Defense
-    defense_time = models.IntegerField(default=0, validators=[MaxValueValidator(135000), MinValueValidator(1)])
+    defense_time = models.IntegerField(default=0, validators=[MaxValueValidator(135000), MinValueValidator(0)])
+    defense_rating = models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
+    defense_fouls = models.IntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
 
     # Comments
     comments = models.TextField(default="")

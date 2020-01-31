@@ -2,39 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cdb9e67-6604-4543-b1a1-a12859bc1b87" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/entry/migrations/0002_match_comments.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/entry/migrations/0003_auto_20191228_2012.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/entry/migrations/0004_auto_20191228_2140.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/setup/setup.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/setup/setup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/setup/import-tba.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/setup/setup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/entry/fields.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/FRC-Scouting.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FRC-Scouting.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/191216.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRC-Scouting/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/FRC-Scouting/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/entry/graphing.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/graphing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/entry/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/entry/migrations/0002_match_comments.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/entry/migrations/0003_auto_20191228_2012.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/entry/migrations/0004_auto_20191228_2140.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/entry/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/entry/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/setup/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/setup/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/setup/createdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/setup/createdata.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/setup/importTBA.py" beforeDir="false" afterPath="$PROJECT_DIR$/importTBA.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/setup/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/setup/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/setup/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/setup/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/setup/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/setup/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/setup/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/setup/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/namingconventions-191224" beforeDir="false" afterPath="$PROJECT_DIR$/docs/namingconventions-191224" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/entry/entry.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/entry/entry.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/entry/entry.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/entry/entry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/importTBA.py" beforeDir="false" afterPath="$PROJECT_DIR$/importTBA.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/dynamic_plot.png" beforeDir="false" afterPath="$PROJECT_DIR$/media/dynamic_plot.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/entry/auto.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entry/auto.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/entry/schedule.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entry/schedule.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/entry/teleop.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entry/teleop.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/setup/Import_TBA.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/setup/detail-view.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +56,13 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
+        <item name="entry_team: table" type="3d80ac25:SqliteImplModel$Table" />
+      </path>
     </expand>
     <select />
   </component>
@@ -78,10 +73,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTTP Request" />
-        <option value="Python Script" />
         <option value="CSS File" />
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -89,7 +84,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1RyxYOxFv9Jv1AzX6e0D76OHnO3" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -100,11 +95,12 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -175,6 +171,10 @@
       <workItem from="1577445457119" duration="3392000" />
       <workItem from="1577474035716" duration="14448000" />
       <workItem from="1577562438500" duration="5631000" />
+      <workItem from="1580276784006" duration="1733000" />
+      <workItem from="1580278547556" duration="483000" />
+      <workItem from="1580302753332" duration="542000" />
+      <workItem from="1580471061715" duration="6009000" />
     </task>
     <servers />
   </component>
@@ -198,26 +198,47 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2475" y="215" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577130850101">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state x="555" y="215" width="800" height="684" key="#SQL_Resolution_Scopes" timestamp="1580278616585">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
+    <state x="555" y="215" width="800" height="684" key="#SQL_Resolution_Scopes/0.27.1920.1053@0.27.1920.1053" timestamp="1580278616585" />
+    <state x="555" y="237" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580575891036">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="555" y="237" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580575891036" />
     <state x="2475" y="215" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577130850101" />
     <state x="2613" y="302" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1577396492493">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2613" y="302" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577396492493" />
+    <state x="738" y="315" width="424" height="491" key="FileChooserDialogImpl" timestamp="1580278609853">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="738" y="315" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1580278609853" />
+    <state x="430" y="188" width="1022" height="737" key="SettingsEditor" timestamp="1580278782863">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="430" y="188" width="1022" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1580278782863" />
+    <state x="484" y="188" width="1022" height="737" key="SettingsEditor/70.27.1850.1053@70.27.1850.1053" timestamp="1580276866831" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1577242125491">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="498" height="446" key="SwitcherDM/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577242125491" />
-    <state x="2592" y="277" width="566" height="559" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1577387536790">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state x="717" y="310" width="476" height="493" key="com.intellij.database.run.ParametersPanel.Standalone" timestamp="1580278573552">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
+    <state x="717" y="310" width="476" height="493" key="com.intellij.database.run.ParametersPanel.Standalone/0.27.1920.1053@0.27.1920.1053" timestamp="1580278573552" />
+    <state x="672" y="297" width="566" height="559" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1580575928652">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="672" y="297" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580575928652" />
     <state x="2592" y="277" width="566" height="559" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577387536790" />
-    <state x="2536" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1577562634012">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state x="616" y="385" key="com.intellij.ide.util.TipDialog" timestamp="1580471061929">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
+    <state x="616" y="385" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580471061929" />
     <state x="2536" y="367" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577562634012" />
+    <state x="664" y="385" key="com.intellij.ide.util.TipDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1580276784881" />
     <state x="782" y="195" width="1054" height="708" key="dock-window-1" timestamp="1577570209357">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -239,5 +260,9 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2543" y="259" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577401270399" />
+    <state x="685" y="445" width="540" height="223" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1580277634402">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="685" y="445" width="540" height="223" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580277634402" />
   </component>
 </project>

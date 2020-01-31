@@ -3,8 +3,11 @@ import sqlite3
 
 import matplotlib.pyplot as plt
 import pandas as pd
-
 from apps import config
+
+# Have to use this method to import from 'FRC-Scouting" cause a module cannot be hyphenated, this is a workaround.
+import importlib
+settings = importlib.import_module("FRC-Scouting.settings")
 
 
 def create_teams_graph(form_data):
@@ -33,11 +36,11 @@ def create_teams_graph(form_data):
 
         fig = df.plot(kind='bar', rot=-20).get_figure()
         fig.dpi = 400
-        fig.savefig('entry/static/entry/images/dynamic_plot.png')
+        fig.savefig(str(settings.BASE_DIR) + "/media/dynamic_plot.png")
     except TypeError:
-        print("\n\nEmpty Dataframe  .........  Therefore there is no updated graph")
-        img = plt.imread('entry/static/entry/images/blank_plot.png')
-        plt.imsave('entry/static/entry/images/dynamic_plot.png', img)
+        print("\nEmpty Dataframe...")
+        img = plt.imread(str(settings.BASE_DIR) + "/media/blank_plot.png")
+        plt.imsave(str(settings.BASE_DIR) + "/media/dynamic_plot.png", img)
 
     print("")
     return
@@ -48,7 +51,8 @@ def get_data_from_db(data_needed, team_list):
     c = conn.cursor()
 
     aliases = {}
-    with open('../../scoring.json', 'r') as myfile:
+    socring_path = str(settings.BASE_DIR) + '/scoring.json'
+    with open(socring_path, 'r') as myfile:
         data = myfile.read()
         aliases = json.loads(data)
 

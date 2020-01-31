@@ -1,8 +1,8 @@
 import sqlite3
 
-current_event_key = '2019onto3'
-current_event_id = 192
-current_district_key = '2019ont'
+current_event_key = '2020onto3'
+current_event_id = 0
+current_district_key = '2020ont'
 
 
 def get_event_id(event_name_arg):
