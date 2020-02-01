@@ -1,5 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from apps.entry.fields import PositionField
 
 
 class Event(models.Model):
@@ -54,27 +55,29 @@ class Match(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
     match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(0)])
 
-    # Power Cells
-    outer = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
-    low = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
-    inner = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
+    # Auto
     outer_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
     low_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
     inner_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
+    baseline = models.fields.BooleanField(default=False)
+    fouls_auto = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
+    rating_auto = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    # start = models.fields.TextField(default="")
+    # finish = models.fields.TextField(default="")
 
-    # Auto Positioning
-    
-
-    # Gameplay Stats
-    wheel_rating = models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(1)])
+    # Teleop
+    outer = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
+    low = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
+    inner = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
+    wheel_rating = models.SmallIntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
     balls_collected = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
     full_cycles = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(99), MinValueValidator(0)])
-    fouls = models.IntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
+    fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
 
     # Defense
     defense_time = models.IntegerField(default=0, validators=[MaxValueValidator(135000), MinValueValidator(0)])
-    defense_rating = models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
-    defense_fouls = models.IntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
+    defense_rating = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    defense_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
 
     # Comments
     comments = models.TextField(default="")

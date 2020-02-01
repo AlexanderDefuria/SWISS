@@ -21,43 +21,13 @@ district_teams = []
 event_list = []
 
 
+
+
+
 def change_district(new_district_key):
     global district_key
     district_key = new_district_key
 
-
-def import_event(connection, event):
-    c = connection.cursor()
-
-    event = clean_request(event)
-
-    #print(" ")
-    #print(str(event))
-
-    event = json.loads(event)
-    event_data.append(event)
-
-    data = [(str(event["name"]), str(event["key"]), str(event["event_type"]), get_date(event["start_date"]))]
-
-    c.executemany("INSERT INTO entry_event VALUES (NULL,?,?,?,?,FALSE)", data)
-    connection.commit()
-
-
-def import_events():
-    try:
-        event_list = district_api.get_district_events_simple(district_key)
-        # print(api_response)
-
-        conn = sqlite3.connect("db.sqlite3")
-
-        for event in event_list:
-            import_event(conn, event)
-
-        conn.close()
-        print("\nDone Event List")
-
-    except ApiException as e:
-        print("Exception when calling TBAApi->get_status: %s\n" % e)
 
 
 def import_teams():
