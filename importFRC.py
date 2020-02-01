@@ -4,6 +4,8 @@ import requests
 import json
 import base64
 
+from py import error
+
 api_user = 'alexanderdefuria'
 api_token = '75E35301-A10B-45BC-9453-396808B2E96C'
 api_url_base = "https://frc-api.firstinspires.org/v2.0/"
@@ -23,33 +25,28 @@ print("\n")
 # print(response.json())
 
 def import_event(connection, event):
-    try:
+
         c = connection.cursor()
 
         event = clean_request(event)
-
         event = json.loads(event)
-
         data = [(str(event["name"]), str(event["code"]), str(event["type"]), str(event['dateStart']))]
+
+        c.executemany("INSERT INTO main.entry_event VALUES (DEFAULT,?,?,?,?,FALSE)", data)
 
         print(data)
 
-    except:
-        print("issue line 38 importFRC.py")
+
 
 
 
 def import_events():
 
-        event_list = response.json()
-        # print(api_response)
-
-        print(event_list)
-        exit()
+        event_list = response.json()['Events']
 
         conn = sqlite3.connect("db.sqlite3")
 
-        for event in event_list[0]:
+        for event in event_list:
             import_event(conn, event)
 
         conn.close()
@@ -80,6 +77,13 @@ def clean_request(item):
 
     item = item.replace('"The Cybernauts"', ' ')
     item = item.replace('"Team 7509"', '')
+
+    item = item.replace('NA', '"NA"')
+    item = item.replace('Thompson Recreation and Athletic Centre (TRAC" Western Road & Sarnia Road',
+                        "Thompson Recreation and Athletic Centre (TRAC' Western Road & Sarnia Road")
+    item = item.replace('Carleton University - Ravens" Nest',
+                        "Carleton University - Ravens' Nest")
+
 
     return str(item)
 

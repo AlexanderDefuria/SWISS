@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cdb9e67-6604-4543-b1a1-a12859bc1b87" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/importFRC.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/entry/migrations/0002_auto_20200201_1950.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/fields.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/fields.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/forms.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/entry/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/importTBA.py" beforeDir="false" afterPath="$PROJECT_DIR$/importTBA.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/Cargo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/importFRC.py" beforeDir="false" afterPath="$PROJECT_DIR$/importFRC.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,6 +161,7 @@
       <workItem from="1580471061715" duration="6009000" />
       <workItem from="1580514811445" duration="343000" />
       <workItem from="1580526319347" duration="10157000" />
+      <workItem from="1580586171072" duration="3080000" />
     </task>
     <servers />
   </component>
@@ -222,10 +221,10 @@
     </state>
     <state x="672" y="297" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580575928652" />
     <state x="2592" y="277" width="566" height="559" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577387536790" />
-    <state x="616" y="385" key="com.intellij.ide.util.TipDialog" timestamp="1580526344862">
+    <state x="616" y="385" key="com.intellij.ide.util.TipDialog" timestamp="1580586173899">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="616" y="385" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580526344862" />
+    <state x="616" y="385" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580586173899" />
     <state x="2536" y="367" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577562634012" />
     <state x="664" y="385" key="com.intellij.ide.util.TipDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1580276784881" />
     <state x="782" y="195" width="1054" height="708" key="dock-window-1" timestamp="1577570209357">
