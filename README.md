@@ -6,6 +6,6 @@ The web server is hosted from a raspberry pi during competition which creates a 
 ### Installation
 ```
 git clone https://github.com/AlexanderDefuria/FRC-Scouting.git
-sudo apt-get install python3-django && python3-pandas
+sudo apt-get install python3-django python3-pandas python3-pip
 pip3 install djangoajax
 ```
