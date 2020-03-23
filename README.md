@@ -9,3 +9,15 @@ git clone https://github.com/AlexanderDefuria/FRC-Scouting.git
 sudo apt-get install python3-pandas python3-pip
 sudo pip3 install django==2.2 djangoajax==3.2 
 ```
+
+### Image Installation
+
+
+### Connecting to Bluetooth
+To reach the server running off the raspberry pi one must first connect to to the PAN netwrok named raspberrypi by default. The steps to do so are different on each platform. 
+#### Mobile
+Simply connect as per usual with any other bluetooth device. On android one must change the settings of the connection to enable internet     access over bluetooth. Connect to 127.20.1.1/entry.
+#### Windows & Linux
+TODO
+
+
