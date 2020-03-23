@@ -21,13 +21,9 @@ district_teams = []
 event_list = []
 
 
-
-
-
 def change_district(new_district_key):
     global district_key
     district_key = new_district_key
-
 
 
 def import_teams():

@@ -22,11 +22,11 @@ class Team(models.Model):
     number = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
     name = models.CharField(default="team", max_length=100)
 
-    event_one = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
-    event_two = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
-    event_three = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
-    event_four = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
-    event_five = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
+    # event_one = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
+    # event_two = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
+    # event_three = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
+    # event_four = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
+    # event_five = models.ForeignKey(Event, on_delete=models.CASCADE, default=0, related_name='+')
 
     def __str__(self):
         return str(self.number) + "\t\t" + str(self.name)
@@ -35,8 +35,7 @@ class Team(models.Model):
 class Schedule(models.Model):
     match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(0)])
     event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
-    FIRST_key = models.TextField(default="NA", max_length=40)
-    match_type = models.IntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    match_type = models.TextField(default="NA", max_length=40)
 
     red1 = models.IntegerField(Team, default=0)
     red2 = models.IntegerField(Team, default=0)
@@ -63,7 +62,7 @@ class Match(models.Model):
 
     # Auto
     outer_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    low_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
+    lower_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     inner_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     baseline = models.fields.BooleanField(default=False)
     fouls_auto = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
@@ -71,7 +70,7 @@ class Match(models.Model):
 
     # Teleop
     outer = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    low = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
+    lower = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     inner = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     wheel_rating = models.SmallIntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
     balls_collected = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])

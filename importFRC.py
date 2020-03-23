@@ -17,7 +17,8 @@ header = {"Authorization": "Basic " + str(b64_token, "utf-8"),
         "Accept": "application/json"}
 
 print(header)
-print("\n")
+print("")
+
 
 ##################################################################################
 # API DOCS https://frcevents2.docs.apiary.io/
@@ -25,6 +26,8 @@ print("\n")
 
 
 def import_events():
+    print("Importing Events...")
+
     api_url = api_url_base + "/events?districtCode=ONT"
     response = requests.get(api_url, headers=header)
 
@@ -37,56 +40,99 @@ def import_events():
         event = json.loads(event)
 
         data = [(str(event["name"]), str(event["code"]), str(event["type"]),
-                 getDate(event['dateStart']), getDate(event['dateEnd']))]
+                 get_date(event['dateStart']), get_date(event['dateEnd']))]
 
         c.executemany("INSERT INTO main.entry_event(name,FIRST_key,FIRST_eventType,start,end,imported)"
                       " VALUES (?,?,?,?,?,FALSE)", data)
 
     conn.commit()
-    print("\nDone Event List")
+    print("Done.")
 
 
 def import_teams():
-    api_url = api_url_base + "/teams?teamnumber=?districtCode=ONT"
+    print("Importing Teams...")
+
+    api_url = api_url_base + "/teams?districtCode=ONT"
     response = requests.get(api_url, headers=header)
     district_teams = []
     c = conn.cursor()
 
     for x in range(1, int(response.json()['pageTotal'])):
-
-        print("'" + str(x) + "'")
-
-        api_url = api_url_base + "/teams?page=2?districtCode=ONT"
-        print(api_url)
+        api_url = api_url_base + "/teams?districtCode=ONT&page=" + str(x)
         response = requests.get(api_url, headers=header)
-
-        print(response.json())
-        exit(0)
 
         team_list = response.json()["teams"]
 
         for team in team_list:
 
             team = clean_request(team)
-            print(team)
 
-            team = json.loads(str(team))
+            try:
+                team = json.loads(str(team))
+            except json.decoder.JSONDecodeError:
+                team = str(team).replace(': " "', ': "')
+                team = str(team).replace('"  "', '"')
+                team = str(team).replace('": ",', '": " ",')
+                team = json.loads(str(team))
+
             district_teams.append(team)
 
-            data = [(team["teamNumber"], team["nameShort"])]
+            data = [(int(team["teamNumber"]), team["nameShort"])]
 
-            c.executemany("INSERT INTO entry_team(id,number,name,event_one_id,event_two_id,event_three_id,"
-                          "event_four_id,event_five_id) VALUES (NULL,?,?,0,0,0,0,0)", data)
+            c.executemany("INSERT INTO entry_team(id,number,name) VALUES (NULL,?,?)", data)
             conn.commit()
 
+    conn.commit()
+    print("Done.")
 
-def import_schedule(conn):
+
+def import_schedule():
+    print("Importing Schedule...")
+
     c = conn.cursor()
     events = []
 
     for row in c.execute('SELECT * FROM entry_event WHERE id!=0'):
-        print(row)
         events.append(row)
+
+    for event in events:
+        eventid = event[2]
+        api_url = api_url_base + "/schedule/" + eventid + "/qual"
+        response = requests.get(api_url, headers=header)
+        FIRST_schedule = response.json()["Schedule"]
+
+        try:
+            FIRST_schedule[0]
+        except IndexError:
+            continue
+
+        for match in FIRST_schedule:
+            FIRST_teams = match["teams"]
+            teams = []
+            new_match = [()]
+
+            for team in FIRST_teams:
+                teams.append(team["teamNumber"])
+
+            new_match[0] = (match["matchNumber"],
+                            match["tournamentLevel"],
+                            0,
+                            0,
+                            teams[0],
+                            teams[1],
+                            teams[2],
+                            teams[3],
+                            teams[4],
+                            teams[5],
+                            eventid)
+
+            sql = ''' INSERT INTO main.entry_schedule(match_number,match_type,blue_score,red_score,blue1,blue2,blue3,red1,red2,red3,event_id)
+                      VALUES(?,?,?,?,?,?,?,?,?,?,?) '''
+
+            c.executemany(sql, new_match)
+            conn.commit()
+
+    print("Done.")
 
 
 def clean_request(item):
@@ -107,7 +153,7 @@ def clean_request(item):
 
     # Team Names
     item = item.replace('"The Cybernauts"', ' ')
-    item = item.replace('"Team 7509"', '')
+    item = item.replace('"Team 7509"', ' ')
 
     # Event Names
     item = item.replace('Thompson Recreation and Athletic Centre (TRAC" Western Road & Sarnia Road',
@@ -120,11 +166,12 @@ def clean_request(item):
                         '" "')
     item = item.replace('Winona Mens" Club',
                         "Winona Mens' Club")
+    item = item.replace('O" Connor', "O' Connor")
 
     return str(item)
 
 
-def getDate(string):
+def get_date(string):
     string = str(string)[:10]
     strings = str(string).split('-')
     output = date(int(strings[0]), int(strings[1]), int(strings[2]))
@@ -135,3 +182,4 @@ def getDate(string):
 os.system('python3 manage.py flush --noinput')
 import_events()
 import_teams()
+import_schedule()
