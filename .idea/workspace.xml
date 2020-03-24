@@ -2,17 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cdb9e67-6604-4543-b1a1-a12859bc1b87" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/entry/migrations/0007_auto_20200322_2352.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/entry/migrations/0008_remove_schedule_first_key.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/entry/migrations/0009_auto_20200323_0123.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/entry/migrations/0010_team_robot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/entry/migrations/0011_auto_20200324_2121.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dbTools.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/match_history.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/robots/default.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/FRC-Scouting.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FRC-Scouting.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRC-Scouting/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/FRC-Scouting/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRC-Scouting/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/FRC-Scouting/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/entry/graphing.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/graphing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/entry/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/setup/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/setup/createdata.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/setup/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/entry/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/entry/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/importFRC.py" beforeDir="false" afterPath="$PROJECT_DIR$/importFRC.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/importTBA.py" beforeDir="false" afterPath="$PROJECT_DIR$/importTBA.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/importTBA.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/2019Field.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/media/static/2019Field.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/CargoShip.png" beforeDir="false" afterPath="$PROJECT_DIR$/media/static/CargoShip.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/HABplatform.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/media/static/HABplatform.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/HabPlatform.png" beforeDir="false" afterPath="$PROJECT_DIR$/media/static/HabPlatform.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/Hatch.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/media/static/Hatch.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/Rocket.png" beforeDir="false" afterPath="$PROJECT_DIR$/media/static/Rocket.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/blank_plot.png" beforeDir="false" afterPath="$PROJECT_DIR$/media/static/blank_plot.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/dynamic_plot.png" beforeDir="false" afterPath="$PROJECT_DIR$/media/static/dynamic_plot.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/favicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/media/static/favicon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/entry/landing.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entry/landing.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,9 +74,9 @@
       <list>
         <option value="HTTP Request" />
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -82,6 +99,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="Project Files" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="database.data.extractors.current.id" value="SQL Inserts" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="database.main" />
@@ -92,14 +110,20 @@
       <recent name="$PROJECT_DIR$/entry/static/entry/images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/media/static" />
       <recent name="$PROJECT_DIR$/apps" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/app/apps" />
       <recent name="$PROJECT_DIR$/apps/entry" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.importFRC">
+  <component name="RunManager" selected="JavaScript Debug.landing.html">
+    <configuration name="landing.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FRC-Scouting/templates/entry/landing.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="simple_upload.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FRC-Scouting/templates/entry/simple_upload.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="importFRC" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="FRC-Scouting" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -146,6 +170,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.landing.html" />
+        <item itemvalue="JavaScript Debug.simple_upload.html" />
         <item itemvalue="Python.importFRC" />
         <item itemvalue="Python.manage" />
       </list>
@@ -159,17 +185,12 @@
             <expand>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:db" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="db: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:db" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@1b2b7e0a" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:db" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@6088d147" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="db: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@370dfeaa" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
             </expand>
             <select />
@@ -225,6 +246,8 @@
       <workItem from="1584133951273" duration="6000" />
       <workItem from="1584836980752" duration="948000" />
       <workItem from="1584914221405" duration="11238000" />
+      <workItem from="1585078588491" duration="6144000" />
+      <workItem from="1585084745482" duration="1197000" />
     </task>
     <servers />
   </component>
@@ -252,61 +275,62 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="555" y="215" width="800" height="684" key="#SQL_Resolution_Scopes/0.27.1920.1053@0.27.1920.1053" timestamp="1580278616585" />
-    <state x="2475" y="215" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580598340344">
+    <state x="2475" y="215" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585084636261">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="555" y="237" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580575891036" />
-    <state x="2475" y="215" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1580598340344" />
+    <state x="2475" y="215" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585084636261" />
     <state x="693" y="321" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580531992837">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="693" y="321" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580531992837" />
     <state x="2613" y="302" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577396492493" />
-    <state x="738" y="315" width="424" height="491" key="FileChooserDialogImpl" timestamp="1580278609853">
-      <screen x="0" y="27" width="1920" height="1053" />
+    <state x="2658" y="295" width="505" height="504" key="FileChooserDialogImpl" timestamp="1585071680579">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="738" y="315" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1580278609853" />
-    <state width="1874" height="349" key="GridCell.Tab.0.bottom" timestamp="1584926851612">
+    <state x="2658" y="295" width="505" height="504" key="FileChooserDialogImpl/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585071680579" />
+    <state width="1291" height="256" key="GridCell.Tab.0.bottom" timestamp="1585079987744">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="349" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1584926851612" />
-    <state width="1874" height="349" key="GridCell.Tab.0.center" timestamp="1584926851612">
+    <state width="1291" height="256" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585079987744" />
+    <state width="1291" height="256" key="GridCell.Tab.0.center" timestamp="1585079987744">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="349" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1584926851612" />
-    <state width="1874" height="349" key="GridCell.Tab.0.left" timestamp="1584926851612">
+    <state width="1291" height="256" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585079987744" />
+    <state width="1291" height="256" key="GridCell.Tab.0.left" timestamp="1585079987744">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="349" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1584926851612" />
-    <state width="1874" height="349" key="GridCell.Tab.0.right" timestamp="1584926851612">
+    <state width="1291" height="256" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585079987744" />
+    <state width="1291" height="256" key="GridCell.Tab.0.right" timestamp="1585079987744">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="349" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1584926851612" />
-    <state x="2350" y="165" width="1022" height="737" key="SettingsEditor" timestamp="1584922870086">
+    <state width="1291" height="256" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585079987744" />
+    <state x="2350" y="165" width="1022" height="737" key="SettingsEditor" timestamp="1585084480716">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="430" y="188" width="1022" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1580278782863" />
-    <state x="2350" y="165" key="SettingsEditor/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1584922870086" />
+    <state x="2350" y="165" width="1022" height="737" key="SettingsEditor/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585084480716" />
     <state x="484" y="188" width="1022" height="737" key="SettingsEditor/70.27.1850.1053@70.27.1850.1053" timestamp="1580276866831" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1577242125491">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="498" height="446" key="SwitcherDM/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577242125491" />
-    <state x="2637" y="290" width="476" height="493" key="com.intellij.database.run.ParametersPanel.Standalone" timestamp="1584924489676">
+    <state x="2637" y="290" width="476" height="493" key="com.intellij.database.run.ParametersPanel.Standalone" timestamp="1585078775262">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="717" y="310" width="476" height="493" key="com.intellij.database.run.ParametersPanel.Standalone/0.27.1920.1053@0.27.1920.1053" timestamp="1580278573552" />
-    <state x="2637" y="290" width="476" height="493" key="com.intellij.database.run.ParametersPanel.Standalone/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1584924489676" />
-    <state x="672" y="297" width="566" height="559" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1580575928652">
-      <screen x="0" y="27" width="1920" height="1053" />
+    <state x="2637" y="290" width="476" height="493" key="com.intellij.database.run.ParametersPanel.Standalone/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585078775262" />
+    <state x="2592" y="277" width="566" height="559" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1585078801222">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="672" y="297" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580575928652" />
-    <state x="2592" y="277" width="566" height="559" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1577387536790" />
-    <state x="2536" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1584133954670">
+    <state x="2592" y="277" width="566" height="559" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585078801222" />
+    <state x="2536" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1585084760844">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="616" y="385" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580586173899" />
-    <state x="2536" y="367" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1584133954670" />
+    <state x="2536" y="367" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585084760844" />
     <state x="664" y="385" key="com.intellij.ide.util.TipDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1580276784881" />
     <state x="2320" y="191" width="1289" height="1009" key="dock-window-1" timestamp="1580612586022">
       <screen x="1920" y="0" width="1920" height="1080" />

@@ -1,4 +1,5 @@
 import base64
+import csv
 import os
 from json import dumps
 
@@ -12,7 +13,8 @@ from django_ajax.decorators import ajax
 from apps import config
 from apps.entry.graphing import *
 from apps.entry.models import Team, Match, Schedule
-
+import dbTools
+import sqlite3
 
 def write_teleop(request, pk):
     print("Adding teleop phase to database")
@@ -117,7 +119,7 @@ def validate_match(request, pk):
     provided_match_number = make_int(data[0])
     result = {'result': False}
 
-    if not Match.objects.filter(team_id=pk, event_id=config.current_event_id,
+    if not Match.objects.filter(team_id=pk, event_id=config.get_current_event_id(),
                                 match_number=provided_match_number).exists():
         if Match.objects.filter(match_number=provided_match_number).count() < 6:
             result['result'] = True
@@ -129,16 +131,31 @@ def decode_ajax(request):
     return dict(QueryDict(request.body.decode()))
 
 
+# TODO Export into .xls instead of .csv
 def download(request):
-    path = './db.sqlite3'
+    path = 'match_history.csv'
+    path = os.path.join(settings.BASE_DIR, path)
 
-    file_path = os.path.join(settings.MEDIA_ROOT, path)
-    if os.path.exists(file_path):
-        with open(file_path, 'rb') as fh:
-            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
-            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+    update_csv()
+
+    if os.path.exists(path):
+        with open(path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="text/csv")
+            response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(path)
             return response
-    raise Http404
+
+    return Http404
+
+
+def update_csv():
+    print("Updating CSV File")
+    conn = sqlite3.connect("db.sqlite3")
+    c = conn.cursor()
+    c.execute("SELECT * FROM entry_match WHERE event_id=?", (config.get_current_event_id(),))
+    with open("match_history.csv", "w") as csv_file:
+        csv_writer = csv.writer(csv_file, delimiter="\t")
+        csv_writer.writerow([i[0] for i in c.description])
+        csv_writer.writerows(c)
 
 
 def make_int(s):
@@ -148,11 +165,9 @@ def make_int(s):
 
 
 def get_present_teams():
-    x = Team.objects.filter(event_one_id=config.current_event_id)
-    x = x | Team.objects.filter(event_two_id=config.current_event_id)
-    x = x | Team.objects.filter(event_three_id=config.current_event_id)
-    x = x | Team.objects.filter(event_four_id=config.current_event_id)
-    return x.order_by('number')
+    objects = Team.objects.filter(number__in=dbTools.event_teams(config.current_event_id))
+    objects = objects.order_by('number')
+    return objects
 
 
 class TeamNumberList(generic.ListView):

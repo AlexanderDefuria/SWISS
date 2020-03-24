@@ -4,8 +4,7 @@ import sqlite3
 import matplotlib.pyplot as plt
 import pandas as pd
 from apps import config
-
-# Have to use this method to import from 'FRC-Scouting" cause a module cannot be hyphenated, this is a workaround.
+# Have to use this method to import from 'FRC-Scouting" because a module cannot be hyphenated.
 import importlib
 settings = importlib.import_module("FRC-Scouting.settings")
 

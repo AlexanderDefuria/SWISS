@@ -79,7 +79,7 @@ def import_teams():
 
             data = [(int(team["teamNumber"]), team["nameShort"])]
 
-            c.executemany("INSERT INTO entry_team(id,number,name) VALUES (NULL,?,?)", data)
+            c.executemany("INSERT INTO entry_team(id,number,name,robot) VALUES (NULL,?,?,NULL)", data)
             conn.commit()
 
     conn.commit()
