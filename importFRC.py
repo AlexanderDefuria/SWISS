@@ -79,7 +79,7 @@ def import_teams():
 
             data = [(int(team["teamNumber"]), team["nameShort"])]
 
-            c.executemany("INSERT INTO entry_team(id,number,name,robot) VALUES (NULL,?,?,NULL)", data)
+            c.executemany("INSERT INTO entry_team(id,number,name) VALUES (NULL,?,?)", data)
             conn.commit()
 
     conn.commit()
@@ -126,7 +126,7 @@ def import_schedule():
                             teams[5],
                             eventid)
 
-            sql = ''' INSERT INTO main.entry_schedule(match_number,match_type,blue_score,red_score,blue1,blue2,blue3,red1,red2,red3,event_id)
+            sql = ''' INSERT INTO main.entry_schedule(match_number,match_type,blue_score,red_score,blue1,blue2,blue3,red1,red2,red3,event)
                       VALUES(?,?,?,?,?,?,?,?,?,?,?) '''
 
             c.executemany(sql, new_match)

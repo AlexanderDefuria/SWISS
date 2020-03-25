@@ -10,7 +10,11 @@
 
     <div class="container">
         <button class="right" onclick="location.href='{% url 'entry:download' %}'" id="myButton" >Download</button>
-        <button class="left" onclick="location.href='{% url 'entry:view_matches' %}'" id="myButton" >View Data</button>
+        <button class="left" onclick="location.href='{% url 'entry:visualize' %}'" id="myButton" >View Data</button>
+    </div>
+    <div class="container">
+        <button class="right" onclick="location.href='{% url 'entry:schedule' %}'" id="myButton" >Schedule - Broken</button>
+        <button class="left" onclick="location.href='{% url 'entry:image_upload' %}'" id="myButton" >Upload Robot Image</button>
     </div>
 
     <ol>

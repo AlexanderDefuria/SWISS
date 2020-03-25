@@ -10,8 +10,10 @@ urlpatterns = [
     path('<slug:pk>/auto/submit/', views.write_auto, name='write_auto'),
     path('<slug:pk>/teleop/<slug:match_number>', views.Teleop.as_view(), name='teleop'),
     path('<slug:pk>/teleop/', views.write_teleop, name='write_teleop'),
-    path('visual/', views.Visualize.as_view(), name='view_matches'),
+    path('visual/', views.Visualize.as_view(), name='visualize'),
     path('visual/update/', views.update_graph, name='update_graph'),
     path('download/', views.download, name='download'),
-    path('schedule/', views.ScheduleView.as_view(), name='schedule')
+    path('schedule/', views.ScheduleView.as_view(), name='schedule'),
+    path('image_upload/', views.ImageUpload.as_view(), name='image_upload'),
+    path('image_upload/submit', views.write_image_upload, name='write_image_upload')
 ]

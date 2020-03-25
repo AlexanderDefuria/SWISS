@@ -20,4 +20,7 @@ Simply connect as per usual with any other bluetooth device. On android one must
 #### Windows & Linux
 TODO
 
+TODO 
+from paper to electricity input from paper 
+link with picture of a cat
 

@@ -33,7 +33,7 @@ def event_teams(event_key):
     match_list = []
     team_list = [0]
     c = conn.cursor()
-    for row in c.execute('SELECT * FROM entry_schedule WHERE event_id==?', (event_key,)):
+    for row in c.execute('SELECT * FROM entry_schedule WHERE event==?', (event_key,)):
         match_list.append(row)
 
     for match in match_list:

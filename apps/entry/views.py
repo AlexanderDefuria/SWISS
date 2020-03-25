@@ -1,10 +1,12 @@
 import base64
 import csv
 import os
+from datetime import datetime
 from json import dumps
 
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse, Http404, QueryDict
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
@@ -12,9 +14,10 @@ from django_ajax.decorators import ajax
 
 from apps import config
 from apps.entry.graphing import *
-from apps.entry.models import Team, Match, Schedule
+from apps.entry.models import Team, Match, Schedule, Images
 import dbTools
 import sqlite3
+
 
 def write_teleop(request, pk):
     print("Adding teleop phase to database")
@@ -25,25 +28,6 @@ def write_teleop(request, pk):
 
         print(team)
         print(request.POST)
-
-        match.ship_cargo = make_int(request.POST.get('ship_cargo', 0))
-        match.first_cargo = make_int(request.POST.get('first_cargo', 0))
-        match.second_cargo = make_int(request.POST.get('second_cargo', 0))
-        match.third_cargo = make_int(request.POST.get('third_cargo', 0))
-
-        match.ship_hatch = make_int(request.POST.get('ship_hatch', 0))
-
-        match.first_hatch = make_int(request.POST.get('first_hatch', 0))
-        match.second_hatch = make_int(request.POST.get('second_hatch', 0))
-        match.third_hatch = make_int(request.POST.get('third_hatch', 0))
-
-        match.defense_time = make_int(request.POST.get('defense_time', 0))
-
-        match.climb = make_int(request.POST.get('climb_level', 0))
-
-        match.comments = request.POST.get('comments', 0)
-
-        match.save()
 
         print('Success')
         return HttpResponseRedirect(reverse_lazy('entry:team_list'))
@@ -66,21 +50,6 @@ def write_auto(request, pk):
             raise Http404
         match.team_id = team.id
 
-        match.start = make_int(request.POST.get('starting_level'))
-
-        # Autonomous Match
-        match.auto_cargo += make_int(request.POST.get('first_cargo', 0))
-        match.auto_cargo += make_int(request.POST.get('second_cargo', 0))
-        match.auto_cargo += make_int(request.POST.get('third_cargo', 0))
-        match.auto_cargo += make_int(request.POST.get('ship_cargo', 0))
-        match.auto_hatch += make_int(request.POST.get('first_hatch', 0))
-        match.auto_hatch += make_int(request.POST.get('second_hatch', 0))
-        match.auto_hatch += make_int(request.POST.get('third_hatch', 0))
-        match.auto_hatch += make_int(request.POST.get('ship_hatch', 0))
-
-        match.save()
-
-        print('Success')
         return HttpResponseRedirect('/entry/' + str(pk) + '/teleop/' + str(match.match_number))
 
     else:
@@ -91,7 +60,7 @@ def write_auto(request, pk):
 def view_matches(request):
     if request.method == 'GET':
         print("POSTED")
-    return HttpResponseRedirect(reverse_lazy('entry:view_matches'))
+    return HttpResponseRedirect(reverse_lazy('visualize'))
 
 
 @ajax
@@ -158,6 +127,24 @@ def update_csv():
         csv_writer.writerows(c)
 
 
+def write_image_upload(request):
+    if request.method == 'POST':
+        team_number = make_int(request.POST.get('teamNumber', 0))
+        team = Team.objects.get(number=team_number)
+
+        file = request.FILES['myfile']
+        file.name = str(team_number) + "-----" + str(datetime.now())
+        image = Images(name=team.name, image=file)
+        image.save()
+        team.images.add(image)
+        team.save()
+
+        return HttpResponseRedirect(reverse_lazy('entry:team_list'))
+
+    else:
+        return HttpResponseRedirect(reverse_lazy('entry:team_list'))
+
+
 def make_int(s):
     s = str(s)
     s = s.strip()
@@ -195,6 +182,11 @@ class EventSetup(generic.TemplateView):
 
 class Visualize(generic.TemplateView):
     template_name = 'entry/visualize.html'
+
+
+class ImageUpload(generic.TemplateView):
+    template_name = 'entry/image-upload.html'
+    model = Team
 
 
 class ScheduleView(generic.ListView):

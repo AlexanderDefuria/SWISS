@@ -1,7 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from datetime import date
-from apps.entry.fields import PositionField
 
 
 class Event(models.Model):
@@ -18,11 +17,18 @@ class Event(models.Model):
         return self.name
 
 
+class Images(models.Model):
+    image = models.ImageField(upload_to='robots', default='/robots/default.jpg', null=False)
+    name = models.CharField(default="Wally", max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
 class Team(models.Model):
     number = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
     name = models.CharField(default="team", max_length=100)
-    # avatar = models.ImageField(upload_to='avatars')
-    robot = models.ImageField(upload_to='robots', default='/robots/default.jpg', null=True)
+    images = models.ManyToManyField(Images)
 
     def __str__(self):
         return str(self.number) + "\t\t" + str(self.name)
@@ -30,12 +36,12 @@ class Team(models.Model):
 
 class Schedule(models.Model):
     match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(0)])
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
+    event = models.CharField(default=" ", max_length=100)
     match_type = models.TextField(default="NA", max_length=40)
 
     red1 = models.IntegerField(Team, default=0)
     red2 = models.IntegerField(Team, default=0)
-    red3 = models.IntegerField(Team,  default=0)
+    red3 = models.IntegerField(Team, default=0)
     blue1 = models.IntegerField(Team,  default=0)
     blue2 = models.IntegerField(Team,  default=0)
     blue3 = models.IntegerField(Team,  default=0)
@@ -48,7 +54,7 @@ class Schedule(models.Model):
 
 class Match(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
+    event = models.CharField(default=" ", max_length=100)
     match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(0)])
 
     # Pre Match
@@ -94,7 +100,7 @@ class Match(models.Model):
 class Pits(models.Model):
     number = models.TextField(default="NA")
     team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
+    event = models.CharField(default=" ", max_length=100)
 
     # Given Stats
     MOTOR_CHOICES = [

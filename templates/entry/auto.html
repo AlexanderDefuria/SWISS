@@ -8,7 +8,6 @@
 <h1 class="title">{{ team.name }} - {{ team.number }}</h1>
 
 
-
 <form action="{% url 'entry:write_auto' team.id %}" method="post" id="form">
     {% csrf_token %}
 
