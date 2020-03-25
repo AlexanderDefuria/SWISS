@@ -1,4 +1,6 @@
+from django.conf.urls.static import static
 from django.urls import path
+from django.conf import settings
 
 from . import views
 
@@ -15,5 +17,6 @@ urlpatterns = [
     path('download/', views.download, name='download'),
     path('schedule/', views.ScheduleView.as_view(), name='schedule'),
     path('image_upload/', views.ImageUpload.as_view(), name='image_upload'),
-    path('image_upload/submit', views.write_image_upload, name='write_image_upload')
+    path('image_upload/submit', views.write_image_upload, name='write_image_upload'),
+    path('image_viewer/', views.ImageViewer.as_view(), name='image_viewer')
 ]

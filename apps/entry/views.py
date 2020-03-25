@@ -11,12 +11,16 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
 from django_ajax.decorators import ajax
+from django.template import Library
 
 from apps import config
 from apps.entry.graphing import *
 from apps.entry.models import Team, Match, Schedule, Images
 import dbTools
 import sqlite3
+
+
+register = Library
 
 
 def write_teleop(request, pk):
@@ -165,6 +169,10 @@ class TeamNumberList(generic.ListView):
     def get_queryset(self):
         return get_present_teams()
 
+    @register.filter
+    def modulo(self, num, val):
+        return num % val == 0
+
 
 class Auto(generic.DetailView):
     model = Team
@@ -187,6 +195,19 @@ class Visualize(generic.TemplateView):
 class ImageUpload(generic.TemplateView):
     template_name = 'entry/image-upload.html'
     model = Team
+    context_object_name = "team_list"
+
+    def get_queryset(self):
+        return get_present_teams()
+
+
+class ImageViewer(generic.ListView):
+    template_name = 'entry/image-viewer.html'
+    model = Team
+    context_object_name = "team_list"
+
+    def get_queryset(self):
+        return get_present_teams()
 
 
 class ScheduleView(generic.ListView):

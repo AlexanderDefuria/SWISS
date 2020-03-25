@@ -2,31 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cdb9e67-6604-4543-b1a1-a12859bc1b87" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/entry/migrations/0002_auto_20200325_0104.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/robots/188-----2020-03-25_013218.004734" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/robots/610-----2020-03-25_013332.684307" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/entry/image-upload.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/robots/781-----2020-03-25_205140.300865" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/robots/781-----2020-03-25_205351.913066" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/robots/865-----2020-03-25_211221.097871" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/entry/image-viewer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/entry/image-viewer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/entry/image-viewer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/migrations/0002_auto_20200201_1950.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/migrations/0003_auto_20200202_0017.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/migrations/0004_auto_20200202_0046.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/migrations/0005_event_end.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/migrations/0006_remove_team_first_key.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/migrations/0007_auto_20200322_2352.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/migrations/0008_remove_schedule_first_key.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/migrations/0009_auto_20200323_0123.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/migrations/0010_team_robot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/migrations/0011_auto_20200324_2121.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/migrations/0003_auto_20200325_0104.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRC-Scouting/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/FRC-Scouting/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/entry/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/entry/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbTools.py" beforeDir="false" afterPath="$PROJECT_DIR$/dbTools.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/importFRC.py" beforeDir="false" afterPath="$PROJECT_DIR$/importFRC.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/entry/auto.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entry/auto.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/entry/landing.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entry/landing.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/robots/188-----2020-03-25_013218.004734" beforeDir="false" afterPath="$PROJECT_DIR$/media/robots/188-----2020-03-25_204211.202393" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/robots/610-----2020-03-25_013332.684307" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,10 +58,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTTP Request" />
+        <option value="Python Script" />
+        <option value="HTML File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
-        <option value="HTML File" />
-        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -244,7 +232,8 @@
       <workItem from="1584836980752" duration="948000" />
       <workItem from="1584914221405" duration="11238000" />
       <workItem from="1585078588491" duration="6144000" />
-      <workItem from="1585084745482" duration="15346000" />
+      <workItem from="1585084745482" duration="15512000" />
+      <workItem from="1585150304293" duration="8095000" />
     </task>
     <servers />
   </component>
@@ -277,10 +266,10 @@
     </state>
     <state x="555" y="237" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580575891036" />
     <state x="2475" y="215" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585084636261" />
-    <state x="2508" y="358" width="733" height="397" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585099865861">
+    <state x="2508" y="358" width="753" height="397" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585168898202">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2508" y="358" width="733" height="397" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585099865861" />
+    <state x="2508" y="358" width="753" height="397" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585168898202" />
     <state x="693" y="321" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580531992837">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -331,11 +320,11 @@
     </state>
     <state x="672" y="297" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580575928652" />
     <state x="2592" y="277" width="566" height="559" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585078801222" />
-    <state x="2536" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1585084760844">
+    <state x="2536" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1585150304320">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="616" y="385" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580586173899" />
-    <state x="2536" y="367" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585084760844" />
+    <state x="2536" y="367" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585150304320" />
     <state x="664" y="385" key="com.intellij.ide.util.TipDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1580276784881" />
     <state x="2320" y="191" width="1289" height="1009" key="dock-window-1" timestamp="1580612586022">
       <screen x="1920" y="0" width="1920" height="1080" />
