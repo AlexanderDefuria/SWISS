@@ -18,6 +18,7 @@ from apps.entry.graphing import *
 from apps.entry.models import Team, Match, Schedule, Images
 import dbTools
 import sqlite3
+from PIL import Image
 
 register = Library
 
@@ -135,12 +136,16 @@ def write_image_upload(request):
         team_number = make_int(request.POST.get('teamNumber', 0))
         team = Team.objects.get(number=team_number)
 
-        file = request.FILES['myfile']
-        file.name = str(team_number) + "-----" + str(datetime.now()).strip(".")
-        image = Images(name=team.name, image=file)
-        image.save()
-        team.images.add(image)
-        team.save()
+        files = request.FILES
+        files = files.popitem()[1]
+        #print(files['Content-type'])
+
+        for file in files:
+            file.name = str(team_number) + "-----" + str(datetime.now()).replace('.','')
+            image = Images(name=team.name, image=file)
+            image.save()
+            team.images.add(image)
+            team.save()
 
         return HttpResponseRedirect(reverse_lazy('entry:team_list'))
 
@@ -195,9 +200,6 @@ class ImageUpload(generic.TemplateView):
     template_name = 'entry/image-upload.html'
     model = Team
     context_object_name = "team_list"
-
-    def get_queryset(self):
-        return get_present_teams()
 
 
 class ImageViewer(generic.ListView):

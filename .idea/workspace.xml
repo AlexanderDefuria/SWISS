@@ -2,18 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cdb9e67-6604-4543-b1a1-a12859bc1b87" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/media/robots/4903-----2020-03-26_005047.590727" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/robots/4903-----2020-03-26_011009.448107" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/robots/4903-----2020-03-26_011058.510738" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rotateImage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/robots/4343-----2020-03-26_053427267494" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/robots/4343-----2020-03-26_053427273076" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/robots/865-----2020-03-26_054752904301" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/robots/865-----2020-03-26_055050563720" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/entry/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/robots/865-----2020-03-25_211221.097871" beforeDir="false" afterPath="$PROJECT_DIR$/media/robots/865-----2020-03-25_211221.097871" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/entry/image-viewer.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/entry/image-viewer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/entry/image-viewer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entry/image-viewer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/entry/landing.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entry/landing.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/entry/image-upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entry/image-upload.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -266,10 +262,10 @@
     </state>
     <state x="555" y="237" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580575891036" />
     <state x="2475" y="215" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585084636261" />
-    <state x="2508" y="358" width="753" height="404" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585184850759">
+    <state x="2508" y="358" width="757" height="404" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585200877840">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2508" y="358" width="753" height="404" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585184850759" />
+    <state x="2508" y="358" width="757" height="404" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585200877840" />
     <state x="693" y="321" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580531992837">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
