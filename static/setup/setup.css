@@ -88,5 +88,26 @@ div{
 
 .event-list{
     display: inline-block;
-    width: 45%;
+    width: 100%;
+    height: auto;
+}
+
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  flex: 45%;
+    flex-wrap: wrap;
+  padding: 0 4px;
+  text-align: center;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
 }

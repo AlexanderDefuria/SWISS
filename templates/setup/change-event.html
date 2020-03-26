@@ -1,0 +1,19 @@
+{% load static %}
+{% load common_tags %}
+
+<link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}"/>
+
+
+<body>
+    <h1>Current Event Is: {% get_current_event %}</h1>
+    <form action="{% url 'setup:change-event-write' %}" method="post" id="form">
+    {% csrf_token %}
+        <label for="event"> Change Event To: </label>
+        <select id="event" name="event" form="form" required="required">
+            {% for event in events %}
+                <option value={{ event.FIRST_key }}>{{ event }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Submit Change</button>
+    </form>
+</body>

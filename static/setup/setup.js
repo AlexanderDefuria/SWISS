@@ -3,6 +3,7 @@ var data = {
 
 }
 
+/*
 function toggle_selection(menu) {
     var popup = menu.concat('_menu');
     var td_list = document.querySelectorAll("td")
@@ -28,7 +29,7 @@ function toggle_selection(menu) {
             }
         }
     }
-}
+} */
 
 function select_event(event_id){
     var data

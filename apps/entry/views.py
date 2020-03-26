@@ -92,7 +92,7 @@ def validate_match(request, pk):
     provided_match_number = make_int(data[0])
     result = {'result': False}
 
-    if not Match.objects.filter(team_id=pk, event_id=config.get_current_event_id(),
+    if not Match.objects.filter(team_id=pk, event_id=config.get_current_event_key(),
                                 match_number=provided_match_number).exists():
         if Match.objects.filter(match_number=provided_match_number).count() < 6:
             result['result'] = True
@@ -124,7 +124,7 @@ def update_csv():
     print("Updating CSV File")
     conn = sqlite3.connect("db.sqlite3")
     c = conn.cursor()
-    c.execute("SELECT * FROM entry_match WHERE event_id=?", (config.get_current_event_id(),))
+    c.execute("SELECT * FROM entry_match WHERE event=?", (config.get_current_event_key(),))
     with open("match_history.csv", "w") as csv_file:
         csv_writer = csv.writer(csv_file, delimiter="\t")
         csv_writer.writerow([i[0] for i in c.description])
@@ -160,7 +160,8 @@ def make_int(s):
 
 
 def get_present_teams():
-    objects = Team.objects.filter(number__in=dbTools.event_teams(config.current_event_id))
+    event_key = config.get_current_event_key()
+    objects = Team.objects.filter(number__in=dbTools.get_event_teams(event_key))
     objects = objects.order_by('number')
     return objects
 
@@ -171,11 +172,8 @@ class TeamNumberList(generic.ListView):
     model = Team
 
     def get_queryset(self):
+        print("Updated querey")
         return get_present_teams()
-
-    @register.filter
-    def modulo(self, num, val):
-        return num % val == 0
 
 
 class Auto(generic.DetailView):
@@ -186,10 +184,6 @@ class Auto(generic.DetailView):
 class Teleop(generic.DetailView):
     model = Team
     template_name = 'entry/teleop.html'
-
-
-class EventSetup(generic.TemplateView):
-    template_name = 'entry/event-setup.html'
 
 
 class Visualize(generic.TemplateView):

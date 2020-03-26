@@ -1,12 +1,14 @@
 {% load static %}
+{% load common_tags %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'entry/landing.css' %}">
 
 <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}"/>
 
+
 {% if team_list %}
 
-    <h1 class="title">Teams</h1>
+    <h1 class="title">Teams - {% get_current_event_id %}</h1>
 
     <div class="container">
         <button class="right" onclick="location.href='{% url 'entry:download' %}'" id="myButton" >Download</button>
