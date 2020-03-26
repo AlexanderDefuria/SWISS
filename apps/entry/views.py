@@ -19,7 +19,6 @@ from apps.entry.models import Team, Match, Schedule, Images
 import dbTools
 import sqlite3
 
-
 register = Library
 
 
@@ -137,7 +136,7 @@ def write_image_upload(request):
         team = Team.objects.get(number=team_number)
 
         file = request.FILES['myfile']
-        file.name = str(team_number) + "-----" + str(datetime.now())
+        file.name = str(team_number) + "-----" + str(datetime.now()).strip(".")
         image = Images(name=team.name, image=file)
         image.save()
         team.images.add(image)

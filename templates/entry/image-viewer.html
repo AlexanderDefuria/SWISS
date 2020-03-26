@@ -15,51 +15,15 @@
 {% if team_list %}
 
     <div class="row">
-        <div class="column">
-            {% for team in team_list %}
-                {% if forloop.counter0|divisibleby:2 %}
-                    {% for image in  team.images.all %}
-                        <img src="{{ MEDIA_URL }}{{ image.image }}" alt="test" style="width:100%" id="{{ team.name }}-{{ image.image }}">
-                        <label for="{{ team.name }}-{{ image.image }}">{{ team.name }} - {{ team.number }}</label>
-                    {% endfor %}
-                {% endif %}
+
+        {% for team in team_list %}
+            {% for image in  team.images.all %}
+                <div class="column">
+                    <img src="{{ MEDIA_URL }}{{ image.image }}" alt="test" style="width:100%" id="{{ team.name }}-{{ image.image }}">
+                    <label for="{{ team.name }}-{{ image.image }}">{{ team.name }} - {{ team.number }}</label>
+                </div>
             {% endfor %}
-        </div>
-
-        <div class="column">
-            {% for team in team_list %}
-                {% if forloop.counter0|divisibleby:2 %}
-                    {% for image in  team.images.all %}
-                        <img src="{{ MEDIA_URL }}{{ image.image }}" alt="test" style="width:100%">
-                                                <label for="{{ team.name }}-{{ image.image }}">{{ team.name }} - {{ team.number }}</label>
-
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-        </div>
-
-        <div class="column">
-            {% for team in team_list %}
-                {% if forloop.counter0|divisibleby:2 %}
-                    {% for image in  team.images.all %}
-                        <img src="{{ MEDIA_URL }}{{ image.image }}" alt="test" style="width:100%">
-                                                <label for="{{ team.name }}-{{ image.image }}">{{ team.name }} - {{ team.number }}</label>
-
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-        </div>
-            <div class="column">
-            {% for team in team_list %}
-                {% if forloop.counter0|divisibleby:2 %}
-                    {% for image in  team.images.all %}
-                        <img src="{{ MEDIA_URL }}{{ image.image }}" alt="test" style="width:100%">
-                                                <label for="{{ team.name }}-{{ image.image }}">{{ team.name }} - {{ team.number }}</label>
-
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-        </div>
+        {% endfor %}
 
     </div>
 

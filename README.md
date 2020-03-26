@@ -15,12 +15,24 @@ sudo pip3 install django==2.2 djangoajax==3.2
 
 ### Connecting to Bluetooth
 To reach the server running off the raspberry pi one must first connect to to the PAN netwrok named raspberrypi by default. The steps to do so are different on each platform. 
-#### Mobile
-Simply connect as per usual with any other bluetooth device. On android one must change the settings of the connection to enable internet     access over bluetooth. Connect to 127.20.1.1/entry.
-#### Windows & Linux
-TODO
+<details>
+    <summary> Mobile </summary>
+    
+    1. Simply connect as per usual with any other bluetooth device. 
+    2. On android one must change the settings of the connection to enable internet     access over bluetooth. Connect to 127.20.1.1/entry.
+</details>
+
+<details>
+    <summary> Windows </summary>
+    
+    1. TODO
+    2. TODO
+</details>
+
 
 TODO 
 from paper to electricity input from paper 
 link with picture of a cat
 
+### Viewing Images
+Images can be rotated using the [Rotate Image Utility](https://github.com/AlexanderDeFuria/FRC-Scouting/blob/master/rotateImage.py) to correct landscape and portrait modes not being consistent.
