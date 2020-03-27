@@ -6,7 +6,7 @@
 <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}"/>
 
 
-<form action="{% url 'setup:change-event-write' %}" method="post" enctype="multipart/form-data" id="form">
+<form action="{% url 'entry:write_image_upload' %}" method="post" enctype="multipart/form-data" id="form">
     {% csrf_token %}
     <div>
         <label for="teamNumber">Enter a Team Number:</label>

@@ -36,7 +36,7 @@ class Team(models.Model):
 
 class Schedule(models.Model):
     match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(0)])
-    event = models.CharField(default=" ", max_length=100)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
     match_type = models.TextField(default="NA", max_length=40)
 
     red1 = models.IntegerField(Team, default=0)
@@ -54,12 +54,12 @@ class Schedule(models.Model):
 
 class Match(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
-    event = models.CharField(default=" ", max_length=100)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
     match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(0)])
 
     # Pre Match
     auto_start = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    preloaded_balls = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
+    preloaded_balls = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     on_field = models.BooleanField(default=True)
 
     # Auto
@@ -100,7 +100,7 @@ class Match(models.Model):
 class Pits(models.Model):
     number = models.TextField(default="NA")
     team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
-    event = models.CharField(default=" ", max_length=100)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
 
     # Given Stats
     MOTOR_CHOICES = [

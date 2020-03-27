@@ -6,6 +6,8 @@ import json
 import base64
 from datetime import date
 
+import dbTools
+
 conn = sqlite3.connect("db.sqlite3")
 
 api_user = 'alexanderdefuria'
@@ -124,9 +126,9 @@ def import_schedule():
                             teams[3],
                             teams[4],
                             teams[5],
-                            eventid)
+                            dbTools.event_id_lookup(eventid))
 
-            sql = ''' INSERT INTO main.entry_schedule(match_number,match_type,blue_score,red_score,blue1,blue2,blue3,red1,red2,red3,event)
+            sql = ''' INSERT INTO main.entry_schedule(match_number,match_type,blue_score,red_score,blue1,blue2,blue3,red1,red2,red3, event_id)
                       VALUES(?,?,?,?,?,?,?,?,?,?,?) '''
 
             c.executemany(sql, new_match)

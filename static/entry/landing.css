@@ -15,18 +15,19 @@
 .container {
     display: grid;
     grid-column-gap: 0.5%;
-
-
     grid-template-areas: 'left right';
+    grid-template-columns: 50%;
 }
 
 .left{
     display: block;
     grid-area: left;
+    width: 100%;
 }
 .right{
     display: block;
     grid-area: right;
+    width: 100%;
 }
 
 

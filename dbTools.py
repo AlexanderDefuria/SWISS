@@ -1,6 +1,5 @@
 import sqlite3
 
-
 present_team_list = None
 
 
@@ -32,7 +31,7 @@ def get_event_teams(event_key):
     match_list = []
     team_list = [0]
     c = conn.cursor()
-    for row in c.execute('SELECT * FROM entry_schedule WHERE event==?', (event_key,)):
+    for row in c.execute('SELECT * FROM entry_schedule WHERE event_id==?', (event_id_lookup(event_key),)):
         match_list.append(row)
 
     for match in match_list:
@@ -53,3 +52,21 @@ def update_event_teams(event_key):
     :return None
     """
     get_event_teams(event_key)
+
+
+def event_id_lookup(FIRST_key):
+    conn = sqlite3.connect("db.sqlite3")
+    c = conn.cursor()
+    try:
+        return c.execute('SELECT id FROM entry_event WHERE FIRST_key==?', (FIRST_key,)).fetchone()[0]
+    except Exception:
+        return None
+
+
+def event_key_lookup(event_id):
+    conn = sqlite3.connect("db.sqlite3")
+    c = conn.cursor()
+    try:
+        return c.execute('SELECT FIRST_key FROM entry_event WHERE id==?', (event_id,)).fetchone()[0]
+    except Exception:
+        return None

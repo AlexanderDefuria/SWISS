@@ -1,10 +1,8 @@
 from django import template
 from django.http import HttpResponseRedirect
-from django.template.defaultfilters import stringfilter
 from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
 from django.views import generic
-from apps.entry.models import Team, Event
+from apps.entry.models import *
 from apps import config
 
 register = template.Library()
@@ -25,10 +23,6 @@ class Setup(generic.ListView):
     def get_queryset(self):
         return Event.objects.order_by("start")
 
-    @register.filter
-    def modulo(self, num, val):
-        return num % val == 0
-
 
 class ChangeEvent(generic.TemplateView):
     template_name = "setup/change-event.html"
@@ -39,11 +33,13 @@ class ChangeEvent(generic.TemplateView):
         return {"events" : Event.objects.exclude(name__contains="***SUSPENDED***").order_by("start")}
 
 
-class ImportTBA(generic.TemplateView):
-    template_name = "setup/import-tba.html"
+# TODO Import FRC through Setup app
+class ImportFRC(generic.TemplateView):
+    template_name = "setup/import-frc.html"
 
 
-class Teams(generic.DetailView):
-    template_name = "setup/detail-view.html"
-
+class MatchEditor(generic.TemplateView):
+    template_name = "setup/match-editor.html"
+    context_object_name = "match_list"
+    model = Match
 

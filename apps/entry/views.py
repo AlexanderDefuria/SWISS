@@ -124,7 +124,7 @@ def update_csv():
     print("Updating CSV File")
     conn = sqlite3.connect("db.sqlite3")
     c = conn.cursor()
-    c.execute("SELECT * FROM entry_match WHERE event=?", (config.get_current_event_key(),))
+    c.execute("SELECT * FROM entry_match WHERE event_id=?", (config.get_current_event_id(),))
     with open("match_history.csv", "w") as csv_file:
         csv_writer = csv.writer(csv_file, delimiter="\t")
         csv_writer.writerow([i[0] for i in c.description])
@@ -138,7 +138,6 @@ def write_image_upload(request):
 
         files = request.FILES
         files = files.popitem()[1]
-        #print(files['Content-type'])
 
         for file in files:
             file.name = str(team_number) + "-----" + str(datetime.now()).replace('.','')
@@ -151,6 +150,14 @@ def write_image_upload(request):
 
     else:
         return HttpResponseRedirect(reverse_lazy('entry:team_list'))
+
+
+def write_pit_upload(request):
+    if request.method == 'POST':
+        team_number = 0
+    else:
+        return HttpResponseRedirect(reverse_lazy('entry:team_list'))
+
 
 
 def make_int(s):
@@ -206,6 +213,15 @@ class ImageViewer(generic.ListView):
 
 
 class ScheduleView(generic.ListView):
+    template_name = 'entry/schedule.html'
+    context_object_name = "schedule"
+    model = Schedule
+
+    def get_queryset(self):
+        return Schedule.objects.filter(event_id=config.current_event_id).order_by("match_type")
+
+
+class PitUpload(generic.ListView):
     template_name = 'entry/schedule.html'
     context_object_name = "schedule"
     model = Schedule

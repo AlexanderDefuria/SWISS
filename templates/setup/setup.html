@@ -10,19 +10,19 @@
     <table>
         <tr>
             <td id="change_event">
-                <button onclick="location.href='{% url 'setup:change-event' %}' ">Change Event</button>
+                <button onclick="location.href='{% url 'setup:change-event' %}'">Change Event</button>
             </td>
             <td>
-                <button>Edit Teams</button>
+                <button onclick="location.href='{% url 'setup:admin-team' %}'">Edit Teams</button>
             </td>
 
         </tr>
         <tr>
             <td>
-                <button>Import TBA</button>
+                <button>Import FRC</button>
             </td>
             <td>
-                <button>Edit Matches</button>
+                <button onclick="location.href='{% url 'setup:admin-match' %}'">Edit Matches</button>
             </td>
         </tr>
     </table>

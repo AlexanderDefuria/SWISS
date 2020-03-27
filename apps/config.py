@@ -1,5 +1,7 @@
 import os
 import xml.etree.ElementTree as et
+
+import dbTools
 from apps.entry.models import Event
 
 from django.conf import settings
@@ -15,16 +17,22 @@ current_district_key = None
 
 
 def update_from_xml():
-    global current_event_key, current_district_key, tree, root
+    global current_event_key, current_district_key, current_event_id, tree, root
     tree = et.parse(path)
     root = tree.getroot()
     current_event_key = root.find('events/current-event').text
     current_district_key = root.find('events/district-key').text
+    current_event_id = dbTools.event_id_lookup(current_event_key)
 
 
 def get_current_event_key():
     update_from_xml()
     return current_event_key
+
+
+def get_current_event_id():
+    update_from_xml()
+    return current_event_id
 
 
 def set_event(FIRST_key):
