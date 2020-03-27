@@ -17,22 +17,26 @@ sudo pip3 install django==2.2 djangoajax==3.2
 To reach the server running off the raspberry pi one must first connect to to the PAN netwrok named raspberrypi by default. The steps to do so are different on each platform. 
 <details>
     <summary> Mobile </summary>
-    
-    1. Simply connect as per usual with any other bluetooth device. 
-    2. On android one must change the settings of the connection to enable internet     access over bluetooth. Connect to 127.20.1.1/entry.
+    <br>
+    <li> 1. Simply connect as per usual with any other bluetooth device. 
+    <li> 2. On android one must change the settings of the connection to enable internet access over bluetooth. Connect to 127.20.1.1/entry.
 </details>
 
 <details>
     <summary> Windows </summary>
-    
-    1. TODO
-    2. TODO
+    <br>
+    <img src="/docs/Step%202%20-%20Bluetooth%20in%20Windows%20Settings.png" width="49%" height="49%"> <img src="/docs/Step%203%20-%20Add%20A%20Device.png" width="49%" height="49%">
+    <img src="/docs/Step%204a%20-%20Change%20Adapter%20Settings.png" width="49%" height="49%"> <img src="/docs/Step%204b%20-%20Network%20Connection%20Control%20Panel.png" width="49%" height="49%">
+    <img src="/docs/Step%205%20-%20View%20Bluetooth%20Network%20Devices.png" width="49%" height="49%"> <img src="/docs/Step%206%20-%20Connect%20To%20Access%20Point.png" width="49%" height="49%">
 </details>
 
 
 TODO 
 from paper to electricity input from paper 
 link with picture of a cat
+
+
+
 
 ### Viewing Images
 Images can be rotated using the [Rotate Image Utility](https://github.com/AlexanderDeFuria/FRC-Scouting/blob/master/rotateImage.py) to correct landscape and portrait modes not being consistent.
