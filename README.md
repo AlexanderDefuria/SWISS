@@ -25,17 +25,13 @@ To reach the server running off the raspberry pi one must first connect to to th
 <details>
     <summary> Windows </summary>
     <br>
-    <img src="/docs/Step%202%20-%20Bluetooth%20in%20Windows%20Settings.png" width="49%" height="49%"> <img src="/docs/Step%203%20-%20Add%20A%20Device.png" width="49%" height="49%">
-    <img src="/docs/Step%204a%20-%20Change%20Adapter%20Settings.png" width="49%" height="49%"> <img src="/docs/Step%204b%20-%20Network%20Connection%20Control%20Panel.png" width="49%" height="49%">
-    <img src="/docs/Step%205%20-%20View%20Bluetooth%20Network%20Devices.png" width="49%" height="49%"> <img src="/docs/Step%206%20-%20Connect%20To%20Access%20Point.png" width="49%" height="49%">
+    <img src="/docs/Step%202%20-%20Bluetooth%20in%20Windows%20Settings.png" width="32%" height="32%"> <img src="/docs/Step%203%20-%20Add%20A%20Device.png" width="32%" height="32%"> <img src="/docs/Step%204a%20-%20Change%20Adapter%20Settings.png" width="32%" height="32%">
+    <img src="/docs/Step%204b%20-%20Network%20Connection%20Control%20Panel.png" width="32%" height="32%"> <img src="/docs/Step%205%20-%20View%20Bluetooth%20Network%20Devices.png" width="32%" height="32%"> <img src="/docs/Step%206%20-%20Connect%20To%20Access%20Point.png" width="32%" height="32%">
 </details>
-
 
 TODO 
 from paper to electricity input from paper 
 link with picture of a cat
-
-
 
 
 ### Viewing Images
