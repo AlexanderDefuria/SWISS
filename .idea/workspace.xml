@@ -2,27 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cdb9e67-6604-4543-b1a1-a12859bc1b87" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/entry/migrations/0004_auto_20200326_2337.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/entry/migrations/0005_auto_20200327_0012.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/robots/1114-----2020-03-27_002542387450" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/entry/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/entry/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/entry/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/setup/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/setup/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/setup/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/setup/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbTools.py" beforeDir="false" afterPath="$PROJECT_DIR$/dbTools.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/importFRC.py" beforeDir="false" afterPath="$PROJECT_DIR$/importFRC.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match_history.csv" beforeDir="false" afterPath="$PROJECT_DIR$/match_history.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/entry/landing.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/entry/landing.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/entry/image-upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entry/image-upload.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/entry/landing.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entry/landing.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/setup/detail-view.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/setup/match-editor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/setup/import-tba.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/setup/import-frc.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/setup/setup.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/setup/setup.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -249,7 +229,7 @@
       <workItem from="1585183602568" duration="2105000" />
       <workItem from="1585247968361" duration="12759000" />
       <workItem from="1585265366163" duration="2989000" />
-      <workItem from="1585268366132" duration="1747000" />
+      <workItem from="1585268366132" duration="1849000" />
     </task>
     <servers />
   </component>
@@ -344,11 +324,11 @@
     </state>
     <state x="672" y="297" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580575928652" />
     <state x="2592" y="277" width="566" height="559" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585078801222" />
-    <state x="2536" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1585268365788">
+    <state x="2536" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1585285471176">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="616" y="385" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1580586173899" />
-    <state x="2536" y="367" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585268365788" />
+    <state x="2536" y="367" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.27.1920.1053/3840.0.1920.1080@1920.0.1920.1080" timestamp="1585285471176" />
     <state x="664" y="385" key="com.intellij.ide.util.TipDialog/70.27.1850.1053@70.27.1850.1053" timestamp="1580276784881" />
     <state x="2320" y="191" width="1289" height="1009" key="dock-window-1" timestamp="1580612586022">
       <screen x="1920" y="0" width="1920" height="1080" />

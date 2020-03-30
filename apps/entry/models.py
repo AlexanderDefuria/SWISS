@@ -119,9 +119,6 @@ class Pits(models.Model):
     motor_number = models.SmallIntegerField(default=0, validators=[MaxValueValidator(8), MinValueValidator(0)])
     weight = models.SmallIntegerField(default=0, validators=[MaxValueValidator(150), MinValueValidator(0)])
 
-    # Robot Images
-    images = models.TextField(default="No Images Yet")
-
     # Comments
     comments = models.TextField(default="No Comments")
 
