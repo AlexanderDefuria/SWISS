@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'apps.entry.middleware.ValidateUser',
 ]
 
 ROOT_URLCONF = 'FRC-Scouting.urls'
@@ -109,18 +110,20 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+TIME_ZONE = 'America/Toronto'
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
+# --------- SECURITY ---------
 
+# --------- Cookies ---------
+SESSION_COOKIE_HTTPONLY = True
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+
+
+# https://docs.djangoproject.com/en/2.2/howto/static-files/
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
