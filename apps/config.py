@@ -15,6 +15,8 @@ current_event_key = None
 current_event_id = None
 current_district_key = None
 
+logged_in_users = []
+
 
 def update_from_xml():
     global current_event_key, current_district_key, current_event_id, tree, root
@@ -33,6 +35,11 @@ def get_current_event_key():
 def get_current_event_id():
     update_from_xml()
     return current_event_id
+
+
+def get_current_district_key():
+    update_from_xml()
+    return current_district_key
 
 
 def set_event(FIRST_key):

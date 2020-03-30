@@ -7,6 +7,7 @@ import base64
 from datetime import date
 
 import dbTools
+import config
 
 conn = sqlite3.connect("db.sqlite3")
 
@@ -30,7 +31,7 @@ print("")
 def import_events():
     print("Importing Events...")
 
-    api_url = api_url_base + "/events?districtCode=ONT"
+    api_url = api_url_base + "/events?districtCode=" + config.get_current_district_key()
     response = requests.get(api_url, headers=header)
 
     event_list = response.json()['Events']
@@ -54,13 +55,13 @@ def import_events():
 def import_teams():
     print("Importing Teams...")
 
-    api_url = api_url_base + "/teams?districtCode=ONT"
+    api_url = api_url_base + "/teams?districtCode=" + config.get_current_district_key()
     response = requests.get(api_url, headers=header)
     district_teams = []
     c = conn.cursor()
 
     for x in range(1, int(response.json()['pageTotal'])):
-        api_url = api_url_base + "/teams?districtCode=ONT&page=" + str(x)
+        api_url = api_url + "&page=" + str(x)
         response = requests.get(api_url, headers=header)
 
         team_list = response.json()["teams"]

@@ -1,28 +1,29 @@
 import base64
 import csv
 import os
+import dbTools
+
 from datetime import datetime
 from json import dumps
 
 from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, HttpResponse, Http404, QueryDict
-from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
 from django_ajax.decorators import ajax
-from django.template import Library
+from django.template import Library, loader
+from django.contrib import auth
+from django.contrib.auth.decorators import login_required, user_passes_test
 
-from apps import config
 from apps.entry.graphing import *
 from apps.entry.models import Team, Match, Schedule, Images
-import dbTools
-import sqlite3
-from PIL import Image
 
 register = Library
 
 
+@login_required(login_url='entry:login')
 def write_teleop(request, pk):
     print("Adding teleop phase to database")
     if request.method == 'POST':
@@ -41,6 +42,7 @@ def write_teleop(request, pk):
         return HttpResponseRedirect(reverse_lazy('entry:team_list'))
 
 
+@login_required(login_url='entry:login')
 def write_auto(request, pk):
     print("Adding auto phase to database")
     if request.method == 'POST':
@@ -69,12 +71,13 @@ def view_matches(request):
 
 @ajax
 @csrf_exempt
+@login_required(login_url='entry:login')
 def update_graph(request):
     data = decode_ajax(request)
     create_teams_graph(data)
 
     try:
-        image_data = base64.b64encode(open( str(settings.BASE_DIR) + "/media/dynamic_plot.png", "rb").read())
+        image_data = base64.b64encode(open(str(settings.BASE_DIR) + "/media/dynamic_plot.png", "rb").read())
         return HttpResponse(image_data, content_type="image/png")
     except IOError:
         print("Image not found")
@@ -83,6 +86,7 @@ def update_graph(request):
 
 @ajax
 @csrf_exempt
+@login_required(login_url='entry:login')
 def validate_match(request, pk):
     # The parsing of the db to check if a team has played at a particular match already is done server side
     # The ajax post sends only the match number in a JSON file to comply with AJAX datatype specification
@@ -100,15 +104,22 @@ def validate_match(request, pk):
     return HttpResponse(dumps(result), content_type="application/json")
 
 
+@login_required(login_url='entry:login')
 def decode_ajax(request):
     return dict(QueryDict(request.body.decode()))
 
 
+def scout_lead_check(user):
+    return user.groups.filter(name="Scouting").exists()
+
+
 # TODO Export into .xls instead of .csv
+@user_passes_test(scout_lead_check, login_url='entry:login')
+@login_required(login_url='entry:login')
 def download(request):
+    redirect_field_name = 'entry:login'
     path = 'match_history.csv'
     path = os.path.join(settings.BASE_DIR, path)
-
     update_csv()
 
     if os.path.exists(path):
@@ -131,6 +142,7 @@ def update_csv():
         csv_writer.writerows(c)
 
 
+@login_required(login_url='entry:login')
 def write_image_upload(request):
     if request.method == 'POST':
         team_number = make_int(request.POST.get('teamNumber', 0))
@@ -143,24 +155,52 @@ def write_image_upload(request):
         files = files.popitem()[1]
 
         for file in files:
-            file.name = str(team_number) + "-----" + str(datetime.now()).replace('.','')
+            file.name = str(team_number) + "-----" + str(datetime.now()).replace('.', '')
             image = Images(name=team.name, image=file)
             image.save()
             team.images.add(image)
             team.save()
-
         return HttpResponseRedirect(reverse_lazy('entry:team_list'))
-
     else:
         return HttpResponseRedirect(reverse_lazy('entry:team_list'))
 
 
+@login_required(login_url='entry:login')
 def write_pit_upload(request):
     if request.method == 'POST':
         team_number = 0
     else:
         return HttpResponseRedirect(reverse_lazy('entry:team_list'))
 
+
+def login(request):
+    if request.method == 'GET':
+        template = loader.get_template('entry/login.html')
+
+        if request.user.is_authenticated:
+            logout(request)
+
+        return HttpResponse(template.render({}, request))
+
+    elif request.method == 'POST':
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+        user = auth.authenticate(request, username=username, password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            print(auth)
+
+        return HttpResponseRedirect(reverse_lazy('entry:team_list'))
+
+    return HttpResponseRedirect(reverse_lazy('entry:login'))
+
+
+@login_required(login_url='entry:login')
+def logout(request):
+    auth.logout(request)
+    print("request.user.is_authenticated:" + str(request.user.is_authenticated))
+    return HttpResponseRedirect(reverse_lazy('entry:team_list'))
 
 
 def make_int(s):
@@ -176,39 +216,42 @@ def get_present_teams():
     return objects
 
 
-class TeamNumberList(generic.ListView):
+class TeamNumberList(LoginRequiredMixin, generic.ListView):
+    login_url = 'entry:login'
     template_name = 'entry/landing.html'
     context_object_name = "team_list"
     model = Team
 
-
-
     def get_queryset(self):
-        print("Updated querey")
         return get_present_teams()
 
 
-class Auto(generic.DetailView):
+class Auto(LoginRequiredMixin, generic.DetailView):
+    login_url = 'entry:login'
     model = Team
     template_name = 'entry/auto.html'
 
 
-class Teleop(generic.DetailView):
+class Teleop(LoginRequiredMixin, generic.DetailView):
+    login_url = 'entry:login'
     model = Team
     template_name = 'entry/teleop.html'
 
 
-class Visualize(generic.TemplateView):
+class Visualize(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'entry:login'
     template_name = 'entry/visualize.html'
 
 
-class ImageUpload(generic.TemplateView):
+class ImageUpload(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'entry:login'
     template_name = 'entry/image-upload.html'
     model = Team
     context_object_name = "team_list"
 
 
-class ImageViewer(generic.ListView):
+class ImageViewer(LoginRequiredMixin, generic.ListView):
+    login_url = 'entry:login'
     template_name = 'entry/image-viewer.html'
     model = Team
     context_object_name = "team_list"
@@ -217,7 +260,8 @@ class ImageViewer(generic.ListView):
         return get_present_teams()
 
 
-class ScheduleView(generic.ListView):
+class ScheduleView(LoginRequiredMixin, generic.ListView):
+    login_url = 'entry:login'
     template_name = 'entry/schedule.html'
     context_object_name = "schedule"
     model = Schedule
@@ -226,7 +270,8 @@ class ScheduleView(generic.ListView):
         return Schedule.objects.filter(event_id=config.current_event_id).order_by("match_type")
 
 
-class PitUpload(generic.ListView):
+class PitUpload(LoginRequiredMixin, generic.ListView):
+    login_url = 'entry:login'
     template_name = 'entry/schedule.html'
     context_object_name = "schedule"
     model = Schedule

@@ -1,13 +1,18 @@
 from django import template
+from django.contrib.auth.decorators import user_passes_test, login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic
 from apps.entry.models import *
+from apps.entry import views
 from apps import config
 
 register = template.Library()
 
 
+@user_passes_test(views.scout_lead_check, login_url='entry:login')
+@login_required(login_url='entry:login')
 def change_event_write(request):
     if request.method == 'POST':
         config.set_event(str(request.POST.get('event', '')))
@@ -24,7 +29,8 @@ class Setup(generic.ListView):
         return Event.objects.order_by("start")
 
 
-class ChangeEvent(generic.TemplateView):
+class ChangeEvent(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'entry:login'
     template_name = "setup/change-event.html"
     context_object_name = "event_list"
     model = Event
