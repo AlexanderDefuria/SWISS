@@ -136,6 +136,9 @@ def write_image_upload(request):
         team_number = make_int(request.POST.get('teamNumber', 0))
         team = Team.objects.get(number=team_number)
 
+        request.session.set_test_cookie()
+        print("COOKIES???: " + str(request.session.test_cookie_worked()))
+
         files = request.FILES
         files = files.popitem()[1]
 
@@ -177,6 +180,8 @@ class TeamNumberList(generic.ListView):
     template_name = 'entry/landing.html'
     context_object_name = "team_list"
     model = Team
+
+
 
     def get_queryset(self):
         print("Updated querey")
