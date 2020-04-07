@@ -1,0 +1,120 @@
+#dragDropContainer{	/* Main container for this script */
+	width:100%;
+	-moz-user-select:none;
+}
+#dragDropContainer ul{	/* General rules for all <ul> */
+	margin-top:0px;
+	margin-left:0px;
+	margin-bottom:0px;
+	padding:0px;
+
+}
+
+ li,#dragContent li,li#indicateDestination{	/* Movable items, i.e. <LI> */
+	list-style-type:none;
+	height:20px;
+	padding:2px;
+	margin:2px;
+	cursor:pointer;
+	font-family: 'Lato', sans-serif;
+    font-size: 0.9em;
+    color: white;
+	border-radius: 25px;
+	background-color: #5b80b2;
+	text-align: center;
+}
+
+/* LEFT COLUMN CSS */
+div#listOfItems{	/* Left column "Available students" */
+
+	float:left;
+	padding-left:10px;
+	padding-right:10px;
+
+
+	width: /**/160px;
+
+}
+#listOfItems ul{	/* Left(Sources) column <ul> */
+	height:300px;
+
+}
+
+div#listOfItems div{
+	border:1px solid #999;
+}
+div#listOfItems div ul{	/* Left column <ul> */
+	margin-left:10px;	/* Space at the left of list - the arrow will be positioned there */
+}
+
+/* END LEFT COLUMN CSS */
+
+
+
+/* Start main container CSS */
+
+div#mainContainer{	/* Right column DIV */
+	width:100%;
+	float:left;
+}
+#mainContainer div { /* Parent <div> of small boxes */
+	float: left;
+	margin: 1%;
+	width: 40% /*172px*/;
+}
+#mainContainer div ul{
+	width: 100%;
+}
+
+#mainContainer div ul li{
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#mainContainer div p{	/* Heading above small boxes */
+	margin:2%;
+	padding:0px;
+	font-family: 'Lato', sans-serif;
+	font-weight:bold;
+	color:#FFF;
+	text-align: center;
+}
+
+
+#dragContent{	/* Drag container */
+	position:absolute;
+	width:150px;
+	height:20px;
+	display:none;
+	margin:0px;
+	padding:0px;
+	z-index:2000;
+}
+
+
+
+
+.dragDropBox, .mouseover{
+	background-color: #4f4f4f;
+	border-radius: 25px;
+	border: 2px solid #4f4f4f;
+}
+
+.mouseover{	/* Mouse over effect DIV box in right column */
+	border: 2px solid #5b80b2;
+
+}
+
+#mainContainer div.merged_container {
+	width: 80%;
+	background-color: #4f4f4f;
+	border-radius: 25px;
+	border: 10px solid #4f4f4f;
+}
+
+#mainContainer div.merged_container #merged {
+	width: 47%;
+	margin-left: auto;
+	border-radius: 25px;
+}

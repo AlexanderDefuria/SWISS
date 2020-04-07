@@ -1,115 +1,86 @@
-
 {% load static %}
+{% load common_tags %}
+
 
 <script src="{% static 'entry/jquery.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'entry/highcharts.src.js' %}" type="text/javascript"></script>
+<script src="{% static 'entry/drag-options.js' %}" type="text/javascript"></script>
+
 <link rel="stylesheet" type="text/css" href="{% static 'entry/visualization.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/drag-options.css' %}">
+
 <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}"/>
-<script type="text/javascript" src="{% static 'entry/visualization.js' %}"></script>
 
 
 <div id="layout" class="container">
 
-    <div class="header">
-        Data Visualization
-    </div>
-
     <div class="left">
-        <div class="box">
-            <img src="{% static "blank_plot.png" %}" id="test" class="img" alt="Graph">
-
-        </div>
+        <div class="header">Data Visualization</div>
+        <div class="graph" id="container" style="width:100%; height:600px;"></div>
     </div>
 
     <div class="right">
-        <div class="box">
-            <div class="button_group" id="GraphToggle">
-                <button type="button" id="total"   class="button" onclick='toggle("GraphToggle",this,1)'>Team Totals</button>
-                <button type="button" id="average" class="button" onclick='toggle("GraphToggle",this,2)'>Team Averages</button>
-                <button type="button" id="history" class="button" onclick='toggle("GraphToggle",this,3)'>Team History</button>
-                <input  id="GraphSelection" type="number" class="hidden" value=0>
-            </div>
+        <div id="dragDropContainer">
+            <div id="listOfItems" style="display: none" > </div>
+            <div id="mainContainer">
+                <!-- ONE <UL> for each box -->
+                <div id="teamList" class="relative_parent">
+                    <p>Teams</p>
 
+                    {% for team in team_list %}
+                        <div class="team_check">
+                            <label for="{{ team.name }}">{{ team.number }}</label>
+                            <input type="checkbox" id="{{ team.name }}" name="{{ team.name }}" value="{{ team.name }}">
+                        </div>
+                    {% endfor %}
 
-            <div id="1" class="graphsetting" style="display: none">
-                <div class="teamlist">
-                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team1">
-                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team2">
-                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team3">
-                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team4">
-                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team5">
-                    <input type="number" pattern="[0-9]" placeholder="Team Number" id="team6">
+                    <button style="position: absolute; bottom: 20px; right: 0%">All Teams</button>
                 </div>
-
-                <div class="center-options">
-                    <input type="radio" class="hidden" id="total_hatchIN" value="false">
-                    <button type="button" id="total_hatch" onclick="select(this)">Total Hatches</button>
-                    <input type="radio" class="hidden" id="first_hatchIN" value="false">
-                    <button type="button" id="first_hatch" onclick="select(this)">First Hatch</button>
-                    <input type="radio" class="hidden" id="second_hatchIN" value="false">
-                    <button type="button" id="second_hatch" onclick="select(this)">Second Hatch</button>
-                    <input type="radio" class="hidden" id="third_hatchIN" value="false">
-                    <button type="button" id="third_hatch" onclick="select(this)">Third Hatch</button>
-                    <input type="radio" class="hidden" id="ship_hatchIN" value="false">
-                    <button type="button" id="ship_hatch" onclick="select(this)">Ship Hatch</button>
-                    <input type="radio" class="hidden" id="auto_hatchIN" value="false">
-                    <button type="button" id="auto_hatch" onclick="select(this)">Auto Hatch</button>
-
-                    <input type="radio" class="hidden" id="first_startIN" value="false">
-                    <button type="button" id="first_start" onclick="select(this)">First Start</button>
-
-                    <input type="radio" class="hidden" id="defense_timeIN" value="false">
-                    <button type="button" id="defense_time" onclick="select(this)">Defense Time</button>
-
-                    <input type="radio" class="hidden" id="climbIN" value="false">
-                    <button type="button" id="climb" onclick="select(this)">Climb</button>
-
+                <div id="box" class="dragDropBox">
+                    <p>Available Fields</p>
+                    <ul id="box1">
+                        <li id="auto_baseline">Auto Baseline</li>
+                        <li id="auto_powercells">Auto Powercells</li>
+                        <li id="powercells">Powercells</li>
+                        <li id="wheel_points">Control Panel</li>
+                        <li id="wheel_rating">Control Panel Rating</li>
+                        <li id="fouls">Offensive Fouls</li>
+                        <li id="defense_time">Defense Time</li>
+                        <li id="defense_rating">Defense Rating</li>
+                        <li id="defense_fouls">Defense Fouls</li>
+                        <li id="climb_time">Climb Time</li>
+                        <li id="climb_location">Climb Location</li>
+                        <li id="climb_attempts">Climb Attempts</li>
+                        <li id="climb">Climb</li>
+                    </ul>
                 </div>
+                <div class="merged_container">
+                    <p>Included Fields</p>
+                    <div id="merged" class="dragDropBox" >
+                        <ul id="box2">
 
-                <div class="right-options">
-                    <input type="radio" class="hidden" id="total_cargoIN" value="false">
-                    <button type="button" id="total_cargo" onclick="select(this)">Total Cargo</button>
-                    <input type="radio" class="hidden" id="first_cargoIN" value="false">
-                    <button type="button" id="first_cargo" onclick="select(this)">First Cargo</button>
-                    <input type="radio" class="hidden" id="second_cargoIN" value="false">
-                    <button type="button" id="second_cargo" onclick="select(this)">Second Cargo</button>
-                    <input type="radio" class="hidden" id="third_cargoIN" value="false">
-                    <button type="button" id="third_cargo" onclick="select(this)">Third Cargo</button>
-                    <input type="radio" class="hidden" id="ship_cargoIN" value="false">
-                    <button type="button" id="ship_cargo" onclick="select(this)">Ship Cargo</button>
-                    <input type="radio" class="hidden" id="auto_cargoIN" value="false">
-                    <button type="button" id="auto_cargo" onclick="select(this)">Auto Cargo</button>
+                        </ul>
+                    </div>
+                    <div id="merged" class="dragDropBox">
+                        <ul id="box3">
 
-                    <input type="radio" class="hidden" id="second_startIN" value="false">
-                    <button type="button" id="second_start" onclick="select(this)">Second Start</button>
-
-                    <input type="radio" class="hidden" id="winsIN" value="false">
-                    <button type="button" id="wins" onclick="select(this)"> Wins </button>
-
-
-
-
+                        </ul>
+                    </div>
                 </div>
-
-
-            </div>
-
-
-            <div id="2" style="display: none">
-                <button>2</button>
-            </div>
-
-
-            <div id="3" style="display: none">
-                <button>3</button>
             </div>
         </div>
 
     </div>
 
     <div class="bot">
-            <button onclick="updateImage()" style="background: lightgreen; opacity: 1">Update Graph</button>
+        <button onclick="updateGraph()" >Update Graph</button>
     </div>
 </div>
 
 
+<ul id="dragContent"> </ul>
+<div id="dragDropIndicator"></div>
 
+
+<script src="{% static 'entry/charts.js' %}" type="text/javascript"></script>
+<script src="{% static 'entry/visualization.js' %}" type="text/javascript"></script>

@@ -74,6 +74,7 @@ class Match(models.Model):
     outer = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     lower = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     inner = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
+    wheel_score = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     wheel_rating = models.SmallIntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
     balls_collected = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     full_cycles = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
@@ -85,6 +86,7 @@ class Match(models.Model):
     defense_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
 
     # Climb
+    climb = models.BooleanField(default=False)
     climb_time = models.IntegerField(default=0, validators=[MaxValueValidator(55000), MinValueValidator(0)])
     climb_location = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(-100)])
     climb_attempts = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])

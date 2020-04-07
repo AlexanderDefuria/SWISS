@@ -74,11 +74,10 @@ def view_matches(request):
 @login_required(login_url='entry:login')
 def update_graph(request):
     data = decode_ajax(request)
-    create_teams_graph(data)
+    print([f.name for f in Match._meta.get_fields()])
 
     try:
-        image_data = base64.b64encode(open(str(settings.BASE_DIR) + "/media/dynamic_plot.png", "rb").read())
-        return HttpResponse(image_data, content_type="image/png")
+        return HttpResponseRedirect(reverse_lazy('entry:visualize'))
     except IOError:
         print("Image not found")
         return Http404
@@ -238,9 +237,14 @@ class Teleop(LoginRequiredMixin, generic.DetailView):
     template_name = 'entry/teleop.html'
 
 
-class Visualize(LoginRequiredMixin, generic.TemplateView):
+class Visualize(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     template_name = 'entry/visualize.html'
+    model = Team
+    context_object_name = "team_list"
+
+    def get_queryset(self):
+        return get_present_teams()
 
 
 class ImageUpload(LoginRequiredMixin, generic.TemplateView):

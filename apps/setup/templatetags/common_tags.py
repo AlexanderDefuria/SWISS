@@ -19,3 +19,9 @@ def get_current_event():
 def get_current_event_id():
     return config.get_current_event_key()
 
+
+@register.simple_tag
+def get_match_fields():
+    print([f.name for f in Match._meta.get_fields()])
+    return [f.name for f in Match._meta.get_fields()]
+
