@@ -1,89 +1,72 @@
 {
-  "first_cargo": {
-    "alias": "First Cargo",
-    "points": 3,
-    "weight":1
+  "inner_port" : {
+    "points" : 1,
+    "alias" : "Inner Port",
+    "weight" : 1
   },
-  "second_cargo": {
-    "alias": "Second Cargo",
-    "points": 3,
-    "weight": 1
+  "outer_port" : {
+    "points" : 1,
+    "alias" : "Outer Port",
+    "weight" : 1
   },
-  "third_cargo": {
-    "alias": "Third Cargo",
-    "points": 3,
-    "weight": 1
+  "auto_powercells" : {
+    "points" : 1,
+    "alias" : "Auto Powercells",
+    "weight" : 1
   },
-  "ship_cargo": {
-    "alias": "Ship Cargo",
-    "points": 3,
-    "weight": 1
+  "auto_baseline" : {
+    "points" : 1,
+    "alias" : "Auto Baseline",
+    "weight" : 1
   },
-  "auto_cargo": {
-    "alias": "Auto Cargo",
-    "points": 3,
-    "weight": 1
+  "wheel_points" : {
+    "points" : 1,
+    "alias" : "Control Panel",
+    "weight" : 1
   },
-  "first_hatch": {
-    "alias": "First Hatch",
-    "points": 2,
-    "weight": 1
+  "wheel_rating" : {
+    "points" : 1,
+    "alias" : "Control Panel Rating",
+    "weight" : 1
   },
-  "second_hatch": {
-    "alias": "Second Hatch",
-    "points": 2,
-    "weight": 1
+  "fouls" : {
+    "points" : 1,
+    "alias" : "Offensive Fouls",
+    "weight" : 1
   },
-  "third_hatch": {
-    "alias": "Third Hatch",
-    "points": 2,
-    "weight": 1
+  "defense_time" : {
+    "points" : 1,
+    "alias" : "Defense Time",
+    "weight" : 1
   },
-  "ship_hatch": {
-    "alias": "Ship Hatch",
-    "points": 2,
-    "weight": 1
+  "defense_rating" : {
+    "points" : 1,
+    "alias" : "Defense Rating",
+    "weight" : 1
   },
-  "auto_hatch": {
-    "alias": "Auto Hatch",
-    "points": 2,
-    "weight": 1
+  "defense_fouls" : {
+    "points" : 1,
+    "alias" : "Defense Fouls",
+    "weight" : 1
   },
-  "climb_one": {
-    "alias": "First Climb",
-    "points": 3,
-    "weight": 1
+  "climb_time" : {
+    "points" : 1,
+    "alias" : "Climb Time",
+    "weight" : 1
   },
-  "climb_two": {
-    "alias": "Second Climb",
-    "points": 6,
-    "weight": 1
+  "climb_location" : {
+    "points" : 1,
+    "alias" : "Climb Location",
+    "weight" : 1
   },
-  "climb_three": {
-    "alias": "Third Climb",
-    "points": 1,
-    "weight": 1
+  "climb_attempts" : {
+    "points" : 1,
+    "alias" : "Climb Attempts",
+    "weight" : 1
   },
-  "first_start": {
-    "alias": "First Start",
-    "points": 3,
-    "weight": 1
-  },
-  "second_start": {
-    "alias": "Second Start",
-    "points": 6,
-    "weight": 1
-  },
-  "defense_time": {
-    "alias": "Defense Time"
-  },
-  "total_hatch": {
-    "alias": "Total Hatch"
-  },
-  "total_cargo": {
-    "alias": "Total Cargo"
-  },
-  "wins": {
-    "alias": "Wins"
+  "climb" : {
+    "points" : 1,
+    "alias" : "Climbs",
+    "weight" : 1
   }
 }

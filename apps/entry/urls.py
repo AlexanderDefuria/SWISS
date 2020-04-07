@@ -14,6 +14,7 @@ urlpatterns = [
     path('<slug:pk>/teleop/', views.write_teleop, name='write_teleop'),
     path('visual/', views.Visualize.as_view(), name='visualize'),
     path('visual/update/', views.update_graph, name='update_graph'),
+    path('visual/update/fields', views.update_fields, name='update_fields'),
     path('download/', views.download, name='download'),
     path('schedule/', views.ScheduleView.as_view(), name='schedule'),
     path('image_upload/', views.ImageUpload.as_view(), name='image_upload'),

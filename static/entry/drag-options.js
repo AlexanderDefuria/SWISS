@@ -23,6 +23,8 @@ let verticalSpaceBetweenListItems = 3;	// Pixels space between one <li> and next
 										// Same value or higher as margin bottom in CSS for #dragDropContainer ul li,#dragContent li
 let cloneSourceItems = false;	// Items picked from main container will be cloned(i.e. "copy" instead of "cut").
 let cloneAllowDuplicates = false;	// Allow multiple instances of an item inside a small box(example: drag Student 1 to team A twice
+let initialBoxID = "box1";
+let fieldData = {};
 /* END VARIABLES YOU COULD MODIFY */
 let dragDropTopContainer = false;
 let dragTimer = -1;
@@ -210,15 +212,18 @@ function dragDropEnd(e)
 	mouseoverObj = false;
 }
 /*
-Preparing data to be saved
+Called from the getFields method in visualization.js after all fields are loaded
 */
 function initDragDropScript()
 {
+
+
 	dragContentObj = document.getElementById('dragContent');
 	dragDropIndicator = document.getElementById('dragDropIndicator');
 	dragDropTopContainer = document.getElementById('dragDropContainer');
-	document.documentElement.onselectstart = cancelEvent;;
-	var listItems = dragDropTopContainer.getElementsByTagName('LI');	// Get array containing all <LI>
+	document.documentElement.onselectstart = cancelEvent;
+	var listItems = document.getElementsByTagName('UL')[0].children;	// Get array containing all <LI>
+
 	var itemHeight = false;
 	for(var no=0;no<listItems.length;no++){
 		listItems[no].onmousedown = initDrag;
@@ -247,16 +252,16 @@ function initDragDropScript()
 		ulPositionArray[no]['obj'] = ulArray[no];
 	}
 
-	let teamList_height =  document.getElementById('teamList').clientHeight;
-	let mainField_height =  document.getElementById('box').clientHeight;
+	let ID_A='mainBox';
+	let ID_B='teamList';
 
-	if (teamList_height > mainField_height){
-		document.getElementById('box').style.height = teamList_height;
-	}
-	else {
-		document.getElementById('teamList').style.height = mainField_height;
-	}
+	let heightA = document.getElementById(ID_A).clientHeight;
+    let heightB = document.getElementById(ID_B).clientHeight;
 
+    if (heightB > heightA) document.getElementById(ID_A).style.height = heightB;
+    else document.getElementById(ID_B).style.height = heightA;
+
+	//loadFields()
 }
 
 
@@ -264,6 +269,7 @@ function initDragDropScript()
 
 
 
-window.onload = initDragDropScript;
+
+
 
 

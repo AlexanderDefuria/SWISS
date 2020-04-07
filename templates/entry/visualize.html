@@ -4,7 +4,7 @@
 
 <script src="{% static 'entry/jquery.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'entry/highcharts.src.js' %}" type="text/javascript"></script>
-<script src="{% static 'entry/drag-options.js' %}" type="text/javascript"></script>
+
 
 <link rel="stylesheet" type="text/css" href="{% static 'entry/visualization.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/drag-options.css' %}">
@@ -30,31 +30,20 @@
                     {% for team in team_list %}
                         <div class="team_check">
                             <label for="{{ team.name }}">{{ team.number }}</label>
-                            <input type="checkbox" id="{{ team.name }}" name="{{ team.name }}" value="{{ team.name }}">
+                            <input name="teamCheckBox" type="checkbox" id="{{ team.id }}" value="{{ team.name }}">
                         </div>
                     {% endfor %}
 
-                    <button style="position: absolute; bottom: 20px; right: 0%">All Teams</button>
+                    <button onclick="fields()" > Update Fields</button>
+                    <button id="selectAllTeams" onclick="selectAllTeams(id)" style="position: absolute; bottom: 0px; right: 0%">All Teams</button>
                 </div>
-                <div id="box" class="dragDropBox">
+                <div id="mainBox" class="dragDropBox">
                     <p>Available Fields</p>
-                    <ul id="box1">
-                        <li id="auto_baseline">Auto Baseline</li>
-                        <li id="auto_powercells">Auto Powercells</li>
-                        <li id="powercells">Powercells</li>
-                        <li id="wheel_points">Control Panel</li>
-                        <li id="wheel_rating">Control Panel Rating</li>
-                        <li id="fouls">Offensive Fouls</li>
-                        <li id="defense_time">Defense Time</li>
-                        <li id="defense_rating">Defense Rating</li>
-                        <li id="defense_fouls">Defense Fouls</li>
-                        <li id="climb_time">Climb Time</li>
-                        <li id="climb_location">Climb Location</li>
-                        <li id="climb_attempts">Climb Attempts</li>
-                        <li id="climb">Climb</li>
+                    <ul id="box1" onload="loadFields()">
+                        <li id="placeholder" > None </li>
                     </ul>
                 </div>
-                <div class="merged_container">
+                <div id="included_fields" class="merged_container">
                     <p>Included Fields</p>
                     <div id="merged" class="dragDropBox" >
                         <ul id="box2">
@@ -84,3 +73,4 @@
 
 <script src="{% static 'entry/charts.js' %}" type="text/javascript"></script>
 <script src="{% static 'entry/visualization.js' %}" type="text/javascript"></script>
+<script src="{% static 'entry/drag-options.js' %}" type="text/javascript"></script>

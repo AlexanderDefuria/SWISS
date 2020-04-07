@@ -8,7 +8,7 @@ from json import dumps
 
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect, HttpResponse, Http404, QueryDict
+from django.http import HttpResponseRedirect, HttpResponse, Http404, QueryDict, JsonResponse
 from django.urls import reverse_lazy
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
@@ -74,13 +74,38 @@ def view_matches(request):
 @login_required(login_url='entry:login')
 def update_graph(request):
     data = decode_ajax(request)
-    print([f.name for f in Match._meta.get_fields()])
+    teams = request.POST.getlist('team_list')[0].split(",")
+    print(request.POST.getlist('field_list'))
+
+    for team in teams:
+        # TODO Total the values from each field per team and package the totals into a json under each team id or number
+        print(Team.objects.filter(id=team))
 
     try:
         return HttpResponseRedirect(reverse_lazy('entry:visualize'))
     except IOError:
         print("Image not found")
         return Http404
+
+
+@ajax
+@csrf_exempt
+@login_required(login_url='entry:login')
+def update_fields(request):
+    data = decode_ajax(request)
+
+    if request.method == "GET":
+        try:
+            path = 'scoring.json'
+            path = os.path.join(settings.BASE_DIR, path)
+            with open(path) as f:
+                result = json.load(f)
+            return JsonResponse(result)
+        except IOError:
+            print("Fields file not found")
+            return Http404
+    else:
+        return HttpResponseRedirect(reverse_lazy('entry:visualize'))
 
 
 @ajax
