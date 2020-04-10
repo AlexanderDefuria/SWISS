@@ -75,11 +75,38 @@ def view_matches(request):
 def update_graph(request):
     data = decode_ajax(request)
     teams = request.POST.getlist('team_list')[0].split(",")
-    print(request.POST.getlist('field_list'))
+    fields = request.POST.getlist('field_list')[0].split(",")
+
+    if teams == [''] or data == ['']:
+        print('No Team Selection \n')
+        return HttpResponseRedirect(reverse_lazy('entry:visualize'))
+
+    default_out = Match.objects.all()[0].__dict__
+    data_out = {}
+
+    single_items = ['team_number']
+    ignored_items = ['_state', 'initial_comments', 'game_comments', 'id', 'event_id', 'team_id', 'match_number']
+
+    for item in ignored_items:
+        default_out.__delitem__(item)
+
+    for field in default_out:
+        default_out[field] = Match._meta.get_field(field).default
 
     for team in teams:
         # TODO Total the values from each field per team and package the totals into a json under each team id or number
-        print(Team.objects.filter(id=team))
+        matches = Match.objects.filter(team_id=team)
+        team_data = default_out.copy()
+
+        for match in matches:
+            for field in match.__dict__:
+                if team_data.__contains__(field):
+                    if not (single_items.__contains__(field) and team_data[field] == default_out[field]):
+                        team_data[field] += int(match.__dict__[field])
+
+        data_out.__setitem__(str(Team.objects.filter(id=team)[0].number), team_data)
+
+    print(data_out)
 
     try:
         return HttpResponseRedirect(reverse_lazy('entry:visualize'))
