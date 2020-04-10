@@ -1,72 +1,92 @@
 {
-  "inner_port" : {
+  "inner" : {
     "points" : 1,
     "alias" : "Inner Port",
-    "weight" : 1
+    "weight" : 1,
+    "visible":true
   },
-  "outer_port" : {
+  "outer" : {
     "points" : 1,
     "alias" : "Outer Port",
-    "weight" : 1
+    "weight" : 1,
+    "visible": true
   },
-  "auto_powercells" : {
+  "auto_start" : {
     "points" : 1,
-    "alias" : "Auto Powercells",
-    "weight" : 1
+    "alias" : "Auto Start",
+    "weight" : 1,
+    "visible": true
+  },
+  "preloaded_balls" : {
+    "points" : 1,
+    "alias" : "Preloaded Balls",
+    "weight" : 1,
+    "visible": true
+  },
+  "outer_auto" : {
+    "points" : 1,
+    "alias" : "Auto Outer Powercells",
+    "weight" : 1,
+    "visible": true
+  },
+  "inner_auto" : {
+    "points" : 1,
+    "alias" : "Auto Inner Powercells",
+    "weight" : 1,
+    "visible": true
   },
   "auto_baseline" : {
     "points" : 1,
     "alias" : "Auto Baseline",
-    "weight" : 1
+    "weight" : 1,
+    "visible": true
   },
   "wheel_points" : {
     "points" : 1,
     "alias" : "Control Panel",
-    "weight" : 1
-  },
-  "wheel_rating" : {
-    "points" : 1,
-    "alias" : "Control Panel Rating",
-    "weight" : 1
+    "weight" : 1,
+    "visible": true
   },
   "fouls" : {
     "points" : 1,
     "alias" : "Offensive Fouls",
-    "weight" : 1
+    "weight" : 1,
+    "visible": true
   },
   "defense_time" : {
     "points" : 1,
     "alias" : "Defense Time",
-    "weight" : 1
+    "weight" : 1,
+    "visible": true
   },
   "defense_rating" : {
     "points" : 1,
     "alias" : "Defense Rating",
-    "weight" : 1
+    "weight" : 1,
+    "visible": false
   },
   "defense_fouls" : {
     "points" : 1,
     "alias" : "Defense Fouls",
-    "weight" : 1
+    "weight" : 1,
+    "visible": false
   },
   "climb_time" : {
     "points" : 1,
     "alias" : "Climb Time",
-    "weight" : 1
-  },
-  "climb_location" : {
-    "points" : 1,
-    "alias" : "Climb Location",
-    "weight" : 1
+    "weight" : 1,
+    "visible": true
   },
   "climb_attempts" : {
     "points" : 1,
     "alias" : "Climb Attempts",
-    "weight" : 1
+    "weight" : 1,
+    "visible": true
   },
   "climb" : {
     "points" : 1,
     "alias" : "Climbs",
-    "weight" : 1
+    "weight" : 1,
+    "visible": true
   }
 }

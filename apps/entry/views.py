@@ -75,7 +75,7 @@ def view_matches(request):
 def update_graph(request):
     data = decode_ajax(request)
     teams = request.POST.getlist('team_list')[0].split(",")
-    fields = request.POST.getlist('field_list')[0].split(",")
+    req_fields = request.POST.getlist('field_list')[0].split(",")
 
     if teams == [''] or data == ['']:
         print('No Team Selection \n')
@@ -89,6 +89,10 @@ def update_graph(request):
 
     for item in ignored_items:
         default_out.__delitem__(item)
+
+    for item in default_out.copy():
+        if not req_fields.__contains__(item):
+            default_out.__delitem__(item)
 
     for field in default_out:
         default_out[field] = Match._meta.get_field(field).default
@@ -109,7 +113,7 @@ def update_graph(request):
     print(data_out)
 
     try:
-        return HttpResponseRedirect(reverse_lazy('entry:visualize'))
+        return HttpResponse(dumps(data_out), content_type="application/json")
     except IOError:
         print("Image not found")
         return Http404
