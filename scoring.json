@@ -17,15 +17,27 @@
     "weight" : 1,
     "visible": true
   },
+  "rating_auto" : {
+    "points" : 1,
+    "alias" : "Auto Rating",
+    "weight" : 1,
+    "visible": true
+  },
   "preloaded_balls" : {
     "points" : 1,
     "alias" : "Preloaded Balls",
     "weight" : 1,
     "visible": true
   },
+  "on_field" : {
+    "points" : 1,
+    "alias" : "On Field",
+    "weight" : 1,
+    "visible": true
+  },
   "outer_auto" : {
     "points" : 1,
-    "alias" : "Auto Outer Powercells",
+    "alias" : "Auto Powercells",
     "weight" : 1,
     "visible": true
   },
@@ -33,7 +45,7 @@
     "points" : 1,
     "alias" : "Auto Inner Powercells",
     "weight" : 1,
-    "visible": true
+    "visible": false
   },
   "auto_baseline" : {
     "points" : 1,
@@ -41,11 +53,17 @@
     "weight" : 1,
     "visible": true
   },
-  "wheel_points" : {
+  "wheel_score" : {
     "points" : 1,
     "alias" : "Control Panel",
     "weight" : 1,
     "visible": true
+  },
+  "wheel_rating" : {
+    "points" : 1,
+    "alias" : "Control Panel Rating",
+    "weight" : 1,
+    "visible": false
   },
   "fouls" : {
     "points" : 1,
@@ -75,7 +93,7 @@
     "points" : 1,
     "alias" : "Climb Time",
     "weight" : 1,
-    "visible": true
+    "visible": false
   },
   "climb_attempts" : {
     "points" : 1,
@@ -88,5 +106,17 @@
     "alias" : "Climbs",
     "weight" : 1,
     "visible": true
+  },
+  "balls_collected" : {
+    "points" : 1,
+    "alias" : "Balls Collected",
+    "weight" : 1,
+    "visible": false
+  },
+  "full_cycles" : {
+    "points" : 1,
+    "alias" : "Full Cycles",
+    "weight" : 1,
+    "visible": false
   }
 }
