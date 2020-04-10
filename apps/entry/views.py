@@ -172,7 +172,6 @@ def scout_lead_check(user):
 @user_passes_test(scout_lead_check, login_url='entry:login')
 @login_required(login_url='entry:login')
 def download(request):
-    redirect_field_name = 'entry:login'
     path = 'match_history.csv'
     path = os.path.join(settings.BASE_DIR, path)
     update_csv()
