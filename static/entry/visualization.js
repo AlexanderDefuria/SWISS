@@ -116,7 +116,7 @@ function updateGraph() {
             });
 
             varChart.series.push({
-                name: field,
+                name: fieldData[field]["alias"],
                 data: data
             })
 
