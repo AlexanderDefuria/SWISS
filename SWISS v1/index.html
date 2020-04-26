@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SWISS Home</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="colorsheet.css">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<meta name="theme-color" content="0F4D8D">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
+
+<body>
+	<div class="topbar">
+		<div class="hamburgerButton" onClick="openNav()">
+			<button class="hamburgerButton" onClick="openNav()">☰</button>
+		</div>
+		<div class="swissLogo" id="swissLogo">
+			<a href="index.html">
+			<img src="img/Swiss Icon@2x.png" alt="SWISS Logo">
+			</a>
+		</div>
+	</div>
+	<div id="sideNav" class="sidebar">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		<a href="index.html">Home</a>
+		<a href="matchscout.html">Scout</a>
+		<a href="experimental.html">Labs</a>
+		<a href="settings.html">Settings</a>
+		<a href="about.html">About</a>
+	</div>
+	
+	<div class="bodyContainer" id="bodyContainer">
+		<div class="tileContainer">
+			
+			<a href="matchscout.html">
+				<div class="bigBox">
+					<img src="img/Scout Icon.png" alt="scout icon">
+				</div>
+			</a>		
+			
+			<a href="pitscout.html">
+				<div class="bigBox">
+					<img src="img/Pit Scout Icon.png" alt="scout icon">
+				</div>
+			</a>
+						
+			<a href="glance.html">
+				<div class="wideBox CeltXColor" id="tileglanceBackground">
+					<img src="img/Strategy Icon.png" alt="Strategy icon">
+				</div>
+			</a>
+
+			<a href="#"> 
+				<div class="wideBox OttawaTrashColor">
+					<img src="img/Data Icon.png" alt="Data Icon">
+					<p class="homeText">Data</p>
+				</div>
+			</a>
+			
+			<a href="stats.html"> 
+				<div class="wideBox SimboticsColor">
+					<img src="img/Stats Icon.png" alt="Stats Icon">
+					<p class="homeText">Statistics</p>
+				</div>
+			</a>
+			
+			<a href="experimental.html"> 
+				<div class="bigBox lightblue">
+					<img src="img/Labs Icon.png" alt="Labs Icon">
+				</div>
+			</a>
+			
+			<a href="#">
+				<div class="pictureBox lightblue">
+					<img src="img/Max9-06.JPG" alt="Max9 Example Pic">
+				</div>
+			</a>
+
+			<a href="settings.html">
+				<div class="smallBox greyBox">
+					<img src="img/Settings Icon.png" alt="Settings Icon">
+				</div>
+			</a>
+			
+			<a href="secret.html">
+				<div class="smallBox greyBox">
+					<img src="img/User Icon.png" alt="User Icon">
+				</div>
+			</a>
+		</div>
+	</div>
+
+	
+<script>
+	function openNav() {
+		document.getElementById("sideNav").style.width="250px";
+		document.getElementById("bodyContainer").style.marginLeft="275px";
+		document.getElementById("swissLogo").style.marginLeft="215px";
+	}
+
+	function closeNav() {
+	  document.getElementById("sideNav").style.width = "0";
+	  document.getElementById("bodyContainer").style.marginLeft= "0";
+	  document.getElementById("swissLogo").style.marginLeft= "0";
+	}
+</script>
+</body>
+</html>

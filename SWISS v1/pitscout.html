@@ -1,0 +1,289 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SWISS Pit Scouting</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="colorsheet.css">
+<link rel="stylesheet" type="text/css" href="formstyle.css">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<meta name="theme-color" content="0F4D8D">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
+<body>
+	<div class="topbar">
+		<div class="hamburgerButton" onClick="openNav()">
+			<button class="hamburgerButton" onClick="openNav()">☰</button>
+		</div>
+		<div class="swissLogo" id="swissLogo">
+			<a href="index.html">
+			<img src="img/Swiss Icon@2x.png" alt="SWISS Logo">
+			</a>
+		</div>
+	</div>
+	<div id="sideNav" class="sidebar">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		<a href="index.html">Home</a>
+		<a href="matchscout.html">Scout</a>
+		<a href="experimental.html">Labs</a>
+		<a href="settings.html">Settings</a>
+		<a href="about.html">About</a>
+	</div>
+	<div id="teamDrawer" class="teamDrawer">
+		<div class="teamSelect">
+			<div class="teamnumberPill CoyotesColor"><p>746</p></div>
+			<div class="teamnumberPill SimboticsColor"><p>1114</p></div>
+			<div class="teamnumberPill MaxTechColor"><p>1241</p></div>
+			<div class="teamnumberPill TheoryColor"><p>1285</p></div>
+			<div class="teamnumberPill MaxTechColor"><p>2198</p></div>
+			<div class="teamnumberPill YellowColor"><p>2386</p></div>
+			<div class="teamnumberPill CeltXColor"><p>2405</p></div>
+			<div class="teamnumberPill SimboticsColor"><p>2852</p></div>
+			<div class="teamnumberPill "><p>3560</p></div>
+			<div class="teamnumberPill "><p>3571</p></div>
+			<div class="teamnumberPill DaveColor"><p>3683</p></div>
+			<div class="teamnumberPill DarkRedColor"><p>4308</p></div>
+			<div class="teamnumberPill MaxTechColor"><p>4343</p></div>
+			<div class="teamnumberPill "><p>4519</p></div>
+			<div class="teamnumberPill DarkRedColor"><p>4618</p></div>
+			<div class="teamnumberPill "><p>4902</p></div>
+			<div class="teamnumberPill YellowColor"><p>5024</p></div>
+			<div class="teamnumberPill OdysseyColor"><p>5031</p></div>
+			<div class="teamnumberPill "><p>5032</p></div>
+			<div class="teamnumberPill lightblue"><p>5834</p></div>
+			<div class="teamnumberPill lightblue"><p>6009</p></div>
+			<div class="teamnumberPill "><p>6917</p></div>
+			<div class="teamnumberPill DarkRedColor"><p>6977</p></div>
+			<div class="teamnumberPill DaveColor"><p>6978</p></div>
+			<div class="teamnumberPill DarkRedColor"><p>7174</p></div>
+			<div class="teamnumberPill CoyotesColor"><p>7475</p></div>
+			<div class="teamnumberPill SimboticsColor"><p>7558</p></div>
+			<div class="teamnumberPill YellowColor"><p>7623</p></div>
+			<div class="teamnumberPill DaveColor"><p>7690</p></div>
+		</div>
+		<a href="javascript:void(0)" class="closebtn" onclick="closeTeamDrawer()">×</a>		
+	</div>
+	
+	<div class="bodyContainer bodyBackground scoutImage" id="bodyContainer">
+		<div class="heroContent" id="heroSpace">
+			<div class="stickyChip">
+				<button class="changeTeam" id="changeTeam" onClick="openTeamDrawer()">
+				<div class="teamnumberPill MaxTechColor">
+						<p>4343</p>
+				</div>
+				<div class="teamnamePill">
+						<p>MaxTech</p>
+				</div>
+				</button>
+			</div>
+		</div>
+	<form >
+		<h1>Drivetrain</h1>
+		
+		<div class="formItem">
+			<label for="drivetrain_style">Style of Drivetrain</label>
+			<input type="text" name="drivetrain_style" id="drivetrain_style" placeholder="Drivetrain Style" autocomplete="off" required>
+		</div>
+		<div class="formItem">
+			<label for="drivetrain_wheels">Type of Drive Wheels</label>
+			<input type="text" name="drivetrain_wheels" id="drivetain_wheels" placeholder="Drivetrain Wheels" autocomplete="off" required>
+		</div>
+		<div class="formItem">
+			<label for="drivetrain_motortype">Types of Motors in Drivetrain</label>
+			<input type="text" name="drivetrain_motortype" id="drivetrain_motortype" placeholder="Drivetrain Motors" autocomplete="off" required>
+		</div>
+
+		<div class="formItem">
+			<label for="drivetrain_motorquantity">Number of Motors in Drivetrain</label>
+			<input type="number" min="2" max="20" value="" step="2" required>
+		</div>
+		
+		<h1>Autonomous</h1>
+		<div class="formItem">
+			<label for="auto_route">Has Autonomous Route?</label>			
+			<div>
+				<div class="radioGroup">
+					<label>
+					<input type="radio" name="auto_route" id="auto_route_false" value="false">
+					<span>N</span>
+					</label>
+					<label>
+					<input type="radio" name="auto_route" id="auto_route_true" value="true" checked>
+					<span>Y</span>
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="formItem">
+			<label for="auto_description">Short Description of Autonomous Routes</label>
+			<input type="text" name="auto_description" id="auto_description" placeholder="Auto Route" autocomplete="off" required>
+		</div>
+		<div class="formItem">
+			<label for="auto_scoring">Scoring Goals in Autonomous</label>
+			<select name="auto_scoring" id="auto_scoring" required>
+				<option value="0">No Scoring Ability</option>
+				<option value="1">Low Goal</option>
+				<option value="2">High Goal</option>
+			</select>
+		</div>
+		
+		<h1>Teleoperated</h1>
+		<div class="formItem">
+			<label for="tele_scoring">Scoring Goals in Teleoperated</label>
+			<select name="tele_scoring" id="tele_scoring" required>
+				<option value="0">No Scoring Ability</option>
+				<option value="1">Low Goal</option>
+				<option value="2">High Goal</option>
+			</select>
+		</div>
+		<div class="formItem">
+			<label for="tele_positions">Scoring Locations in Teleoperated</label>
+			<div class="checkboxGroup" required>
+					<input type="checkbox" name="tele_positions" id="tele_positions" value="0">
+					<span>Against Power Port</span>
+				<br>
+					<input type="checkbox" name="tele_positions" id="tele_positions" value="1">
+					<span>Initiation Line Area</span>
+				<br>
+					<input type="checkbox" name="tele_positions" id="tele_positions" value="2">
+					<span>Trench Run</span>
+				<br>
+					<input type="checkbox" name="tele_positions" id="tele_positions" value="3">
+					<span>Behind Control Panel</span>
+				<br>
+			</div>
+		</div>
+		<div class="formItem">
+			<label for="ball_intake">Ball Intake Style</label>
+			<input type="text" name="ball_intake" id="ball_intake" placeholder="Ball Intake" autocomplete="off" required>
+		</div>
+		<div class="formItem">
+			<label for="ball_capacity">Ball Capacity</label>
+			<input type="number" name="ball_capacity" id="ball_capacity" min="0" max="5" value="5" required>
+		</div>
+		<div class="formItem">
+			<label for="shooter_style">Style of Shooter</label>
+			<input type="text" name="shooter_style" id="shooter_style" autocomplete="off" placeholder="Shooter Style" required>
+		</div>
+		<div class="formItem">
+			<label for="low_bot">Can drive under the control panel</label>
+			<div class="checkboxGroup">
+				<div class="radioGroup">
+					<label>
+						<input type="radio" name="low_bot" id="low_bot" value="0" checked>
+						<span>N</span>
+					</label>
+					<label>
+						<input type="radio" name="low_bot" id="low_bot" value="1">
+						<span>Y</span>
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="formItem">
+			<label for="wheel_manipulator">Control Panel Manipulator</label>
+			<div class="radioGroup">
+				<label>
+					<input type="radio" name="wheel_manipulator" id="wheel_manipulator" value="False" checked>
+					<span>N</span>
+				</label>
+				<label>
+					<input type="radio" name="wheel_manipulator" id="wheel_manipulator" value="True">
+					<span>Y</span>
+				</label>
+
+			</div>
+		</div>
+		
+		
+		<h1>Endgame</h1>
+		<div class="formItem">
+			<label for="climb_locations">Climbing Locations</label>
+			<select name="climb_locations" id="climb_locations" required>
+				<option valie="0">No Climb</option>
+				<option vlaue="1">Center Only</option>
+				<option value="2">Side Only</option>
+				<option value="3">Anywhere on Bar</option>
+			</select>
+		</div>
+		<div class="formItem">
+			<label for="climb_buddy">Buddy Climb?</label>
+				<div class="radioGroup">
+					<label>
+						<input type="radio" name="climb_buddy" id="climb_buddy_false" value="False" checked>
+						<span>N</span>
+					</label>
+					<label>
+						<input type="radio" name="climb_buddy" id="climb_buddy_true" value="True">
+						<span>Y</span>
+					</label>
+				</div>
+		</div>
+		<div class="formItem">
+			<label for="climb_balance">Balancing Mechanism</label>
+				<div class="radioGroup">
+					<label>
+						<input type="radio" name="climb_balance" id="climb_balance_false" value="False" checked>
+						<span>N</span>
+					</label>
+					<label>
+						<input type="radio" name="climb_balance" id="climb_balance_true" value="True">
+						<span>Y</span>
+					</label>
+				</div>
+		</div>
+		<div class="formItem">
+			<label for="weight">Robot Weight</label>
+			<input type="number" name="weight" id="weight" min="0" max="150" autocomplete="off" placeholder="lbs" required>
+		</div>
+		<div class="formItem">
+			<label for="scouter_name">Scouter's Name</label>
+			<input type="text" name="scouter_name" id="scouter_name" placeholder="Scouter Name" required>
+		</div>
+		<div class="formItem">
+			<label>All done?</label>
+			<input type="submit">
+		</div>
+		
+	</form>
+	</div>
+
+
+<script>
+	function incrementValue(id) {
+		console.log(id)
+		var value = parseInt(document.getElementById(id).value, 10);
+		value = isNaN(value) ? 0 : value;
+		value++;
+		document.getElementById(id).value = value;
+	}
+
+	function decrementValue(id) {
+		console.log(id)
+		var value = parseInt(document.getElementById(id).value, 10);
+		value = isNaN(value) ? 0 : value;
+		value--;
+		document.getElementById(id).value = value;
+	}
+	function openNav() {
+		document.getElementById("sideNav").style.width="250px";
+		document.getElementById("bodyContainer").style.marginLeft="275px";
+		document.getElementById("swissLogo").style.marginLeft="215px";
+	}
+	function closeNav() {
+	  document.getElementById("sideNav").style.width = "0";
+	  document.getElementById("bodyContainer").style.marginLeft= "25px";
+	  document.getElementById("swissLogo").style.marginLeft= "0";
+	}
+	function openTeamDrawer() {
+		document.getElementById("teamDrawer").style.height="100%";
+	}
+	function closeTeamDrawer() {
+	  document.getElementById("teamDrawer").style.height = "0";
+	}
+</script>
+</body>
+</html>
