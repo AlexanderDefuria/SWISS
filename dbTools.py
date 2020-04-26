@@ -1,6 +1,8 @@
 import sqlite3
+import os
 
 present_team_list = None
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 def team_id_lookup(team_number):
@@ -9,7 +11,7 @@ def team_id_lookup(team_number):
     :type team_number: int
     :return: Team ID within the DB
     """
-    conn = sqlite3.connect("db.sqlite3")
+    conn = sqlite3.connect(str(os.path.join(BASE_DIR, "db.sqlite3")))
     c = conn.cursor()
     c.execute("SELECT id FROM entry_team WHERE number==?", (team_number,))
     team_id = c.fetchone()[0]
@@ -26,7 +28,7 @@ def get_event_teams(event_key):
     """
     global present_team_list
 
-    conn = sqlite3.connect("db.sqlite3")
+    conn = sqlite3.connect(str(os.path.join(BASE_DIR, "db.sqlite3")))
 
     match_list = []
     team_list = [0]
@@ -55,7 +57,7 @@ def update_event_teams(event_key):
 
 
 def event_id_lookup(FIRST_key):
-    conn = sqlite3.connect("db.sqlite3")
+    conn = sqlite3.connect(str(os.path.join(BASE_DIR, "db.sqlite3")))
     c = conn.cursor()
     try:
         return c.execute('SELECT id FROM entry_event WHERE FIRST_key==?', (FIRST_key,)).fetchone()[0]
@@ -64,7 +66,7 @@ def event_id_lookup(FIRST_key):
 
 
 def event_key_lookup(event_id):
-    conn = sqlite3.connect("db.sqlite3")
+    conn = sqlite3.connect(str(os.path.join(BASE_DIR, "db.sqlite3")))
     c = conn.cursor()
     try:
         return c.execute('SELECT FIRST_key FROM entry_event WHERE id==?', (event_id,)).fetchone()[0]
