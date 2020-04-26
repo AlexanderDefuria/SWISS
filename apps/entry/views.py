@@ -1,6 +1,10 @@
 import base64
 import csv
+import json
 import os
+import sqlite3
+
+from apps import config
 import dbTools
 
 from datetime import datetime
@@ -66,57 +70,29 @@ def write_auto(request, pk):
 def view_matches(request):
     if request.method == 'GET':
         print("POSTED")
-    return HttpResponseRedirect(reverse_lazy('visualize'))
+    return HttpResponseRedirect(reverse_lazy('entry:visualize'))
 
 
 @ajax
 @csrf_exempt
 @login_required(login_url='entry:login')
 def update_graph(request):
-    data = decode_ajax(request)
-    teams = request.POST.getlist('team_list')[0].split(",")
-    req_fields = request.POST.getlist('field_list')[0].split(",")
-
-    if teams == [''] or data == ['']:
-        print('No Team Selection \n')
-        return HttpResponseRedirect(reverse_lazy('entry:visualize'))
-
-    default_out = Match.objects.all()[0].__dict__
-    data_out = {}
-
-    single_items = ['team_number']
-    ignored_items = ['_state', 'initial_comments', 'game_comments', 'id', 'event_id', 'team_id', 'match_number']
-
-    for item in ignored_items:
-        default_out.__delitem__(item)
-
-    for item in default_out.copy():
-        if not req_fields.__contains__(item):
-            default_out.__delitem__(item)
-
-    for field in default_out:
-        default_out[field] = Match._meta.get_field(field).default
-
-    for team in teams:
-        # TODO Total the values from each field per team and package the totals into a json under each team id or number
-        matches = Match.objects.filter(team_id=team)
-        team_data = default_out.copy()
-
-        for match in matches:
-            for field in match.__dict__:
-                if team_data.__contains__(field):
-                    if not (single_items.__contains__(field) and team_data[field] == default_out[field]):
-                        team_data[field] += int(match.__dict__[field])
-
-        data_out.__setitem__(str(Team.objects.filter(id=team)[0].number), team_data)
-
-    print(data_out)
+    graph_type = request.POST.getlist('graphType')[0]
 
     try:
-        return HttpResponse(dumps(data_out), content_type="application/json")
+        output = graph(graph_type, request)
+        if output == "lazy":
+            return HttpResponseRedirect(reverse_lazy('entry:visualize'))
+        print(output)
+        response = HttpResponse(dumps(output), content_type="application/json")
+        return response
     except IOError:
         print("Image not found")
         return Http404
+    except NoTeamsProvided:
+        return NoTeamsProvided
+    except NoFieldsProvided:
+        return NoFieldsProvided
 
 
 @ajax
@@ -159,7 +135,6 @@ def validate_match(request, pk):
     return HttpResponse(dumps(result), content_type="application/json")
 
 
-@login_required(login_url='entry:login')
 def decode_ajax(request):
     return dict(QueryDict(request.body.decode()))
 

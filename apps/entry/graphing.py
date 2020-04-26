@@ -1,130 +1,68 @@
-import json
-import sqlite3
+from django.http import QueryDict
 
-import matplotlib.pyplot as plt
-import pandas as pd
-from apps import config
-# Have to use this method to import from 'FRC-Scouting" because a module cannot be hyphenated.
-import importlib
-settings = importlib.import_module("FRC-Scouting.settings")
+from apps.entry.models import Match, Team
+from apps.entry.errors import *
 
 
-def create_teams_graph(form_data):
-    team_list = []
-    data_needed = []
-    to_pop = []
-    for x in form_data:
-        form_data[x] = form_data[x][0]
-        if form_data[x] == 'NaN' or form_data[x] == 'false':
-            to_pop.append(x)
-        elif 'team' in x:
-            team_list.append(form_data[x])
+def graph(graph_type, request):
+    teams = request.POST.getlist('team_list')[0].split(",")
+    req_fields = request.POST.getlist('field_list')[0].split(",")
 
-        elif 'type' not in x:
-            data_needed.append(x)
+    if teams == ['']:
+        print('No Team Selection \n')
+        raise NoTeamsProvided
 
-    for x in to_pop:
-        form_data.pop(x)
+    output = {
+        "bar": bar_graph(req_fields, teams),
+        "overall": overall_graph(req_fields, teams),
+    }
 
-    try:
-        df = pd.DataFrame(get_data_from_db(data_needed, team_list))
+    print(graph_type)
 
-        df.rename(columns={'total_hatch': 'TOTAL'}, inplace=True)
-
-        print("\nDataFrame:\n" + str(df))
-
-        fig = df.plot(kind='bar', rot=-20).get_figure()
-        fig.dpi = 400
-        fig.savefig(str(settings.BASE_DIR) + "/media/dynamic_plot.png")
-    except TypeError:
-        print("\nEmpty Dataframe...")
-        img = plt.imread(str(settings.BASE_DIR) + "/media/blank_plot.png")
-        plt.imsave(str(settings.BASE_DIR) + "/media/dynamic_plot.png", img)
-
-    print("")
-    return
+    return output[graph_type]
 
 
-def get_data_from_db(data_needed, team_list):
-    conn = sqlite3.connect("db.sqlite3")
-    c = conn.cursor()
+def overall_graph(req_fields, teams):
+    return return_home()
 
-    aliases = {}
-    socring_path = str(settings.BASE_DIR) + '/scoring.json'
-    with open(socring_path, 'r') as myfile:
-        data = myfile.read()
-        aliases = json.loads(data)
 
-    compiled = {}
-    compiled_dict = dict.fromkeys(team_list)
+def bar_graph(req_fields, teams):
+    default_out = Match.objects.all()[0].__dict__
+    data_out = {}
 
-    for team in team_list:
-        c.execute("SELECT id FROM entry_team WHERE number=?", (int(team),))
-        team_id = c.fetchone()[0]
+    single_items = ['team_number']
+    ignored_items = ['_state', 'initial_comments', 'game_comments', 'id', 'event_id', 'team_id', 'match_number']
 
-        for data_field in data_needed:
+    for item in ignored_items:
+        default_out.__delitem__(item)
 
-            # Skip over wins for now
-            if 'win' in data_field:
-                continue
-            # Combine all the field values for totals
-            if 'total' in data_field:
-                if 'hatch' in data_field:
-                    gamepeice = "hatch"
-                elif 'cargo' in data_field:
-                    gamepeice = "cargo"
-                else:
-                    continue
+    for item in default_out.copy():
+        if not req_fields.__contains__(item):
+            default_out.__delitem__(item)
 
-                totalValue = 0
+    for field in default_out:
+        default_out[field] = Match._meta.get_field(field).default
 
-                # Get values from the first_gampeice from each match in record for the team at the event
-                c.execute("SELECT %s FROM entry_match WHERE team_id=? AND event_id=?" % ("first_" + gamepeice),
-                          (team_id, config.current_event_id))
-                result = c.fetchall()
-                # by match add the value to the total
-                for match in result:
-                    totalValue += int(str(match[0]))
+    for team in teams:
+        # TODO Total the values from each field per team and package the totals into a json under each team id or number
+        matches = Match.objects.filter(team_id=team)
+        team_data = default_out.copy()
 
-                c.execute("SELECT %s FROM entry_match WHERE team_id=? AND event_id=?" % ("second_" + gamepeice),
-                          (team_id, config.current_event_id))
-                result = c.fetchall()
-                for match in result:
-                    totalValue += int(str(match[0]))
+        for match in matches:
+            for field in match.__dict__:
+                if team_data.__contains__(field):
+                    if not (single_items.__contains__(field) and team_data[field] == default_out[field]):
+                        team_data[field] += int(match.__dict__[field])
 
-                c.execute("SELECT %s FROM entry_match WHERE team_id=? AND event_id=?" % ("third_" + gamepeice),
-                          (team_id, config.current_event_id))
-                result = c.fetchall()
-                for match in result:
-                    totalValue += int(str(match[0]))
+        data_out.__setitem__(str(Team.objects.filter(id=team)[0].number), team_data)
 
-                c.execute("SELECT %s FROM entry_match WHERE team_id=? AND event_id=?" % ("ship_" + gamepeice),
-                          (team_id, config.current_event_id))
-                result = c.fetchall()
-                for match in result:
-                    totalValue += int(str(match[0]))
+    print(data_out)
+    return data_out
 
-                print(gamepeice + " TOTAL VALUE:  " + str(totalValue))
 
-                compiled[aliases[data_field]["alias"]] = totalValue
-                continue
+def decode_ajax(request):
+    return dict(QueryDict(request.body.decode()))
 
-            # Regular fields
-            # Data fields for each match
-            print("data_field:  " + data_field)
-            c.execute("SELECT %s FROM entry_match WHERE team_id=? AND event_id=?" % data_field,
-                      (team_id, config.current_event_id))
-            each_match = c.fetchall()
 
-            for item in each_match:
-                print("Compiled  " + str(compiled))
-                try:
-                    compiled[aliases[data_field]["alias"]] += item[0]
-                except KeyError:
-                    compiled[aliases[data_field]["alias"]] = item[0]
-
-        compiled_dict[team] = compiled
-
-    print(compiled_dict)
-
-    return compiled_dict
+def return_home():
+    return 'lazy'

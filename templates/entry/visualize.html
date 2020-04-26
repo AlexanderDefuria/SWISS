@@ -33,9 +33,14 @@
                             <input name="teamCheckBox" type="checkbox" id="{{ team.id }}" value="{{ team.name }}">
                         </div>
                     {% endfor %}
+                    <button id="selectAllTeams" onclick="selectAllTeams(id)" >All Teams</button>
 
-                    <button onclick="fields()" > Update Fields</button>
-                    <button id="selectAllTeams" onclick="selectAllTeams(id)" style="position: absolute; bottom: 0px; right: 0%">All Teams</button>
+                    <select id="graphType" name="graphType">
+                        <option value="bar">Simple Bar</option>
+                        <option value="alliance">Alliance Analysis</option>
+                        <option value="detail">Detailed Break Down</option>
+                        <option value="overall">Overall Scoring Analysis</option>
+                    </select>
                 </div>
                 <div id="mainBox" class="dragDropBox">
                     <p>Available Fields</p>

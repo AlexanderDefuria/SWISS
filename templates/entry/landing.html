@@ -20,7 +20,12 @@
         </div>
     </div>
     <div class="container">
-        <button class="left" onclick="location.href='{% url 'entry:schedule' %}'" id="myButton">View Schedule</button>
+        <div class="left">
+            <div class="container">
+                <button class="left" onclick="location.href='{% url 'entry:schedule' %}'" id="myButton">View Schedule</button>
+                <button class="right" onclick="location.href='{% url 'entry:schedule' %}'" id="myButton">View Schedule</button>
+            </div>
+        </div>
         <div class="right">
             <div class="container">
                 <button class="right" onclick="location.href='{% url 'entry:image_viewer' %}'" id="myButton" >View Robot Images</button>

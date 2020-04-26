@@ -83,8 +83,10 @@ function updateGraph() {
     let formData = new FormData();
     formData.append('field_list', fieldList);
     formData.append('team_list', teamList);
+    formData.append('graphType', document.getElementById("graphType").value)
 
     let returnData = {};
+
 
     $.ajax({
         url: 'update/',
