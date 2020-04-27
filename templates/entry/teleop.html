@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" href="{% static "entry/entry.css" %}">
 <script type="text/javascript" src="{% static 'entry/entry.js' %}"></script>
-<link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}"/>
+<link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}{% static 'favicon.png' %}"/>
 
 
 <h1 class="title">{{ team.name }} - {{ team.number }}</h1>
@@ -19,7 +19,7 @@
             <button id="defense_time-toggle"  type="button"  onClick="toggleTimer('defense_time')" class="timer">Start Defense Timer</button>
             <input id="defense_time" class="number-form" type="hidden" name="defense_time" min="0" max="135000" default="0">
 
-            <img src="{% static "Rocket.png" %}" alt="Red Rocket" class="right img">
+            <img src="{{ MEDIA_URL }}{% static "Rocket.png" %}" alt="Red Rocket" class="right img">
 
         </div>
 
@@ -105,7 +105,7 @@
             </div>
             <br>
 
-            <img src="{% static "CargoShip.png" %}" alt="Red CargoShip" class="img">
+            <img src="{{ MEDIA_URL }}{% static "CargoShip.png" %}" alt="Red CargoShip" class="img">
 
             <br>
 

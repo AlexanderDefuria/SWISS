@@ -1,9 +1,8 @@
 {% load static %}
-
 <script src="{% static 'entry/jquery.min.js' %}" type="text/javascript"></script>
 <link rel="stylesheet" href="{% static "entry/entry.css" %}">
 <script type="text/javascript" src="{% static 'entry/entry.js' %}"></script>
-<link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}"/>
+<link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}{% static 'favicon.png' %}"/>
 
 <h1 class="title">{{ team.name }} - {{ team.number }}</h1>
 
@@ -27,7 +26,7 @@
 
 
         <div class="right">
-            <img src="{% static "Rocket.png" %}" alt="Red Rocket" class="img">
+            <img src="{{ MEDIA_URL }}{% static "Rocket.png" %}" alt="Red Rocket" class="img">
         </div>
 
 
@@ -113,7 +112,7 @@
             </div>
             <br>
 
-            <img src="{% static "CargoShip.png" %}" alt="Red CargoShip" class="img">
+            <img src="{{ MEDIA_URL }}{% static "CargoShip.png" %}" alt="Red CargoShip" class="img">
 
         </div>
 
