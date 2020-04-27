@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SWISS Teams</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="colorsheet.css">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<meta name="theme-color" content="0F4D8D">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
+
+<body>
+	<div class="topbar">
+		<div class="hamburgerButton" onClick="openNav()">
+			<button class="hamburgerButton" onClick="openNav()">☰</button>
+		</div>
+		<div class="swissLogo" id="swissLogo">
+			<a href="index.html">
+			<img src="img/Swiss Icon@2x.png" alt="SWISS Logo">
+			</a>
+		</div>
+	</div>
+	<div id="sideNav" class="sidebar">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		<a href="index.html">Home</a>
+		<a href="matchscout.html">Scout</a>
+		<a href="experimental.html">Labs</a>
+		<a href="settings.html">Settings</a>
+		<a href="about.html">About</a>
+	</div>
+
+	<div class="bodyContainer bodyBackground teamsImage" id="bodyContainer">
+		<div class="heroContent">
+			<p class="homeText">Teams</p>
+		</div>
+		<div class="tileContainer">
+			<div class="teamChip">
+				<img class="robotPhoto" src="robot/sims.jpg" alt="dave photo">
+				<div class="teamnumberPill SimboticsColor"><p>1114</p></div>
+				<div class="teamnamePill"><p>Simbotics</p></div>
+			</div>
+			<div class="teamChip">
+				<img class="robotPhoto" src="robot/dave.jpg" alt="dave photo">
+				<div class="teamnumberPill DaveColor"><p>3683</p></div>
+				<div class="teamnamePill"><p>Team DAVE</p></div>
+			</div>
+			<div class="teamChip">
+				<img class="robotPhoto" src="robot/max.JPG" alt="dave photo">
+				<div class="teamnumberPill MaxTechColor"><p>4343</p></div>
+				<div class="teamnamePill"><p>MaxTech</p></div>
+			</div>
+			<div class="teamChip">
+				<img class="robotPhoto" src="robot/R3P2.jpg" alt="dave photo">
+				<div class="teamnumberPill MaxTechColor"><p>5834</p></div>
+				<div class="teamnamePill"><p>R3P2</p></div>
+			</div>
+			<div class="teamChip">
+				<img class="robotPhoto" src="robot/quickstrike.jpg" alt="dave photo">
+				<div class="teamnumberPill CeltXColor"><p>6978</p></div>
+				<div class="teamnamePill"><p>QuickStrike Niagara</p></div>
+			</div>			
+			<div class="teamChip">
+				<img class="robotPhoto" src="robot/alt.jpg" alt="dave photo">
+				<div class="teamnumberPill DarkRedColor"><p>7558</p></div>
+				<div class="teamnamePill"><p>Alt-F4</p></div>
+			</div>
+		</div>
+	</div>
+	
+<script>
+		function openNav() {
+		document.getElementById("sideNav").style.width="250px";
+		document.getElementById("bodyContainer").style.marginLeft="275px";
+		document.getElementById("swissLogo").style.marginLeft="215px";
+	}
+
+	function closeNav() {
+	  document.getElementById("sideNav").style.width = "0";
+	  document.getElementById("bodyContainer").style.marginLeft= "0";
+	  document.getElementById("swissLogo").style.marginLeft= "0";
+	}
+</script>
+</body>
+</html>

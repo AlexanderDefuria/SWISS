@@ -1,0 +1,313 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Team # at a Glance</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="colorsheet.css">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+<meta name="theme-color" content="0F4D8D">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
+
+<body>
+	<div class="topbar">
+		<div class="hamburgerButton">
+			<button class="hamburgerButton" onClick="openNav()">☰</button>
+		</div>
+		<div class="swissLogo" id="swissLogo">
+			<a href="index.html">
+			<img src="img/Swiss Icon@2x.png" alt="SWISS Logo">
+			</a>
+		</div>
+	</div>
+	<div id="sideNav" class="sidebar">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		<a href="index.html">Home</a>
+		<a href="matchscout.html">Scout</a>
+		<a href="experimental.html">Labs</a>
+		<a href="settings.html">Settings</a>
+		<a href="about.html">About</a>
+	</div>
+	<div id="teamDrawer" class="teamDrawer">
+		<div class="teamSelect">
+			<div class="teamnumberPill CoyotesColor"><p>746</p></div>
+			<div class="teamnumberPill SimboticsColor"><p>1114</p></div>
+			<div class="teamnumberPill MaxTechColor"><p>1241</p></div>
+			<div class="teamnumberPill TheoryColor"><p>1285</p></div>
+			<div class="teamnumberPill MaxTechColor"><p>2198</p></div>
+			<div class="teamnumberPill YellowColor"><p>2386</p></div>
+			<div class="teamnumberPill CeltXColor"><p>2405</p></div>
+			<div class="teamnumberPill SimboticsColor"><p>2852</p></div>
+			<div class="teamnumberPill "><p>3560</p></div>
+			<div class="teamnumberPill "><p>3571</p></div>
+			<div class="teamnumberPill DaveColor"><p>3683</p></div>
+			<div class="teamnumberPill DarkRedColor"><p>4308</p></div>
+			<div class="teamnumberPill MaxTechColor"><p>4343</p></div>
+			<div class="teamnumberPill "><p>4519</p></div>
+			<div class="teamnumberPill DarkRedColor"><p>4618</p></div>
+			<div class="teamnumberPill "><p>4902</p></div>
+			<div class="teamnumberPill YellowColor"><p>5024</p></div>
+			<div class="teamnumberPill OdysseyColor"><p>5031</p></div>
+			<div class="teamnumberPill "><p>5032</p></div>
+			<div class="teamnumberPill lightblue"><p>5834</p></div>
+			<div class="teamnumberPill lightblue"><p>6009</p></div>
+			<div class="teamnumberPill "><p>6917</p></div>
+			<div class="teamnumberPill DarkRedColor"><p>6977</p></div>
+			<div class="teamnumberPill DaveColor"><p>6978</p></div>
+			<div class="teamnumberPill DarkRedColor"><p>7174</p></div>
+			<div class="teamnumberPill CoyotesColor"><p>7475</p></div>
+			<div class="teamnumberPill SimboticsColor"><p>7558</p></div>
+			<div class="teamnumberPill YellowColor"><p>7623</p></div>
+			<div class="teamnumberPill DaveColor"><p>7690</p></div>
+		</div>
+		<a href="javascript:void(0)" class="closebtn" onclick="closeTeamDrawer()">×</a>		
+	</div>
+	
+	
+	
+	<div class="bodyContainer bodyBackground glanceImage" id="bodyContainer">
+		<div class="heroContent" id="heroSpace">
+			<div class="stickyChip">
+				<button class="changeTeam" id="changeTeam" onClick="openTeamDrawer()">
+				<div class="teamnumberPill DaveColor">
+						<p>3683</p>
+				</div>
+				<div class="teamnamePill">
+						<p>Team Dave</p>
+				</div>
+				</button>
+			</div>
+		</div>
+
+		<div class="infotileContainer" style="justify-content: flex-start">
+			
+			
+			<div class="infoBox infoWide">
+				<div class="infoHeader">
+					<div class="teamnumberPill DaveColor"><p>3683</p></div>
+					<h1>Team Dave</h1>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Shooter Style</p></div>
+					<div class="infoRColumn"><p>Fixed Flywheel</p></div>
+				</div>				
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Can Climb?</p></div>
+					<div class="infoRColumn"><p>Yes</p></div>
+				</div>				
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Shooting Locations</p></div>
+					<div class="infoRColumn">
+						<p>Initiation Line</p>
+						<p>Trench Run</p>
+					</div>
+				</div>
+			</div>
+			<div class="pictureBox">
+					<img src="img/dave.jpg" alt="robot photo">
+			</div>
+			<div class="graphBoxWide">
+				<div id="avg_balls" style="height: 300px; width:auto">
+					<script>
+						document.addEventListener('DOMContentLoaded', function () {
+								var myChart = Highcharts.chart('avg_balls', {
+									chart: {
+										backgroundColor: '#0F4D8D',
+										type: 'bar',
+										style: {
+											color: '#ffffff'
+										}
+									},
+									title: {
+										text: 'Average Balls Scored Per Match',
+										style: {
+											color: '#ffffff'
+										}
+									},
+									xAxis: {
+										categories: ['Auto', 'Teleop'],
+										labels: {
+											style: {
+												color: '#ffffff'
+										}
+										}
+									},
+									yAxis: {
+										title: {
+											text: 'Balls Scored',
+											style: {
+												color: '#ffffff'
+											}
+										},
+										labels: {
+											style: {
+												color: '#ffffff'
+										}
+										}
+									},
+									series: [{
+										name: 'Lower',
+										data: [0, 0]
+									}, {
+										name: 'Outer',
+										data: [3, 20]
+									}, {
+										name: 'Inner',
+										data: [2, 5,]
+									}]
+								});
+							});
+					</script>
+				</div>		
+			</div>
+			<div class="graphBoxWide">
+				<div id="line" style="height: 300px; width: inherit">
+					<script>
+							Highcharts.chart('line', {
+							
+								chart: {
+									backgroundColor: '#dddddd'
+								},
+
+							  title: {
+								text: 'Total Balls Scored Over Comp'
+							  },
+
+							  plotOptions: {
+								series: {
+								  label: {
+									connectorAllowed: true
+								  },
+								  pointStart: 1
+								}
+							  },
+
+							  series: [{
+								name: 'Balls Scored',
+								data: [10, 15, 20, 17, 25, 10, 13, 22]
+							  }],
+
+							  responsive: {
+								rules: [{
+								  condition: {
+									maxWidth: 500
+								  },
+								  chartOptions: {
+									legend: {
+									  layout: 'horizontal',
+									  align: 'center',
+									  verticalAlign: 'bottom'
+									}
+								  }
+								}]
+							  }
+
+							});
+					</script>
+				</div>
+			</div>
+			<div class="infoBox infoReg">
+				<div class="infoHeader">
+					<img style="height: 7vh; padding: 10px;" src="img/Flag Icon.png" alt="flag">
+					<h1>Fouls &amp; Cards</h1>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn">
+					<p>Offense Fouls</p>
+					</div>
+					<div class="infoLColumn">
+					<p>Rare</p>
+					</div>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn">
+					<p>Defense Fouls</p>
+					</div>
+					<div class="infoLColumn SimboticsColor">
+					<p>REPEATED</p>
+					</div>
+				</div>				
+				<div class="infoRow">
+					<div class="infoLColumn">
+					<p>Human Fouls</p>
+					</div>
+					<div class="infoLColumn">
+					<p>None</p>
+					</div>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn">
+					<p>Yellow Cards</p>
+					</div>
+					<div class="infoLColumn YellowColor">
+					<p>Step Over Gate</p>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox infoReg">
+				<div class="infoHeader">
+					<img style="height: 7vh; padding: 10px;" src="img/Defense Icon.png" alt="Defense Icon">
+					<h1>Defense</h1>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Played Defense</p></div>
+					<div class="infoLColumn"><p>Rare</p></div>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Avg. Quality</p></div>
+					<div class="infoLColumn"><p>3 - Good</p></div>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Push Ability</p></div>
+					<div class="infoLColumn"><p>Yes</p></div>
+				</div>
+			</div>
+			<div class="infoBox infoReg">
+				<div class="infoHeader">
+					<img style="height: 7vh; padding: 10px;" src="img/Generic Power Port.png" alt="Power Port">
+					<h1>Total Balls Scored</h1>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Low Goal</p></div>
+					<div class="infoLColumn"><p>0 Power Cells</p></div>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Outer Goal</p></div>
+					<div class="infoLColumn"><p>100 Power Cells</p></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+	
+	
+<script>
+	function openNav() {
+		document.getElementById("sideNav").style.width="250px";
+		document.getElementById("bodyContainer").style.marginLeft="275px";
+		document.getElementById("swissLogo").style.marginLeft="215px";
+	}
+
+	function closeNav() {
+	  document.getElementById("sideNav").style.width = "0";
+	  document.getElementById("bodyContainer").style.marginLeft= "25px";
+	  document.getElementById("swissLogo").style.marginLeft= "0";
+	}	
+	function openTeamDrawer() {
+		document.getElementById("teamDrawer").style.height="100%";
+	}
+	function closeTeamDrawer() {
+	  document.getElementById("teamDrawer").style.height = "0";
+	}
+</script>
+</body>
+</html>

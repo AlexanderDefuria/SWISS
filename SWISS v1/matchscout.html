@@ -1,0 +1,383 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SWISS Match Scouting</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="colorsheet.css">
+<link rel="stylesheet" type="text/css" href="formstyle.css">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<meta name="theme-color" content="0F4D8D">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
+<body>
+	<div class="topbar">
+		<div class="hamburgerButton" onClick="openNav()">
+			<button class="hamburgerButton" onClick="openNav()">☰</button>
+		</div>
+		<div class="swissLogo" id="swissLogo">
+			<a href="index.html">
+			<img src="img/Swiss Icon@2x.png" alt="SWISS Logo">
+			</a>
+		</div>
+	</div>
+	<div id="sideNav" class="sidebar">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		<a href="index.html">Home</a>
+		<a href="matchscout.html">Scout</a>
+		<a href="experimental.html">Labs</a>
+		<a href="settings.html">Settings</a>
+		<a href="about.html">About</a>
+	</div>
+	<div id="teamDrawer" class="teamDrawer">
+		<div class="teamSelect">
+			<div class="teamnumberPill CoyotesColor"><p>746</p></div>
+			<div class="teamnumberPill SimboticsColor"><p>1114</p></div>
+			<div class="teamnumberPill MaxTechColor"><p>1241</p></div>
+			<div class="teamnumberPill TheoryColor"><p>1285</p></div>
+			<div class="teamnumberPill MaxTechColor"><p>2198</p></div>
+			<div class="teamnumberPill YellowColor"><p>2386</p></div>
+			<div class="teamnumberPill CeltXColor"><p>2405</p></div>
+			<div class="teamnumberPill SimboticsColor"><p>2852</p></div>
+			<div class="teamnumberPill "><p>3560</p></div>
+			<div class="teamnumberPill "><p>3571</p></div>
+			<div class="teamnumberPill DaveColor"><p>3683</p></div>
+			<div class="teamnumberPill DarkRedColor"><p>4308</p></div>
+			<div class="teamnumberPill MaxTechColor"><p>4343</p></div>
+			<div class="teamnumberPill "><p>4519</p></div>
+			<div class="teamnumberPill DarkRedColor"><p>4618</p></div>
+			<div class="teamnumberPill "><p>4902</p></div>
+			<div class="teamnumberPill YellowColor"><p>5024</p></div>
+			<div class="teamnumberPill OdysseyColor"><p>5031</p></div>
+			<div class="teamnumberPill "><p>5032</p></div>
+			<div class="teamnumberPill lightblue"><p>5834</p></div>
+			<div class="teamnumberPill lightblue"><p>6009</p></div>
+			<div class="teamnumberPill "><p>6917</p></div>
+			<div class="teamnumberPill DarkRedColor"><p>6977</p></div>
+			<div class="teamnumberPill DaveColor"><p>6978</p></div>
+			<div class="teamnumberPill DarkRedColor"><p>7174</p></div>
+			<div class="teamnumberPill CoyotesColor"><p>7475</p></div>
+			<div class="teamnumberPill SimboticsColor"><p>7558</p></div>
+			<div class="teamnumberPill YellowColor"><p>7623</p></div>
+			<div class="teamnumberPill DaveColor"><p>7690</p></div>
+		</div>
+		<a href="javascript:void(0)" class="closebtn" onclick="closeTeamDrawer()">×</a>		
+	</div>
+	
+	<div class="bodyContainer bodyBackground matchImage" id="bodyContainer">
+		<div class="heroContent" id="heroSpace">
+			<div class="stickyChip">
+				<button class="changeTeam" id="changeTeam" onClick="openTeamDrawer()">
+				<div class="teamnumberPill MaxTechColor">
+						<p>4343</p>
+				</div>
+				<div class="teamnamePill">
+						<p>MaxTech</p>
+				</div>
+				</button>
+			</div>
+		</div>
+	<div>
+		<form target="_blank" action="index.html">
+			<div class="formHeader">
+				<h1>PRE-MATCH</h1>
+			</div>
+			<div class="formItem">
+				<label for="on_field">Is Robot Present?</label>
+				<div class="radioGroup">
+					<label>
+						<input type="radio" id="on_field_true" name="on_field" value="true" checked>
+						<span>Y</span>
+					</label>
+					<label>
+						<input type="radio" id="on_field_false" name="on_field" value="false">
+						<span>N</span>
+					</label>
+				</div>
+			</div>
+			<div class="formItem">
+				<label for="auto_start">Starting Position</label>
+				<div class="right">
+					<div>
+					<input type="range" name="auto_start" id="auto_start" min="0" max="20" value="14" oninput="auto_start_number.value=auto_start.value">
+					</div>
+					<div>
+					<img id="auto_start_img" src="img/Initiation Line.png" alt="Initiation Line Graph">
+					</div>
+					<div style="text-align: center">
+					<output name="auto_start_number" id="auto_start_number" for="auto_start">14</output>
+					</div>
+				</div>
+			</div>
+			<div class="formItem">
+				<label for="preloaded_balls">Number of Balls Preloaded</label>
+				<div class="ticker">
+					<input type="button" onclick="decrementValue('preloaded_balls')" value="-">
+					<input type="number" name="preloaded_balls" id="preloaded_balls" min="0" max="3" value="3" readonly> 
+					<input type="button" onclick="incrementValue('preloaded_balls')" value="+">
+				</div>
+			</div>
+		
+			<h1 id="aAutonomous">AUTONOMOUS</h1>
+			<div class="formItem">
+				<label for="auto_route">Autonomous Route</label>
+				<select name="auto_route">
+					<option value="0">None</option>
+					<option value="1">Yes, Simple</option>
+					<option vaue="2">Yes, Complex</option>
+				</select>
+			</div>
+		  <div class="formItem">
+				<label for="baseline">Moved off Initiation Line</label>
+				<div class="radioGroup">
+					<label>
+						<input type="radio" id="baseline_true" name="baseline" value="true" checked>
+						<span>Y</span>
+					</label>
+					<label>
+						<input type="radio" id="baseline_false" name="baseline" value="false">
+						<span>N</span>
+					</label>
+				</div>
+			</div>
+		  <div class="formItem">
+				  <label for="autoLowGoal">Power Port Goals</label>
+				<div class="ticker">
+					<img class="goalIcon" src="img/Lower Auto Icon.png" alt="lower">
+					<input type="button"  onclick="decrementValue('lower_auto')" value="-">
+					<input type="number" name="lower_auto" id="lower_auto" min="0" max="100" value="0" readonly>		
+					<input type="button"  onclick="incrementValue('lower_auto')" value="+">
+					<br>
+				  	<img class="goalIcon" src="img/Outer Auto Icon.png" alt="outer">
+					<input type="button" onclick="decrementValue('outer_auto')" value="-">
+					<input name="outer_auto" id="outer_auto" type="number" min="0" max="100" value="0" readonly>
+					<input type="button" onclick="incrementValue('outer_auto')" value="+">
+					<br>
+					<img class="goalIcon" src="img/Inner Auto Icon.png" alt="inner">
+					<input type="button" onclick="decrementValue('inner_auto')" value="-">
+					<input name="inner_auto" id="inner_auto" type="number" min="0" max="100" value="0" readonly>
+					<input type="button" onclick="incrementValue('inner_auto')" value="+">
+				</div>
+		  </div>
+		  <div class="formItem">
+				<label for="auto_comment">Auto Route Notes</label>
+				<input class="right" type="text" name="auto_comment" id="auto_comment" placeholder="Auto Notes">
+		  </div>
+			<h1>TELEOPERATED - OFFENSE</h1>
+			
+			
+			<div class="formItem">			
+				<label>Power Port Goals</label>
+                <div class="ticker">
+					<img class="goalIcon" src="img/Lower Tele Icon.png" alt="lower">
+  					<input type="button" onclick="decrementValue('lower')" value="-">
+					<input id="lower" name="lower" type="number" min="0" max="100" value="0" readonly>
+					<input type="button" onclick="incrementValue('lower')" value="+">
+					<br>
+					<img class="goalIcon" src="img/Outer Tele Icon.png" alt="outer">
+					<input type="button" onclick="decrementValue('outer')" value="-">
+					<input name="outer" id="outer" type="number" min="0" max="100" value="0" readonly>
+					<input type="button" onclick="incrementValue('outer')" value="+">
+					<br>
+					<img class="goalIcon" src="img/Inner Tele Icon.png" alt="inner">
+					<input type="button" onclick="decrementValue('inner')" value="-">
+					<input name="inner" id="inner" type="number" min="0" max="100" value="0" readonly>
+					<input type="button" onclick="incrementValue('inner')" value="+">
+			 	</div>
+		 	 </div>			
+			
+			<div class="formItem">			
+				<label>Missed balls</label>
+                <div class="ticker">
+  					<input type="button" onclick="decrementValue('missed_balls')" value="-">
+					<input id="missed_balls" name="missed_balls" type="number" min="0" max="100" value="0" readonly>
+					<input type="button" onclick="incrementValue('missed_balls')" value="+">
+			 	</div>
+		 	 </div>
+			
+			
+			
+			<div class="formItem">
+				<label for="intakeType">Intake Type</label>
+				<select name="intakeType" id="intakeType">
+					<option value="0">Did not Intake</option>
+					<option value="1">Ground</option>
+					<option value="2">Human</option>
+					<option value="3">Both</option>
+				</select>
+			</div>
+			
+			
+			<div class="formItem">
+				<label for="cycle_style">Cycle Style</label>
+				<div class="checkboxGroup right">
+					<label>
+						No Cycles Made
+						<input type="checkbox" id="noCycles" name="cycleStyle" value="0">
+						<span class="checkmark"></span>
+					</label>
+					<br>
+					<label>
+						Full Field Cycles
+						<input type="checkbox" id="Full Field" name="cycleStyle" value="1">
+						<span class="checkmark"></span>
+					</label>
+					<br>
+					<label>
+						Cleanup
+						<input type="checkbox" id="Cleanup" name="Cleanup" value="2">
+						<span class="checkmark"></span>
+					</label>
+
+				</div>
+			</div>
+			
+			<div class="formItem">
+				<label for="wheel_score">Control Panel Task</label>
+				<select name="wheel_score" id="wheel_score"> 
+					<option value="0">Did not Attempt</option>
+					<option value="1">Unsuccessful</option>
+					<option value="2">Completed Rotation Control</option>
+					<option value="3">Completed Position Control</option>
+				</select>
+			</div>
+		  <div class="formItem">
+				<label for="wheel_rating">Control Panel Quality</label>
+			  	<div class="right">
+					<output name="wheel_rating_number" id="wheel_rating_number" for="wheel_rating">0</output>
+					<input name="wheel_rating" id="wheel_rating" type="range" min="0" max="5" value="0" oninput="wheel_rating_number.value=wheel_rating.value">
+			  	</div>
+		  </div>
+		  <div class="formItem">
+				<label for="offensiveFouls">Incurred Offensive Fouls</label>
+				<select name="offensiveFouls" id="offensiveFouls">
+					<option value="0">None</option>
+					<option value="1">Yes, Minor</option>
+					<option value="2">Yes, Major</option>
+				</select>
+		  </div>
+			<h1>TELEOPERATED - DEFENSE</h1>
+			<div class="formItem">
+				<label for="played_defense">Played Defense?</label>
+				<div class="radioGroup">
+					<label>
+						<input type="radio" id="played_defense_true" name="played_defense" value="true">
+						<span>Y</span>
+					</label>
+					<label>
+						<input type="radio" id="played_defense_false" name="played_defense" value="false" checked>
+						<span>N</span>
+					</label>				
+				</div>
+			</div>
+		  <div class="formItem">
+				<label for="defense_rating">Quality of Defense</label>
+			  	<div class="right">
+					<output name="defense_ratingnumber" id="defense_ratingnumber" for="defense_rating">0</output>
+					<input name="defense_rating" id="defense_rating" type="range" min="0" max="5" value="0" oninput="defense_ratingnumber.value=defense_rating.value">
+				</div>
+		  </div>
+		  <div class="formItem">
+				<label for="fouls_defense">Incurred Defensive Fouls</label>
+				<select name="fouls_defense" id="fouls_defense">
+					<option value="0">None</option>
+					<option value="1">Yes, Minor</option>
+					<option value="2">Yes, Major</option>
+				</select>
+		  </div>
+		  <div class="formItem">
+				<label for="push_rating">Ability to Push</label>
+				<div class="radioGroup">
+					<label>
+						<input type="radio" id="push_rating_true" name="push_rating" value="true">
+						<span>Y</span>
+					</label>
+					<label>
+						<input type="radio" id="push_rating_false" name="push_rating" value="false">
+						<span>N</span>
+					</label>
+				</div>
+			</div>
+			<h1>ENDGAME</h1>
+		  <div class="formItem">
+				<label for="climb_location">Climbing Position</label>
+			  	<div class="right">
+					<output name="climb_location_number" id="climb_location_number" for="climb_location">0</output>
+					<input name="climb_location" id="climb_location" type="range" min="0" max="5" value="0" oninput="climb_location_number.value=climb_location.value">
+			  	</div>
+		  </div>
+			<div class="formItem">
+				<label for="lock_status">Field Timeout Position (t=+5s)</label>
+				<select name="lock_status" id="lock_status">
+					<option value="0">None</option>
+					<option value="1">Parked</option>
+					<option value="2">Attempted Climb</option>
+					<option value="3">Successful Climb</option>
+				</select>
+			</div>
+			<h1>HUMAN PLAYER</h1>
+			<div class="formItem">
+				<label for="humanFouls">Human Player Incurred Fouls</label>
+				<select name="humanFouls" id="humanFouls">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+					<option value="2">Yes, repeatedly</option>
+				</select>
+			</div>
+		  <div class="formItem">
+				<label for="driverFouls">Driver/Coach Incurred Fouls</label>
+				<select name="driverFouls" id="driverFouls">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+					<option value="2">Yes, repeatedly</option>
+				</select>
+			</div>
+		  <div class="formItem right">
+				<label for="cardFouls">Yellow Card Given</label>
+			<input type="text" placeholder="Cite Rule if Possible">
+		  </div>
+			<br>
+			<div class="formItem" id="submit">
+				<input name="submit" type="submit">
+			</div>
+		</form>
+	</div>
+	</div>
+	
+<script>
+	function incrementValue(id) {
+		console.log(id)
+		var value = parseInt(document.getElementById(id).value, 10);
+		value = isNaN(value) ? 0 : value;
+		value++;
+		document.getElementById(id).value = value;
+	}
+	function decrementValue(id) {
+		console.log(id)
+		var value = parseInt(document.getElementById(id).value, 10);
+		value = isNaN(value) ? 0 : value;
+		value--;
+		document.getElementById(id).value = value;
+	}
+	function openNav() {
+		document.getElementById("sideNav").style.width="250px";
+		document.getElementById("bodyContainer").style.marginLeft="275px";
+		document.getElementById("swissLogo").style.marginLeft="215px";
+	}
+	function closeNav() {
+	  document.getElementById("sideNav").style.width = "0";
+	  document.getElementById("bodyContainer").style.marginLeft= "25px";
+	  document.getElementById("swissLogo").style.marginLeft= "0";
+	}
+	function openTeamDrawer() {
+		document.getElementById("teamDrawer").style.height="100%";
+	}
+	function closeTeamDrawer() {
+	  document.getElementById("teamDrawer").style.height = "0";
+	}
+</script>
+</body>
+</html>
