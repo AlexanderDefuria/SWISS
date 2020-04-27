@@ -143,7 +143,7 @@ a {
 .infoRow { display: flex; margin-top: 5px; background-color: #09315A; }
 .infoLColumn { flex: 25%; }
 .infoRColumn { flex: 75%; }
-.infoWide { width: 510px; flex-grow: 10 }
+.infoWide { width: 510px; flex-grow: 5 }
 .infoReg { width: auto; min-width: 260px; flex-grow: 1; max-width: 500px; }
 
 .wideBox {
@@ -192,7 +192,7 @@ a {
 	transition: all .2s ease-in-out;
 }
 .teamChip:hover {
-	transform: scale(1.15); 
+	transform: scale(1.1); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .robotPhoto {width:inherit; height:min-content;}
