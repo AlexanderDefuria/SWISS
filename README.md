@@ -2,16 +2,19 @@
 
 The web server is hosted from a raspberry pi during competition which creates a PAN network, (Bluetooth network) to allow other devices to connect to the web server. Using a wifi network would be much better but would be a violation of rule C05 of the [FRC Event Rules Manual](https://firstfrc.blob.core.windows.net/frc2019/EventRules/EventRulesManual.pdf), bluetooth setup of this scouting system is not a violation of rule C05 as the wording is specific to WiFi wireless bands and standards. [Community interpretation](https://www.reddit.com/r/FRC/comments/67c7z4/bluetooth_at_competitions/) also supports the legality of using bluetooth networks in the stands.
 
+### Image Installation
+Prebuilt images are not currently available so one must follow the source setup. They will be available soon from the releases page of this github repo.
 
-### Installation
+
+### Source Setup Linux
 ```
 git clone https://github.com/AlexanderDefuria/FRC-Scouting.git
 sudo apt-get install python3-pandas python3-pip
 sudo pip3 install django==2.2 djangoajax==3.2 
 ```
 
-### Image Installation
-
+### Running The Server
+Presently there is no configuration for a permemnant server deployment and it must be run in Django's development mode. ``` python3 manage.py runserver 127.0.0.1:80 ``` To have it available from other devices on the local network follow the commands below. Record the ip address produced by ``` ipconfig``` and after running ```sudo python3 manage.py 0.0.0.0:80 ``` navigate to the ip address from the other device.
 
 ### Connecting to Bluetooth
 To reach the server running off the raspberry pi one must first connect to to the PAN netwrok named raspberrypi by default. The steps to do so are different on each platform. 
