@@ -1,7 +1,7 @@
 {% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'entry/image-viewer.css' %}">
-<link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}"/>
+<link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}{% static 'favicon.png' %}"/>
 
 <div class="header" id="myHeader">
   <h1>Image Grid</h1>
