@@ -17,8 +17,6 @@
 	transition: all 0.1s ease-in-out;
 	user-select: none;
 }
-
-
 .formItem:hover { 	
 	background-color: #555555;
 	box-shadow: 7px 7px 25px 10px #232323;
@@ -36,7 +34,7 @@
 	transition: all 0.2s ease-in-out;
 }
 .formItem input[type=text]:focus {
-	width: 500px;
+	width: 450px;
 	border-color: #0F4D8D;
 	border-width: 3px;
 	background: #333333;

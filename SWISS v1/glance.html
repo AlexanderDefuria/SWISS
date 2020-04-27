@@ -10,6 +10,8 @@
 <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
 <link rel="manifest" href="favicon/site.webmanifest">
 <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
 <meta name="theme-color" content="0F4D8D">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
@@ -84,12 +86,12 @@
 			</div>
 		</div>
 
-		<div class="tileContainer" style="justify-content: flex-start">
+		<div class="infotileContainer" style="justify-content: flex-start">
 			
 			
-			<div class="infoBox">
-				<div style="display: flex; align-items: center; height: auto; border-bottom: 2px solid white">
-					<div class="teamnumberPill"><p>3683</p></div>
+			<div class="infoBox infoWide">
+				<div class="infoHeader">
+					<div class="teamnumberPill DaveColor"><p>3683</p></div>
 					<h1>Team Dave</h1>
 				</div>
 				<div class="infoRow">
@@ -99,26 +101,55 @@
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Can Climb?</p></div>
 					<div class="infoRColumn"><p>Yes</p></div>
+				</div>				
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Shooting Locations</p></div>
+					<div class="infoRColumn">
+						<p>Initiation Line</p>
+						<p>Trench Run</p>
+					</div>
 				</div>
 			</div>
-			
-			<div class="graphBoxWide backgroundColor">
+			<div class="pictureBox">
+					<img src="img/dave.jpg" alt="robot photo">
+			</div>
+			<div class="graphBoxWide">
 				<div id="avg_balls" style="height: 300px; width:auto">
 					<script>
 						document.addEventListener('DOMContentLoaded', function () {
 								var myChart = Highcharts.chart('avg_balls', {
 									chart: {
-										type: 'bar'
+										backgroundColor: '#0F4D8D',
+										type: 'bar',
+										style: {
+											color: '#ffffff'
+										}
 									},
 									title: {
-										text: 'Average Balls Scored Per Match'
+										text: 'Average Balls Scored Per Match',
+										style: {
+											color: '#ffffff'
+										}
 									},
 									xAxis: {
-										categories: ['Auto', 'Teleop']
+										categories: ['Auto', 'Teleop'],
+										labels: {
+											style: {
+												color: '#ffffff'
+										}
+										}
 									},
 									yAxis: {
 										title: {
-											text: 'Balls Scored'
+											text: 'Balls Scored',
+											style: {
+												color: '#ffffff'
+											}
+										},
+										labels: {
+											style: {
+												color: '#ffffff'
+										}
 										}
 									},
 									series: [{
@@ -136,10 +167,14 @@
 					</script>
 				</div>		
 			</div>
-			<div class="graphBox">
-				<div id="line" style="height: 300px; width: auto">
+			<div class="graphBoxWide">
+				<div id="line" style="height: 300px; width: inherit">
 					<script>
 							Highcharts.chart('line', {
+							
+								chart: {
+									backgroundColor: '#dddddd'
+								},
 
 							  title: {
 								text: 'Total Balls Scored Over Comp'
@@ -178,14 +213,81 @@
 					</script>
 				</div>
 			</div>
-			<div class="bigBox">
+			<div class="infoBox infoReg">
+				<div class="infoHeader">
+					<img style="height: 7vh; padding: 10px;" src="img/Flag Icon.png" alt="flag">
+					<h1>Fouls &amp; Cards</h1>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn">
+					<p>Offense Fouls</p>
+					</div>
+					<div class="infoLColumn">
+					<p>Rare</p>
+					</div>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn">
+					<p>Defense Fouls</p>
+					</div>
+					<div class="infoLColumn SimboticsColor">
+					<p>REPEATED</p>
+					</div>
+				</div>				
+				<div class="infoRow">
+					<div class="infoLColumn">
+					<p>Human Fouls</p>
+					</div>
+					<div class="infoLColumn">
+					<p>None</p>
+					</div>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn">
+					<p>Yellow Cards</p>
+					</div>
+					<div class="infoLColumn YellowColor">
+					<p>Step Over Gate</p>
+					</div>
+				</div>
 			</div>
-			<div class="bigBox">
+			<div class="infoBox infoReg">
+				<div class="infoHeader">
+					<img style="height: 7vh; padding: 10px;" src="img/Defense Icon.png" alt="Defense Icon">
+					<h1>Defense</h1>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Played Defense</p></div>
+					<div class="infoLColumn"><p>Rare</p></div>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Avg. Quality</p></div>
+					<div class="infoLColumn"><p>3 - Good</p></div>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Push Ability</p></div>
+					<div class="infoLColumn"><p>Yes</p></div>
+				</div>
+			</div>
+			<div class="infoBox infoReg">
+				<div class="infoHeader">
+					<img style="height: 7vh; padding: 10px;" src="img/Generic Power Port.png" alt="Power Port">
+					<h1>Total Balls Scored</h1>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Low Goal</p></div>
+					<div class="infoLColumn"><p>0 Power Cells</p></div>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Outer Goal</p></div>
+					<div class="infoLColumn"><p>100 Power Cells</p></div>
+				</div>
 			</div>
 		</div>
 	</div>
 	
-	
+
+
 	
 	
 <script>

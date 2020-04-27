@@ -52,6 +52,12 @@ a {
 	display: flex;
 	flex-wrap: wrap;
 }
+.infotileContainer{
+	display: flex;
+	flex-wrap: wrap;
+	margin-right: 10px;
+	justify-content: center;
+}
 .swissLogo {
 	height: auto;
 	padding-left: 5px;
@@ -82,15 +88,20 @@ a {
 	margin: 0px 0px 10px 10px;
 	background-color: grey;
 	transition: all .2s ease-in-out; 
+	flex-grow: 5;
+}
+.pictureBox img {
+	width: 100%;
+	object-fit: cover;
 }
 .pictureBox:hover { 
 	transform: scale(1.075); 
-	opacity: 50%;
 	box-shadow: 2px 5px 25px 2px #232323;
+	z-index: 1;
 }
 .graphBox {
 	height: 300px;
-	width: 300px;
+	width: auto;
 	padding: 0;
 	margin: 0px 0px 10px 10px;
 	background-color: #0F4D8D;
@@ -99,6 +110,7 @@ a {
 .graphBox:hover { 
 	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
+	z-index: 1;
 }
 
 .graphBoxWide {
@@ -117,7 +129,6 @@ a {
 	display: inline-block;
 	min-height: 280px;
 	height: auto;
-	width: 510px;
 	padding: 10px;
 	margin: 0px 0px 10px 10px;
 	background-color: #0F4D8D;
@@ -128,9 +139,12 @@ a {
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .infoBox h1, p { margin: 10px; }
-.infoRow { display: flex; margin-bottom: 5px; background-color: #09315A; }
+.infoHeader { display: flex; align-items: center; height: auto; border-bottom: 2px solid white }
+.infoRow { display: flex; margin-top: 5px; background-color: #09315A; }
 .infoLColumn { flex: 25%; }
 .infoRColumn { flex: 75%; }
+.infoWide { width: 510px; flex-grow: 10 }
+.infoReg { width: auto; min-width: 260px; flex-grow: 1; max-width: 500px; }
 
 .wideBox {
 	display: flex;
@@ -165,6 +179,23 @@ a {
 	font-weight: 1000;
 	margin: 10px 0 0 0;
 }
+.teamChip {
+	margin: 0px 0px 10px 10px;
+	padding: 20px;
+	height: 350px;
+	width: 260px;
+	background-color: #262626;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	transition: all .2s ease-in-out;
+}
+.teamChip:hover {
+	transform: scale(1.15); 
+	box-shadow: 2px 5px 25px 2px #232323;
+}
+.robotPhoto {width:inherit; height:min-content;}
 .stickyChip {
 	display: flex;
 	flex-wrap: wrap;
@@ -230,6 +261,7 @@ a {
 	}	
 	.bodyContainer { 
 		margin-top: 60px;
+		background-position: center -10vh;
 	}
 }
 
@@ -238,7 +270,7 @@ a {
 @media screen and (max-width: 820px) and (max-height: 800px) {
 	.bodyBackground {
 		background-size: 150%;
-		background-position: center 4vh;
+		background-position: center 3vh;
 	}
 	.tileContainer {	}
 	.bigBox {
@@ -261,10 +293,14 @@ a {
 		margin-top: 55px;
 	}
 	.pictureBox {
-		margin: 5px 0 0 5px;
-		height: 140px;
-		width: 140px;
+		width: 100%;
+		height: fit-content;
 	}
+	.pictureBox img {
+		height: 100%;
+		width: inherit;
+	}
+
 }
 
 
@@ -378,4 +414,8 @@ a {
 }
 .scoutImage {
 	background-image: url("img/scout background.png")
+}
+.teamsImage {
+	background-image: url("img/Teams Background.png");
+	background-attachment: fixed;
 }

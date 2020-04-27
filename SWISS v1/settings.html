@@ -1,3 +1,6 @@
+{% load static %}
+{% load common_tags %}
+
 <!doctype html>
 <html>
 <head>
@@ -5,6 +8,7 @@
 <title>SWISS Settings</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" type="text/css" href="colorsheet.css">
+<link rel="stylesheet" type="text/css" href="formstyle.css">
 <meta name="theme-color" content="0F4D8D">
 </head>
 
@@ -31,6 +35,19 @@
 	<div class="bodyContainer" id="bodyContainer">
 	
 	<h1 class="pageHeader">SETTINGS</h1>
+		
+		    <h1>Current Event Is: {% get_current_event %}</h1>
+    <form action="{% url 'setup:change-event-write' %}" method="post" id="form">
+    {% csrf_token %}
+        <label for="event"> Change Event To: </label>
+        <select id="event" name="event" form="form" required="required">
+            {% for event in events %}
+                <option value={{ event.FIRST_key }}>{{ event }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Submit Change</button>
+    </form>
+		
 		
 	</div>
 <script>

@@ -67,7 +67,7 @@
 		<a href="javascript:void(0)" class="closebtn" onclick="closeTeamDrawer()">×</a>		
 	</div>
 	
-	<div class="bodyContainer" id="bodyContainer">
+	<div class="bodyContainer bodyBackground matchImage" id="bodyContainer">
 		<div class="heroContent" id="heroSpace">
 			<div class="stickyChip">
 				<button class="changeTeam" id="changeTeam" onClick="openTeamDrawer()">
@@ -115,9 +115,9 @@
 			<div class="formItem">
 				<label for="preloaded_balls">Number of Balls Preloaded</label>
 				<div class="ticker">
-					<input type="button" id="decButton" onclick="decrementValue('preloaded_balls')" value="-">
+					<input type="button" onclick="decrementValue('preloaded_balls')" value="-">
 					<input type="number" name="preloaded_balls" id="preloaded_balls" min="0" max="3" value="3" readonly> 
-					<input type="button" id="incButton" onclick="incrementValue('preloaded_balls')" value="+">
+					<input type="button" onclick="incrementValue('preloaded_balls')" value="+">
 				</div>
 			</div>
 		
