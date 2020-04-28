@@ -2,9 +2,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Change Me</title>
+<title>SWISS Scout Landing</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" type="text/css" href="colorsheet.css">
+<link rel="stylesheet" type="text/css" href="formstyle.css">
 <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
@@ -27,16 +28,39 @@
 	<div id="sideNav" class="sidebar">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<a href="index.html">Home</a>
-		<a href="matchscout.html">Scout</a>
+		<a href="matchlanding.html">Scout</a>
 		<a href="experimental.html">Labs</a>
 		<a href="settings.html">Settings</a>
 		<a href="about.html">About</a>
 	</div>
 	
-	<div class="bodyContainer">
-		<p>This button will download a generated CSV file of all the match and pit scouting data.</p>
+	<div class="bodyContainer bodyBackground scoutImage" id="bodyContainer">
+		<div class="heroContent">
+			<h1 class="homeText">Pit Scouting</h1>
+		</div>
+		<div style="display: flex; justify-content: center">
+			<div style="min-width:25%">
+				<div class="formItem">
+					<label for="teamNumber">Team Number</label>
+					<input style="width:100px;" type="number" name="teamNumber" id="teamNumber" min="1" max="9999">
+				</div>
+				<div class="formItem">
+					<p>Current Event is:</p>
+					<br>
+					<p>{% get_current_event %}</p>
+				</div>
+				<div class="formItem" id="submit">
+					<input type="submit" value="Begin Scouting">
+				</div>				
+				<div class="formItem">
+					<label>Press this to continue [dev]</label>
+					<a href="pitscout.html">
+						<input type="button" value=">">
+					</a>
+				</div>
+			</div>
+		</div>
 	</div>
-	
 	
 	
 	

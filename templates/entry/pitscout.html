@@ -12,7 +12,6 @@
 <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
-<link rel="manifest" href="favicon/site.webmanifest">
 <meta name="theme-color" content="0F4D8D">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
@@ -85,10 +84,15 @@
 		</div>
 	<form action="{% url 'entry:index' %}" method="get">
 		<h1>Drivetrain</h1>
-		
 		<div class="formItem">
 			<label for="drivetrain_style">Style of Drivetrain</label>
-			<input type="text" name="drivetrain_style" id="drivetrain_style" placeholder="Drivetrain Style" autocomplete="off" required>
+			<select name="drivetrain_style" id="drivtrain_style" required> 
+				<option value="kitbot">Kitbot</option>
+				<option value="westCoast">West Coast</option>
+				<option value="swerve">Swerve</option>
+				<option value="mecanum">Mecanum</option>
+				<option value="custom">Custom</option>
+			</select>
 		</div>
 		<div class="formItem">
 			<label for="drivetrain_wheels">Type of Drive Wheels</label>
@@ -96,7 +100,12 @@
 		</div>
 		<div class="formItem">
 			<label for="drivetrain_motortype">Types of Motors in Drivetrain</label>
-			<input type="text" name="drivetrain_motortype" id="drivetrain_motortype" placeholder="Drivetrain Motors" autocomplete="off" required>
+			<select name="drivetrain_motortype" id="drivtrain_motortype" required> 
+				<option value="falcon">Falcon 500</option>
+				<option value="neo">Neo 500</option>
+				<option value="CIM">CIM</option>
+				<option value="miniCIM">miniCIM</option>
+			</select>
 		</div>
 
 		<div class="formItem">

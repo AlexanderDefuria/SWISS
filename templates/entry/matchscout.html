@@ -108,7 +108,7 @@
 					<input type="range" name="auto_start" id="auto_start" min="0" max="20" value="14" oninput="auto_start_number.value=auto_start.value">
 					</div>
 					<div>
-					<img id="auto_start_img" src="img/Initiation Line.png" alt="Initiation Line Graph">
+					<img id="auto_start_img" src="{{ MEDIA_URL }}{% static 'Initiation Line.png' %}" alt="Initiation Line Graph">
 					</div>
 					<div style="text-align: center">
 					<output name="auto_start_number" id="auto_start_number" for="auto_start">14</output>
@@ -130,7 +130,7 @@
 				<select name="auto_route">
 					<option value="0">None</option>
 					<option value="1">Yes, Simple</option>
-					<option vaue="2">Yes, Complex</option>
+					<option value="2">Yes, Complex</option>
 				</select>
 			</div>
 		<div class="formItem">
@@ -149,25 +149,25 @@
 		<div class="formItem">
 				  <label for="autoLowGoal">Power Port Goals</label>
 				<div class="ticker">
-					<img class="goalIcon" src="img/Lower Auto Icon.png" alt="lower">
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'Lower Auto Icon.png' %}" alt="lower">
 					<input type="button"  onclick="decrementValue('lower_auto')" value="-">
 					<input type="number" name="lower_auto" id="lower_auto" min="0" max="100" value="0" readonly>		
 					<input type="button"  onclick="incrementValue('lower_auto')" value="+">
 					<br>
-				  	<img class="goalIcon" src="img/Outer Auto Icon.png" alt="outer">
+				  	<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'Outer Auto Icon.png' %}" alt="outer">
 					<input type="button" onclick="decrementValue('outer_auto')" value="-">
 					<input name="outer_auto" id="outer_auto" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('outer_auto')" value="+">
 					<br>
-					<img class="goalIcon" src="img/Inner Auto Icon.png" alt="inner">
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'Inner Auto Icon.png' %}" alt="inner">
 					<input type="button" onclick="decrementValue('inner_auto')" value="-">
 					<input name="inner_auto" id="inner_auto" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('inner_auto')" value="+">
 				</div>
 		  </div>
-		  <div class="formItem">
+		  <div class="formItem right">
 				<label for="auto_comment">Auto Route Notes</label>
-				<input class="right" type="text" name="auto_comment" id="auto_comment" placeholder="Auto Notes">
+				<input type="text" name="auto_comment" id="auto_comment" placeholder="Auto Notes">
 		  </div>
 			<h1>TELEOPERATED - OFFENSE</h1>
 			
@@ -175,17 +175,17 @@
 			<div class="formItem">			
 				<label>Power Port Goals</label>
                 <div class="ticker">
-					<img class="goalIcon" src="img/Lower Tele Icon.png" alt="lower">
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'Lower Auto Icon.png' %}" alt="lower">
   					<input type="button" onclick="decrementValue('lower')" value="-">
 					<input id="lower" name="lower" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('lower')" value="+">
 					<br>
-					<img class="goalIcon" src="img/Outer Tele Icon.png" alt="outer">
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'Outer Tele Icon.png' %}" alt="outer">
 					<input type="button" onclick="decrementValue('outer')" value="-">
 					<input name="outer" id="outer" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('outer')" value="+">
 					<br>
-					<img class="goalIcon" src="img/Inner Tele Icon.png" alt="inner">
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'Inner Tele Icon.png' %}" alt="inner">
 					<input type="button" onclick="decrementValue('inner')" value="-">
 					<input name="inner" id="inner" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('inner')" value="+">
@@ -352,7 +352,7 @@
 					<option value="2">Yes, repeatedly</option>
 				</select>
 			</div>
-		  <div class="formItem">
+			<div class="formItem">
 				<label for="driverFouls">Driver/Coach Incurred Fouls</label>
 				<select name="driverFouls" id="driverFouls">
 					<option value="0">No</option>
@@ -360,10 +360,15 @@
 					<option value="2">Yes, repeatedly</option>
 				</select>
 			</div>
-		  <div class="formItem right">
+			<div class="formItem right">
 				<label for="cardFouls">Yellow Card Given</label>
-			<input type="text" placeholder="Cite Rule if Possible">
-		  </div>
+			<input type="text" name="cardFouls" id="cardFouls" placeholder="Cite Rule if Possible">
+			</div>
+			<br>
+			<div class="formItem">
+				<label for="scouterName">Scouter's Name</label>
+				<input type="text" name="scouterName" id="scouterName">
+			</div>
 			<br>
 			<div class="formItem" id="submit">
 				<input name="submit" type="submit">

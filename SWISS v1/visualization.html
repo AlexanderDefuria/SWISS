@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SWISS Visualization</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="colorsheet.css">
+<link rel="stylesheet" type="text/css" href="formstyle.css">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<meta name="theme-color" content="0F4D8D">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
+
+<body>
+	<div class="topbar">
+		<div class="hamburgerButton" onClick="openNav()">
+			<button class="hamburgerButton" onClick="openNav()">☰</button>
+		</div>
+		<div class="swissLogo" id="swissLogo">
+			<a href="index.html">
+			<img src="img/Swiss Icon@2x.png" alt="SWISS Logo">
+			</a>
+		</div>
+	</div>
+	<div id="sideNav" class="sidebar">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		<a href="index.html">Home</a>
+		<a href="matchlanding.html">Scout</a>
+		<a href="experimental.html">Labs</a>
+		<a href="settings.html">Settings</a>
+		<a href="about.html">About</a>
+	</div>
+
+	<div class="bodyContainer" id="bodyContainer">
+		<div class="statsContainer">
+			<div class="flexColumn60"> 
+				<div id="visualizationChart" style="width:auto;">
+				</div>
+				<div class="formItem">
+					<button class="updateButton" onclick="updateGraph()">Update Graph</button>
+				</div>
+				<h1>The numbers Mason, what do they mean?</h1>
+			</div>
+			<div class="flexColumn40">
+				<div class="infoBox infoReg">
+					<div class="infoHeader">
+						<h1>Teams Included</h1>
+					</div>
+					<div>
+						{% for team in team_list %}
+                        <div class="teamnumberPill">
+							<p for="{{ team.name }}">{{ team.number }}</p>
+                            <input name="teamCheckBox" type="checkbox" id="{{ team.id }}" value="{{ team.name }}">
+                        </div>
+                    	{% endfor %}
+					</div>
+				</div>
+				<div class="infoBox infoReg">
+					<div class="infoHeader">
+						<h1>Metrics Included</h1>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+
+		
+		
+	</div>
+
+<!-- This is script for the graph -->
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+			var myChart = Highcharts.chart('visualizationChart', {
+				chart: {
+					type: 'bar'
+				},
+				title: {
+					text: 'Data Visualization'
+				},
+				xAxis: {
+					categories: ['Apples', 'Bananas', 'Oranges']
+				},
+				yAxis: {
+					title: {
+						text: 'Fruit eaten'
+					}
+				},
+				series: [{
+					name: 'Jane',
+					data: [1, 0, 4]
+				}, {
+					name: 'John',
+					data: [5, 7, 3]
+				}]
+			});
+		});	
+</script>	
+	
+<style>
+	.updateButton {
+		background: none;
+		width: 100%;
+		height: 100%;
+		font-size: 24px;
+		font-weight: 900;
+		border: none;
+		color: white;
+	}	
+</style>
+	
+	
+<script>
+	function openNav() {
+		document.getElementById("sideNav").style.width="250px";
+		document.getElementById("bodyContainer").style.marginLeft="275px";
+		document.getElementById("swissLogo").style.marginLeft="215px";
+	}
+	function closeNav() {
+	  document.getElementById("sideNav").style.width = "0";
+	  document.getElementById("bodyContainer").style.marginLeft= "25px";
+	  document.getElementById("swissLogo").style.marginLeft= "0";
+	}
+</script>	
+</body>
+</html>

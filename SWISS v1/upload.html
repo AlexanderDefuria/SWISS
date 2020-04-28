@@ -2,9 +2,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Change Me</title>
+<title>SWISS Upload</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" type="text/css" href="colorsheet.css">
+<link rel="stylesheet" type="text/css" href="formstyle.css">
 <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
@@ -27,14 +28,36 @@
 	<div id="sideNav" class="sidebar">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<a href="index.html">Home</a>
-		<a href="matchscout.html">Scout</a>
+		<a href="matchlanding.html">Scout</a>
 		<a href="experimental.html">Labs</a>
 		<a href="settings.html">Settings</a>
 		<a href="about.html">About</a>
 	</div>
 	
-	<div class="bodyContainer">
-		<p>This button will download a generated CSV file of all the match and pit scouting data.</p>
+	<div class="bodyContainer" id="bodyContainer">
+		<div id="loginContainer">
+			<div class="infoBox" style="width:auto;">
+				<div class="infoHeader">
+					<img class="infoIcon" src="img/Upload Icon.png" alt="Upload Icon">
+					<h1>Upload Robot Photo</h1>
+				</div>
+				<form>
+					<div class="formItem" style="margin-top:10px; background:none; justify-content: space-between;">
+						<label for="teamNumber">Team Number</label>
+						<input style="width:100px;" type="number" name="teamNumber" id="teamNumber" min="1" max="9999">
+					</div>
+					<div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+						<label for="upload">Upload Image</label>
+						<input style="margin-left:10px; " type="file" name="upload" id="upload">
+					</div>
+						<p>Remember, images must be cropped to a SQUARE (1:1).</p>
+					<div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+						<input type="submit" vaue="LogIn">
+					</div>
+				
+				</form>
+			</div>
+		</div>
 	</div>
 	
 	

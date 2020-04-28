@@ -1,0 +1,268 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SWISS Data</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="colorsheet.css">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<meta name="theme-color" content="0F4D8D">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
+
+<body>
+	<div class="topbar">
+		<div class="hamburgerButton" onClick="openNav()">
+			<button class="hamburgerButton" onClick="openNav()">☰</button>
+		</div>
+		<div class="swissLogo" id="swissLogo">
+			<a href="index.html">
+			<img src="img/Swiss Icon@2x.png" alt="SWISS Logo">
+			</a>
+		</div>
+	</div>
+	<div id="sideNav" class="sidebar">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		<a href="index.html">Home</a>
+		<a href="matchlanding.html">Scout</a>
+		<a href="experimental.html">Labs</a>
+		<a href="settings.html">Settings</a>
+		<a href="about.html">About</a>
+	</div>
+	
+	<div class="bodyContainer bodyBackground statsImage" id="bodyContainer">
+		<div class="heroContent" id="heroSpace">
+					<h1 style="font-size: 42px; margin: 0px;">Raw Data</h1>
+		</div>
+		<figure>
+			<div class="tableContainer">
+				<table id="dataTable">
+					<tr>
+						<th>Number</th>
+						<th>Names</th>
+						<th>Match #</th>
+						<th>Robot Present?</th>
+						<th>Starting Pos.</th>
+						<th>Balls PrLod</th>
+						<th>Auto Route</th>
+						<th>Exit Line %</th>
+						<th>Auto Low</th>
+						<th>Auto High</th>
+						<th>Auto Inner</th>
+						<th>Tele Low</th>
+						<th>Tele High</th>
+						<th>Missed Balls</th>
+						<th>Intake Type</th>
+						<th>Cycle Style</th>
+						<th>Under Defense</th>
+						<th>Ctrl Pnl Task</th>
+						<th>Ctrl Pnl Quality</th>
+						<th>Ofns Fouls</th>
+						<th>Played Dfns</th>
+						<th>Dfns Quality</th>
+						<th>Dfns Fouls</th>
+						<th>Push Ability</th>
+						<th>Clmb Position</th>
+						<th>Timeout Position</th>
+						<th>Human Fouls</th>
+						<th>Driver Fouls</th>
+						<th>Yellow Card</th>
+						<th>Scouter</th>
+					</tr>
+					<tr>
+						<td>4343</td>
+						<td>MaxTech</td>
+						<td>1</td>
+						<td>Yes</td>
+						<td>14</td>
+						<td>3</td>
+						<td>Simple</td>
+						<td>Yes</td>
+						<td>0</td>
+						<td>2</td>
+						<td>1</td>
+						<td>0</td>
+						<td>15</td>
+						<td>5</td>
+						<td>Both</td>
+						<td>Cleanup</td>
+						<td>Yes</td>
+						<td>N/A</td>
+						<td>0</td>
+						<td>No</td>
+						<td>No</td>
+						<td>N/A</td>
+						<td>N/A</td>
+						<td>Yes</td>
+						<td>0</td>
+						<td>Parked</td>
+						<td>No</td>
+						<td>No</td>
+						<td>No</td>
+						<td>Parker</td>
+					</tr>
+					<tr>
+						<td>3683</td>
+						<td>Team DAVE</td>
+						<td>1</td>
+						<td>Yes</td>
+						<td>2</td>
+						<td>3</td>
+						<td>Complex</td>
+						<td>Yes</td>
+						<td>0</td>
+						<td>4</td>
+						<td>1</td>
+						<td>0</td>
+						<td>18</td>
+						<td>2</td>
+						<td>Both</td>
+						<td>Full Field</td>
+						<td>Yes</td>
+						<td>Rotation</td>
+						<td>4</td>
+						<td>No</td>
+						<td>No</td>
+						<td>N/A</td>
+						<td>N/A</td>
+						<td>Yes</td>
+						<td>2</td>
+						<td>Climbed</td>
+						<td>No</td>
+						<td>No</td>
+						<td>No</td>
+						<td>Small David</td>
+					</tr>
+					<tr>
+						<td>1114</td> <!--number-->
+						<td>Simbotics</td> <!--name-->
+						<td>1</td> <!--match#-->
+						<td>Yes</td> <!--Present-->
+						<td>19</td><!--Starting Position-->
+						<td>3</td><!--Balls Preloaded-->
+						<td>Complex</td><!--Auto Route-->
+						<td>Yes</td><!--Exit Line-->
+						<td>0</td><!--A Low-->
+						<td>6</td><!--A Outer -->
+						<td>0</td><!--A Inner -->
+						<td>0</td><!--T Low -->
+						<td>10</td><!--T High -->
+						<td>8</td><!--Missed Balls-->
+						<td>Both</td><!--Intake-->
+						<td>Full Field</td><!--Cycle Style-->
+						<td>No</td><!--Under Defense-->
+						<td>N/A</td><!--Control Panel-->
+						<td>0</td><!--Control Quality-->
+						<td>Yes</td><!--Offense Fouls-->
+						<td>No</td><!--Played Defense-->
+						<td>N/A</td><!--Defense Quality -->
+						<td>N/A</td><!--Defensive Fouls-->
+						<td>Yes</td><!--Push Ability-->
+						<td>4</td><!--Climb Position-->
+						<td>Climbed</td><!--Field timeout Position-->
+						<td>No</td><!--Human Fouls-->
+						<td>No</td><!--Driver Fouls-->
+						<td>No</td><!--Yellow Card-->
+						<td>Braeden</td><!--Scouter-->
+					</tr>
+					<tr>
+						<td>746</td> <!--number-->
+						<td>Gearheads</td> <!--name-->
+						<td>1</td> <!--match#-->
+						<td>Yes</td> <!--Present-->
+						<td>14</td><!--Starting Position-->
+						<td>3</td><!--Balls Preloaded-->
+						<td>Simple</td><!--Auto Route-->
+						<td>Yes</td><!--Exit Line-->
+						<td>3</td><!--A Low-->
+						<td>0</td><!--A Outer -->
+						<td>0</td><!--A Inner -->
+						<td>5</td><!--T Low -->
+						<td>0</td><!--T High -->
+						<td>2</td><!--Missed Balls-->
+						<td>Ground</td><!--Intake-->
+						<td>Cleanup</td><!--Cycle Style-->
+						<td>No</td><!--Under Defense-->
+						<td>N/A</td><!--Control Panel-->
+						<td>0</td><!--Control Quality-->
+						<td>Yes</td><!--Offense Fouls-->
+						<td>Yes</td><!--Played Defense-->
+						<td>2</td><!--Defense Quality -->
+						<td>No</td><!--Defensive Fouls-->
+						<td>Bad</td><!--Push Ability-->
+						<td>3</td><!--Climb Position-->
+						<td>Attempted</td><!--Field timeout Position-->
+						<td>No</td><!--Human Fouls-->
+						<td>No</td><!--Driver Fouls-->
+						<td>No</td><!--Yellow Card-->
+						<td>Anime David</td><!--Scouter-->
+					</tr>
+				</table>
+			</div>
+		</figure>
+		<div class="stickyChip" id="filterChip">
+			<img src="img/Search Icon.png" style="height: 50px;" alt="Searh Icon">
+			<input type="text" id="teamNumber" onkeyup="tableFilter()" placeholder="Filter Team Number">
+		</div>
+		
+	</div>
+	
+	<style>
+		#teamNumber {
+			width: auto;
+			outline: none;
+			color: white;
+			background: none;
+			border: none;
+			border-bottom: 1px solid #ffffff;
+			transition: all 0.2s ease-in-out;
+		}
+		#teamNumber:focus {
+			border-color: #0F4D8D;
+			border-width: 3px;
+			background: #333333;
+		}
+		#filterChip {
+			position: absolute;
+		}
+	</style>
+	
+	
+<script>
+	function openNav() {
+		document.getElementById("sideNav").style.width="250px";
+		document.getElementById("bodyContainer").style.marginLeft="275px";
+		document.getElementById("swissLogo").style.marginLeft="215px";
+	}
+
+	function closeNav() {
+	  document.getElementById("sideNav").style.width = "0";
+	  document.getElementById("bodyContainer").style.marginLeft= "25px";
+	  document.getElementById("swissLogo").style.marginLeft= "0";
+	}
+	function tableFilter() {
+	  // Declare variables
+	  var input, filter, table, tr, td, i, txtValue;
+	  input = document.getElementById("teamNumber");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("dataTable");
+	  tr = table.getElementsByTagName("tr");
+
+	  for (i = 0; i < tr.length; i++) {
+		td = tr[i].getElementsByTagName("td")[0];
+		if (td) {
+		  txtValue = td.textContent || td.innerText;
+		  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+			tr[i].style.display = "";
+		  } else {
+			tr[i].style.display = "none";
+		  }
+		}
+	  }
+	}
+</script>
+</body>
+</html>
