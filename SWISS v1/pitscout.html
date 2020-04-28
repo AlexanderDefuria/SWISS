@@ -84,8 +84,8 @@
 	<form target="_self" action="matchlanding.html">
 		<h1>Drivetrain</h1>
 		<div class="formItem">
-			<label for="drivetrain_style">Style of Drivetrain</label>
-			<select name="drivetrain_style" id="drivtrain_style" required> 
+			<label for="drivetrainStyle">Style of Drivetrain</label>
+			<select name="drivetrainStyle" id="drivetrainStyle" required> 
 				<option value="kitbot">Kitbot</option>
 				<option value="westCoast">West Coast</option>
 				<option value="swerve">Swerve</option>
@@ -94,12 +94,12 @@
 			</select>
 		</div>
 		<div class="formItem">
-			<label for="drivetrain_wheels">Type of Drive Wheels</label>
-			<input type="text" name="drivetrain_wheels" id="drivetain_wheels" placeholder="Drivetrain Wheels" autocomplete="off" required>
+			<label for="drivetrainWheels">Type of Drive Wheels</label>
+			<input type="text" name="drivetrainWheels" id="drivetrainWheels" placeholder="Drivetrain Wheels" autocomplete="off" required>
 		</div>
 		<div class="formItem">
-			<label for="drivetrain_motortype">Types of Motors in Drivetrain</label>
-			<select name="drivetrain_motortype" id="drivtrain_motortype" required> 
+			<label for="drivetrainMotor">Types of Motors in Drivetrain</label>
+			<select name="drivetrainMotor" id="drivetrainMottor" required> 
 				<option value="falcon">Falcon 500</option>
 				<option value="neo">Neo 500</option>
 				<option value="CIM">CIM</option>
@@ -108,33 +108,33 @@
 		</div>
 
 		<div class="formItem">
-			<label for="drivetrain_motorquantity">Number of Motors in Drivetrain</label>
+			<label for="drivetrainMotorAmount">Number of Motors in Drivetrain</label>
 			<input type="number" min="2" max="20" value="" step="2" required>
 		</div>
 		
 		<h1>Autonomous</h1>
 		<div class="formItem">
-			<label for="auto_route">Has Autonomous Route?</label>			
+			<label for="hasAuto">Has Autonomous Route?</label>			
 			<div>
 				<div class="radioGroup">
 					<label>
-					<input type="radio" name="auto_route" id="auto_route_false" value="false">
+					<input type="radio" name="hasAuto" id="hasAuto_false" value="false">
 					<span>N</span>
 					</label>
 					<label>
-					<input type="radio" name="auto_route" id="auto_route_true" value="true" checked>
+					<input type="radio" name="hasAuto" id="hasAuto_true" value="true" checked>
 					<span>Y</span>
 					</label>
 				</div>
 			</div>
 		</div>
 		<div class="formItem">
-			<label for="auto_description">Short Description of Autonomous Routes</label>
-			<input type="text" name="auto_description" id="auto_description" placeholder="Auto Route" autocomplete="off" required>
+			<label for="autoDescription">Short Description of Autonomous Routes</label>
+			<input type="text" name="autoDescription" id="autoDescription" placeholder="Auto Route" autocomplete="off" required>
 		</div>
 		<div class="formItem">
-			<label for="auto_scoring">Scoring Goals in Autonomous</label>
-			<select name="auto_scoring" id="auto_scoring" required>
+			<label for="autoScoring">Scoring Goals in Autonomous</label>
+			<select name="autoScoring" id="autoScoring" required>
 				<option value="0">No Scoring Ability</option>
 				<option value="1">Low Goal</option>
 				<option value="2">High Goal</option>
@@ -143,66 +143,66 @@
 		
 		<h1>Teleoperated</h1>
 		<div class="formItem">
-			<label for="tele_scoring">Scoring Goals in Teleoperated</label>
-			<select name="tele_scoring" id="tele_scoring" required>
+			<label for="teleScoring">Scoring Goals in Teleoperated</label>
+			<select name="teleScoring" id="teleScoring" required>
 				<option value="0">No Scoring Ability</option>
 				<option value="1">Low Goal</option>
 				<option value="2">High Goal</option>
 			</select>
 		</div>
 		<div class="formItem">
-			<label for="tele_positions">Scoring Locations in Teleoperated</label>
+			<label for="telePositions">Scoring Locations in Teleoperated</label>
 			<div class="checkboxGroup" required>
-					<input type="checkbox" name="tele_positions" id="tele_positions" value="0">
+					<input type="checkbox" name="telePositions" id="telePositions" value="0">
 					<span>Against Power Port</span>
 				<br>
-					<input type="checkbox" name="tele_positions" id="tele_positions" value="1">
+					<input type="checkbox" name="telePositions" id="telePositions" value="1">
 					<span>Initiation Line Area</span>
 				<br>
-					<input type="checkbox" name="tele_positions" id="tele_positions" value="2">
+					<input type="checkbox" name="telePositions" id="telePositions" value="2">
 					<span>Trench Run</span>
 				<br>
-					<input type="checkbox" name="tele_positions" id="tele_positions" value="3">
+					<input type="checkbox" name="telePositions" id="telePositions" value="3">
 					<span>Behind Control Panel</span>
 				<br>
 			</div>
 		</div>
 		<div class="formItem">
-			<label for="ball_intake">Ball Intake Style</label>
-			<input type="text" name="ball_intake" id="ball_intake" placeholder="Ball Intake" autocomplete="off" required>
+			<label for="ballIntake">Ball Intake Style</label>
+			<input type="text" name="ballIntake" id="ballIntake" placeholder="Ball Intake" autocomplete="off" required>
 		</div>
 		<div class="formItem">
-			<label for="ball_capacity">Ball Capacity</label>
-			<input type="number" name="ball_capacity" id="ball_capacity" min="0" max="5" value="5" required>
+			<label for="ballCapacity">Ball Capacity</label>
+			<input type="number" name="ballCapacity" id="ballCapacity" min="0" max="5" value="5" required>
 		</div>
 		<div class="formItem">
-			<label for="shooter_style">Style of Shooter</label>
-			<input type="text" name="shooter_style" id="shooter_style" autocomplete="off" placeholder="Shooter Style" required>
+			<label for="shooterStyle">Style of Shooter</label>
+			<input type="text" name="shooterStyle" id="shooterStyle" autocomplete="off" placeholder="Shooter Style" required>
 		</div>
 		<div class="formItem">
-			<label for="low_bot">Can drive under the control panel</label>
+			<label for="lowBot">Can drive under the control panel</label>
 			<div>
 				<div class="radioGroup">
 					<label>
-						<input type="radio" name="low_bot" id="low_bot" value="0" checked>
+						<input type="radio" name="lowBot" id="lowBot" value="0" checked>
 						<span>N</span>
 					</label>
 					<label>
-						<input type="radio" name="low_bot" id="low_bot" value="1">
+						<input type="radio" name="lowBot" id="lowBot" value="1">
 						<span>Y</span>
 					</label>
 				</div>
 			</div>
 		</div>
 		<div class="formItem">
-			<label for="wheel_manipulator">Control Panel Manipulator</label>
+			<label for="wheelManipulator">Control Panel Manipulator</label>
 			<div class="radioGroup">
 				<label>
-					<input type="radio" name="wheel_manipulator" id="wheel_manipulator" value="False" checked>
+					<input type="radio" name="wheelManipulator" id="wheelManipulator" value="False" checked>
 					<span>N</span>
 				</label>
 				<label>
-					<input type="radio" name="wheel_manipulator" id="wheel_manipulator" value="True">
+					<input type="radio" name="wheelManipulator" id="wheelManipulator" value="True">
 					<span>Y</span>
 				</label>
 
@@ -212,8 +212,8 @@
 		
 		<h1>Endgame</h1>
 		<div class="formItem">
-			<label for="climb_locations">Climbing Locations</label>
-			<select name="climb_locations" id="climb_locations" required>
+			<label for="climbLocations">Climbing Locations</label>
+			<select name="climbLocations" id="climbLocations" required>
 				<option valie="0">No Climb</option>
 				<option vlaue="1">Center Only</option>
 				<option value="2">Side Only</option>
@@ -221,27 +221,27 @@
 			</select>
 		</div>
 		<div class="formItem">
-			<label for="climb_buddy">Buddy Climb?</label>
+			<label for="climbBuddy">Buddy Climb?</label>
 				<div class="radioGroup">
 					<label>
-						<input type="radio" name="climb_buddy" id="climb_buddy_false" value="False" checked>
+						<input type="radio" name="climbBuddy" id="climbBuddy_false" value="False" checked>
 						<span>N</span>
 					</label>
 					<label>
-						<input type="radio" name="climb_buddy" id="climb_buddy_true" value="True">
+						<input type="radio" name="climbBuddy" id="climbBuddy_true" value="True">
 						<span>Y</span>
 					</label>
 				</div>
 		</div>
 		<div class="formItem">
-			<label for="climb_balance">Balancing Mechanism</label>
+			<label for="climbBalance">Balancing Mechanism</label>
 				<div class="radioGroup">
 					<label>
-						<input type="radio" name="climb_balance" id="climb_balance_false" value="False" checked>
+						<input type="radio" name="climbBalance" id="climbBalance_false" value="False" checked>
 						<span>N</span>
 					</label>
 					<label>
-						<input type="radio" name="climb_balance" id="climb_balance_true" value="True">
+						<input type="radio" name="climbBalance" id="climbBalance_true" value="True">
 						<span>Y</span>
 					</label>
 				</div>
@@ -251,8 +251,8 @@
 			<input type="number" name="weight" id="weight" min="0" max="150" autocomplete="off" placeholder="lbs" required>
 		</div>
 		<div class="formItem">
-			<label for="scouter_name">Scouter's Name</label>
-			<input type="text" name="scouter_name" id="scouter_name" placeholder="Scouter Name" required>
+			<label for="scouterName">Scouter's Name</label>
+			<input type="text" name="scouterName" id="scouterName" placeholder="Scouter Name" required>
 		</div>
 		<br>
 		<div class="formItem" id="submit">
