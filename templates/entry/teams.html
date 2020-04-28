@@ -44,7 +44,7 @@
                 {% for image in team.images.all %}
                     <div class="teamChip">
                         <img class="robotPhoto" src="{{ MEDIA_URL }}{{ image.image }}" alt="robot photo">
-				        <div class="teamnumberPill SimboticsColor"><p>{{ team.number }}</p></div>
+				        <div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
 				        <div class="teamnamePill"><p>{{ team.name }}</p></div>
                     </div>
                 {% endfor %}

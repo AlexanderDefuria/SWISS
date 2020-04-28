@@ -29,6 +29,7 @@ class Team(models.Model):
     number = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
     name = models.CharField(default="team", max_length=100)
     images = models.ManyToManyField(Images)
+    colour = models.CharField(default="#000000", max_length=7)
 
     def __str__(self):
         return str(self.number) + "\t\t" + str(self.name)
