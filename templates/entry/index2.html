@@ -29,7 +29,7 @@
 	<div id="sideNav" class="sidebar">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<a href="{% url 'entry:index' %}">Home</a>
-		<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+		<a href="{% url 'entry:match_scout' %}">Scout</a>
 		<a href="{% url 'entry:experimental' %}">Labs</a>
 		<a href="{% url 'entry:settings' %}">Settings</a>
 		<a href="{% url 'entry:about' %}">About</a>
@@ -37,63 +37,60 @@
 	
 	<div class="bodyContainer" id="bodyContainer">
 		<div class="tileContainer">
-			<a href="{% url 'entry:match_scout_landing' %}">
+			
+			<a href="{% url 'entry:match_scout' %}">
 				<div class="bigBox">
 					<img src="{{ MEDIA_URL }}{% static 'Scout Icon.png' %}" alt="scout icon">
 				</div>
-			</a>
-			<a href="{% url 'entry:pit_scout_landing' %}">
+			</a>		
+			
+			<a href="{% url 'entry:pit_scout' %}">
 				<div class="bigBox">
 					<img src="{{ MEDIA_URL }}{% static 'Pit Scout Icon.png' %}" alt="scout icon">
 				</div>
-			</a>	
+			</a>
+						
 			<a href="{% url 'entry:visualize' %}">
-				<div class="wideBox CeltXColor" id="tileglanceBackground" style="background-image: url({{ MEDIA_URL }}{% static 'Glance Background - 2000w.png' %})">
+				<div class="wideBox CeltXColor" id="tileglanceBackground">
 					<img src="{{ MEDIA_URL }}{% static 'Strategy Icon.png' %}" alt="Strategy icon">
 				</div>
 			</a>
+
 			<a href="{% url 'entry:teams' %}">
 				<div class="wideBox OttawaTrashColor">
 					<img src="{{ MEDIA_URL }}{% static 'Data Icon.png' %}" alt="Data Icon">
 					<p class="homeText">Teams</p>
 				</div>
 			</a>
-			<a href="{% url 'entry:data' %}">
-				<div class="bigBox">
-					<img src="{{ MEDIA_URL }}{% static 'Data Icon.png' %}" alt="Data Icon">
-				</div>
-			</a>
-			<a href="visualization.html"> 
+			
+			<a href="{% url 'entry:stats' %}">
 				<div class="wideBox SimboticsColor">
 					<img src="{{ MEDIA_URL }}{% static 'Stats Icon.png' %}" alt="Stats Icon">
-					<p class="homeText">Visualize</p>
+					<p class="homeText">Statistics</p>
 				</div>
 			</a>
-			<a href="{% url 'entry:download' %}">
-				<div class="bigBox" style="background-color: #AAA300">
-					<img src="{{ MEDIA_URL }}{% static 'Download Icon.png' %}" alt="Download Icon">
+			
+			<a href="{% url 'entry:experimental' %}">
+				<div class="bigBox lightblue">
+					<img src="{{ MEDIA_URL }}{% static 'Labs Icon.png' %}" alt="Labs Icon">
 				</div>
-			</a>	
-			<div class="smallBox" id="nowidth">
-				<p>Current Event Is:</p> 
-				<h2>{% get_current_event %}</h2>
-			</div>
-			<a href="{% url 'entry:upload' %}">
-				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'Upload Icon.png' %}" alt="Upload Icon">
-				</div>
-			</a>	
+			</a>
+
 			<a href="{% url 'entry:settings' %}">
 				<div class="smallBox">
 					<img src="{{ MEDIA_URL }}{% static 'Settings Icon.png' %}" alt="Settings Icon">
 				</div>
 			</a>
 			
-			<a href="{% url 'entry:logout' %}">
+			<a href="{% url 'entry:login' %}">
 				<div class="smallBox">
 					<img src="{{ MEDIA_URL }}{% static 'User Icon.png' %}" alt="User Icon">
 				</div>
-			</a>						
+			</a>
+			<div class="smallBox" id="nowidth">
+				<p>Current Event Is:</p> 
+				<h2>{% get_current_event %}</h2>
+			</div>
 		</div>
 	</div>
 

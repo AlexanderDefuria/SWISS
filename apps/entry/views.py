@@ -135,7 +135,7 @@ def scout_lead_check(user):
 
 
 # TODO Export into .xls instead of .csv
-@user_passes_test(scout_lead_check, login_url='entry:login')
+# @user_passes_test(scout_lead_check, login_url='entry:login')
 @login_required(login_url='entry:login')
 def download(request):
     path = 'match_history.csv'
@@ -211,7 +211,7 @@ def login(request):
             auth.login(request, user)
             print(auth)
 
-        return HttpResponseRedirect(reverse_lazy('entry:team_list'))
+        return HttpResponseRedirect(reverse_lazy('entry:index'))
 
     return HttpResponseRedirect(reverse_lazy('entry:login'))
 
@@ -258,6 +258,12 @@ class MatchScout(LoginRequiredMixin, generic.TemplateView):
     template_name = 'entry/matchscout.html'
 
 
+class MatchScoutLanding(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'entry:login'
+    model = Team
+    template_name = 'entry/matchlanding.html'
+
+
 class Visualize(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     template_name = 'entry/stats.html'
@@ -297,11 +303,16 @@ class ScheduleView(LoginRequiredMixin, generic.ListView):
         return Schedule.objects.filter(event_id=config.current_event_id).order_by("match_type")
 
 
-class PitScout(LoginRequiredMixin, generic.ListView):
+class PitScout(LoginRequiredMixin, generic.DetailView):
     login_url = 'entry:login'
-    template_name = 'entry/pitscout.html'
+    template_name = 'entry/pitlanding.html'
+    context_object_name = "team"
+
+
+class PitScoutLanding(LoginRequiredMixin, generic.ListView):
+    login_url = 'entry:login'
+    template_name = 'entry/pitlanding.html'
     context_object_name = "team_list"
-    model = Team
 
     def get_queryset(self):
         return get_present_teams()
@@ -313,9 +324,8 @@ class Experimental(LoginRequiredMixin, generic.DetailView):
     template_name = 'entry/experimental.html'
 
 
-class About(LoginRequiredMixin, generic.DetailView):
+class About(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
-    model = Team
     template_name = 'entry/about.html'
 
 
@@ -323,3 +333,13 @@ class Glance(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     model = Team
     template_name = 'entry/glance.html'
+
+
+class Data(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'entry:login'
+    template_name = 'entry/data.html'
+
+
+class Upload(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'entry:login'
+    template_name = 'entry/upload.html'

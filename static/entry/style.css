@@ -50,7 +50,7 @@ a {
 	background-clip: padding-box;
 }
 #tileglanceBackground {
-	background-image: url("img/Glance Background - 2000w.png");
+	/*background-image: url("img/Glance Background - 2000w.png");*/
 	background-size: 45%;
 	background-position: center;
 	justify-content: center;
