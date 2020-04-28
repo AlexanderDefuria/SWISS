@@ -28,8 +28,8 @@ register = Library
 
 
 @login_required(login_url='entry:login')
-def write_teleop(request, pk):
-    print("Adding teleop phase to database")
+def match_scout_submit(request, pk):
+    print("Adding match phase to database")
     if request.method == 'POST':
 
         team = Team.objects.get(id=pk)
@@ -39,32 +39,43 @@ def write_teleop(request, pk):
         print(request.POST)
 
         print('Success')
-        return HttpResponseRedirect(reverse_lazy('entry:team_list'))
+        return HttpResponseRedirect(reverse_lazy('entry:index'))
 
     else:
         print('Fail')
-        return HttpResponseRedirect(reverse_lazy('entry:team_list'))
+        return HttpResponseRedirect(reverse_lazy('entry:index'))
+
+
+@ajax
+@csrf_exempt
+@login_required(login_url='entry:login')
+def validate_match_scout(request, pk):
+    # The parsing of the db to check if a team has played at a particular match already is done server side
+    # The ajax post sends only the match number in a JSON file to comply with AJAX datatype specification
+    # dumps() is to convert dictionary into JSON format for HttpResponse to keep it simple stupid
+
+    data = decode_ajax(request)['match_number']
+    provided_match_number = make_int(data[0])
+    result = {'result': False}
+
+    if not Match.objects.filter(team_id=pk, event_id=config.get_current_event_key(),
+                                match_number=provided_match_number).exists():
+        if Match.objects.filter(match_number=provided_match_number).count() < 6:
+            result['result'] = True
+
+    return HttpResponse(dumps(result), content_type="application/json")
 
 
 @login_required(login_url='entry:login')
-def write_auto(request, pk):
-    print("Adding auto phase to database")
-    if request.method == 'POST':
-        team = Team.objects.get(id=pk)
+def pit_scout_submit(request, pk):
+    return HttpResponseRedirect(reverse_lazy('entry:index'))
 
-        # Match Setup
-        match = Match()
-        match.match_number = make_int(request.POST.get('MatchNumber', 0))
-        match.event_id = config.current_event_id
-        if match.event_id != config.current_event_id:
-            raise Http404
-        match.team_id = team.id
 
-        return HttpResponseRedirect('/entry/' + str(pk) + '/teleop/' + str(match.match_number))
-
-    else:
-        print('Fail')
-        return HttpResponseRedirect(reverse_lazy('entry:team_list'))
+@ajax
+@csrf_exempt
+@login_required(login_url='entry:login')
+def validate_pit_scout(request, pk):
+    return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 
 def view_matches(request):
@@ -113,26 +124,6 @@ def update_fields(request):
             return Http404
     else:
         return HttpResponseRedirect(reverse_lazy('entry:visualize'))
-
-
-@ajax
-@csrf_exempt
-@login_required(login_url='entry:login')
-def validate_match(request, pk):
-    # The parsing of the db to check if a team has played at a particular match already is done server side
-    # The ajax post sends only the match number in a JSON file to comply with AJAX datatype specification
-    # dumps() is to convert dictionary into JSON format for HttpResponse to keep it simple stupid
-
-    data = decode_ajax(request)['match_number']
-    provided_match_number = make_int(data[0])
-    result = {'result': False}
-
-    if not Match.objects.filter(team_id=pk, event_id=config.get_current_event_key(),
-                                match_number=provided_match_number).exists():
-        if Match.objects.filter(match_number=provided_match_number).count() < 6:
-            result['result'] = True
-
-    return HttpResponse(dumps(result), content_type="application/json")
 
 
 def decode_ajax(request):
@@ -245,9 +236,9 @@ def get_present_teams():
     return objects
 
 
-class TeamNumberList(LoginRequiredMixin, generic.ListView):
+class Index(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
-    template_name = 'entry/landing.html'
+    template_name = 'entry/index.html'
     context_object_name = "team_list"
     model = Team
 
@@ -255,21 +246,15 @@ class TeamNumberList(LoginRequiredMixin, generic.ListView):
         return get_present_teams()
 
 
-class Auto(LoginRequiredMixin, generic.DetailView):
+class MatchScout(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
     model = Team
-    template_name = 'entry/auto.html'
-
-
-class Teleop(LoginRequiredMixin, generic.DetailView):
-    login_url = 'entry:login'
-    model = Team
-    template_name = 'entry/teleop.html'
+    template_name = 'entry/matchscout.html'
 
 
 class Visualize(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
-    template_name = 'entry/visualize.html'
+    template_name = 'entry/stats.html'
     model = Team
     context_object_name = "team_list"
 
@@ -277,11 +262,11 @@ class Visualize(LoginRequiredMixin, generic.ListView):
         return get_present_teams()
 
 
-class ImageUpload(LoginRequiredMixin, generic.TemplateView):
-    login_url = 'entry:login'
-    template_name = 'entry/image-upload.html'
-    model = Team
-    context_object_name = "team_list"
+# class ImageUpload(LoginRequiredMixin, generic.TemplateView):
+#     login_url = 'entry:login'
+#     template_name = 'entry/image-upload.html'
+#     model = Team
+#     context_object_name = "team_list"
 
 
 class ImageViewer(LoginRequiredMixin, generic.ListView):
@@ -294,6 +279,7 @@ class ImageViewer(LoginRequiredMixin, generic.ListView):
         return get_present_teams()
 
 
+# DPERECATEDq
 class ScheduleView(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     template_name = 'entry/schedule.html'
@@ -304,11 +290,23 @@ class ScheduleView(LoginRequiredMixin, generic.ListView):
         return Schedule.objects.filter(event_id=config.current_event_id).order_by("match_type")
 
 
-class PitUpload(LoginRequiredMixin, generic.ListView):
+class PitScout(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
-    template_name = 'entry/schedule.html'
-    context_object_name = "schedule"
-    model = Schedule
+    template_name = 'entry/pitscout.html'
+    context_object_name = "team_list"
+    model = Team
 
     def get_queryset(self):
-        return Schedule.objects.filter(event_id=config.current_event_id).order_by("match_type")
+        return get_present_teams()
+
+
+class Experimental(LoginRequiredMixin, generic.DetailView):
+    login_url = 'entry:login'
+    model = Team
+    template_name = 'entry/experimental.html'
+
+
+class About(LoginRequiredMixin, generic.DetailView):
+    login_url = 'entry:login'
+    model = Team
+    template_name = 'entry/about.html'
