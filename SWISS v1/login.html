@@ -5,6 +5,7 @@
 <title>Change Me</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" type="text/css" href="colorsheet.css">
+<link rel="stylesheet" type="text/css" href="formstyle.css">
 <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
@@ -15,26 +16,36 @@
 
 <body>
 	<div class="topbar">
-		<div class="hamburgerButton" onClick="openNav()">
-			<button class="hamburgerButton" onClick="openNav()">☰</button>
-		</div>
 		<div class="swissLogo" id="swissLogo">
 			<a href="index.html">
 			<img src="img/Swiss Icon@2x.png" alt="SWISS Logo">
 			</a>
 		</div>
 	</div>
-	<div id="sideNav" class="sidebar">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-		<a href="index.html">Home</a>
-		<a href="matchscout.html">Scout</a>
-		<a href="experimental.html">Labs</a>
-		<a href="settings.html">Settings</a>
-		<a href="about.html">About</a>
-	</div>
 	
 	<div class="bodyContainer">
-
+		<div id="loginContainer">
+			<div class="infoBox" style="width:580px;">
+				<div class="infoHeader">
+					<img class="infoIcon" src="img/User Icon.png" alt="user icon">
+					<h1>Login</h1>
+				</div>
+				<form>
+					<div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+						<label for="username">Username:</label>
+						<input style="margin-left:10px;" type="text" name="username" id="username">
+					</div>
+					<div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+						<label for="username">Password:</label>
+						<input style="margin-left:10px; " type="password" name="password" id="password">
+					</div>
+					<div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+						<input type="submit" vaue="LogIn">
+					</div>
+				
+				</form>
+			</div>
+		</div>
 	</div>
 	
 	

@@ -39,6 +39,21 @@
 	border-width: 3px;
 	background: #333333;
 }
+.formItem input[type=password]{
+	width: 200px;
+	outline: none;
+	color: white;
+	background: none;
+	border: none;
+	border-bottom: 1px solid #ffffff;
+	transition: all 0.2s ease-in-out;
+}
+.formItem input[type=password]:focus {
+	width: 450px;
+	border-color: #0F4D8D;
+	border-width: 3px;
+	background: #333333;
+}
 .formItem input[type=number]{
 	width: 60px;
 	outline: none;
@@ -105,16 +120,13 @@
 	align-self: flex-end;
 	height: inherit;
 }
-
 .goalIcon {
 	height: 35px; position: relative; top: 5px; left: -5px
 }
-
 .checkboxGroup {
 	padding: 10px;
 	text-align: right;
 }
-
 .formItem [type=button] {
 	background: none;
 	color: white;
@@ -129,7 +141,6 @@
 	background-color: white;
 	color: black;
 }
-
 #incButton:active {
 	background-color: green;
 }
@@ -141,7 +152,6 @@
 .formItem [type=range] {
 	width: 200px;
 }
-
 .formItem [type=submit] {
 	background: none;
 	border: none;
@@ -151,15 +161,12 @@
 	height: 60px;
 	width: 100%;
 }
-
 #submit {
 	background-color: #0F4D8D;
 }
-
 #auto_start_img {
 	height: 50px;
 }
-
 @media screen and (max-width: 1280px) {
 	.formItem {
 		min-height: 60px;
@@ -219,7 +226,10 @@
 	.formItem input[type=text]:focus {
 	width: auto;
 	text-align: center;
-
+	}
+	.formItem input[type=password]:focus {
+	width: auto;
+	text-align: center;
 	}
 	.checkboxGroup span {
 	margin-top: 20px;

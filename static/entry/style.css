@@ -26,7 +26,13 @@ a {
 .bodyContainer{
 	margin-top: 40px;
 	padding: 20px 15px 20px 15px;
-	
+}
+#loginContainer {
+	padding: auto;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
 }
 .heroContent {
 	display: flex;
@@ -143,8 +149,9 @@ a {
 .infoRow { display: flex; margin-top: 5px; background-color: #09315A; }
 .infoLColumn { flex: 25%; }
 .infoRColumn { flex: 75%; }
-.infoWide { width: 510px; flex-grow: 10 }
+.infoWide { width: 510px; flex-grow: 5 }
 .infoReg { width: auto; min-width: 260px; flex-grow: 1; max-width: 500px; }
+.infoIcon { height: 7vh; padding: 10px; }
 
 .wideBox {
 	display: flex;
@@ -161,6 +168,7 @@ a {
 }
 .smallBox {
 	display: flex;
+	align-items: center;
 	padding: 22.5px;
 	height: 100px;
 	width: 100px;
@@ -192,7 +200,7 @@ a {
 	transition: all .2s ease-in-out;
 }
 .teamChip:hover {
-	transform: scale(1.15); 
+	transform: scale(1.1); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .robotPhoto {width:inherit; height:min-content;}
@@ -305,6 +313,8 @@ a {
 
 
 .sidebar {
+	display: flex;
+	flex-direction: column;
   height: 100%;
   width: 0;
   position: fixed;
@@ -399,7 +409,10 @@ a {
 .teamDrawer a:active {
 	color: #0F4D8D;
 }
-
+#nowidth {
+	width:auto;
+	flex-direction: column
+}
 
 
 

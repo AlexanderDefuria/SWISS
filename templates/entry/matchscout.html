@@ -134,7 +134,7 @@
 					<option vaue="2">Yes, Complex</option>
 				</select>
 			</div>
-		  <div class="formItem">
+		<div class="formItem">
 				<label for="baseline">Moved off Initiation Line</label>
 				<div class="radioGroup">
 					<label>
@@ -146,8 +146,8 @@
 						<span>N</span>
 					</label>
 				</div>
-			</div>
-		  <div class="formItem">
+		</div>
+		<div class="formItem">
 				  <label for="autoLowGoal">Power Port Goals</label>
 				<div class="ticker">
 					<img class="goalIcon" src="img/Lower Auto Icon.png" alt="lower">
@@ -238,6 +238,24 @@
 
 				</div>
 			</div>
+			<div class="formItem">
+					<label for="under_defense">Play well under defense</label>
+					<div class="radioGroup">
+						<label>
+							<input type="radio" id="under_defense_none" name="under_defense" value="0" checked>
+							<span>X</span>
+						</label>						
+						<label>
+							<input type="radio" id="under_defense_true" name="under_defense" value="true">
+							<span>Y</span>
+						</label>						
+						<label>
+							<input type="radio" id="under_defense_false" name="under_defense" value="false">
+							<span>N</span>
+						</label>
+					</div>
+			</div>
+			
 			
 			<div class="formItem">
 				<label for="wheel_score">Control Panel Task</label>
@@ -295,6 +313,10 @@
 		  <div class="formItem">
 				<label for="push_rating">Ability to Push</label>
 				<div class="radioGroup">
+					<label>
+						<input type="radio" id="push_rating_none" name="push_rating" value="0" checked>
+						<span>X</span>
+					</label>						
 					<label>
 						<input type="radio" id="push_rating_true" name="push_rating" value="true">
 						<span>Y</span>
