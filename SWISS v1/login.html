@@ -1,15 +1,16 @@
+{% load static %}
+{% load common_tags %}
+
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>Change Me</title>
-<link rel="stylesheet" type="text/css" href="style.css">
-<link rel="stylesheet" type="text/css" href="colorsheet.css">
-<link rel="stylesheet" type="text/css" href="formstyle.css">
-<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
 <meta name="theme-color" content="0F4D8D">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
@@ -17,8 +18,8 @@
 <body>
 	<div class="topbar">
 		<div class="swissLogo" id="swissLogo">
-			<a href="index.html">
-			<img src="img/Swiss Icon@2x.png" alt="SWISS Logo">
+			<a href="{% url 'entry:index' %}">
+			<img src="{{ MEDIA_URL }}{% static 'Swiss Icon@2x.png' %}" alt="SWISS Logo">
 			</a>
 		</div>
 	</div>

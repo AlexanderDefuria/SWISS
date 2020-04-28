@@ -35,7 +35,7 @@
 		<a href="{% url 'entry:about' %}">About</a>
 	</div>
 	
-	<div class="bodyContainer bodyBackground scoutImage" id="bodyContainer">
+	<div class="bodyContainer bodyBackground scoutImage" id="bodyContainer" style="background-image: url({% static 'scout background.png' %})">
 		<div class="heroContent">
 			<h1 class="homeText">Pit Scouting</h1>
 		</div>
@@ -55,7 +55,7 @@
 				</div>				
 				<div class="formItem">
 					<label>Press this to continue [dev]</label>
-					<a href="{% url 'entry:pit_scout' %}">
+					<a href="{% url 'entry:pit_scout' 0 %}">
 						<input type="button" value=">">
 					</a>
 				</div>

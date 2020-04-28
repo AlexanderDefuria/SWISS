@@ -266,7 +266,7 @@ class MatchScoutLanding(LoginRequiredMixin, generic.TemplateView):
 
 class Visualize(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
-    template_name = 'entry/stats.html'
+    template_name = 'entry/visualization.html'
     model = Team
     context_object_name = "team_list"
 

@@ -490,7 +490,7 @@ tr:nth-child(even){
 	background-image: url("img/match background.png");
 }
 .scoutImage {
-	background-image: url("img/scout background.png")
+	/*background-image: url("img/scout background.png")*/
 }
 .statsImage {
 	background-image: url("img/Stats Background.png");

@@ -47,7 +47,7 @@
 					<img src="{{ MEDIA_URL }}{% static 'Pit Scout Icon.png' %}" alt="scout icon">
 				</div>
 			</a>	
-			<a href="{% url 'entry:visualize' %}">
+			<a href="{% url 'entry:glance' %}">
 				<div class="wideBox CeltXColor" id="tileglanceBackground" style="background-image: url({{ MEDIA_URL }}{% static 'Glance Background - 2000w.png' %})">
 					<img src="{{ MEDIA_URL }}{% static 'Strategy Icon.png' %}" alt="Strategy icon">
 				</div>
@@ -63,7 +63,7 @@
 					<img src="{{ MEDIA_URL }}{% static 'Data Icon.png' %}" alt="Data Icon">
 				</div>
 			</a>
-			<a href="visualization.html"> 
+			<a href="{% url 'entry:visualize' %}">
 				<div class="wideBox SimboticsColor">
 					<img src="{{ MEDIA_URL }}{% static 'Stats Icon.png' %}" alt="Stats Icon">
 					<p class="homeText">Visualize</p>
