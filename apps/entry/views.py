@@ -317,3 +317,9 @@ class About(LoginRequiredMixin, generic.DetailView):
     login_url = 'entry:login'
     model = Team
     template_name = 'entry/about.html'
+
+
+class Glance(LoginRequiredMixin, generic.ListView):
+    login_url = 'entry:login'
+    model = Team
+    template_name = 'entry/glance.html'

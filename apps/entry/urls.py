@@ -21,6 +21,8 @@ urlpatterns = [
     path('visual/update/', views.update_graph, name='update_graph'),
     path('visual/update/fields', views.update_fields, name='update_fields'),
 
+    path('glance/', views.Glance.as_view(), name='glance'),
+
     path('download/', views.download, name='download'),
 
     path('teams/', views.TeamList.as_view(), name='teams'),
