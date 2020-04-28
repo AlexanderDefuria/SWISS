@@ -27,7 +27,7 @@
 	<div id="sideNav" class="sidebar">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<a href="index.html">Home</a>
-		<a href="matchscout.html">Scout</a>
+		<a href="matchlanding.html">Scout</a>
 		<a href="experimental.html">Labs</a>
 		<a href="settings.html">Settings</a>
 		<a href="about.html">About</a>
@@ -80,12 +80,18 @@
 				</button>
 			</div>
 		</div>
-	<form >
-		<h1>Drivetrain</h1>
 		
+	<form target="_self" action="matchlanding.html">
+		<h1>Drivetrain</h1>
 		<div class="formItem">
 			<label for="drivetrain_style">Style of Drivetrain</label>
-			<input type="text" name="drivetrain_style" id="drivetrain_style" placeholder="Drivetrain Style" autocomplete="off" required>
+			<select name="drivetrain_style" id="drivtrain_style" required> 
+				<option value="kitbot">Kitbot</option>
+				<option value="westCoast">West Coast</option>
+				<option value="swerve">Swerve</option>
+				<option value="mecanum">Mecanum</option>
+				<option value="custom">Custom</option>
+			</select>
 		</div>
 		<div class="formItem">
 			<label for="drivetrain_wheels">Type of Drive Wheels</label>
@@ -93,7 +99,12 @@
 		</div>
 		<div class="formItem">
 			<label for="drivetrain_motortype">Types of Motors in Drivetrain</label>
-			<input type="text" name="drivetrain_motortype" id="drivetrain_motortype" placeholder="Drivetrain Motors" autocomplete="off" required>
+			<select name="drivetrain_motortype" id="drivtrain_motortype" required> 
+				<option value="falcon">Falcon 500</option>
+				<option value="neo">Neo 500</option>
+				<option value="CIM">CIM</option>
+				<option value="miniCIM">miniCIM</option>
+			</select>
 		</div>
 
 		<div class="formItem">

@@ -47,6 +47,7 @@ a {
 	background-repeat: no-repeat;
 	background-size: 100%;
 	background-position: center -15vh;
+	background-clip: padding-box;
 }
 #tileglanceBackground {
 	background-image: url("img/Glance Background - 2000w.png");
@@ -64,6 +65,21 @@ a {
 	margin-right: 10px;
 	justify-content: center;
 }
+.statsContainer {
+	display: flex;
+	flex-wrap: wrap;
+}
+.flexColumn60 {
+	flex: 60%;
+}
+.flexColumn40 {
+	flex: 40%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
 .swissLogo {
 	height: auto;
 	padding-left: 5px;
@@ -84,6 +100,22 @@ a {
 	transition: all .2s ease-in-out; 
 }
 .bigBox:hover { 
+	transform: scale(1.075); 
+	box-shadow: 2px 5px 25px 2px #232323;
+}
+.headerBox {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: center;
+	height: 100px;
+	width: 250px;
+	padding: 100px 25px 100px 25px;
+	margin: 0px 0px 10px 10px;
+	background-color: #0F4D8D;
+	transition: all .2s ease-in-out; 
+}
+.headerBox:hover { 
 	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
@@ -171,13 +203,12 @@ a {
 	align-items: center;
 	padding: 22.5px;
 	height: 100px;
-	width: 100px;
 	margin: 0px 0px 10px 10px;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
 .smallBox:hover {
-	transform: scale(1.15); 
+	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .homeText {
@@ -186,6 +217,10 @@ a {
 	font-size: 75px;
 	font-weight: 1000;
 	margin: 10px 0 0 0;
+}
+#teamsText {
+	margin-top: 1.25em;
+	font-size: 36px;
 }
 .teamChip {
 	margin: 0px 0px 10px 10px;
@@ -246,12 +281,28 @@ a {
 	user-select: none;
 	white-space:nowrap;
 }
-
 .largeGraph {
-	height: 500px;
-	width: 1000px;
+	height: auto;
+	width: 100%;
 	background-color: aqua;
 }
+.tableContainer {
+	background-color: #333333;
+	height: 75%;
+	width: 100%;
+	overflow: scroll;
+}
+table, th, td {
+	padding: 5px;
+	border: 1px solid white;
+	border-collapse: collapse;
+	white-space: nowrap;
+}
+
+tr:nth-child(even){
+	background-color: #555555
+}
+
 
 @media screen and (max-width: 1280px) {
 	.glanceImage {
@@ -280,10 +331,17 @@ a {
 		background-size: 150%;
 		background-position: center 3vh;
 	}
-	.tileContainer {	}
+	.tileContainer {
+		padding: 0 10px 0 10px;
+	}
 	.bigBox {
 		margin: 5px 0 0 5px;
 		padding: 20px;
+	}
+	.headerBox {
+	width: 100px;
+	padding: 20px 20px 20px 20px;
+	margin: 5px 0px 0px 5px;
 	}
 	.wideBox {
 		margin: 5px 0 0 5px;
@@ -300,6 +358,9 @@ a {
 		font-size: 28px;
 		margin-top: 55px;
 	}
+	#teamsText {
+		font-size: 0px;
+	}
 	.pictureBox {
 		width: 100%;
 		height: fit-content;
@@ -307,6 +368,9 @@ a {
 	.pictureBox img {
 		height: 100%;
 		width: inherit;
+	}
+	#nowidth {
+		max-width: 255px;
 	}
 
 }
@@ -427,6 +491,10 @@ a {
 }
 .scoutImage {
 	background-image: url("img/scout background.png")
+}
+.statsImage {
+	background-image: url("img/Stats Background.png");
+	background-attachment: fixed;
 }
 .teamsImage {
 	background-image: url("img/Teams Background.png");

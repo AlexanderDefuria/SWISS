@@ -17,7 +17,7 @@
 	transition: all 0.1s ease-in-out;
 	user-select: none;
 }
-.formItem:hover { 	
+.formItem:hover{ 	
 	background-color: #555555;
 	box-shadow: 7px 7px 25px 10px #232323;
 }
@@ -40,7 +40,7 @@
 	background: #333333;
 }
 .formItem input[type=password]{
-	width: 200px;
+	width: auto;
 	outline: none;
 	color: white;
 	background: none;
@@ -180,6 +180,7 @@
 		top: 15px;
 	}
 	.formItem input[type=text], select {
+		height:auto;
 		font-size: 18px;
 	}
 	.formItem input[type=number] {

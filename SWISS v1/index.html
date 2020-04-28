@@ -27,7 +27,7 @@
 	<div id="sideNav" class="sidebar">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<a href="index.html">Home</a>
-		<a href="matchscout.html">Scout</a>
+		<a href="matchlanding.html">Scout</a>
 		<a href="experimental.html">Labs</a>
 		<a href="settings.html">Settings</a>
 		<a href="about.html">About</a>
@@ -35,45 +35,52 @@
 	
 	<div class="bodyContainer" id="bodyContainer">
 		<div class="tileContainer">
-			
-			<a href="matchscout.html">
+			<a href="matchlanding.html">
 				<div class="bigBox">
 					<img src="img/Scout Icon.png" alt="scout icon">
 				</div>
 			</a>		
-			
-			<a href="pitscout.html">
+			<a href="pitlanding.html">
 				<div class="bigBox">
 					<img src="img/Pit Scout Icon.png" alt="scout icon">
 				</div>
-			</a>
-						
+			</a>	
 			<a href="glance.html">
 				<div class="wideBox CeltXColor" id="tileglanceBackground">
 					<img src="img/Strategy Icon.png" alt="Strategy icon">
 				</div>
 			</a>
-
 			<a href="teams.html"> 
-				<div class="wideBox OttawaTrashColor">
-					<img src="img/Data Icon.png" alt="Data Icon">
-					<p class="homeText">Teams</p>
+				<div class="headerBox" style="background-color: #8C1D74">
+					<img src="img/Search Icon.png" alt="search icon">
+					<p class="homeText" id="teamsText">Teams</p>
 				</div>
 			</a>
-			
-			<a href="stats.html"> 
+			<a href="data.html">
+				<div class="bigBox">
+					<img src="img/Data Icon.png" alt="Data Icon">
+				</div>
+			</a>
+			<a href="visualization.html"> 
 				<div class="wideBox SimboticsColor">
 					<img src="img/Stats Icon.png" alt="Stats Icon">
-					<p class="homeText">Statistics</p>
+					<p class="homeText">Visualize</p>
 				</div>
 			</a>
-			
-			<a href="experimental.html"> 
-				<div class="bigBox lightblue">
-					<img src="img/Labs Icon.png" alt="Labs Icon">
+			<a href="#">
+				<div class="bigBox" style="background-color: #AAA300">
+					<img src="img/Download Icon.png" alt="Download Icon">
 				</div>
-			</a>
-
+			</a>	
+			<div class="smallBox" id="nowidth">
+				<p>Current Event Is:</p> 
+				<h2>{ %get_current_event% }</h2>
+			</div>
+			<a href="upload.html">
+				<div class="smallBox">
+					<img src="img/Upload Icon.png" alt="Upload Icon">
+				</div>
+			</a>	
 			<a href="settings.html">
 				<div class="smallBox">
 					<img src="img/Settings Icon.png" alt="Settings Icon">
@@ -84,11 +91,7 @@
 				<div class="smallBox">
 					<img src="img/User Icon.png" alt="User Icon">
 				</div>
-			</a>
-			<div class="smallBox" id="nowidth">
-				<p>Current Event Is:</p> 
-				<h2>{% get_current_event %}</h2>
-			</div>
+			</a>						
 		</div>
 	</div>
 
