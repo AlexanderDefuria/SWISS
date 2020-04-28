@@ -22,7 +22,7 @@
 		</div>
 		<div class="swissLogo" id="swissLogo">
 			<a href="{% url 'entry:index' %}">
-			<img src="{{ MEDIA_URL }}{% static 'Swiss Icon@2x.png' %}" alt="SWISS Logo">
+			<img src="{{ MEDIA_URL }}{% static 'SwissIcon2x.png' %}" alt="SWISS Logo">
 			</a>
 		</div>
 	</div>
@@ -108,7 +108,7 @@
 					<input type="range" name="auto_start" id="auto_start" min="0" max="20" value="14" oninput="auto_start_number.value=auto_start.value">
 					</div>
 					<div>
-					<img id="auto_start_img" src="{{ MEDIA_URL }}{% static 'Initiation Line.png' %}" alt="Initiation Line Graph">
+					<img id="auto_start_img" src="{{ MEDIA_URL }}{% static 'InitiationLine.png' %}" alt="Initiation Line Graph">
 					</div>
 					<div style="text-align: center">
 					<output name="auto_start_number" id="auto_start_number" for="auto_start">14</output>
@@ -149,17 +149,17 @@
 		<div class="formItem">
 				  <label for="autoLowGoal">Power Port Goals</label>
 				<div class="ticker">
-					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'Lower Auto Icon.png' %}" alt="lower">
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'LowerAutoIcon.png' %}" alt="lower">
 					<input type="button"  onclick="decrementValue('lower_auto')" value="-">
 					<input type="number" name="lower_auto" id="lower_auto" min="0" max="100" value="0" readonly>		
 					<input type="button"  onclick="incrementValue('lower_auto')" value="+">
 					<br>
-				  	<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'Outer Auto Icon.png' %}" alt="outer">
+				  	<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'OuterAutoIcon.png' %}" alt="outer">
 					<input type="button" onclick="decrementValue('outer_auto')" value="-">
 					<input name="outer_auto" id="outer_auto" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('outer_auto')" value="+">
 					<br>
-					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'Inner Auto Icon.png' %}" alt="inner">
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'InnerAutoIcon.png' %}" alt="inner">
 					<input type="button" onclick="decrementValue('inner_auto')" value="-">
 					<input name="inner_auto" id="inner_auto" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('inner_auto')" value="+">
@@ -175,17 +175,17 @@
 			<div class="formItem">			
 				<label>Power Port Goals</label>
                 <div class="ticker">
-					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'Lower Auto Icon.png' %}" alt="lower">
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'LowerAutoIcon.png' %}" alt="lower">
   					<input type="button" onclick="decrementValue('lower')" value="-">
 					<input id="lower" name="lower" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('lower')" value="+">
 					<br>
-					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'Outer Tele Icon.png' %}" alt="outer">
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'OuterTeleIcon.png' %}" alt="outer">
 					<input type="button" onclick="decrementValue('outer')" value="-">
 					<input name="outer" id="outer" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('outer')" value="+">
 					<br>
-					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'Inner Tele Icon.png' %}" alt="inner">
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'InnerTeleIcon.png' %}" alt="inner">
 					<input type="button" onclick="decrementValue('inner')" value="-">
 					<input name="inner" id="inner" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('inner')" value="+">
