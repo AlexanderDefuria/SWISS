@@ -236,14 +236,20 @@ def get_present_teams():
     return objects
 
 
-class Index(LoginRequiredMixin, generic.ListView):
+class TeamList(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
-    template_name = 'entry/index.html'
+    template_name = 'entry/teams.html'
     context_object_name = "team_list"
     model = Team
 
     def get_queryset(self):
         return get_present_teams()
+
+
+class Index(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'entry:login'
+    template_name = 'entry/index.html'
+    model = Team
 
 
 class MatchScout(LoginRequiredMixin, generic.TemplateView):
@@ -269,6 +275,7 @@ class Visualize(LoginRequiredMixin, generic.ListView):
 #     context_object_name = "team_list"
 
 
+# DPERECATED
 class ImageViewer(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     template_name = 'entry/image-viewer.html'
@@ -279,7 +286,7 @@ class ImageViewer(LoginRequiredMixin, generic.ListView):
         return get_present_teams()
 
 
-# DPERECATEDq
+# DPERECATED
 class ScheduleView(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     template_name = 'entry/schedule.html'

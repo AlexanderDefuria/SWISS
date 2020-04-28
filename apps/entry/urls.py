@@ -23,12 +23,17 @@ urlpatterns = [
 
     path('download/', views.download, name='download'),
 
+    path('teams/', views.TeamList.as_view(), name='teams'),
+
+    path('stats/', views.TeamList.as_view(), name='stats'),
+
     path('schedule/', views.ScheduleView.as_view(), name='schedule'),
 
     path('experimental/', views.Experimental.as_view(), name='experimental'),
 
     path('about/', views.About.as_view(), name='about'),
-    path('about/', views.About.as_view(), name='settings'),
+
+    path('settings/', views.About.as_view(), name='settings'),
 
     # path('image_upload/', views.ImageUpload.as_view(), name='image_upload'),
     # path('image_upload/submit', views.write_image_upload, name='write_image_upload'),

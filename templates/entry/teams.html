@@ -1,14 +1,16 @@
+{% load static %}
+{% load common_tags %}
+
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>SWISS Teams</title>
-<link rel="stylesheet" type="text/css" href="style.css">
-<link rel="stylesheet" type="text/css" href="colorsheet.css">
-<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
 <meta name="theme-color" content="0F4D8D">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
@@ -19,18 +21,18 @@
 			<button class="hamburgerButton" onClick="openNav()">☰</button>
 		</div>
 		<div class="swissLogo" id="swissLogo">
-			<a href="index.html">
-			<img src="img/Swiss Icon@2x.png" alt="SWISS Logo">
+			<a href="{% url 'entry:index' %}">
+			<img src="{{ MEDIA_URL }}{% static 'Swiss Icon@2x.png' %}" alt="SWISS Logo">
 			</a>
 		</div>
 	</div>
 	<div id="sideNav" class="sidebar">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-		<a href="index.html">Home</a>
-		<a href="matchscout.html">Scout</a>
-		<a href="experimental.html">Labs</a>
-		<a href="settings.html">Settings</a>
-		<a href="about.html">About</a>
+		<a href="{% url 'entry:index' %}">Home</a>
+		<a href="{% url 'entry:match_scout' %}">Scout</a>
+		<a href="{% url 'entry:experimental' %}">Labs</a>
+		<a href="{% url 'entry:settings' %}">Settings</a>
+		<a href="{% url 'entry:about' %}">About</a>
 	</div>
 
 	<div class="bodyContainer bodyBackground teamsImage" id="bodyContainer">
@@ -38,41 +40,22 @@
 			<p class="homeText">Teams</p>
 		</div>
 		<div class="tileContainer">
+            {% for team in team_list %}
+                {% for image in team.images.all %}
+                    <div class="teamChip">
+                        <img class="robotPhoto" src="{{ MEDIA_URL }}{{ image.image }}" alt="robot photo">
+				        <div class="teamnumberPill SimboticsColor"><p>{{ team.number }}</p></div>
+				        <div class="teamnamePill"><p>{{ team.name }}</p></div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            <!--
 			<div class="teamChip">
 				<img class="robotPhoto" src="robot/1114.jpg" alt="robot photo">
 				<div class="teamnumberPill SimboticsColor"><p>1114</p></div>
 				<div class="teamnamePill"><p>Simbotics</p></div>
 			</div>
-			<div class="teamChip">
-				<img class="robotPhoto" src="robot/3683.jpg" alt="robot photo">
-				<div class="teamnumberPill DaveColor"><p>3683</p></div>
-				<div class="teamnamePill"><p>Team DAVE</p></div>
-			</div>
-			<div class="teamChip">
-				<img class="robotPhoto" src="robot/0.png" alt="robot photo">
-				<div class="teamnumberPill DarkRedColor"><p>2852</p></div>
-				<div class="teamnamePill"><p>DM High Voltage</p></div>
-			</div>
-			<div class="teamChip">
-				<img class="robotPhoto" src="robot/4343.JPG" alt="robot photo">
-				<div class="teamnumberPill MaxTechColor"><p>4343</p></div>
-				<div class="teamnamePill"><p>MaxTech</p></div>
-			</div>
-			<div class="teamChip">
-				<img class="robotPhoto" src="robot/5834.jpg" alt="robot photo">
-				<div class="teamnumberPill MaxTechColor"><p>5834</p></div>
-				<div class="teamnamePill"><p>R3P2</p></div>
-			</div>
-			<div class="teamChip">
-				<img class="robotPhoto" src="robot/6978.jpg" alt="robot photo">
-				<div class="teamnumberPill CeltXColor"><p>6978</p></div>
-				<div class="teamnamePill"><p>QuickStrike Niagara</p></div>
-			</div>			
-			<div class="teamChip">
-				<img class="robotPhoto" src="robot/7558.jpg" alt="robot photo">
-				<div class="teamnumberPill DarkRedColor"><p>7558</p></div>
-				<div class="teamnamePill"><p>Alt-F4</p></div>
-			</div>
+			-->
 		</div>
 	</div>
 	

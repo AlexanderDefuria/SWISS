@@ -56,33 +56,33 @@
 				</div>
 			</a>
 
-			<a href="teams.html"> 
+			<a href="{% url 'entry:teams' %}">
 				<div class="wideBox OttawaTrashColor">
 					<img src="{{ MEDIA_URL }}{% static 'Data Icon.png' %}" alt="Data Icon">
 					<p class="homeText">Teams</p>
 				</div>
 			</a>
 			
-			<a href="stats.html"> 
+			<a href="{% url 'entry:stats' %}">
 				<div class="wideBox SimboticsColor">
 					<img src="{{ MEDIA_URL }}{% static 'Stats Icon.png' %}" alt="Stats Icon">
 					<p class="homeText">Statistics</p>
 				</div>
 			</a>
 			
-			<a href="experimental.html"> 
+			<a href="{% url 'entry:experimental' %}">
 				<div class="bigBox lightblue">
 					<img src="{{ MEDIA_URL }}{% static 'Labs Icon.png' %}" alt="Labs Icon">
 				</div>
 			</a>
 
-			<a href="settings.html">
+			<a href="{% url 'entry:settings' %}">
 				<div class="smallBox">
 					<img src="{{ MEDIA_URL }}{% static 'Settings Icon.png' %}" alt="Settings Icon">
 				</div>
 			</a>
 			
-			<a href="login.html">
+			<a href="{% url 'entry:login' %}">
 				<div class="smallBox">
 					<img src="{{ MEDIA_URL }}{% static 'User Icon.png' %}" alt="User Icon">
 				</div>
