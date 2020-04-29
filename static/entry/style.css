@@ -12,6 +12,10 @@ img {
 a {
 	text-decoration:none;
 }
+ul {
+  list-style-type: none;
+  padding: 0;
+}
 .topbar {
 	display: flex;
 	height: 40px;
@@ -253,6 +257,18 @@ a {
 	position: fixed;
 	z-index: 2;
 }
+.pillContainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 5px;
+}
+.pillContainer > li {
+	margin: 5px;
+}
+.pillSelect {
+	max-width: 50%;
+}
 .teamnumberPill {
 	text-align: center;
 	width: 72px;
@@ -322,6 +338,9 @@ tr:nth-child(even){
 		margin-top: 60px;
 		background-position: center -10vh;
 	}
+	.pillSelect {
+		max-width: 75%;
+	}
 }
 
 /* for mobile phones, portrait and landscape */
@@ -333,6 +352,9 @@ tr:nth-child(even){
 	}
 	.tileContainer {
 		padding: 0 10px 0 10px;
+	}
+	.pillSelect {
+		max-width: 100%;
 	}
 	.bigBox {
 		margin: 5px 0 0 5px;
@@ -486,12 +508,13 @@ tr:nth-child(even){
 	background-image: url("img/Glance Background - 2000w.png");
 	background-attachment: fixed;
 }
-.matchImage { 
+.matchImage {
 	background-image: url("img/match background.png");
 }
 .scoutImage {
 	/*background-image: url("img/scout background.png")*/
 }
+
 .statsImage {
 	background-image: url("img/Stats Background.png");
 	background-attachment: fixed;

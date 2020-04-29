@@ -34,52 +34,16 @@
 		<a href="{% url 'entry:settings' %}">Settings</a>
 		<a href="{% url 'entry:about' %}">About</a>
 	</div>
-	<div id="teamDrawer" class="teamDrawer">
-		<div class="teamSelect">
-			<div class="teamnumberPill CoyotesColor"><p>746</p></div>
-			<div class="teamnumberPill SimboticsColor"><p>1114</p></div>
-			<div class="teamnumberPill MaxTechColor"><p>1241</p></div>
-			<div class="teamnumberPill TheoryColor"><p>1285</p></div>
-			<div class="teamnumberPill MaxTechColor"><p>2198</p></div>
-			<div class="teamnumberPill YellowColor"><p>2386</p></div>
-			<div class="teamnumberPill CeltXColor"><p>2405</p></div>
-			<div class="teamnumberPill SimboticsColor"><p>2852</p></div>
-			<div class="teamnumberPill "><p>3560</p></div>
-			<div class="teamnumberPill "><p>3571</p></div>
-			<div class="teamnumberPill DaveColor"><p>3683</p></div>
-			<div class="teamnumberPill DarkRedColor"><p>4308</p></div>
-			<div class="teamnumberPill MaxTechColor"><p>4343</p></div>
-			<div class="teamnumberPill "><p>4519</p></div>
-			<div class="teamnumberPill DarkRedColor"><p>4618</p></div>
-			<div class="teamnumberPill "><p>4902</p></div>
-			<div class="teamnumberPill YellowColor"><p>5024</p></div>
-			<div class="teamnumberPill OdysseyColor"><p>5031</p></div>
-			<div class="teamnumberPill "><p>5032</p></div>
-			<div class="teamnumberPill lightblue"><p>5834</p></div>
-			<div class="teamnumberPill lightblue"><p>6009</p></div>
-			<div class="teamnumberPill "><p>6917</p></div>
-			<div class="teamnumberPill DarkRedColor"><p>6977</p></div>
-			<div class="teamnumberPill DaveColor"><p>6978</p></div>
-			<div class="teamnumberPill DarkRedColor"><p>7174</p></div>
-			<div class="teamnumberPill CoyotesColor"><p>7475</p></div>
-			<div class="teamnumberPill SimboticsColor"><p>7558</p></div>
-			<div class="teamnumberPill YellowColor"><p>7623</p></div>
-			<div class="teamnumberPill DaveColor"><p>7690</p></div>
-		</div>
-		<a href="javascript:void(0)" class="closebtn" onclick="closeTeamDrawer()">×</a>		
-	</div>
 	
-	<div class="bodyContainer bodyBackground matchImage" id="bodyContainer">
+	<div class="bodyContainer bodyBackground" id="bodyContainer">
 		<div class="heroContent" id="heroSpace">
 			<div class="stickyChip">
-				<button class="changeTeam" id="changeTeam" onClick="openTeamDrawer()">
-				<div class="teamnumberPill MaxTechColor">
-						<p>4343</p>
+				<div class="teamnumberPill" style="background-color: {{team.colour}}">
+						<p>{{ team.number }}</p>
 				</div>
 				<div class="teamnamePill">
-						<p>MaxTech</p>
+						<p>{{ team.name }}</p>
 				</div>
-				</button>
 			</div>
 		</div>
 	<div>
@@ -89,45 +53,49 @@
 				<h1>PRE-MATCH</h1>
 			</div>
 			<div class="formItem">
-				<label for="on_field">Is Robot Present?</label>
+				<label for="onField">Is Robot Present?</label>
 				<div class="radioGroup">
 					<label>
-						<input type="radio" id="on_field_true" name="on_field" value="true" checked>
+						<input type="radio" id="onField_true" name="onField" value="true" checked>
 						<span>Y</span>
 					</label>
 					<label>
-						<input type="radio" id="on_field_false" name="on_field" value="false">
+						<input type="radio" id="onField_false" name="onField" value="false">
 						<span>N</span>
 					</label>
 				</div>
 			</div>
 			<div class="formItem">
-				<label for="auto_start">Starting Position</label>
+				<label for="autoStart">Starting Position</label>
 				<div class="right">
 					<div>
-					<input type="range" name="auto_start" id="auto_start" min="0" max="20" value="14" oninput="auto_start_number.value=auto_start.value">
+					<input type="range" name="autoStart" id="autoStart" min="0" max="20" value="14" oninput="autoStart_number.value=autoStart.value">
 					</div>
 					<div>
+<<<<<<< HEAD:templates/entry/matchscout.html
 					<img id="auto_start_img" src="{{ MEDIA_URL }}{% static 'InitiationLine.png' %}" alt="Initiation Line Graph">
+=======
+						<img id="autoStart_img" src="img/Initiation Line.png" alt="Initiation Line Graph">
+>>>>>>> nick-dev:SWISS v1/matchscout.html
 					</div>
 					<div style="text-align: center">
-					<output name="auto_start_number" id="auto_start_number" for="auto_start">14</output>
+					<output name="autoStart_number" id="autoStart_number" for="autoStart">14</output>
 					</div>
 				</div>
 			</div>
 			<div class="formItem">
-				<label for="preloaded_balls">Number of Balls Preloaded</label>
+				<label for="preloadedBalls">Number of Balls Preloaded</label>
 				<div class="ticker">
-					<input type="button" onclick="decrementValue('preloaded_balls')" value="-">
-					<input type="number" name="preloaded_balls" id="preloaded_balls" min="0" max="3" value="3" readonly> 
-					<input type="button" onclick="incrementValue('preloaded_balls')" value="+">
+					<input type="button" onclick="decrementValue('preloadedBalls')" value="-">
+					<input type="number" name="preloadedBalls" id="preloadedBalls" min="0" max="3" value="3" readonly> 
+					<input type="button" onclick="incrementValue('preloadedBalls')" value="+">
 				</div>
 			</div>
 		
 			<h1 id="aAutonomous">AUTONOMOUS</h1>
 			<div class="formItem">
-				<label for="auto_route">Autonomous Route</label>
-				<select name="auto_route">
+				<label for="autoRoute">Autonomous Route</label>
+				<select name="autoRoute" id="autoRoute">
 					<option value="0">None</option>
 					<option value="1">Yes, Simple</option>
 					<option value="2">Yes, Complex</option>
@@ -149,6 +117,7 @@
 		<div class="formItem">
 				  <label for="autoLowGoal">Power Port Goals</label>
 				<div class="ticker">
+<<<<<<< HEAD:templates/entry/matchscout.html
 					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'LowerAutoIcon.png' %}" alt="lower">
 					<input type="button"  onclick="decrementValue('lower_auto')" value="-">
 					<input type="number" name="lower_auto" id="lower_auto" min="0" max="100" value="0" readonly>		
@@ -163,11 +132,27 @@
 					<input type="button" onclick="decrementValue('inner_auto')" value="-">
 					<input name="inner_auto" id="inner_auto" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('inner_auto')" value="+">
+=======
+					<img class="goalIcon" src="img/Lower Auto Icon.png" alt="lower">
+					<input type="button"  onclick="decrementValue('lowerAuto')" value="-">
+					<input type="number" name="lowerAuto" id="lowerAuto" min="0" max="100" value="0" readonly>		
+					<input type="button"  onclick="incrementValue('lowerAuto')" value="+">
+					<br>
+				  	<img class="goalIcon" src="img/Outer Auto Icon.png" alt="outer">
+					<input type="button" onclick="decrementValue('outerAuto')" value="-">
+					<input name="outerAuto" id="outerAuto" type="number" min="0" max="100" value="0" readonly>
+					<input type="button" onclick="incrementValue('outerAuto')" value="+">
+					<br>
+					<img class="goalIcon" src="img/Inner Auto Icon.png" alt="inner">
+					<input type="button" onclick="decrementValue('innerAuto')" value="-">
+					<input name="innerAuto" id="innerAuto" type="number" min="0" max="100" value="0" readonly>
+					<input type="button" onclick="incrementValue('innerAuto')" value="+">
+>>>>>>> nick-dev:SWISS v1/matchscout.html
 				</div>
 		  </div>
 		  <div class="formItem right">
-				<label for="auto_comment">Auto Route Notes</label>
-				<input type="text" name="auto_comment" id="auto_comment" placeholder="Auto Notes">
+				<label for="autoComment">Auto Route Notes</label>
+				<input type="text" name="autoComment" id="autoComment" placeholder="Auto Notes">
 		  </div>
 			<h1>TELEOPERATED - OFFENSE</h1>
 			
@@ -195,9 +180,9 @@
 			<div class="formItem">			
 				<label>Missed balls</label>
                 <div class="ticker">
-  					<input type="button" onclick="decrementValue('missed_balls')" value="-">
-					<input id="missed_balls" name="missed_balls" type="number" min="0" max="100" value="0" readonly>
-					<input type="button" onclick="incrementValue('missed_balls')" value="+">
+  					<input type="button" onclick="decrementValue('missedBalls')" value="-">
+					<input id="missedBalls" name="missedBalls" type="number" min="0" max="100" value="0" readonly>
+					<input type="button" onclick="incrementValue('missedBalls')" value="+">
 			 	</div>
 		 	 </div>
 			
@@ -215,7 +200,7 @@
 			
 			
 			<div class="formItem">
-				<label for="cycle_style">Cycle Style</label>
+				<label for="cycleStyle">Cycle Style</label>
 				<div class="checkboxGroup right">
 					<label>
 						No Cycles Made
@@ -238,18 +223,18 @@
 				</div>
 			</div>
 			<div class="formItem">
-					<label for="under_defense">Play well under defense</label>
+					<label for="underDefense">Play well under defense</label>
 					<div class="radioGroup">
 						<label>
-							<input type="radio" id="under_defense_none" name="under_defense" value="0" checked>
+							<input type="radio" id="underDefense_none" name="underDefense" value="0" checked>
 							<span>X</span>
 						</label>						
 						<label>
-							<input type="radio" id="under_defense_true" name="under_defense" value="true">
+							<input type="radio" id="underDefense_true" name="underDefense" value="1">
 							<span>Y</span>
 						</label>						
 						<label>
-							<input type="radio" id="under_defense_false" name="under_defense" value="false">
+							<input type="radio" id="underDefense_false" name="underDefense" value="2">
 							<span>N</span>
 						</label>
 					</div>
@@ -257,8 +242,8 @@
 			
 			
 			<div class="formItem">
-				<label for="wheel_score">Control Panel Task</label>
-				<select name="wheel_score" id="wheel_score"> 
+				<label for="wheelScore">Control Panel Task</label>
+				<select name="wheelScore" id="wheelScore"> 
 					<option value="0">Did not Attempt</option>
 					<option value="1">Unsuccessful</option>
 					<option value="2">Completed Rotation Control</option>
@@ -266,10 +251,10 @@
 				</select>
 			</div>
 		  <div class="formItem">
-				<label for="wheel_rating">Control Panel Quality</label>
+				<label for="wheelRating">Control Panel Quality</label>
 			  	<div class="right">
-					<output name="wheel_rating_number" id="wheel_rating_number" for="wheel_rating">0</output>
-					<input name="wheel_rating" id="wheel_rating" type="range" min="0" max="5" value="0" oninput="wheel_rating_number.value=wheel_rating.value">
+					<output name="wheelRating_number" id="wheelRating_number" for="wheelRating">0</output>
+					<input name="wheelRating" id="wheelRating" type="range" min="0" max="5" value="0" oninput="wheelRating_number.value=wheelRating.value">
 			  	</div>
 		  </div>
 		  <div class="formItem">
@@ -282,61 +267,65 @@
 		  </div>
 			<h1>TELEOPERATED - DEFENSE</h1>
 			<div class="formItem">
-				<label for="played_defense">Played Defense?</label>
+				<label for="playedDefense">Played Defense?</label>
 				<div class="radioGroup">
 					<label>
-						<input type="radio" id="played_defense_true" name="played_defense" value="true">
+						<input type="radio" id="playedDefense_true" name="playedDefense" value="true">
 						<span>Y</span>
 					</label>
 					<label>
-						<input type="radio" id="played_defense_false" name="played_defense" value="false" checked>
+						<input type="radio" id="playedDefense_false" name="playedDefense" value="false" checked>
 						<span>N</span>
 					</label>				
 				</div>
 			</div>
-		  <div class="formItem">
-				<label for="defense_rating">Quality of Defense</label>
+			<div class="formItem">
+				<label for="teamDefended">Team Defended Against</label>
+				<input type="text" name="teamDefended" id="teamDefended" placeholder="Team Number, Multiple">
+			</div>
+			<div class="formItem">
+				<label for="defenseRating">Quality of Defense</label>
 			  	<div class="right">
-					<output name="defense_ratingnumber" id="defense_ratingnumber" for="defense_rating">0</output>
-					<input name="defense_rating" id="defense_rating" type="range" min="0" max="5" value="0" oninput="defense_ratingnumber.value=defense_rating.value">
+					<output name="defenseRatingnumber" id="defenseRatingnumber" for="defenseRating">0</output>
+					<input name="defenseRating" id="defenseRating" type="range" min="0" max="5" value="0" oninput="defenseRatingnumber.value=defenseRating.value">
 				</div>
-		  </div>
-		  <div class="formItem">
-				<label for="fouls_defense">Incurred Defensive Fouls</label>
-				<select name="fouls_defense" id="fouls_defense">
+			</div>
+			<div class="formItem">
+				<label for="defenseFouls">Incurred Defensive Fouls</label>
+				<select name="defenseFouls" id="defenseFouls">
 					<option value="0">None</option>
 					<option value="1">Yes, Minor</option>
 					<option value="2">Yes, Major</option>
 				</select>
-		  </div>
-		  <div class="formItem">
-				<label for="push_rating">Ability to Push</label>
+			</div>
+			<div class="formItem">
+				<label for="pushRating">Ability to Push</label>
 				<div class="radioGroup">
 					<label>
-						<input type="radio" id="push_rating_none" name="push_rating" value="0" checked>
+						<input type="radio" id="pushRating_none" name="pushRating" value="0" checked>
 						<span>X</span>
 					</label>						
 					<label>
-						<input type="radio" id="push_rating_true" name="push_rating" value="true">
+						<input type="radio" id="pushRating_true" name="pushRating" value="true">
 						<span>Y</span>
 					</label>
 					<label>
-						<input type="radio" id="push_rating_false" name="push_rating" value="false">
+						<input type="radio" id="pushRating_false" name="pushRating" value="false">
 						<span>N</span>
 					</label>
 				</div>
 			</div>
 			<h1>ENDGAME</h1>
 		  <div class="formItem">
-				<label for="climb_location">Climbing Position</label>
+				<label for="climbLocation">Climbing Position</label>
 			  	<div class="right">
-					<output name="climb_location_number" id="climb_location_number" for="climb_location">0</output>
-					<input name="climb_location" id="climb_location" type="range" min="0" max="5" value="0" oninput="climb_location_number.value=climb_location.value">
+					<output name="climbLocation_number" id="climbLocation_number" for="climbLocation">0</output>
+					<input name="climbLocation" id="climbLocation" type="range" min="0" max="5" value="0" oninput="climbLocation_number.value=climbLocation.value">
 			  	</div>
 		  </div>
 			<div class="formItem">
-				<label for="lock_status">Field Timeout Position (t=+5s)</label>
-				<select name="lock_status" id="lock_status">
+				<label for="lockStatus">Field Timeout Position (t=+5s)</label>
+				<select name="lockStatus" id="lockStatus">
 					<option value="0">None</option>
 					<option value="1">Parked</option>
 					<option value="2">Attempted Climb</option>
@@ -367,14 +356,13 @@
 			<br>
 			<div class="formItem">
 				<label for="scouterName">Scouter's Name</label>
-				<input type="text" name="scouterName" id="scouterName">
+				<input type="text" name="scouterName" id="scouterName" placeholder="Scouter Name">
 			</div>
 			<br>
 			<div class="formItem" id="submit">
 				<input name="submit" type="submit">
 			</div>
 		</form>
-	</div>
 	</div>
 	
 <script>
