@@ -26,6 +26,7 @@ urlpatterns = [
     path('glance/', views.Glance.as_view(), name='glance'),
     path('download/', views.download, name='download'),
     path('upload/', views.Upload.as_view(), name='upload'),
+    path('upload/submit/', views.write_image_upload, name='upload_submit'),
     path('teams/', views.TeamList.as_view(), name='teams'),
     path('stats/', views.TeamList.as_view(), name='stats'),
     path('data/', views.Data.as_view(), name='data'),

@@ -1,24 +1,70 @@
 {% load static %}
 {% load common_tags %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'entry/landing.css' %}">
-<link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}{% static 'favicon.png' %}"/>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Change Me</title>
+<link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
+<meta name="theme-color" content="0F4D8D">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
 
-<div>
+<body>
+	<div class="topbar">
+		<div class="swissLogo" id="swissLogo">
+			<a href="{% url 'entry:index' %}">
+			<img src="{{ MEDIA_URL }}{% static 'SwissIcon2x.png' %}" alt="SWISS Logo">
+			</a>
+		</div>
+	</div>
+	
+	<div class="bodyContainer">
+		<div id="loginContainer">
+			<div class="infoBox" style="width:auto;">
+				<div class="infoHeader">
+					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Download Icon">
+					<h1>Upload Robot Photo</h1>
+				</div>
+				<form action="{% url 'entry:login' %}" method="POST" enctype="multipart/form-data" id="form">
+                    {% csrf_token %}
+                    <div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+						<label for="username">Username:</label>
+						<input style="margin-left:10px; " type="text" name="username" id="username">
+					</div>
+					<div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+						<label for="password"> Password :</label>
+						<input style="margin-left:10px; " type="password" name="password" id="password">
+					</div>
 
-    <form action="{% url 'entry:login' %}" method="post" enctype="multipart/form-data" id="form">
-        {% csrf_token %}
+                    <button type="submit">Log In</button>
 
-        <div>
+				
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+<script>
+	function openNav() {
+		document.getElementById("sideNav").style.width="250px";
+		document.getElementById("bodyContainer").style.marginLeft="275px";
+		document.getElementById("swissLogo").style.marginLeft="215px";
+	}
 
-            <label for="username">username</label><input type="text" id="username" name="username">
-            <label for="password">password</label><input type="password" id="password" name="password">
-
-
-        </div>
-
-        <button type="submit">Upload</button>
-    </form>
-
-
-</div>
+	function closeNav() {
+	  document.getElementById("sideNav").style.width = "0";
+	  document.getElementById("bodyContainer").style.marginLeft= "25px";
+	  document.getElementById("swissLogo").style.marginLeft= "0";
+	}
+</script>
+</body>
+</html>

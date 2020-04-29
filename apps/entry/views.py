@@ -175,14 +175,14 @@ def write_image_upload(request):
         files = files.popitem()[1]
 
         for file in files:
-            file.name = str(team_number) + "-----" + str(datetime.now()).replace('.', '')
+            file.name = str(team_number) + "-----" + str(datetime.now()).replace('.', '') + '.jpg'
             image = Images(name=team.name, image=file)
             image.save()
             team.images.add(image)
             team.save()
-        return HttpResponseRedirect(reverse_lazy('entry:team_list'))
+        return HttpResponseRedirect(reverse_lazy('entry:index'))
     else:
-        return HttpResponseRedirect(reverse_lazy('entry:team_list'))
+        return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 
 @login_required(login_url='entry:login')
@@ -190,10 +190,11 @@ def write_pit_upload(request):
     if request.method == 'POST':
         team_number = 0
     else:
-        return HttpResponseRedirect(reverse_lazy('entry:team_list'))
+        return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 
 def login(request):
+    print(request.method)
     if request.method == 'GET':
         template = loader.get_template('entry/login.html')
 
@@ -203,6 +204,7 @@ def login(request):
         return HttpResponse(template.render({}, request))
 
     elif request.method == 'POST':
+
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
         user = auth.authenticate(request, username=username, password=password)
@@ -220,7 +222,7 @@ def login(request):
 def logout(request):
     auth.logout(request)
     print("request.user.is_authenticated:" + str(request.user.is_authenticated))
-    return HttpResponseRedirect(reverse_lazy('entry:team_list'))
+    return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 
 def make_int(s):
