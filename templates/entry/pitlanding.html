@@ -35,7 +35,7 @@
 		<a href="{% url 'entry:about' %}">About</a>
 	</div>
 	
-	<div class="bodyContainer bodyBackground scoutImage" id="bodyContainer" style="background-image: url({% static 'ScoutBackground.png' %})">
+	<div class="bodyContainer bodyBackground scoutImage" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'ScoutBackground.png' %})">
 		<div class="heroContent">
 			<h1 class="homeText">Pit Scouting</h1>
 		</div>
