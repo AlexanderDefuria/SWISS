@@ -32,52 +32,15 @@
 		<a href="settings.html">Settings</a>
 		<a href="about.html">About</a>
 	</div>
-	<div id="teamDrawer" class="teamDrawer">
-		<div class="teamSelect">
-			<div class="teamnumberPill CoyotesColor"><p>746</p></div>
-			<div class="teamnumberPill SimboticsColor"><p>1114</p></div>
-			<div class="teamnumberPill MaxTechColor"><p>1241</p></div>
-			<div class="teamnumberPill TheoryColor"><p>1285</p></div>
-			<div class="teamnumberPill MaxTechColor"><p>2198</p></div>
-			<div class="teamnumberPill YellowColor"><p>2386</p></div>
-			<div class="teamnumberPill CeltXColor"><p>2405</p></div>
-			<div class="teamnumberPill SimboticsColor"><p>2852</p></div>
-			<div class="teamnumberPill "><p>3560</p></div>
-			<div class="teamnumberPill "><p>3571</p></div>
-			<div class="teamnumberPill DaveColor"><p>3683</p></div>
-			<div class="teamnumberPill DarkRedColor"><p>4308</p></div>
-			<div class="teamnumberPill MaxTechColor"><p>4343</p></div>
-			<div class="teamnumberPill "><p>4519</p></div>
-			<div class="teamnumberPill DarkRedColor"><p>4618</p></div>
-			<div class="teamnumberPill "><p>4902</p></div>
-			<div class="teamnumberPill YellowColor"><p>5024</p></div>
-			<div class="teamnumberPill OdysseyColor"><p>5031</p></div>
-			<div class="teamnumberPill "><p>5032</p></div>
-			<div class="teamnumberPill lightblue"><p>5834</p></div>
-			<div class="teamnumberPill lightblue"><p>6009</p></div>
-			<div class="teamnumberPill "><p>6917</p></div>
-			<div class="teamnumberPill DarkRedColor"><p>6977</p></div>
-			<div class="teamnumberPill DaveColor"><p>6978</p></div>
-			<div class="teamnumberPill DarkRedColor"><p>7174</p></div>
-			<div class="teamnumberPill CoyotesColor"><p>7475</p></div>
-			<div class="teamnumberPill SimboticsColor"><p>7558</p></div>
-			<div class="teamnumberPill YellowColor"><p>7623</p></div>
-			<div class="teamnumberPill DaveColor"><p>7690</p></div>
-		</div>
-		<a href="javascript:void(0)" class="closebtn" onclick="closeTeamDrawer()">×</a>		
-	</div>
-	
 	<div class="bodyContainer bodyBackground scoutImage" id="bodyContainer">
 		<div class="heroContent" id="heroSpace">
 			<div class="stickyChip">
-				<button class="changeTeam" id="changeTeam" onClick="openTeamDrawer()">
-				<div class="teamnumberPill MaxTechColor">
-						<p>4343</p>
+				<div class="teamnumberPill" style="background-color: {{ team.colour }}">
+						<p>{{ team.number }} </p>
 				</div>
 				<div class="teamnamePill">
-						<p>MaxTech</p>
+						<p>{{ team.name }}</p>
 				</div>
-				</button>
 			</div>
 		</div>
 		

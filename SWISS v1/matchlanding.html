@@ -38,24 +38,35 @@
 		<div class="heroContent">
 			<h1 class="homeText">Match Scouting</h1>
 		</div>
+	<style>
+		.matchImage { 
+			background-image: url("img/match background.png");
+		}
+	</style>
+
+		
+		
 		<div style="display: flex; justify-content: center">
-			<div style="min-width:25%">
-				<div class="formItem">
-					<label for="teamNumber">Team Number</label>
-					<input style="width:75px;" type="number" name="teamNumber" id="teamNumber" min="1" max="9999">
-				</div>
-				<div class="formItem">
-					<label for="matchNumber">Match Number</label>
-					<input type="number" name="matchNumber" id="matchNumber" min="1" max="60">
+			<div class="pillSelect">
+				<div class="pillContainer">
+					<div class="teamnumberPill" style="background-color: #0F4D8D">
+						<p>Test</p>
+					</div>
+					{% for team in team_list % }
+					<ul>
+						<li>
+							<div class="teamnumberPill" style="background-color: {{team.colour}}">
+								<p>{{ team.number }}</p>
+							</div>
+						</li>
+					</ul>
+					{ % endfor % }
 				</div>
 				<div class="formItem">
 					<p>Current Event is:</p>
 					<br>
 					<p>{% get_current_event %}</p>
-				</div>
-				<div class="formItem" id="submit">
-					<input type="submit" value="Begin Scouting">
-				</div>				
+				</div>		
 				<div class="formItem">
 					<label>Press this to continue [dev]</label>
 					<a href="matchscout.html">
