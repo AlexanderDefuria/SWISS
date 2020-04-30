@@ -43,19 +43,45 @@ def match_scout_submit(request, pk):
         match.auto_start = request.POST.get('autoStart', 10)
         match.preloaded_balls = request.POST.get('preloadedBalls', 3)
 
+        match.auto_route = request.POST.get('autoRoute', 0)
+        match.baseline = request.POST.get('baseline_true', False)
         match.outer_auto = request.POST.get('outerAuto', 0)
         match.lower_auto = request.POST.get('lowerAuto', 0)
         match.inner_auto = request.POST.get('innerAuto', 0)
+        match.auto_comment = request.POST.get('autoComment', ' ')
 
         match.outer = request.POST.get('outer', 0)
         match.lower = request.POST.get('lower', 0)
         match.inner = request.POST.get('inner', 0)
+        match.wheel_score = request.POST.get('wheelScore', 0)
+        match.wheel_rating = request.POST.get('wheelRating', 0)
+        match.fouls = request.POST.get('offensiveFouls', 0)
+        match.missed_balls = request.POST.get('missedBalls', 0)
+        match.ball_intake_type = request.POST.get('intakeType', 0)
+        match.under_defense = request.POST.get('underDefense', 0)
 
         match.defense_rating = request.POST.get('defenseRating', 0)
+        match.defense_fouls = request.POST.get('defenseFouls', 0)
+        match.team_defended = request.POST.get('teamDefended', '')
+        # TODO Fix able to push, there is an incorrect associated input type
+        match.able_to_push = 0
 
+        if request.POST.get('climb_location', 0) == 0:
+            match.climb = False
+        else:
+            match.climb = True
         match.climb_location = request.POST.get('climb_location', 0)
+        match.field_timeout_pos = request.POST.get('lockStatus', 0)
+
+        match.hp_fouls = request.POST.get('fouls_hp', 0)
+        match.dt_fouls = request.POST.get('fouls_driver', 0)
+        match.yellow_card = request.POST.get('yellow_card', 0)
+
+        match.scouter_name = request.POST.get('scouter_name', 0)
 
         match.save()
+
+        print(match)
 
         print('Success')
         return HttpResponseRedirect(reverse_lazy('entry:index'))

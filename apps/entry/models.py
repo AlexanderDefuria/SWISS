@@ -96,7 +96,7 @@ class Match(models.Model):
     # Defense
     defense_rating = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     defense_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(250), MinValueValidator(0)])
-    team_defended = models.SmallIntegerField(default=0, validators=[MaxValueValidator(10000), MinValueValidator(0)])
+    team_defended = models.TextField(default="")
     able_to_push = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
 
     # Climb
@@ -109,7 +109,7 @@ class Match(models.Model):
     dt_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     yellow_card = models.BooleanField(default=False)
 
-    # Comments
+    # Name
     scouter_name = models.TextField(default="")
 
     def __str__(self):
@@ -121,6 +121,37 @@ class Pits(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
 
+    # Drivetrain
+    drivetrain_style = models.TextField(default="")
+    drivetrain_wheels = models.TextField(default="")
+    drivetrain_motortype = models.TextField(default="")
+    drivetrain_motorquantity = models.SmallIntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
+
+    # Auto
+    auto_route = models.BooleanField(default=False)
+    auto_description = models.TextField(default="")
+    auto_scoring = models.SmallIntegerField(default=0, validators=[MaxValueValidator(3), MinValueValidator(0)])
+
+    # Teleop
+    tele_scoring = models.SmallIntegerField(default=0, validators=[MaxValueValidator(3), MinValueValidator(0)])
+    tele_positions = models.SmallIntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
+
+    # Robot styles and stats
+    ball_intake = models.TextField(default="")
+    ball_capacity = models.SmallIntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
+    shooter_style = models.TextField(default="")
+    low_bot = models.BooleanField(default=False)
+    wheel_manipulator = models.BooleanField(default=False)
+    weight = models.SmallIntegerField(default=0, validators=[MaxValueValidator(200), MinValueValidator(0)])
+
+    # Climb
+    climb_locations = models.SmallIntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
+    climb_buddy = models.BooleanField(default=False)
+    climb_balance = models.BooleanField(default=False)
+
+    # Name
+    scouter_name = models.TextField(default="")
+
     # Given Stats
     MOTOR_CHOICES = [
         # (Program Name, Human Readable name)
@@ -130,16 +161,12 @@ class Pits(models.Model):
         ("neo", "NEO Motors"),
         ("other", "Unusual DriveTrain... See Comments")
     ]
-    motor_type = models.CharField(
-        max_length=6,
-        choices=MOTOR_CHOICES,
-        default="none"
-    )
-    motor_number = models.SmallIntegerField(default=0, validators=[MaxValueValidator(8), MinValueValidator(0)])
-    weight = models.SmallIntegerField(default=0, validators=[MaxValueValidator(150), MinValueValidator(0)])
-
-    # Comments
-    comments = models.TextField(default="No Comments")
+    # motor_type = models.CharField(
+    #     max_length=6,
+    #     choices=MOTOR_CHOICES,
+    #     default="none"
+    # )
+    # motor_number = models.SmallIntegerField(default=0, validators=[MaxValueValidator(8), MinValueValidator(0)])
 
     def __str__(self):
         return self.team.name
