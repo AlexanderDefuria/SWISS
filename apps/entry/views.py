@@ -84,11 +84,11 @@ def match_scout_submit(request, pk):
         print(match)
 
         print('Success')
-        return HttpResponseRedirect(reverse_lazy('entry:index'))
+        return HttpResponseRedirect(reverse_lazy('entry:match_scout_landing'))
 
     else:
         print('Fail')
-        return HttpResponseRedirect(reverse_lazy('entry:index'))
+        return HttpResponseRedirect(reverse_lazy('entry:match_scout_landing'))
 
 
 @ajax
@@ -151,11 +151,11 @@ def pit_scout_submit(request, pk):
         print(pits)
 
         print('Success')
-        return HttpResponseRedirect(reverse_lazy('entry:index'))
+        return HttpResponseRedirect(reverse_lazy('entry:pit_scout_landing'))
 
     else:
         print('Fail')
-        return HttpResponseRedirect(reverse_lazy('entry:index'))
+        return HttpResponseRedirect(reverse_lazy('entry:pit_scout_landing'))
 
 
 @ajax
