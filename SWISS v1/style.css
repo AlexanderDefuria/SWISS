@@ -263,7 +263,7 @@ ul {
 	justify-content: center;
 	padding: 5px;
 }
-.pillContainer > li {
+.pillContainer > div, li {
 	margin: 5px;
 }
 .pillSelect {
