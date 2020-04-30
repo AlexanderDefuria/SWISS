@@ -40,29 +40,20 @@
 		<div class="heroContent">
 			<h1 class="homeText">Match Scouting</h1>
 		</div>
-	<style>
-		.matchImage { 
-			background-image: url("img/match background.png");
-		}
-	</style>
 
-		
 		
 		<div style="display: flex; justify-content: center">
 			<div class="pillSelect">
 				<div class="pillContainer">
-					<div class="teamnumberPill" style="background-color: #0F4D8D">
-						<p>Test</p>
-					</div>
-					{% for team in team_list % }
-					<ul>
-						<li>
-							<div class="teamnumberPill" style="background-color: {{team.colour}}">
-								<p>{{ team.number }}</p>
-							</div>
-						</li>
-					</ul>
-					{ % endfor % }
+					{% for team in team_list %}
+                        <ul>
+                            <li>
+                                <div onclick="window.location='{% url 'entry:match_scout' team.id %}'"  class="teamnumberPill" style="background-color: {{team.colour}}; cursor: pointer;">
+                                    <p>{{ team.number }}</p>
+                                </div>
+                            </li>
+                        </ul>
+					{% endfor %}
 				</div>
 				<div class="formItem">
 					<p>Current Event is:</p>

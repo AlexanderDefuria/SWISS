@@ -22,21 +22,40 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from apps.entry.graphing import *
-from apps.entry.models import Team, Match, Schedule, Images
+from apps.entry.models import Team, Match, Schedule, Images, Event
 
 register = Library
 
 
 @login_required(login_url='entry:login')
 def match_scout_submit(request, pk):
-    print("Adding match phase to database")
     if request.method == 'POST':
 
-        team = Team.objects.get(id=pk)
-        match = Match.objects.filter(team_id=team.id).latest('match_number')
+        # TODO 1. add auto route
 
-        print(team)
-        print(request.POST)
+        team = Team.objects.get(id=pk)
+        match = Match()
+        match.team = team
+        match.event = Event.objects.get(FIRST_key=config.get_current_event_key())
+        match.match_number = 0
+
+        match.on_field = request.POST.get('onField_true', False)
+        match.auto_start = request.POST.get('autoStart', 10)
+        match.preloaded_balls = request.POST.get('preloadedBalls', 3)
+
+        match.outer_auto = request.POST.get('outerAuto', 0)
+        match.lower_auto = request.POST.get('lowerAuto', 0)
+        match.inner_auto = request.POST.get('innerAuto', 0)
+
+        match.outer = request.POST.get('outer', 0)
+        match.lower = request.POST.get('lower', 0)
+        match.inner = request.POST.get('inner', 0)
+
+        match.defense_rating = request.POST.get('defenseRating', 0)
+
+        match.climb_location = request.POST.get('climb_location', 0)
+
+        match.save()
 
         print('Success')
         return HttpResponseRedirect(reverse_lazy('entry:index'))
@@ -169,7 +188,6 @@ def write_image_upload(request):
         team = Team.objects.get(number=team_number)
 
         request.session.set_test_cookie()
-        print("COOKIES???: " + str(request.session.test_cookie_worked()))
 
         files = request.FILES
         files = files.popitem()[1]
@@ -254,16 +272,20 @@ class Index(LoginRequiredMixin, generic.TemplateView):
     model = Team
 
 
-class MatchScout(LoginRequiredMixin, generic.TemplateView):
+class MatchScout(LoginRequiredMixin, generic.DetailView):
     login_url = 'entry:login'
     model = Team
     template_name = 'entry/matchscout.html'
 
 
-class MatchScoutLanding(LoginRequiredMixin, generic.TemplateView):
+class MatchScoutLanding(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     model = Team
+    context_object_name = "team_list"
     template_name = 'entry/matchlanding.html'
+
+    def get_queryset(self):
+        return get_present_teams()
 
 
 class Visualize(LoginRequiredMixin, generic.ListView):
@@ -320,7 +342,7 @@ class PitScoutLanding(LoginRequiredMixin, generic.ListView):
         return get_present_teams()
 
 
-class Experimental(LoginRequiredMixin, generic.DetailView):
+class Experimental(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
     model = Team
     template_name = 'entry/experimental.html'

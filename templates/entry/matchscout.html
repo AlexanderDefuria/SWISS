@@ -47,7 +47,7 @@
 			</div>
 		</div>
 	<div>
-		<form action="{% url 'entry:index' %}" method="get" >
+		<form action="{% url 'entry:write_match_scout' team.id %}" method="post" >
             {% csrf_token %}
 			<div class="formHeader">
 				<h1>PRE-MATCH</h1>
@@ -69,17 +69,13 @@
 				<label for="autoStart">Starting Position</label>
 				<div class="right">
 					<div>
-					<input type="range" name="autoStart" id="autoStart" min="0" max="20" value="14" oninput="autoStart_number.value=autoStart.value">
+					    <input type="range" name="autoStart" id="autoStart" min="0" max="20" value="14" oninput="autoStart_number.value=autoStart.value">
 					</div>
 					<div>
-<<<<<<< HEAD:templates/entry/matchscout.html
-					<img id="auto_start_img" src="{{ MEDIA_URL }}{% static 'InitiationLine.png' %}" alt="Initiation Line Graph">
-=======
-						<img id="autoStart_img" src="img/Initiation Line.png" alt="Initiation Line Graph">
->>>>>>> nick-dev:SWISS v1/matchscout.html
+    					<img id="autoStart_img" src="{{ MEDIA_URL }}{% static 'InitiationLine.png' %}" alt="Initiation Line Graph">
 					</div>
 					<div style="text-align: center">
-					<output name="autoStart_number" id="autoStart_number" for="autoStart">14</output>
+					    <output name="autoStart_number" id="autoStart_number" for="autoStart">14</output>
 					</div>
 				</div>
 			</div>
@@ -117,7 +113,7 @@
 		<div class="formItem">
 				  <label for="autoLowGoal">Power Port Goals</label>
 				<div class="ticker">
-<<<<<<< HEAD:templates/entry/matchscout.html
+
 					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'LowerAutoIcon.png' %}" alt="lower">
 					<input type="button"  onclick="decrementValue('lower_auto')" value="-">
 					<input type="number" name="lower_auto" id="lower_auto" min="0" max="100" value="0" readonly>		
@@ -132,22 +128,7 @@
 					<input type="button" onclick="decrementValue('inner_auto')" value="-">
 					<input name="inner_auto" id="inner_auto" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('inner_auto')" value="+">
-=======
-					<img class="goalIcon" src="img/Lower Auto Icon.png" alt="lower">
-					<input type="button"  onclick="decrementValue('lowerAuto')" value="-">
-					<input type="number" name="lowerAuto" id="lowerAuto" min="0" max="100" value="0" readonly>		
-					<input type="button"  onclick="incrementValue('lowerAuto')" value="+">
-					<br>
-				  	<img class="goalIcon" src="img/Outer Auto Icon.png" alt="outer">
-					<input type="button" onclick="decrementValue('outerAuto')" value="-">
-					<input name="outerAuto" id="outerAuto" type="number" min="0" max="100" value="0" readonly>
-					<input type="button" onclick="incrementValue('outerAuto')" value="+">
-					<br>
-					<img class="goalIcon" src="img/Inner Auto Icon.png" alt="inner">
-					<input type="button" onclick="decrementValue('innerAuto')" value="-">
-					<input name="innerAuto" id="innerAuto" type="number" min="0" max="100" value="0" readonly>
-					<input type="button" onclick="incrementValue('innerAuto')" value="+">
->>>>>>> nick-dev:SWISS v1/matchscout.html
+
 				</div>
 		  </div>
 		  <div class="formItem right">

@@ -31,6 +31,13 @@ class Team(models.Model):
     images = models.ManyToManyField(Images)
     colour = models.CharField(default="#000000", max_length=7)
 
+    def first_image(self):
+        # code to determine which image to show. The First in this case.
+        try:
+            return self.images.all()[0].image
+        except IndexError:
+            return '/robots/default.jpg'
+
     def __str__(self):
         return str(self.number) + "\t\t" + str(self.name)
 
