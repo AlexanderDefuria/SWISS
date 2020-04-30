@@ -49,14 +49,16 @@
                     </div>
 
             {% endfor %}
-            <!--
-			<div class="teamChip">
-				<img class="robotPhoto" src="robot/1114.jpg" alt="robot photo">
-				<div class="teamnumberPill SimboticsColor"><p>1114</p></div>
-				<div class="teamnamePill"><p>Simbotics</p></div>
-			</div>
-			-->
 		</div>
+        <div class="tileContainer">
+			<a href="{% url 'entry:upload' %}">
+				<div class="smallBox">
+					<img src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
+				</div>
+			</a>
+		</div>
+
+
 	</div>
 	
 <script>
