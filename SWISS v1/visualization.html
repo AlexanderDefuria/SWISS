@@ -50,7 +50,7 @@
 					<div class="infoHeader">
 						<h1>Teams Included</h1>
 					</div>
-					<div>
+					<div style="display: flex; flex-wrap: wrap; ">
 						{% for team in team_list %}
                         <div class="teamnumberPill">
 							<p for="{{ team.name }}">{{ team.number }}</p>

@@ -27,23 +27,23 @@
 		<div id="loginContainer">
 			<div class="infoBox" style="width:auto;">
 				<div class="infoHeader">
-					<img class="infoIcon" src="img/Upload Icon.png" alt="Download Icon">
-					<h1>Upload Robot Photo</h1>
+					<img class="infoIcon" src="/media//static/UserIcon.png" alt="User Icon">
+					<h1>Log In</h1>
 				</div>
-				<form>
-					<div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
-						<label for="teamNumber">Team Number</label>
-						<input style="width:100px;" type="number" name="teamNumber" id="teamNumber" min="1" max="9999">
+				<form action="/entry/login/" method="POST" enctype="multipart/form-data" id="form">
+                    <input type='hidden' name='csrfmiddlewaretoken' value='8R4uynPFXPZ2YU3ZbqOY2jKDlng7IH4VYjOES2FTPPfzAH4Zk8VKGQqwO2HvlB00' />
+                    <div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+						<label for="username">Username:</label>
+						<input style="margin-left:10px; " type="text" name="username" id="username">
 					</div>
 					<div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
-						<label for="username">Password:</label>
+						<label for="password"> Password :</label>
 						<input style="margin-left:10px; " type="password" name="password" id="password">
 					</div>
-					<div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
-						<input type="submit" vaue="LogIn">
-					</div>
+					
+                    <button type="submit">Log In</button>
+
 				
-				</form>
 			</div>
 		</div>
 	</div>
