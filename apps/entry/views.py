@@ -37,7 +37,7 @@ def match_scout_submit(request, pk):
         match = Match()
         match.team = team
         match.event = Event.objects.get(FIRST_key=config.get_current_event_key())
-        match.match_number = 0
+        match.match_number = request.POST.get('matchNumber', 0)
 
         match.on_field = request.POST.get('onField_true', False)
         match.auto_start = request.POST.get('autoStart', 10)
