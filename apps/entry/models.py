@@ -117,7 +117,6 @@ class Match(models.Model):
 
 
 class Pits(models.Model):
-    number = models.TextField(default="NA")
     team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
 

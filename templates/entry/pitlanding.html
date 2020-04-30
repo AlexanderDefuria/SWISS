@@ -47,7 +47,7 @@
 					{% for team in team_list %}
                         <ul>
                             <li>
-                                <div onclick="window.location='{% url 'entry:match_scout' team.id %}'"  class="teamnumberPill" style="background-color: {{team.colour}}; cursor: pointer;">
+                                <div onclick="window.location='{% url 'entry:pit_scout' team.id %}'"  class="teamnumberPill" style="background-color: {{team.colour}}; cursor: pointer;">
                                     <p>{{ team.number }}</p>
                                 </div>
                             </li>

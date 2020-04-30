@@ -45,7 +45,8 @@
 				</div>
 			</div>
 		</div>
-	<form action="{% url 'entry:index' %}" method="get">
+	<form action="{% url 'entry:write_pit_scout' team.id %}" method="POST">
+        {% csrf_token %}
 		<h1>Drivetrain</h1>
 		<div class="formItem">
 			<label for="drivetrainStyle">Style of Drivetrain</label>

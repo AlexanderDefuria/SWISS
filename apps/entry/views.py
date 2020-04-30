@@ -22,7 +22,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from apps.entry.graphing import *
-from apps.entry.models import Team, Match, Schedule, Images, Event
+from apps.entry.models import Team, Match, Schedule, Images, Event, Pits
 
 register = Library
 
@@ -113,7 +113,49 @@ def validate_match_scout(request, pk):
 
 @login_required(login_url='entry:login')
 def pit_scout_submit(request, pk):
-    return HttpResponseRedirect(reverse_lazy('entry:index'))
+    if request.method == 'POST':
+
+        team = Team.objects.get(id=pk)
+        pits = Pits()
+
+        pits.team = team
+        pits.event = Event.objects.get(FIRST_key=config.get_current_event_key())
+
+        pits.drivetrain_style = request.POST.get('drivetrain_style', ' ')
+        pits.drivetrain_wheels = request.POST.get('drivetrain_wheels', ' ')
+        pits.drivetrain_motortype = request.POST.get('drivetrain_motortype', ' ')
+        pits.drivetrain_motorquantity = request.POST.get('drivetrain_motorquantity', 0)
+
+        pits.auto_route = request.POST.get('auto_route', False)
+        pits.auto_description = request.POST.get('auto_description', ' ')
+        pits.auto_scoring = request.POST.get('auto_scoring', 0)
+
+        pits.tele_scoring = request.POST.get('tele_scoring', 0)
+        pits.tele_positions = request.POST.get('tele_positions', 0)
+
+        pits.ball_intake = request.POST.get('ball_intake', ' ')
+        pits.ball_capacity = request.POST.get('ball_capacity', 0)
+        pits.shooter_style = request.POST.get('shooter_style', ' ')
+        pits.low_bot = request.POST.get('low_bot', False)
+        pits.wheel_manipulator = request.POST.get('wheel_manipulator', False)
+        pits.weight = request.POST.get('weight', 0)
+
+        pits.climb_locations = request.POST.get('climb_locations', 0)
+        pits.climb_buddy = request.POST.get('climb_buddy', False)
+        pits.climb_balance = request.POST.get('climb_balance', False)
+
+        pits.scouter_name = request.POST.get('scouter_name', '0')
+
+        pits.save()
+
+        print(pits)
+
+        print('Success')
+        return HttpResponseRedirect(reverse_lazy('entry:index'))
+
+    else:
+        print('Fail')
+        return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 
 @ajax
@@ -355,7 +397,9 @@ class ScheduleView(LoginRequiredMixin, generic.ListView):
 
 class PitScout(LoginRequiredMixin, generic.DetailView):
     login_url = 'entry:login'
-    template_name = 'entry/pitlanding.html'
+    template_name = 'entry/pitscout.html'
+    model = Team
+
     context_object_name = "team"
 
 
