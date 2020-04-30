@@ -1,4 +1,6 @@
-id	event_id	match_number	auto_start	preloaded_balls	on_field	outer_auto	lower_auto	inner_auto	baseline	fouls_auto	rating_auto	outer	lower	inner	wheel_rating	balls_collected	full_cycles	fouls	defense_time	defense_rating	defense_fouls	climb_time	climb_location	climb_attempts	initial_comments	game_comments	team_id	climb	wheel_score
-1	1510	1	1	1	1	1	1	1	1	1	1	11	11	1	1	1	1	1	1	1	1	1	1	1	1	comment	4306	0	0
-2	1510	2	1	1	1	1	1	1	1	1	1	11	11	1	1	1	1	1	1	1	1	1	1	1	1	2	4306	0	0
-3	1510	2	1	1	1	1	1	1	1	1	1	11	11	1	1	1	1	1	1	1	1	1	1	1	1	2	4309	0	0
+id	event_id	match_number	auto_start	preloaded_balls	outer_auto	lower_auto	inner_auto	baseline	fouls_auto	rating_auto	outer	lower	inner	wheel_rating	balls_collected	full_cycles	fouls	defense_rating	defense_fouls	climb_location	team_id	climb	wheel_score	able_to_push	auto_comment	auto_route	ball_intake_type	dt_fouls	field_timeout_pos	hp_fouls	missed_balls	scouter_name	team_defended	under_defense	yellow_card	on_field
+1	1510	1	1	1	1	1	1	1	1	1	11	11	1	1	1	1	1	1	1	1	4306	0	0	0		0	0	0	0	0	0		0	0	0	1
+2	1510	2	1	1	1	1	1	1	1	1	11	11	1	1	1	1	1	1	1	1	4306	0	0	0		0	0	0	0	0	0		0	0	0	1
+3	1510	2	1	1	1	1	1	1	1	1	11	11	1	1	1	1	1	1	1	1	4309	0	0	0		0	0	0	0	0	0		0	0	0	1
+4	1510	0	14	3	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	4346	0	0	0		0	0	0	0	0	0		0	0	0	0
+5	1510	0	14	3	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	4346	0	0	0		0	0	0	0	0	0		0	0	0	0
