@@ -3,7 +3,10 @@
 .right {
 	align-self: flex-end;
 }
-
+.formContainer {
+	max-width: 75%;
+	margin: 0 auto;
+}
 .formItem {
 	display: flex;
 	justify-content: space-between;
@@ -34,7 +37,7 @@
 	transition: all 0.2s ease-in-out;
 }
 .formItem input[type=text]:focus {
-	width: 450px;
+	width: 400px;  
 	border-color: #0F4D8D;
 	border-width: 3px;
 	background: #333333;
@@ -49,7 +52,7 @@
 	transition: all 0.2s ease-in-out;
 }
 .formItem input[type=password]:focus {
-	width: 450px;
+	width: 400px;
 	border-color: #0F4D8D;
 	border-width: 3px;
 	background: #333333;
@@ -168,6 +171,9 @@
 	height: 50px;
 }
 @media screen and (max-width: 1280px) {
+	.formContainer {
+		max-width: 100%;
+	}
 	.formItem {
 		min-height: 60px;
 		line-height: 1em;
@@ -214,10 +220,12 @@
 	}
 }
 
-
 /* for mobile phones, portrait and landscape */
 
 @media screen and (max-width: 820px) and (max-height: 800px) {
+	.formContainer {
+	max-width: 100%;
+	}
 	.formItem {
 		flex-direction: column;
 	}
