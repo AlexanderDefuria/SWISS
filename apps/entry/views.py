@@ -31,6 +31,8 @@ register = Library
 def match_scout_submit(request, pk):
     if request.method == 'POST':
 
+        print(request.POST)
+
         # TODO 1. add auto route
 
         team = Team.objects.get(id=pk)
@@ -39,12 +41,12 @@ def match_scout_submit(request, pk):
         match.event = Event.objects.get(FIRST_key=config.get_current_event_key())
         match.match_number = request.POST.get('matchNumber', 0)
 
-        match.on_field = request.POST.get('onField_true', False)
+        match.on_field = request.POST.get('onField', False)
         match.auto_start = request.POST.get('autoStart', 10)
         match.preloaded_balls = request.POST.get('preloadedBalls', 3)
 
         match.auto_route = request.POST.get('autoRoute', 0)
-        match.baseline = request.POST.get('baseline_true', False)
+        match.baseline = request.POST.get('baseline', False)
         match.outer_auto = request.POST.get('outerAuto', 0)
         match.lower_auto = request.POST.get('lowerAuto', 0)
         match.inner_auto = request.POST.get('innerAuto', 0)
