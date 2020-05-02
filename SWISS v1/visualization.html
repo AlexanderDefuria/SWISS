@@ -51,18 +51,30 @@
 						<h1>Teams Included</h1>
 					</div>
 					<div style="display: flex; flex-wrap: wrap; ">
+				<!--	OLD, potentially BROKEN method...	
+
 						{% for team in team_list %}
-                        <div class="teamnumberPill">
+                        <div class="teamnumberPill" style="background-color: {{team.colour}}">
 							<p for="{{ team.name }}">{{ team.number }}</p>
-                            <input name="teamCheckBox" type="checkbox" id="{{ team.id }}" value="{{ team.name }}">
                         </div>
-                    	{% endfor %}
+						<input name="teamCheckBox" type="checkbox" id="{{ team.id }}" value="{{ team.name }}">
+                    	{% endfor %} 
+				-->	
+						{% for team in team_list %}
+						<div class="pillCheckbox" style="background-color: {{team.colour}}">
+							<label>
+								<input type="checkbox" name="teamCheckbox" id="{{ team.id }}" value="{{ team.name }}">
+								<span for="{{ team.name }}">{{ team.number }}</span>
+							</label>
+						</div>
+						{% endfor %}
 					</div>
 				</div>
 				<div class="infoBox infoReg">
 					<div class="infoHeader">
 						<h1>Metrics Included</h1>
 					</div>
+
 				</div>
 			</div>
 

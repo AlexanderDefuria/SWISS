@@ -351,7 +351,7 @@ tr:nth-child(even){
 		background-position: center 3vh;
 	}
 	.tileContainer {
-		padding: 0 10px 0 10px;
+		padding: 0 auto;
 	}
 	.pillSelect {
 		max-width: 100%;
@@ -391,8 +391,9 @@ tr:nth-child(even){
 		height: 100%;
 		width: inherit;
 	}
-	#nowidth {
-		max-width: 255px;
+	#currentEventBox {
+		width: 268px;
+		height: 128px;
 	}
 
 }
@@ -486,7 +487,7 @@ tr:nth-child(even){
 	flex-wrap: wrap;
 	justify-content: center;
 }
-.teamSelect div {
+.teamSelect li {
 	margin: 10px 10px 0 10px;
 }
 .teamDrawer a:hover {
@@ -495,9 +496,60 @@ tr:nth-child(even){
 .teamDrawer a:active {
 	color: #0F4D8D;
 }
-#nowidth {
-	width:auto;
-	flex-direction: column
+#currentEventBox {
+	width: 255px;
+	flex-direction: column;
+}
+#currentEventBox h2 {
+	margin: 0;
+	text-align: center;
+}
+
+/*
+	width: 72px;
+	height: 28px;
+	border-radius: 10px;
+	border: 1px solid white;
+
+	padding: 3px 0 0 10px;
+	margin: 0px;
+	font-size: 23px;
+	font-weight: 700;
+	color: white;
+	user-select: none;
+	white-space:nowrap;
+
+*/
+
+.pillCheckbox {
+    margin:4px;
+    border-radius: 10px;
+    border:1px solid white;
+    overflow:auto;
+    float:left;
+}
+.pillCheckbox label {
+    float: left;
+    width: 72px;
+	height: 28px;
+}
+.pillCheckbox label span {
+	padding: 3px 10px 0 9px;
+	margin: 0;
+	font-size: 23px;
+	font-weight: 700;
+	color: white;
+	user-select: none;
+    text-align:center;
+	white-space:nowrap;
+}
+.pillCheckbox label input {
+	display: none; 
+}
+.pillCheckbox input:checked + span {
+    background-color:#ffffff;
+    color:#000000;
+	box-shadow: 2px 2px 5px 2px black;
 }
 
 
