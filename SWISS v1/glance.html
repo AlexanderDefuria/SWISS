@@ -291,21 +291,6 @@
 			</div>
 		</div>
 	</div>
-		
-	<div id="teamDrawer" class="teamDrawer">
-		<div class="teamSelect">
-				<ul>
-					{% for team in team_list % }
-					<li>
-						<div class="teamnumberPill" style="background-color: {{team.colour}}">
-							<p>{{ team.number }}</p>
-						</div>
-					</li>
-					{ % endfor % }
-				</ul>
-		</div>
-		<a class="closebtn" onclick="closeTeamDrawer()">×</a>		
-	</div>
 	
 
 
