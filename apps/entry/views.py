@@ -33,13 +33,17 @@ def match_scout_submit(request, pk):
 
         print(request.POST)
 
+
+
         # TODO 1. add auto route
 
         team = Team.objects.get(id=pk)
         match = Match()
         match.team = team
         match.event = Event.objects.get(FIRST_key=config.get_current_event_key())
-        match.match_number = request.POST.get('matchNumber', 0)
+
+        match_number = request.POST.get('matchNumber', -1)
+        match.match_number = match_number if match_number is not '' else -1
 
         match.on_field = request.POST.get('onField', False)
         match.auto_start = request.POST.get('autoStart', 10)
@@ -50,7 +54,7 @@ def match_scout_submit(request, pk):
         match.outer_auto = request.POST.get('outerAuto', 0)
         match.lower_auto = request.POST.get('lowerAuto', 0)
         match.inner_auto = request.POST.get('innerAuto', 0)
-        match.auto_comment = request.POST.get('autoComment', ' ')
+        match.auto_comment = request.POST.get('autoComment', '')
 
         match.outer = request.POST.get('outer', 0)
         match.lower = request.POST.get('lower', 0)
@@ -61,10 +65,12 @@ def match_scout_submit(request, pk):
         match.missed_balls = request.POST.get('missedBalls', 0)
         match.ball_intake_type = request.POST.get('intakeType', 0)
         match.under_defense = request.POST.get('underDefense', 0)
+        match.cycle_style = int(request.POST.get('cycleStyle', 0))
 
         match.defense_rating = request.POST.get('defenseRating', 0)
         match.defense_fouls = request.POST.get('defenseFouls', 0)
-        match.team_defended = request.POST.get('teamDefended', '')
+        team_defended = request.POST.get('teamDefended', '')
+        match.team_defended = team_defended if team_defended is not '' else -1
         # TODO Fix able to push, there is an incorrect associated input type
         match.able_to_push = 0
 
@@ -77,9 +83,9 @@ def match_scout_submit(request, pk):
 
         match.hp_fouls = request.POST.get('fouls_hp', 0)
         match.dt_fouls = request.POST.get('fouls_driver', 0)
-        match.yellow_card = request.POST.get('yellow_card', 0)
+        match.yellow_card = True if request.POST.get('yellow_card', 0) is not '' else False
 
-        match.scouter_name = request.POST.get('scouter_name', 0)
+        match.scouter_name = request.POST.get('scouter_name', '')
 
         match.save()
 

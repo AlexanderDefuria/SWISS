@@ -63,7 +63,7 @@ class Schedule(models.Model):
 class Match(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
-    match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(0)])
+    match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(-1)])
 
     # Pre Match
     auto_start = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
@@ -87,20 +87,21 @@ class Match(models.Model):
     wheel_score = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     wheel_rating = models.SmallIntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
     balls_collected = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    full_cycles = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
     missed_balls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     ball_intake_type = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
+    cycle_style = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     under_defense = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    defended_by = models.IntegerField(Team, default=0, validators=[MaxValueValidator(10000), MinValueValidator(-1)])
 
     # Defense
+    played_defense = models.BooleanField(default=False)
     defense_rating = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     defense_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(250), MinValueValidator(0)])
-    team_defended = models.TextField(default="")
+    team_defended = models.IntegerField(Team, default=0)
     able_to_push = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
 
     # Climb
-    climb = models.BooleanField(default=False)
     climb_location = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     field_timeout_pos = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
 
@@ -109,8 +110,9 @@ class Match(models.Model):
     dt_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     yellow_card = models.BooleanField(default=False)
 
-    # Name
+    # Scouter
     scouter_name = models.TextField(default="")
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.team.name + "  Match: " + str(self.match_number)

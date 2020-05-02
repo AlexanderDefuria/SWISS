@@ -33,7 +33,6 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'apps.entry.apps.EntryConfig',
-    'apps.setup.apps.SetupConfig',
     'django_ajax',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -22,7 +22,6 @@ from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('entry/', include('apps.entry.urls')),
-    path('setup/', include('apps.setup.urls')),
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='entry/'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
