@@ -45,7 +45,7 @@
 				</div>
 			</div>
 		</div>
-	<form action="{% url 'entry:write_pit_scout' team.id %}" method="POST">
+	<form action="{% url 'entry:write_pit_scout' team.id %}" class="formContainer" method="POST">
         {% csrf_token %}
 		<h1>Drivetrain</h1>
 		<div class="formItem">

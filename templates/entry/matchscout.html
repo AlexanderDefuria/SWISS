@@ -35,7 +35,8 @@
 		<a href="{% url 'entry:about' %}">About</a>
 	</div>
 
-	<div class="bodyContainer bodyBackground" id="bodyContainer">
+	
+	<div class="bodyContainer" id="bodyContainer">
 		<div class="heroContent" id="heroSpace">
 			<div class="stickyChip">
 				<div class="teamnumberPill" style="background-color: {{team.colour}}">
@@ -47,13 +48,13 @@
 			</div>
 		</div>
 	<div>
-		<form action="{% url 'entry:write_match_scout' team.id %}" method="post" >
+		<form action="{% url 'entry:write_match_scout' team.id %}" class="formContainer" method="post" >
             {% csrf_token %}
-			<div class="formHeader">
-				<h1>PRE-MATCH</h1>
-			</div>
+
+
+            <h1>PRE-MATCH</h1>
 			<div class="formItem">
-				<label for="matchNumber">Is Robot Present?</label>
+				<label for="matchNumber">Match Number</label>
 				<div class="radioGroup">
 					<input type="number" name="matchNumber" id="matchNumber">
 				</div>
@@ -104,17 +105,17 @@
 				</select>
 			</div>
 		<div class="formItem">
-				<label for="baseline">Moved off Initiation Line</label>
-				<div class="radioGroup">
-					<label>
-						<input type="radio" id="baseline_true" name="baseline" value="true" checked>
-						<span>Y</span>
-					</label>
-					<label>
-						<input type="radio" id="baseline_false" name="baseline" value="false">
-						<span>N</span>
-					</label>
-				</div>
+			<label for="baseline">Moved off Initiation Line</label>
+			<div class="radioGroup">
+				<label>
+					<input type="radio" id="baseline_true" name="baseline" value="True" onclick="registerChange" checked>
+					<span>Y</span>
+				</label>
+				<label>
+					<input type="radio" id="baseline_false" name="baseline" value="False" onClick="registerChange">
+					<span>N</span>
+				</label>
+			</div>
 		</div>
 		<div class="formItem">
 				  <label for="autoLowGoal">Power Port Goals</label>
@@ -206,35 +207,29 @@
 						<input type="checkbox" id="Cleanup" name="Cleanup" value="2">
 						<span class="checkmark"></span>
 					</label>
-
 				</div>
 			</div>
 			<div class="formItem">
-					<label for="underDefense">Play well under defense</label>
-					<div class="radioGroup">
-						<label>
-							<input type="radio" id="underDefense_none" name="underDefense" value="0" checked>
-							<span>X</span>
-						</label>
-						<label>
-							<input type="radio" id="underDefense_true" name="underDefense" value="1">
-							<span>Y</span>
-						</label>
-						<label>
-							<input type="radio" id="underDefense_false" name="underDefense" value="2">
-							<span>N</span>
-						</label>
-					</div>
+
+				<label for="underDefense">Play well under defense</label>
+				<select name="underDefense" id="underDefense"> 
+					<option value="0">Not Defended</option>
+					<option value="1">Played Poorly</option>
+					<option value="0">Played Well</option>
+				</select>
 			</div>
-
-
+			<div class="formItem">
+				<label for="defendedBy">Defended by</label>
+				<input type="text" name="defendedBy" id="defendedBy" placeholder="Opposing Team #">
+			</div>
+			
 			<div class="formItem">
 				<label for="wheelScore">Control Panel Task</label>
 				<select name="wheelScore" id="wheelScore">
 					<option value="0">Did not Attempt</option>
 					<option value="1">Unsuccessful</option>
-					<option value="2">Completed Rotation Control</option>
-					<option value="3">Completed Position Control</option>
+					<option value="2">Completed Rotation</option>
+					<option value="3">Completed Colour</option>
 				</select>
 			</div>
 		  <div class="formItem">
@@ -293,11 +288,11 @@
 						<span>X</span>
 					</label>
 					<label>
-						<input type="radio" id="pushRating_true" name="pushRating" value="true">
+						<input type="radio" id="pushRating_true" name="pushRating" value="True">
 						<span>Y</span>
 					</label>
 					<label>
-						<input type="radio" id="pushRating_false" name="pushRating" value="false">
+						<input type="radio" id="pushRating_false" name="pushRating" value="False">
 						<span>N</span>
 					</label>
 				</div>
@@ -361,12 +356,16 @@
 		document.getElementById(id).value = value;
 	}
 	function decrementValue(id) {
-		console.log(id)
-		var value = parseInt(document.getElementById(id).value, 10);
-		value = isNaN(value) ? 0 : value;
-		value--;
-		document.getElementById(id).value = value;
-	}
+        console.log(id)
+        var value = parseInt(document.getElementById(id).value, 10);
+        if (value <= 0)
+               value = 0;
+        else if (value >= 10)
+               value = 10;
+         else
+                value--;
+        document.getElementById(id).value = value;
+    }
 	function openNav() {
 		document.getElementById("sideNav").style.width="250px";
 		document.getElementById("bodyContainer").style.marginLeft="275px";
@@ -377,12 +376,10 @@
 	  document.getElementById("bodyContainer").style.marginLeft= "25px";
 	  document.getElementById("swissLogo").style.marginLeft= "0";
 	}
-	function openTeamDrawer() {
-		document.getElementById("teamDrawer").style.height="100%";
-	}
-	function closeTeamDrawer() {
-	  document.getElementById("teamDrawer").style.height = "0";
+	function registerChange() {
+		console.log();
 	}
 </script>
+
 </body>
 </html>
