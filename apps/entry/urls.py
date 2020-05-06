@@ -4,7 +4,6 @@ from django.conf import settings
 
 from . import views
 
-app_name = 'entry'
 
 urlpatterns = [
     path('', views.Index.as_view(), name='index'),
@@ -35,11 +34,6 @@ urlpatterns = [
     path('about/', views.About.as_view(), name='about'),
     path('settings/', views.About.as_view(), name='settings'),
     path('experimental/getcsv/', views.get_csv_ajax, name='getcsv'),
-
-    # path('image_upload/', views.ImageUpload.as_view(), name='image_upload'),
-    # path('image_upload/submit', views.write_image_upload, name='write_image_upload'),
-    # path('image_viewer/', views.ImageViewer.as_view(), name='image_viewer'),
-    # path('pit_upload/', views.PitUpload.as_view(), name='pit_upload'),
 
     path('logout/', views.logout, name='logout'),
     path('login/', views.login, name='login'),

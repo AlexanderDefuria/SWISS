@@ -38,7 +38,7 @@
 		<a href="{% url 'entry:about' %}">About</a>
 	</div>
 	
-	<div class="bodyContainer bodyBackground glanceImage" id="bodyContainer">
+	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'GlanceBackground2000w.png' %})">
 		<div class="heroContent" id="heroSpace">
 			<div class="stickyChip">
 				<button class="changeTeam" id="changeTeam" onClick="openTeamDrawer()">
@@ -79,7 +79,7 @@
 				</div>
 			</div>
 			<div class="pictureBox">
-					<img src="robot/3683.jpg" alt="robot photo">
+					<img src="{{ MEDIA_URL }}{% static '3683.jpg' %}" alt="robot photo">
 			</div>			
 			<div class="graphBoxWide">
 				<div id="avg_balls" style="height: 300px; width:auto">
@@ -184,7 +184,7 @@
 			</div>
 			<div class="infoBox infoReg">
 				<div class="infoHeader">
-					<img class="infoIcon" src="img/Flag Icon.png" alt="flag">
+					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'FlagIcon.png' %}" alt="flag">
 					<h1>Fouls &amp; Cards</h1>
 				</div>
 				<div class="infoRow">
@@ -222,7 +222,7 @@
 			</div>
 			<div class="infoBox infoReg">
 				<div class="infoHeader">
-					<img class="infoIcon" src="img/Defense Icon.png" alt="Defense Icon">
+					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'DefenseIcon.png' %}" alt="Defense Icon">
 					<h1>Defense</h1>
 				</div>
 				<div class="infoRow">
@@ -240,7 +240,7 @@
 			</div>
 			<div class="infoBox infoReg">
 				<div class="infoHeader">
-					<img class="infoIcon" src="img/Generic Power Port.png" alt="Power Port">
+					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'GenericPowerPort.png' %}" alt="Power Port">
 					<h1>Total Balls Scored</h1>
 				</div>
 				<div class="infoRow">
@@ -258,7 +258,7 @@
 			</div>			
 			<div class="infoBox infoReg">
 				<div class="infoHeader">
-					<img class="infoIcon" src="img/hangbar_icon.png" alt="Hang Bar">
+					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'hangbar_icon.png' %}" alt="Hang Bar">
 					<h1>Endgame</h1>
 				</div>
 				<div class="infoRow">
@@ -283,6 +283,7 @@
 					<div class="infoLColumn"><p>West Coast Drive</p></div>
 				</div>
 				<div class="infoRow">
+					<div class="infoLColumn"><p>Wheel Type</p></div>
 					<div class="infoLColumn"><p>Wheel Type</p></div>
 					<div class="infoLColumn"><p>Blue Nitrile</p></div>
 				</div>				
