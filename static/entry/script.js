@@ -1,28 +1,10 @@
-// 'I fucked your mom' - Nick Kerstens April 2020
+// I fucked your mom
 
-
-var Slug = 0;
-
-function getCSV(json) {
-
-	return $.ajax({
-        url: 'getcsv/',
-        type: 'post',
-        data: {},
-        dataType: "json",
-
-        success: function (data) {
-            console.log(data.content);
-
-        },
-        failure: function () {
-            console.log("No Matches");
-        },
-
-    })
-
+function autolowgoaladd() {
+	document.getElementById("autoLowGoal").stepUp();
 }
 
+let Slug = 0;
 
 
 function getSlug(team) {
