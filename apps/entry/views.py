@@ -4,6 +4,8 @@ import json
 import os
 import sqlite3
 
+from django.shortcuts import render_to_response
+
 from apps import config
 import dbTools
 
@@ -17,7 +19,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
 from django_ajax.decorators import ajax
-from django.template import Library, loader
+from django.template import Library, loader, RequestContext
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required, user_passes_test
 
@@ -334,6 +336,12 @@ def logout(request):
     auth.logout(request)
     print("request.user.is_authenticated:" + str(request.user.is_authenticated))
     return HttpResponseRedirect(reverse_lazy('entry:index'))
+
+
+def handler404(request, exception, template_name="entry/secret.html"):
+    response = render_to_response(template_name)
+    response.status_code = 404
+    return response
 
 
 def make_int(s):

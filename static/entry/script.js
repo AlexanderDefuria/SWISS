@@ -1,4 +1,4 @@
-// 'I fucked your mom' - Nick Kerstens April 2020
+// I fucked your mom
 
 
 var Slug = 0;
