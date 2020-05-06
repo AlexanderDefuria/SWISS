@@ -12,7 +12,7 @@ from json import dumps
 
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect, HttpResponse, Http404, QueryDict, JsonResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404, QueryDict, JsonResponse, FileResponse
 from django.urls import reverse_lazy
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
@@ -237,12 +237,29 @@ def download(request):
     path = os.path.join(settings.BASE_DIR, path)
     update_csv()
 
-    if os.path.exists(path):
+    if request.method == "GET" and os.path.exists(path):
+
         with open(path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="text/csv")
             response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(path)
             return response
 
+    return Http404
+
+
+@ajax
+@csrf_exempt
+@login_required(login_url='entry:login')
+def get_csv_ajax(request):
+    path = 'match_history.csv'
+    path = os.path.join(settings.BASE_DIR, path)
+    update_csv()
+
+    if os.path.exists(path):
+        with open(path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="text/csv")
+            response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(path)
+            return response
     return Http404
 
 

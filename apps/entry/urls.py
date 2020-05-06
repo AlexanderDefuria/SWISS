@@ -34,6 +34,7 @@ urlpatterns = [
     path('experimental/', views.Experimental.as_view(), name='experimental'),
     path('about/', views.About.as_view(), name='about'),
     path('settings/', views.About.as_view(), name='settings'),
+    path('experimental/getcsv/', views.get_csv_ajax, name='getcsv'),
 
     # path('image_upload/', views.ImageUpload.as_view(), name='image_upload'),
     # path('image_upload/submit', views.write_image_upload, name='write_image_upload'),

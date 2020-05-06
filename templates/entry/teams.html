@@ -35,28 +35,30 @@
 		<a href="{% url 'entry:about' %}">About</a>
 	</div>
 
-	<div class="bodyContainer bodyBackground teamsImage" id="bodyContainer">
+	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'TeamsBackground.png' %})">
 		<div class="heroContent">
 			<p class="homeText">Teams</p>
 		</div>
 		<div class="tileContainer">
             {% for team in team_list %}
-
+                <a href={% url 'entry:glance' %}>
                     <div class="teamChip">
                         <img class="robotPhoto" src="{{ MEDIA_URL }}{{ team.first_image }}" alt="robot photo">
 				        <div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
 				        <div class="teamnamePill"><p>{{ team.name }}</p></div>
                     </div>
+                </a>
 
             {% endfor %}
-		</div>
-        <div class="tileContainer">
 			<a href="{% url 'entry:upload' %}">
 				<div class="smallBox">
 					<img src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
 				</div>
 			</a>
+
+
 		</div>
+
 
 
 	</div>
