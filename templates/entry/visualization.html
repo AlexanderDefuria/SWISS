@@ -11,7 +11,9 @@
 <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
-<script src="{% static 'entry/script.js.js' %}"></script>
+<script src="{% static 'entry/jquery.min.js' %}"></script>
+<script src="{% static 'entry/charts.js' %}"></script>
+<script src="{% static 'entry/script.js' %}"></script>
 <script src="{% static 'entry/highcharts.js' %}"></script>
 <script src="{% static 'entry/highcharts-more.js' %}"></script>
 <script src="{% static 'entry/solid-gauge.js' %}"></script>
@@ -39,25 +41,30 @@
 		<a href="{% url 'entry:about' %}">About</a>
 	</div>
 
+
+
 	<div class="bodyContainer" id="bodyContainer">
+        <div class="heroContent">
+			<h1>The numbers Mason, what do they mean?</h1>
+		</div>
 		<div class="statsContainer">
 			<div class="flexColumn60"> 
 				<div id="visualizationChart" style="width:auto;">
 				</div>
+                <br>
 				<div class="formItem">
 					<button class="updateButton" onclick="updateGraph()">Update Graph</button>
 				</div>
-				<h1>The numbers Mason, what do they mean?</h1>
 			</div>
 			<div class="flexColumn40">
 				<div class="infoBox infoReg">
 					<div class="infoHeader">
 						<h1>Teams Included</h1>
 					</div>
-					<div style="display: flex; flex-wrap: wrap; ">
+					<div class="pillContainer" style="display: flex; flex-wrap: wrap; ">
 						{% for team in team_list %}
                         <div class="teamnumberPill">
-							<p for="{{ team.name }}">{{ team.number }}</p>
+							<label for="{{ team.id }}">{{ team.number }}</label>
                             <input name="teamCheckBox" type="checkbox" id="{{ team.id }}" value="{{ team.name }}">
                         </div>
                     	{% endfor %}
@@ -67,6 +74,15 @@
 					<div class="infoHeader">
 						<h1>Metrics Included</h1>
 					</div>
+                    <div class="pillContainer" id="MetricCheckBox" style="display: flex; flex-wrap: wrap; ">
+
+                        <div class="teamnumberPill" style="display: none">
+							<label for="test">test</label>
+                            <input name="test" type="checkbox" id="test" value="test">
+                        </div>
+
+					</div>
+
 				</div>
 			</div>
 
@@ -78,34 +94,6 @@
 		
 	</div>
 
-<!-- This is script for the graph -->
-<script>
-	document.addEventListener('DOMContentLoaded', function () {
-			var myChart = Highcharts.chart('visualizationChart', {
-				chart: {
-					type: 'bar'
-				},
-				title: {
-					text: 'Data Visualization'
-				},
-				xAxis: {
-					categories: ['Apples', 'Bananas', 'Oranges']
-				},
-				yAxis: {
-					title: {
-						text: 'Fruit eaten'
-					}
-				},
-				series: [{
-					name: 'Jane',
-					data: [1, 0, 4]
-				}, {
-					name: 'John',
-					data: [5, 7, 3]
-				}]
-			});
-		});	
-</script>	
 	
 <style>
 	.updateButton {

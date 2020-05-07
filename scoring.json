@@ -11,6 +11,18 @@
     "weight" : 1,
     "visible": true
   },
+  "lower" : {
+    "points" : 1,
+    "alias" : "Lower Port",
+    "weight" : 1,
+    "visible": true
+  },
+  "auto_route" : {
+    "points" : 1,
+    "alias" : "Auto Route",
+    "weight" : 1,
+    "visible": true
+  },
   "auto_start" : {
     "points" : 1,
     "alias" : "Auto Start",
@@ -47,9 +59,15 @@
     "weight" : 1,
     "visible": false
   },
+  "lower_auto" : {
+    "points" : 1,
+    "alias" : "Auto Lower Powercells",
+    "weight" : 1,
+    "visible": false
+  },
   "auto_baseline" : {
     "points" : 1,
-    "alias" : "Auto Baseline",
+    "alias" : "Baseline",
     "weight" : 1,
     "visible": true
   },
@@ -71,9 +89,9 @@
     "weight" : 1,
     "visible": true
   },
-  "defense_time" : {
+  "played_defense" : {
     "points" : 1,
-    "alias" : "Defense Time",
+    "alias" : "Defense Played",
     "weight" : 1,
     "visible": true
   },
@@ -81,7 +99,7 @@
     "points" : 1,
     "alias" : "Defense Rating",
     "weight" : 1,
-    "visible": false
+    "visible": true
   },
   "defense_fouls" : {
     "points" : 1,
@@ -89,23 +107,53 @@
     "weight" : 1,
     "visible": false
   },
-  "climb_time" : {
+  "team_defended" : {
     "points" : 1,
-    "alias" : "Climb Time",
+    "alias" : "Team Defended",
     "weight" : 1,
     "visible": false
   },
-  "climb_attempts" : {
+  "able_to_push" : {
     "points" : 1,
-    "alias" : "Climb Attempts",
+    "alias" : "Pushing",
+    "weight" : 1,
+    "visible": false
+  },
+  "missed_balls" : {
+    "points" : 1,
+    "alias" : "Missed Balls",
     "weight" : 1,
     "visible": true
   },
-  "climb" : {
+  "cycle_style" : {
     "points" : 1,
-    "alias" : "Climbs",
+    "alias" : "Cycle Style",
+    "weight" : 1,
+    "visible": false
+  },
+  "defended_by" : {
+    "points" : 1,
+    "alias" : "Defended By",
+    "weight" : 1,
+    "visible": false
+  },
+  "ball_intake_type" : {
+    "points" : 1,
+    "alias" : "Ball Intake Type",
+    "weight" : 1,
+    "visible": false
+  },
+  "climb_location" : {
+    "points" : 1,
+    "alias" : "Climb Location",
     "weight" : 1,
     "visible": true
+  },
+  "field_timeout_pos" : {
+    "points" : 1,
+    "alias" : "End Position",
+    "weight" : 1,
+    "visible": false
   },
   "balls_collected" : {
     "points" : 1,
@@ -116,6 +164,18 @@
   "full_cycles" : {
     "points" : 1,
     "alias" : "Full Cycles",
+    "weight" : 1,
+    "visible": false
+  },
+  "hp_fouls" : {
+    "points" : 1,
+    "alias" : "HP Fouls",
+    "weight" : 1,
+    "visible": false
+  },
+  "dt_fouls" : {
+    "points" : 1,
+    "alias" : "DT Fouls",
     "weight" : 1,
     "visible": false
   }
