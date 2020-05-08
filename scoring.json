@@ -1,12 +1,12 @@
 {
   "inner" : {
-    "points" : 1,
+    "points" : 3,
     "alias" : "Inner Port",
     "weight" : 1,
     "visible":true
   },
   "outer" : {
-    "points" : 1,
+    "points" : 2,
     "alias" : "Outer Port",
     "weight" : 1,
     "visible": true
@@ -27,7 +27,7 @@
     "points" : 1,
     "alias" : "Auto Start",
     "weight" : 1,
-    "visible": true
+    "visible": false
   },
   "rating_auto" : {
     "points" : 1,
@@ -66,13 +66,13 @@
     "visible": false
   },
   "auto_baseline" : {
-    "points" : 1,
+    "points" : 5,
     "alias" : "Baseline",
     "weight" : 1,
     "visible": true
   },
   "wheel_score" : {
-    "points" : 1,
+    "points" : 10,
     "alias" : "Control Panel",
     "weight" : 1,
     "visible": true

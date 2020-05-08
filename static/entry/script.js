@@ -174,3 +174,10 @@ function updateSlug(team){
 	getSlug(team)
 	return Slug
 }
+function validateForm(){
+    // return false throws an error
+
+    3
+
+
+}
