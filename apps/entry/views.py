@@ -456,7 +456,14 @@ class About(LoginRequiredMixin, generic.TemplateView):
     template_name = 'entry/about.html'
 
 
-class Glance(LoginRequiredMixin, generic.ListView):
+class Glance(LoginRequiredMixin, generic.DetailView):
+    login_url = 'entry:login'
+    model = Team
+    template_name = 'entry/glance.html'
+    context_object_name = "team"
+
+
+class GlanceLanding(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     model = Team
     template_name = 'entry/glance.html'

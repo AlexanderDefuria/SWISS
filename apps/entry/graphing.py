@@ -6,6 +6,8 @@ from apps.entry.errors import *
 
 def graph(graph_type, request):
     teams = request.POST.getlist('team_list')[0].split(",")
+    print('Team List')
+    print(request.POST.getlist('team_list')[0])
     req_fields = request.POST.getlist('field_list')[0].split(",")
 
     if teams == ['']:
@@ -16,8 +18,6 @@ def graph(graph_type, request):
         "bar": bar_graph(req_fields, teams),
         "overall": overall_graph(req_fields, teams),
     }
-
-    print(graph_type)
 
     return output[graph_type]
 
@@ -31,10 +31,13 @@ def bar_graph(req_fields, teams):
     data_out = {}
 
     single_items = ['team_number']
-    ignored_items = ['_state', 'initial_comments', 'game_comments', 'id', 'event_id', 'team_id', 'match_number']
+    ignored_items = ['_state', 'id', 'event_id', 'team_id', 'match_number']
 
     for item in ignored_items:
-        default_out.__delitem__(item)
+        try:
+            default_out.__delitem__(item)
+        except KeyError:
+            print(item + ' - Is supposed to be an ignored item but is not found - graphing.py bar_graph()')
 
     for item in default_out.copy():
         if not req_fields.__contains__(item):

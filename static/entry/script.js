@@ -36,7 +36,7 @@ function loadFields() {
 
             let inputNode = document.createElement("INPUT");
             inputNode.setAttribute("type", "checkbox");
-            inputNode.id = fieldData[keys[i]]["alias"];
+            inputNode.id = keys[i];
             inputNode.name = fieldData[keys[i]]["alias"];
             inputNode.style.marginRight = "5px";
 
@@ -54,30 +54,38 @@ function loadFields() {
 
 
 }
+function getActiveFields(id) {
+    let node = document.getElementById(id);
+    let pills = node.childNodes;
+    let activeFields = [];
+
+    pills.forEach((pill) => {
+        pill.childNodes.forEach((inner) => {
+            if (inner.tagName === "INPUT")
+                if (inner.checked)
+                    activeFields.push(inner.id);
+        });
+    });
+
+    //console.log(activeFields)
+
+    return activeFields
+}
 function updateGraph() {
-    let fieldList = [];
-    let teamList = [];
-
-
-    let included = document.getElementById("included_fields");
-    included = included.getElementsByTagName("LI");
-    for (let i = 0; i < included.length; i++){
-        fieldList.push(included[i].id)
-    }
-
-    included = document.getElementsByName("teamCheckBox")
-    for (let i = 0; i < included.length; i++){
-        if (included[i].checked)
-            teamList.push(included[i].id);
-    }
+    let fieldList = getActiveFields("MetricCheckBox");
+    let teamList = getActiveFields("TeamCheckBox");
 
     let formData = new FormData();
     formData.append('field_list', fieldList);
     formData.append('team_list', teamList);
-    formData.append('graphType', document.getElementById("graphType").value)
+    formData.append('graphType', "bar")
+
+    // Below Code is designed to get the type of graph which determines the
+    // return data and format in graphing.py def graph() function
+    // presently hardcoded as a workaround TODO fix chart type selection
+    //console.log(document.getElementById("visualizationChart").value)
 
     let returnData = {};
-
 
     $.ajax({
         url: 'update/',
@@ -88,13 +96,15 @@ function updateGraph() {
 
         success: function (data) {
             returnData = JSON.parse(data.content)
-            // console.log(returnData);
+            console.log(returnData);
         },
         failure: function (data) {
             console.log("Failed");
         },
 
-    }).then(r =>{
+    }).then(r => {
+
+
 
         let fields = Object.keys(returnData[Object.keys(returnData)[0]])
         let teams = Object.keys(returnData)
@@ -122,7 +132,9 @@ function updateGraph() {
 
         console.log(varChart.series)
 
-        myChart = Highcharts.chart('container', varChart);
+        myChart = Highcharts.chart('visualizationChart', varChart);
+
+
 
     });
 

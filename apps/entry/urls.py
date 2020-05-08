@@ -22,7 +22,8 @@ urlpatterns = [
     path('visual/update/', views.update_graph, name='update_graph'),
     path('visual/update/fields', views.update_fields, name='update_fields'),
 
-    path('glance/', views.Glance.as_view(), name='glance'),
+    path('glance/', views.GlanceLanding.as_view(), name='glance'),
+    path('glance/<slug:pk>/', views.Glance.as_view(), name='glance'),
     path('download/', views.download, name='download'),
     path('upload/', views.Upload.as_view(), name='upload'),
     path('upload/submit/', views.write_image_upload, name='upload_submit'),

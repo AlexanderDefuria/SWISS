@@ -49,9 +49,8 @@
 		</div>
 		<div class="statsContainer">
 			<div class="flexColumn60"> 
-				<div id="visualizationChart" style="width:auto;">
+				<div id="visualizationChart" style="width:auto; height: auto;">
 				</div>
-                <br>
 				<div class="formItem">
 					<button class="updateButton" onclick="updateGraph()">Update Graph</button>
 				</div>
@@ -61,7 +60,7 @@
 					<div class="infoHeader">
 						<h1>Teams Included</h1>
 					</div>
-					<div class="pillContainer" style="display: flex; flex-wrap: wrap; ">
+					<div class="pillContainer" id="TeamCheckBox" style="display: flex; flex-wrap: wrap; ">
 						{% for team in team_list %}
                         <div class="teamnumberPill">
 							<label for="{{ team.id }}">{{ team.number }}</label>
@@ -77,8 +76,7 @@
                     <div class="pillContainer" id="MetricCheckBox" style="display: flex; flex-wrap: wrap; ">
 
                         <div class="teamnumberPill" style="display: none">
-							<label for="test">test</label>
-                            <input name="test" type="checkbox" id="test" value="test">
+
                         </div>
 
 					</div>
