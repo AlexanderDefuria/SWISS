@@ -6,6 +6,8 @@ from apps.entry.errors import *
 
 def graph(graph_type, request):
     teams = request.POST.getlist('team_list')[0].split(",")
+    print('Team List')
+    print(request.POST.getlist('team_list')[0])
     req_fields = request.POST.getlist('field_list')[0].split(",")
 
     if teams == ['']:

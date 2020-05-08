@@ -48,7 +48,7 @@
 			</div>
 		</div>
 	<div>
-		<form action="{% url 'entry:write_match_scout' team.id %}" class="formContainer" method="post" onsubmit="return validateForm()">
+		<form action="{% url 'entry:write_match_scout' team.id %}" class="formContainer" method="post" >
             {% csrf_token %}
 
 

@@ -191,6 +191,7 @@ def update_graph(request):
         output = graph(graph_type, request)
         if output == "lazy":
             return HttpResponseRedirect(reverse_lazy('entry:visualize'))
+        print(output)
         response = HttpResponse(dumps(output), content_type="application/json")
         return response
     except IOError:
