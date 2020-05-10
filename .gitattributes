@@ -3,3 +3,5 @@
 /static/entry/solid-gauge.js linguist-vendored
 /static/entry/jquery.min.js linguist-vendored
 *.pyc linguist-vendored
+/static/entry/2019/highcharts* linguist-vendored
+/static/entry/2019/jquery.min.js linguist-vendored
