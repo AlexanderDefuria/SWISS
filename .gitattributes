@@ -2,4 +2,3 @@
 /static/entry/highcharts* linguist-vendored
 /static/entry/solid-gauge.js linguist-vendored
 /static/entry/jquery.min.js linguist-vendored
-/static/entry/2019/ linguist-vendored
