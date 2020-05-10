@@ -33,7 +33,18 @@ function validate(formName) {
             for (let dataKey in data){
 		        if (data.hasOwnProperty(dataKey))
 		            if (data[dataKey]) {
-		                document.getElementById(dataKey).parentElement.style.backgroundColor = 'lightcoral';
+		                let parent = document.getElementById(dataKey);
+		                let search = true;
+
+		                while (search) {
+		                    parent = parent.parentElement;
+                            search = (parent.className !== "formItem");
+                            console.log(parent)
+                        }
+
+
+		                parent.style.backgroundColor = 'lightcoral';
+		                window.alert("There is an issue with the data given for " + dataKey)
                     }
             }
 

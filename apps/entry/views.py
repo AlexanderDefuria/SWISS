@@ -114,6 +114,10 @@ def validate_match_scout(request, pk):
 
     redo, data = validate_types(request, data)
 
+    if data['matchNumber'][0] == 0:
+        redo['matchNumber'] = True
+
+
     if Match.objects.filter(team_id=pk, event_id=config.get_current_event_id(),
                                match_number=data['matchNumber'][0]).exists():
         # Check if there are already 6 teams that have played this match
@@ -149,6 +153,9 @@ def validate_types(request, data):
             print("ValueError: " + data[field])
 
         redo[field] = False if (isinstance(data[field][0], type(reqfields[field]))) else True
+
+    if data['scouterName'][0] == '':
+        redo['scouterName'] = True
 
     return redo, data
 
