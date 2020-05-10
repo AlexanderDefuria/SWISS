@@ -3,6 +3,7 @@ import csv
 import json
 import os
 import sqlite3
+import ast
 
 from django.shortcuts import render_to_response
 
@@ -109,16 +110,47 @@ def validate_match_scout(request, pk):
     # The ajax post sends only the match number in a JSON file to comply with AJAX datatype specification
     # dumps() is to convert dictionary into JSON format for HttpResponse to keep it simple stupid
 
-    data = decode_ajax(request)['match_number']
-    provided_match_number = make_int(data[0])
-    result = {'result': False}
+    data = decode_ajax(request)
 
-    if not Match.objects.filter(team_id=pk, event_id=config.get_current_event_key(),
-                                match_number=provided_match_number).exists():
-        if Match.objects.filter(match_number=provided_match_number).count() < 6:
-            result['result'] = True
+    redo, data = validate_types(request, data)
 
-    return HttpResponse(dumps(result), content_type="application/json")
+    if Match.objects.filter(team_id=pk, event_id=config.get_current_event_id(),
+                               match_number=data['matchNumber'][0]).exists():
+        # Check if there are already 6 teams that have played this match
+        if Match.objects.filter(match_number=data['matchNumber'][0]).count() <= 6:
+            redo['matchNumber'] = True
+
+    return HttpResponse(dumps(redo), content_type="application/json")
+
+
+@login_required(login_url='entry:login')
+def validate_types(request, data):
+    reqfields = {}
+    redo = {}
+
+    try:
+        path = 'reqfields.json'
+        path = os.path.join(settings.BASE_DIR, path)
+        with open(path) as f:
+            reqfields = json.load(f)['matchScout']
+    except IOError:
+        print("reqfields file not found")
+
+    print(data)
+
+    for field in reqfields.keys():
+        # This would mean someone is editing the HTML therefore we log them out to ensure data integrity.
+        if not data.__contains__(field):
+            logout(request)
+        try:
+            if data[field][0] != '':
+                data[field][0] = ast.literal_eval(data[field][0])
+        except ValueError:
+            print("ValueError: " + data[field])
+
+        redo[field] = False if (isinstance(data[field][0], type(reqfields[field]))) else True
+
+    return redo, data
 
 
 @login_required(login_url='entry:login')

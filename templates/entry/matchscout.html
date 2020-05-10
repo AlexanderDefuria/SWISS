@@ -6,6 +6,8 @@
 <head>
 <meta charset="utf-8">
 <title>SWISS Match Scouting</title>
+<script src="{% static 'entry/jquery.min.js' %}"></script>
+<script src="{% static 'entry/validate.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/formstyle.css' %}">
@@ -48,7 +50,7 @@
 			</div>
 		</div>
 	<div>
-		<form action="{% url 'entry:write_match_scout' team.id %}" class="formContainer" method="post" >
+		<form action="{% url 'entry:write_match_scout' team.id %}" class="formContainer" method="post" name="mainForm" id="mainForm">
             {% csrf_token %}
 
 
@@ -56,7 +58,7 @@
 			<div class="formItem">
 				<label for="matchNumber">Match Number</label>
 				<div class="radioGroup">
-					<input type="number" name="matchNumber" id="matchNumber">
+					<input type="number" name="matchNumber" id="matchNumber" style="background-color: li">
 				</div>
 			</div>
 			<div class="formItem">
@@ -341,8 +343,8 @@
 				<input type="text" name="scouterName" id="scouterName" placeholder="Scouter Name">
 			</div>
 			<br>
-			<div class="formItem" id="submit">
-				<input name="submit" type="submit">
+			<div class="formItem" id="submit" onclick="validate('mainForm')">
+                <input name="submit" id="submitButton" type="submit" style="pointer-events: none">
 			</div>
 		</form>
 	</div>
