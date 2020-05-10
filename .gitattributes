@@ -2,3 +2,4 @@
 /static/entry/highcharts* linguist-vendored
 /static/entry/solid-gauge.js linguist-vendored
 /static/entry/jquery.min.js linguist-vendored
+*.pyc linguist-vendored
