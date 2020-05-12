@@ -1,11 +1,11 @@
 {
   "matchScout": {
     "matchNumber": 0,
-    "baseline": false,
+    "baseline": "False",
     "scouterName": " ",
-    "onField": false
+    "onField": "False"
   },
   "pitScout": {
-    "scouterName": ""
+    "scouterName": " "
   }
 }

@@ -144,13 +144,27 @@ def validate_types(request, data):
 
     for field in reqfields.keys():
         # This would mean someone is editing the HTML therefore we log them out to ensure data integrity.
+
+        print("FIELD " + field)
+
         if not data.__contains__(field):
             logout(request)
+
         try:
-            if data[field][0] != '':
+            alpha = True
+            for each in data[field][0].split():
+                alpha = (alpha and each.isalpha())
+
+            if data[field][0] != '' and not alpha and len(data[field][0].split()) == 1:
                 data[field][0] = ast.literal_eval(data[field][0])
         except ValueError:
-            print("ValueError: " + data[field])
+            try:
+                if data[field][0] != '':
+                    data[field][0] = ast.literal_eval(data[field][0][0])
+            except ValueError as e:
+                print("\nVALUE ERROR:")
+                print(data[field])
+                print(e)
 
         redo[field] = False if (isinstance(data[field][0], type(reqfields[field]))) else True
 
