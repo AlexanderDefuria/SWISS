@@ -100,12 +100,11 @@ function updateGraph() {
 
     }).then(r => {
 
-
-
         let fields = Object.keys(returnData[Object.keys(returnData)[0]])
         let teams = Object.keys(returnData)
 
-        varChart.series = []
+        let varChart = constCharts.templateChart;
+        varChart.series = [];
 
         fields.forEach(function (field, findex) {
 
