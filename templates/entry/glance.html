@@ -11,6 +11,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
+<script src="{% static 'entry/jquery.min.js' %}"></script>
+<script src="{% static 'entry/charts.js' %}"></script>
+<script src="{% static 'entry/glance.js' %}"></script>
+<script src="{% static 'entry/script.js' %}"></script>
 <script src="{% static 'entry/highcharts.js' %}"></script>
 <script src="{% static 'entry/highcharts-more.js' %}"></script>
 <script src="{% static 'entry/solid-gauge.js' %}"></script>
@@ -84,102 +88,12 @@
 			<div class="graphBoxWide">
 				<div id="avg_balls" style="height: 300px; width:auto">
 				<p></p>
-					<script>
-						document.addEventListener('DOMContentLoaded', function () {
-								var myChart = Highcharts.chart('avg_balls', {
-									chart: {
-										backgroundColor: '#0F4D8D',
-										type: 'bar',
-										style: {
-											color: '#ffffff'
-										}
-									},
-									title: {
-										text: 'Average Balls Scored Per Match',
-										style: {
-											color: '#ffffff'
-										}
-									},
-									xAxis: {
-										categories: ['Auto', 'Teleop'],
-										labels: {
-											style: {
-												color: '#ffffff'
-										}
-										}
-									},
-									yAxis: {
-										title: {
-											text: 'Balls Scored',
-											style: {
-												color: '#ffffff'
-											}
-										},
-										labels: {
-											style: {
-												color: '#ffffff'
-										}
-										}
-									},
-									series: [{
-										name: 'Lower',
-										data: [0, 0]
-									}, {
-										name: 'Outer',
-										data: [3, 20]
-									}, {
-										name: 'Inner',
-										data: [2, 5,]
-									}]
-								});
-							});
-					</script>
+
 				</div>		
 			</div>
 			<div class="graphBoxWide">
 				<div id="line" style="height: 300px; width: inherit">
-					<script>
-							Highcharts.chart('line', {
-							
-								chart: {
-									backgroundColor: '#dddddd'
-								},
 
-							  title: {
-								text: 'Total Balls Scored Over Comp'
-							  },
-
-							  plotOptions: {
-								series: {
-								  label: {
-									connectorAllowed: true
-								  },
-								  pointStart: 1
-								}
-							  },
-
-							  series: [{
-								name: 'Balls Scored',
-								data: [10, 15, 20, 17, 25, 10, 13, 22]
-							  }],
-
-							  responsive: {
-								rules: [{
-								  condition: {
-									maxWidth: 500
-								  },
-								  chartOptions: {
-									legend: {
-									  layout: 'horizontal',
-									  align: 'center',
-									  verticalAlign: 'bottom'
-									}
-								  }
-								}]
-							  }
-
-							});
-					</script>
 				</div>
 			</div>
 			<div class="infoBox infoReg">

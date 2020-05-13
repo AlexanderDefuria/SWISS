@@ -5,6 +5,7 @@ import os
 import sqlite3
 import ast
 
+from django.core import serializers
 from django.shortcuts import render_to_response
 
 from apps import config
@@ -254,6 +255,15 @@ def update_graph(request):
         return NoTeamsProvided
     except NoFieldsProvided:
         return NoFieldsProvided
+
+
+@ajax
+@csrf_exempt
+@login_required(login_url='entry:login')
+def update_glance(request, pk):
+    matches = Match.objects.filter(team_id=pk)
+    matches_json = serializers.serialize('json', matches)
+    return HttpResponse(matches_json, content_type='application/json')
 
 
 @ajax
