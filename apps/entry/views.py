@@ -462,24 +462,6 @@ class Visualize(LoginRequiredMixin, generic.ListView):
         return get_present_teams()
 
 
-# class ImageUpload(LoginRequiredMixin, generic.TemplateView):
-#     login_url = 'entry:login'
-#     template_name = 'entry/image-upload.html'
-#     model = Team
-#     context_object_name = "team_list"
-
-
-# DPERECATED
-class ImageViewer(LoginRequiredMixin, generic.ListView):
-    login_url = 'entry:login'
-    template_name = 'entry/image-viewer.html'
-    model = Team
-    context_object_name = "team_list"
-
-    def get_queryset(self):
-        return get_present_teams()
-
-
 # DPERECATED
 class ScheduleView(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
@@ -525,11 +507,23 @@ class Glance(LoginRequiredMixin, generic.DetailView):
     template_name = 'entry/glance.html'
     context_object_name = "team"
 
+    def head(self,  *args, **kwargs):
+        output = {
+            "test": 1
+        }
+
+        response = HttpResponse(dumps(output), content_type="application/json")
+
+        return response
+
 
 class GlanceLanding(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     model = Team
-    template_name = 'entry/glance.html'
+    template_name = 'entry/glancelanding.html'
+
+    def get_queryset(self):
+        return get_present_teams()
 
 
 class Data(LoginRequiredMixin, generic.TemplateView):

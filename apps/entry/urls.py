@@ -22,7 +22,7 @@ urlpatterns = [
     path('visual/update/', views.update_graph, name='update_graph'),
     path('visual/update/fields', views.update_fields, name='update_fields'),
 
-    path('glance/', views.GlanceLanding.as_view(), name='glance'), # TODO change to glance landign
+    path('glance/', views.GlanceLanding.as_view(), name='glance_landing'), # TODO change to glance landign
     path('glance/<slug:pk>/', views.Glance.as_view(), name='glance'),
     path('glance/<slug:pk>/update/', views.update_glance, name='glance_update'),
     path('download/', views.download, name='download'),

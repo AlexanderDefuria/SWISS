@@ -14,7 +14,7 @@ function updateGlance() {
 
 	$.ajax({
         // url: 'update/', -- TODO replace line below when slug is in the url
-        url: '4335/update/',
+        url: 'update/',
         method: 'GET',
 		dataType: "json",
         success: function(data) {

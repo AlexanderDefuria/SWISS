@@ -1,9 +1,10 @@
 from django import template
 from apps.entry.models import *
 from apps import config
+import json
+from django.conf import settings
 
 register = template.Library()
-
 
 @register.filter
 def modulo(num, val):
@@ -26,9 +27,10 @@ def get_match_fields():
     return [f.name for f in Match._meta.get_fields()]
 
 
-@register.filter
+@register.simple_tag
 def get_pit_info(team, field):
     try:
+
         return Pits.objects.filter(team_id=team.id)[0].__getattribute__(field)
     except IndexError:
         return "NA"
@@ -36,5 +38,9 @@ def get_pit_info(team, field):
 # {% for team in team_list %}
 #     {{ team|get_pit_info:"weight" }}
 # {% endfor %}
+
+# ------- or --------
+
+# {% get_pit_info team "field" %}
 
 

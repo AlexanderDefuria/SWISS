@@ -46,11 +46,11 @@
 		<div class="heroContent" id="heroSpace">
 			<div class="stickyChip">
 				<button class="changeTeam" id="changeTeam" onClick="openTeamDrawer()">
-				<div class="teamnumberPill DaveColor">
-						<p>3683</p>
+				<div class="teamnumberPill" style="background-color: {{ team.colour }}">
+						<p>{{ team.number }}</p>
 				</div>
 				<div class="teamnamePill">
-						<p>Team Dave</p>
+						<p>{{ team.name}}</p>
 				</div>
 				</button>
 			</div>
@@ -59,12 +59,12 @@
 		<div class="infotileContainer" style="justify-content: flex-start">
 			<div class="infoBox infoWide">
 				<div class="infoHeader">
-					<div class="teamnumberPill DaveColor"><p>3683</p></div>
-					<h1>Team Dave</h1>
+					<div class="teamnumberPill" style="background-color: {{team.colour}}"><p>{{ team.number }}</p></div>
+					<h1>{{ team.name }}</h1>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Shooter Style</p></div>
-					<div class="infoRColumn"><p>Fixed Flywheel</p></div>
+					<div class="infoRColumn"><p>{% get_pit_info team 'shooter_style' %}</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Shooting Locations</p></div>
@@ -83,7 +83,7 @@
 				</div>
 			</div>
 			<div class="pictureBox">
-					<img src="{{ MEDIA_URL }}{% static '3683.jpg' %}" alt="robot photo">
+					<img src="{{ MEDIA_URL }}{{ team.first_image }}" alt="robot photo">
 			</div>			
 			<div class="graphBoxWide">
 				<div id="avg_balls" style="height: 300px; width:auto">

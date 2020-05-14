@@ -169,5 +169,8 @@ class Pits(models.Model):
     # )
     # motor_number = models.SmallIntegerField(default=0, validators=[MaxValueValidator(8), MinValueValidator(0)])
 
+    def getData(self, field):
+        return getattr(self, field)
+
     def __str__(self):
         return self.team.name
