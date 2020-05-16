@@ -52,9 +52,9 @@ def match_scout_submit(request, pk):
 
         match.auto_route = request.POST.get('autoRoute', 0)
         match.baseline = request.POST.get('baseline', False)
-        match.outer_auto = request.POST.get('outerAuto', 0)
-        match.lower_auto = request.POST.get('lowerAuto', 0)
-        match.inner_auto = request.POST.get('innerAuto', 0)
+        match.outer_auto = request.POST.get('outer_auto', 0)
+        match.lower_auto = request.POST.get('lower_auto', 0)
+        match.inner_auto = request.POST.get('inner_auto', 0)
         match.auto_comment = request.POST.get('autoComment', '')
 
         match.outer = request.POST.get('outer', 0)
@@ -73,20 +73,21 @@ def match_scout_submit(request, pk):
         team_defended = request.POST.get('teamDefended', '')
         match.team_defended = team_defended if team_defended != '' else -1
         # TODO Fix able to push, there is an incorrect associated input type
-        match.able_to_push = 0
+        match.able_to_push = request.POST.get('pushRating', 0)
 
-        if request.POST.get('climb_location', 0) == 0:
-            match.climbed = False
-        else:
-            match.climbed = True
-        match.climb_location = request.POST.get('climb_location', 0)
+        match.climb_location = request.POST.get('climbLocation', 0)
         match.field_timeout_pos = request.POST.get('lockStatus', 0)
 
-        match.hp_fouls = request.POST.get('fouls_hp', 0)
-        match.dt_fouls = request.POST.get('fouls_driver', 0)
-        match.yellow_card = True if request.POST.get('yellow_card', 0) !=  '' else False
+        if match.field_timeout_pos == 3:
+            match.climbed = True
+        else:
+            match.climbed = False
 
-        match.scouter_name = request.POST.get('scouter_name', '')
+        match.hp_fouls = request.POST.get('humanFouls', 0)
+        match.dt_fouls = request.POST.get('driverFouls', 0)
+        match.yellow_card = True if request.POST.get('yellow_card', 0) != '' else False
+
+        match.scouter_name = request.POST.get('scouterName', '')
 
         match.save()
 

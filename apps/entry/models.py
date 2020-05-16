@@ -92,13 +92,13 @@ class Match(models.Model):
     ball_intake_type = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     cycle_style = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     under_defense = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
-    defended_by = models.IntegerField(Team, default=0, validators=[MaxValueValidator(10000), MinValueValidator(-1)])
+    defended_by = models.IntegerField(default=0, validators=[MaxValueValidator(10000), MinValueValidator(-1)])
 
     # Defense
     played_defense = models.BooleanField(default=False)
     defense_rating = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     defense_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(250), MinValueValidator(0)])
-    team_defended = models.IntegerField(Team, default=0)
+    team_defended = models.IntegerField(default=0)
     able_to_push = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
 
     # Climb
