@@ -198,7 +198,7 @@ def pit_scout_submit(request, pk):
         pits.drivetrain_style = request.POST.get('drivetrainStyle', ' ')
         pits.drivetrain_wheels = request.POST.get('drivetrainWheels', ' ')
         pits.drivetrain_motortype = request.POST.get('drivetrainMotor', ' ')
-        pits.drivetrain_motorquantity = request.POST.get('drivetrain_motorquantity', 0)
+        pits.drivetrain_motorquantity = request.POST.get('drivetrainMotorAmount', 0)
 
         pits.auto_route = request.POST.get('autoRoute', False)
         pits.auto_description = request.POST.get('autoDescription', ' ')
