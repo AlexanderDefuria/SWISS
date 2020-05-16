@@ -526,9 +526,13 @@ class GlanceLanding(LoginRequiredMixin, generic.ListView):
         return get_present_teams()
 
 
-class Data(LoginRequiredMixin, generic.TemplateView):
+class Data(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     template_name = 'entry/data.html'
+    model = Match
+
+    def get_queryset(self):
+        return Match.objects.all().filter(event_id=config.get_current_event_id())
 
 
 class Upload(LoginRequiredMixin, generic.TemplateView):

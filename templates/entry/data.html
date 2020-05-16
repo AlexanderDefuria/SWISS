@@ -36,7 +36,7 @@
 		<a href="{% url 'entry:about' %}">About</a>
 	</div>
 	
-	<div class="bodyContainer bodyBackground statsImage" id="bodyContainer">
+	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'StatsBackground.png' %})">
 		<div class="heroContent" id="heroSpace">
 					<h1 style="font-size: 42px; margin: 0px;">Raw Data</h1>
 		</div>
@@ -68,6 +68,7 @@
 						<th>Dfns Quality</th>
 						<th>Dfns Fouls</th>
 						<th>Push Ability</th>
+                        <th>Climbed</th>
 						<th>Clmb Position</th>
 						<th>Timeout Position</th>
 						<th>Human Fouls</th>
@@ -75,134 +76,40 @@
 						<th>Yellow Card</th>
 						<th>Scouter</th>
 					</tr>
-					<tr>
-						<td>4343</td>
-						<td>MaxTech</td>
-						<td>1</td>
-						<td>Yes</td>
-						<td>14</td>
-						<td>3</td>
-						<td>Simple</td>
-						<td>Yes</td>
-						<td>0</td>
-						<td>2</td>
-						<td>1</td>
-						<td>0</td>
-						<td>15</td>
-						<td>5</td>
-						<td>Both</td>
-						<td>Cleanup</td>
-						<td>Yes</td>
-						<td>N/A</td>
-						<td>0</td>
-						<td>No</td>
-						<td>No</td>
-						<td>N/A</td>
-						<td>N/A</td>
-						<td>Yes</td>
-						<td>0</td>
-						<td>Parked</td>
-						<td>No</td>
-						<td>No</td>
-						<td>No</td>
-						<td>Parker</td>
-					</tr>
-					<tr>
-						<td>3683</td>
-						<td>Team DAVE</td>
-						<td>1</td>
-						<td>Yes</td>
-						<td>2</td>
-						<td>3</td>
-						<td>Complex</td>
-						<td>Yes</td>
-						<td>0</td>
-						<td>4</td>
-						<td>1</td>
-						<td>0</td>
-						<td>18</td>
-						<td>2</td>
-						<td>Both</td>
-						<td>Full Field</td>
-						<td>Yes</td>
-						<td>Rotation</td>
-						<td>4</td>
-						<td>No</td>
-						<td>No</td>
-						<td>N/A</td>
-						<td>N/A</td>
-						<td>Yes</td>
-						<td>2</td>
-						<td>Climbed</td>
-						<td>No</td>
-						<td>No</td>
-						<td>No</td>
-						<td>Small David</td>
-					</tr>
-					<tr>
-						<td>1114</td> <!--number-->
-						<td>Simbotics</td> <!--name-->
-						<td>1</td> <!--match#-->
-						<td>Yes</td> <!--Present-->
-						<td>19</td><!--Starting Position-->
-						<td>3</td><!--Balls Preloaded-->
-						<td>Complex</td><!--Auto Route-->
-						<td>Yes</td><!--Exit Line-->
-						<td>0</td><!--A Low-->
-						<td>6</td><!--A Outer -->
-						<td>0</td><!--A Inner -->
-						<td>0</td><!--T Low -->
-						<td>10</td><!--T High -->
-						<td>8</td><!--Missed Balls-->
-						<td>Both</td><!--Intake-->
-						<td>Full Field</td><!--Cycle Style-->
-						<td>No</td><!--Under Defense-->
-						<td>N/A</td><!--Control Panel-->
-						<td>0</td><!--Control Quality-->
-						<td>Yes</td><!--Offense Fouls-->
-						<td>No</td><!--Played Defense-->
-						<td>N/A</td><!--Defense Quality -->
-						<td>N/A</td><!--Defensive Fouls-->
-						<td>Yes</td><!--Push Ability-->
-						<td>4</td><!--Climb Position-->
-						<td>Climbed</td><!--Field timeout Position-->
-						<td>No</td><!--Human Fouls-->
-						<td>No</td><!--Driver Fouls-->
-						<td>No</td><!--Yellow Card-->
-						<td>Braeden</td><!--Scouter-->
-					</tr>
-					<tr>
-						<td>746</td> <!--number-->
-						<td>Gearheads</td> <!--name-->
-						<td>1</td> <!--match#-->
-						<td>Yes</td> <!--Present-->
-						<td>14</td><!--Starting Position-->
-						<td>3</td><!--Balls Preloaded-->
-						<td>Simple</td><!--Auto Route-->
-						<td>Yes</td><!--Exit Line-->
-						<td>3</td><!--A Low-->
-						<td>0</td><!--A Outer -->
-						<td>0</td><!--A Inner -->
-						<td>5</td><!--T Low -->
-						<td>0</td><!--T High -->
-						<td>2</td><!--Missed Balls-->
-						<td>Ground</td><!--Intake-->
-						<td>Cleanup</td><!--Cycle Style-->
-						<td>No</td><!--Under Defense-->
-						<td>N/A</td><!--Control Panel-->
-						<td>0</td><!--Control Quality-->
-						<td>Yes</td><!--Offense Fouls-->
-						<td>Yes</td><!--Played Defense-->
-						<td>2</td><!--Defense Quality -->
-						<td>No</td><!--Defensive Fouls-->
-						<td>Bad</td><!--Push Ability-->
-						<td>3</td><!--Climb Position-->
-						<td>Attempted</td><!--Field timeout Position-->
-						<td>No</td><!--Human Fouls-->
-						<td>No</td><!--Driver Fouls-->
-						<td>No</td><!--Yellow Card-->
-						<td>Anime David</td><!--Scouter-->
-					</tr>
+					{% for match in match_list %}
+                        <tr>
+                        <td>{{ match.team.number }}</td>
+                        <td>{{ match.team.name }}</td>
+                        <td>{{ match.match_number }}</td>
+                        <td>{{ match.on_field }}</td>
+                        <td>{{ match.auto_start }}</td>
+                        <td>{{ match.preloaded_balls }}</td>
+                        <td>{{ match.auto_route }}</td>
+                        <td>{{ match.baseline }}</td>
+                        <td>{{ match.lower_auto }}</td>
+                        <td>{{ match.outer_auto }}</td>
+                        <td>{{ match.inner_auto }}</td>
+                        <td>{{ match.lower }}</td>
+                        <td>{{ match.outer }}</td>
+                        <td>{{ match.inner }}</td>
+                        <td>{{ match.ball_intake_type }}</td>
+                        <td>{{ match.cycle_style }}</td>
+                        <td>{{ match.under_defense }}</td>
+                        <td>{{ match.wheel_score }}</td>
+                        <td>{{ match.wheel_rating }}</td>
+                        <td>{{ match.fouls }}</td>
+                        <td>{{ match.played_defense }}</td>
+                        <td>{{ match.defense_rating }}</td>
+                        <td>{{ match.able_to_push }}</td>
+                        <td>{{ match.climb_location }}</td>
+                        <td>{{ match.climbed }}</td>
+                        <td>{{ match.field_timeout_pos }}</td>
+                        <td>{{ match.hp_fouls }}</td>
+                        <td>{{ match.dt_fouls }}</td>
+                        <td>{{ match.yellow_card }}</td>
+                        <td>{{ match.scouter_name }}</td>
+                    </tr>
+                    {% endfor %}
 				</table>
 			</div>
 		</figure>
