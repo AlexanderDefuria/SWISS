@@ -36,12 +36,13 @@ def get_match_fields():
 
 
 @register.simple_tag
-def get_all_logged_in_users():
+def get_all_logged_in_users(*args):
     # Query all non-expired sessions
     # use timezone.now() instead of datetime.now() in latest versions of Django
     sessions = Session.objects.filter(expire_date__gte=timezone.now())
     time = timezone.now()
     uid_list = []
+    count = 0
 
     # Build a list of user ids from that query that have last refreshed
     # their expiry date within the last 2:30 minutes to ensure and accurate count
@@ -50,9 +51,13 @@ def get_all_logged_in_users():
         if datetime.timedelta(seconds=0) < timediff:
             data = session.get_decoded()
             uid_list.append(data.get('_auth_user_id', None))
+            count += 1
 
     # Query all logged in users based on id list and return the length of that queryset
-    return len(User.objects.filter(id__in=uid_list))
+    if "unique" in args:
+        return len(User.objects.filter(id__in=uid_list))
+    else:
+        return count
 
 
 @register.simple_tag
