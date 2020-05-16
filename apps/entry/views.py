@@ -37,7 +37,6 @@ def match_scout_submit(request, pk):
 
         print(request.POST)
 
-        # TODO 1. add auto route
         team = Team.objects.get(id=pk)
         match = Match()
         match.team = team
@@ -51,6 +50,7 @@ def match_scout_submit(request, pk):
         match.preloaded_balls = request.POST.get('preloadedBalls', 3)
 
         match.auto_route = request.POST.get('autoRoute', 0)
+        # TODO Baseline seems inconsistent
         match.baseline = request.POST.get('baseline', False)
         match.outer_auto = request.POST.get('outer_auto', 0)
         match.lower_auto = request.POST.get('lower_auto', 0)
@@ -75,6 +75,11 @@ def match_scout_submit(request, pk):
         # TODO Fix able to push, there is an incorrect associated input type
         match.able_to_push = request.POST.get('pushRating', 0)
 
+        # TODO Add in the played defense field
+        # TODO Michigan teams come up as -1 fix this in the defended by field
+        # TODO other teams in defended by field come up as 0
+        # TODO Add Defended by field
+
         match.climb_location = request.POST.get('climbLocation', 0)
         match.field_timeout_pos = request.POST.get('lockStatus', 0)
 
@@ -87,6 +92,7 @@ def match_scout_submit(request, pk):
         match.dt_fouls = request.POST.get('driverFouls', 0)
         match.yellow_card = True if request.POST.get('yellow_card', 0) != '' else False
 
+        # TODO This is not importing scouter name, auto comment works
         match.scouter_name = request.POST.get('scouterName', '')
 
         match.save()
@@ -128,6 +134,9 @@ def validate_match_scout(request, pk):
 
 @login_required(login_url='entry:login')
 def validate_types(request, data):
+
+    # TODO Add emoji validation in text fields
+
     reqfields = {}
     redo = {}
 

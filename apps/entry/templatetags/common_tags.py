@@ -33,12 +33,12 @@ def get_match_fields():
 @register.simple_tag
 def get_info(team, field, *args):
     try:
-        if len(Match.objects.filter(team_id=team, event_id=config.get_current_event_id())) == 0:
-            return "NoMatches"
-
         model = Pits
         if "match" in args:
             model = Match
+
+        if len(model.objects.filter(team_id=team, event_id=config.get_current_event_id())) == 0:
+            return "No Data"
 
         if "dependant" in args:
             return dependant(team, field, model, args)
@@ -158,7 +158,7 @@ def dependant(team, field, model, args):
             total += each.__getattribute__(field)
 
     if len(return_list) == 0:
-        return "No Climbs"
+        return "None"
 
     return round(1000 * total / len(return_list)) / 1000
 

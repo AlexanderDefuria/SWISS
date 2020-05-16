@@ -113,6 +113,7 @@ class Match(models.Model):
 
     # Scouter
     scouter_name = models.TextField(default="")
+    comment = models.TextField(default="")
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
