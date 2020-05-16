@@ -67,6 +67,7 @@ def match_scout_submit(request, pk):
         match.ball_intake_type = request.POST.get('intakeType', 0)
         match.under_defense = request.POST.get('underDefense', 0)
         match.cycle_style = int(request.POST.get('cycleStyle', 0))
+        match.defended_by = request.POST.get('defendedBy', 0)
 
         match.played_defense = request.POST.get('playedDefense', False)
         match.defense_rating = request.POST.get('defenseRating', 0)
@@ -76,10 +77,8 @@ def match_scout_submit(request, pk):
         # TODO Fix able to push, there is an incorrect associated input type
         match.able_to_push = request.POST.get('pushRating', 0)
 
-        # TODO Add in the played defense field
         # TODO Michigan teams come up as -1 fix this in the defended by field
         # TODO other teams in defended by field come up as 0
-        # TODO Add Defended by field
 
         match.climb_location = request.POST.get('climbLocation', 0)
         match.field_timeout_pos = request.POST.get('lockStatus', 0)
