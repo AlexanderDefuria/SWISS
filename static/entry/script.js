@@ -71,7 +71,7 @@ function registerChange() {
 }
 
 
-// Functions for populating the glance page (I think)
+// General script functions doing exactly what their names state
 
 var Slug = 0;
 
