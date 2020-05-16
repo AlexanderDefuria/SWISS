@@ -94,9 +94,11 @@ def match_scout_submit(request, pk):
 
         # TODO This is not importing scouter name, auto comment works
         match.scouter_name = request.POST.get('scouterName', '')
-        match.comment = "none yet"
+        match.comment = request.POST.get('comment', '')
 
         match.save()
+
+        print(match.comment)
 
         print(match)
 

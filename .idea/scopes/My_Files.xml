@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="My Files" pattern="file[FRC-Scouting]:*/&amp;&amp;!file[FRC-Scouting]:.idea/*&amp;&amp;!file[FRC-Scouting]:static/admin/*&amp;&amp;!file:static/entry/highcharts-more.js&amp;&amp;!file:static/entry/highcharts.js&amp;&amp;!file:static/entry/jquery.min.js&amp;&amp;!file:static/entry/solid-gauge.js&amp;&amp;!file[FRC-Scouting]:static/admin//*&amp;&amp;!file[FRC-Scouting]:.idea//*&amp;&amp;!file[FRC-Scouting]:templates/entry/2019//*&amp;&amp;!file[FRC-Scouting]:static/entry/2019//*" />
+</component>

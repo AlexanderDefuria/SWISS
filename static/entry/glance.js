@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function () {
 function updateGlance(team_id) {
 
 	$.ajax({
-        // url: 'update/', -- TODO replace line below when slug is in the url
         url: 'update/',
         method: 'POST',
         data: {"team_id": team_id},
@@ -58,6 +57,7 @@ function updateGlance(team_id) {
                 result[x] /= teamData.length
             }
 
+            // check chart.js to make sense of this and the indexes being referenced
             constCharts.avgChart.series[0].data[0] = result['lower_auto']
             constCharts.avgChart.series[0].data[1] = result['lower']
             constCharts.avgChart.series[1].data[0] = result['outer_auto']
