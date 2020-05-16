@@ -68,6 +68,7 @@ def match_scout_submit(request, pk):
         match.under_defense = request.POST.get('underDefense', 0)
         match.cycle_style = int(request.POST.get('cycleStyle', 0))
 
+        match.played_defense = request.POST.get('playedDefense', False)
         match.defense_rating = request.POST.get('defenseRating', 0)
         match.defense_fouls = request.POST.get('defenseFouls', 0)
         team_defended = request.POST.get('teamDefended', '')
