@@ -37,6 +37,7 @@
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<a href="{% url 'entry:index' %}">Home</a>
 		<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+		<a href="{% url 'entry:glance_landing' %}">Glance</a>
 		<a href="{% url 'entry:experimental' %}">Labs</a>
 		<a href="{% url 'entry:settings' %}">Settings</a>
 		<a href="{% url 'entry:about' %}">About</a>
@@ -45,7 +46,7 @@
 	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'GlanceBackground2000w.png' %})">
 		<div class="heroContent" id="heroSpace">
 			<div class="stickyChip">
-				<button class="changeTeam" id="changeTeam" onClick="openTeamDrawer()">
+				<button class="changeTeam" id="changeTeam">
 				<div class="teamnumberPill" style="background-color: {{ team.colour }}">
 						<p>{{ team.number }}</p>
 				</div>
@@ -57,7 +58,7 @@
 		</div>
 
 		<div class="infotileContainer" style="justify-content: flex-start">
-			<div class="infoBox infoWide">
+			<div class="infoBox infoWide" style="background-color: {{team.colour}}">
 				<div class="infoHeader">
 					<div class="teamnumberPill" style="background-color: {{team.colour}}"><p>{{ team.number }}</p></div>
 					<h1>{{ team.name }}</h1>
@@ -218,29 +219,5 @@
 			</div>
 		</div>
 	</div>
-	
-
-
-	
-	
-<script>
-	function openNav() {
-		document.getElementById("sideNav").style.width="250px";
-		document.getElementById("bodyContainer").style.marginLeft="275px";
-		document.getElementById("swissLogo").style.marginLeft="215px";
-	}
-
-	function closeNav() {
-	  document.getElementById("sideNav").style.width = "0";
-	  document.getElementById("bodyContainer").style.marginLeft= "25px";
-	  document.getElementById("swissLogo").style.marginLeft= "0";
-	}	
-	function openTeamDrawer() {
-		document.getElementById("teamDrawer").style.height="100%";
-	}
-	function closeTeamDrawer() {
-	  document.getElementById("teamDrawer").style.height = "0";
-	}
-</script>
 </body>
 </html>

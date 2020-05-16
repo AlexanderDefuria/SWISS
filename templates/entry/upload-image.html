@@ -5,9 +5,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>SWISS Stats</title>
+<title>SWISS Upload Page</title>
 <link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
+<script src="{% static 'entry/script.js' %}"></script>
 <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
@@ -30,6 +31,7 @@
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<a href="{% url 'entry:index' %}">Home</a>
 		<a href="{% url 'entry:match_scout' %}">Scout</a>
+		<a href="{% url 'entry:glance_landing' %}">Glance</a>
 		<a href="{% url 'entry:experimental' %}">Labs</a>
 		<a href="{% url 'entry:settings' %}">Settings</a>
 		<a href="{% url 'entry:about' %}">About</a>
@@ -39,22 +41,5 @@
 	<div class="bodyContainer">
 		<p>This button will download a generated CSV file of all the match and pit scouting data.</p>
 	</div>
-	
-	
-	
-	
-<script>
-	function openNav() {
-		document.getElementById("sideNav").style.width="250px";
-		document.getElementById("bodyContainer").style.marginLeft="275px";
-		document.getElementById("swissLogo").style.marginLeft="215px";
-	}
-
-	function closeNav() {
-	  document.getElementById("sideNav").style.width = "0";
-	  document.getElementById("bodyContainer").style.marginLeft= "25px";
-	  document.getElementById("swissLogo").style.marginLeft= "0";
-	}
-</script>
 </body>
 </html>

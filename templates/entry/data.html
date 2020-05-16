@@ -8,6 +8,7 @@
 <title>SWISS Data</title>
 <link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
+<script src="{% static 'entry/script.js' %}"></script>
 <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
@@ -31,6 +32,7 @@
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<a href="{% url 'entry:index' %}">Home</a>
 		<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+		<a href="{% url 'entry:glance_landing' %}">Glance</a>
 		<a href="{% url 'entry:experimental' %}">Labs</a>
 		<a href="{% url 'entry:settings' %}">Settings</a>
 		<a href="{% url 'entry:about' %}">About</a>
@@ -140,40 +142,5 @@
 			position: absolute;
 		}
 	</style>
-	
-	
-<script>
-	function openNav() {
-		document.getElementById("sideNav").style.width="250px";
-		document.getElementById("bodyContainer").style.marginLeft="275px";
-		document.getElementById("swissLogo").style.marginLeft="215px";
-	}
-
-	function closeNav() {
-	  document.getElementById("sideNav").style.width = "0";
-	  document.getElementById("bodyContainer").style.marginLeft= "25px";
-	  document.getElementById("swissLogo").style.marginLeft= "0";
-	}
-	function tableFilter() {
-	  // Declare variables
-	  var input, filter, table, tr, td, i, txtValue;
-	  input = document.getElementById("teamNumber");
-	  filter = input.value.toUpperCase();
-	  table = document.getElementById("dataTable");
-	  tr = table.getElementsByTagName("tr");
-
-	  for (i = 0; i < tr.length; i++) {
-		td = tr[i].getElementsByTagName("td")[0];
-		if (td) {
-		  txtValue = td.textContent || td.innerText;
-		  if (txtValue.toUpperCase().indexOf(filter) > -1) {
-			tr[i].style.display = "";
-		  } else {
-			tr[i].style.display = "none";
-		  }
-		}
-	  }
-	}
-</script>
 </body>
 </html>

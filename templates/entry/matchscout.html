@@ -8,6 +8,7 @@
 <title>SWISS Match Scouting</title>
 <script src="{% static 'entry/jquery.min.js' %}"></script>
 <script src="{% static 'entry/validate.js' %}"></script>
+<script src="{% static 'entry/script.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/formstyle.css' %}">
@@ -32,6 +33,7 @@
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<a href="{% url 'entry:index' %}">Home</a>
 		<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+		<a href="{% url 'entry:glance_landing' %}">Glance</a>
 		<a href="{% url 'entry:experimental' %}">Labs</a>
 		<a href="{% url 'entry:settings' %}">Settings</a>
 		<a href="{% url 'entry:about' %}">About</a>
@@ -150,7 +152,7 @@
 			<div class="formItem">
 				<label>Power Port Goals</label>
                 <div class="ticker">
-					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'LowerAutoIcon.png' %}" alt="lower">
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'LowerTeleIcon.png' %}" alt="lower">
   					<input type="button" onclick="decrementValue('lower')" value="-">
 					<input id="lower" name="lower" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('lower')" value="+">
@@ -339,8 +341,13 @@
 			</div>
 			<br>
 			<div class="formItem">
+				<label for="comment">Comments</label>
+				<input type="text" name="comment" id="comment" required placeholder="e.g. Disabled">
+			</div>
+			<br>
+			<div class="formItem">
 				<label for="scouterName">Scouter's Name</label>
-				<input type="text" name="scouterName" id="scouterName" placeholder="Scouter Name">
+				<input type="text" name="scouterName" id="scouterName" required placeholder="Scouter Name">
 			</div>
 			<br>
 			<div class="formItem" id="submit" onclick="validate('mainForm')">
@@ -348,40 +355,6 @@
 			</div>
 		</form>
 	</div>
-
-<script>
-	function incrementValue(id) {
-		console.log(id)
-		var value = parseInt(document.getElementById(id).value, 10);
-		value = isNaN(value) ? 0 : value;
-		value++;
-		document.getElementById(id).value = value;
-	}
-	function decrementValue(id) {
-        console.log(id)
-        var value = parseInt(document.getElementById(id).value, 10);
-        if (value <= 0)
-               value = 0;
-        else if (value >= 10)
-               value = 10;
-         else
-                value--;
-        document.getElementById(id).value = value;
-    }
-	function openNav() {
-		document.getElementById("sideNav").style.width="250px";
-		document.getElementById("bodyContainer").style.marginLeft="275px";
-		document.getElementById("swissLogo").style.marginLeft="215px";
-	}
-	function closeNav() {
-	  document.getElementById("sideNav").style.width = "0";
-	  document.getElementById("bodyContainer").style.marginLeft= "25px";
-	  document.getElementById("swissLogo").style.marginLeft= "0";
-	}
-	function registerChange() {
-		console.log();
-	}
-</script>
-
+	</div>
 </body>
 </html>

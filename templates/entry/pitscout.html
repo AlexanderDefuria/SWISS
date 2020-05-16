@@ -2,13 +2,12 @@
 {% load common_tags %}
 
 <!doctype html>
-<html>
-<head>
+<html><head>
 <meta charset="utf-8">
 <title>SWISS Pit Scouting</title>
 <link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'entry/formstyle.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/formstyle.css' %}">	
 <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
@@ -30,6 +29,7 @@
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<a href="{% url 'entry:index' %}">Home</a>
 		<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+		<a href="{% url 'entry:glance_landing' %}">Glance</a>
 		<a href="{% url 'entry:experimental' %}">Labs</a>
 		<a href="{% url 'entry:settings' %}">Settings</a>
 		<a href="{% url 'entry:about' %}">About</a>
@@ -51,11 +51,11 @@
 		<div class="formItem">
 			<label for="drivetrainStyle">Style of Drivetrain</label>
 			<select name="drivetrainStyle" id="drivetrainStyle" required> 
-				<option value="kitbot">Kitbot</option>
-				<option value="westCoast">West Coast</option>
-				<option value="swerve">Swerve</option>
-				<option value="mecanum">Mecanum</option>
-				<option value="custom">Custom</option>
+				<option value="Kitbot">Kitbot</option>
+				<option value="West Coast Drive">West Coast</option>
+				<option value="Swerve">Swerve</option>
+				<option value="Mecanum">Mecanum</option>
+				<option value="Custom">Custom</option>
 			</select>
 		</div>
 		<div class="formItem">
@@ -65,8 +65,8 @@
 		<div class="formItem">
 			<label for="drivetrainMotor">Types of Motors in Drivetrain</label>
 			<select name="drivetrainMotor" id="drivetrainMottor" required> 
-				<option value="falcon">Falcon 500</option>
-				<option value="neo">Neo 500</option>
+				<option value="Falcon 500">Falcon 500</option>
+				<option value="Neo 500">Neo 500</option>
 				<option value="CIM">CIM</option>
 				<option value="miniCIM">miniCIM</option>
 			</select>
@@ -80,18 +80,16 @@
 		<h1>Autonomous</h1>
 		<div class="formItem">
 			<label for="hasAuto">Has Autonomous Route?</label>			
-			<div>
 				<div class="radioGroup">
 					<label>
-					<input type="radio" name="hasAuto" id="hasAuto_false" value="false">
-					<span>N</span>
+						<input type="radio" name="hasAuto" id="hasAuto_false" value="false">
+						<span>N</span>
 					</label>
-					<label>
-					<input type="radio" name="hasAuto" id="hasAuto_true" value="true" checked>
+						<label>
+						<input type="radio" name="hasAuto" id="hasAuto_true" value="true" checked>
 					<span>Y</span>
 					</label>
 				</div>
-			</div>
 		</div>
 		<div class="formItem">
 			<label for="autoDescription">Short Description of Autonomous Routes</label>
@@ -146,7 +144,6 @@
 		</div>
 		<div class="formItem">
 			<label for="lowBot">Can drive under the control panel</label>
-			<div>
 				<div class="radioGroup">
 					<label>
 						<input type="radio" name="lowBot" id="lowBot" value="0" checked>
@@ -157,7 +154,6 @@
 						<span>Y</span>
 					</label>
 				</div>
-			</div>
 		</div>
 		<div class="formItem">
 			<label for="wheelManipulator">Control Panel Manipulator</label>
@@ -170,7 +166,6 @@
 					<input type="radio" name="wheelManipulator" id="wheelManipulator" value="True">
 					<span>Y</span>
 				</label>
-
 			</div>
 		</div>
 		
@@ -223,43 +218,7 @@
 		<div class="formItem" id="submit">
 			<input type="submit">
 		</div>
-		
 	</form>
 	</div>
-
-
-<script>
-	function incrementValue(id) {
-		console.log(id)
-		var value = parseInt(document.getElementById(id).value, 10);
-		value = isNaN(value) ? 0 : value;
-		value++;
-		document.getElementById(id).value = value;
-	}
-
-	function decrementValue(id) {
-		console.log(id)
-		var value = parseInt(document.getElementById(id).value, 10);
-		value = isNaN(value) ? 0 : value;
-		value--;
-		document.getElementById(id).value = value;
-	}
-	function openNav() {
-		document.getElementById("sideNav").style.width="250px";
-		document.getElementById("bodyContainer").style.marginLeft="275px";
-		document.getElementById("swissLogo").style.marginLeft="215px";
-	}
-	function closeNav() {
-	  document.getElementById("sideNav").style.width = "0";
-	  document.getElementById("bodyContainer").style.marginLeft= "25px";
-	  document.getElementById("swissLogo").style.marginLeft= "0";
-	}
-	function openTeamDrawer() {
-		document.getElementById("teamDrawer").style.height="100%";
-	}
-	function closeTeamDrawer() {
-	  document.getElementById("teamDrawer").style.height = "0";
-	}
-</script>
 </body>
 </html>

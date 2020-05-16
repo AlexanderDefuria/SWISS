@@ -7,6 +7,7 @@
 <meta charset="utf-8">
 <title>SWISS About</title>
 <link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
+<script src="{% static 'entry/script.js' %}"></script>
 <meta name="theme-color" content="0F4D8D">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -26,6 +27,7 @@
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<a href="{% url 'entry:index' %}">Home</a>
 		<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+		<a href="{% url 'entry:glance_landing' %}">Glance</a>
 		<a href="{% url 'entry:experimental' %}">Labs</a>
 		<a href="{% url 'entry:settings' %}">Settings</a>
 		<a href="{% url 'entry:about' %}">About</a>
@@ -35,22 +37,5 @@
 		<h1>ABOUT</h1>
 		<p>Alex and I can write the copyright here later.</p>
 	</div>
-	
-	
-	
-	
-<script>
-	function openNav() {
-		document.getElementById("sideNav").style.width="250px";
-		document.getElementById("bodyContainer").style.marginLeft="275px";
-		document.getElementById("swissLogo").style.marginLeft="215px";
-	}
-
-	function closeNav() {
-	  document.getElementById("sideNav").style.width = "0";
-	  document.getElementById("bodyContainer").style.marginLeft= "25px";
-	  document.getElementById("swissLogo").style.marginLeft= "0";
-	}
-</script>
 </body>
 </html>

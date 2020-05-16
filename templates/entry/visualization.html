@@ -13,14 +13,11 @@
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
 <script src="{% static 'entry/jquery.min.js' %}"></script>
 <script src="{% static 'entry/charts.js' %}"></script>
-
-
 <script src="{% static 'entry/highcharts.js' %}"></script>
 <script src="{% static 'entry/highcharts-more.js' %}"></script>
 <script src="{% static 'entry/solid-gauge.js' %}"></script>
-    <script src="{% static 'entry/script.js' %}"></script>
-        <script src="{% static 'entry/visualization.js' %}"></script>
-
+<script src="{% static 'entry/script.js' %}"></script>
+<script src="{% static 'entry/visualization.js' %}"></script>
 <meta name="theme-color" content="0F4D8D">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
@@ -78,22 +75,12 @@
 						<h1>Metrics Included</h1>
 					</div>
                     <div class="pillContainer" id="MetricCheckBox" style="display: flex; flex-wrap: wrap; ">
-
                         <div class="teamnumberPill" style="display: none">
-
-                        </div>
-
+						</div>
 					</div>
-
 				</div>
 			</div>
-
-
 		</div>
-
-
-		
-		
 	</div>
 
 	
@@ -107,20 +94,6 @@
 		border: none;
 		color: white;
 	}	
-</style>
-	
-	
-<script>
-	function openNav() {
-		document.getElementById("sideNav").style.width="250px";
-		document.getElementById("bodyContainer").style.marginLeft="275px";
-		document.getElementById("swissLogo").style.marginLeft="215px";
-	}
-	function closeNav() {
-	  document.getElementById("sideNav").style.width = "0";
-	  document.getElementById("bodyContainer").style.marginLeft= "25px";
-	  document.getElementById("swissLogo").style.marginLeft= "0";
-	}
-</script>	
+</style>	
 </body>
 </html>
