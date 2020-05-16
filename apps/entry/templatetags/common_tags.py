@@ -98,7 +98,7 @@ def get_list(team, field, model):
     for entry in object_list:
         result_list.append(entry.__getattribute__(field))
 
-    if inspect.stack()[1].function is 'get_info':  # https://stackoverflow.com/questions/900392/getting-the-caller-function-name-inside-another-function-in-python
+    if inspect.stack()[1].function == 'get_info':  # https://stackoverflow.com/questions/900392/getting-the-caller-function-name-inside-another-function-in-python
         for each in result_list:
             if return_list.get(each) is None:
                 return_list[each] = 1
@@ -157,7 +157,7 @@ def dependant(team, field, model, args):
             return_list.append(each)
             total += each.__getattribute__(field)
 
-    if len(return_list) is 0:
+    if len(return_list) == 0:
         return "No Climbs"
 
     return round(1000 * total / len(return_list)) / 1000

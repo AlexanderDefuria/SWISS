@@ -44,7 +44,7 @@ def match_scout_submit(request, pk):
         match.event = Event.objects.get(FIRST_key=config.get_current_event_key())
 
         match_number = request.POST.get('matchNumber', -1)
-        match.match_number = match_number if match_number is not '' else -1
+        match.match_number = match_number if match_number != '' else -1
 
         match.on_field = request.POST.get('onField', False)
         match.auto_start = request.POST.get('autoStart', 10)
@@ -71,7 +71,7 @@ def match_scout_submit(request, pk):
         match.defense_rating = request.POST.get('defenseRating', 0)
         match.defense_fouls = request.POST.get('defenseFouls', 0)
         team_defended = request.POST.get('teamDefended', '')
-        match.team_defended = team_defended if team_defended is not '' else -1
+        match.team_defended = team_defended if team_defended != '' else -1
         # TODO Fix able to push, there is an incorrect associated input type
         match.able_to_push = 0
 
@@ -84,7 +84,7 @@ def match_scout_submit(request, pk):
 
         match.hp_fouls = request.POST.get('fouls_hp', 0)
         match.dt_fouls = request.POST.get('fouls_driver', 0)
-        match.yellow_card = True if request.POST.get('yellow_card', 0) is not '' else False
+        match.yellow_card = True if request.POST.get('yellow_card', 0) !=  '' else False
 
         match.scouter_name = request.POST.get('scouter_name', '')
 
