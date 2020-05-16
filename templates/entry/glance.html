@@ -64,22 +64,23 @@
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Shooter Style</p></div>
-					<div class="infoRColumn"><p>{% get_pit_info team 'shooter_style' %}</p></div>
+					<div class="infoRColumn"><p> {% get_info team 'shooter_style' 'average' 'pits' %}</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Shooting Locations</p></div>
 					<div class="infoRColumn">
-						<p>Initiation Line</p>
-						<p>Trench Run</p>
+                        {% get_info team 'tele_positions' 'list' 'pits' as telePositionsList %}
+						<p>{{ telePositionsList.0 }}</p>
+						<p>{{ telePositionsList.1 }}</p>
 					</div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Can Climb</p></div>
-					<div class="infoRColumn"><p>Yes</p></div>
+					<div class="infoRColumn"><p>{% get_info team 'climb_locations' 'possible' 'pits' %}</p></div>
 				</div>	
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Control Panel</p></div>
-					<div class="infoRColumn"><p>Yes</p></div>
+					<div class="infoRColumn"><p>{% get_info team 'wheel_manipulator' 'possible' 'pits' %}</p></div>
 				</div>
 			</div>
 			<div class="pictureBox">
@@ -106,15 +107,15 @@
 					<p>Offense Fouls</p>
 					</div>
 					<div class="infoLColumn">
-					<p>Rare</p>
+					<p>{% get_info team 'fouls' 'average' 'match' %}</p>
 					</div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn">
 					<p>Defense Fouls</p>
 					</div>
-					<div class="infoLColumn SimboticsColor">
-					<p>REPEATED</p>
+					<div class="infoLColumn">
+					<p>{% get_info team 'defense_fouls' 'average' 'match' %}</p>
 					</div>
 				</div>				
 				<div class="infoRow">
@@ -122,7 +123,7 @@
 					<p>Human Fouls</p>
 					</div>
 					<div class="infoLColumn">
-					<p>None</p>
+					<p>{% get_info team 'hp_fouls' 'average' 'match' %}</p>
 					</div>
 				</div>
 				<div class="infoRow">
@@ -130,7 +131,7 @@
 					<p>Yellow Cards</p>
 					</div>
 					<div class="infoLColumn YellowColor">
-					<p>Step Over Gate</p>
+					<p>{% get_info team 'yellow_card' 'average' 'match' %}</p>
 					</div>
 				</div>
 			</div>
@@ -141,15 +142,15 @@
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Played Defense</p></div>
-					<div class="infoLColumn"><p>Rare</p></div>
+					<div class="infoLColumn"><p>{% get_info team 'played_defense' 'average' 'match' %}</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Avg. Quality</p></div>
-					<div class="infoLColumn"><p>3 - Good</p></div>
+					<div class="infoLColumn"><p>{% get_info team 'defense_rating' 'match' 'dependant' 'dependant-played_defense' %} / 5</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Push Ability</p></div>
-					<div class="infoLColumn"><p>Yes</p></div>
+					<div class="infoLColumn"><p>{% get_info team 'able_to_push' 'average' 'match' %}</p></div>
 				</div>
 			</div>
 			<div class="infoBox infoReg">
@@ -159,15 +160,21 @@
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Low Goal</p></div>
-					<div class="infoLColumn"><p>0 Power Cells</p></div>
+                    {% get_info team 'lower' 'total' 'match' as totalTeleLower%}
+                    {% get_info team 'lower_auto' 'total' 'match' as totalAutoLower%}
+					<div class="infoLColumn"><p>{{totalTeleLower|add:totalAutoLower }} Power Cells</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Outer Goal</p></div>
-					<div class="infoLColumn"><p>89 Power Cells</p></div>
+                    {% get_info team 'outer' 'total' 'match' as totalTeleOuter%}
+                    {% get_info team 'outer_auto' 'total' 'match' as totalAutoOuter%}
+					<div class="infoLColumn"><p>{{totalTeleOuter|add:totalAutoOuter }} Power Cells</p></div>
 				</div>				
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Inner Goal</p></div>
-					<div class="infoLColumn"><p>23 Power Cells</p></div>
+                    {% get_info team 'inner' 'total' 'match' as totalTeleInner%}
+                    {% get_info team 'inner_auto' 'total' 'match' as totalAutoInner%}
+					<div class="infoLColumn"><p>{{totalTeleInner|add:totalAutoInner }} Power Cells</p></div>
 				</div>
 			</div>			
 			<div class="infoBox infoReg">
@@ -177,15 +184,19 @@
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Average Climb Success</p></div>
-					<div class="infoLColumn YellowColor"><p>Parked</p></div>
+					<div class="infoLColumn">
+                        {% get_info team 'field_timeout_pos' 'list' 'match' as teleTimeOutList %}
+						<p>{{ teleTimeOutList.0 }}</p>
+						<p>{{ teleTimeOutList.1 }}</p>
+					</div>
 				</div>
 				<div class="infoRow">
-					<div class="infoLColumn"><p>Climb Percentage (att vs succ)</p></div>
-					<div class="infoLColumn"><p>85%</p></div>
+					<div class="infoLColumn"><p>Climb Percentage</p></div>
+					<div class="infoLColumn"><p>{% get_info team 'climbed' 'average' 'match' %}</p></div>
 				</div>				
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Average Climb Location</p></div>
-					<div class="infoLColumn"><p>2</p></div>
+					<div class="infoLColumn"><p>{% get_info team 'climb_location' 'match' 'dependant' 'dependant-climbed' %} / 20</p></div>
 				</div>
 			</div>
 			<div class="infoBox infoReg">
@@ -194,16 +205,15 @@
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Drivetrain Type</p></div>
-					<div class="infoLColumn"><p>West Coast Drive</p></div>
+					<div class="infoLColumn"><p>{% get_info team 'drivetrain_style' 'average' 'pits' %}</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Wheel Type</p></div>
-					<div class="infoLColumn"><p>Wheel Type</p></div>
-					<div class="infoLColumn"><p>Blue Nitrile</p></div>
+					<div class="infoLColumn"><p>{% get_info team 'drivetrain_wheels' 'average' 'pits' %}</p></div>
 				</div>				
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Drivetrain Motors</p></div>
-					<div class="infoLColumn"><p>Neo: 6</p></div>
+					<div class="infoLColumn"><p>{% get_info team 'drivetrain_motortype' 'average' 'pits' %}: {% get_info team 'drivetrain_motorquantity' 'average' 'pits' %}</p></div>
 				</div>
 			</div>
 		</div>

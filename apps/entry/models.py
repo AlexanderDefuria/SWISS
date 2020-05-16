@@ -104,6 +104,7 @@ class Match(models.Model):
     # Climb
     climb_location = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     field_timeout_pos = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    climbed = models.BooleanField(default=False)
 
     # Human Player
     hp_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])

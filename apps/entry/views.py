@@ -37,10 +37,7 @@ def match_scout_submit(request, pk):
 
         print(request.POST)
 
-
-
         # TODO 1. add auto route
-
         team = Team.objects.get(id=pk)
         match = Match()
         match.team = team
@@ -79,9 +76,9 @@ def match_scout_submit(request, pk):
         match.able_to_push = 0
 
         if request.POST.get('climb_location', 0) == 0:
-            match.climb = False
+            match.climbed = False
         else:
-            match.climb = True
+            match.climbed = True
         match.climb_location = request.POST.get('climb_location', 0)
         match.field_timeout_pos = request.POST.get('lockStatus', 0)
 
@@ -179,36 +176,38 @@ def validate_types(request, data):
 def pit_scout_submit(request, pk):
     if request.method == 'POST':
 
+        print(request.POST)
+
         team = Team.objects.get(id=pk)
         pits = Pits()
 
         pits.team = team
         pits.event = Event.objects.get(FIRST_key=config.get_current_event_key())
 
-        pits.drivetrain_style = request.POST.get('drivetrain_style', ' ')
-        pits.drivetrain_wheels = request.POST.get('drivetrain_wheels', ' ')
-        pits.drivetrain_motortype = request.POST.get('drivetrain_motortype', ' ')
+        pits.drivetrain_style = request.POST.get('drivetrainStyle', ' ')
+        pits.drivetrain_wheels = request.POST.get('drivetrainWheels', ' ')
+        pits.drivetrain_motortype = request.POST.get('drivetrainMotor', ' ')
         pits.drivetrain_motorquantity = request.POST.get('drivetrain_motorquantity', 0)
 
-        pits.auto_route = request.POST.get('auto_route', False)
-        pits.auto_description = request.POST.get('auto_description', ' ')
-        pits.auto_scoring = request.POST.get('auto_scoring', 0)
+        pits.auto_route = request.POST.get('autoRoute', False)
+        pits.auto_description = request.POST.get('autoDescription', ' ')
+        pits.auto_scoring = request.POST.get('autoScoring', 0)
 
-        pits.tele_scoring = request.POST.get('tele_scoring', 0)
-        pits.tele_positions = request.POST.get('tele_positions', 0)
+        pits.tele_scoring = request.POST.get('teleScoring', 0)
+        pits.tele_positions = request.POST.get('telePositions', 0)
 
-        pits.ball_intake = request.POST.get('ball_intake', ' ')
-        pits.ball_capacity = request.POST.get('ball_capacity', 0)
-        pits.shooter_style = request.POST.get('shooter_style', ' ')
-        pits.low_bot = request.POST.get('low_bot', False)
-        pits.wheel_manipulator = request.POST.get('wheel_manipulator', False)
+        pits.ball_intake = request.POST.get('ballIntake', ' ')
+        pits.ball_capacity = request.POST.get('ballCapacity', 0)
+        pits.shooter_style = request.POST.get('shooterStyle', ' ')
+        pits.low_bot = request.POST.get('lowBot', False)
+        pits.wheel_manipulator = request.POST.get('wheelManipulator', False)
         pits.weight = request.POST.get('weight', 0)
 
-        pits.climb_locations = request.POST.get('climb_locations', 0)
-        pits.climb_buddy = request.POST.get('climb_buddy', False)
-        pits.climb_balance = request.POST.get('climb_balance', False)
+        pits.climb_locations = request.POST.get('climbLocations', 0)
+        pits.climb_buddy = request.POST.get('climbBuddy', False)
+        pits.climb_balance = request.POST.get('climbBalance', False)
 
-        pits.scouter_name = request.POST.get('scouter_name', '0')
+        pits.scouter_name = request.POST.get('scouterName', '0')
 
         pits.save()
 
