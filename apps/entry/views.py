@@ -271,6 +271,7 @@ def update_graph(request):
 @csrf_exempt
 @login_required(login_url='entry:login')
 def update_glance(request, pk):
+    print(request.POST)
     matches = Match.objects.filter(team_id=pk)
     matches_json = serializers.serialize('json', matches)
     return HttpResponse(matches_json, content_type='application/json')

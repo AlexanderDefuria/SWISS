@@ -38,7 +38,6 @@ const constCharts = {
             title: {
 			    text: 'Total Balls Scored Over Comp'
             },
-
             plotOptions: {
                 series: {
                     label: {
@@ -49,8 +48,13 @@ const constCharts = {
                 },
             series: [{
                 name: 'Balls Scored',
-                data: [10, 15, 20, 17, 25, 10, 13, 22]
+                data: [0]
             }],
+            xAxis: {
+                title: {
+                    text: 'Match'
+                }
+            },
             responsive: {
                 rules: [{
                     condition: {
@@ -107,10 +111,10 @@ const constCharts = {
                 data: [0, 0]
             }, {
                 name: 'Outer',
-                data: [3, 20]
+                data: [0, 0]
             }, {
                 name: 'Inner',
-                data: [2, 5,]
+                data: [0, 0]
             }]
     }
 
