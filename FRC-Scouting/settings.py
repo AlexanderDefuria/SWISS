@@ -125,7 +125,8 @@ USE_TZ = True
 
 # --------- Cookies ---------
 SESSION_COOKIE_HTTPONLY = True
-SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_SAVE_EVERY_REQUEST = True
 
 
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

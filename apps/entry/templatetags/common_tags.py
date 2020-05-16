@@ -1,7 +1,12 @@
+import datetime
 import inspect
 
 from django import template
+from django.contrib.auth.models import User
+from django.contrib.sessions.models import Session
 from django.db import models
+from django.utils import timezone
+
 from apps.entry.models import *
 from apps import config
 import json
@@ -28,6 +33,26 @@ def get_current_event_id():
 def get_match_fields():
     print([f.name for f in Match._meta.get_fields()])
     return [f.name for f in Match._meta.get_fields()]
+
+
+@register.simple_tag
+def get_all_logged_in_users():
+    # Query all non-expired sessions
+    # use timezone.now() instead of datetime.now() in latest versions of Django
+    sessions = Session.objects.filter(expire_date__gte=timezone.now())
+    time = timezone.now()
+    uid_list = []
+
+    # Build a list of user ids from that query that have last refreshed
+    # their expiry date within the last 2:30 minutes to ensure and accurate count
+    for session in sessions:
+        timediff = session.expire_date - time - datetime.timedelta(days=13, hours=23, minutes=57, seconds=30)
+        if datetime.timedelta(seconds=0) < timediff:
+            data = session.get_decoded()
+            uid_list.append(data.get('_auth_user_id', None))
+
+    # Query all logged in users based on id list and return the length of that queryset
+    return len(User.objects.filter(id__in=uid_list))
 
 
 @register.simple_tag
