@@ -74,7 +74,7 @@
 
 		<div class="formItem">
 			<label for="drivetrainMotorAmount">Number of Motors in Drivetrain</label>
-			<input id="drivetrainMotorAmount" type="number" min="2" max="20" value="" step="2" required>
+			<input id="drivetrainMotorAmount" name="drivetrainMotorAmount" type="number" min="2" max="20" value="" step="2" required>
 		</div>
 		
 		<h1>Autonomous</h1>
@@ -82,11 +82,11 @@
 			<label for="hasAuto">Has Autonomous Route?</label>			
 				<div class="radioGroup">
 					<label>
-						<input type="radio" name="hasAuto" id="hasAuto_false" value="false">
+						<input type="radio" name="hasAuto" id="hasAuto_false" value="False">
 						<span>N</span>
 					</label>
 						<label>
-						<input type="radio" name="hasAuto" id="hasAuto_true" value="true" checked>
+						<input type="radio" name="hasAuto" id="hasAuto_true" value="True" checked>
 					<span>Y</span>
 					</label>
 				</div>
@@ -115,7 +115,7 @@
 		</div>
 		<div class="formItem">
 			<label for="telePositions">Scoring Locations in Teleoperated</label>
-			<div class="checkboxGroup" required>
+			<div class="checkboxGroup" >
 					<input type="checkbox" name="telePositions" id="telePositions" value="0">
 					<span>Against Power Port</span>
 				<br>
@@ -125,7 +125,7 @@
 					<input type="checkbox" name="telePositions" id="telePositions" value="2">
 					<span>Trench Run</span>
 				<br>
-					<input type="checkbox" name="telePositions" id="telePositions" value="3">
+					<input type="checkbox" name="telePositions" id="telePositions" value="4">
 					<span>Behind Control Panel</span>
 				<br>
 			</div>

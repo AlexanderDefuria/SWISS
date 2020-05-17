@@ -67,7 +67,10 @@ def match_scout_submit(request, pk):
         match.ball_intake_type = request.POST.get('intakeType', 0)
         match.under_defense = request.POST.get('underDefense', 0)
         match.cycle_style = int(request.POST.get('cycleStyle', 0))
-        match.defended_by = request.POST.get('defendedBy', 0)
+        if type(request.POST.get('defendedBy', 0)) is not type(int()):
+            match.defended_by = 0
+        else:
+            match.defended_by = request.POST.get('defendedBy', 0)
 
         match.played_defense = request.POST.get('playedDefense', False)
         match.defense_rating = request.POST.get('defenseRating', 0)
@@ -125,9 +128,8 @@ def validate_match_scout(request, pk):
     if data['matchNumber'][0] == 0:
         redo['matchNumber'] = True
 
-
     if Match.objects.filter(team_id=pk, event_id=config.get_current_event_id(),
-                               match_number=data['matchNumber'][0]).exists():
+                            match_number=data['matchNumber'][0]).exists():
         # Check if there are already 6 teams that have played this match
         if Match.objects.filter(match_number=data['matchNumber'][0]).count() <= 6:
             redo['matchNumber'] = True
@@ -137,7 +139,6 @@ def validate_match_scout(request, pk):
 
 @login_required(login_url='entry:login')
 def validate_types(request, data):
-
     # TODO Add emoji validation in text fields
 
     reqfields = {}
@@ -202,7 +203,7 @@ def pit_scout_submit(request, pk):
         pits.drivetrain_motortype = request.POST.get('drivetrainMotor', ' ')
         pits.drivetrain_motorquantity = request.POST.get('drivetrainMotorAmount', 0)
 
-        pits.auto_route = request.POST.get('autoRoute', False)
+        pits.auto_route = request.POST.get('hasAuto', False)
         pits.auto_description = request.POST.get('autoDescription', ' ')
         pits.auto_scoring = request.POST.get('autoScoring', 0)
 
@@ -316,7 +317,6 @@ def download(request):
     update_csv()
 
     if request.method == "GET" and os.path.exists(path):
-
         with open(path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="text/csv")
             response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(path)
@@ -520,7 +520,7 @@ class Glance(LoginRequiredMixin, generic.DetailView):
     template_name = 'entry/glance.html'
     context_object_name = "team"
 
-    def head(self,  *args, **kwargs):
+    def head(self, *args, **kwargs):
         output = {
             "test": 1
         }

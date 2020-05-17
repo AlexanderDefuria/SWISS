@@ -28,14 +28,14 @@ function updateGlance(team_id) {
 
     }).then(r => {
         // Total Line Chart
+        field = ["lower", "outer", "inner", "lower_auto", "outer_auto", "inner_auto"]
+
         constCharts.totalChart.series[0].data = []
         teamData.forEach( function (info, index) {
-            constCharts.totalChart.series[0].data[index] = info["fields"]["outer"]
-            constCharts.totalChart.series[0].data[index] += info["fields"]["lower"]
-            constCharts.totalChart.series[0].data[index] += info["fields"]["inner"]
-            constCharts.totalChart.series[0].data[index] += info["fields"]["outer_auto"]
-            constCharts.totalChart.series[0].data[index] += info["fields"]["lower_auto"]
-            constCharts.totalChart.series[0].data[index] += info["fields"]["inner_auto"]
+            constCharts.totalChart.series[0].data[index] = 0
+            field.forEach(function (field, indexb) {
+                    constCharts.totalChart.series[0].data[index] += info["fields"][field]
+                })
         });
         totalChart = Highcharts.chart(totalChartName, constCharts.totalChart);
         totalChart.redraw()
@@ -44,13 +44,16 @@ function updateGlance(team_id) {
         if (!teamData.length < 1) {
             constCharts.avgChart.series[0].data = []
             let result = {};
+
+            field.forEach(function (field, index) {
+                result[field] = 0
+            })
             teamData.forEach( function (info, index) {
-                result["lower"] = info["fields"]["lower"]
-                result["outer"] = info["fields"]["outer"]
-                result["inner"] = info["fields"]["inner"]
-                result["lower_auto"] = info["fields"]["lower_auto"]
-                result["outer_auto"] = info["fields"]["outer_auto"]
-                result["inner_auto"] = info["fields"]["inner_auto"]
+                field.forEach(function (field, index) {
+                    result[field] += info["fields"][field]
+                })
+
+
             });
 
             for (var x in result){
@@ -64,8 +67,6 @@ function updateGlance(team_id) {
             constCharts.avgChart.series[1].data[1] = result['outer']
             constCharts.avgChart.series[2].data[0] = result['inner_auto']
             constCharts.avgChart.series[2].data[1] = result['inner']
-
-            console.log(result)
 
             avgChart = Highcharts.chart(avgChartName, constCharts.avgChart);
             avgChart.redraw()
