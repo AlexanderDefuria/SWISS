@@ -101,8 +101,6 @@ def match_scout_submit(request, pk):
 
         match.save()
 
-        print(match.comment)
-
         print(match)
 
         print('Success')
