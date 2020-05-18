@@ -2,7 +2,7 @@ function validate(formName) {
     let toSend = {};
     let element;
     let elements = document.forms[formName].getElementsByTagName("input");
-    let ignored = ["button", "hidden", "submit"]
+    let ignored = ["button", "hidden", "submit", "checkbox"]
 
     // Go over each input and add them to a list to be verified by server
     for (element in elements)
@@ -24,6 +24,7 @@ function validate(formName) {
         success: function(data) {
             let send = true;
             data = $.parseJSON(data.content);
+            console.log(data)
             for (let dataKey in data)
                 if (data.hasOwnProperty(dataKey))
                     if (send)
@@ -33,12 +34,13 @@ function validate(formName) {
             for (let dataKey in data){
 		        if (data.hasOwnProperty(dataKey))
 		            if (data[dataKey]) {
+		                console.log("TRYING TO REDLINE -- " + String(dataKey))
 		                let parent = document.getElementById(dataKey);
-		                let search = true;
+		                let search = false
 
-		                while (search) {
+		                while (!search) {
 		                    parent = parent.parentElement;
-                            search = (parent.className !== "formItem");
+                            search = (parent.className.includes("formItem"));
                             console.log(parent)
                         }
 

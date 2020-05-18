@@ -121,7 +121,7 @@ def validate_match_scout(request, pk):
 
     data = decode_ajax(request)
 
-    redo, data = validate_types(request, data)
+    redo, data = validate_types(request, data, True)
 
     if data['matchNumber'][0] == 0:
         redo['matchNumber'] = True
@@ -136,7 +136,7 @@ def validate_match_scout(request, pk):
 
 
 @login_required(login_url='entry:login')
-def validate_types(request, data):
+def validate_types(request, data, reqlist):
     # TODO Add emoji validation in text fields
 
     reqfields = {}
@@ -146,7 +146,8 @@ def validate_types(request, data):
         path = 'reqfields.json'
         path = os.path.join(settings.BASE_DIR, path)
         with open(path) as f:
-            reqfields = json.load(f)['matchScout']
+            if reqlist:
+                reqfields = json.load(f)['matchScout']
     except IOError:
         print("reqfields file not found")
 
@@ -178,10 +179,25 @@ def validate_types(request, data):
 
         redo[field] = False if (isinstance(data[field][0], type(reqfields[field]))) else True
 
+    for field in request.POST:
+        try:
+            redo[field] = not is_ascii(request.POST.get(field))
+            print(request.POST.get(field))
+
+        except AttributeError:
+            print('issue')
     if data['scouterName'][0] == '':
         redo['scouterName'] = True
 
+    print(redo.keys())
+    print(redo.values())
+#    redo.__delitem__('Cleanup')
+
     return redo, data
+
+
+def is_ascii(s):
+    return all(ord(c) < 128 for c in s)
 
 
 @login_required(login_url='entry:login')
@@ -237,7 +253,11 @@ def pit_scout_submit(request, pk):
 @csrf_exempt
 @login_required(login_url='entry:login')
 def validate_pit_scout(request, pk):
-    return HttpResponseRedirect(reverse_lazy('entry:index'))
+    data = decode_ajax(request)
+
+    redo, data = validate_types(request, data, False)
+
+    return HttpResponse(dumps(redo), content_type="application/json")
 
 
 def view_matches(request):

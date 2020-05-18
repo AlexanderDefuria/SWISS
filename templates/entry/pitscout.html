@@ -11,6 +11,9 @@
 <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
+<script src="{% static 'entry/jquery.min.js' %}"></script>
+<script src="{% static 'entry/validate.js' %}"></script>
+<script src="{% static 'entry/script.js' %}"></script>
 <meta name="theme-color" content="0F4D8D">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
@@ -45,7 +48,7 @@
 				</div>
 			</div>
 		</div>
-	<form action="{% url 'entry:write_pit_scout' team.id %}" class="formContainer" method="POST">
+	<form action="{% url 'entry:write_pit_scout' team.id %}" class="formContainer" method="POST" name="mainForm" id="mainForm">
         {% csrf_token %}
 		<h1>Drivetrain</h1>
 		<div class="formItem">
@@ -215,9 +218,9 @@
 			<input type="text" name="scouterName" id="scouterName" placeholder="Scouter Name" required>
 		</div>
 		<br>
-		<div class="formItem" id="submit">
-			<input type="submit">
-		</div>
+		<div class="formItem" id="submit" onclick="validate('mainForm')">
+                <input name="submit" id="submitButton" type="submit" style="pointer-events: none">
+			</div>
 	</form>
 	</div>
 </body>
