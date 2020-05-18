@@ -39,6 +39,8 @@ urlpatterns = [
 
     path('logout/', views.logout, name='logout'),
     path('login/', views.login, name='login'),
+
+    path('admin_redirect/', views.admin_redirect, name='admin_redirect')
 ]
 
 # ----- 2019 ------

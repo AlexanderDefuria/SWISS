@@ -434,6 +434,13 @@ def logout(request):
     return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 
+@login_required(login_url='entry:login')
+def admin_redirect(request):
+    if request.user.is_superuser:
+        return HttpResponseRedirect(reverse_lazy('admin:index'))
+    return HttpResponseRedirect(reverse_lazy('entry:index'))
+
+
 def handler404(request, exception, template_name="entry/secret.html"):
     response = render_to_response(template_name)
     response.status_code = 404
