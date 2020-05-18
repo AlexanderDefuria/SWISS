@@ -36,7 +36,7 @@
 	
 	<h1 class="pageHeader">SETTINGS</h1>
 		
-		    <h1>Current Event Is: {% get_current_event %}</h1>
+	<h1>Current Event Is: {% get_current_event %}</h1>
     <form action="{% url 'setup:change-event-write' %}" method="post" id="form">
     {% csrf_token %}
         <label for="event"> Change Event To: </label>

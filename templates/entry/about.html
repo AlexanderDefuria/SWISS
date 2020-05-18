@@ -37,5 +37,12 @@
 		<h1>ABOUT</h1>
 		<p>Alex and I can write the copyright here later.</p>
 	</div>
+
+    {% if user.is_superuser %}
+        <a href="{% url 'entry:admin_redirect' %}">
+            <button>test</button>
+        </a>
+    {% endif %}
+
 </body>
 </html>
