@@ -84,12 +84,22 @@
 				<div class="smallBox">
 					<img src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
 				</div>
-			</a>	
-			<a href="{% url 'entry:settings' %}">
-				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'SettingsIcon.png' %}" alt="Settings Icon">
-				</div>
 			</a>
+            {% if user.is_staff %}
+                <a href="{% url 'entry:admin_redirect' %}">
+				    <div class="smallBox">
+				    	<img src="{{ MEDIA_URL }}{% static 'SettingsIcon.png' %}" alt="Settings Icon">
+				    </div>
+			    </a>
+            {% else %}
+                <a href="{% url 'entry:settings' %}">
+				    <div class="smallBox">
+				    	<img src="{{ MEDIA_URL }}{% static 'SettingsIcon.png' %}" alt="Settings Icon">
+				    </div>
+			    </a>
+            {% endif %}
+
+
 			
 			<a href="{% url 'entry:logout' %}">
 				<div class="smallBox">

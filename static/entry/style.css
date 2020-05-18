@@ -62,7 +62,7 @@ ul {
 .tileContainer{
 	display: flex;
 	flex-wrap: wrap;
-	overflow: hidden;
+	overflow: visible;
 }
 .infotileContainer{
 	display: flex;
