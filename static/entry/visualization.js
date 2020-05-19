@@ -1,5 +1,6 @@
 var initialBoxID = 'MetricCheckBox';
 let myChart;
+let fieldData;
 
 document.addEventListener('DOMContentLoaded', function () {
     myChart = Highcharts.chart('visualizationChart', constCharts.templateChart);
@@ -67,15 +68,24 @@ function getActiveFields(id) {
 
     return activeFields
 }
-function updateGraph() {
+function updateGraph(...args) {
     let fieldList = getActiveFields("MetricCheckBox");
     let teamList = getActiveFields("TeamCheckBox");
+    let potentialArgs = ["Total", "Average"]
 
     let formData = new FormData();
     formData.append('field_list', fieldList);
     formData.append('team_list', teamList);
     formData.append('graphType', "bar")
 
+    if (!fieldList.length > 0) {
+        window.alert("No Fields Are Selected!")
+        return
+    }
+    else if (!teamList.length > 0) {
+        window.alert("No Teams Are Selected!")
+        return
+    }
     // Below Code is designed to get the type of graph which determines the
     // return data and format in graphing.py def graph() function
     // presently hardcoded as a workaround TODO fix chart type selection
@@ -92,7 +102,7 @@ function updateGraph() {
 
         success: function (data) {
             returnData = JSON.parse(data.content)
-            console.log(returnData);
+
         },
         failure: function (data) {
             console.log("Failed");
@@ -100,17 +110,40 @@ function updateGraph() {
 
     }).then(r => {
 
+        let argDict = {}
+
+        potentialArgs.forEach(function (potentialArg, paindex) {
+            argDict[potentialArg] = args.includes(potentialArg);
+        });
+
+
         let fields = Object.keys(returnData[Object.keys(returnData)[0]])
+        console.log(fields)
+        fields.forEach(function (field, findex) {
+            if (!Object.keys(fieldData).includes(field)){
+                let index = fields.indexOf(field)
+                if (index > -1) {
+                    fields.splice(index, 1)
+                }
+            }
+        })
+
+
         let teams = Object.keys(returnData)
 
         let varChart = constCharts.templateChart;
         varChart.series = [];
+
+        console.log(fields)
 
         fields.forEach(function (field, findex) {
 
             let data = []
             teams.forEach(function (team, tindex) {
                 data.push(returnData[team][field] * fieldData[field]['weight'] * fieldData[field]['points'])
+                if (argDict['Average'] && returnData[team]['MatchAmount'] > 0) {
+                    data[data.length - 1] /= returnData[team]['MatchAmount'];
+                }
             });
 
             varChart.series.push({
@@ -125,7 +158,7 @@ function updateGraph() {
         varChart.title.text = ''
 
 
-        console.log(varChart.series)
+       //  console.log(varChart.series)
 
         myChart = Highcharts.chart('visualizationChart', varChart);
 

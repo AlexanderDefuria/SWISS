@@ -49,15 +49,20 @@
 			<h1>The numbers Mason, what do they mean?</h1>
 		</div>
 		<div class="statsContainer">
-			<div class="flexColumn60"> 
-				<div id="visualizationChart" style="width:auto; height: auto;">
+			<div class="flexColumn60">
+				<div id="visualizationChart" style="width:auto; height: 90%;">
 				</div>
-				<div class="formItem">
-					<button class="updateButton" onclick="updateGraph()">Update Graph</button>
-				</div>
+                <div style="display: flex;">
+				    <div class="formItem graphOption" style="flex: 1">
+				    	<button class="updateButton" onclick="updateGraph('Average')">Average Graph</button>
+				    </div>
+                    <div class="formItem graphOption" style="flex: 1">
+				    	<button class="updateButton" onclick="updateGraph('Total')">Total Graph</button>
+				    </div>
+                </div>
 			</div>
 			<div class="flexColumn40">
-				<div class="infoBox infoReg">
+				<div class="infoBox infoReg" >
 					<div class="infoHeader">
 						<h1>Teams Included</h1>
 					</div>

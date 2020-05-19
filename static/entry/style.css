@@ -75,10 +75,10 @@ ul {
 	flex-wrap: wrap;
 }
 .flexColumn60 {
-	flex: 60%;
+	flex: 1.5;
 }
 .flexColumn40 {
-	flex: 40%;
+	flex: 0.7;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-start;
@@ -187,7 +187,7 @@ ul {
 .infoLColumn { flex: 25%; }
 .infoRColumn { flex: 75%; }
 .infoWide { width: 510px; flex-grow: 5 }
-.infoReg { width: auto; min-width: 260px; flex-grow: 1; max-width: 500px; }
+.infoReg { width: auto; min-width: 260px; flex-grow: 1; max-width: 700px; }
 .infoIcon { height: 7vh; padding: 10px; }
 
 .wideBox {
@@ -524,3 +524,20 @@ tr:nth-child(even){
 	background-image: url("img/Teams Background.png");
 	background-attachment: fixed;
 }
+
+.graphOption button {
+	background-color: #1C984F;
+	background-clip: padding-box;
+	padding: 10px;
+	border-style: solid;
+	border-width: 10px;
+	border-color: transparent;
+
+}
+.graphOption button:hover {
+	transform: scale(1.025);
+	box-shadow: 2px 5px 25px 2px #232323;
+	border: none;
+	transition: 0.2s;
+}
+
