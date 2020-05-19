@@ -547,6 +547,7 @@ class Glance(LoginRequiredMixin, generic.DetailView):
     template_name = 'entry/glance.html'
     context_object_name = "team"
 
+
     def head(self, *args, **kwargs):
         output = {
             "test": 1

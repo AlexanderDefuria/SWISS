@@ -156,7 +156,7 @@ ul {
 }
 .graphBoxWide {
 	height: 300px;
-	width: 610px;
+	width: 700px;
 	padding: 0;
 	margin: 0px 0px 10px 10px;
 	background-color: #0F4D8D;
@@ -184,7 +184,7 @@ ul {
 .infoRow { display: flex; margin-top: 5px; background-color: #09315A; }
 .infoLColumn { flex: 25%; }
 .infoRColumn { flex: 75%; }
-.infoWide { width: 510px; flex-grow: 5 }
+.infoWide { width: 510px; flex-grow: 5; }
 .infoReg { width: auto; min-width: 260px; flex-grow: 1; max-width: 700px; }
 .infoIcon { height: 7vh; padding: 10px; }
 
