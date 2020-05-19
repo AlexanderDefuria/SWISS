@@ -131,7 +131,6 @@ ul {
 	margin: 0px 0px 10px 10px;
 	background-color: grey;
 	transition: all .2s ease-in-out; 
-	flex-grow: 5;
 }
 .pictureBox img {
 	width: 100%;
@@ -155,7 +154,6 @@ ul {
 	box-shadow: 2px 5px 25px 2px #232323;
 	z-index: 1;
 }
-
 .graphBoxWide {
 	height: 300px;
 	width: 610px;

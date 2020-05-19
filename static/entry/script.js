@@ -13,10 +13,9 @@ function closeNav() {
   document.getElementById("swissLogo").style.marginLeft= "0";
 }
 
-//Function that controls the team number filtering on the data page. 
+// Function that controls the team number filtering on the data page. 
 
 function tableFilter() {
-  // Declare variables
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("teamNumber");
   filter = input.value.toUpperCase();
@@ -54,6 +53,7 @@ function incrementValue(id) {
 	value = isNaN(value) ? 0 : value;
 	value++;
 	document.getElementById(id).value = value;
+	window.navigator.vibrate(40);
 }
 function decrementValue(id) {
 	console.log(id)
@@ -65,6 +65,7 @@ function decrementValue(id) {
 	else
 			value--;
 	document.getElementById(id).value = value;
+	window.navigator.vibrate(40);
 }
 function registerChange() {
 	console.log();
