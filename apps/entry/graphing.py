@@ -31,7 +31,7 @@ def bar_graph(req_fields, teams):
     data_out = {}
 
     single_items = ['team_number']
-    ignored_items = ['_state', 'id', 'event_id', 'team_id', 'match_number']
+    ignored_items = ['_state', 'id', 'event_id', 'team_id']
 
     for item in ignored_items:
         try:
@@ -56,6 +56,8 @@ def bar_graph(req_fields, teams):
                 if team_data.__contains__(field):
                     if not (single_items.__contains__(field) and team_data[field] == default_out[field]):
                         team_data[field] += int(match.__dict__[field])
+
+        team_data["MatchAmount"] = len(matches)
 
         data_out.__setitem__(str(Team.objects.filter(id=team)[0].number), team_data)
 

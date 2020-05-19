@@ -12,6 +12,8 @@ from apps import config
 import json
 from django.conf import settings
 
+from apps.entry import views
+
 register = template.Library()
 
 @register.filter
@@ -58,6 +60,11 @@ def get_all_logged_in_users(*args):
         return len(User.objects.filter(id__in=uid_list))
     else:
         return count
+
+
+@register.simple_tag
+def get_all_present_teams():
+    return views.get_present_teams()
 
 
 @register.simple_tag

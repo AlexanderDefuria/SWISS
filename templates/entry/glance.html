@@ -43,16 +43,37 @@
 		<a href="{% url 'entry:about' %}">About</a>
 	</div>
 	
+	<div id="teamDrawer" class="teamDrawer" style="display: flex; justify-content: center">
+
+		<div class="pillSelect" >
+        <br>
+			<div class="pillContainer" >
+                {% get_all_present_teams as team_list %}
+				{% for team in team_list %}
+					<ul>
+						<li>
+							<div onclick="window.location='{% url 'entry:glance' team.id %}'"  class="teamnumberPill" style="background-color: {{team.colour}}; cursor: pointer;">
+								<p>{{ team.number }}</p>
+							</div>
+						</li>
+					</ul>
+				{% endfor %}
+			</div>
+		</div>
+		<a href="javascript:void(0)" class="closebtn" onclick="closeTeamDrawer()">×</a>		
+	</div>
+
+	
 	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'GlanceBackground2000w.png' %})">
 		<div class="heroContent" id="heroSpace">
 			<div class="stickyChip">
-				<button class="changeTeam" id="changeTeam">
-				<div class="teamnumberPill" style="background-color: {{ team.colour }}">
-						<p>{{ team.number }}</p>
-				</div>
-				<div class="teamnamePill">
-						<p>{{ team.name}}</p>
-				</div>
+				<button class="changeTeam" id="changeTeam" onClick="openTeamDrawer()">
+					<div class="teamnumberPill" style="background-color: {{ team.colour }}">
+							<p>{{ team.number }}</p>
+					</div>
+					<div class="teamnamePill">
+							<p>{{ team.name }}</p>
+					</div>
 				</button>
 			</div>
 		</div>
@@ -94,7 +115,7 @@
 				</div>		
 			</div>
 			<div class="graphBoxWide">
-				<div id="line" style="height: 300px; width: inherit">
+				<div id="line" style="height: 300px; width: auto">
 
 				</div>
 			</div>
@@ -202,6 +223,7 @@
 			</div>
 			<div class="infoBox infoReg">
 				<div class="infoHeader">
+					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'DrivetrainIcon.png' %}" alt="Drivetrain">
 					<h1>Drivetrain Info</h1>
 				</div>
 				<div class="infoRow">
