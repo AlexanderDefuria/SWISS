@@ -89,14 +89,14 @@
             {% if user.is_staff %}
                 <a href="{% url 'entry:admin_redirect' %}">
 				    <div class="smallBox">
-				    	<img src="{{ MEDIA_URL }}{% static 'SettingsIcon.png' %}" alt="Settings Icon">
+				    	<img src="{{ MEDIA_URL }}{% static 'AdminIcon.png' %}" alt="Settings Icon">
 				    </div>
 			    </a>
             {% endif %}
 
             <a href="{% url 'entry:settings' %}">
                 <div class="smallBox">
-                    <img src="{{ MEDIA_URL }}{% static 'AdminIcon.png' %}" alt="Admin Icon">
+                    <img src="{{ MEDIA_URL }}{% static 'SettingsIcon.png' %}" alt="Admin Icon">
                 </div>
             </a>
 
