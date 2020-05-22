@@ -69,6 +69,7 @@ function decrementValue(id) {
 }
 function registerChange() {
 	console.log();
+	window.navigator.vibrate(40);
 }
 
 

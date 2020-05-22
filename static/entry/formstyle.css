@@ -19,13 +19,13 @@
 	font-size: 21px;
 	transition: all 0.1s ease-in-out;
 	user-select: none;
+	/*to disable the default appearance of items */
+	-webkit-appearance: none; 
+	-moz-appearance: none;
 }
 .formItem:hover{ 	
 	background-color: #555555;
 	box-shadow: 7px 7px 25px 10px #232323;
-}
-.formItem input[type=number]:invalid {
-	background-color: #904444;
 }
 .formItem input[type=text]{
 	width: 200px;
@@ -66,11 +66,18 @@
 	border: none;
 	border-bottom: 1px solid #ffffff;
 	transition: all 0.2s ease-in-out;
+	border-radius: 0;
 }
 .formItem input[type=number]:focus {
 	border-color: #0F4D8D;
 	border-width: 3px;
 	background: #333333;
+}
+.formitem input[type=number]:read-only {
+	user-select: none;
+}
+.formItem input[type=number]:invalid {
+	background-color: #904444;
 }
 .formItem select {
 	min-width: 200px;
@@ -93,25 +100,23 @@
   border-radius: 15px;
   border: 2px solid white;
   background-color: 0;
-  -webkit-appearance: none; /*to disable the default appearance of radio button*/
-  -moz-appearance: none;
-	stransition: all 0.2s;
+  transition: all 0.2s;
 }
 .radioGroup input[type="radio"]:focus {
 	border-width: 100px solid #0F4D8D;		
 }
 .radioGroup input[type="radio"]:checked {
-  background-color: white;
+	background-color: white;
 }
 .radioGroup input[type="radio"]:checked ~ span:first-of-type {
 	color: #000000;
 	font-weight: bolder;
 }
 .radioGroup label span:first-of-type {
-  position: relative;
-  left: -27px;
-  font-size: 15px;
-  color: white;
+	position: relative;
+	left: -27px;
+	font-size: 15px;
+	color: white;
 }
 .radioGroup label span {
 	position: relative;
@@ -137,21 +142,14 @@
 	width: 30px;
 	height: 30px;
 	border: 2px solid white;
-	border-radius: 25px;
+	border-radius: 50px;
 	transition: all 0.1s ease-in-out;
+	touch-action: manipulation;
 }
 .formItem [type=button]:active {
 	background-color: white;
 	color: black;
 }
-#incButton:active {
-	background-color: green;
-}
-
-#decButton:active {
-	background-color: darkred
-}
-
 .formItem [type=range] {
 	width: 200px;
 }
@@ -186,7 +184,7 @@
 		top: 15px;
 	}
 	.formItem input[type=text], select {
-		height:auto;
+		height: auto;
 		font-size: 18px;
 	}
 	.formItem input[type=number] {
@@ -224,7 +222,7 @@
 
 @media screen and (max-width: 820px) and (max-height: 800px) {
 	.formContainer {
-	max-width: 100%;
+		max-width: 100%;
 	}
 	.formItem {
 		flex-direction: column;
@@ -233,14 +231,17 @@
 		padding-bottom: 20px;
 	}
 	.formItem input[type=text]:focus {
-	width: auto;
-	text-align: center;
+		width: auto;
+		text-align: center;
 	}
 	.formItem input[type=password]:focus {
-	width: auto;
-	text-align: center;
+		width: auto;
+		text-align: center;
 	}
 	.checkboxGroup span {
-	margin-top: 20px;
+		margin-top: 20px;
+	}
+	.formItem input[type=range] {
+		width: 100%;
 	}
 }

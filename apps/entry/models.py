@@ -79,6 +79,7 @@ class Match(models.Model):
     fouls_auto = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
     rating_auto = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     auto_comment = models.TextField(default="")
+    missed_balls_auto = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
 
     # Teleop
     outer = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
