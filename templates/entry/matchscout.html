@@ -55,23 +55,22 @@
 		<form action="{% url 'entry:write_match_scout' team.id %}" class="formContainer" method="post" name="mainForm" id="mainForm">
             {% csrf_token %}
 
-
+<!--	PRE-MATCH	--> 
+			
             <h1>PRE-MATCH</h1>
 			<div class="formItem">
 				<label for="matchNumber">Match Number</label>
-				<div class="radioGroup">
-					<input type="number" name="matchNumber" id="matchNumber">
-				</div>
+				<input type="number" name="matchNumber" id="matchNumber">
 			</div>
 			<div class="formItem">
 				<label for="onField">Is Robot Present?</label>
 				<div class="radioGroup">
 					<label>
-						<input type="radio" id="onField_true" name="onField" value="True" checked>
+						<input type="radio" id="onField_true" name="onField" value="True" onClick="registerChange" checked>
 						<span>Y</span>
 					</label>
 					<label>
-						<input type="radio" id="onField_false" name="onField" value="False">
+						<input type="radio" id="onField_false" name="onField" value="False" onClick="registerChange">
 						<span>N</span>
 					</label>
 				</div>
@@ -99,6 +98,8 @@
 				</div>
 			</div>
 
+<!--	AUTONOMOUS		-->
+			
 			<h1 id="aAutonomous">AUTONOMOUS</h1>
 			<div class="formItem">
 				<label for="autoRoute">Autonomous Route</label>
@@ -124,7 +125,6 @@
 		<div class="formItem">
 				  <label for="autoLowGoal">Power Port Goals</label>
 				<div class="ticker">
-
 					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'LowerAutoIcon.png' %}" alt="lower">
 					<input type="button"  onclick="decrementValue('lower_auto')" value="-">
 					<input type="number" name="lower_auto" id="lower_auto" min="0" max="100" value="0" readonly>
@@ -139,16 +139,16 @@
 					<input type="button" onclick="decrementValue('inner_auto')" value="-">
 					<input name="inner_auto" id="inner_auto" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('inner_auto')" value="+">
-
 				</div>
 		  </div>
 		  <div class="formItem right">
 				<label for="autoComment">Auto Route Notes</label>
 				<input type="text" name="autoComment" id="autoComment" placeholder="Auto Notes" autocomplete="off">
 		  </div>
+			
+<!--	OFFENSE		-->
+			
 			<h1>TELEOPERATED - OFFENSE</h1>
-
-
 			<div class="formItem">
 				<label>Power Port Goals</label>
                 <div class="ticker">
@@ -214,9 +214,8 @@
 				</div>
 			</div>
 			<div class="formItem">
-
 				<label for="underDefense">Play well under defense</label>
-				<select name="underDefense" id="underDefense"> 
+				<select name="underDefense" id="underDefense" required> 
 					<option value="0">Not Defended</option>
 					<option value="1">Played Poorly</option>
 					<option value="2">Played Well</option>
@@ -251,16 +250,19 @@
 					<option value="2">Yes, Major</option>
 				</select>
 		  </div>
+			
+<!--	DEFENSE		-->
+			
 			<h1>TELEOPERATED - DEFENSE</h1>
 			<div class="formItem">
 				<label for="playedDefense">Played Defense?</label>
 				<div class="radioGroup">
 					<label>
-						<input type="radio" id="playedDefense_true" name="playedDefense" value="True">
+						<input type="radio" id="playedDefense_true" name="playedDefense" value="True" onClick="registerChange">
 						<span>Y</span>
 					</label>
 					<label>
-						<input type="radio" id="playedDefense_false" name="playedDefense" value="False" checked>
+						<input type="radio" id="playedDefense_false" name="playedDefense" value="False" onClick="registerChange">
 						<span>N</span>
 					</label>
 				</div>
@@ -292,8 +294,11 @@
 					<option value="2">Well</option>
 				</select>
 			</div>
+			
+<!--	ENDGAME		-->
+			
 			<h1>ENDGAME</h1>
-		  <div class="formItem">
+			<div class="formItem">
 				<label for="climbLocation">Climbing Position</label>
 			  	<div class="right">
 					<output name="climbLocation_number" id="climbLocation_number" for="climbLocation">0</output>
@@ -309,7 +314,10 @@
 					<option value="3">Successful Climb</option>
 				</select>
 			</div>
-			<h1>HUMAN PLAYER</h1>
+			
+<!-- HUMAN FOULS AND COMMENTS	-->
+			
+			<h1>MORE</h1>
 			<div class="formItem">
 				<label for="humanFouls">Human Player Incurred Fouls</label>
 				<select name="humanFouls" id="humanFouls">
@@ -333,7 +341,7 @@
 			<br>
 			<div class="formItem">
 				<label for="comment">Comments</label>
-				<input type="text" name="comment" id="comment" required placeholder="e.g. Disabled" autocomplete="off">
+				<input type="text" name="comment" id="comment" placeholder="e.g. Disabled" autocomplete="off" required>
 			</div>
 			<br>
 			<div class="formItem">

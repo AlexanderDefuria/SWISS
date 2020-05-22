@@ -85,11 +85,11 @@
 			<label for="hasAuto">Has Autonomous Route?</label>			
 				<div class="radioGroup">
 					<label>
-						<input type="radio" name="hasAuto" id="hasAuto_false" value="False">
+						<input type="radio" name="hasAuto" id="hasAuto_false" value="False" onClick="registerChange">
 						<span>N</span>
 					</label>
 						<label>
-						<input type="radio" name="hasAuto" id="hasAuto_true" value="True" checked>
+						<input type="radio" name="hasAuto" id="hasAuto_true" value="True" checked onClick="registerChange">
 					<span>Y</span>
 					</label>
 				</div>
@@ -149,11 +149,11 @@
 			<label for="lowBot">Can drive under the control panel</label>
 				<div class="radioGroup">
 					<label>
-						<input type="radio" name="lowBot" id="lowBot" value="0" checked>
+						<input type="radio" name="lowBot" id="lowBot" value="False" onClick="registerChange" checked>
 						<span>N</span>
 					</label>
 					<label>
-						<input type="radio" name="lowBot" id="lowBot" value="1">
+						<input type="radio" name="lowBot" id="lowbot" value="True" onClick="registerChange">
 						<span>Y</span>
 					</label>
 				</div>
@@ -162,11 +162,11 @@
 			<label for="wheelManipulator">Control Panel Manipulator</label>
 			<div class="radioGroup">
 				<label>
-					<input type="radio" name="wheelManipulator" id="wheelManipulator" value="False" checked>
+					<input type="radio" name="wheelManipulator" id="wheelManipulator" value="False" onClick="registerChange" checked>
 					<span>N</span>
 				</label>
 				<label>
-					<input type="radio" name="wheelManipulator" id="wheelManipulator" value="True">
+					<input type="radio" name="wheelManipulator" id="wheelManipulator" value="True" onClick="registerChange">
 					<span>Y</span>
 				</label>
 			</div>
@@ -187,11 +187,11 @@
 			<label for="climbBuddy">Buddy Climb?</label>
 				<div class="radioGroup">
 					<label>
-						<input type="radio" name="climbBuddy" id="climbBuddy_false" value="False" checked>
+						<input type="radio" name="climbBuddy" id="climbBuddy_false" value="False" onClick="registerChange" checked>
 						<span>N</span>
 					</label>
 					<label>
-						<input type="radio" name="climbBuddy" id="climbBuddy_true" value="True">
+						<input type="radio" name="climbBuddy" id="climbBuddy_true" value="True" onClick="registerChange">
 						<span>Y</span>
 					</label>
 				</div>
@@ -200,11 +200,11 @@
 			<label for="climbBalance">Balancing Mechanism</label>
 				<div class="radioGroup">
 					<label>
-						<input type="radio" name="climbBalance" id="climbBalance_false" value="False" checked>
+						<input type="radio" name="climbBalance" id="climbBalance_false" value="False" onClick="registerChange" checked>
 						<span>N</span>
 					</label>
 					<label>
-						<input type="radio" name="climbBalance" id="climbBalance_true" value="True">
+						<input type="radio" name="climbBalance" id="climbBalance_true" value="True" onClick="registerChange">
 						<span>Y</span>
 					</label>
 				</div>
