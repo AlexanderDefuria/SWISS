@@ -2,7 +2,7 @@ function validate(formName) {
     let toSend = {};
     let element;
     let elements = document.forms[formName].getElementsByTagName("input");
-    let ignored = ["button", "hidden", "submit", "checkbox"]
+    let ignored = ["button", "hidden", "submit", "checkbox", "radio"]
 
     // Go over each input and add them to a list to be verified by server
     for (element in elements)
@@ -51,8 +51,12 @@ function validate(formName) {
             }
 
         },
-        failure: function (data) {
+        failure: function () {
             console.log("Failed");
+
         },
     });
+
+        HTMLFormElement.prototype.submit.call(document.getElementById(formName))
+
 }
