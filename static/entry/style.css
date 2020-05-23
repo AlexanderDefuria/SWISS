@@ -16,6 +16,7 @@ ul {
   list-style-type: none;
   padding: 0;
 }
+
 .topbar {
 	display: flex;
 	height: 40px;
@@ -63,6 +64,7 @@ ul {
 	display: flex;
 	flex-wrap: wrap;
 	overflow: visible;
+	margin: 0px
 }
 .infotileContainer{
 	display: flex;
@@ -565,7 +567,6 @@ tr:nth-child(even){
 .filterChip:focus {
 	border-color: #0F4D8D;
 	border-width: 3px;
-	background: #333333;
 }
 
 .bottombar {

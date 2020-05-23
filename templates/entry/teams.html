@@ -40,27 +40,41 @@
 		<div class="heroContent">
 			<p class="homeText">Teams</p>
 		</div>
-		<div class="tileContainer">
+        <figure class="tileContainer">
             {% for team in team_list %}
-                <a href={% url 'entry:glance' team.id %}>
+                <a href='{% url 'entry:glance' team.id %}' class="teamLink" id="{{ team.number }}" name="{{ team.name }}">
                     {% get_cookie request 'images' as images %}
                     {% if 'False' != images %}
-                    <div class="teamChip">
-                        <img class="robotPhoto" src="{{ MEDIA_URL }}{{ team.first_image }}" alt="robot photo">
+                        <div class="teamChip">
+                            <img class="robotPhoto" src="{{ MEDIA_URL }}{{ team.first_image }}" alt="robot photo">
+                            <div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
+                            <div class="teamnamePill"><p>{{ team.name }}</p></div>
+                        </div>
                     {% else %}
-                    <div class="teamChip" style="height: auto">
+                        <div class="teamChip" style="height: auto">
+                            <div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
+                            <div class="teamnamePill"><p>{{ team.name }}</p></div>
+                        </div>
                     {% endif %}
-                        <div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
-				        <div class="teamnamePill"><p>{{ team.name }}</p></div>
-                    </div>
                 </a>
-
             {% endfor %}
-			<a href="{% url 'entry:upload' %}">
-				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
-				</div>
-			</a>
+            <br>
+            <a href="{% url 'entry:upload' %}">
+                <div class="smallBox">
+                    <img src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
+                </div>
+            </a>
+        </figure>
+        <div class="tileContainer bottombar">
+            <div class="filterBox" >
+                <img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Searh Icon">
+                <input class="filterChip" type="text" id="teamNumber" onkeyup="teamFilter('teamNumber')" placeholder="Filter Team Number">
+            </div>
+            <br>
+            <div class="filterBox" >
+                <img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Searh Icon">
+                <input class="filterChip" type="text" id="teamName" onkeyup="teamFilter('teamName')" placeholder="Filter Team Name">
+            </div>
 		</div>
 	</div>
 </body>
