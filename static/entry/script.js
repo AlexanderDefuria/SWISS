@@ -15,24 +15,26 @@ function closeNav() {
 
 // Function that controls the team number filtering on the data page. 
 
-function tableFilter() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("teamNumber");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("dataTable");
-  tr = table.getElementsByTagName("tr");
+function tableFilter(field) {
+  	var input, filter, table, tr, td, i, txtValue, index;
+  	input = document.getElementById(field);
+  	filter = input.value.toUpperCase();
+  	table = document.getElementById("dataTable");
+  	tr = table.getElementsByTagName("tr");
 
-for (i = 0; i < tr.length; i++) {
-	td = tr[i].getElementsByTagName("td")[0];
-	if (td) {
-		txtValue = td.textContent || td.innerText;
-		if (txtValue.toUpperCase().indexOf(filter) > -1) {
-			tr[i].style.display = "";
-		} else {
-			tr[i].style.display = "none";
-		}
-	}
-	}
+  	index = {"teamName": 1, "teamNumber": 0, "matchNumber": 2}
+
+  	for (i = 0; i < tr.length; i++) {
+  		td = tr[i].getElementsByTagName("td")[index[field]];
+  		if (td) {
+  			txtValue = td.textContent || td.innerText;
+  			if (txtValue.toUpperCase().indexOf(filter) > -1) {
+  				tr[i].style.display = "";
+  			} else {
+  				tr[i].style.display = "none";
+  			}
+  		}
+  		}
 	}
 
 // Function that controls the team select drawer

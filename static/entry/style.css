@@ -539,3 +539,31 @@ tr:nth-child(even){
 	transition: 0.2s;
 }
 
+.filterBox {
+	display: flex;
+	padding: 10px;
+	height: auto;
+	width: auto;
+	margin: 0px 0px 10px 10px;
+	transition: all .2s ease-in-out;
+}
+
+.filterBox:hover {
+	transform: scale(1.04);
+	box-shadow: 2px 5px 25px 2px #232323;
+}
+
+.filterChip {
+	width: auto;
+	outline: none;
+	color: white;
+	background: none;
+	border: none;
+	border-bottom: 1px solid #ffffff;
+	transition: all 0.2s ease-in-out;
+}
+.filterChip:focus {
+	border-color: #0F4D8D;
+	border-width: 3px;
+	background: #333333;
+}

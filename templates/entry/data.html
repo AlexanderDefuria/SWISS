@@ -115,31 +115,23 @@
 				</table>
 			</div>
 		</figure>
-		<div class="stickyChip" id="filterChip">
-			<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Searh Icon">
-			<input type="text" id="teamNumber" onkeyup="tableFilter()" placeholder="Filter Team Number">
+        <div class="tileContainer">
+            <div class="filterBox" >
+                <img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Searh Icon">
+                <input class="filterChip" type="text" id="teamNumber" onkeyup="tableFilter('teamNumber')" placeholder="Filter Team Number">
+            </div>
+            <br>
+            <div class="filterBox" >
+                <img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Searh Icon">
+                <input class="filterChip" type="text" id="teamName" onkeyup="tableFilter('teamName')" placeholder="Filter Team Name">
+            </div>
+            <div class="filterBox" >
+                <img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Searh Icon">
+                <input class="filterChip" type="text" id="matchNumber" onkeyup="tableFilter('matchNumber')" placeholder="Filter Match Number">
+            </div>
+
 		</div>
-		
 	</div>
-	
-	<style>
-		#teamNumber {
-			width: auto;
-			outline: none;
-			color: white;
-			background: none;
-			border: none;
-			border-bottom: 1px solid #ffffff;
-			transition: all 0.2s ease-in-out;
-		}
-		#teamNumber:focus {
-			border-color: #0F4D8D;
-			border-width: 3px;
-			background: #333333;
-		}
-		#filterChip {
-			position: absolute;
-		}
-	</style>
+
 </body>
 </html>

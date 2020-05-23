@@ -160,6 +160,7 @@ def validate_types(request, data, reqlist):
 
         if not data.__contains__(field):
             logout(request)
+            print("logged out on: " + field)
 
         try:
             alpha = True
