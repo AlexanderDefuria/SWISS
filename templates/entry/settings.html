@@ -38,14 +38,28 @@
 	</div>
 	
 	<div class="bodyContainer" id="bodyContainer">
-        <div>
-            {% get_cookie request "images" %}
-        </div>
-		<form method="POST">
+		<form class="formContainer" method="post" name="mainForm" id="mainForm" method="POST">
             {% csrf_token %}
-            <input name="images" id="images" type="checkbox">
 
-            <button type="submit">submit</button>
+            <div class="formItem">
+                <label for="images">Display Robot Images?</label>
+                <div class="radioGroup">
+					<label>
+						<input type="radio" id="images_true" name="images" value="True">
+						<span>Y</span>
+					</label>
+					<label>
+						<input type="radio" id="images_false" name="images" value="False">
+						<span>N</span>
+					</label>
+				</div>
+            </div>
+
+
+
+            <div class="formItem" id="submit">
+                <input name="submit" id="submitButton" type="submit" style="pointer-events: none" value="Save Settings">
+			</div>
         </form>
 
 		
@@ -55,6 +69,6 @@
 </html>
 <script>
     function update_cookie_fields(){
-        document.getElementById('images').checked = ('{% get_cookie request 'images' %}' === 'True');
+        document.getElementById('images_'.concat('{% get_cookie request 'images' %}'.toLowerCase())).checked = true;
     }
 </script>

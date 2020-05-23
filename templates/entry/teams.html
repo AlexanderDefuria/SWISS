@@ -39,13 +39,20 @@
 	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'TeamsBackground.png' %})">
 		<div class="heroContent">
 			<p class="homeText">Teams</p>
+            {% get_cookie request 'images' as images %}
+            <div>{{ images }}</div>
 		</div>
 		<div class="tileContainer">
             {% for team in team_list %}
                 <a href={% url 'entry:glance' team.id %}>
+                    {% get_cookie request 'images' as images %}
+                    {% if 'True' == images %}
                     <div class="teamChip">
                         <img class="robotPhoto" src="{{ MEDIA_URL }}{{ team.first_image }}" alt="robot photo">
-				        <div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
+                    {% else %}
+                    <div class="teamChip" style="height: auto">
+                    {% endif %}
+                        <div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
 				        <div class="teamnamePill"><p>{{ team.name }}</p></div>
                     </div>
                 </a>

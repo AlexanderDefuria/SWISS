@@ -582,6 +582,7 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
 
     def post(self, request, *args, **kwargs):
         response = HttpResponseRedirect(reverse_lazy('entry:settings'))
-        response.set_cookie('images', request.POST.get('images') is not None)
+        print(request.POST.get('images', ''))
+        response.set_cookie('images', request.POST.get('images', ''))
 
         return response

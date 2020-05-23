@@ -228,7 +228,7 @@ ul {
 .teamChip {
 	margin: 0px 0px 10px 10px;
 	padding: 20px;
-	height: 350px;
+	height: Auto;
 	width: 260px;
 	background-color: #262626;
 	display: flex;
