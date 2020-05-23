@@ -569,7 +569,7 @@ tr:nth-child(even){
 }
 
 .bottombar {
-	position: absolute;
+	position: fixed;
 	top: auto;
 	bottom: 0;
 	left: 0;
