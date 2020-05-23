@@ -38,6 +38,12 @@ def get_match_fields():
 
 
 @register.simple_tag
+def get_cookie(request, cookie_name):
+    result = request.COOKIES.get(cookie_name, '')
+    return result
+
+
+@register.simple_tag
 def get_all_logged_in_users(*args):
     # Query all non-expired sessions
     # use timezone.now() instead of datetime.now() in latest versions of Django
