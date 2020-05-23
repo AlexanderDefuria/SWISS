@@ -545,14 +545,11 @@ class Glance(LoginRequiredMixin, generic.DetailView):
     template_name = 'entry/glance.html'
     context_object_name = "team"
 
-
     def head(self, *args, **kwargs):
         output = {
             "test": 1
         }
-
         response = HttpResponse(dumps(output), content_type="application/json")
-
         return response
 
 
@@ -577,3 +574,14 @@ class Data(LoginRequiredMixin, generic.ListView):
 class Upload(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
     template_name = 'entry/upload.html'
+
+
+class Settings(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'entry:login'
+    template_name = 'entry/settings.html'
+
+    def post(self, request, *args, **kwargs):
+        response = HttpResponseRedirect(reverse_lazy('entry:settings'))
+        response.set_cookie('images', request.POST.get('images') is not None)
+
+        return response

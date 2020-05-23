@@ -34,7 +34,7 @@ urlpatterns = [
     path('schedule/', views.ScheduleView.as_view(), name='schedule'),
     path('experimental/', views.Experimental.as_view(), name='experimental'),
     path('about/', views.About.as_view(), name='about'),
-    path('settings/', views.About.as_view(), name='settings'),
+    path('settings/', views.Settings.as_view(), name='settings'),
     path('experimental/getcsv/', views.get_csv_ajax, name='getcsv'),
 
     path('logout/', views.logout, name='logout'),
