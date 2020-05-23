@@ -1,5 +1,6 @@
 @charset "utf-8";
 /* This CSS styles all form elements to specifications */
+/* This version is from the fork for class */
 .right {
 	align-self: flex-end;
 }
@@ -24,6 +25,9 @@
 	background-color: #555555;
 	box-shadow: 7px 7px 25px 10px #232323;
 }
+.formItem input[type=number]:invalid {
+	background-color: #904444;
+}
 .formItem input[type=text]{
 	width: 200px;
 	outline: none;
@@ -34,7 +38,7 @@
 	transition: all 0.2s ease-in-out;
 }
 .formItem input[type=text]:focus {
-	width: 400px;  
+	width: 450px;
 	border-color: #0F4D8D;
 	border-width: 3px;
 	background: #333333;
@@ -49,7 +53,7 @@
 	transition: all 0.2s ease-in-out;
 }
 .formItem input[type=password]:focus {
-	width: 400px;
+	width: 450px;
 	border-color: #0F4D8D;
 	border-width: 3px;
 	background: #333333;
@@ -63,7 +67,6 @@
 	border: none;
 	border-bottom: 1px solid #ffffff;
 	transition: all 0.2s ease-in-out;
-	border-radius: 0;
 }
 .formItem input[type=number]:focus {
 	border-color: #0F4D8D;
@@ -72,15 +75,13 @@
 }
 .formItem input[type=number]:read-only {
 	user-select: none;
-}
-.formItem input[type=number]:invalid {
-	background-color: #904444;
+	
 }
 .formItem select {
 	min-width: 200px;
 	color: white;
 	background: none;
-	background-color: #4444444;
+	background-color: #444444;
 	border: none;
 	border-bottom: 1px solid #ffffff;
 	transition: all 0.2s ease-in-out;
@@ -91,7 +92,7 @@
 .radioGroup{
 	align-self: flex-end;
 }
-.radioGroup input[type=radio] {
+.radioGroup input[type="radio"] {
   width: 30px;
   height: 30px;
   border-radius: 15px;
@@ -99,23 +100,23 @@
   background-color: 0;
   -webkit-appearance: none; /*to disable the default appearance of radio button*/
   -moz-appearance: none;
-  transition: all 0.2s;
+	transition: all 0.2s;
 }
-.radioGroup input[type=radio]:focus {
+.radioGroup input[type="radio"]:focus {
 	border-width: 100px solid #0F4D8D;		
 }
-.radioGroup input[type=radio]:checked {
-	background-color: white;
+.radioGroup input[type="radio"]:checked {
+  background-color: white;
 }
-.radioGroup input[type=radio]:checked ~ span:first-of-type {
+.radioGroup input[type="radio"]:checked ~ span:first-of-type {
 	color: #000000;
 	font-weight: bolder;
 }
 .radioGroup label span:first-of-type {
-	position: relative;
-	left: -27px;
-	font-size: 15px;
-	color: white;
+  position: relative;
+  left: -27px;
+  font-size: 15px;
+  color: white;
 }
 .radioGroup label span {
 	position: relative;
@@ -130,10 +131,6 @@
 .goalIcon {
 	height: 35px; position: relative; top: 5px; left: -5px
 }
-.checkboxGroup {
-	padding: 10px;
-	text-align: right;
-}
 .formItem [type=button] {
 	background: none;
 	color: white;
@@ -141,9 +138,9 @@
 	width: 30px;
 	height: 30px;
 	border: 2px solid white;
-	border-radius: 50px;
+	border-radius: 25px;
 	transition: all 0.1s ease-in-out;
-	touch-action: manipulation;
+	touch-action: manipulation; 
 }
 .formItem [type=button]:active {
 	background-color: white;
@@ -164,12 +161,23 @@
 #submit {
 	background-color: #0F4D8D;
 }
-#autoStart_img {
+#auto_start_img {
 	height: 50px;
 }
+
+
+
+
+
+
+
+
+
+
+
 @media screen and (max-width: 1280px) {
 	.formContainer {
-		max-width: 100%;
+	max-width: 100%;
 	}
 	.formItem {
 		min-height: 60px;
@@ -183,12 +191,13 @@
 		top: 15px;
 	}
 	.formItem input[type=text], select {
-		height: auto;
+		height:auto;
 		font-size: 18px;
 	}
 	.formItem input[type=number] {
 		font-size: 28px;
 	}
+
 	.radioGroup {
 		display: block
 	}
@@ -216,6 +225,7 @@
 	}
 }
 
+
 /* for mobile phones, portrait and landscape */
 
 @media screen and (max-width: 820px) and (max-height: 800px) {
@@ -229,17 +239,11 @@
 		padding-bottom: 20px;
 	}
 	.formItem input[type=text]:focus {
-		width: auto;
-		text-align: center;
+	width: auto;
+	text-align: center;
 	}
 	.formItem input[type=password]:focus {
-		width: auto;
-		text-align: center;
-	}
-	.checkboxGroup span {
-		margin-top: 20px;
-	}
-	.formItem input[type=range] {
-		width: 100%;
+	width: auto;
+	text-align: center;
 	}
 }
