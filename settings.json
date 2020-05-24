@@ -1,0 +1,14 @@
+{
+  "images": true,
+  "filters": true,
+  "teamInfoTile": true,
+  "pictureBoxTile": true,
+  "totalGraphTile": true,
+  "lineGraphTile": true,
+  "defenseTile": true,
+  "foulsTile": true,
+  "powerCellTile": true,
+  "endgameTile": true,
+  "driveTrainTile": true
+}
+

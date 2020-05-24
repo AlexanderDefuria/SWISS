@@ -78,7 +78,7 @@
 		</div>
 
 		<div class="infotileContainer" style="justify-content: flex-start">
-			<div class="infoBox infoWide" >
+			<div class="infoBox infoWide" id="teamInfoTile">
 				<div class="infoHeader">
 					<div class="teamnumberPill" style="background-color: {{team.colour}}"><p>{{ team.number }}</p></div>
 					<h1>{{ team.name }}</h1>
@@ -104,21 +104,21 @@
 					<div class="infoRColumn"><p>{% get_info team 'wheel_manipulator' 'possible' 'pits' %}</p></div>
 				</div>
 			</div>
-			<div class="pictureBox">
+			<div class="pictureBox" id="pictureBoxTile">
 					<img src="{{ MEDIA_URL }}{{ team.first_image }}" alt="robot photo">
 			</div>			
-			<div class="graphBoxWide">
+			<div class="graphBoxWide" id="totalGraphTile">
 				<div id="avg_balls" style="height: 300px; width:auto">
 				<p></p>
 
 				</div>		
 			</div>
-			<div class="graphBoxWide">
+			<div class="graphBoxWide" id="lineGraphTile">
 				<div id="line" style="height: 300px; width: auto">
 
 				</div>
 			</div>
-			<div class="infoBox infoReg">
+			<div class="infoBox infoReg" id="foulsTile">
 				<div class="infoHeader">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'FlagIcon.png' %}" alt="flag">
 					<h1>Fouls &amp; Cards</h1>
@@ -156,7 +156,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="infoBox infoReg">
+			<div class="infoBox infoReg" id="defenseTile">
 				<div class="infoHeader">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'DefenseIcon.png' %}" alt="Defense Icon">
 					<h1>Defense</h1>
@@ -174,7 +174,7 @@
 					<div class="infoLColumn"><p>{% get_info team 'able_to_push' 'average' 'match' %}</p></div>
 				</div>
 			</div>
-			<div class="infoBox infoReg">
+			<div class="infoBox infoReg" id="powerCellTile">
 				<div class="infoHeader">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'GenericPowerPort.png' %}" alt="Power Port">
 					<h1>Total Balls Scored</h1>
@@ -198,7 +198,7 @@
 					<div class="infoLColumn"><p>{{totalTeleInner|add:totalAutoInner }} Power Cells</p></div>
 				</div>
 			</div>			
-			<div class="infoBox infoReg">
+			<div class="infoBox infoReg" id="endgameTile">
 				<div class="infoHeader">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'hangbar_icon.png' %}" alt="Hang Bar">
 					<h1>Endgame</h1>
@@ -220,7 +220,7 @@
 					<div class="infoLColumn"><p>{% get_info team 'climb_location' 'match' 'dependant' 'dependant-climbed' %} / 20</p></div>
 				</div>
 			</div>
-			<div class="infoBox infoReg">
+			<div class="infoBox infoReg" id="driveTrainTile">
 				<div class="infoHeader">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'DrivetrainIcon.png' %}" alt="Drivetrain">
 					<h1>Drivetrain Info</h1>
