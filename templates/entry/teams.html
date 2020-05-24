@@ -65,6 +65,8 @@
                 </div>
             </a>
         </figure>
+        {% get_cookie request 'filters' as filters %}
+        {% if 'False' != filters %}
         <div class="tileContainer bottombar">
             <div class="filterBox" >
                 <img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Searh Icon">
@@ -76,6 +78,7 @@
                 <input class="filterChip" type="text" id="teamName" onkeyup="teamFilter('teamName')" placeholder="Filter Team Name">
             </div>
 		</div>
+        {% endif %}
 	</div>
 </body>
 </html>

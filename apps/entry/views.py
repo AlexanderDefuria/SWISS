@@ -581,9 +581,18 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
     template_name = 'entry/settings.html'
 
+    settings_file = {}
+    try:
+        path = 'settings.json'
+        path = os.path.join(settings.BASE_DIR, path)
+        with open(path) as f:
+            settings_file = json.load(f)
+    except IOError:
+        print("settings.json file not found")
+
     def post(self, request, *args, **kwargs):
         response = HttpResponseRedirect(reverse_lazy('entry:settings'))
-        print(request.POST.get('images', ''))
         response.set_cookie('images', request.POST.get('images', ''))
+        response.set_cookie('filters', request.POST.get('filters', ''))
 
         return response

@@ -56,6 +56,19 @@
 					</label>
 				</div>
             </div>
+            <div class="formItem">
+                <label for="filters">Display Team Filters</label>
+                <div class="radioGroup">
+					<label>
+						<input type="radio" id="filters_true" name="filters" value="True">
+						<span>Y</span>
+					</label>
+					<label>
+						<input type="radio" id="filters_false" name="filters" value="False">
+						<span>N</span>
+					</label>
+				</div>
+            </div>
 
 
 
@@ -72,5 +85,6 @@
 <script>
     function update_cookie_fields(){
         document.getElementById('images_'.concat('{% get_cookie request 'images' %}'.toLowerCase())).checked = true;
+        document.getElementById('filters_'.concat('{% get_cookie request 'filters' %}'.toLowerCase())).checked = true;
     }
 </script>
