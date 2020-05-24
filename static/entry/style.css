@@ -437,16 +437,16 @@ tr:nth-child(even){
 .sidebar {
 	display: flex;
 	flex-direction: column;
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	background-color: #111;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 60px;
 }
 .sidebar a {
 	padding: 8px 8px 8px 32px;
@@ -464,11 +464,11 @@ tr:nth-child(even){
 	color: #0F4D8D;
 }
 .sidebar .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
 }
 .hamburgerButton {
 	height: 100%;
@@ -480,7 +480,7 @@ tr:nth-child(even){
 	border: none;
 }
 .hamburgerButton:hover {
-  background-color: #444;
+	background-color: #444;
 }
 .changeTeam {
 	background: none;
