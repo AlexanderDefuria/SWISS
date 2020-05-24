@@ -44,7 +44,7 @@
             {% csrf_token %}
 
             <div class="formItem">
-                <label for="images">Display Robot Images?</label>
+                <label for="images">Display Robot Images</label>
                 <div class="radioGroup">
 					<label>
 						<input type="radio" id="images_true" name="images" value="True">
@@ -65,6 +65,19 @@
 					</label>
 					<label>
 						<input type="radio" id="filters_false" name="filters" value="False">
+						<span>N</span>
+					</label>
+				</div>
+            </div>
+            <div class="formItem">
+                <label for="colour">Driver Station Colour</label>
+                <div class="radioGroup">
+					<label>
+						<input type="radio" id="colour_true" name="colour" value="True">
+						<span>Y</span>
+					</label>
+					<label>
+						<input type="radio" id="colour_false" name="colour" value="False">
 						<span>N</span>
 					</label>
 				</div>
