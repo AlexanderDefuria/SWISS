@@ -1,9 +1,25 @@
 id	event_id	match_number	auto_start	preloaded_balls	on_field	outer_auto	lower_auto	inner_auto	baseline	fouls_auto	rating_auto	outer	lower	inner	wheel_rating	balls_collected	fouls	defense_rating	defense_fouls	climb_location	team_id	wheel_score	able_to_push	auto_comment	auto_route	ball_intake_type	dt_fouls	field_timeout_pos	hp_fouls	missed_balls	scouter_name	team_defended	under_defense	yellow_card	cycle_style	defended_by	played_defense	created_at	climbed	comment	missed_balls_auto
+1	1510	1	1	3	1	0	0	0	1	0	0	0	0	0	0	0	0	2	0	0	4306	0	0	couldnt intake, crashed into truss 	2	0	0	1	0	0		3683	0	1	0	0	0	2020-05-16 02:13:37.918044	0		0
+2	1510	2	1	3	1	4	0	0	1	0	0	4	0	3	0	0	0	0	0	0	4306	0	0	crashed into alliance partner 	2	1	0	0	0	5	Nick Kerstens	-1	3	1	0	0	0	2020-05-16 02:27:39.397352	0		0
 3	1510	3	10	3	1	0	0	0	0	0	0	7	0	0	0	0	0	0	0	0	4346	0	0	did not move	0	1	0	1	0	10	Nick Kerstens	-1	0	1	0	0	0	2020-05-16 02:38:34.799427	0		0
 4	1510	4	9	3	1	0	0	0	0	0	0	7	0	0	0	0	0	0	0	0	4346	0	0	did not move	0	3	0	1	0	10	Nick Kerstens	-1	0	1	1	0	0	2020-05-16 02:45:00.708518	0		0
 5	1510	5	14	3	1	6	0	0	1	0	0	15	0	0	0	0	0	0	0	4	4335	0	0	wowza	2	1	0	3	0	4	Nick Kerstens	-1	3	1	1	0	0	2020-05-16 02:55:15.642098	0		0
 6	1510	6	7	3	1	2	0	0	1	0	0	7	0	1	0	0	0	0	0	0	4335	0	0	crashed into ctrl pnl	0	1	0	0	0	0	Nick Kerstens	-1	0	1	0	0	0	2020-05-16 03:06:26.038454	0		0
 7	1510	7	12	3	1	0	0	0	1	0	0	8	0	0	0	0	1	0	0	0	4346	0	0	Drove forward	1	1	0	1	0	7	Nick Kerstens	-1	0	1	0	0	0	2020-05-16 04:49:55.306894	0		0
 8	1510	8	16	3	1	0	0	0	1	0	0	0	11	0	0	0	0	0	0	0	4453	0	0		1	1	0	0	0	3	Nick Kerstens	-1	0	1	0	0	0	2020-05-16 05:03:40.738601	0		0
-12	1510	1	1	3	1	3	0	0	1	0	0	0	0	0	0	0	0	2	0	0	4306	0	0		2	0	0	1	0	0	Nick Kerstens	3683	0	1	0	0	1	2020-05-17 17:28:02.367047	0		0
-13	1510	2	1	3	1	4	0	0	1	0	0	4	0	3	0	0	0	0	0	0	4306	0	0	crashed into alliance partner	2	1	0	0	0	5	Nick Kerstens	-1	2	1	0	0	0	2020-05-17 17:29:32.392651	0		0
+9	1510	9	10	3	1	3	0	0	1	0	0	3	0	0	0	0	0	0	0	0	4411	0	1	Shot preload, drove 	1	1	0	1	0	4	Nick Kerstens	-1	1	1	0	0	0	2020-05-16 20:23:19.998292	0	Slow robot	0
+10	1510	10	10	2	1	3	0	0	1	0	0	2	1	4	0	0	0	0	0	2	4346	0	1	Wish it worked this well	2	1	1	2	0	0	Alex	-1	2	1	1	0	0	2020-05-16 21:27:15.810503	0	This a team comment	0
+11	1510	11	18	3	1	3	0	0	1	0	0	0	0	0	0	0	0	3	0	4	4378	0	1	Missed balls on pickup	2	1	0	3	0	0	Nick Kerstens	2405	0	1	0	0	0	2020-05-16 21:40:00.315202	0	Intake jammed, switched to defense	0
+12	1510	12	14	3	1	3	0	0	1	0	0	0	0	0	0	0	0	0	0	2	4378	0	2	Fine	1	1	0	3	0	5	Nick Kerstens	-1	1	1	0	0	0	2020-05-16 21:44:30.055832	0	Indexer and shooter problems. Small intake bad	0
+14	1510	13	18	3	1	2	0	1	1	0	0	4	0	0	0	0	0	0	0	2	4378	0	0	Bad intake after turn	2	3	0	3	0	7	Nick Kerstens	-1	0	1	1	0	0	2020-05-16 21:50:33.755390	0	Slow and small intake - climbed before partner could hook on	0
+15	1510	14	14	3	1	3	0	0	1	0	0	0	0	0	0	0	2	2	0	5	4378	0	2	Fine	1	1	0	3	0	3	Nick Kerstens	7623	1	1	0	0	0	2020-05-16 21:55:25.080071	0	Deployed climbed arm too early	0
+16	1510	15	18	3	1	3	0	0	1	0	0	5	0	1	0	0	0	0	0	3	4378	0	2	Missed additional ball	2	1	0	3	0	2	Nick Kerstens	-1	1	1	1	0	0	2020-05-16 22:13:44.924483	0	Could shoot from baseline, defense forced them to switch to trench, couldn't shoot from trench	0
+17	1510	52	10	3	1	0	0	0	1	0	0	0	0	12	0	0	0	0	0	0	4453	0	0	Moved off the initiation line and that is pretty much it.	0	1	0	0	0	1	Julian	-1	0	1	0	0	0	2020-05-17 18:06:51.960376	0		0
+19	1510	52	7	1	1	0	0	0	1	0	0	0	0	0	0	0	0	1	0	0	4353	0	2	Moved off the initiation line.	0	1	0	0	0	2	Julian	4343	0	1	0	0	1	2020-05-17 18:26:59.601475	0		0
+20	1510	16	19	3	1	2	0	0	1	0	0	1	0	0	0	0	0	2	0	3	4378	0	1	didn't pickup 	1	1	0	3	0	4	Nick Kerstens	7475	0	1	0	0	1	2020-05-19 22:55:21.268044	0	Limelight wasn't working, switched to defense 	0
+21	1510	17	19	3	1	2	0	0	1	0	0	3	0	0	0	0	0	0	0	0	4378	0	0	Went to pickup but didn't shoot extra balls 	2	3	0	0	0	1	Nick Kerstens	-1	0	1	1	0	0	2020-05-19 23:00:10.147268	0	Disabled mid match 	0
+22	1510	18	14	3	1	5	0	0	1	0	0	10	0	0	0	0	2	0	0	1	4378	0	0	shot balls from trench	1	1	0	3	0	2	Nick Kerstens	-1	0	1	1	0	0	2020-05-19 23:09:53.890879	0	ejected climbing hook too early, intake small and slow	0
+23	1510	19	19	3	1	3	0	0	1	0	0	8	0	0	0	0	2	0	0	4	4378	0	1	Missed shots coming out of auto	0	0	0	2	0	1	Nick Kerstens	-1	1	1	1	0	0	2020-05-19 23:19:27.584332	0	Ejected climbing arm too early 	0
+24	1510	20	19	3	1	3	0	0	1	0	0	13	0	0	0	0	0	0	0	4	4378	0	1	missed shots picked up from trench	0	1	0	3	0	0	Nick Kerstens	-1	2	1	1	0	0	2020-05-19 23:28:23.872084	0	4343 baited lots of fouls :) 	0
+25	1510	21	19	3	1	3	0	0	1	0	0	0	0	0	0	0	0	2	2	4	4378	0	2	Missed 2 from trench -- need to add missed category	2	1	0	3	0	0	Nick Kerstens	7558	0	1	0	0	1	2020-05-19 23:41:41.890775	0		0
+26	1510	22	14	3	1	1	0	2	1	0	0	7	0	0	0	0	0	0	0	0	4378	0	0	collided with alliance partner, ruining their autonomous route	1	1	0	1	0	1	Nick Kerstens	-1	0	1	1	0	0	2020-05-19 23:48:10.293846	0	opposing alliance blocked climbs 	0
