@@ -589,39 +589,67 @@ tr:nth-child(even){
 	transition: 0.2s;
 }
 
+
+
 .filterBox {
+	visibility: inherit;
 	display: flex;
-	padding: 10px;
+	padding: 10px 20px;
 	height: auto;
 	width: auto;
-	margin: 0px 0px 10px 10px;
 	transition: all .2s ease-in-out;
 }
-
 .filterBox:hover {
-	transform: scale(1.04);
 	box-shadow: 2px 5px 25px 2px #232323;
 }
-
 .filterChip {
-	width: auto;
+	width: 150px;
 	outline: none;
 	color: white;
 	background: none;
 	border: none;
 	border-bottom: 1px solid #ffffff;
+	padding-left: 5px;
 	transition: all 0.2s ease-in-out;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .filterChip:focus {
 	border-color: #0F4D8D;
 	border-width: 3px;
+	background-color: rgba(0,0,0,0.2);
+	font-size: 18px;
 }
-
 .bottombar {
+	height: 30px;
 	position: fixed;
 	top: auto;
 	bottom: 0;
 	left: 0;
 	background-color: #0F4D8D;
-	width: 100%
+	width: 100%;
+	transition: 0.5s;
+}
+.bottomBarButton {
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 30px;
+	width: 50px;
+	background-size: contain;
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	border: none;
+	cursor: pointer;
+}
+.bottomBarButton:hover {
+	background-color: RGBA(0,0,0,0.25)
+}
+#bottomBarContent {
+	display: flex; 
+	visibility: hidden
+}
+#collapseBottomBar {
+	visibility: hidden;
 }

@@ -115,20 +115,25 @@
 				</table>
 			</div>
 		</figure>
-        <div class="tileContainer bottombar">
-            <div class="filterBox" >
-                <img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Searh Icon">
-                <input class="filterChip" type="text" id="teamNumber" onkeyup="tableFilter('teamNumber')" placeholder="Filter Team Number">
-            </div>
-            <br>
-            <div class="filterBox" >
-                <img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Searh Icon">
-                <input class="filterChip" type="text" id="teamName" onkeyup="tableFilter('teamName')" placeholder="Filter Team Name">
-            </div>
-            <div class="filterBox" >
-                <img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Searh Icon">
-                <input class="filterChip" type="text" id="matchNumber" onkeyup="tableFilter('matchNumber')" placeholder="Filter Match Number">
-            </div>
+        <div class="bottombar" id=bottomBar>
+			<div class="bottomBarContent">
+				<div class="filterBox" >
+					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Searh Icon">
+					<input class="filterChip" type="text" id="teamNumber" onkeyup="tableFilter('teamNumber')" placeholder="Filter Team Number">
+				</div>
+				<br>
+				<div class="filterBox" >
+					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Searh Icon">
+					<input class="filterChip" type="text" id="teamName" onkeyup="tableFilter('teamName')" placeholder="Filter Team Name">
+				</div>
+				<br>
+				<div class="filterBox" >
+					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Searh Icon">
+					<input class="filterChip" type="text" id="matchNumber" onkeyup="tableFilter('matchNumber')" placeholder="Filter Match Number">
+				</div>
+			</div>
+			<button class="bottomBarButton" id="expandBottomBar" onclick="expandBottomBar()" style="background-image: url("img/MoreIcon.png")"></button>
+			<button class="bottomBarButton" id="collapseBottomBar" onclick="collapseBottomBar()" style="background-image: url("img/MoreIcon.png")"></button>
 		</div>
 	</div>
 

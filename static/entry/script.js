@@ -13,6 +13,23 @@ function closeNav() {
   document.getElementById("swissLogo").style.marginLeft= "0";
 }
 
+//Function that controls the bottom bar
+function expandBottomBar() {
+	document.getElementById("bottomBar").style.height = "70px";
+	document.getElementById("expandBottomBar").style.visibility = "hidden";
+	document.getElementById("collapseBottomBar").style.visibility = "visible";
+	document.getElementById("bottomBarContent").style.visibility = "visible";
+	document.getElementById("bodyContainer").style.paddingBottom = "70px";
+}	
+function collapseBottomBar() {
+	document.getElementById("bottomBar").style.height = "30px";
+	document.getElementById("expandBottomBar").style.visibility = "visible";
+	document.getElementById("collapseBottomBar").style.visibility = "hidden";
+	document.getElementById("bottomBarContent").style.visibility = "hidden";
+	document.getElementById("bodyContainer").style.paddingBottom = "20px";
+}
+
+
 // Function that controls the team number filtering on the data page. 
 
 function tableFilter(field) {
