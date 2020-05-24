@@ -216,6 +216,19 @@ ul {
 	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
+.specialBox {
+	display: flex;
+	align-items: center;
+	padding: 22.5px;
+	height: 100px;
+	margin: 0px 0px 10px 10px;
+	background-color: #0F4D8D;
+	transition: all .2s ease-in-out; 
+}
+.specialBox:hover {
+	transform: scale(1.075); 
+	box-shadow: 2px 5px 25px 2px #232323;
+}
 .homeText {
 	color: white;
 	text-decoration: none;
@@ -342,6 +355,26 @@ tr:nth-child(even){
 	.pillSelect {
 		max-width: 75%;
 	}
+	/* 
+	
+	Ordering of index boxes when on mobile (to prevent the jankey looking blank spaces) 
+	This SHOULD also apply to any viewports less than this. If this breaks on mobile let Nick know
+	
+	*/
+	
+	#tileMatch { order: 1 }
+	#tilePit {order: 2}
+	#tileGlance {order: 3}
+	#tileTeams {order: 4}
+	#tileData {order: 6}
+	#tileVisualize {order: 5}
+	#tileDownload {order: 7}
+	#tileEvent {order: 8; max-width: 255px;}
+	#tileUpload {order: 10}
+	#tileAdmin {order: 11}
+	#tileSettings {order: 12}
+	#tileLogout {order: 13}
+	#tileActive {order: 9; max-width: 255px;}
 }
 
 /* for mobile phones, portrait and landscape */
@@ -370,6 +403,12 @@ tr:nth-child(even){
 		margin: 5px 0 0 5px;
 		width: 245px;
 		padding: 20px;
+	}	
+	.specialBox {
+		margin: 5px 0 0 5px;
+		height: auto;
+		width: 245px;
+		padding: 20px;
 	}
 	.smallBox {
 		margin: 5px 0 0 5px;
@@ -392,10 +431,6 @@ tr:nth-child(even){
 		height: 100%;
 		width: inherit;
 	}
-	#nowidth {
-		max-width: 255px;
-	}
-
 }
 
 
@@ -501,7 +536,20 @@ tr:nth-child(even){
 	flex-direction: column
 }
 
-
+/* manage index page tile ordering */
+#tileMatch { order: 1 }
+#tilePit {order: 2}
+#tileGlance {order: 3}
+#tileTeams {order: 4}
+#tileData {order: 5}
+#tileVisualize {order: 6}
+#tileDownload {order: 7}
+#tileEvent {order: 8}
+#tileUpload {order: 9}
+#tileAdmin {order: 10}
+#tileSettings {order: 11}
+#tileLogout {order: 12}
+#tileActive {order: 13}
 
 
 

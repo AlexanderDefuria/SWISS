@@ -24,6 +24,11 @@
 	background-color: #555555;
 	box-shadow: 7px 7px 25px 10px #232323;
 }
+
+
+/* TEXT INPUTS */
+
+
 .formItem input[type=text]{
 	width: 200px;
 	outline: none;
@@ -39,8 +44,13 @@
 	border-width: 3px;
 	background: #333333;
 }
+
+
+/* PASSWORD ENTRY */
+
+
 .formItem input[type=password]{
-	width: auto;
+	width: 400px;
 	outline: none;
 	color: white;
 	background: none;
@@ -49,11 +59,15 @@
 	transition: all 0.2s ease-in-out;
 }
 .formItem input[type=password]:focus {
-	width: 400px;
 	border-color: #0F4D8D;
 	border-width: 3px;
 	background: #333333;
 }
+
+
+/* NUMBER INPUTS */
+
+
 .formItem input[type=number]{
 	width: 60px;
 	outline: none;
@@ -76,6 +90,11 @@
 .formItem input[type=number]:invalid {
 	background-color: #904444;
 }
+
+
+/* SELECT/DROPDOWNS */
+
+
 .formItem select {
 	min-width: 200px;
 	color: white;
@@ -88,6 +107,11 @@
 .formItem select:focus {
 	background-color: #333333;
 }
+
+
+/* RADIO BUTTONS */
+
+
 .radioGroup{
 	align-self: flex-end;
 }
@@ -98,7 +122,6 @@
   border: 2px solid white;
   background-color: 0;
   -webkit-appearance: none; /*to disable the default appearance of radio button*/
-  -moz-appearance: none;
   transition: all 0.2s;
 }
 .radioGroup input[type=radio]:focus {
@@ -113,7 +136,7 @@
 }
 .radioGroup label span:first-of-type {
 	position: relative;
-	left: -27px;
+	left: -28px;
 	font-size: 15px;
 	color: white;
 }
@@ -123,21 +146,34 @@
 	user-select: none;
 	width: 5px;
 }
-.ticker {
-	align-self: flex-end;
-	height: inherit;
-}
-.goalIcon {
-	height: 35px; position: relative; top: 5px; left: -5px
-}
+
+
+/* CHECKBOX */
+
+
 .checkboxGroup {
 	padding: 10px;
 	text-align: right;
 }
+/*
+.checkboxGroup input[type=checkbox] {
+	-webkit-appearance: none; 
+	background: 0;
+	background-color: transparent;
+	outline: 2px white solid;
+	height: 30px;
+	width: 30px;
+}
+*/
+
+
+/* INCREMENT AND DECREMENT BUTTON SECTIONS */
+
+
 .formItem [type=button] {
 	background: none;
 	color: white;
-	font-size: 28px;
+	font-size: 21px;
 	width: 30px;
 	height: 30px;
 	border: 2px solid white;
@@ -149,9 +185,57 @@
 	background-color: white;
 	color: black;
 }
-.formItem [type=range] {
-	width: 200px;
+.ticker {
+	align-self: flex-end;
+	height: inherit;
 }
+.goalIcon {
+	height: 35px; position: relative; top: 5px; left: -5px
+}
+
+
+/* RANGE SLIDER */
+
+
+.formItem [type=range] {
+	-webkit-appearance: none;
+	margin-bottom: 15px;
+	height: 5px;
+	width: 200px;
+	opacity: 0.75;
+	transition: all 0.1s ease-in-out;
+}
+.formItem [type=range]:hover {
+	opacity: 1;
+}
+.formItem [type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	border: 2px solid white;
+	background: #444444;
+	cursor: pointer;
+	transition: all 0.1s ease-in-out;
+}
+.formItem [type=range]::-moz-range-thumb {
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	border: 2px solid white;
+	cursor: pointer;
+}
+.formItem [type=range]::-webkit-slider-thumb:hover {
+	background-color: #ffffff;
+	width: 30px;
+	height: 30px;
+}
+
+
+/* SUBMIT BUTTON */
+
+
 .formItem [type=submit] {
 	background: none;
 	border: none;
@@ -161,11 +245,23 @@
 	height: 60px;
 	width: 100%;
 }
+
+
+/* ID'S */
+
+
 #submit {
 	background-color: #0F4D8D;
 }
 #autoStart_img {
 	height: 50px;
+	
+	
+	
+	
+/* For MOST tablets in landscape */
+	
+	
 }
 @media screen and (max-width: 1280px) {
 	.formContainer {
@@ -192,7 +288,7 @@
 	.radioGroup {
 		display: block
 	}
-	.radioGroup input[type="radio"] {
+	.radioGroup input[type=radio] {
 		width: 50px;
 		height: 50px;
 		border-radius: 25px;
@@ -211,8 +307,14 @@
 		width: 5px;
 	}
 	.formItem [type=button] {
+		font-size: 28px;
 		width: 50px;
 		height: 50px;
+	}
+	.formItem [type=range]::-webkit-slider-thumb:hover {
+		background-color: #ffffff;
+		width: 45px;
+		height: 45px;
 	}
 }
 
@@ -228,18 +330,25 @@
 	.formItem label {
 		padding-bottom: 20px;
 	}
+	.formItem input[type=text], select {
+		width: auto;
+		height: auto;
+		font-size: 21px;
+	}
 	.formItem input[type=text]:focus {
 		width: auto;
-		text-align: center;
 	}
 	.formItem input[type=password]:focus {
 		width: auto;
-		text-align: center;
 	}
 	.checkboxGroup span {
 		margin-top: 20px;
 	}
 	.formItem input[type=range] {
+		width: 100%;
+	}
+	#autoStart_img {
+		height: auto;
 		width: 100%;
 	}
 }

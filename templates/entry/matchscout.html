@@ -78,14 +78,14 @@
 			<div class="formItem">
 				<label for="autoStart">Starting Position</label>
 				<div class="right">
-					<div>
-					    <input type="range" name="autoStart" id="autoStart" min="0" max="20" value="14" oninput="autoStart_number.value=autoStart.value">
-					</div>
-					<div>
-    					<img id="autoStart_img" src="{{ MEDIA_URL }}{% static 'InitiationLine.png' %}" alt="Initiation Line Graph">
-					</div>
 					<div style="text-align: center">
 					    <output name="autoStart_number" id="autoStart_number" for="autoStart">14</output>
+					</div>
+					<div>
+    					<img id="autoStart_img" src="{{ MEDIA_URL }}{% static 'InitiationLine.png' %}" alt="Initiation Line">
+					</div>
+					<div>
+					    <input type="range" name="autoStart" id="autoStart" min="0" max="20" value="14" oninput="autoStart_number.value=autoStart.value">
 					</div>
 				</div>
 			</div>
@@ -141,10 +141,19 @@
 					<input type="button" onclick="incrementValue('inner_auto')" value="+">
 				</div>
 		  </div>
-		  <div class="formItem right">
+			<div class="formItem">
+				<label for="missed_balls_auto"></label>
+				<div class="ticker">
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'MissedIcon.png' %}" alt="missed">
+					<input type="button" onclick="decrementValue('missed_balls_auto')" value="-">
+					<input name="missed_balls_auto" id="missed_balls_auto" type="number" min="0" max="100" value="0" readonly>
+					<input type="button" onclick="incrementValue('missed_balls_auto')" value="+">
+				</div>
+			</div>
+			<div class="formItem">
 				<label for="autoComment">Auto Route Notes</label>
 				<input type="text" name="autoComment" id="autoComment" placeholder="Auto Notes" autocomplete="off">
-		  </div>
+			</div>
 			
 <!--	OFFENSE		-->
 			
@@ -172,6 +181,7 @@
 			<div class="formItem">
 				<label>Missed balls</label>
                 <div class="ticker">
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'MissedIcon.png' %}" alt="missed">
   					<input type="button" onclick="decrementValue('missedBalls')" value="-">
 					<input id="missedBalls" name="missedBalls" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('missedBalls')" value="+">
@@ -194,23 +204,15 @@
 			<div class="formItem">
 				<label for="cycleStyle">Cycle Style</label>
 				<div class="checkboxGroup right">
-					<label>
-						No Cycles Made
+				<div class="checkboxGroup">
+					<label>No Cycles Made</label>
 						<input type="checkbox" id="noCycles" name="cycleStyle" value="0">
-						<span class="checkmark"></span>
-					</label>
 					<br>
-					<label>
-						Full Field Cycles
+					<label>Full Field Cycles</label>
 						<input type="checkbox" id="Full Field" name="cycleStyle" value="1">
-						<span class="checkmark"></span>
-					</label>
 					<br>
-					<label>
-						Cleanup
-						<input type="checkbox" id="Cleanup" name="Cleanup" value="2">
-						<span class="checkmark"></span>
-					</label>
+					<label>Cleanup</label>
+					<input type="checkbox" id="Cleanup" name="Cleanup" value="2">
 				</div>
 			</div>
 			<div class="formItem">
