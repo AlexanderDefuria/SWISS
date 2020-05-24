@@ -620,7 +620,7 @@ tr:nth-child(even){
 	background-color: rgba(0,0,0,0.2);
 	font-size: 18px;
 }
-.bottombar {
+.bottomBar {
 	height: 30px;
 	position: fixed;
 	top: auto;
