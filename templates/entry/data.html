@@ -132,8 +132,8 @@
 					<input class="filterChip" type="text" id="matchNumber" onkeyup="tableFilter('matchNumber')" placeholder="Filter Match Number">
 				</div>
 			</div>
-			<button class="bottomBarButton" id="expandBottomBar" onclick="expandBottomBar()" style="background-image: url("img/MoreIcon.png")"></button>
-			<button class="bottomBarButton" id="collapseBottomBar" onclick="collapseBottomBar()" style="background-image: url("img/MoreIcon.png")"></button>
+			<button class="bottomBarButton" id="expandBottomBar" onclick="expandBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
+			<button class="bottomBarButton" id="collapseBottomBar" onclick="collapseBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
 		</div>
 	</div>
 
