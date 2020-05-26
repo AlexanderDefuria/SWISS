@@ -1,3 +1,23 @@
+// Below is Nick's select and deselect all buttons
+function selectAllTeams() {
+	var items = document.getElementsByName('teamCheckBox');
+	for (var i = 0; i < items.length; i++) {
+		if (items[i].type == 'checkbox')
+			items[i].checked = true;
+	}
+}
+
+function unselectAllTeams() {
+	var items = document.getElementsByName('teamCheckBox');
+	for (var i = 0; i < items.length; i++) {
+		if (items[i].type == 'checkbox')
+			items[i].checked = false;
+	}
+}	
+
+
+
+
 var initialBoxID = 'MetricCheckBox';
 let myChart;
 let fieldData;

@@ -54,7 +54,9 @@
 		<div class="formItem">
 			<label for="drivetrainStyle">Style of Drivetrain</label>
 			<select name="drivetrainStyle" id="drivetrainStyle" required> 
+				<option value="">&#8230;</option>
 				<option value="Kitbot">Kitbot</option>
+				<option value="Tank">Tank</option>
 				<option value="West Coast Drive">West Coast</option>
 				<option value="Swerve">Swerve</option>
 				<option value="Mecanum">Mecanum</option>
@@ -68,6 +70,7 @@
 		<div class="formItem">
 			<label for="drivetrainMotor">Types of Motors in Drivetrain</label>
 			<select name="drivetrainMotor" id="drivetrainMottor" required> 
+				<option value="">&#8230;</option>
 				<option value="Falcon 500">Falcon 500</option>
 				<option value="Neo 500">Neo 500</option>
 				<option value="CIM">CIM</option>
@@ -77,22 +80,22 @@
 
 		<div class="formItem">
 			<label for="drivetrainMotorAmount">Number of Motors in Drivetrain</label>
-			<input id="drivetrainMotorAmount" name="drivetrainMotorAmount" type="number" min="2" max="20" value="" step="2" required>
+			<input id="drivetrainMotorAmount" name="drivetrainMotorAmount" type="number" min="2" max="20" value="0" step="2" required>
 		</div>
 		
 		<h1>Autonomous</h1>
 		<div class="formItem">
 			<label for="hasAuto">Has Autonomous Route?</label>			
-				<div class="radioGroup">
-					<label>
-						<input type="radio" name="hasAuto" id="hasAuto_false" value="False" onClick="registerChange">
-						<span>N</span>
-					</label>
-						<label>
-						<input type="radio" name="hasAuto" id="hasAuto_true" value="True" checked onClick="registerChange">
+			<div class="radioGroup">
+				<label>
+					<input type="radio" name="hasAuto" id="hasAuto_false" value="False" onClick="registerChange()" required>
+					<span>N</span>
+				</label>
+				<label>
+					<input type="radio" name="hasAuto" id="hasAuto_true" value="True" onClick="registerChange()">
 					<span>Y</span>
-					</label>
-				</div>
+				</label>
+			</div>
 		</div>
 		<div class="formItem">
 			<label for="autoDescription">Short Description of Autonomous Routes</label>
@@ -101,6 +104,7 @@
 		<div class="formItem">
 			<label for="autoScoring">Scoring Goals in Autonomous</label>
 			<select name="autoScoring" id="autoScoring" required>
+				<option value="">&#8230;</option>
 				<option value="0">No Scoring Ability</option>
 				<option value="1">Low Goal</option>
 				<option value="2">High Goal</option>
@@ -111,6 +115,7 @@
 		<div class="formItem">
 			<label for="teleScoring">Scoring Goals in Teleoperated</label>
 			<select name="teleScoring" id="teleScoring" required>
+				<option value="">&#8230;</option>
 				<option value="0">No Scoring Ability</option>
 				<option value="1">Low Goal</option>
 				<option value="2">High Goal</option>
@@ -149,11 +154,11 @@
 			<label for="lowBot">Can drive under the control panel</label>
 				<div class="radioGroup">
 					<label>
-						<input type="radio" name="lowBot" id="lowBot" value="False" onClick="registerChange" checked>
+						<input type="radio" name="lowBot" id="lowBot" value="False" onClick="registerChange()" required>
 						<span>N</span>
 					</label>
 					<label>
-						<input type="radio" name="lowBot" id="lowbot" value="True" onClick="registerChange">
+						<input type="radio" name="lowBot" id="lowbot" value="True" onClick="registerChange()">
 						<span>Y</span>
 					</label>
 				</div>
@@ -162,11 +167,11 @@
 			<label for="wheelManipulator">Control Panel Manipulator</label>
 			<div class="radioGroup">
 				<label>
-					<input type="radio" name="wheelManipulator" id="wheelManipulator" value="False" onClick="registerChange" checked>
+					<input type="radio" name="wheelManipulator" id="wheelManipulator" value="False" onClick="registerChange()" required>
 					<span>N</span>
 				</label>
 				<label>
-					<input type="radio" name="wheelManipulator" id="wheelManipulator" value="True" onClick="registerChange">
+					<input type="radio" name="wheelManipulator" id="wheelManipulator" value="True" onClick="registerChange()">
 					<span>Y</span>
 				</label>
 			</div>
@@ -177,6 +182,7 @@
 		<div class="formItem">
 			<label for="climbLocations">Climbing Locations</label>
 			<select name="climbLocations" id="climbLocations" required>
+				<option value="">&#8230;</option>
 				<option value="0">No Climb</option>
 				<option value="1">Center Only</option>
 				<option value="2">Side Only</option>
@@ -187,24 +193,24 @@
 			<label for="climbBuddy">Buddy Climb?</label>
 				<div class="radioGroup">
 					<label>
-						<input type="radio" name="climbBuddy" id="climbBuddy_false" value="False" onClick="registerChange" checked>
+						<input type="radio" name="climbBuddy" id="climbBuddy_false" value="False" onClick="registerChange()" required>
 						<span>N</span>
 					</label>
 					<label>
-						<input type="radio" name="climbBuddy" id="climbBuddy_true" value="True" onClick="registerChange">
+						<input type="radio" name="climbBuddy" id="climbBuddy_true" value="True" onClick="registerChange()">
 						<span>Y</span>
 					</label>
 				</div>
 		</div>
 		<div class="formItem">
 			<label for="climbBalance">Balancing Mechanism</label>
-				<div class=w"radioGroup">
+				<div class="radioGroup">
 					<label>
-						<input type="radio" name="climbBalance" id="climbBalance_false" value="False" onClick="registerChange" checked>
+						<input type="radio" name="climbBalance" id="climbBalance_false" value="False" onClick="registerChange()" required>
 						<span>N</span>
 					</label>
 					<label>
-						<input type="radio" name="climbBalance" id="climbBalance_true" value="True" onClick="registerChange">
+						<input type="radio" name="climbBalance" id="climbBalance_true" value="True" onClick="registerChange()">
 						<span>Y</span>
 					</label>
 				</div>
@@ -220,7 +226,7 @@
 		<br>
 		<div class="formItem" id="submit" onclick="validate('mainForm')">
                 <input name="submit" id="submitButton" type="submit" style="pointer-events: none">
-			</div>
+		</div>
 	</form>
 	</div>
 </body>
