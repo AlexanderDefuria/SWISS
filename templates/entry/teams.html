@@ -56,7 +56,7 @@
                             <div class="teamnamePill"><p>{{ team.name }}</p></div>
                         </div>
                     {% endif %}
-                </a>
+				</a>
             {% endfor %}
             <br>
             <a href="{% url 'entry:upload' %}">
@@ -78,6 +78,12 @@
 					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
 					<input class="filterChip" type="text" id="teamName" onkeyup="teamFilter('teamName')" placeholder="Filter Team Name">
 				</div>
+				{% if user.is_staff %}
+				<div class="filterBox" onClick="location.href = 'https://redstudiosmedia.ca/admin/entry/team/';" style="cursor: pointer">
+					<img src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" style="height: 50px;" alt="Edit">
+					<h1>Edit Teams</h1>
+				</div>
+				{% endif %}
 			</div>
 			<button class="bottomBarButton" id="expandBottomBar" onclick="expandBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
 			<button class="bottomBarButton" id="collapseBottomBar" onclick="collapseBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
