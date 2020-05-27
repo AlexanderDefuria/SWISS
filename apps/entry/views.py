@@ -27,6 +27,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 
 from apps.entry.graphing import *
 from apps.entry.models import Team, Match, Schedule, Images, Event, Pits
+from apps.entry.templatetags import common_tags
 
 register = Library
 
@@ -50,7 +51,6 @@ def match_scout_submit(request, pk):
         match.preloaded_balls = request.POST.get('preloadedBalls', 3)
 
         match.auto_route = request.POST.get('autoRoute', 0)
-        # TODO Baseline seems inconsistent
         match.baseline = request.POST.get('baseline', False)
         match.outer_auto = request.POST.get('outer_auto', 0)
         match.lower_auto = request.POST.get('lower_auto', 0)
@@ -75,11 +75,12 @@ def match_scout_submit(request, pk):
         match.played_defense = request.POST.get('playedDefense', False)
         match.defense_rating = request.POST.get('defenseRating', 0)
         match.defense_fouls = request.POST.get('defenseFouls', 0)
-        team_defended = request.POST.get('teamDefended', '')
-        match.team_defended = team_defended if team_defended != '' else -1
-        # TODO Fix able to push, there is an incorrect associated input type
         match.able_to_push = request.POST.get('pushRating', 0)
 
+        team_defended = request.POST.get('teamDefended', '')
+        match.team_defended = team_defended if team_defended != '' else -1
+
+        # TODO Fix able to push, there is an incorrect associated input type
         # TODO Michigan teams come up as -1 fix this in the defended by field
         # TODO other teams in defended by field come up as 0
 
@@ -93,9 +94,9 @@ def match_scout_submit(request, pk):
 
         match.hp_fouls = request.POST.get('humanFouls', 0)
         match.dt_fouls = request.POST.get('driverFouls', 0)
-        match.yellow_card = True if request.POST.get('yellow_card', 0) != '' else False
+        match.yellow_card = True if request.POST.get('cardFouls', 0) != '' else False
+        match.yellow_card_descrip = request.POST.get('cardFouls', '') if match.yellow_card else 'No Foul'
 
-        # TODO This is not importing scouter name, auto comment works
         match.scouter_name = request.POST.get('scouterName', '')
         match.comment = request.POST.get('comment', '')
 
@@ -496,6 +497,7 @@ class Visualize(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/visualization.html'
     model = Team
     context_object_name = "team_list"
+
 
     def get_queryset(self):
         return get_present_teams()

@@ -51,6 +51,8 @@ def bar_graph(req_fields, teams):
         matches = Match.objects.filter(team_id=team)
         team_data = default_out.copy()
 
+        # TODO Separate out dependants like in glance, meaning only contribute quality to average if defense was actually played
+
         for match in matches:
             for field in match.__dict__:
                 if team_data.__contains__(field):

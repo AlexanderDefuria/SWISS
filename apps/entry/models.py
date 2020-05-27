@@ -57,7 +57,7 @@ class Schedule(models.Model):
     blue_score = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
 
     def __str__(self):
-        return self.match_number
+        return str(self.match_number)
 
 
 class Match(models.Model):
@@ -111,6 +111,7 @@ class Match(models.Model):
     hp_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     dt_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     yellow_card = models.BooleanField(default=False)
+    yellow_card_descrip = models.TextField(default="")
 
     # Scouter
     scouter_name = models.TextField(default="")
