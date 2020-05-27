@@ -46,7 +46,6 @@
 
 	<div class="bodyContainer" id="bodyContainer">
         <div class="heroContent">
-			<h1>The numbers Mason, what do they mean?</h1>
 		</div>
 		<div class="statsContainer">
 			<div class="flexColumn60">
@@ -73,6 +72,10 @@
                             <input name="teamCheckBox" type="checkbox" id="{{ team.id }}" value="{{ team.name }}">
                         </div>
                     	{% endfor %}
+						<div class="infoRow">
+							<button style="width: 50%" onClick="selectAllTeams()">Select All</button>
+							<button style="width: 50%" onClick="unselectAllTeams()">Deselect</button>
+						</div>
 					</div>
 				</div>
 				<div class="infoBox infoReg">

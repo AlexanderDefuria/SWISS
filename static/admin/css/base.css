@@ -496,7 +496,7 @@ input[type=button][disabled].default {
 .module {
     border: none;
     margin-bottom: 30px;
-    background: #fff;
+    background: #333333;
 }
 
 .module p, .module ul, .module h3, .module h4, .module dl, .module pre {
@@ -790,6 +790,7 @@ table#change-history tbody th {
 }
 
 #content-related {
+	background-color: #444444
     float: right;
     width: 260px;
     position: relative;
