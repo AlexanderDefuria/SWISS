@@ -334,7 +334,7 @@ table, th, td {
 tr:nth-child(even){
 	background-color: #555555
 }
-<<<<<<< HEAD
+
 
 
 @media screen and (max-width: 1860px){
@@ -484,6 +484,7 @@ tr:nth-child(even){
 	.tileContainer #tileLogout {order: 13}
 
 }
+
 
 
 .sidebar {
