@@ -69,14 +69,16 @@
 				</a>
             {% endfor %}
             <br>
-
+            <a href="{% url 'entry:upload' %}">
+                <div class="teamChip" style="background-color: #0F4D8D">
+                    <img class="robotPhoto" src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
+                    <div class="teamnumberPill" style="background-color: transparent; border-color: transparent"><p>{{ team.number }}</p></div>
+                    <div class="teamnamePill"><p>Upload Team Image</p></div>
+                </div>
+            </a>
         </figure>
+        <br>
 
-        <a href="{% url 'entry:upload' %}">
-            <div class="smallBox">
-                <img src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
-            </div>
-        </a>
 
         {% get_cookie request 'filters' as filters %}
         {% if 'False' != filters %}
