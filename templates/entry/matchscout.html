@@ -63,6 +63,10 @@
 				<input type="number" name="matchNumber" id="matchNumber" min="1" max="99" required>
 			</div>
 			<div class="formItem">
+				<label for="scouterName">Scouter's Name</label>
+				<input type="text" name="scouterName" id="scouterName" required placeholder="Scouter Name" autocomplete="off">
+			</div>
+			<div class="formItem">
 				<label for="onField">Is Robot Present?</label>
 				<div class="radioGroup">
 					<label>
@@ -350,11 +354,6 @@
 			<div class="formItem">
 				<label for="comment">Comments</label>
 				<input type="text" name="comment" id="comment" placeholder="e.g. Disabled" autocomplete="off" required>
-			</div>
-			<br>
-			<div class="formItem">
-				<label for="scouterName">Scouter's Name</label>
-				<input type="text" name="scouterName" id="scouterName" required placeholder="Scouter Name" autocomplete="off">
 			</div>
 			<br>
 			<div class="formItem" id="submit" onclick="validate('mainForm', true)">
