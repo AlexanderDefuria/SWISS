@@ -74,6 +74,11 @@ def get_all_present_teams():
 
 
 @register.simple_tag
+def get_all_teams():
+    return views.get_all_teams()
+
+
+@register.simple_tag
 def get_info(team, field, *args):
     try:
         model = Pits

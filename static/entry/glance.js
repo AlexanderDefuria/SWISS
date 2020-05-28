@@ -20,6 +20,7 @@ function updateGlance(team_id) {
         dataType: "json",
         success: function (data) {
             teamData = JSON.parse(data.content)
+            console.log(teamData)
         },
         failure: function () {
             console.log("Failed");

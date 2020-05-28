@@ -41,7 +41,15 @@
 			<p class="homeText">Teams</p>
 		</div>
         <figure class="tileContainer">
-            {% for team in team_list %}
+            {% get_cookie request 'districtTeams' as districtTeams %}
+
+            {% if districtTeams == 'True' %}
+                {% get_all_teams as teamList %}
+            {% else %}
+                {% get_all_present_teams as teamList %}
+            {% endif %}
+
+            {% for team in teamList %}
                 <a href='{% url 'entry:glance' team.id %}' class="teamLink" id="{{ team.number }}" name="{{ team.name }}">
                     {% get_cookie request 'images' as images %}
                     {% if 'False' != images %}

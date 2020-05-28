@@ -295,8 +295,10 @@ def update_graph(request):
 @login_required(login_url='entry:login')
 def update_glance(request, pk):
     print(request.POST)
-    matches = Match.objects.filter(team_id=pk)
+    matches = Match.objects.filter(team_id=pk).order_by('match_number')
     matches_json = serializers.serialize('json', matches)
+    print(matches_json)
+
     return HttpResponse(matches_json, content_type='application/json')
 
 
@@ -304,8 +306,6 @@ def update_glance(request, pk):
 @csrf_exempt
 @login_required(login_url='entry:login')
 def update_fields(request):
-    data = decode_ajax(request)
-
     if request.method == "GET":
         try:
             path = 'scoring.json'
@@ -460,6 +460,13 @@ def get_present_teams():
     return objects
 
 
+def get_all_teams():
+    event_key = config.get_current_event_key()
+    objects = Team.objects.all()
+    objects = objects.order_by('number')
+    return objects
+
+
 class TeamList(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     template_name = 'entry/teams.html'
@@ -596,5 +603,6 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
         response = HttpResponseRedirect(reverse_lazy('entry:settings'))
         response.set_cookie('images', request.POST.get('images', ''))
         response.set_cookie('filters', request.POST.get('filters', ''))
+        response.set_cookie('districtTeams', request.POST.get('districtTeams', ''))
 
         return response

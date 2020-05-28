@@ -70,28 +70,23 @@
 				</div>
             </div>
             <div class="formItem">
-                <label for="colour">Driver Station Colour</label>
+                <label for="districtTeams">Show All District Teams?</label>
                 <div class="radioGroup">
 					<label>
-						<input type="radio" id="colour_true" name="colour" value="True">
+						<input type="radio" id="districtTeams_true" name="districtTeams" value="True">
 						<span>Y</span>
 					</label>
 					<label>
-						<input type="radio" id="colour_false" name="colour" value="False">
+						<input type="radio" id="districtTeams_false" name="districtTeams" value="False">
 						<span>N</span>
 					</label>
 				</div>
             </div>
 
-
-
             <div class="formItem" id="submit" onclick="validate('mainForm', false)">
                 <input name="submit" id="submitButton" type="submit" style="pointer-events: none" value="Save Settings">
 			</div>
         </form>
-
-		
-		
 	</div>
 </body >
 </html>
@@ -99,5 +94,6 @@
     function update_cookie_fields(){
         document.getElementById('images_'.concat('{% get_cookie request 'images' %}'.toLowerCase())).checked = true;
         document.getElementById('filters_'.concat('{% get_cookie request 'filters' %}'.toLowerCase())).checked = true;
+        document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true;
     }
 </script>
