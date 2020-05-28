@@ -76,6 +76,9 @@ ul {
 	display: flex;
 	flex-wrap: wrap;
 }
+.teamTileContaienr {
+	justify-content: center;
+}
 .flexColumn60 {
 	flex: 1.5;
 }
