@@ -555,6 +555,8 @@ tr:nth-child(even){
 }
 .sidebar a:hover {
 	color: #f1f1f1;
+	transition: 0.3s;
+	
 }
 .sidebar a:active {
 	color: #0F4D8D;
