@@ -39,7 +39,7 @@
 	
 	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'StatsBackground.png' %})">
 		<div class="heroContent" id="heroSpace">
-					<h1 style="font-size: 42px; margin: 0px;">Raw Data</h1>
+		<h1 style="font-size: 42px; margin: 0px;">Raw Match Data</h1>
 		</div>
 			<div class="tableContainer">
 				<table id="dataTable">
@@ -68,8 +68,8 @@
 						<th>Dfns Quality</th>
 						<th>Dfns Fouls</th>
 						<th>Push Ability</th>
-                        <th>Climbed</th>
-						<th>Clmb Position</th>
+                        <th>Climb Position</th>
+						<th>Climbed</th>
 						<th>Timeout Position</th>
 						<th>Human Fouls</th>
 						<th>Driver Fouls</th>
@@ -112,7 +112,8 @@
                     </tr>
                     {% endfor %}
 				</table>
-			</div>
+		</div>
+		<br>
         <div class="bottomBar" id="bottomBar">
 			<div id="bottomBarContent">
 				<div class="filterBox">
@@ -132,7 +133,7 @@
 				{% if user.is_staff %}
 				<div class="filterBox" onClick="location.href = 'https://redstudiosmedia.ca/admin/entry/match/';" style="cursor: pointer">
 					<img src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" style="height: 50px;" alt="Edit">
-					<h1>Edit Matches</h1>
+					<h3>Edit Matches</h3>
 				</div>
 				{% endif %}
 			</div>

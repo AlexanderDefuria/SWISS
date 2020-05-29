@@ -55,7 +55,7 @@
                 <a href='{% url 'entry:glance' team.id %}' class="teamLink" id="{{ team.number }}" name="{{ team.name }}">
                     {% get_cookie request 'images' as images %}
                     {% if 'False' != images %}
-                        <div class="teamChip">
+                        <div class="teamChip" style="overflow: hidden;">
                             <img class="robotPhoto" src="{{ MEDIA_URL }}{{ team.first_image }}" alt="robot photo">
                             <div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
                             <div class="teamnamePill"><p>{{ team.name }}</p></div>
@@ -66,7 +66,7 @@
                             <div class="teamnamePill"><p>{{ team.name }}</p></div>
                         </div>
                     {% endif %}
-				</a>
+			</a>
             {% endfor %}
             <br>
             <a href="{% url 'entry:upload' %}">
@@ -96,7 +96,7 @@
 				{% if user.is_staff %}
 				<div class="filterBox" onClick="location.href = 'https://redstudiosmedia.ca/admin/entry/team/';" style="cursor: pointer">
 					<img src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" style="height: 50px;" alt="Edit">
-					<h1>Edit Teams</h1>
+					<h3>Edit Teams</h3>
 				</div>
 				{% endif %}
 			</div>
