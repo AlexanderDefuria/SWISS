@@ -373,12 +373,20 @@ tr:nth-child(even){
 	.tileContainer #tileData {order: 4}
 	.tileContainer #tileVisualize {order: 6}
 	.tileContainer #tileDownload {order: 7}
-	.tileContainer #tileEvent {order: 8; max-width: 255px;}
+	.tileContainer #tileEvent {
+		order: 8; 
+		min-width: 255px;
+		max-width: 565px;
+	}
 	.tileContainer #tileUpload {order: 10}
 	.tileContainer #tileAdmin {order: 11}
 	.tileContainer #tileSettings {order: 12}
 	.tileContainer #tileLogout {order: 13}
-	.tileContainer #tileActive {order: 9; max-width: 255px;}
+	.tileContainer #tileActive {
+		order: 9; 
+		min-width: 255px;
+		max-width: 565px;
+	}
 }
 
 @media screen and (max-width: 1600px){
@@ -389,12 +397,20 @@ tr:nth-child(even){
 	.tileContainer #tileData {order: 6}
 	.tileContainer #tileVisualize {order: 5}
 	.tileContainer #tileDownload {order: 7}
-	.tileContainer #tileEvent {order: 8; max-width: 255px;}
+	.tileContainer #tileEvent {
+		order: 8; 
+		min-width: 255px;
+		max-width: 565px;
+	}
 	.tileContainer #tileUpload {order: 10}
 	.tileContainer #tileAdmin {order: 11}
 	.tileContainer #tileSettings {order: 12}
 	.tileContainer #tileLogout {order: 13}
-	.tileContainer #tileActive {order: 9; max-width: 255px;}
+	.tileContainer #tileActive {
+		order: 9; 
+		min-width: 255px;
+		max-width: 565px;
+	}
 }
 
 
@@ -823,11 +839,10 @@ tr:nth-child(even){
 		height: 100%;
 		width: inherit;
 	}
-		/* 
 	
+	/* 
 	Ordering of index boxes when on mobile (to prevent the jankey looking blank spaces) 
 	This SHOULD also apply to any viewports less than this. If this breaks on mobile let Nick know
-	
 	*/
 	
 	#tileMatch { order: 1 }
