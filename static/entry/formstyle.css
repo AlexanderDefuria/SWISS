@@ -45,6 +45,10 @@
 	border-width: 3px;
 	background: #333333;
 }
+/* Sets just the text input with the ID username */
+#username input[type=text] {
+	width: 400px;
+}
 
 
 /* PASSWORD ENTRY */
