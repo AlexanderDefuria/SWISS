@@ -4,7 +4,7 @@
 	align-self: flex-end;
 }
 .formContainer {
-	max-width: 75%;
+	max-width: 60%;
 	margin: 0 auto;
 }
 .formItem {
@@ -38,6 +38,7 @@
 	border-bottom: 1px solid #ffffff;
 	transition: all 0.2s ease-in-out;
 }
+/* Adds a background color, expands the input and adds a blue border when focused */
 .formItem input[type=text]:focus {
 	width: 400px;  
 	border-color: #0F4D8D;
@@ -58,6 +59,7 @@
 	border-bottom: 1px solid #ffffff;
 	transition: all 0.2s ease-in-out;
 }
+/* Adds a background color, expands the input and adds a blue border when focused */
 .formItem input[type=password]:focus {
 	border-color: #0F4D8D;
 	border-width: 3px;
@@ -76,17 +78,21 @@
 	text-align: center;
 	border: none;
 	border-bottom: 1px solid #ffffff;
+	font-size: 18px;
 	transition: all 0.2s ease-in-out;
 	border-radius: 0;
 }
+/* Adds a background color, expands the input and adds a blue border when focused */
 .formItem input[type=number]:focus {
 	border-color: #0F4D8D;
 	border-width: 3px;
 	background: #333333;
 }
+/* Settings for if the input is set to read-only */
 .formItem input[type=number]:read-only {
 	user-select: none;
 }
+/* Adds a red background colour when the number input is invalid */
 .formItem input[type=number]:invalid {
 	background-color: #904444;
 }
@@ -99,47 +105,52 @@
 	min-width: 200px;
 	color: white;
 	background: none;
-	background-color: #4444444;
+	background-color: transparent;
 	border: none;
 	border-bottom: 1px solid #ffffff;
 	transition: all 0.2s ease-in-out;
 }
+/* Customizes the input when focused */
 .formItem select:focus {
 	background-color: #333333;
+	border-bottom: 3px solid #0F4D8D;
 }
 
 
 /* RADIO BUTTONS */
 
 
-.radioGroup{
+.radioGroup {
 	align-self: flex-end;
 }
+/* Setting up the radio button */
 .radioGroup input[type=radio] {
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
-  border: 2px solid white;
-  background-color: 0;
-  -webkit-appearance: none; /*to disable the default appearance of radio button*/
-  transition: all 0.2s;
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+	border: 2px solid white;
+	background-color: 0;
+	-webkit-appearance: none; /*to disable the default appearance of radio button*/
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
 }
-.radioGroup input[type=radio]:focus {
-	border-width: 100px solid #0F4D8D;		
-}
+/* Makes the background colour of the radio button white when checked */
 .radioGroup input[type=radio]:checked {
 	background-color: white;
 }
+/* Sets the text (SPAN) in the radio button to black when checked */
 .radioGroup input[type=radio]:checked ~ span:first-of-type {
 	color: #000000;
 	font-weight: bolder;
 }
+/* Sets up the text (SPAN) in the radio button */
 .radioGroup label span:first-of-type {
 	position: relative;
 	left: -28px;
 	font-size: 15px;
 	color: white;
 }
+/* Sets up the text (SPAN) in the radio button */
 .radioGroup label span {
 	position: relative;
 	top: -10px;
@@ -151,20 +162,75 @@
 /* CHECKBOX */
 
 
-.checkboxGroup {
-	padding: 10px;
-	text-align: right;
+.checkContainer {
+	display: block;
+	position: relative;
+	padding-right: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	transition: all 0.2s ease-in-out;
 }
-/*
-.checkboxGroup input[type=checkbox] {
-	-webkit-appearance: none; 
-	background: 0;
+/* Hide the browser's default checkbox */
+.checkContainer input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+/* Create a custom checkbox */
+.checkmark {
+	position: absolute;
+	right: 0;
+	height: 26px;
+	width: 26px;
 	background-color: transparent;
-	outline: 2px white solid;
-	height: 30px;
-	width: 30px;
+	border: 2px solid white;
+	border-radius: 25px;
+	transition: all 0.2s ease-in-out;
 }
-*/
+/* When the checkbox is checked, background is white */
+.checkContainer input:checked ~ .checkmark {
+	background-color: white;
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+/* Show the checkmark when checked */
+.checkContainer input:checked ~ .checkmark:after {
+	display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkContainer .checkmark:after {
+	left: 9px;
+	top: 5px;
+	width: 5px;
+	height: 10px;
+	border: solid black;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+/* Additional properties for the last checkbox in the group */
+.checkContainer:last-of-type {
+	margin-bottom: 0;
+}
+/* Sets the checkbox border to grey if disabled. Unused for now */
+.checkContainer input:disabled ~ .checkmark{
+	background-color: transparent;
+	border-color: grey;
+	cursor: default;
+}
+
 
 
 /* INCREMENT AND DECREMENT BUTTON SECTIONS */
@@ -179,16 +245,19 @@
 	border: 2px solid white;
 	border-radius: 50px;
 	transition: all 0.1s ease-in-out;
-	touch-action: manipulation;
+	touch-action: manipulation; /* Stops iOS from zooming in when tapping repeatedly */
 }
+/* Sets the background and text colour in the button to white and black when clicked */
 .formItem [type=button]:active {
 	background-color: white;
 	color: black;
 }
+/* Handles the wrapper of a set of buttons and number input */
 .ticker {
 	align-self: flex-end;
 	height: inherit;
 }
+/* Sets an icon before the ticker container. Do not change (if you do you might break the whole thing) */
 .goalIcon {
 	height: 35px; position: relative; top: 5px; left: -5px
 }
@@ -197,7 +266,8 @@
 /* RANGE SLIDER */
 
 
-.formItem [type=range] {
+.formItem [type=range] { 
+	/* Turns off the default look of the range slider */
 	-webkit-appearance: none;
 	margin-bottom: 15px;
 	height: 5px;
@@ -205,9 +275,11 @@
 	opacity: 0.75;
 	transition: all 0.1s ease-in-out;
 }
+/* Makes the slider opaque when hovered on desktop. Has barely any effect on mobile */
 .formItem [type=range]:hover {
 	opacity: 1;
 }
+/* The next few classes gets rid of the browser's native slider controller and sets mine */
 .formItem [type=range]::-webkit-slider-thumb {
 	-webkit-appearance: none;
 	appearance: none;
@@ -253,6 +325,7 @@
 #submit {
 	background-color: #0F4D8D;
 }
+/* The Initiation Line image */
 #autoStart_img {
 	height: 50px;
 	
@@ -265,7 +338,7 @@
 }
 @media screen and (max-width: 1280px) {
 	.formContainer {
-		max-width: 100%;
+		max-width: 100%
 	}
 	.formItem {
 		min-height: 60px;
@@ -316,6 +389,26 @@
 		width: 45px;
 		height: 45px;
 	}
+	.checkContainer {
+		margin-bottom: 20px;
+		padding-right: 55px;
+	}
+	.checkContainer:last-of-type {
+		margin-bottom: 15px;
+	}
+	.checkmark {
+		top: 5px;
+		width: 46px;
+		height: 46px
+	}
+	.checkContainer .checkmark:after {
+		left: 17px;
+		top: 10px;
+		width: 7px;
+		height: 15px;
+		border: solid black;
+		border-width: 0 5px 5px 0;
+	}
 }
 
 /* for mobile phones, portrait and landscape */
@@ -341,11 +434,12 @@
 	.formItem input[type=password]:focus {
 		width: auto;
 	}
-	.checkboxGroup span {
-		margin-top: 20px;
-	}
 	.formItem input[type=range] {
 		width: 100%;
+	}
+	.checkContainer {
+		margin-bottom: 0px;
+		padding-right: 55px;
 	}
 	#autoStart_img {
 		height: auto;

@@ -98,24 +98,34 @@ function incrementValue(id) {
 	document.getElementById(id).value = value;
 	window.navigator.vibrate(40);
 }
+function incrementPreload(id) {
+	console.log(id)
+	var value = parseInt(document.getElementById(id).value, 10);
+	if (value >= 3) {
+		value = 3;
+		window.navigator.vibrate([30,20,30,20,30]);
+	}	else	{
+			value++;
+		window.navigator.vibrate(40);
+	}
+	document.getElementById(id).value = value;
+}
 function decrementValue(id) {
 	console.log(id)
 	var value = parseInt(document.getElementById(id).value, 10);
-	if (value <= 0)
+	if (value <= 0) {
 		value = 0;
-	else if (value >= 10)
-		value = 10;
-	else
+		window.navigator.vibrate([30,20,30,20,30]);
+	}	else	{
 			value--;
+		window.navigator.vibrate(40);
+	}
 	document.getElementById(id).value = value;
-	window.navigator.vibrate(40);
 }
 function registerChange() {
 	console.log();
 	window.navigator.vibrate(40);
 }
-
-
 // General script functions doing exactly what their names state
 
 var Slug = 0;
