@@ -1,16 +1,16 @@
 // Below is Nick's select and deselect all buttons
-function selectAllTeams() {
-	var items = document.getElementsByName('teamCheckBox');
+function selectAll(name='teamCheckBox') {
+	var items = document.getElementsByName(name);
 	for (var i = 0; i < items.length; i++) {
-		if (items[i].type == 'checkbox')
+		if (items[i].type === 'checkbox')
 			items[i].checked = true;
 	}
 }
 
-function unselectAllTeams() {
-	var items = document.getElementsByName('teamCheckBox');
+function unselectAll(name='teamCheckBox') {
+	var items = document.getElementsByName(name);
 	for (var i = 0; i < items.length; i++) {
-		if (items[i].type == 'checkbox')
+		if (items[i].type === 'checkbox')
 			items[i].checked = false;
 	}
 }	
@@ -54,7 +54,7 @@ function loadFields() {
             let inputNode = document.createElement("INPUT");
             inputNode.setAttribute("type", "checkbox");
             inputNode.id = keys[i];
-            inputNode.name = fieldData[keys[i]]["alias"];
+            inputNode.name = 'MetricCheckbox'//fieldData[keys[i]]["alias"];
             inputNode.style.marginRight = "5px";
 
             let labelNode = document.createElement("LABEL");

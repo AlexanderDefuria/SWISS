@@ -72,11 +72,11 @@
                             <input name="teamCheckBox" type="checkbox" id="{{ team.id }}" value="{{ team.name }}">
                         </div>
                     	{% endfor %}
-						<div class="infoRow">
-							<button style="width: 50%" onClick="selectAllTeams()">Select All</button>
-							<button style="width: 50%" onClick="unselectAllTeams()">Deselect</button>
-						</div>
 					</div>
+                    <div class="infoRow" style="background-color: transparent">
+                        <button class="updateButton" onClick="selectAll('teamCheckBox')">Select All</button>
+                        <button class="updateButton" onClick="unselectAll('teamCheckBox')">Deselect</button>
+                    </div>
 				</div>
 				<div class="infoBox infoReg">
 					<div class="infoHeader">
@@ -86,6 +86,10 @@
                         <div class="teamnumberPill" style="display: none">
 						</div>
 					</div>
+                    <div class="infoRow" style="background-color: transparent">
+                        <button class="updateButton" onClick="selectAll('MetricCheckbox')">Select All</button>
+                        <button class="updateButton" onClick="unselectAll('MetricCheckbox')">Deselect</button>
+                    </div>
 				</div>
 			</div>
 		</div>
