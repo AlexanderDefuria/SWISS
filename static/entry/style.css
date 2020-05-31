@@ -419,7 +419,6 @@ tr:nth-child(even){
 		background-position: center -10vh;
 	}
 	.sidebar {
-	  background-color: #333333;
 	  padding-top: 15px;
 	}
 	.sidebar a {
@@ -747,7 +746,7 @@ tr:nth-child(even){
 		background-position: center -10vh;
 	}
 	.sidebar {
-	  background-color: #333333;
+	  background-color: #111111;
 	  padding-top: 15px;
 	}
 	.sidebar a {
@@ -838,6 +837,18 @@ tr:nth-child(even){
 	.pictureBox img {
 		height: 100%;
 		width: inherit;
+	}
+
+	.infoBox:hover,
+	.infoReg:hover,
+	.graphBoxWide:hover,
+	.graphBox:hover,
+	.specialBox:hover,
+	.smallBox:hover,
+	.wideBox:hover,
+	.bigBox:hover {
+		transform: scale(1);
+		box-shadow: none;
 	}
 	
 	/* 

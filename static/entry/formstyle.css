@@ -180,7 +180,6 @@
 }
 /* Hide the browser's default checkbox */
 .checkContainer input {
-	position: absolute;
 	opacity: 0;
 	cursor: pointer;
 	height: 0;
