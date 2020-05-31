@@ -65,7 +65,7 @@
     "weight" : 1,
     "visible": false
   },
-  "auto_baseline" : {
+  "baseline" : {
     "points" : 1,
     "alias" : "Baseline",
     "weight" : 1,

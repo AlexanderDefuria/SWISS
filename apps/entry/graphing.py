@@ -39,10 +39,12 @@ def bar_graph(req_fields, teams):
         except KeyError:
             print(item + ' - Is supposed to be an ignored item but is not found - graphing.py bar_graph()')
 
+    # Remove all the non requested items from the default list
     for item in default_out.copy():
         if not req_fields.__contains__(item):
             default_out.__delitem__(item)
 
+    # Get the default value for each field
     for field in default_out:
         default_out[field] = Match._meta.get_field(field).default
 
@@ -60,10 +62,8 @@ def bar_graph(req_fields, teams):
                         team_data[field] += int(match.__dict__[field])
 
         team_data["MatchAmount"] = len(matches)
-
         data_out.__setitem__(str(Team.objects.filter(id=team)[0].number), team_data)
 
-    print(data_out)
     return data_out
 
 
