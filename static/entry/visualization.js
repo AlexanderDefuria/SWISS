@@ -163,6 +163,7 @@ function updateGraph(...args) {
                 data.push(returnData[team][field] * fieldData[field]['weight'] * fieldData[field]['points'])
                 if (argDict['Average'] && returnData[team]['MatchAmount'] > 0) {
                     data[data.length - 1] /= returnData[team]['MatchAmount'];
+                    console.log(returnData[team][field])
                 }
             });
 
@@ -181,6 +182,8 @@ function updateGraph(...args) {
        //  console.log(varChart.series)
 
         myChart = Highcharts.chart('visualizationChart', varChart);
+
+
 
 
 
