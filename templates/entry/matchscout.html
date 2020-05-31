@@ -52,6 +52,7 @@
 			</div>
 		</div>
 	<div>
+		
 		<form action="{% url 'entry:write_match_scout' team.id %}" class="formContainer" method="post" name="mainForm" id="mainForm">
             {% csrf_token %}
 
@@ -114,38 +115,45 @@
 					<option value="2">Yes, Complex</option>
 				</select>
 			</div>
-		<div class="formItem">
-			<label for="baseline">Moved off Initiation Line</label>
-			<div class="radioGroup">
-				<label>
-					<input type="radio" id="baseline_true" name="baseline" value="True" onclick="registerChange()" required>
-					<span>Y</span>
-				</label>
-				<label>
-					<input type="radio" id="baseline_false" name="baseline" value="False" onClick="registerChange()">
-					<span>N</span>
-				</label>
+			
+			<div class="formItem">
+			<!-- Boolean for if a Robot moved from the initiation line -->
+				<label for="baseline">Moved off Initiation Line</label>
+				<div class="radioGroup">
+					<label>
+						<input type="radio" id="baseline_true" name="baseline" value="True" onclick="registerChange()" required>
+						<span>Y</span>
+					</label>
+					<label>
+						<input type="radio" id="baseline_false" name="baseline" value="False" onClick="registerChange()">
+						<span>N</span>
+					</label>
+				</div>
 			</div>
-		</div>
-		<div class="formItem">
-				  <label for="autoLowGoal">Power Port Goals</label>
+			
+			<div class="formItem">
+			<!-- Power Port Goals in Teleoperated  -->
+				<label for="autoLowGoal">Power Port Goals</label>
 				<div class="ticker">
+					<!-- Lower Port Auto (RECTANGLE) -->
 					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'LowerAutoIcon.png' %}" alt="lower">
 					<input type="button"  onclick="decrementValue('lower_auto')" value="-">
 					<input type="number" name="lower_auto" id="lower_auto" min="0" max="100" value="0" readonly>
 					<input type="button"  onclick="incrementValue('lower_auto')" value="+">
 					<br>
-				  	<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'OuterAutoIcon.png' %}" alt="outer">
+					<!-- Upper Port Auto (HEXAGON) -->
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'OuterAutoIcon.png' %}" alt="outer">
 					<input type="button" onclick="decrementValue('outer_auto')" value="-">
 					<input name="outer_auto" id="outer_auto" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('outer_auto')" value="+">
 					<br>
+					<!-- Inner Port Auto (CIRCLE) -->
 					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'InnerAutoIcon.png' %}" alt="inner">
 					<input type="button" onclick="decrementValue('inner_auto')" value="-">
 					<input name="inner_auto" id="inner_auto" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('inner_auto')" value="+">
 				</div>
-		  </div>
+			  </div>
 			<div class="formItem">
 				<label for="missed_balls_auto"></label>
 				<div class="ticker">
@@ -170,19 +178,19 @@
 			<!-- Power Port Goals in Teleoperated  -->
 				<label>Power Port Goals</label>
                 <div class="ticker">
-					<!-- Lower Port (RECTANGLE) -->
+					<!-- Lower Port Teleop (RECTANGLE) -->
 					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'LowerTeleIcon.png' %}" alt="lower">
   					<input type="button" onclick="decrementValue('lower')" value="-">
 					<input id="lower" name="lower" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('lower')" value="+">
 					<br>
-					<!-- Upper Port (HEXAGON) -->
+					<!-- Upper Port Teleop (HEXAGON) -->
 					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'OuterTeleIcon.png' %}" alt="outer">
 					<input type="button" onclick="decrementValue('outer')" value="-">
 					<input name="outer" id="outer" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('outer')" value="+">
 					<br>
-					<!-- Inner Port (CIRCLE) -->
+					<!-- Inner Port Teleop (CIRCLE) -->
 					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'InnerTeleIcon.png' %}" alt="inner">
 					<input type="button" onclick="decrementValue('inner')" value="-">
 					<input name="inner" id="inner" type="number" min="0" max="100" value="0" readonly>
@@ -249,12 +257,17 @@
 			</div>
 			
 			<div class="formItem">
+			<!-- Text string for team number defending the currently scouted one -->
+			<!-- Backend only accepts strings that only contain numbers -->
 				<label for="defendedBy">Defended by</label>
-				<input type="text" name="defendedBy" id="defendedBy" placeholder="Opposing Team #" autocomplete="off">
+				<input type="text" name="defendedBy" id="defendedBy" list="teams_at_event" placeholder="Opposing Team #" autocomplete="off">
 			</div>
 			
+		<!-- Control Panel Items -->
+			
 			<div class="formItem">
-				<label for="wheelScore">Control Panel Task</label>
+			<!-- Dropdown for control panel task -->
+				<label for="wheelScore">Control Panel</label>
 				<select name="wheelScore" id="wheelScore" required>
 					<option value="">&#8230;</option>
 					<option value="0">Did not Attempt</option>
@@ -264,15 +277,21 @@
 				</select>
 			</div>
 			
-		  <div class="formItem">
+			<div class="formItem">
+			<!-- Range slider for Control Panel task Quality -->
+			<!-- May be taken out depending on usage and effectiveness --> 
 				<label for="wheelRating">Control Panel Quality</label>
-			  	<div class="right">
+				<div class="right">
 					<output name="wheelRating_number" id="wheelRating_number" for="wheelRating">0</output>
 					<input name="wheelRating" id="wheelRating" type="range" min="0" max="5" value="0" oninput="wheelRating_number.value=wheelRating.value">
 			  	</div>
-		  </div>
+			</div>
 			
-		  <div class="formItem">
+		<!-- Offensive Fouls -->
+			
+			<div class="formItem">
+			<!-- Communicates frequency or severeness of fouls against team -->
+			<!-- Not to be confused with Defensive fouls below -->
 				<label for="offensiveFouls">Incurred Offensive Fouls</label>
 				<select name="offensiveFouls" id="offensiveFouls" required>
 					<option value="">&#8230;</option>
@@ -280,7 +299,7 @@
 					<option value="1">Yes, Minor</option>
 					<option value="2">Yes, Major</option>
 				</select>
-		  </div>
+			</div>
 			
 <!--	DEFENSE		-->
 			
@@ -299,8 +318,8 @@
 				</div>
 			</div>
 			<div class="formItem">
-				<label for="teamDefended">Team Defended Against</label>
-				<input type="text" name="teamDefended" id="teamDefended" placeholder="ONLY ONE TEAM FOR NOW" autocomplete="off">
+				<label for="teamDefended">Team Defended</label>
+				<input type="text" name="teamDefended" id="teamDefended" list="teams_at_event" placeholder="ONLY ONE TEAM" autocomplete="off">
 			</div>
 			<div class="formItem">
 				<label for="defenseRating">Quality of Defense</label>
@@ -386,7 +405,7 @@
 	</div>
 <datalist id="teams_at_event">
 {% for team in team_list %}	
-	<option value="{{ team.number }}">
+	<option value="{{ team.number }}"></option>
 {% endfor %}
 </datalist>
 </body>
