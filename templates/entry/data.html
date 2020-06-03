@@ -44,9 +44,9 @@
 			<div class="tableContainer">
 				<table id="dataTable">
 					<tr>
-						<th>Number</th>
+						<th class="teamStick" style="z-index: 200">Number</th>
 						<th>Names</th>
-						<th>Match #</th>
+						<th class="matchStick" style="z-index: 200">Match #</th>
 						<th>Robot Present?</th>
 						<th>Starting Pos.</th>
 						<th>Balls PrLod</th>
@@ -78,9 +78,9 @@
 					</tr>
 					{% for match in match_list %}
                         <tr>
-                            <td>{{ match.team.number }}</td>
-                            <td>{{ match.team.name }}</td>
-                            <td>{{ match.match_number }}</td>
+                            <td class="teamStick" style="z-index: 100">{{ match.team.number }}</td>
+                            <td  style="background: gray"> {{ match.team.name }}</td>
+                            <td class="matchStick" style="z-index: 100">{{ match.match_number }}</td>
                             <td>{{ match.on_field }}</td>
                             <td>{{ match.auto_start }}</td>
                             <td>{{ match.preloaded_balls }}</td>
@@ -131,7 +131,7 @@
 					<input class="filterChip" type="text" id="matchNumber" onkeyup="tableFilter('matchNumber')" placeholder="Match Number">
 				</div>
 				{% if user.is_staff %}
-				<div class="filterBox" onClick="location.href = 'https://redstudiosmedia.ca/admin/entry/match/';" style="cursor: pointer">
+				<div class="filterBox" onClick="location.href = '{% url 'entry:admin_redirect' %}';" style="cursor: pointer">
 					<img src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" style="height: 50px;" alt="Edit">
 					<h3>Edit Matches</h3>
 				</div>
