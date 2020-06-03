@@ -349,7 +349,7 @@ ul {
 }
 .tableContainer {
 	background-color: #333333;
-	height: 75%;
+	height: 80vh;
 	width: 100%;
 	overflow: scroll;
 }
@@ -360,8 +360,36 @@ table, th, td {
 	white-space: nowrap;
 }
 tr:nth-child(even){
-	background-color: #555555
+	background: #555555
 }
+
+th {
+	position: sticky;
+	top: 0;
+	border: 1px solid white;
+	background: gray;
+	background-clip: padding-box;
+}
+
+.teamStick {
+	position: sticky;
+	width: 50px;
+	left: 0;
+	background: gray;
+	border: 1px solid white;
+  	background-clip: padding-box;
+}
+
+.matchStick{
+	background-clip: padding-box;
+	position: sticky;
+	left: 70px;
+	margin-left: 1px;
+	background: gray;
+	border: 1px solid white;
+	background-clip: padding-box;
+}
+
 
 
 
