@@ -100,6 +100,18 @@
 .formItem input[type=number]:invalid {
 	background-color: #904444;
 }
+/* FOLLOWING CODE FIXES SOME ISSUES WITH THE NUMBER SPINNER */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
 
 /* SELECT/DROPDOWNS */
