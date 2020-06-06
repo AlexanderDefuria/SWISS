@@ -38,77 +38,66 @@
 	</div>
 	
 	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'StatsBackground.png' %})">
-		<div class="heroContent" id="heroSpace">
-		<h1 style="font-size: 42px; margin: 0px;">Raw Match Data</h1>
+		<div class="heroContent" id="heroSpace" style="padding-bottom: 0">
+		    <h1 style="font-size: 42px; margin: 0;">Raw Pit Data</h1>
 		</div>
+        <div style="display: flex; justify-content: center; ">
+            <div class="formItem graphOption">
+                <button class="dataButton" onclick="window.location='{% url 'entry:match_data' %}';">Match Data</button>
+            </div>
+            <div class="formItem graphOption">
+                <button class="dataButton" onclick="window.location='{% url 'entry:pit_data' %}';">Pit Data</button>
+            </div>
+        </div>
+
 			<div class="tableContainer">
 				<table id="dataTable">
 					<tr>
 						<th class="teamStick" style="z-index: 200">Number</th>
 						<th>Names</th>
-						<th class="matchStick" style="z-index: 200">Match #</th>
-						<th>Robot Present?</th>
-						<th>Starting Pos.</th>
-						<th>Balls PrLod</th>
-						<th>Auto Route</th>
-						<th>Exit Baseline</th>
-						<th>Auto Low</th>
-						<th>Auto High</th>
-						<th>Auto Inner</th>
-						<th>Tele Low</th>
-						<th>Tele High</th>
-						<th>Tele Inner</th>
-						<th>Intake Type</th>
-						<th>Cycle Style</th>
-						<th>Under Defense</th>
-						<th>Ctrl Pnl Task</th>
-						<th>Ctrl Pnl Quality</th>
-						<th>Ofns Fouls</th>
-						<th>Played Dfns</th>
-						<th>Dfns Quality</th>
-						<th>Dfns Fouls</th>
-						<th>Push Ability</th>
-                        <th>Climb Position</th>
-						<th>Climbed</th>
-						<th>Timeout Position</th>
-						<th>Human Fouls</th>
-						<th>Driver Fouls</th>
-						<th>Yellow Card</th>
-						<th>Scouter</th>
+                        <th>Drive Train Style</th>
+                        <th>Drive Train Wheels</th>
+                        <th>Drive Motor Type</th>
+                        <th>Drive Motor #</th>
+                        <th>Auto Route</th>
+                        <th>Auto Description</th>
+                        <th>Auto Scoring</th>
+                        <th>Tele Scoring</th>
+                        <th>Tele Positions</th>
+                        <th>Ball Intake</th>
+                        <th>Ball Capacity</th>
+                        <th>Shooter Style</th>
+                        <th>Low Bot?</th>
+                        <th>Wheel Manipulator</th>
+                        <th>Weight (lbs)</th>
+                        <th>Climb Locations</th>
+                        <th>Buddy Climb?</th>
+                        <th>Balanced Climb?</th>
+                        <th>Scouter Name</th>
 					</tr>
-					{% for match in match_list %}
-                        <tr>
-                            <td class="teamStick" style="z-index: 100">{{ match.team.number }}</td>
-                            <td  style="background: gray"> {{ match.team.name }}</td>
-                            <td class="matchStick" style="z-index: 100">{{ match.match_number }}</td>
-                            <td>{{ match.on_field }}</td>
-                            <td>{{ match.auto_start }}</td>
-                            <td>{{ match.preloaded_balls }}</td>
-                            <td>{{ match.auto_route }}</td>
-                            <td>{{ match.baseline }}</td>
-                            <td>{{ match.lower_auto }}</td>
-                            <td>{{ match.outer_auto }}</td>
-                            <td>{{ match.inner_auto }}</td>
-                            <td>{{ match.lower }}</td>
-                            <td>{{ match.outer }}</td>
-                            <td>{{ match.inner }}</td>
-                            <td>{{ match.ball_intake_type }}</td>
-                            <td>{{ match.cycle_style }}</td>
-                            <td>{{ match.under_defense }}</td>
-                            <td>{{ match.wheel_score }}</td>
-                            <td>{{ match.wheel_rating }}</td>
-                            <td>{{ match.fouls }}</td>
-                            <td>{{ match.played_defense }}</td>
-                            <td>{{ match.defense_rating }}</td>
-                            <td>{{ match.defense_fouls }}</td>
-                            <td>{{ match.able_to_push }}</td>
-                            <td>{{ match.climb_location }}</td>
-                            <td>{{ match.climbed }}</td>
-                            <td>{{ match.field_timeout_pos }}</td>
-                            <td>{{ match.hp_fouls }}</td>
-                            <td>{{ match.dt_fouls }}</td>
-                            <td>{{ match.yellow_card }}</td>
-                            <td>{{ match.scouter_name }}</td>
+					{% for pits in pits_list %}
+                    <tr>
+                        <td class="teamStick" style="z-index: 100">{{ pits.team.number }}</td>
+                        <td> {{ pits.team.name }}</td>
+                        <td> {{ pits.drivetrain_style }}</td>
+                        <td> {{ pits.drivetrain_wheels }}</td>
+                        <td> {{ pits.drivetrain_motortype }}</td>
+                        <td> {{ pits.drivetrain_motorquantity }}</td>
+                        <td> {{ pits.auto_route }}</td>
+                        <td> {{ pits.auto_description }}</td>
+                        <td> {{ pits.auto_scoring }}</td>
+                        <td> {{ pits.tele_scoring }}</td>
+                        <td> {{ pits.tele_positions }}</td>
+                        <td> {{ pits.ball_intake }}</td>
+                        <td> {{ pits.ball_capacity }}</td>
+                        <td> {{ pits.shooter_style }}</td>
+                        <td> {{ pits.low_bot }}</td>
+                        <td> {{ pits.wheel_manipulator }}</td>
+                        <td>{{ pits.weight }}</td>
+                        <td>{{ pits.climb_locations }}</td>
+                        <td>{{ pits.climb_buddy }}</td>
+                        <td>{{ pits.climb_balance }}</td>
+                        <td style="background-color: grey">{{ pits.scouter_name }}</td>
                     </tr>
                     {% endfor %}
 				</table>

@@ -574,7 +574,7 @@ class GlanceLanding(LoginRequiredMixin, generic.ListView):
 
 class MatchData(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
-    template_name = 'entry/data.html'
+    template_name = 'entry/matchdata.html'
     model = Match
 
     def get_queryset(self):
@@ -583,7 +583,7 @@ class MatchData(LoginRequiredMixin, generic.ListView):
 
 class PitData(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
-    template_name = 'entry/data.html'
+    template_name = 'entry/pitdata.html'
     model = Pits
 
     def get_queryset(self):
