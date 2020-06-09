@@ -360,7 +360,7 @@ ul {
 }
 .tableContainer {
 	background-color: #333333;
-	height: 77.5vh;
+	height: 72.5vh;
 	width: 100%;
 	overflow: scroll;
 }
@@ -769,6 +769,7 @@ th {
 	bottom: 0;
 	border: none;
 	cursor: pointer;
+	transition: 0.5s;
 }
 .bottomBarButton:hover {
 	background-color: RGBA(0,0,0,0.25)

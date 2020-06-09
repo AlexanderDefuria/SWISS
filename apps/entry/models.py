@@ -95,7 +95,7 @@ class Match(models.Model):
     ball_intake_type = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     cycle_style = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     under_defense = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
-    defended_by = models.IntegerField(default=0, validators=[MaxValueValidator(10000), MinValueValidator(-1)])
+    defended_by = models.IntegerField(default=0, validators=[MaxValueValidator(10000), MinValueValidator(0)])
 
     # Defense
     played_defense = models.BooleanField(default=False)

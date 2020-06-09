@@ -78,21 +78,21 @@
 					{% for pits in pits_list %}
                     <tr>
                         <td class="teamStick" style="z-index: 100">{{ pits.team.number }}</td>
-                        <td> {{ pits.team.name }}</td>
-                        <td> {{ pits.drivetrain_style }}</td>
-                        <td> {{ pits.drivetrain_wheels }}</td>
-                        <td> {{ pits.drivetrain_motortype }}</td>
-                        <td> {{ pits.drivetrain_motorquantity }}</td>
-                        <td> {{ pits.auto_route }}</td>
-                        <td> {{ pits.auto_description }}</td>
-                        <td> {{ pits.auto_scoring }}</td>
-                        <td> {{ pits.tele_scoring }}</td>
-                        <td> {{ pits.tele_positions }}</td>
-                        <td> {{ pits.ball_intake }}</td>
-                        <td> {{ pits.ball_capacity }}</td>
-                        <td> {{ pits.shooter_style }}</td>
-                        <td> {{ pits.low_bot }}</td>
-                        <td> {{ pits.wheel_manipulator }}</td>
+                        <td>{{ pits.team.name }}</td>
+                        <td>{{ pits.drivetrain_style }}</td>
+                        <td>{{ pits.drivetrain_wheels }}</td>
+                        <td>{{ pits.drivetrain_motortype }}</td>
+                        <td>{{ pits.drivetrain_motorquantity }}</td>
+                        <td>{{ pits.auto_route }}</td>
+                        <td>{{ pits.auto_description }}</td>
+                        <td>{{ pits.auto_scoring }}</td>
+                        <td>{{ pits.tele_scoring }}</td>
+                        <td>{{ pits.tele_positions }}</td>
+                        <td>{{ pits.ball_intake }}</td>
+                        <td>{{ pits.ball_capacity }}</td>
+                        <td>{{ pits.shooter_style }}</td>
+                        <td>{{ pits.low_bot }}</td>
+                        <td>{{ pits.wheel_manipulator }}</td>
                         <td>{{ pits.weight }}</td>
                         <td>{{ pits.climb_locations }}</td>
                         <td>{{ pits.climb_buddy }}</td>
@@ -115,19 +115,14 @@
 					<input class="filterChip" type="text" id="teamName" onkeyup="tableFilter('teamName')" placeholder="Team Name">
 				</div>
 				<br>
-				<div class="filterBox">
-					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
-					<input class="filterChip" type="text" id="matchNumber" onkeyup="tableFilter('matchNumber')" placeholder="Match Number">
-				</div>
 				{% if user.is_staff %}
 				<div class="filterBox" onClick="location.href = '{% url 'entry:admin_redirect' %}';" style="cursor: pointer">
 					<img src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" style="height: 50px;" alt="Edit">
-					<h3>Edit Matches</h3>
+					<h3>Edit Pit Entries</h3>
 				</div>
 				{% endif %}
 			</div>
-			<button class="bottomBarButton" id="expandBottomBar" onclick="expandBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
-			<button class="bottomBarButton" id="collapseBottomBar" onclick="collapseBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
+			<button class="bottomBarButton" id="bottomBarButton" onclick="expandBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
 		</div>
 	</div>
 

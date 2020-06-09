@@ -16,17 +16,17 @@ function closeNav() {
 //Function that controls the bottom bar
 function expandBottomBar() {
 	document.getElementById("bottomBar").style.height = "70px";
-	document.getElementById("expandBottomBar").style.visibility = "hidden";
-	document.getElementById("collapseBottomBar").style.visibility = "visible";
+	document.getElementById("bottomBarButton").style.height = "70px";
+	document.getElementById("bottomBarButton").onclick = function () {collapseBottomBar()};
 	document.getElementById("bottomBarContent").style.visibility = "visible";
-	document.getElementById("bodyContainer").style.paddingBottom = "70px";
+	document.getElementById("bodyContainer").style.paddingBottom = "0px";
 }	
 function collapseBottomBar() {
 	document.getElementById("bottomBar").style.height = "30px";
-	document.getElementById("expandBottomBar").style.visibility = "visible";
-	document.getElementById("collapseBottomBar").style.visibility = "hidden";
+	document.getElementById("bottomBarButton").style.height = "30px";
 	document.getElementById("bottomBarContent").style.visibility = "hidden";
 	document.getElementById("bodyContainer").style.paddingBottom = "20px";
+	document.getElementById("bottomBarButton").onclick = function () {expandBottomBar()};
 }
 
 
