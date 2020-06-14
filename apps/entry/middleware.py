@@ -20,14 +20,11 @@ class ValidateUser:
 
         response = self.get_response(request)
 
-        print(request.path)
+        if request.path == '':
+            return HttpResponseRedirect(reverse_lazy('entry:index'))
 
-        if request.path == ' ':
-            view = 'index'
-            app = 'entry'
-        else:
-            view = str(request.path).split('/')[1]
-            app = str(request.path).split('/')[0]
+        view = str(request.path).split('/')[1]
+        app = str(request.path).split('/')[0]
 
         if view == "logout" or view == "login" or app == "media":
             return response
@@ -38,7 +35,7 @@ class ValidateUser:
         if request.user.teammember.position == "NA":
             return HttpResponseRedirect(reverse_lazy('entry:logout'))
 
-        if app == 'entry':
+        if app != 'media':
             if self.valid_perms(view, request.user):
                 return response
             else:
