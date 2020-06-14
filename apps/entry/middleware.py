@@ -20,7 +20,10 @@ class ValidateUser:
 
         response = self.get_response(request)
 
-        if str(request.path) == "/":
+        try:
+            if str(request.path) == "/":
+                return HttpResponseRedirect(reverse_lazy('entry:index'))
+        except IndexError:
             return HttpResponseRedirect(reverse_lazy('entry:index'))
 
         view = str(request.path).split('/')[2]
