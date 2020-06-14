@@ -20,6 +20,8 @@ class ValidateUser:
 
         response = self.get_response(request)
 
+        print(request.path)
+
         return response
 
         try:
