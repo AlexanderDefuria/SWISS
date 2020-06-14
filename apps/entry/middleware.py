@@ -26,8 +26,8 @@ class ValidateUser:
         if str(request.path) == '':
             return HttpResponseRedirect(reverse_lazy('entry:index'))
 
-        view = str(request.path).split('/')[1]
-        app = str(request.path).split('/')[0]
+        view = str(request.path).split('/')[2]
+        app = str(request.path).split('/')[1]
 
         if view == "logout" or view == "login" or app == "media":
             return response
