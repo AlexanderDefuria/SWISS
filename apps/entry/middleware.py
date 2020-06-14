@@ -20,8 +20,13 @@ class ValidateUser:
 
         response = self.get_response(request)
 
-        view = str(request.path).split('/')[1]
-        app = str(request.path).split('/')[1]
+        view = ''
+
+        if request.path == '':
+            view = 'index'
+        else:
+            view = str(request.path).split('/')[1]
+            app = str(request.path).split('/')[0]
 
         if view == "logout" or view == "login" or app == "media":
             return response
