@@ -423,7 +423,7 @@ def login(request):
             print(auth)
 
         if not TeamMember.objects.filter(user=user).exists():
-            TeamMember.objects.create(user=user.id)
+            TeamMember.objects.create(user_id=user.id)
 
         return HttpResponseRedirect(reverse_lazy('entry:index'))
 
