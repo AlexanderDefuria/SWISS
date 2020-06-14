@@ -31,7 +31,7 @@ class ValidateUser:
         view = str(request.path).split('/')[2]
         app = str(request.path).split('/')[1]
 
-        if app == 'media':
+        if app == 'media' or app == 'static':
             return response
 
         if view == "logout" or view == "login" or app == "media":
