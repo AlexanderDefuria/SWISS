@@ -421,9 +421,8 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             print(auth)
-
-        if not TeamMember.objects.filter(user=user).exists():
-            TeamMember.objects.create(user_id=user.id)
+            if not TeamMember.objects.filter(user=user).exists():
+                TeamMember.objects.create(user_id=user.id)
 
         return HttpResponseRedirect(reverse_lazy('entry:index'))
 
