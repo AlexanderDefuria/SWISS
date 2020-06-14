@@ -20,7 +20,7 @@ class ValidateUser:
 
         response = self.get_response(request)
 
-        view = ''
+        app = ''
 
         if request.path == '':
             view = 'index'
