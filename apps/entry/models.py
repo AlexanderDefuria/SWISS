@@ -193,10 +193,13 @@ class TeamMember(models.Model):
         ("NA", "No Access"),
         ("OV", "Only View"),
         ("MS", "Match Scout"),
-        ("PS", "Pit Scout"),
         ("GS", "General Scout"),
-        ("LS", "Lead Scout"),
-        ("DT", "Drive Team")
+        ("PS", "Pit Scout"),
+        ("DT", "Drive Team"),
+        ("LS", "Lead Scout")
     )
 
     position = models.CharField(max_length=2, choices=AVAILABLE_POSITIONS, default="GS")
+
+    def __str__(self):
+        return self.position
