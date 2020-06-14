@@ -1,6 +1,7 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from datetime import date
+from django.contrib.auth.models import User
 
 
 class Event(models.Model):
@@ -180,3 +181,22 @@ class Pits(models.Model):
 
     def __str__(self):
         return self.team.name
+
+
+class TeamMember(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    defaultTeam = Team.objects.filter(number=4343)[0].id
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, default=defaultTeam)
+
+    AVAILABLE_POSITIONS = (
+        # (Program Name, Human Readable name)
+        ("NA", "No Access"),
+        ("OV", "Only View"),
+        ("MS", "Match Scout"),
+        ("PS", "Pit Scout"),
+        ("GS", "General Scout"),
+        ("LS", "Lead Scout"),
+        ("DT", "Drive Team")
+    )
+
+    position = models.CharField(max_length=2, choices=AVAILABLE_POSITIONS, default="GS")

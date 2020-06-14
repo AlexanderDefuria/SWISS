@@ -83,6 +83,12 @@
 					</label>
 				</div>
             </div>
+            <div class="formItem">
+                <label>User Role</label>
+                <div class="positionIndicator">
+                    {% get_user_role request %}
+                </div>
+            </div>
 
             <div class="formItem" id="submit" onclick="validate('mainForm', false)">
                 <input name="submit" id="submitButton" type="submit" style="pointer-events: none" value="Save Settings">

@@ -26,7 +26,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from apps.entry.graphing import *
-from apps.entry.models import Team, Match, Schedule, Images, Event, Pits
+from apps.entry.models import Team, Match, Schedule, Images, Event, Pits, TeamMember
 from apps.entry.templatetags import common_tags
 
 register = Library
@@ -421,6 +421,9 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             print(auth)
+
+        if not TeamMember.objects.filter(user=user).exists():
+            TeamMember.objects.create(user=user)
 
         return HttpResponseRedirect(reverse_lazy('entry:index'))
 

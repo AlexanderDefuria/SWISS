@@ -13,8 +13,8 @@ import json
 from django.conf import settings
 
 from apps.entry import views
-
 register = template.Library()
+
 
 @register.filter
 def modulo(num, val):
@@ -41,6 +41,11 @@ def get_match_fields():
 def get_cookie(request, cookie_name):
     result = request.COOKIES.get(cookie_name, '')
     return result
+
+
+@register.simple_tag
+def get_user_role(request):
+    return request.user.teammember.get_position_display() + ": Team " + str(request.user.teammember.team.number)
 
 
 @register.simple_tag
