@@ -20,6 +20,9 @@ class ValidateUser:
 
         response = self.get_response(request)
 
+        print("PATH -------------------------------------------------------------------" )
+        print(request.path)
+
         if str(request.path) == '':
             return HttpResponseRedirect(reverse_lazy('entry:index'))
 
