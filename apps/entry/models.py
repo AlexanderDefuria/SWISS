@@ -134,6 +134,8 @@ class Pits(models.Model):
     drivetrain_wheels = models.TextField(default="")
     drivetrain_motortype = models.TextField(default="")
     drivetrain_motorquantity = models.SmallIntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
+    drivetrain_speed = models.SmallIntegerField(default=0, validators=[MaxValueValidator(20), MinValueValidator(0)])
+    drivetrain_transmission = models.TextField(default="")
 
     # Auto
     auto_route = models.BooleanField(default=False)
@@ -151,6 +153,7 @@ class Pits(models.Model):
     low_bot = models.BooleanField(default=False)
     wheel_manipulator = models.BooleanField(default=False)
     weight = models.SmallIntegerField(default=0, validators=[MaxValueValidator(200), MinValueValidator(0)])
+    targeting_system = models.TextField(default="")
 
     # Climb
     climb_locations = models.SmallIntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
@@ -202,4 +205,4 @@ class TeamMember(models.Model):
     position = models.CharField(max_length=2, choices=AVAILABLE_POSITIONS, default="GS")
 
     def __str__(self):
-        return self.position
+        return self.user.username + " - " + self.position

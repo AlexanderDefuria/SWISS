@@ -42,21 +42,17 @@ def match_scout_submit(request, pk):
         match = Match()
         match.team = team
         match.event = Event.objects.get(FIRST_key=config.get_current_event_key())
-
         match_number = request.POST.get('matchNumber', -1)
         match.match_number = match_number if match_number != '' else -1
-
         match.on_field = request.POST.get('onField', False)
         match.auto_start = request.POST.get('autoStart', 10)
         match.preloaded_balls = request.POST.get('preloadedBalls', 3)
-
         match.auto_route = request.POST.get('autoRoute', 0)
         match.baseline = request.POST.get('baseline', False)
         match.outer_auto = request.POST.get('outer_auto', 0)
         match.lower_auto = request.POST.get('lower_auto', 0)
         match.inner_auto = request.POST.get('inner_auto', 0)
         match.auto_comment = request.POST.get('autoComment', '')
-
         match.outer = request.POST.get('outer', 0)
         match.lower = request.POST.get('lower', 0)
         match.inner = request.POST.get('inner', 0)
@@ -71,7 +67,6 @@ def match_scout_submit(request, pk):
             match.defended_by = 0
         else:
             match.defended_by = request.POST.get('defendedBy', 0)
-
         match.played_defense = request.POST.get('playedDefense', False)
         match.defense_rating = request.POST.get('defenseRating', 0)
         match.defense_fouls = request.POST.get('defenseFouls', 0)
@@ -79,10 +74,6 @@ def match_scout_submit(request, pk):
 
         team_defended = request.POST.get('teamDefended', '')
         match.team_defended = team_defended if team_defended != '' else -1
-
-        # TODO Fix able to push, there is an incorrect associated input type
-        # TODO Michigan teams come up as -1 fix this in the defended by field
-        # TODO other teams in defended by field come up as 0
 
         match.climb_location = request.POST.get('climbLocation', 0)
         match.field_timeout_pos = request.POST.get('lockStatus', 0)
@@ -213,32 +204,25 @@ def pit_scout_submit(request, pk):
 
         pits.team = team
         pits.event = Event.objects.get(FIRST_key=config.get_current_event_key())
-
         pits.drivetrain_style = request.POST.get('drivetrainStyle', ' ')
         pits.drivetrain_wheels = request.POST.get('drivetrainWheels', ' ')
         pits.drivetrain_motortype = request.POST.get('drivetrainMotor', ' ')
         pits.drivetrain_motorquantity = request.POST.get('drivetrainMotorAmount', 0)
-
         pits.auto_route = request.POST.get('hasAuto', False)
         pits.auto_description = request.POST.get('autoDescription', ' ')
         pits.auto_scoring = request.POST.get('autoScoring', 0)
-
         pits.tele_scoring = request.POST.get('teleScoring', 0)
         pits.tele_positions = request.POST.get('telePositions', 0)
-
         pits.ball_intake = request.POST.get('ballIntake', ' ')
         pits.ball_capacity = request.POST.get('ballCapacity', 0)
         pits.shooter_style = request.POST.get('shooterStyle', ' ')
         pits.low_bot = request.POST.get('lowBot', False)
         pits.wheel_manipulator = request.POST.get('wheelManipulator', False)
         pits.weight = request.POST.get('weight', 0)
-
         pits.climb_locations = request.POST.get('climbLocations', 0)
         pits.climb_buddy = request.POST.get('climbBuddy', False)
         pits.climb_balance = request.POST.get('climbBalance', False)
-
         pits.scouter_name = request.POST.get('scouterName', '0')
-
         pits.save()
 
         print(pits)
@@ -256,9 +240,7 @@ def pit_scout_submit(request, pk):
 @login_required(login_url='entry:login')
 def validate_pit_scout(request, pk):
     data = decode_ajax(request)
-
     redo, data = validate_types(request, data, False)
-
     return HttpResponse(dumps(redo), content_type="application/json")
 
 
@@ -437,8 +419,11 @@ def logout(request):
 
 
 @login_required(login_url='entry:login')
-def admin_redirect(request):
+def admin_redirect(request, **kwargs):
     if request.user.is_superuser:
+        if 'whereto' in kwargs:
+            return HttpResponseRedirect(reverse_lazy('admin:index') + 'entry/' + kwargs['whereto'] +"/")
+
         return HttpResponseRedirect(reverse_lazy('admin:index'))
     return HttpResponseRedirect(reverse_lazy('entry:index'))
 

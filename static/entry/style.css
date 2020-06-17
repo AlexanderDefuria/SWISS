@@ -584,6 +584,11 @@ th {
 	.tileContainer #tileSettings {order: 12}
 	.tileContainer #tileLogout {order: 13}
 
+	#currentEvent {
+		display: none;
+	}
+	
+
 }
 
 

@@ -17,10 +17,7 @@ class ValidateUser:
     def __call__(self, request):
         # Code to be executed for each request before
         # the view (and later middleware) are called.
-
         response = self.get_response(request)
-
-        print(request.path)
 
         try:
             if str(request.path) == "/":
@@ -28,11 +25,16 @@ class ValidateUser:
         except IndexError:
             print("INDEX ERROR")
             return response
+        try:
+            view = str(request.path).split('/')[2]
+            app = str(request.path).split('/')[1]
+        except IndexError:
+            print("\nINDEX ERROR FROM PATH SPLITTING IN MIDDLEWARE:")
+            print(request.path)
+            print("\n")
+            return HttpResponseRedirect(reverse_lazy('entry:index'))
 
-        view = str(request.path).split('/')[2]
-        app = str(request.path).split('/')[1]
-
-        if app == 'media' or app == 'static':
+        if app == 'media' or app == 'static' or app == 'admin':
             return response
 
         if view == "logout" or view == "login" or app == "media":
@@ -68,7 +70,6 @@ class ValidateUser:
                 break
             else:
                 reqlevel += 1
-        print("reqlevel:  " + str(reqlevel))
 
         actlevel = 0
         for each in TeamMember.AVAILABLE_POSITIONS:
@@ -76,6 +77,5 @@ class ValidateUser:
                 break
             else:
                 actlevel += 1
-        print("actlevel:  " + str(actlevel))
 
         return actlevel >= reqlevel

@@ -140,7 +140,7 @@
 					<input class="filterChip" type="text" id="matchNumber" onkeyup="tableFilter('matchNumber')" placeholder="Match Number">
 				</div>
 				{% if user.is_staff %}
-				<div class="filterBox" onClick="location.href = '{% url 'entry:admin_redirect' %}';" style="cursor: pointer">
+				<div class="filterBox" onClick="location.href = '{% url 'entry:admin_redirect' 'match' %}';" style="cursor: pointer">
 					<img src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" style="height: 50px;" alt="Edit">
 					<h3>Edit Matches</h3>
 				</div>
