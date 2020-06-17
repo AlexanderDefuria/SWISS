@@ -19,7 +19,7 @@ class ValidateUser:
         # the view (and later middleware) are called.
         response = self.get_response(request)
 
-        if request.path == 'media' or request.path == 'static' or request.path == 'admin':
+        if str(request.path).__contains__('media') or str(request.path).__contains__('static') or str(request.path).__contains__('admin'):
             return response
 
         try:
