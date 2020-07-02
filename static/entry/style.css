@@ -89,7 +89,6 @@ ul {
 	justify-content: flex-start;
 	align-items: flex-start;
 }
-
 .swissLogo {
 	height: auto;
 	padding-left: 5px;
@@ -100,7 +99,6 @@ ul {
 #bodyContainer{
 	transition: margin-left .5s;
 }
-.pageHeader{}
 .bigBox {
 	height: 100px;
 	width: 100px;
@@ -184,13 +182,34 @@ ul {
 	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
-.infoBox h1, p { margin: 10px; }
-.infoHeader { display: flex; align-items: center; height: auto; border-bottom: 2px solid white }
-.infoRow { display: flex; margin-top: 5px; background-color: #09315A; }
-.infoLColumn { flex: 25%; }
-.infoRColumn { flex: 75%; }
-.infoWide { width: 510px; flex-grow: 5; }
-.infoReg { width: auto; min-width: 260px; flex-grow: 1; max-width: 700px; }
+.infoBox h1, p { 
+	margin: 10px; 
+}
+.infoHeader { 
+	display: flex; 
+	align-items: center; 
+	height: auto; 
+	border-bottom: 2px solid white 
+}
+.infoRow {
+	display: flex;
+	margin-top: 5px;
+	background-color: #09315A;
+}
+.infoLColumn {
+	flex: 25%;
+}
+.infoRColumn {
+	flex: 75%;
+}
+.infoWide { 
+	width: 510px;
+	flex-grow: 5; }
+.infoReg { 
+	width: auto; 
+	min-width: 260px; 
+	flex-grow: 1; 
+	max-width: 700px; }
 .infoIcon { height: 7vh; padding: 10px; }
 
 .loginBox{
@@ -398,7 +417,6 @@ th {
 	margin-left: 1px;
 	background: gray;
 	border: 1px solid white;
-	background-clip: padding-box;
 }
 
 .positionIndicator {
@@ -488,13 +506,14 @@ th {
 		margin: unset;
 
 	}
-
 	#loginContainer {
 		width: 100%;
 	}
-
 	#password {
-		width: auto	;
+		width: auto;
+	}
+	#username {
+		width: auto;
 	}
 	/* 
 	
