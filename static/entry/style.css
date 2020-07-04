@@ -169,7 +169,7 @@ ul {
 	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
-.infoBox {
+.infoBox.vizBox {
 	display: inline-block;
 	min-height: 280px;
 	height: auto;
@@ -182,7 +182,10 @@ ul {
 	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
-.infoBox h1, p { 
+.vizBox:hover {
+	box-shadow: 2px 5px 25px 2px #232323;
+}
+.infoBox.vizBox h1, p { 
 	margin: 10px; 
 }
 .infoHeader { 
@@ -204,22 +207,23 @@ ul {
 }
 .infoWide { 
 	width: 510px;
-	flex-grow: 5; }
+	flex-grow: 5; 
+}
 .infoReg { 
 	width: auto; 
 	min-width: 260px; 
 	flex-grow: 1; 
-	max-width: 700px; }
-.infoIcon { height: 7vh; padding: 10px; }
-
+	max-width: 700px; 
+}
+.infoIcon { 
+	height: 7vh; 
+	padding: 10px; }
 .loginBox{
 	width:auto;
 }
-
 .loginBox:hover {
 	transform: none;
 }
-
 .updateButton {
 	background: none;
 	width: 100%;
@@ -229,7 +233,6 @@ ul {
 	border: none;
 	color: white;
 }
-
 .dataButton {
 	background: none;
 	width: 20vw;
