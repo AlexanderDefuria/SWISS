@@ -169,7 +169,7 @@ ul {
 	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
-.infoBox .vizBox {
+.infoBox {
 	display: inline-block;
 	min-height: 280px;
 	height: auto;
@@ -181,6 +181,15 @@ ul {
 .infoBox:hover { 
 	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
+}
+.vizBox {
+	display: inline-block;
+	min-height: 280px;
+	height: auto;
+	padding: 10px;
+	margin: 0px 0px 10px 10px;
+	background-color: #0F4D8D;
+	transition: all .2s ease-in-out; 
 }
 .vizBox:hover {
 	box-shadow: 2px 5px 25px 2px #232323;
