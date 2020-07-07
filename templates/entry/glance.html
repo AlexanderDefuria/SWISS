@@ -129,7 +129,7 @@
 					<p>Offense Fouls</p>
 					</div>
 					<div class="infoLColumn">
-					<p>{% get_info team 'fouls' 'average' 'match' %}</p>
+					<p>{% get_info team 'fouls' 'average' 'match' %} / 2</p>
 					</div>
 				</div>
 				<div class="infoRow">
@@ -137,7 +137,7 @@
 					<p>Defense Fouls</p>
 					</div>
 					<div class="infoLColumn">
-					<p>{% get_info team 'defense_fouls' 'average' 'match' %}</p>
+					<p>{% get_info team 'defense_fouls' 'average' 'match' %} / 2</p>
 					</div>
 				</div>				
 				<div class="infoRow">
@@ -145,15 +145,15 @@
 					<p>Human Fouls</p>
 					</div>
 					<div class="infoLColumn">
-					<p>{% get_info team 'hp_fouls' 'average' 'match' %}</p>
+					<p>{% get_info team 'hp_fouls' 'average' 'match' %} / 2</p>
 					</div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn">
 					<p>Yellow Cards</p>
 					</div>
-					<div class="infoLColumn YellowColor">
-					<p>{% get_info team 'yellow_card' 'average' 'match' %}</p>
+					<div class="infoLColumn">
+					<p>{% get_info team 'yellow_card' 'average' 'match' %} / 1</p>
 					</div>
 				</div>
 			</div>
@@ -164,7 +164,7 @@
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Played Defense</p></div>
-					<div class="infoLColumn"><p>{% get_info team 'played_defense' 'average' 'match' %}</p></div>
+					<div class="infoLColumn"><p>{% get_info team 'played_defense' 'average' 'match' %} / 1</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Avg. Quality</p></div>
