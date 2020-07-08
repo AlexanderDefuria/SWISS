@@ -328,7 +328,8 @@ ul {
 }
 .robotPhoto {
 	width:inherit; 
-	height: inherit
+	height: inherit;
+	margin-bottom: 5px;
 }
 .stickyChip {
 	display: flex;
