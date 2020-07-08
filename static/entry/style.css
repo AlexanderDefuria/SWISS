@@ -216,7 +216,7 @@ ul {
 }
 .infoWide { 
 	width: 510px;
-	flex-grow: 5; 
+	flex-grow: 1; 
 }
 .infoReg { 
 	width: auto; 
@@ -305,6 +305,11 @@ ul {
 	font-size: 75px;
 	font-weight: 1000;
 	margin: 10px 0 0 0;
+/*	animation: 0.5s ease-out 0s 1; */
+	animation-duration: 0.75s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+	animation-name: slideInFromRight
 }
 #teamsText {
 	margin-top: 1.25em;
@@ -428,7 +433,16 @@ th {
 	padding-right: 20px;
 }
 
-
+@keyframes slideInFromRight {
+	0% {
+		transform: translateX(50%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateX(0);
+		opacity: 100%;
+	}
+}
 
 
 @media screen and (max-width: 1860px){
@@ -673,6 +687,7 @@ th {
 	height: auto;
 	width: auto;
 	display: flex;
+	cursor: pointer;
 }
 .teamDrawer {
 	padding-top: 20px;

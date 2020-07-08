@@ -41,11 +41,13 @@
 	</div>
 	
 	<div class="bodyContainer" id="bodyContainer">
+		<div class="heroContent" id="heroSpace">
+			<p class="homeText">Settings</p>
+		</div>
 		<form class="formContainer" method="post" name="mainForm" id="mainForm" method="POST">
             {% csrf_token %}
-
             <div class="formItem">
-                <label for="images">Display Robot Images</label>
+                <label for="images">Display Robot Photos</label>
                 <div class="radioGroup">
 					<label>
 						<input type="radio" id="images_true" name="images" value="True">
@@ -71,7 +73,7 @@
 				</div>
             </div>
             <div class="formItem">
-                <label for="districtTeams">Show All District Teams?</label>
+                <label for="districtTeams">Show All Teams in the District?</label>
                 <div class="radioGroup">
 					<label>
 						<input type="radio" id="districtTeams_true" name="districtTeams" value="True">
