@@ -305,11 +305,10 @@ ul {
 	font-size: 75px;
 	font-weight: 1000;
 	margin: 10px 0 0 0;
-/*	animation: 0.5s ease-out 0s 1; */
 	animation-duration: 0.75s;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in-out;
-	animation-name: slideInFromRight
+	animation-name: slideInFromRight;
 }
 #teamsText {
 	margin-top: 1.25em;
@@ -435,7 +434,7 @@ th {
 
 @keyframes slideInFromRight {
 	0% {
-		transform: translateX(50%);
+		transform: translateX(25%);
 		opacity: 0;
 	}
 	100% {
