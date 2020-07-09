@@ -216,13 +216,12 @@ ul {
 }
 .infoWide { 
 	width: 510px;
-	flex-grow: 1; 
 }
 .infoReg { 
 	width: auto; 
 	min-width: 260px; 
 	flex-grow: 1; 
-	max-width: 700px; 
+	max-width: 760px; 
 }
 .infoIcon { 
 	height: 7vh; 
@@ -303,8 +302,15 @@ ul {
 	color: white;
 	text-decoration: none;
 	font-size: 75px;
-	font-weight: 1000;
+	font-weight: 900;
 	margin: 10px 0 0 0;
+}
+.pageTitle {
+	color: white;
+	margin: 0;
+	padding: 0;
+	font-size: 75px;
+	font-weight: 900;
 	animation-duration: 0.75s;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in-out;
@@ -392,7 +398,6 @@ ul {
 .largeGraph {
 	height: auto;
 	width: 100%;
-	background-color: aqua;
 }
 .tableContainer {
 	background-color: #333333;
@@ -594,6 +599,10 @@ th {
 		padding: 8.5px
 	}
 	.homeText {
+		font-size: 28px;
+		margin-top: 55px;
+	}	
+	.pageTitle {
 		font-size: 28px;
 		margin-top: 55px;
 	}
@@ -912,6 +921,10 @@ th {
 		padding: 10px
 	}
 	.homeText {
+		font-size: 28px;
+		margin-top: 55px;
+	}
+	.pageTitle {
 		font-size: 28px;
 		margin-top: 55px;
 	}
