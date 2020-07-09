@@ -84,25 +84,25 @@ def get_all_teams():
 
 
 @register.simple_tag
-def get_info(team, field, *args):
+def get_info(user, team, field, *args):
     try:
         model = Pits
         if "match" in args:
             model = Match
 
-        if len(model.objects.filter(team_id=team, event_id=config.get_current_event_id())) == 0:
+        if len(model.objects.filter(team_id=team, event_id=config.get_current_event_id(), team_ownership=user.teammember.team)) == 0:
             return "No Data"
 
         if "dependant" in args:
-            return dependant(team, field, model, args)
+            return dependant(user, team, field, model, args)
         elif "average" in args:
-            return get_average(team, field, model)
+            return get_average(user, team, field, model)
         elif "total" in args:
-            return get_total(team, field, model)
+            return get_total(user, team, field, model)
         elif "list" in args:
-            return get_list(team, field, model)
+            return get_list(user, team, field, model)
         elif "possible" in args:
-            return get_possible(team, field, model)
+            return get_possible(user, team, field, model)
 
         return "ERROR"
 
@@ -110,9 +110,9 @@ def get_info(team, field, *args):
         return "NA"
 
 
-def get_average(team, field, model):
+def get_average(user, team, field, model):
     if model.objects.first()._meta.get_field(field).get_internal_type() not in ('IntegerField', 'SmallIntegerField', 'BooleanField'):
-        result_list = get_list(team, field, model)
+        result_list = get_list(user, team, field, model)
         most_common = 'None'
         occured = 0
         for each in result_list:
@@ -124,12 +124,12 @@ def get_average(team, field, model):
 
         return most_common
 
-    return round(1000 * (get_total(team, field, model) / len(model.objects.filter(team_id=team.id)))) / 1000
+    return round(1000 * (get_total(user, team, field, model) / len(model.objects.filter(team_id=team.id, team_ownership=user.teammember.team)))) / 1000
 
 
-def get_total(team, field, model):
+def get_total(user, team, field, model):
     total = 0
-    object_list = model.objects.filter(team_id=team.id)
+    object_list = model.objects.filter(team_id=team.id, team_ownership=user.teammember.team)
     boolean = model.objects.first()._meta.get_field(field).get_internal_type() == 'BooleanField'
 
     for entry in object_list:
@@ -143,8 +143,8 @@ def get_total(team, field, model):
     return total
 
 
-def get_list(team, field, model):
-    object_list = model.objects.filter(team_id=team.id)
+def get_list(user, team, field, model):
+    object_list = model.objects.filter(team_id=team.id, team_ownership=user.teammember.team)
     result_list = []
     return_list = {}
 
@@ -179,8 +179,8 @@ def get_list(team, field, model):
         return result_list
 
 
-def get_possible(team, field, model):
-    object_list = model.objects.filter(team_id=team.id)
+def get_possible(user, team, field, model):
+    object_list = model.objects.filter(team_id=team.id, team_ownership=user.teammember.team)
     default = model._meta.get_field(field).default
 
     # print("DEFAULT: " + str(default))
@@ -192,7 +192,7 @@ def get_possible(team, field, model):
     return "No"
 
 
-def dependant(team, field, model, args):
+def dependant(user, team, field, model, args):
     dependant_arg = ''
     for arg in args:
         if "dependant-" in str(arg):
@@ -201,7 +201,7 @@ def dependant(team, field, model, args):
         if args.index(arg) == len(args) - 1:
             return 0
 
-    object_list = model.objects.filter(team_id=team.id)
+    object_list = model.objects.filter(team_id=team.id, team_ownership=user.teammember.team)
     return_list = []
     total = 0
 

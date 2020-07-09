@@ -120,6 +120,7 @@ class Match(models.Model):
     scouter_name = models.TextField(default="")
     comment = models.TextField(default="")
     created_at = models.DateTimeField(auto_now_add=True)
+    team_ownership = models.ForeignKey(Team, on_delete=models.CASCADE, default=Team.objects.get(number=0).id, related_name="+")
 
     def __str__(self):
         return self.team.name + "  Match: " + str(self.match_number)
@@ -162,6 +163,7 @@ class Pits(models.Model):
 
     # Name
     scouter_name = models.TextField(default="")
+    team_ownership = models.ForeignKey(Team, on_delete=models.CASCADE, default=Team.objects.get(number=0).id, related_name="+")
 
     # Given Stats
     MOTOR_CHOICES = [
