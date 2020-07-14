@@ -90,6 +90,7 @@ def match_scout_submit(request, pk):
 
         match.scouter_name = request.POST.get('scouterName', '')
         match.comment = request.POST.get('comment', '')
+        match.team_ownership = request.user.teammember.team
 
         match.save()
 
@@ -223,6 +224,7 @@ def pit_scout_submit(request, pk):
         pits.climb_buddy = request.POST.get('climbBuddy', False)
         pits.climb_balance = request.POST.get('climbBalance', False)
         pits.scouter_name = request.POST.get('scouterName', '0')
+        pits.team_ownership = request.user.teammember.team
         pits.save()
 
         print(pits)
@@ -492,7 +494,6 @@ class Visualize(LoginRequiredMixin, generic.ListView):
     model = Team
     context_object_name = "team_list"
 
-
     def get_queryset(self):
         return get_present_teams()
 
@@ -565,7 +566,7 @@ class MatchData(LoginRequiredMixin, generic.ListView):
     model = Match
 
     def get_queryset(self):
-        return Match.objects.all().filter(event_id=config.get_current_event_id())
+        return Match.objects.all().filter(event_id=config.get_current_event_id()).filter(team_ownership=self.request.user.teammember.team)
 
 
 class PitData(LoginRequiredMixin, generic.ListView):

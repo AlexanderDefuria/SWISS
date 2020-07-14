@@ -15,7 +15,7 @@ def graph(graph_type, request):
         raise NoTeamsProvided
 
     output = {
-        "bar": bar_graph(req_fields, teams),
+        "bar": bar_graph(req_fields, teams, request),
         "overall": overall_graph(req_fields, teams),
     }
 
@@ -26,7 +26,7 @@ def overall_graph(req_fields, teams):
     return return_home()
 
 
-def bar_graph(req_fields, teams):
+def bar_graph(req_fields, teams, request):
     default_out = Match.objects.all()[0].__dict__
     data_out = {}
 
@@ -50,7 +50,7 @@ def bar_graph(req_fields, teams):
 
     for team in teams:
         # TODO Total the values from each field per team and package the totals into a json under each team id or number
-        matches = Match.objects.filter(team_id=team)
+        matches = Match.objects.filter(team_id=team, team_ownership=request.user.teammember.team.id)
         team_data = default_out.copy()
 
         # TODO Separate out dependants like in glance, meaning only contribute quality to average if defense was actually played
