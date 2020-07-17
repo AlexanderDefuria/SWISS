@@ -90,7 +90,7 @@ def get_info(user, team, field, *args):
         if "match" in args:
             model = Match
 
-        if len(model.objects.filter(team_id=team, event_id=config.get_current_event_id(), team_ownership=user.teammember.team)) == 0:
+        if len(model.objects.filter(team_id=team, event_id=config.get_current_event_id(), team_ownership=user.teammember.team_id)) == 0:
             return "No Data"
 
         if "dependant" in args:
@@ -214,13 +214,3 @@ def dependant(user, team, field, model, args):
         return "None"
 
     return round(1000 * total / len(return_list)) / 1000
-
-
-#
-# {% for team in team_list %}
-#     {{ team|get_pit_info:"weight" }}
-# {% endfor %}
-# ------- or --------
-# {% get_pit_info team "field" %}
-#
-

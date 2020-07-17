@@ -279,7 +279,7 @@ def update_graph(request):
 @login_required(login_url='entry:login')
 def update_glance(request, pk):
     print(request.POST)
-    matches = Match.objects.filter(team_id=pk).order_by('match_number')
+    matches = Match.objects.filter(team_id=pk, team_ownership_id=request.user.teammember.team_id).order_by('match_number')
     matches_json = serializers.serialize('json', matches)
     print(matches_json)
 
@@ -418,6 +418,12 @@ def logout(request):
     auth.logout(request)
     print("request.user.is_authenticated:" + str(request.user.is_authenticated))
     return HttpResponseRedirect(reverse_lazy('entry:index'))
+
+
+def register_user(request):
+    if request.method == 'GET':
+        template = loader.get_template('entry/register.html')
+        return HttpResponse(template.render({}, request))
 
 
 @login_required(login_url='entry:login')
