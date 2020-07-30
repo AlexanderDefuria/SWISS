@@ -122,9 +122,9 @@
 			</select>
 		</div>
 		<div class="formItem">
-			<label for="telePositions">Scoring Locations in Teleoperated</label>
+			<label for="telePositions">Scoring Locations in Teleop</label>
 			<div class="checkboxGroup" >
-				<label class="checkContainer" onClick="registerChange()">/Against Power Port
+				<label class="checkContainer" onClick="registerChange()">Against Power Port
 				<input type="checkbox" id="againstPort" name="telePositions" value="0">
 				<span class="checkmark"></span>
 				</label>
@@ -148,7 +148,11 @@
 		</div>
 		<div class="formItem">
 			<label for="ballCapacity">Ball Capacity</label>
-			<input type="number" name="ballCapacity" id="ballCapacity" min="0" max="5" value="5" required>
+			<div class="ticker">
+				<input type="button"  onclick="decrementValue('ballCapacity')" value="-">
+				<input type="number" name="lower_auto" id="ballCapacity" min="0" max="5" value="0" readonly required>
+				<input type="button"  onclick="incrementValue('ballCapacity')" value="+">
+			</div>
 		</div>
 		<div class="formItem">
 			<label for="shooterStyle">Style of Shooter</label>
@@ -158,11 +162,11 @@
 			<label for="lowBot">Can drive under the control panel</label>
 				<div class="radioGroup">
 					<label>
-						<input type="radio" name="lowBot" id="lowBot" value="False" onClick="registerChange()" required>
+						<input type="radio" name="lowBot" id="lowBot_False" value="False" onClick="registerChange()" required>
 						<span>N</span>
 					</label>
 					<label>
-						<input type="radio" name="lowBot" id="lowbot" value="True" onClick="registerChange()">
+						<input type="radio" name="lowBot" id="lowBot_True" value="True" onClick="registerChange()">
 						<span>Y</span>
 					</label>
 				</div>

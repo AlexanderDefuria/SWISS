@@ -155,7 +155,7 @@
 				</div>
 			  </div>
 			<div class="formItem">
-				<label for="missed_balls_auto"></label>
+				<label for="missed_balls_auto">Missed Balls (AUTO)</label>
 				<div class="ticker">
 					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'MissedIcon.png' %}" alt="missed">
 					<input type="button" onclick="decrementValue('missed_balls_auto')" value="-">
@@ -260,7 +260,7 @@
 			<!-- Text string for team number defending the currently scouted one -->
 			<!-- Backend only accepts strings that only contain numbers -->
 				<label for="defendedBy">Defended by</label>
-				<input type="text" name="defendedBy" id="defendedBy" list="teams_at_event" placeholder="Opposing Team #" autocomplete="off">
+				<input type="number" name="defendedBy" id="defendedBy" list="teams_at_event" placeholder="Team #" min="1" max="9999">
 			</div>
 			
 		<!-- Control Panel Items -->
@@ -268,13 +268,16 @@
 			<div class="formItem">
 			<!-- Dropdown for control panel task -->
 				<label for="wheelScore">Control Panel</label>
-				<select name="wheelScore" id="wheelScore" required>
-					<option value="">&#8230;</option>
-					<option value="0">Did not Attempt</option>
-					<option value="1">Unsuccessful</option>
-					<option value="2">Completed Rotation</option>
-					<option value="3">Completed Colour</option>
-				</select>
+				<div>
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'ControlPanelIcon.png' %}" alt="Control Panel Icon">
+					<select name="wheelScore" id="wheelScore" required>
+						<option value="">&#8230;</option>
+						<option value="0">Did not Attempt</option>
+						<option value="1">Unsuccessful</option>
+						<option value="2">Completed Rotation</option>
+						<option value="3">Completed Colour</option>
+					</select>
+				</div>
 			</div>
 			
 			<div class="formItem">
@@ -319,7 +322,7 @@
 			</div>
 			<div class="formItem">
 				<label for="teamDefended">Team Defended</label>
-				<input type="text" name="teamDefended" id="teamDefended" list="teams_at_event" placeholder="ONLY ONE TEAM" autocomplete="off">
+				<input type="number" name="teamDefended" id="teamDefended" list="teams_at_event" placeholder="Team #" min="1" max="9999">
 			</div>
 			<div class="formItem">
 				<label for="defenseRating">Quality of Defense</label>
