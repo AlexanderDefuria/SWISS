@@ -124,18 +124,22 @@
 		<div class="formItem">
 			<label for="telePositions">Scoring Locations in Teleoperated</label>
 			<div class="checkboxGroup" >
-					<input type="checkbox" name="telePositions" id="telePositions" value="0">
-					<span>Against Power Port</span>
-				<br>
-					<input type="checkbox" name="telePositions" id="telePositions" value="1">
-					<span>Initiation Line Area</span>
-				<br>
-					<input type="checkbox" name="telePositions" id="telePositions" value="2">
-					<span>Trench Run</span>
-				<br>
-					<input type="checkbox" name="telePositions" id="telePositions" value="4">
-					<span>Behind Control Panel</span>
-				<br>
+				<label class="checkContainer" onClick="registerChange()">/Against Power Port
+				<input type="checkbox" id="againstPort" name="telePositions" value="0">
+				<span class="checkmark"></span>
+				</label>
+				<label class="checkContainer" onClick="registerChange()">Initiation Line Area
+				<input type="checkbox" id="initiationLine" name="telePositions" value="1">
+				<span class="checkmark"></span>
+				</label>
+				<label class="checkContainer" onClick="registerChange()">Trench Run
+				<input type="checkbox" id="trenchRun" name="telePositions" value="2">
+				<span class="checkmark"></span>
+				</label>
+				<label class="checkContainer" onClick="registerChange()">Behind Control Panel
+				<input type="checkbox" id="fullCourt" name="telePositions" value="4">
+				<span class="checkmark"></span>
+				</label>
 			</div>
 		</div>
 		<div class="formItem">

@@ -351,13 +351,6 @@
 			
 			<h1>ENDGAME</h1>
 			<div class="formItem">
-				<label for="climbLocation">Climbing Position</label>
-			  	<div class="right">
-					<output name="climbLocation_number" id="climbLocation_number" for="climbLocation">0</output>
-					<input name="climbLocation" id="climbLocation" type="range" min="0" max="5" value="0" oninput="climbLocation_number.value=climbLocation.value">
-			  	</div>
-		  </div>
-			<div class="formItem">
 				<label for="lockStatus">Field Timeout Position (t=+5s)</label>
 				<select name="lockStatus" id="lockStatus" required>
 					<option value="">&#8230;</option>
@@ -367,6 +360,13 @@
 					<option value="3">Successful Climb</option>
 				</select>
 			</div>
+			<div class="formItem">
+				<label for="climbLocation">Climbing Position</label>
+			  	<div class="right">
+					<output name="climbLocation_number" id="climbLocation_number" for="climbLocation">0</output>
+					<input name="climbLocation" id="climbLocation" type="range" min="0" max="5" value="0" oninput="climbLocation_number.value=climbLocation.value">
+			  	</div>
+		  </div>
 			
 <!-- HUMAN FOULS AND COMMENTS	-->
 			
