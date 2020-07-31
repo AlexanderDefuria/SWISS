@@ -31,10 +31,10 @@
 		<div id="loginContainer">
 			<div class="infoBox loginBox" style="">
 				<div class="infoHeader">
-					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'UserIcon.png' %}" alt="Download Icon">
+					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'NewUserIcon.png' %}" alt="Download Icon">
 					<h1>Register New User</h1>
 				</div>
-				<form action="{% url 'entry:login' %}" method="POST" enctype="multipart/form-data" id="form">
+				<form action="{% url 'entry:register_user' %}" method="POST" enctype="multipart/form-data" id="form">
                     {% csrf_token %}
                     <div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
 						<label for="username">Username:</label>
@@ -75,11 +75,10 @@
                             <option value="5">Lead Scout</option>
 			        	</select>
 			        </div>
+                    <div class="formItem" id="submit" onclick="validate('mainForm', true)">
+                        <button class="updateButton loginButton" type="submit">Register New User</button>
+			        </div>
 
-
-                    <button class="updateButton loginButton" type="button">Register New User</button>
-
-				
 				</form>
 			</div>
 		</div>

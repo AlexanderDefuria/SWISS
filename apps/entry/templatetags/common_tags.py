@@ -84,6 +84,12 @@ def get_all_teams():
 
 
 @register.simple_tag
+def is_lead_scout(request):
+    # Check if user is highest level position
+    return request.user.teammember.position == TeamMember.AVAILABLE_POSITIONS[-1][0]
+
+
+@register.simple_tag
 def get_info(user, team, field, *args):
     try:
         model = Pits

@@ -208,3 +208,24 @@ class TeamMember(models.Model):
 
     def __str__(self):
         return self.user.username + " - " + self.position
+
+
+class TeamSettings(models.Model):
+    defaultTeam = Team.objects.filter(number=4343)[0].id
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, default=defaultTeam)
+
+    NEW_USER_POSITIONS = TeamMember.AVAILABLE_POSITIONS[:-1]
+    NEW_USER_CREATION_OPTIONS = (
+        # **, first is approval for use, second is account creation
+        ("MA", "Manual Approval, Open Registration"),
+        ("MM", "Manual Creation of All Users"),
+        ("AA", "Open Registration and Use")
+    )
+
+    allowPhotos = models.BooleanField(default=True)
+    allowSchedule = models.BooleanField(default=True)
+    newUserCreation = models.CharField(max_length=2, choices=NEW_USER_CREATION_OPTIONS, default="MM")
+    newUserPosition = models.CharField(max_length=2, choices=NEW_USER_POSITIONS, default="OV")
+
+    def __str__(self):
+        return self.team

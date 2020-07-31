@@ -246,12 +246,6 @@ def validate_pit_scout(request, pk):
     return HttpResponse(dumps(redo), content_type="application/json")
 
 
-def view_matches(request):
-    if request.method == 'GET':
-        print("POSTED")
-    return HttpResponseRedirect(reverse_lazy('entry:visualize'))
-
-
 @ajax
 @csrf_exempt
 @login_required(login_url='entry:login')
@@ -424,6 +418,18 @@ def register_user(request):
     if request.method == 'GET':
         template = loader.get_template('entry/register.html')
         return HttpResponse(template.render({}, request))
+    elif request.method == 'POST':
+        username = request.POST.get('teamPosition')
+        print(username)
+        return HttpResponseRedirect(reverse_lazy('entry:register_user'))
+
+
+@ajax
+@csrf_exempt
+def validate_registration(request):
+    data = decode_ajax(request)
+    redo, data = validate_types(request, data, False)
+    return HttpResponse(dumps(redo), content_type="application/json")
 
 
 @login_required(login_url='entry:login')
@@ -504,11 +510,10 @@ class Visualize(LoginRequiredMixin, generic.ListView):
         return get_present_teams()
 
 
-# DPERECATED
 class ScheduleView(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     template_name = 'entry/schedule.html'
-    context_object_name = "schedule"
+    context_object_name = "schedule_list"
     model = Schedule
 
     def get_queryset(self):

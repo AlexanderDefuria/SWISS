@@ -85,12 +85,25 @@
 					</label>
 				</div>
             </div>
+
             <div class="formItem">
                 <label>User Role</label>
                 <div class="positionIndicator">
                     {% get_user_role request %}
                 </div>
             </div>
+
+            {% is_lead_scout request as lead_scout %}
+            {% if lead_scout %}
+            <div class="formItem">
+				<label for="intakeType">Intake Type ----- Finish Implementation</label>
+				<select name="intakeType" id="intakeType" required>
+					<option value="0">Manual Approval, Open Registration</option>
+					<option value="1">Manual Creation of All Users</option>
+					<option value="2">Open Registration, Free Entry </option>
+				</select>
+			</div>
+            {% endif %}
 
             <div class="formItem" id="submit" onclick="validate('mainForm', false)">
                 <input name="submit" id="submitButton" type="submit" style="pointer-events: none" value="Save Settings">
@@ -104,5 +117,6 @@
         document.getElementById('images_'.concat('{% get_cookie request 'images' %}'.toLowerCase())).checked = true;
         document.getElementById('filters_'.concat('{% get_cookie request 'filters' %}'.toLowerCase())).checked = true;
         document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true;
+        {% if lead_scout %} //document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true; {% endif %}
     }
 </script>

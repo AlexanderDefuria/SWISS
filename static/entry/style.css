@@ -1,5 +1,112 @@
 @charset "utf-8";
 
+/* ORDER OF COMPONENTS */
+/* Base Index Page */
+/*
+Ordering of index boxes when on mobile (to prevent the jankey looking blank spaces)
+This SHOULD also apply to any viewports less than this. If this breaks on mobile let Nick know
+*/
+#tileMatch 		{order: 1 }
+#tilePit 		{order: 2}
+#tileGlance 	{order: 3}
+#tileTeams 		{order: 4}
+#tileData 		{order: 5}
+#tileVisualize 	{order: 6}
+#tileSchedule   {order: 7}
+#tileDownload 	{order: 8}
+#tileEvent 		{order: 9}
+#tileUpload 	{order: 10}
+#tileAdmin 		{order: 11}
+#tileSettings 	{order: 12}
+#tileLogout 	{order: 13}
+#tileActive 	{order: 14}
+@media screen and (max-width: 1860px){
+	.tileContainer #tileMatch 		{order : 1}
+	.tileContainer #tilePit 		{order: 2}
+	.tileContainer #tileGlance 		{order: 3}
+	.tileContainer #tileTeams 		{order: 5}
+	.tileContainer #tileData 		{order: 4}
+	.tileContainer #tileVisualize 	{order: 6}
+	.tileContainer #tlleSchedule 	{order: 7}
+	.tileContainer #tileDownload 	{order: 8}
+	.tileContainer #tileEvent 		{order: 9; min-width: 255px; max-width: 565px;}
+	.tileContainer #tileActive 		{order: 10; min-width: 255px; max-width: 565px;}
+	.tileContainer #tileUpload 		{order: 11}
+	.tileContainer #tileAdmin 		{order: 12}
+	.tileContainer #tileSettings 	{order: 13}
+	.tileContainer #tileLogout 		{order: 14}
+} @media screen and (max-width: 1600px){
+	.tileContainer #tileMatch 		{order : 1}
+	.tileContainer #tilePit 		{order: 2}
+	.tileContainer #tileGlance 		{order: 4}
+	.tileContainer #tileTeams 		{order: 3}
+	.tileContainer #tileData 		{order: 6}
+	.tileContainer #tileVisualize 	{order: 5}
+	.tileContainer #tileDownload 	{order: 7}
+	.tileContainer #tileEvent 		{order: 8; min-width: 255px; max-width: 565px;}
+	.tileContainer #tileUpload 		{order: 10}
+	.tileContainer #tileAdmin 		{order: 11}
+	.tileContainer #tileSettings 	{order: 12}
+	.tileContainer #tileLogout 		{order: 13}
+	.tileContainer #tileActive 		{order: 9; min-width: 255px; max-width: 565px;}
+} @media screen and (max-width: 1280px) {
+	.tileContainer #tileMatch 		{order: 1}
+	.tileContainer #tilePit 		{order: 3}
+	.tileContainer #tileGlance 		{order: 2}
+	.tileContainer #tileTeams 		{order: 4}
+	.tileContainer #tileData 		{order: 6}
+	.tileContainer #tileVisualize 	{order: 5}
+	.tileContainer #tileDownload 	{order: 7}
+	.tileContainer #tileEvent 		{order: 8; max-width: 255px;}
+	.tileContainer #tileActive 		{order: 9; max-width: 255px;}
+	.tileContainer #tileUpload 		{order: 10}
+	.tileContainer #tileAdmin 		{order: 11}
+	.tileContainer #tileSettings 	{order: 12}
+	.tileContainer #tileLogout 		{order: 13}
+} @media screen and (max-width: 820px) {
+	.tileContainer #tileMatch 		{order: 2}
+	.tileContainer #tilePit 		{order: 1}
+	.tileContainer #tileGlance 		{order: 3}
+	.tileContainer #tileTeams 		{order: 4}
+	.tileContainer #tileData 		{order: 6}
+	.tileContainer #tileVisualize 	{order: 5}
+	.tileContainer #tileDownload 	{order: 7}
+	.tileContainer #tileUpload 		{order: 10}
+	.tileContainer #tileAdmin 		{order: 11}
+	.tileContainer #tileSettings 	{order: 12}
+	.tileContainer #tileLogout 		{order: 13}
+} @media screen and (max-width: 1280px) {
+	#tileMatch 		{order: 1}
+	#tilePit 		{order: 2}
+	#tileGlance 	{order: 3}
+	#tileTeams 		{order: 4}
+	#tileData 		{order: 6}
+	#tileVisualize 	{order: 5}
+	#tileDownload 	{order: 7}
+	#tileEvent 		{order: 8; max-width: 255px;}
+	#tileUpload 	{order: 10}
+	#tileAdmin 		{order: 11}
+	#tileSettings 	{order: 12}
+	#tileLogout 	{order: 13}
+	#tileActive 	{order: 9; max-width: 255px;}
+} @media screen and (max-width: 820px) and (max-height: 800px) {
+	#tileMatch 		{order: 1}
+	#tilePit 		{order: 2}
+	#tileGlance 	{order: 3}
+	#tileTeams 		{order: 4}
+	#tileData 		{order: 6}
+	#tileVisualize 	{order: 5}
+	#tileDownload 	{order: 7}
+	#tileEvent 		{order: 8; max-width: 255px;}
+	#tileUpload 	{order: 10}
+	#tileAdmin 		{order: 11}
+	#tileSettings 	{order: 12}
+	#tileLogout 	{order: 13}
+	#tileActive 	{order: 9; max-width: 255px;}
+}
+
+/* REST OF CSS */
+
 body {
 	color: white;
 	background-color: #333333;
@@ -449,53 +556,6 @@ th {
 }
 
 
-@media screen and (max-width: 1860px){
-	.tileContainer #tileMatch {order : 1}
-	.tileContainer #tilePit {order: 2}
-	.tileContainer #tileGlance {order: 3}
-	.tileContainer #tileTeams {order: 5}
-	.tileContainer #tileData {order: 4}
-	.tileContainer #tileVisualize {order: 6}
-	.tileContainer #tileDownload {order: 7}
-	.tileContainer #tileEvent {
-		order: 8; 
-		min-width: 255px;
-		max-width: 565px;
-	}
-	.tileContainer #tileUpload {order: 10}
-	.tileContainer #tileAdmin {order: 11}
-	.tileContainer #tileSettings {order: 12}
-	.tileContainer #tileLogout {order: 13}
-	.tileContainer #tileActive {
-		order: 9; 
-		min-width: 255px;
-		max-width: 565px;
-	}
-}
-
-@media screen and (max-width: 1600px){
-	.tileContainer #tileMatch {order : 1}
-	.tileContainer #tilePit {order: 2}
-	.tileContainer #tileGlance {order: 4}
-	.tileContainer #tileTeams {order: 3}
-	.tileContainer #tileData {order: 6}
-	.tileContainer #tileVisualize {order: 5}
-	.tileContainer #tileDownload {order: 7}
-	.tileContainer #tileEvent {
-		order: 8; 
-		min-width: 255px;
-		max-width: 565px;
-	}
-	.tileContainer #tileUpload {order: 10}
-	.tileContainer #tileAdmin {order: 11}
-	.tileContainer #tileSettings {order: 12}
-	.tileContainer #tileLogout {order: 13}
-	.tileContainer #tileActive {
-		order: 9; 
-		min-width: 255px;
-		max-width: 565px;
-	}
-}
 
 
 @media screen and (max-width: 1280px) {
@@ -538,25 +598,7 @@ th {
 	#username {
 		width: 100%;
 	}
-	/* 
-	
-	Ordering of index boxes when on mobile (to prevent the jankey looking blank spaces) 
-	This SHOULD also apply to any viewports less than this. If this breaks on mobile let Nick know
-	
-	*/
-	.tileContainer #tileMatch {order : 1}
-	.tileContainer #tilePit {order: 3}
-	.tileContainer #tileGlance {order: 2}
-	.tileContainer #tileTeams {order: 4}
-	.tileContainer #tileData {order: 6}
-	.tileContainer #tileVisualize {order: 5}
-	.tileContainer #tileDownload {order: 7}
-	.tileContainer #tileEvent {order: 8; max-width: 255px;}
-	.tileContainer #tileUpload {order: 10}
-	.tileContainer #tileAdmin {order: 11}
-	.tileContainer #tileSettings {order: 12}
-	.tileContainer #tileLogout {order: 13}
-	.tileContainer #tileActive {order: 9; max-width: 255px;}
+
 }
 
 /* for mobile phones, portrait and landscape */
@@ -617,18 +659,6 @@ th {
 		height: 100%;
 		width: inherit;
 	}
-
-	.tileContainer #tileMatch {order: 2}
-	.tileContainer #tilePit {order: 1}
-	.tileContainer #tileGlance {order: 3}
-	.tileContainer #tileTeams {order: 4}
-	.tileContainer #tileData {order: 6}
-	.tileContainer #tileVisualize {order: 5}
-	.tileContainer #tileDownload {order: 7}
-	.tileContainer #tileUpload {order: 10}
-	.tileContainer #tileAdmin {order: 11}
-	.tileContainer #tileSettings {order: 12}
-	.tileContainer #tileLogout {order: 13}
 
 	#currentEvent {
 		display: none;
@@ -744,20 +774,7 @@ th {
 	flex-direction: column
 }
 
-/* manage index page tile ordering */
-#tileMatch { order: 1 }
-#tilePit {order: 2}
-#tileGlance {order: 3}
-#tileTeams {order: 4}
-#tileData {order: 5}
-#tileVisualize {order: 6}
-#tileDownload {order: 7}
-#tileEvent {order: 8}
-#tileUpload {order: 9}
-#tileAdmin {order: 10}
-#tileSettings {order: 11}
-#tileLogout {order: 12}
-#tileActive {order: 13}
+
 
 .graphOption button {
 	background-color: #1C984F;
@@ -859,26 +876,8 @@ th {
 	.pillSelect {
 		max-width: 75%;
 	}
-	/* 
-	
-	Ordering of index boxes when on mobile (to prevent the jankey looking blank spaces) 
-	This SHOULD also apply to any viewports less than this. If this breaks on mobile let Nick know
-	
-	*/
-	
-	#tileMatch { order: 1 }
-	#tilePit {order: 2}
-	#tileGlance {order: 3}
-	#tileTeams {order: 4}
-	#tileData {order: 6}
-	#tileVisualize {order: 5}
-	#tileDownload {order: 7}
-	#tileEvent {order: 8; max-width: 255px;}
-	#tileUpload {order: 10}
-	#tileAdmin {order: 11}
-	#tileSettings {order: 12}
-	#tileLogout {order: 13}
-	#tileActive {order: 9; max-width: 255px;}
+
+
 }
 
 /* for mobile phones, portrait and landscape */
@@ -951,23 +950,5 @@ th {
 		transform: scale(1);
 		box-shadow: none;
 	}
-	
-	/* 
-	Ordering of index boxes when on mobile (to prevent the jankey looking blank spaces) 
-	This SHOULD also apply to any viewports less than this. If this breaks on mobile let Nick know
-	*/
-	
-	#tileMatch { order: 1 }
-	#tilePit {order: 2}
-	#tileGlance {order: 3}
-	#tileTeams {order: 4}
-	#tileData {order: 6}
-	#tileVisualize {order: 5}
-	#tileDownload {order: 7}
-	#tileEvent {order: 8; max-width: 255px;}
-	#tileUpload {order: 10}
-	#tileAdmin {order: 11}
-	#tileSettings {order: 12}
-	#tileLogout {order: 13}
-	#tileActive {order: 9; max-width: 255px;}
+
 }
