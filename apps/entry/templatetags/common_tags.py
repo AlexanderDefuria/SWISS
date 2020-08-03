@@ -130,7 +130,10 @@ def get_average(user, team, field, model):
 
         return most_common
 
-    return round(1000 * (get_total(user, team, field, model) / len(model.objects.filter(team_id=team.id, team_ownership=user.teammember.team)))) / 1000
+    # If its to do with scoring or fouls return a percent
+    scale = 1000 if model == Pits else 10
+
+    return round(1000 * (get_total(user, team, field, model) / len(model.objects.filter(team_id=team.id, team_ownership=user.teammember.team)))) / scale
 
 
 def get_total(user, team, field, model):
@@ -139,8 +142,13 @@ def get_total(user, team, field, model):
     boolean = model.objects.first()._meta.get_field(field).get_internal_type() == 'BooleanField'
 
     for entry in object_list:
+
+        if model==Match:
+            print("climbed")
+            print(entry.climbed)
         if boolean:
-            # print(entry.__getattribute__(field))
+            print(field)
+            print(entry.__getattribute__(field))
             if entry.__getattribute__(field):
                 total += 1
         else:

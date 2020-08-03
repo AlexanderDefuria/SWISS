@@ -78,10 +78,7 @@ def match_scout_submit(request, pk):
         match.climb_location = request.POST.get('climbLocation', 0)
         match.field_timeout_pos = request.POST.get('lockStatus', 0)
 
-        if match.field_timeout_pos == 3:
-            match.climbed = True
-        else:
-            match.climbed = False
+        match.climbed = 1 if match.field_timeout_pos == 3 else 0
 
         match.hp_fouls = request.POST.get('humanFouls', 0)
         match.dt_fouls = request.POST.get('driverFouls', 0)
@@ -185,7 +182,7 @@ def validate_types(request, data, reqlist):
 
     print(redo.keys())
     print(redo.values())
-#    redo.__delitem__('Cleanup')
+    #    redo.__delitem__('Cleanup')
 
     return redo, data
 
@@ -273,7 +270,8 @@ def update_graph(request):
 @login_required(login_url='entry:login')
 def update_glance(request, pk):
     print(request.POST)
-    matches = Match.objects.filter(team_id=pk, team_ownership_id=request.user.teammember.team_id).order_by('match_number')
+    matches = Match.objects.filter(team_id=pk, team_ownership_id=request.user.teammember.team_id).order_by(
+        'match_number')
     matches_json = serializers.serialize('json', matches)
     print(matches_json)
 
@@ -436,7 +434,7 @@ def validate_registration(request):
 def admin_redirect(request, **kwargs):
     if request.user.is_superuser:
         if 'whereto' in kwargs:
-            return HttpResponseRedirect(reverse_lazy('admin:index') + 'entry/' + kwargs['whereto'] +"/")
+            return HttpResponseRedirect(reverse_lazy('admin:index') + 'entry/' + kwargs['whereto'] + "/")
 
         return HttpResponseRedirect(reverse_lazy('admin:index'))
     return HttpResponseRedirect(reverse_lazy('entry:index'))
@@ -577,7 +575,8 @@ class MatchData(LoginRequiredMixin, generic.ListView):
     model = Match
 
     def get_queryset(self):
-        return Match.objects.all().filter(event_id=config.get_current_event_id()).filter(team_ownership=self.request.user.teammember.team)
+        return Match.objects.all().filter(event_id=config.get_current_event_id()).filter(
+            team_ownership=self.request.user.teammember.team)
 
 
 class PitData(LoginRequiredMixin, generic.ListView):
