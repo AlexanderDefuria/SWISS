@@ -51,8 +51,17 @@
 				</div>
 			</div>
 		</div>
+	<div id="myModal" class="modal">
+		<div class="modal-content">
+			<h1 style="margin-left: 10px;">Are you sure the robot is not present?</h1>
+			<p>Clicking yes will set all form values to ZERO and scroll you to the bottom of the page.</p>
+			<div style="display: flex; justify-content: center">
+				<button id="onFieldCancel">No</button>
+				<button id="onFieldConfirm">Yes</button>
+			</div>
+		</div>
+	</div>
 	<div>
-		
 		<form action="{% url 'entry:write_match_scout' team.id %}" class="formContainer" method="post" name="mainForm" id="mainForm">
             {% csrf_token %}
 
@@ -269,7 +278,7 @@
 			<!-- Dropdown for control panel task -->
 				<label for="wheelScore">Control Panel</label>
 				<div>
-					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'ControlPanelIcon.png' %}" alt="Control Panel Icon">
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'ControlPanelIcon.png' %}" alt="Control Panel">
 					<select name="wheelScore" id="wheelScore" required>
 						<option value="">&#8230;</option>
 						<option value="0">Did not Attempt</option>
@@ -411,5 +420,54 @@
 	<option value="{{ team.number }}"></option>
 {% endfor %}
 </datalist>
+<script> 
+var modal = document.getElementById("myModal");
+var opn = document.getElementById("onFiled_false");
+var bad = document.getElementById("onFieldCancel");
+var good = document.getElementById("onFieldConfirm")
+
+// When the user clicks on the button, open the modal
+opn.onclick = function() {
+	modal.style.display = "block";
+	document.getElementById("mainForm").style.filter="blur(4px)";
+}
+
+// When the user clicks on "no", close the modal
+bad.onclick = function() {
+	modal.style.display = "none";
+	document.getElementById("onField_false").checked = false;
+	document.getElementById("onField_true").checked = true;
+	document.getElementById("mainForm").style.filter="blur(0)";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+	modal.style.display = "none";
+	document.getElementById("onField_false").checked = false;
+	document.getElementById("onField_true").checked = true;
+	document.getElementById("mainForm").style.filter="blur(0)";
+  }
+}
+
+good.onclick = function() {
+	modal.style.display = "none";
+	document.getElementById("mainForm").style.filter="blur(0)";
+	document.getElementById("preloadedBalls").value = "0";
+	document.getElementById("autoRoute").value = "0";
+	document.getElementById("baseline_false").checked = true;
+	document.getElementById("autoComment").value = "NOT PRESENT";
+	document.getElementById("intakeType").value = "0";
+	document.getElementById("noCycles").checked = true;
+	document.getElementById("underDefense").value = "0";
+	document.getElementById("wheelScorecore").value = "0";
+	document.getElementById("wheelRatingating").value = "0";
+	document.getElementById("playedDefense_false").checked = true;
+	document.getElementById("comment").value = "NOT PRESENT";
+	document.getElementById('submit').scrollIntoView({
+	behavior: 'smooth'
+	});
+}
+</script>
 </body>
 </html>

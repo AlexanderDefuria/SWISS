@@ -6,6 +6,7 @@
 .formContainer {
 	max-width: 60%;
 	margin: 0 auto;
+	transition: all .2 ease-in-out;
 }
 .formItem {
 	display: flex;
