@@ -170,18 +170,36 @@ ul {
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
+  overflow: scroll; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
 }
 /* Modal Content/Box */
 .modal-content {
-  background-color: #333333;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border-bottom: 2px solid #0F4D8D;
-  width: 30%; /* Could be more or less, depending on screen size */
+	background-color: #333333;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border-bottom: 2px solid #0F4D8D;
+	box-shadow: 2px 5px 25px 2px #111111;
+	width: 30%; /* Could be more or less, depending on screen size */
 }
+/* buttons found on Modals */
+.modalButton {
+	cursor: pointer;
+	background-color: #444444;
+	color: white;
+	margin: 0px 2px 0px 2px;
+	border: none;
+	text-align: center;
+	font-size: 18px;
+	padding: 10px 40px;
+	border-bottom: 2px solid;
+	transition: all .1s ease-in-out;
+}
+.modalButton:hover {
+	background-color: #555555;
+}
+
 #tileglanceBackground {
 	/*background-image: url("img/Glance Background - 2000w.png");*/
 	background-size: 45%;
@@ -902,7 +920,6 @@ th {
 }
 
 /* for mobile phones, portrait and landscape */
-
 @media screen and (max-width: 820px) and (max-height: 800px) {
 	.bodyBackground {
 		background-size: 150%;
@@ -910,6 +927,10 @@ th {
 	}
 	.tileContainer {
 		padding: 0 10px 0 10px;
+	}
+	.modal-content {
+		width: 80%;
+		margin: 50% auto;
 	}
 	.pillSelect {
 		max-width: 100%;
