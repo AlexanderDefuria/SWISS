@@ -257,7 +257,7 @@
 			<div class="formItem">
 			<!-- Can the robot drive well and achieve tasks while under defense? -->
 				<label for="underDefense">Play well under defense</label>
-				<select name="underDefense" id="underDefense" required onChange="hideDefendedBy()"> 
+				<select name="underDefense" id="underDefense" required> 
 					<option value="">&#8230;</option>
 					<option value="0">Not Defended</option>
 					<option value="1">Played Poorly</option>
@@ -265,19 +265,7 @@
 				</select>
 			</div>
 			
-			<script> 
-				// Gets value of dropdown, hides div that becomes irrelevant
-				function hideDefendedBy() {
-					var x = document.getElementById("underDefense").value;
-					if (x != 0){
-						document.getElementById("defendedByDiv").style.display="flex";
-					} else {
-						document.getElementById("defendedByDiv").style.display="none";
-					}
-				}
-			</script>
-			
-			<div class="formItem" id="defendedByDiv">
+			<div class="formItem">
 			<!-- Text string for team number defending the currently scouted one -->
 			<!-- Backend only accepts strings that only contain numbers -->
 				<label for="defendedBy">Defended by</label>
@@ -291,7 +279,7 @@
 				<label for="wheelScore">Control Panel</label>
 				<div>
 					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'ControlPanelIcon.png' %}" alt="Control Panel">
-					<select name="wheelScore" id="wheelScore" required onChange="hideWheelScore">
+					<select name="wheelScore" id="wheelScore" required>
 						<option value="">&#8230;</option>
 						<option value="0">Did not Attempt</option>
 						<option value="1">Unsuccessful</option>
@@ -301,19 +289,7 @@
 				</div>
 			</div>
 			
-			<script> 
-				function hideWheelScore() {
-					var x = document.getElementById("wheelScore").value;
-					if (x != 0){
-						document.getElementById("wheelRatingDiv").style.display="flex";
-					} else {
-						document.getElementById("wheelRatingDiv").style.display="none";
-						document.getElementById("wheelRating").value = "0";
-					}
-				}
-			</script>
-			
-			<div class="formItem" id="wheelRatingDiv">
+			<div class="formItem">
 			<!-- Range slider for Control Panel task Quality -->
 			<!-- May be taken out depending on usage and effectiveness --> 
 				<label for="wheelRating">Control Panel Quality</label>
@@ -348,29 +324,16 @@
 						<span>Y</span>
 					</label>
 					<label>
-						<input type="radio" id="playedDefense_false" name="playedDefense" value="False" onClick="registerChange(),hideDefenseStuff()">
+						<input type="radio" id="playedDefense_false" name="playedDefense" value="False" onClick="registerChange()">
 						<span>N</span>
 					</label>
 				</div>
 			</div>
-			<script>
-				function hideDefenseStuff() {
-					var x = document.getElementById("playedDefense_false").checked;
-					if (x != true){
-						document.getElementById("teamDefendedDiv").style.display="flex";
-						document.getElementById("defenseQualityDiv").style.display="flex";
-					} else {
-						document.getElementById("teamDefendedDiv").style.display="none";
-						document.getElementById("defenseRating").value="0";
-						document.getElementById("defenseQualityDiv").style.display="none";
-					}
-				}
-			</script>
-			<div class="formItem" id="teamDefendedDiv">
+			<div class="formItem">
 				<label for="teamDefended">Team Defended</label>
 				<input type="number" name="teamDefended" id="teamDefended" placeholder="Team #" min="1" max="9999" autocomplete="off">
 			</div>
-			<div class="formItem" id="defenseQualityDiv">
+			<div class="formItem">
 				<label for="defenseRating">Quality of Defense</label>
 			  	<div class="right">
 					<output name="defenseRatingnumber" id="defenseRatingnumber" for="defenseRating">0</output>
@@ -409,20 +372,7 @@
 					<option value="3">Successful Climb</option>
 				</select>
 			</div>
-			
-			<script> 
-				function hideClimbPosition() {
-					var x = document.getElementById("lockStatus").value;
-					if (x != 0){
-						document.getElementById("climbLocationDiv").style.display="flex";
-					} else {
-						document.getElementById("climbLocationDiv").style.display="none";
-						document.getElementById("climbLocation").value = "0";
-					}
-				}
-			</script>
-			
-			<div class="formItem" id="climbLocationDiv">
+			<div class="formItem">
 				<label for="climbLocation">Climbing Position</label>
 			  	<div class="right">
 					<output name="climbLocation_number" id="climbLocation_number" for="climbLocation">0</output>
@@ -480,7 +430,6 @@ var good = document.getElementById("onFieldConfirm")
 opn.onclick = function() {
 	modal.style.display = "block";
 	document.getElementById("mainForm").style.filter="blur(4px)";
-	window.navigator.vibrate(40);
 }
 
 // When the user clicks on "no", close the modal
@@ -489,7 +438,6 @@ bad.onclick = function() {
 	document.getElementById("onField_false").checked = false;
 	document.getElementById("onField_true").checked = true;
 	document.getElementById("mainForm").style.filter="blur(0)";
-	window.navigator.vibrate(40);
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -499,13 +447,11 @@ window.onclick = function(event) {
 	document.getElementById("onField_false").checked = false;
 	document.getElementById("onField_true").checked = true;
 	document.getElementById("mainForm").style.filter="blur(0)";
-	window.navigator.vibrate(40);
   }
 }
 
 good.onclick = function() {
 	modal.style.display = "none";
-	window.navigator.vibrate([30,20,30,20,30]);
 	document.getElementById("mainForm").style.filter="blur(0)";
 	document.getElementById("preloadedBalls").value = "0";
 	document.getElementById("autoRoute").value = "0";
