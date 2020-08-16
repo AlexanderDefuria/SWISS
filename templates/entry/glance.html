@@ -108,7 +108,7 @@
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Matches Played</p></div>
-					<div class="infoRColumn"><p>{{ MATCHES }}</p></div>
+					<div class="infoRColumn"><p>{{ team.match_set.count }}</p></div>
 				</div>
 			</div>
 			<div class="pictureBox" id="pictureBoxTile">
@@ -259,17 +259,16 @@
 					<div class="infoLColumn"><p>Total Matches</p></div>
 					<div class="infoLColumn"><p>{{ team.match_set.count }}</p></div>
 				</div>
-				<div class="infoRow">
+				<div class="infoRow" id="onFieldBG">
 					<div class="infoLColumn"><p>Percent On Field</p></div>
-					<div class="infoLColumn" id="onFieldBG"><p id="onFieldPercent">{% widthratio MATCHES team.match_set.count 100 %}</p></div>
+					<div class="infoLColumn"><p id="onFieldPercent">{% widthratio MATCHES team.match_set.count 100 %}</p></div>
 				</div>
 				<script>
 					var x = document.getElementById("onFieldPercent").innerHTML;
 					
 					if (x < 90) {
-						document.getElementById("onFieldBG").style.backgroundColor = "Yellow";
+						document.getElementById("onFieldBG").style.backgroundColor = "#D7AE22";
 					}
-					
 				</script>
 			</div>
 		</div>
