@@ -107,8 +107,8 @@
 					<div class="infoRColumn"><p>{% get_info user team 'wheel_manipulator' 'possible' 'pits' %}</p></div>
 				</div>
 				<div class="infoRow">
-					<div class="infoLColumn"><p>Matches Played/Present</p></div>
-					<div class="infoRColumn"><p>{{ MATCHES }}</p><p> / {{ team.match_set.count }} / </p><p>{% widthratio MATCHES team.match_set.count 100 %}</p></div>
+					<div class="infoLColumn"><p>Matches Played</p></div>
+					<div class="infoRColumn"><p>{{ MATCHES }}</p></div>
 				</div>
 			</div>
 			<div class="pictureBox" id="pictureBoxTile">
@@ -135,7 +135,7 @@
 					<p>Offense Fouls</p>
 					</div>
 					<div class="infoLColumn">
-					<p>{% get_info user team 'fouls' 'average' 'match' %}%</p>
+					<p>{% get_info user team 'fouls' 'average' 'match' %}</p>
 					</div>
 				</div>
 				<div class="infoRow">
@@ -143,7 +143,7 @@
 					<p>Defense Fouls</p>
 					</div>
 					<div class="infoLColumn">
-					<p>{% get_info user team 'defense_fouls' 'average' 'match' %}%</p>
+					<p>{% get_info user team 'defense_fouls' 'average' 'match' %}</p>
 					</div>
 				</div>				
 				<div class="infoRow">
@@ -151,7 +151,7 @@
 					<p>Human Fouls</p>
 					</div>
 					<div class="infoLColumn">
-					<p>{% get_info user team 'hp_fouls' 'average' 'match' %}%</p>
+					<p>{% get_info user team 'hp_fouls' 'average' 'match' %}</p>
 					</div>
 				</div>
 				<div class="infoRow">
@@ -159,7 +159,7 @@
 					<p>Yellow Cards</p>
 					</div>
 					<div class="infoLColumn">
-					<p>{% get_info user team 'yellow_card' 'average' 'match' %}%</p>
+					<p>{% get_info user team 'yellow_card' 'average' 'match' %}</p>
 					</div>
 				</div>
 			</div>
@@ -261,8 +261,16 @@
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Percent On Field</p></div>
-					<div class="infoLColumn"><p>{% widthratio MATCHES team.match_set.count 100 %}</p></div>
+					<div class="infoLColumn" id="onFieldBG"><p id="onFieldPercent">{% widthratio MATCHES team.match_set.count 100 %}</p></div>
 				</div>
+				<script>
+					var x = document.getElementById("onFieldPercent").innerHTML;
+					
+					if (x < 90) {
+						document.getElementById("onFieldBG").style.backgroundColor = "Yellow";
+					}
+					
+				</script>
 			</div>
 		</div>
 	</div>
