@@ -88,6 +88,7 @@
 					<div class="infoLColumn"><p>Shooter Style</p></div>
 					<div class="infoRColumn"><p> {% get_info user team 'shooter_style' 'average' 'pits' %}</p></div>
 				</div>
+				<!-- !!!THIS WILL BE MOVED TO ITS OWN BOX!!!
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Shooting Locations</p></div>
 					<div class="infoRColumn">
@@ -96,6 +97,7 @@
 						<p>{{ telePositionsList.1 }}</p>
 					</div>
 				</div>
+				-->
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Can Climb</p></div>
 					<div class="infoRColumn"><p>{% get_info user team 'climb_locations' 'possible' 'pits' %}</p></div>
@@ -103,6 +105,10 @@
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Control Panel</p></div>
 					<div class="infoRColumn"><p>{% get_info user team 'wheel_manipulator' 'possible' 'pits' %}</p></div>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Matches Played/Present</p></div>
+					<div class="infoRColumn"><p>{{ MATCHES }} / {{ team.match_set.count }} / {% widthratio MATCHES team.match_set.count 100 %}</p></div>
 				</div>
 			</div>
 			<div class="pictureBox" id="pictureBoxTile">
