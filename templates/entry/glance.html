@@ -239,6 +239,25 @@
 					<div class="infoLColumn"><p>{% get_info user team 'drivetrain_motortype' 'average' 'pits' %}: {% get_info user team 'drivetrain_motorquantity' 'average' 'pits' %}</p></div>
 				</div>
 			</div>
+            <div class="infoBox infoReg" id="driveTrainTile">
+				<div class="infoHeader">
+					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'DrivetrainIcon.png' %}" alt="Drivetrain">
+					<h1>Match Appearance Info</h1>
+				</div>
+                {% get_info user team 'on_field' 'total' 'match' as MATCHES %}
+				<div class="infoRow">
+					<div class="infoLColumn"><p>On Field Total</p></div>
+					<div class="infoLColumn"><p>{{ MATCHES }}</p></div>
+				</div>
+                <div class="infoRow">
+					<div class="infoLColumn"><p>Total Matches</p></div>
+					<div class="infoLColumn"><p>{{ team.match_set.count }}</p></div>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Percent On Field</p></div>
+					<div class="infoLColumn"><p>{% widthratio MATCHES team.match_set.count 100 %}</p></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
