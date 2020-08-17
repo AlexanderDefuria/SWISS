@@ -130,28 +130,28 @@
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'FlagIcon.png' %}" alt="flag">
 					<h1>Fouls &amp; Cards</h1>
 				</div>
-				<div class="infoRow">
+				<div class="infoRow" id="offFoulBG">
 					<div class="infoLColumn">
 					<p>Offense Fouls</p>
 					</div>
 					<div class="infoLColumn">
-					<p>{% get_info user team 'fouls' 'average' 'match' %}</p>
+					<p id="offenseFoulValue">{% get_info user team 'fouls' 'average' 'match' %}</p>
 					</div>
 				</div>
-				<div class="infoRow">
+				<div class="infoRow" id="defFoulBG">
 					<div class="infoLColumn">
 					<p>Defense Fouls</p>
 					</div>
 					<div class="infoLColumn">
-					<p>{% get_info user team 'defense_fouls' 'average' 'match' %}</p>
+					<p id="defenseFoulValue">{% get_info user team 'defense_fouls' 'average' 'match' %}</p>
 					</div>
 				</div>				
-				<div class="infoRow">
+				<div class="infoRow" id="humFoulBG">
 					<div class="infoLColumn">
 					<p>Human Fouls</p>
 					</div>
 					<div class="infoLColumn">
-					<p>{% get_info user team 'hp_fouls' 'average' 'match' %}</p>
+					<p id="humanFoulValue">{% get_info user team 'hp_fouls' 'average' 'match' %}</p>
 					</div>
 				</div>
 				<div class="infoRow">
@@ -245,7 +245,7 @@
 					<div class="infoLColumn"><p>{% get_info user team 'drivetrain_motortype' 'average' 'pits' %}: {% get_info user team 'drivetrain_motorquantity' 'average' 'pits' %}</p></div>
 				</div>
 			</div>
-            <div class="infoBox infoReg" id="driveTrainTile">
+            <div class="infoBox infoReg" id="onFieldTile">
 				<div class="infoHeader">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'DrivetrainIcon.png' %}" alt="Drivetrain">
 					<h1>Match Appearance Info</h1>
@@ -261,14 +261,30 @@
 				</div>
 				<div class="infoRow" id="onFieldBG">
 					<div class="infoLColumn"><p>Percent On Field</p></div>
-					<div class="infoLColumn"><p id="onFieldPercent">{% widthratio MATCHES team.match_set.count 100 %}</p></div>
+					<div class="infoLColumn"><p id="onFieldValue">{% widthratio MATCHES team.match_set.count 100 %}</p></div>
 				</div>
 				<script>
-					var x = document.getElementById("onFieldPercent").innerHTML;
+					var f = document.getElementById("onFieldValue").innerHTML;
+					var o = document.getElementById("offenseFoulValue").innerHTML;
+					var d = document.getElementById("defenseFoulValue").innerHTML;
+					var h = document.getElementById("humanFoulValue").innerHTML;
 					
-					if (x < 90) {
+					if (f < 90) {
 						document.getElementById("onFieldBG").style.backgroundColor = "#D7AE22";
 					}
+
+					if (o > 25) {
+						document.getElementById("offFoulBG").style.backgroundColor = "#D7AE22";
+					}
+
+					if (d > 25) {
+						document.getElementById("defFoulBG").style.backgroundColor = "#D7AE22";
+					}
+
+					if (h > 0) {
+						document.getElementById("humFoulBG").style.backgroundColor = "#D7AE22";
+					}
+
 				</script>
 			</div>
 		</div>
