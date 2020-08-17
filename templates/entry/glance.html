@@ -273,16 +273,22 @@
 						document.getElementById("onFieldBG").style.backgroundColor = "#D7AE22";
 					}
 
-					if (o > 25) {
+					if (o > 75) {
+						document.getElementById("offFoulBG").style.backgroundColor = "#B4150B";
+					} else if (o > 25) {
 						document.getElementById("offFoulBG").style.backgroundColor = "#D7AE22";
 					}
 
-					if (d > 25) {
+					if (d > 75) {
+						document.getElementById("defFoulBG").style.backgroundColor = "#B4150B";
+					} else if (d > 25) {
 						document.getElementById("defFoulBG").style.backgroundColor = "#D7AE22";
 					}
 
-					if (h > 0) {
-						document.getElementById("humFoulBG").style.backgroundColor = "#D7AE22";
+					if (h > 75) {
+						document.getElementById("humFoulBG").style.backgroundColor = "#B4150B";
+					} else if (h > 25) {
+						document.getElementById("defFoulBG").style.backgroundColor = "#D7AE22";
 					}
 
 				</script>
