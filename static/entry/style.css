@@ -707,7 +707,12 @@ th {
 }
 
 
-
+.greeting {
+	display: inline;
+	margin-top: auto;
+	margin-bottom: 30%;
+	white-space: nowrap
+}
 .sidebar {
 	display: flex;
 	flex-direction: column;
@@ -728,13 +733,20 @@ th {
 	font-size: 25px;
 	color: #818181;
 	display: block;
-	font-weight: 1000;
-	transition: 0.3s;
+	font-weight: 900;
+}
+.sidebar p {
+	margin: 0;
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 18px;
+	color: #818181;
+	display: block;
+	font-weight: 900;
 }
 .sidebar a:hover {
 	color: #f1f1f1;
 	transition: 0.3s;
-	
 }
 .sidebar a:active {
 	color: #0F4D8D;
@@ -914,6 +926,9 @@ th {
 	}
 	.pillSelect {
 		max-width: 75%;
+	}
+	.greeting {
+		margin-bottom: 10%;
 	}
 
 
