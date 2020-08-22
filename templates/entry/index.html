@@ -45,9 +45,9 @@
 			var hour = new Date().getHours();
 			var greeting; 
 			if (hour < 17) {
-				greeting = "Good day, {{ user.get_username }}";
+				greeting = "Good day, {{ user.get_username }}!";
 			} else {
-				greeting = "Good evening, {{ user.get_username }}";
+				greeting = "Good evening, {{ user.get_username }}!";
 			}
 			document.getElementById("timeOfDay").innerHTML = greeting;
 		</script>
