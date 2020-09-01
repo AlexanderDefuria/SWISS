@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Team # at a Glance</title>
+<title>SWISS - Team {{ team.number }} Glance</title>
 <link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
 <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
@@ -230,7 +230,7 @@
 			<div class="infoBox infoReg" id="driveTrainTile">
 				<div class="infoHeader">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'DrivetrainIcon.png' %}" alt="Drivetrain">
-					<h1>Drivetrain Info</h1>
+					<h1>Drivetrain</h1>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Drivetrain Type</p></div>
@@ -247,8 +247,8 @@
 			</div>
             <div class="infoBox infoReg" id="onFieldTile">
 				<div class="infoHeader">
-					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'DrivetrainIcon.png' %}" alt="Drivetrain">
-					<h1>Match Appearance Info</h1>
+					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'ScheduleIcon.png' %}" alt="Schedule Icon">
+					<h1>Match Appearance</h1>
 				</div>
                 {% get_info user team 'on_field' 'total' 'match' as MATCHES %}
 				<div class="infoRow">
