@@ -277,6 +277,7 @@ input[type=number] {
 	border: 2px solid white;
 	border-radius: 50px;
 	transition: all 0.1s ease-in-out;
+	cursor: pointer;
 	touch-action: manipulation; /* Stops iOS from zooming in when tapping repeatedly */
 }
 /* Sets the background and text colour in the button to white and black when clicked */
@@ -348,6 +349,7 @@ input[type=number] {
 	font-weight: 1000;
 	height: 60px;
 	width: 100%;
+	cursor: pointer;
 }
 
 
