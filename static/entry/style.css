@@ -340,7 +340,7 @@ ul {
 .vizBox:hover {
 	box-shadow: 2px 5px 25px 2px #232323;
 }
-.infoBox .vizBox h1, p { 
+.infoBox h1, p { 
 	margin: 10px; 
 }
 .infoHeader { 
