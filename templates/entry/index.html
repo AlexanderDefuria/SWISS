@@ -97,7 +97,7 @@
 					<img src="{{ MEDIA_URL }}{% static 'DownloadIcon.png' %}" alt="Download Icon">
 				</div>
 			</a>
-			<div class="specialBox" id="tileEvent">
+			<div class="specialBox" id="tileEvent" style="flex-direction: column">
 				<p>Current Event Is:</p>
 				<h2>{% get_current_event %}</h2>
 			</div>
@@ -124,17 +124,9 @@
 				</div>
 			</a>
             <div class="specialBox" id="tileActive">
-				<p>Current Active Users:</p>
-				<h1>{% get_all_logged_in_users %}</h1>
+				<p>Active Users:</p>
+				<h2>{% get_all_logged_in_users %}</h2>
 			</div>
-			<button class="add-button">Add to home screen!</button>
-			<style>
-				.add-button {
-					position: absolute;
-					bottom: 1px;
-					left: 1px;
-				}
-			</style>
 		</div>
 	</div>
 

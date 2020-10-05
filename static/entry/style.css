@@ -340,7 +340,7 @@ ul {
 .vizBox:hover {
 	box-shadow: 2px 5px 25px 2px #232323;
 }
-.infoBox h1, p { 
+.infoBox h1 p { 
 	margin: 10px; 
 }
 .infoHeader { 
@@ -433,7 +433,7 @@ ul {
 }
 .specialBox {
 	display: flex;
-	align-items: center;
+	align-items: left;
 	padding: 22.5px;
 	height: 100px;
 	margin: 0px 0px 10px 10px;
@@ -443,6 +443,9 @@ ul {
 .specialBox:hover {
 	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
+}
+.specialBox p h2 {
+	margin: 0 0 10 0;
 }
 .homeText {
 	color: white;
@@ -507,7 +510,7 @@ ul {
 	justify-content: center;
 	padding: 5px;
 }
-.pillContainer > div, li {
+.pillContainer > div li {
 	margin: 5px;
 }
 .pillSelect {
