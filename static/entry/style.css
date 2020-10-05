@@ -328,7 +328,7 @@ ul {
 	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
-.infoBox h1 p {
+.infoBox h1, p {
 	margin: 10px;
 }
 .vizBox {
@@ -342,9 +342,6 @@ ul {
 }
 .vizBox:hover {
 	box-shadow: 2px 5px 25px 2px #232323;
-}
-.infoBox h1 p { 
-	margin: 10px; 
 }
 .infoHeader { 
 	display: flex; 
