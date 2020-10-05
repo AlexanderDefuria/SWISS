@@ -30,7 +30,7 @@ This SHOULD also apply to any viewports less than this. If this breaks on mobile
 	.tileContainer #tlleSchedule 	{order: 7}
 	.tileContainer #tileDownload 	{order: 8}
 	.tileContainer #tileEvent 		{order: 9; min-width: 255px; max-width: 565px;}
-	.tileContainer #tileActive 		{order: 10; min-width: 255px; max-width: 565px;}
+	.tileContainer #tileActive 		{order: 10; min-width: 100px; max-width: 565px;}
 	.tileContainer #tileUpload 		{order: 11}
 	.tileContainer #tileAdmin 		{order: 12}
 	.tileContainer #tileSettings 	{order: 13}
@@ -48,7 +48,7 @@ This SHOULD also apply to any viewports less than this. If this breaks on mobile
 	.tileContainer #tileAdmin 		{order: 11}
 	.tileContainer #tileSettings 	{order: 12}
 	.tileContainer #tileLogout 		{order: 13}
-	.tileContainer #tileActive 		{order: 9; min-width: 255px; max-width: 565px;}
+	.tileContainer #tileActive 		{order: 9; min-width: 100px; max-width: 565px;}
 } @media screen and (max-width: 1280px) {
 	.tileContainer #tileMatch 		{order: 1}
 	.tileContainer #tilePit 		{order: 3}
@@ -433,6 +433,7 @@ ul {
 }
 .specialBox {
 	display: flex;
+	flex-direction: column;
 	align-items: left;
 	padding: 22.5px;
 	height: 100px;
@@ -444,11 +445,8 @@ ul {
 	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
-.specialBox h2 {
-	margin: 0;
-}
-.specialBox p {
-	margin: 0;
+.specialBoxHeader {
+	margin: 10 0 16 0
 }
 .homeText {
 	color: white;

@@ -98,8 +98,8 @@
 				</div>
 			</a>
 			<div class="specialBox" id="tileEvent" style="flex-direction: column">
-				<p>Current Event Is:</p>
-				<h2>{% get_current_event %}</h2>
+				<p class="specialBoxHeader">Current Event Is:</p>
+				<h3 style="margin: 0">{% get_current_event %}</h3>
 			</div>
 			<a href="{% url 'entry:upload' %}" id="tileUpload">
 				<div class="smallBox">
@@ -124,8 +124,8 @@
 				</div>
 			</a>
             <div class="specialBox" id="tileActive">
-				<p>Active Users:</p>
-				<h2>{% get_all_logged_in_users %}</h2>
+				<p class="specialBoxHeader">Active Users:</p>
+				<h2 style="margin: 0">{% get_all_logged_in_users %}</h2>
 			</div>
 		</div>
 	</div>
