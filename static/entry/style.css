@@ -444,8 +444,11 @@ ul {
 	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
-.specialBox p h2 {
-	margin: 0 0 10 0;
+.specialBox h2 {
+	margin: 0;
+}
+.specialBox p {
+	margin: 0;
 }
 .homeText {
 	color: white;
