@@ -68,14 +68,14 @@
 					<div class="pillContainer" id="TeamCheckBox" style="display: flex; flex-wrap: wrap; ">
 						{% for team in team_list %}
                         <div class="teamnumberPill">
-							<label for="{{ team.id }}">{{ team.number }}</label>
+							<label style="user-select: none" for="{{ team.id }}">{{ team.number }}</label>
                             <input name="teamCheckBox" type="checkbox" id="{{ team.id }}" value="{{ team.name }}">
                         </div>
                     	{% endfor %}
 					</div>
                     <div class="infoRow" style="background-color: transparent">
                         <button class="updateButton" onClick="selectAll('teamCheckBox')">Select All</button>
-                        <button class="updateButton" onClick="unselectAll('teamCheckBox')">Deselect</button>
+                        <button class="updateButton" onClick="unselectAll('teamCheckBox')">Deselect All</button>
                     </div>
 				</div>
 				<div class="vizBox infoReg">
@@ -88,16 +88,11 @@
 					</div>
                     <div class="infoRow" style="background-color: transparent">
                         <button class="updateButton" onClick="selectAll('MetricCheckbox')">Select All</button>
-                        <button class="updateButton" onClick="unselectAll('MetricCheckbox')">Deselect</button>
+                        <button class="updateButton" onClick="unselectAll('MetricCheckbox')">Deselect All</button>
                     </div>
 				</div>
 			</div>
 		</div>
-	</div>
-
-	
-<style>
-
-</style>	
+	</div>	
 </body>
 </html>

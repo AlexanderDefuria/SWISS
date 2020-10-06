@@ -163,16 +163,16 @@ ul {
 }
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 10; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: scroll; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	overflow: hidden;
+	z-index: 10; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
 }
 /* Modal Content/Box */
 .modal-content {
@@ -446,7 +446,7 @@ ul {
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .specialBoxHeader {
-	margin: 10 0 16 0
+	margin: 10px 0px 16px 0px;
 }
 .homeText {
 	color: white;
@@ -473,7 +473,7 @@ ul {
 .teamChip {
 	margin: 0px 0px 10px 10px;
 	padding: 20px;
-	height: Auto;
+	height: 370px;
 	width: 260px;
 	background-color: #262626;
 	display: flex;
@@ -483,6 +483,22 @@ ul {
 	transition: all .2s ease-in-out;
 }
 .teamChip:hover {
+	transform: scale(1.1); 
+	box-shadow: 2px 5px 25px 2px #232323;
+}
+.teamChipNoPic {
+	margin: 0px 0px 10px 10px;
+	padding: 20px;
+	height: auto;
+	width: 260px;
+	background-color: #262626;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	transition: all .2s ease-in-out;
+}
+.teamChipNoPic:hover {
 	transform: scale(1.1); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
@@ -511,7 +527,7 @@ ul {
 	justify-content: center;
 	padding: 5px;
 }
-.pillContainer > div li {
+.pillContainer > div, li {
 	margin: 5px;
 }
 .pillSelect {
@@ -741,7 +757,7 @@ th {
 }
 .sidebar p {
 	margin: 0;
-	padding: 8px;
+	padding: 4px 8px 4px 32px;
 	text-decoration: none;
 	font-size: 18px;
 	color: #818181;
@@ -843,7 +859,7 @@ th {
 	transform: scale(1.025);
 	box-shadow: 2px 5px 25px 2px #232323;
 	border: none;
-	transition: 0.2s;
+	transition: all 0.2s ease-in-out;
 }
 .filterBox {
 	visibility: inherit;
@@ -883,7 +899,7 @@ th {
 	left: 0;
 	background-color: #0F4D8D;
 	width: 100%;
-	transition: 0.5s;
+	transition: all 0.5s ease-in-out;
 }
 .bottomBarButton {
 	background-color: transparent;
@@ -897,7 +913,7 @@ th {
 	bottom: 0;
 	border: none;
 	cursor: pointer;
-	transition: 0.5s;
+	transition: all 0.5s ease-in-out;
 }
 .bottomBarButton:hover {
 	background-color: RGBA(0,0,0,0.25)

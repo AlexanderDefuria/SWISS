@@ -40,14 +40,15 @@
 		</div>
 		<div class="greeting">
 			<p id="timeOfDay"></p>
+			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
 		</div>
 		<script>
 			var hour = new Date().getHours();
 			var greeting; 
 			if (hour < 17) {
-				greeting = "Good day, {{ user.get_username }}!";
+				greeting = "Good day,";
 			} else {
-				greeting = "Good evening, {{ user.get_username }}!";
+				greeting = "Good evening,";
 			}
 			document.getElementById("timeOfDay").innerHTML = greeting;
 		</script>

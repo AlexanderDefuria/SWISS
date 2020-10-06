@@ -40,12 +40,19 @@
 		<a href="{% url 'entry:about' %}">About</a>
 	</div>
 	
-	<div class="bodyContainer" id="bodyContainer">
+	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'SettingsBackground.png' %})">
 		<div class="heroContent">
 			<p class="pageTitle">Settings</p>
 		</div>
 		<form class="formContainer" method="post" name="mainForm" id="mainForm" method="POST">
             {% csrf_token %}
+			<div class="formItem">
+                <label>User Role</label>
+                <div class="positionIndicator">
+                    {% get_user_role request %}
+                </div>
+            </div>
+			<h1>Teams</h1>
             <div class="formItem">
                 <label for="images">Display Robot Photos</label>
                 <div class="radioGroup">
@@ -84,13 +91,6 @@
 						<span>N</span>
 					</label>
 				</div>
-            </div>
-
-            <div class="formItem">
-                <label>User Role</label>
-                <div class="positionIndicator">
-                    {% get_user_role request %}
-                </div>
             </div>
 
             {% is_lead_scout request as lead_scout %}
