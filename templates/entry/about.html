@@ -45,10 +45,12 @@
     {% endif %}
 
 	<!-- Use a button to open the snackbar -->
-<button onclick="myFunction()">Show Snackbar</button>
+<button onclick="showSnack()">Show Snackbar</button>
 
 <!-- The actual snackbar -->
-<div id="snackbar">Test of the Snackbar Notif!</div>
+	<div id="snackbar">
+		<p id="snackbarText">You should not see this</p>
+	</div>
 	
 	<style>
 /* The snackbar - position it at the bottom and in the middle of the screen */
@@ -98,15 +100,15 @@
 }
 	</style>
 	<script> 
-function myFunction() {
+function showSnack() {
   // Get the snackbar DIV
-  var x = document.getElementById("snackbar");
+	var x = document.getElementById("snackbar");
+	var y = document.getElementById("snacktext");
 
   // Add the "show" class to DIV
-  x.className = "show";
-
-  // After 3 seconds, remove the show class from DIV
-  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+	x.className = "show";
+	y.innerHTML = "This is better"
+	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 	</script>
 </body>
