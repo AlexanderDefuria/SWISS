@@ -263,6 +263,22 @@
 					<div class="infoLColumn"><p>Percent On Field</p></div>
 					<div class="infoLColumn"><p id="onFieldValue">{% widthratio MATCHES team.match_set.count 100 %}</p></div>
 				</div>
+            <div class="infoBox infoReg">
+					<div class="infoHeader">
+						<a href="#">
+							<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'ScoutIcon.png' %}" alt="Scout Icon">
+							<h1>Match Scout</h1>
+						</a>
+					</div>
+					<div class="infoHeader">
+						<a href="#">
+							<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'PitScoutIcon.png' %}" alt="Pit Icon">
+							<h1>Pit Scout</h1>
+						</a>
+					</div>
+			</div>
+				
+
 				<script>
 					var f = document.getElementById("onFieldValue").innerHTML;
 					var o = document.getElementById("offenseFoulValue").innerHTML;
