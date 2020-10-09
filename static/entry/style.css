@@ -387,6 +387,17 @@ ul {
 	height: auto; 
 	border-bottom: 2px solid white 
 }
+.infoLink { 
+	display: flex; 
+	align-items: center; 
+	height: auto; 
+	border-bottom: 2px solid white;
+	transition: all .2s ease-in-out;
+}
+.infoLink:hover { 
+	background-color: #09315A;
+	border-bottom: 0px;
+}
 .infoRow {
 	display: flex;
 	margin-top: 5px;
@@ -410,7 +421,7 @@ ul {
 .infoIcon { 
 	height: 7vh; 
 	padding: 10px; }
-.loginBox{
+.loginBox {
 	width:auto;
 }
 .loginBox:hover {
@@ -435,14 +446,12 @@ ul {
 	color: white;
 	margin: 0;
 }
-
 .loginButton {
 	padding: 20px;
 }
 .loginButton:hover {
 	box-shadow: 2px 5px 25px 2px #232323;
 }
-
 .wideBox {
 	display: flex;
 	padding: 100px;
