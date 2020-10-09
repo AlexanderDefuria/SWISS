@@ -387,17 +387,6 @@ ul {
 	height: auto; 
 	border-bottom: 2px solid white 
 }
-.infoLink { 
-	display: flex; 
-	align-items: center; 
-	height: auto; 
-	border-bottom: 2px solid white;
-	transition: all .2s ease-in-out;
-}
-.infoLink:hover { 
-	background-color: #09315A;
-	border-bottom: 0px;
-}
 .infoRow {
 	display: flex;
 	margin-top: 5px;
