@@ -62,9 +62,6 @@ function validate(formName, ajax=true) {
         },
         failure: function () {
             console.log("Failed");
-			x.className = "show";
-			y.innerHTML = "Something failed. Call Alex!";
-			setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
         },
     });
 
