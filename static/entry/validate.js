@@ -53,16 +53,18 @@ function validate(formName, ajax=true) {
 
 		                parent.style.backgroundColor = 'lightcoral';
 						x.className = "show";
-						y.innerHTML = "There is an issue with:" + dataKey;
-						setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-		               // window.alert("There is an issue with the data given for " + dataKey)
+						y.innerHTML = "There is an issue with " + dataKey;
+						document.getElementById("bodyContainer").scrollIntoView(true);
+						setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
                     }
             }
 
         },
         failure: function () {
             console.log("Failed");
-
+			x.className = "show";
+			y.innerHTML = "Something failed. Call Alex!";
+			setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
         },
     });
 
