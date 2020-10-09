@@ -396,7 +396,6 @@ ul {
 }
 .infoLink:hover { 
 	background-color: #09315A;
-	border-bottom: 0px;
 }
 .infoRow {
 	display: flex;
