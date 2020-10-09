@@ -292,18 +292,23 @@
 					}
 				</script>
 			</div>
-			<div class="infoBox infoReg" id="ScoutNowTile">
+			<div class="infoBox infoReg">
 				
+			</div>
+			<div class="infoBox infoReg" id="ScoutNowTile" style="flex-grow: 0">
+<!-- This <a> tag is intended to redirect the user to the MatchScout or PitScout Page of the currently displayed team. 
+I just don't know how to write that URL -->
 				<a href="#">
 					<div class="infoHeader">
 						<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'ScoutIcon.png' %}" alt="Scout Icon">
-						<h1>Match Scout</h1>
+						<h1 style="color: #ffffff">Match Scout</h1>
 					</div>
 				</a>
+<!-- This one as well -->
 				<a href="#">
 					<div class="infoHeader">
 						<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'PitScoutIcon.png' %}" alt="Pit Icon">
-						<h1>Pit Scout</h1>
+						<h1 style="color: #ffffff">Pit Scout</h1>
 					</div>
 				</a>
 			</div>

@@ -569,6 +569,7 @@ ul {
 }
 .pillSelect {
 	max-width: 50%;
+	margin: auto;
 }
 .teamnumberPill {
 	text-align: center;
