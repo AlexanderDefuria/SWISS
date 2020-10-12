@@ -53,9 +53,8 @@ function validate(formName, ajax=true) {
 
 		                parent.style.backgroundColor = 'lightcoral';
 						x.className = "show";
-						y.innerHTML = "There is an issue with " + dataKey;
-						document.getElementById("bodyContainer").scrollIntoView(true);
-						setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+						y.innerHTML = "There is a problem with " + dataKey;
+						setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                     }
             }
 
