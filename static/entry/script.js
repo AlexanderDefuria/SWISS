@@ -1,5 +1,15 @@
 // Javascript file for various functions across ALL pages in SWISS. 
 
+// Greeting for Sidebar 
+var hour = new Date().getHours();
+var greeting; 
+if (hour < 17) {
+	greeting = "Good day,";
+} else {
+	greeting = "Good evening,";
+}
+document.getElementById("timeOfDay").innerHTML = greeting;
+
 
 //Functions that control the Side Navbar on all pages
 function openNav() {

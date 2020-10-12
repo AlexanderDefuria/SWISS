@@ -42,16 +42,6 @@
 			<p id="timeOfDay"></p>
 			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
 		</div>
-		<script>
-			var hour = new Date().getHours();
-			var greeting; 
-			if (hour < 17) {
-				greeting = "Good day,";
-			} else {
-				greeting = "Good evening,";
-			}
-			document.getElementById("timeOfDay").innerHTML = greeting;
-		</script>
 	</div>
 	
 	<div class="bodyContainer" id="bodyContainer">
