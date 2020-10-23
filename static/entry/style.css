@@ -852,7 +852,8 @@ th {
 	z-index: 5;
 	top: 0;
 	left: 0;
-	background-color: #111;
+	background-color: #111; /* Fallback */
+	background-color: rgba(0,0,0,0.7); /* Transparent */
 	overflow-y: hidden;
 	overflow-x: hidden;
 	transition: 0.5s;

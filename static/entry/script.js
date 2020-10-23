@@ -82,9 +82,11 @@ function teamFilter(field) {
 
 function openTeamDrawer() {
 	document.getElementById("teamDrawer").style.height="100%";
+	document.getElementById("bodyContainer").style.filter="blur(4px)"
 }
 function closeTeamDrawer() {
-  document.getElementById("teamDrawer").style.height = "0";
+	document.getElementById("teamDrawer").style.height = "0";
+	document.getElementById("bodyContainer").style.filter="blur(0px)"
 }
 
 
