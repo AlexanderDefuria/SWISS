@@ -281,7 +281,7 @@ ul {
 	transition: margin-left .5s;
 }
 #bodyContainer{
-	transition: margin-left .5s;
+	transition: margin-left .5s, filter 1s;
 }
 .bigBox {
 	height: 100px;
