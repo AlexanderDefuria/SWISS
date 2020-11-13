@@ -4,13 +4,13 @@
 //Functions that control the Side Navbar on all pages
 function openNav() {
 	document.getElementById("sideNav").style.width="250px";
-	document.getElementById("bodyContainer").style.marginLeft="275px";
 	document.getElementById("swissLogo").style.marginLeft="215px";
+	document.getElementById("bodyContainer").style.marginLeft="275px";
 }
 function closeNav() {
-  document.getElementById("sideNav").style.width = "0";
-  document.getElementById("bodyContainer").style.marginLeft= "0";
-  document.getElementById("swissLogo").style.marginLeft= "0";
+	document.getElementById("sideNav").style.width = "0";
+	document.getElementById("swissLogo").style.marginLeft= "0";
+	document.getElementById("bodyContainer").style.marginLeft= "0";
 }
 
 //Function that controls the bottom bar
@@ -82,11 +82,13 @@ function teamFilter(field) {
 
 function openTeamDrawer() {
 	document.getElementById("teamDrawer").style.height="100%";
-	document.getElementById("bodyContainer").style.filter="blur(4px)"
+//	document.getElementById("bodyContainer").style.filter="blur(4px)"
+//  commented out -- causes poor performance on low resource devices 
 }
 function closeTeamDrawer() {
 	document.getElementById("teamDrawer").style.height = "0";
-	document.getElementById("bodyContainer").style.filter="blur(0px)"
+//	document.getElementById("bodyContainer").style.filter="blur(0px)"
+//  commented out -- causes poor performance on low resource devices 
 }
 
 
@@ -133,6 +135,8 @@ function registerChange() {
 var Slug = 0;
 
 function getCSV(json) {
+var x = document.getElementById("snackbar");
+var y = document.getElementById("snacktext");
 	return $.ajax({
         url: 'getcsv/',
         type: 'post',
@@ -140,9 +144,15 @@ function getCSV(json) {
         dataType: "json",
         success: function (data) {
             console.log(data.content);
+			x.className = "show";
+			y.innerHTML = "Match Data Downloading...";
+			setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
         },
         failure: function () {
             console.log("No Matches");
+			x.className = "show";
+			y.innerHTML = "Error: No Matches!";
+			setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
         },
     })
 }

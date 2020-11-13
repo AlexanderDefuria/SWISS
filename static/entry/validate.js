@@ -50,10 +50,9 @@ function validate(formName, ajax=true) {
                             console.log(parent)
                         }
 
-
-		                parent.style.backgroundColor = 'lightcoral';
+		                parent.style.backgroundColor = '#FF3333';
 						x.className = "show";
-						y.innerHTML = "There is a problem with " + dataKey;
+						y.innerHTML = "There is a problem with " + dataKey + "!";
 						setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                     }
             }

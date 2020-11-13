@@ -163,7 +163,7 @@ ul {
 }
 
 .modal {
-	display: none; 
+	visibility: hidden; 
 	position: fixed; 
 	overflow: hidden;
 	z-index: 10;
@@ -199,15 +199,17 @@ ul {
 .modalButton:hover {
 	background-color: #555555;
 }
+
+
+
 #snackbar {
 	visibility: hidden;
 	min-width: 250px;
 	margin-left: -125px;
 	background-color: #222222;
-	color: #ffffff;
 	text-align: center;
 	border-bottom: 2px solid #0F4D8D;
-	box-shadow: 2px 5px 10px 2px #111111;
+	box-shadow: 2px 5px 5px 2px #222222;
 	padding: 10px;
 	position: fixed;
 	z-index: 1;
@@ -483,6 +485,7 @@ ul {
 	align-items: left;
 	padding: 22.5px;
 	height: 100px;
+	max-width: 255px;
 	margin: 0px 0px 10px 10px;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
