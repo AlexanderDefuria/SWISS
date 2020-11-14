@@ -896,7 +896,9 @@ th {
 }
 
 
-
+.graphOption {
+	padding: 10px;
+}
 .graphOption button {
 	background-color: #1C984F;
 	padding: 10px;
