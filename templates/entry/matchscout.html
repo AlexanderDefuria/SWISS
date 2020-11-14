@@ -493,39 +493,40 @@
 var modal = document.getElementById("myModal");
 var opn = document.getElementById("onField_false");
 var bad = document.getElementById("onFieldCancel");
-var good = document.getElementById("onFieldConfirm")
+var good = document.getElementById("onFieldConfirm");
+var main = document.getElementById("mainForm");
 
 // When the user clicks on the button, open the modal
 opn.onclick = function() {
-	modal.style.display = "block";
-	document.getElementById("mainForm").style.filter="blur(4px)";
+	modal.style.visibility = "visible";
+	main.style.filter="blur(2px)";
 	window.navigator.vibrate(40);
 }
 
 // When the user clicks on "no", close the modal
 bad.onclick = function() {
-	modal.style.display = "none";
+	modal.style.visibility = "hidden";
 	document.getElementById("onField_false").checked = false;
 	document.getElementById("onField_true").checked = true;
-	document.getElementById("mainForm").style.filter="blur(0)";
+	main.style.filter="blur(0)";
 	window.navigator.vibrate(40);
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
-	modal.style.display = "none";
+	modal.style.visibility = "hidden";
 	document.getElementById("onField_false").checked = false;
 	document.getElementById("onField_true").checked = true;
-	document.getElementById("mainForm").style.filter="blur(0)";
+	main.style.filter="blur(0)";
 	window.navigator.vibrate(40);
   }
 }
 
 good.onclick = function() {
-	modal.style.display = "none";
+	modal.style.visibility = "hidden";
 	window.navigator.vibrate([30,20,30,20,30]);
-	document.getElementById("mainForm").style.filter="blur(0)";
+	main.style.filter="blur(0)";
 	document.getElementById("preloadedBalls").value = "0";
 	document.getElementById("autoRoute").value = "0";
 	document.getElementById("baseline_false").checked = true;
