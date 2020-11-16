@@ -109,7 +109,7 @@ function incrementPreload(id) {
 		value = 3;
 		window.navigator.vibrate([30,20,30,20,30]);
 		x.className = "show";
-		y.innerHTML = "Maximum Reached";
+		y.innerHTML = "Maximum Preload Reached";
 		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 	}	else	{
 			value++;
@@ -126,7 +126,7 @@ function decrementValue(id) {
 		value = 0;
 		window.navigator.vibrate([30,20,30,20,30]);
 		x.className = "show";
-		y.innerHTML = "Come on, man.";
+		y.innerHTML = "Cannot have less than 0";
 		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 	}	else	{
 			value--;

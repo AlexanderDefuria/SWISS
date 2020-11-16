@@ -205,7 +205,6 @@ ul {
 #snackbar {
 	visibility: hidden;
 	min-width: 250px;
-	margin-left: -125px;
 	background-color: #303030;
 	text-align: center;
 	border-bottom: 2px solid #0F4D8D;
@@ -214,6 +213,7 @@ ul {
 	position: fixed;
 	z-index: 1;
 	left: 50%;
+	transform: translateX(-50%);
 	bottom: 30px;
 }
 #snackbar.show {
