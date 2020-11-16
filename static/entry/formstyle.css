@@ -47,6 +47,10 @@
 	background: #333333;
 }
 
+#username:focus {
+	width: 200px;
+}
+
 
 /* OTHER TEXT ENTRY */
 
