@@ -46,17 +46,13 @@
 	border-width: 3px;
 	background: #333333;
 }
-/* Sets just the text input with the ID username */
-#username input[type=text] {
-	width: 400px;
-}
 
 
-/* PASSWORD ENTRY */
+/* OTHER TEXT ENTRY */
 
 
 .formItem input[type=password]{
-	width: 400px;
+	width: 200px;
 	outline: none;
 	color: white;
 	background: none;
@@ -363,13 +359,25 @@ input[type=number] {
 #autoStart_img {
 	height: 50px;
 	
+}
+	
+/* Webkit Autofill Fixes */
+	
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+	border: none;
+	border-bottom: 2px solid green;
+	background-color: #0F4D8D;
+	transition: background-color 5000s ease-in-out 0s;
+}
+
+	
 	
 	
 	
 /* For MOST tablets in landscape */
-	
-	
-}
+
 @media screen and (max-width: 1280px) {
 	.formContainer {
 		max-width: 100%

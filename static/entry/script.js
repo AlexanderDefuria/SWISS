@@ -5,12 +5,10 @@
 function openNav() {
 	document.getElementById("sideNav").style.width="250px";
 	document.getElementById("swissLogo").style.marginLeft="215px";
-	document.getElementById("bodyContainer").style.marginLeft="275px";
 }
 function closeNav() {
 	document.getElementById("sideNav").style.width = "0";
 	document.getElementById("swissLogo").style.marginLeft= "0";
-	document.getElementById("bodyContainer").style.marginLeft= "0";
 }
 
 //Function that controls the bottom bar
@@ -103,11 +101,16 @@ function incrementValue(id) {
 	window.navigator.vibrate(40);
 }
 function incrementPreload(id) {
+	var x = document.getElementById("snackbar");
+	var y = document.getElementById("snacktext");
 	console.log(id)
 	var value = parseInt(document.getElementById(id).value, 10);
 	if (value >= 3) {
 		value = 3;
 		window.navigator.vibrate([30,20,30,20,30]);
+		x.className = "show";
+		y.innerHTML = "Maximum Reached";
+		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 	}	else	{
 			value++;
 		window.navigator.vibrate(40);
@@ -115,11 +118,16 @@ function incrementPreload(id) {
 	document.getElementById(id).value = value;
 }
 function decrementValue(id) {
+	var x = document.getElementById("snackbar");
+	var y = document.getElementById("snacktext");
 	console.log(id)
 	var value = parseInt(document.getElementById(id).value, 10);
 	if (value <= 0) {
 		value = 0;
 		window.navigator.vibrate([30,20,30,20,30]);
+		x.className = "show";
+		y.innerHTML = "Come on, man.";
+		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 	}	else	{
 			value--;
 		window.navigator.vibrate(40);
@@ -130,13 +138,13 @@ function registerChange() {
 	console.log();
 	window.navigator.vibrate(40);
 }
+
+
 // General script functions doing exactly what their names state
 
 var Slug = 0;
 
 function getCSV(json) {
-var x = document.getElementById("snackbar");
-var y = document.getElementById("snacktext");
 	return $.ajax({
         url: 'getcsv/',
         type: 'post',
@@ -144,15 +152,9 @@ var y = document.getElementById("snacktext");
         dataType: "json",
         success: function (data) {
             console.log(data.content);
-			x.className = "show";
-			y.innerHTML = "Match Data Downloading...";
-			setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
         },
         failure: function () {
             console.log("No Matches");
-			x.className = "show";
-			y.innerHTML = "Error: No Matches!";
-			setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
         },
     })
 }
