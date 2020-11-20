@@ -31,21 +31,48 @@
 		</div>
 	</div>
 	<div id="sideNav" class="sidebar">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-		<a href="{% url 'entry:index' %}">Home</a>
-		<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
-		<a href="{% url 'entry:glance_landing' %}">Glance</a>
-		<a href="{% url 'entry:teams' %}">Teams</a>
-		<a href="{% url 'entry:settings' %}">Settings</a>
-		<a href="{% url 'entry:about' %}">About</a>
+		<div>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+			<a href="{% url 'entry:index' %}">Home</a>
+			<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+			<a href="{% url 'entry:glance_landing' %}">Glance</a>
+			<a href="{% url 'entry:teams' %}">Teams</a>
+			<a href="{% url 'entry:stats' %}">Data</a>
+			<a href="{% url 'entry:visualize' %}">Visualize</a>
+			<a href="{% url 'entry:settings' %}">Settings</a>
+			<a href="{% url 'entry:about' %}">About</a>
+		</div>
+		<div class="greeting">
+			<p id="timeOfDay"></p>
+			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
+		</div>
+		<script>
+			var hour = new Date().getHours();
+			var greeting; 
+			if (hour < 17) {
+				greeting = "Good day,";
+			} else {
+				greeting = "Good evening,";
+			}
+			document.getElementById("timeOfDay").innerHTML = greeting;
+		</script>
 	</div>
 	
-	<div class="bodyContainer" id="bodyContainer">
+	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'SettingsBackground.png' %})">
+		<div class="heroContent">
+			<p class="pageTitle">Settings</p>
+		</div>
 		<form class="formContainer" method="post" name="mainForm" id="mainForm" method="POST">
             {% csrf_token %}
-
+			<div class="formItem">
+                <label>User Role</label>
+                <div class="positionIndicator">
+                    {% get_user_role request %}
+                </div>
+            </div>
+			<h1>Teams</h1>
             <div class="formItem">
-                <label for="images">Display Robot Images</label>
+                <label for="images">Display Robot Photos</label>
                 <div class="radioGroup">
 					<label>
 						<input type="radio" id="images_true" name="images" value="True">
@@ -71,7 +98,7 @@
 				</div>
             </div>
             <div class="formItem">
-                <label for="districtTeams">Show All District Teams?</label>
+                <label for="districtTeams">Show All Teams in the District?</label>
                 <div class="radioGroup">
 					<label>
 						<input type="radio" id="districtTeams_true" name="districtTeams" value="True">
@@ -83,12 +110,18 @@
 					</label>
 				</div>
             </div>
+
+            {% is_lead_scout request as lead_scout %}
+            {% if lead_scout %}
             <div class="formItem">
-                <label>User Role</label>
-                <div class="positionIndicator">
-                    {% get_user_role request %}
-                </div>
-            </div>
+				<label for="intakeType">Intake Type ----- Finish Implementation</label>
+				<select name="intakeType" id="intakeType" required>
+					<option value="0">Manual Approval, Open Registration</option>
+					<option value="1">Manual Creation of All Users</option>
+					<option value="2">Open Registration, Free Entry </option>
+				</select>
+			</div>
+            {% endif %}
 
             <div class="formItem" id="submit" onclick="validate('mainForm', false)">
                 <input name="submit" id="submitButton" type="submit" style="pointer-events: none" value="Save Settings">
@@ -102,5 +135,6 @@
         document.getElementById('images_'.concat('{% get_cookie request 'images' %}'.toLowerCase())).checked = true;
         document.getElementById('filters_'.concat('{% get_cookie request 'filters' %}'.toLowerCase())).checked = true;
         document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true;
+        {% if lead_scout %} //document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true; {% endif %}
     }
 </script>

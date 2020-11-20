@@ -6,6 +6,7 @@
 .formContainer {
 	max-width: 60%;
 	margin: 0 auto;
+	transition: all .2 ease-in-out;
 }
 .formItem {
 	display: flex;
@@ -45,17 +46,17 @@
 	border-width: 3px;
 	background: #333333;
 }
-/* Sets just the text input with the ID username */
-#username input[type=text] {
-	width: 400px;
+
+#username:focus {
+	width: 200px;
 }
 
 
-/* PASSWORD ENTRY */
+/* OTHER TEXT ENTRY */
 
 
 .formItem input[type=password]{
-	width: 400px;
+	width: 200px;
 	outline: none;
 	color: white;
 	background: none;
@@ -65,6 +66,22 @@
 }
 /* Adds a background color, expands the input and adds a blue border when focused */
 .formItem input[type=password]:focus {
+	border-color: #0F4D8D;
+	border-width: 3px;
+	background: #333333;
+}
+
+.formItem input[type=email]{
+	width: 400px;
+	outline: none;
+	color: white;
+	background: none;
+	border: none;
+	border-bottom: 1px solid #ffffff;
+	transition: all 0.2s ease-in-out;
+}
+/* Adds a background color, expands the input and adds a blue border when focused */
+.formItem input[type=email]:focus {
 	border-color: #0F4D8D;
 	border-width: 3px;
 	background: #333333;
@@ -260,6 +277,7 @@ input[type=number] {
 	border: 2px solid white;
 	border-radius: 50px;
 	transition: all 0.1s ease-in-out;
+	cursor: pointer;
 	touch-action: manipulation; /* Stops iOS from zooming in when tapping repeatedly */
 }
 /* Sets the background and text colour in the button to white and black when clicked */
@@ -331,6 +349,7 @@ input[type=number] {
 	font-weight: 1000;
 	height: 60px;
 	width: 100%;
+	cursor: pointer;
 }
 
 
@@ -344,13 +363,25 @@ input[type=number] {
 #autoStart_img {
 	height: 50px;
 	
+}
+	
+/* Webkit Autofill Fixes */
+	
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+	border: none;
+	border-bottom: 2px solid green;
+	background-color: #0F4D8D;
+	transition: background-color 5000s ease-in-out 0s;
+}
+
+	
 	
 	
 	
 /* For MOST tablets in landscape */
-	
-	
-}
+
 @media screen and (max-width: 1280px) {
 	.formContainer {
 		max-width: 100%

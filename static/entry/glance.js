@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function updateGlance(team_id) {
-
 	$.ajax({
         url: 'update/',
         method: 'POST',
@@ -24,8 +23,7 @@ function updateGlance(team_id) {
         },
         failure: function () {
             console.log("Failed");
-
-         },
+        },
 
     }).then(r => {
         // Total Line Chart
@@ -53,8 +51,6 @@ function updateGlance(team_id) {
                 field.forEach(function (field, index) {
                     result[field] += info["fields"][field]
                 })
-
-
             });
 
             for (var x in result){
@@ -72,8 +68,5 @@ function updateGlance(team_id) {
             avgChart = Highcharts.chart(avgChartName, constCharts.avgChart);
             avgChart.redraw()
         }
-
-
-
     });
 }

@@ -34,15 +34,32 @@
 		</div>
 	</div>
 	<div id="sideNav" class="sidebar">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-		<a href="{% url 'entry:index' %}">Home</a>
-		<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
-		<a href="{% url 'entry:glance_landing' %}">Glance</a>
-		<a href="{% url 'entry:teams' %}">Teams</a>
-		<a href="{% url 'entry:settings' %}">Settings</a>
-		<a href="{% url 'entry:about' %}">About</a>
+		<div>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+			<a href="{% url 'entry:index' %}">Home</a>
+			<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+			<a href="{% url 'entry:glance_landing' %}">Glance</a>
+			<a href="{% url 'entry:teams' %}">Teams</a>
+			<a href="{% url 'entry:match_data' %}">Data</a>
+			<a href="{% url 'entry:visualize' %}">Visualize</a>
+			<a href="{% url 'entry:settings' %}">Settings</a>
+			<a href="{% url 'entry:about' %}">About</a>
+		</div>
+		<div class="greeting">
+			<p id="timeOfDay"></p>
+			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
+		</div>
+		<script>
+			var hour = new Date().getHours();
+			var greeting; 
+			if (hour < 17) {
+				greeting = "Good day,";
+			} else {
+				greeting = "Good evening,";
+			}
+			document.getElementById("timeOfDay").innerHTML = greeting;
+		</script>
 	</div>
-
 
 	<div class="bodyContainer" id="bodyContainer">
         <div class="heroContent">
@@ -52,33 +69,33 @@
 				<div id="visualizationChart" style="width:auto; height: 90%;">
 				</div>
                 <div style="display: flex;">
-				    <div class="formItem graphOption" style="flex: 1">
+				    <div class="graphOption" style="flex: 1">
 				    	<button class="updateButton" onclick="updateGraph('Average')">Average Graph</button>
 				    </div>
-                    <div class="formItem graphOption" style="flex: 1">
+                    <div class="graphOption" style="flex: 1">
 				    	<button class="updateButton" onclick="updateGraph('Total')">Total Graph</button>
 				    </div>
                 </div>
 			</div>
 			<div class="flexColumn40">
-				<div class="infoBox infoReg" >
+				<div class="vizBox infoReg" >
 					<div class="infoHeader">
 						<h1>Teams Included</h1>
 					</div>
 					<div class="pillContainer" id="TeamCheckBox" style="display: flex; flex-wrap: wrap; ">
 						{% for team in team_list %}
                         <div class="teamnumberPill">
-							<label for="{{ team.id }}">{{ team.number }}</label>
+							<label style="user-select: none" for="{{ team.id }}">{{ team.number }}</label>
                             <input name="teamCheckBox" type="checkbox" id="{{ team.id }}" value="{{ team.name }}">
                         </div>
                     	{% endfor %}
 					</div>
                     <div class="infoRow" style="background-color: transparent">
                         <button class="updateButton" onClick="selectAll('teamCheckBox')">Select All</button>
-                        <button class="updateButton" onClick="unselectAll('teamCheckBox')">Deselect</button>
+                        <button class="updateButton" onClick="unselectAll('teamCheckBox')">Deselect All</button>
                     </div>
 				</div>
-				<div class="infoBox infoReg">
+				<div class="vizBox infoReg">
 					<div class="infoHeader">
 						<h1>Metrics Included</h1>
 					</div>
@@ -88,16 +105,20 @@
 					</div>
                     <div class="infoRow" style="background-color: transparent">
                         <button class="updateButton" onClick="selectAll('MetricCheckbox')">Select All</button>
-                        <button class="updateButton" onClick="unselectAll('MetricCheckbox')">Deselect</button>
+                        <button class="updateButton" onClick="unselectAll('MetricCheckbox')">Deselect All</button>
                     </div>
 				</div>
 			</div>
 		</div>
-	</div>
-
-	
+		<div id="snackbar">
+			<p id="snacktext">Default Text</p>
+		</div>
+	</div>	
 <style>
+/* All of this will be moved to style.css once I get it to work the way I want */	
+	
+/* The snackbar - position it at the bottom and in the middle of the screen */
 
-</style>	
+</style>
 </body>
 </html>

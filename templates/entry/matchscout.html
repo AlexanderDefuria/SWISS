@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>SWISS Match Scouting</title>
+<title>SWISS Match Scouting {{ team.number }}</title>
 <script src="{% static 'entry/jquery.min.js' %}"></script>
 <script src="{% static 'entry/validate.js' %}"></script>
 <script src="{% static 'entry/script.js' %}"></script>
@@ -30,15 +30,32 @@
 		</div>
 	</div>
 	<div id="sideNav" class="sidebar">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-		<a href="{% url 'entry:index' %}">Home</a>
-		<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
-		<a href="{% url 'entry:glance_landing' %}">Glance</a>
-		<a href="{% url 'entry:teams' %}">Teams</a>
-		<a href="{% url 'entry:settings' %}">Settings</a>
-		<a href="{% url 'entry:about' %}">About</a>
+		<div>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+			<a href="{% url 'entry:index' %}">Home</a>
+			<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+			<a href="{% url 'entry:glance_landing' %}">Glance</a>
+			<a href="{% url 'entry:teams' %}">Teams</a>
+			<a href="{% url 'entry:match_data' %}">Data</a>
+			<a href="{% url 'entry:visualize' %}">Visualize</a>
+			<a href="{% url 'entry:settings' %}">Settings</a>
+			<a href="{% url 'entry:about' %}">About</a>
+		</div>
+		<div class="greeting">
+			<p id="timeOfDay"></p>
+			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
+		</div>
+		<script>
+			var hour = new Date().getHours();
+			var greeting; 
+			if (hour < 17) {
+				greeting = "Good day,";
+			} else {
+				greeting = "Good evening,";
+			}
+			document.getElementById("timeOfDay").innerHTML = greeting;
+		</script>
 	</div>
-
 	
 	<div class="bodyContainer" id="bodyContainer">
 		<div class="heroContent" id="heroSpace">
@@ -51,8 +68,17 @@
 				</div>
 			</div>
 		</div>
+	<div id="myModal" class="modal">
+		<div class="modal-content">
+			<h1 style="margin-left: 10px;">Are you sure the robot is not present?</h1>
+			<p>Clicking yes will set all form values to ZERO and scroll you to the bottom of the page.</p>
+			<div style="display: flex; justify-content: center">
+				<button class="modalButton" id="onFieldCancel">No</button>
+				<button class="modalButton" id="onFieldConfirm">Yes</button>
+			</div>
+		</div>
+	</div>
 	<div>
-		
 		<form action="{% url 'entry:write_match_scout' team.id %}" class="formContainer" method="post" name="mainForm" id="mainForm">
             {% csrf_token %}
 
@@ -86,7 +112,7 @@
 					<div style="text-align: center">
 					    <output name="autoStart_number" id="autoStart_number" for="autoStart">14</output>
 					</div>
-					<div>
+					<div style="text-align: center">
     					<img id="autoStart_img" src="{{ MEDIA_URL }}{% static 'InitiationLine.png' %}" alt="Initiation Line">
 					</div>
 					<div>
@@ -155,7 +181,7 @@
 				</div>
 			  </div>
 			<div class="formItem">
-				<label for="missed_balls_auto"></label>
+				<label for="missed_balls_auto">Missed Balls (AUTO)</label>
 				<div class="ticker">
 					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'MissedIcon.png' %}" alt="missed">
 					<input type="button" onclick="decrementValue('missed_balls_auto')" value="-">
@@ -248,7 +274,7 @@
 			<div class="formItem">
 			<!-- Can the robot drive well and achieve tasks while under defense? -->
 				<label for="underDefense">Play well under defense</label>
-				<select name="underDefense" id="underDefense" required> 
+				<select name="underDefense" id="underDefense" required onChange="hideDefendedBy()"> 
 					<option value="">&#8230;</option>
 					<option value="0">Not Defended</option>
 					<option value="1">Played Poorly</option>
@@ -256,11 +282,23 @@
 				</select>
 			</div>
 			
-			<div class="formItem">
+			<script> 
+				// Gets value of dropdown, hides div that becomes irrelevant
+				function hideDefendedBy() {
+					var x = document.getElementById("underDefense").value;
+					if (x != 0){
+						document.getElementById("defendedByDiv").style.display="flex";
+					} else {
+						document.getElementById("defendedByDiv").style.display="none";
+					}
+				}
+			</script>
+			
+			<div class="formItem" id="defendedByDiv">
 			<!-- Text string for team number defending the currently scouted one -->
 			<!-- Backend only accepts strings that only contain numbers -->
 				<label for="defendedBy">Defended by</label>
-				<input type="text" name="defendedBy" id="defendedBy" list="teams_at_event" placeholder="Opposing Team #" autocomplete="off">
+				<input type="number" name="defendedBy" id="defendedBy" list="teams_at_event" placeholder="Team #" min="1" max="9999">
 			</div>
 			
 		<!-- Control Panel Items -->
@@ -268,16 +306,30 @@
 			<div class="formItem">
 			<!-- Dropdown for control panel task -->
 				<label for="wheelScore">Control Panel</label>
-				<select name="wheelScore" id="wheelScore" required>
-					<option value="">&#8230;</option>
-					<option value="0">Did not Attempt</option>
-					<option value="1">Unsuccessful</option>
-					<option value="2">Completed Rotation</option>
-					<option value="3">Completed Colour</option>
-				</select>
+				<div>
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'ControlPanelIcon.png' %}" alt="Control Panel">
+					<select name="wheelScore" id="wheelScore" required onChange="hideWheelScore">
+						<option value="">&#8230;</option>
+						<option value="0">Did not Attempt</option>
+						<option value="1">Unsuccessful</option>
+						<option value="2">Completed Rotation</option>
+						<option value="3">Completed Colour</option>
+					</select>
+				</div>
 			</div>
 			
-			<div class="formItem">
+			<script> 
+				function hideWheelScore() {
+					var x = document.getElementById("wheelScore").value;
+					if (x > 0){
+						document.getElementById("wheelRatingDiv").style.display="flex";
+					} else {
+						document.getElementById("wheelRatingDiv").style.display="none";
+					}
+				}
+			</script>
+			
+			<div class="formItem" id="wheelRatingDiv">
 			<!-- Range slider for Control Panel task Quality -->
 			<!-- May be taken out depending on usage and effectiveness --> 
 				<label for="wheelRating">Control Panel Quality</label>
@@ -308,20 +360,33 @@
 				<label for="playedDefense">Played Defense?</label>
 				<div class="radioGroup">
 					<label>
-						<input type="radio" id="playedDefense_true" name="playedDefense" value="True" onClick="registerChange()" required>
+						<input type="radio" id="playedDefense_true" name="playedDefense" value="True" onClick="registerChange(),hideDefenseStuff()" required>
 						<span>Y</span>
 					</label>
 					<label>
-						<input type="radio" id="playedDefense_false" name="playedDefense" value="False" onClick="registerChange()">
+						<input type="radio" id="playedDefense_false" name="playedDefense" value="False" onClick="registerChange(),hideDefenseStuff()">
 						<span>N</span>
 					</label>
 				</div>
 			</div>
-			<div class="formItem">
+			<script>
+				function hideDefenseStuff() {
+					var x = document.getElementById("playedDefense_false").checked;
+					if (x != true){
+						document.getElementById("teamDefendedDiv").style.display="flex";
+						document.getElementById("defenseQualityDiv").style.display="flex";
+					} else {
+						document.getElementById("teamDefendedDiv").style.display="none";
+						document.getElementById("defenseRating").value="0";
+						document.getElementById("defenseQualityDiv").style.display="none";
+					}
+				}
+			</script>
+			<div class="formItem" id="teamDefendedDiv">
 				<label for="teamDefended">Team Defended</label>
-				<input type="text" name="teamDefended" id="teamDefended" list="teams_at_event" placeholder="ONLY ONE TEAM" autocomplete="off">
+				<input type="number" name="teamDefended" id="teamDefended" placeholder="Team #" min="1" max="9999" autocomplete="off">
 			</div>
-			<div class="formItem">
+			<div class="formItem" id="defenseQualityDiv">
 				<label for="defenseRating">Quality of Defense</label>
 			  	<div class="right">
 					<output name="defenseRatingnumber" id="defenseRatingnumber" for="defenseRating">0</output>
@@ -351,15 +416,8 @@
 			
 			<h1>ENDGAME</h1>
 			<div class="formItem">
-				<label for="climbLocation">Climbing Position</label>
-			  	<div class="right">
-					<output name="climbLocation_number" id="climbLocation_number" for="climbLocation">0</output>
-					<input name="climbLocation" id="climbLocation" type="range" min="0" max="5" value="0" oninput="climbLocation_number.value=climbLocation.value">
-			  	</div>
-		  </div>
-			<div class="formItem">
 				<label for="lockStatus">Field Timeout Position (t=+5s)</label>
-				<select name="lockStatus" id="lockStatus" required>
+				<select name="lockStatus" id="lockStatus" required onChange="hideClimbPosition">
 					<option value="">&#8230;</option>
 					<option value="0">None</option>
 					<option value="1">Parked</option>
@@ -367,6 +425,25 @@
 					<option value="3">Successful Climb</option>
 				</select>
 			</div>
+			
+			<script> 
+				function hideClimbPosition() {
+					var x = document.getElementById("lockStatus").value;
+					if (x != 0){
+						document.getElementById("climbLocationDiv").style.display="flex";
+					} else {
+						document.getElementById("climbLocationDiv").style.display="none";
+					}
+				}
+			</script>
+			
+			<div class="formItem" id="climbLocationDiv">
+				<label for="climbLocation">Climbing Position</label>
+			  	<div class="right">
+					<output name="climbLocation_number" id="climbLocation_number" for="climbLocation">0</output>
+					<input name="climbLocation" id="climbLocation" type="range" min="0" max="5" value="0" oninput="climbLocation_number.value=climbLocation.value">
+			  	</div>
+		  </div>
 			
 <!-- HUMAN FOULS AND COMMENTS	-->
 			
@@ -402,11 +479,73 @@
 			</div>
 		</form>
 	</div>
+	<div id="snackbar">
+		<p id="snacktext">Default Text</p>
+	</div>
 	</div>
 <datalist id="teams_at_event">
 {% for team in team_list %}	
 	<option value="{{ team.number }}"></option>
 {% endfor %}
 </datalist>
+	
+<script> 
+var modal = document.getElementById("myModal");
+var opn = document.getElementById("onField_false");
+var bad = document.getElementById("onFieldCancel");
+var good = document.getElementById("onFieldConfirm");
+var main = document.getElementById("mainForm");
+
+// When the user clicks on the button, open the modal
+opn.onclick = function() {
+	modal.style.visibility = "visible";
+	main.style.filter="blur(2px)";
+	window.navigator.vibrate(40);
+}
+
+// When the user clicks on "no", close the modal
+bad.onclick = function() {
+	modal.style.visibility = "hidden";
+	document.getElementById("onField_false").checked = false;
+	document.getElementById("onField_true").checked = true;
+	main.style.filter="blur(0)";
+	window.navigator.vibrate(40);
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+	modal.style.visibility = "hidden";
+	document.getElementById("onField_false").checked = false;
+	document.getElementById("onField_true").checked = true;
+	main.style.filter="blur(0)";
+	window.navigator.vibrate(40);
+  }
+}
+
+good.onclick = function() {
+	modal.style.visibility = "hidden";
+	window.navigator.vibrate([30,20,30,20,30]);
+	main.style.filter="blur(0)";
+	document.getElementById("preloadedBalls").value = "0";
+	document.getElementById("autoRoute").value = "0";
+	document.getElementById("baseline_false").checked = true;
+	document.getElementById("autoComment").value = "NOT PRESENT";
+	document.getElementById("intakeType").value = "0";
+	document.getElementById("noCycles").checked = true;
+	document.getElementById("underDefense").value = "0";
+	document.getElementById("wheelScore").value = "0";
+	document.getElementById("wheelRating").value = "0";	
+	document.getElementById("offensiveFouls").value = "0";
+	document.getElementById("playedDefense_false").checked = true;
+	document.getElementById("defenseFouls").value = "0";	
+	document.getElementById("pushRating").value = "0";
+	document.getElementById("lockStatus").value = "0";
+	document.getElementById("comment").value = "NOT PRESENT";
+	document.getElementById("submit").scrollIntoView({
+	behavior: 'smooth'
+	});
+}
+</script>
 </body>
 </html>

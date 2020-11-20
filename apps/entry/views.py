@@ -78,10 +78,7 @@ def match_scout_submit(request, pk):
         match.climb_location = request.POST.get('climbLocation', 0)
         match.field_timeout_pos = request.POST.get('lockStatus', 0)
 
-        if match.field_timeout_pos == 3:
-            match.climbed = True
-        else:
-            match.climbed = False
+        match.climbed = 1 if match.field_timeout_pos == 3 else 0
 
         match.hp_fouls = request.POST.get('humanFouls', 0)
         match.dt_fouls = request.POST.get('driverFouls', 0)
@@ -90,6 +87,7 @@ def match_scout_submit(request, pk):
 
         match.scouter_name = request.POST.get('scouterName', '')
         match.comment = request.POST.get('comment', '')
+        match.team_ownership = request.user.teammember.team
 
         match.save()
 
@@ -184,7 +182,7 @@ def validate_types(request, data, reqlist):
 
     print(redo.keys())
     print(redo.values())
-#    redo.__delitem__('Cleanup')
+    #    redo.__delitem__('Cleanup')
 
     return redo, data
 
@@ -223,6 +221,7 @@ def pit_scout_submit(request, pk):
         pits.climb_buddy = request.POST.get('climbBuddy', False)
         pits.climb_balance = request.POST.get('climbBalance', False)
         pits.scouter_name = request.POST.get('scouterName', '0')
+        pits.team_ownership = request.user.teammember.team
         pits.save()
 
         print(pits)
@@ -242,12 +241,6 @@ def validate_pit_scout(request, pk):
     data = decode_ajax(request)
     redo, data = validate_types(request, data, False)
     return HttpResponse(dumps(redo), content_type="application/json")
-
-
-def view_matches(request):
-    if request.method == 'GET':
-        print("POSTED")
-    return HttpResponseRedirect(reverse_lazy('entry:visualize'))
 
 
 @ajax
@@ -277,7 +270,8 @@ def update_graph(request):
 @login_required(login_url='entry:login')
 def update_glance(request, pk):
     print(request.POST)
-    matches = Match.objects.filter(team_id=pk).order_by('match_number')
+    matches = Match.objects.filter(team_id=pk, team_ownership_id=request.user.teammember.team_id).order_by(
+        'match_number')
     matches_json = serializers.serialize('json', matches)
     print(matches_json)
 
@@ -418,11 +412,29 @@ def logout(request):
     return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 
+def register_user(request):
+    if request.method == 'GET':
+        template = loader.get_template('entry/register.html')
+        return HttpResponse(template.render({}, request))
+    elif request.method == 'POST':
+        username = request.POST.get('teamPosition')
+        print(username)
+        return HttpResponseRedirect(reverse_lazy('entry:register_user'))
+
+
+@ajax
+@csrf_exempt
+def validate_registration(request):
+    data = decode_ajax(request)
+    redo, data = validate_types(request, data, False)
+    return HttpResponse(dumps(redo), content_type="application/json")
+
+
 @login_required(login_url='entry:login')
 def admin_redirect(request, **kwargs):
     if request.user.is_superuser:
         if 'whereto' in kwargs:
-            return HttpResponseRedirect(reverse_lazy('admin:index') + 'entry/' + kwargs['whereto'] +"/")
+            return HttpResponseRedirect(reverse_lazy('admin:index') + 'entry/' + kwargs['whereto'] + "/")
 
         return HttpResponseRedirect(reverse_lazy('admin:index'))
     return HttpResponseRedirect(reverse_lazy('entry:index'))
@@ -492,16 +504,14 @@ class Visualize(LoginRequiredMixin, generic.ListView):
     model = Team
     context_object_name = "team_list"
 
-
     def get_queryset(self):
         return get_present_teams()
 
 
-# DPERECATED
 class ScheduleView(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     template_name = 'entry/schedule.html'
-    context_object_name = "schedule"
+    context_object_name = "schedule_list"
     model = Schedule
 
     def get_queryset(self):
@@ -565,7 +575,8 @@ class MatchData(LoginRequiredMixin, generic.ListView):
     model = Match
 
     def get_queryset(self):
-        return Match.objects.all().filter(event_id=config.get_current_event_id())
+        return Match.objects.all().filter(event_id=config.get_current_event_id()).filter(
+            team_ownership=self.request.user.teammember.team)
 
 
 class PitData(LoginRequiredMixin, generic.ListView):

@@ -19,6 +19,9 @@ class ValidateUser:
         # the view (and later middleware) are called.
         response = self.get_response(request)
 
+        if str(request.path).__contains__('media') or str(request.path).__contains__('static') or str(request.path).__contains__('admin'):
+            return response
+
         try:
             if str(request.path) == "/":
                 return HttpResponseRedirect(reverse_lazy('entry:index'))
@@ -33,9 +36,6 @@ class ValidateUser:
             print(request.path)
             print("\n")
             return HttpResponseRedirect(reverse_lazy('entry:index'))
-
-        if app == 'media' or app == 'static' or app == 'admin':
-            return response
 
         if view == "logout" or view == "login" or app == "media":
             return response

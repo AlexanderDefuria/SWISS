@@ -4,13 +4,11 @@
 //Functions that control the Side Navbar on all pages
 function openNav() {
 	document.getElementById("sideNav").style.width="250px";
-	document.getElementById("bodyContainer").style.marginLeft="275px";
 	document.getElementById("swissLogo").style.marginLeft="215px";
 }
 function closeNav() {
-  document.getElementById("sideNav").style.width = "0";
-  document.getElementById("bodyContainer").style.marginLeft= "0";
-  document.getElementById("swissLogo").style.marginLeft= "0";
+	document.getElementById("sideNav").style.width = "0";
+	document.getElementById("swissLogo").style.marginLeft= "0";
 }
 
 //Function that controls the bottom bar
@@ -82,9 +80,13 @@ function teamFilter(field) {
 
 function openTeamDrawer() {
 	document.getElementById("teamDrawer").style.height="100%";
+//	document.getElementById("bodyContainer").style.filter="blur(4px)"
+//  commented out -- causes poor performance on low resource devices 
 }
 function closeTeamDrawer() {
-  document.getElementById("teamDrawer").style.height = "0";
+	document.getElementById("teamDrawer").style.height = "0";
+//	document.getElementById("bodyContainer").style.filter="blur(0px)"
+//  commented out -- causes poor performance on low resource devices 
 }
 
 
@@ -99,11 +101,16 @@ function incrementValue(id) {
 	window.navigator.vibrate(40);
 }
 function incrementPreload(id) {
+	var x = document.getElementById("snackbar");
+	var y = document.getElementById("snacktext");
 	console.log(id)
 	var value = parseInt(document.getElementById(id).value, 10);
 	if (value >= 3) {
 		value = 3;
 		window.navigator.vibrate([30,20,30,20,30]);
+		x.className = "show";
+		y.innerHTML = "Maximum Preload Reached";
+		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 	}	else	{
 			value++;
 		window.navigator.vibrate(40);
@@ -111,11 +118,16 @@ function incrementPreload(id) {
 	document.getElementById(id).value = value;
 }
 function decrementValue(id) {
+	var x = document.getElementById("snackbar");
+	var y = document.getElementById("snacktext");
 	console.log(id)
 	var value = parseInt(document.getElementById(id).value, 10);
 	if (value <= 0) {
 		value = 0;
 		window.navigator.vibrate([30,20,30,20,30]);
+		x.className = "show";
+		y.innerHTML = "Cannot have less than 0";
+		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 	}	else	{
 			value--;
 		window.navigator.vibrate(40);
@@ -126,6 +138,8 @@ function registerChange() {
 	console.log();
 	window.navigator.vibrate(40);
 }
+
+
 // General script functions doing exactly what their names state
 
 var Slug = 0;
@@ -165,3 +179,38 @@ function updateSlug(team){
 	getSlug(team)
 	return Slug
 }
+
+//////////////////////////////////////////////////////////////////////////
+//          SCRIPT FOR HANDLING THE ADD TO HOME SCREEN EXPERIENCE!      //
+//////////////////////////////////////////////////////////////////////////
+
+let deferredPrompt;
+const addBtn = document.querySelector('.add-button')
+addBtn.style.display = 'none';
+
+window.addEventListener('beforeinstallprompt', (e) => {
+	// This prevents Chrome 67 and earlier from automatically showing the prompt 
+	e.preventDefault();
+	// Stashed the event so it can be triggered later 
+	deferredPrompt = e;
+	// Uodate UI to notified the user they can add to home screen 
+	addBtn.style.display = 'block';
+	
+	addBtn.addEventListener('click', (e) => {
+		// hide our user interface that shows the add to home button 
+		addBtn.style.display = 'none';
+		// Show the prompt 
+		deferredPrompt.prompt();
+		// Wait for reponse to the prompt 
+		deferredPrompt.userChoice.then((choiceResult) => {
+			if (choiceResult.outcome === 'accepted') {
+				console.log('User accepted the A2HS prompt');
+			} else { 
+				console.log('User dismissed the A2HS prompt');
+			}
+			deferredPrompt = null; 
+		});
+	});
+});
+
+

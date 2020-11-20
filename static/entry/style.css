@@ -1,5 +1,112 @@
 @charset "utf-8";
 
+/* ORDER OF COMPONENTS */
+/* Base Index Page */
+/*
+Ordering of index boxes when on mobile (to prevent the jankey looking blank spaces)
+This SHOULD also apply to any viewports less than this. If this breaks on mobile let Nick know
+*/
+#tileMatch 		{order: 1 }
+#tilePit 		{order: 2}
+#tileGlance 	{order: 3}
+#tileTeams 		{order: 4}
+#tileData 		{order: 5}
+#tileVisualize 	{order: 6}
+#tileSchedule   {order: 7}
+#tileDownload 	{order: 8}
+#tileEvent 		{order: 9; max-width: 255px;}
+#tileUpload 	{order: 10}
+#tileAdmin 		{order: 11}
+#tileSettings 	{order: 12}
+#tileLogout 	{order: 13}
+#tileActive 	{order: 14}
+@media screen and (max-width: 1860px){
+	.tileContainer #tileMatch 		{order : 1}
+	.tileContainer #tilePit 		{order: 2}
+	.tileContainer #tileGlance 		{order: 3}
+	.tileContainer #tileTeams 		{order: 5}
+	.tileContainer #tileData 		{order: 4}
+	.tileContainer #tileVisualize 	{order: 6}
+	.tileContainer #tlleSchedule 	{order: 7}
+	.tileContainer #tileDownload 	{order: 8}
+	.tileContainer #tileEvent 		{order: 9}
+	.tileContainer #tileActive 		{order: 10; min-width: 100px; max-width: 565px;}
+	.tileContainer #tileUpload 		{order: 11}
+	.tileContainer #tileAdmin 		{order: 12}
+	.tileContainer #tileSettings 	{order: 13}
+	.tileContainer #tileLogout 		{order: 14}
+} @media screen and (max-width: 1600px){
+	.tileContainer #tileMatch 		{order : 1}
+	.tileContainer #tilePit 		{order: 2}
+	.tileContainer #tileGlance 		{order: 4}
+	.tileContainer #tileTeams 		{order: 3}
+	.tileContainer #tileData 		{order: 6}
+	.tileContainer #tileVisualize 	{order: 5}
+	.tileContainer #tileDownload 	{order: 7}
+	.tileContainer #tileEvent 		{order: 8;}
+	.tileContainer #tileUpload 		{order: 10}
+	.tileContainer #tileAdmin 		{order: 11}
+	.tileContainer #tileSettings 	{order: 12}
+	.tileContainer #tileLogout 		{order: 13}
+	.tileContainer #tileActive 		{order: 9; min-width: 100px; max-width: 565px;}
+} @media screen and (max-width: 1280px) {
+	.tileContainer #tileMatch 		{order: 1}
+	.tileContainer #tilePit 		{order: 3}
+	.tileContainer #tileGlance 		{order: 2}
+	.tileContainer #tileTeams 		{order: 4}
+	.tileContainer #tileData 		{order: 6}
+	.tileContainer #tileVisualize 	{order: 5}
+	.tileContainer #tileDownload 	{order: 7}
+	.tileContainer #tileEvent 		{order: 8}
+	.tileContainer #tileActive 		{order: 9; max-width: 255px;}
+	.tileContainer #tileUpload 		{order: 10}
+	.tileContainer #tileAdmin 		{order: 11}
+	.tileContainer #tileSettings 	{order: 12}
+	.tileContainer #tileLogout 		{order: 13}
+} @media screen and (max-width: 820px) {
+	.tileContainer #tileMatch 		{order: 2}
+	.tileContainer #tilePit 		{order: 1}
+	.tileContainer #tileGlance 		{order: 3}
+	.tileContainer #tileTeams 		{order: 4}
+	.tileContainer #tileData 		{order: 6}
+	.tileContainer #tileVisualize 	{order: 5}
+	.tileContainer #tileDownload 	{order: 7}
+	.tileContainer #tileUpload 		{order: 10}
+	.tileContainer #tileAdmin 		{order: 11}
+	.tileContainer #tileSettings 	{order: 12}
+	.tileContainer #tileLogout 		{order: 13}
+} @media screen and (max-width: 1280px) {
+	#tileMatch 		{order: 1}
+	#tilePit 		{order: 2}
+	#tileGlance 	{order: 3}
+	#tileTeams 		{order: 4}
+	#tileData 		{order: 6}
+	#tileVisualize 	{order: 5}
+	#tileDownload 	{order: 7}
+	#tileEvent 		{order: 8}
+	#tileUpload 	{order: 10}
+	#tileAdmin 		{order: 11}
+	#tileSettings 	{order: 12}
+	#tileLogout 	{order: 13}
+	#tileActive 	{order: 9; max-width: 255px;}
+} @media screen and (max-width: 820px) and (max-height: 800px) {
+	#tileMatch 		{order: 1}
+	#tilePit 		{order: 2}
+	#tileGlance 	{order: 3}
+	#tileTeams 		{order: 4}
+	#tileData 		{order: 6}
+	#tileVisualize 	{order: 5}
+	#tileDownload 	{order: 7}
+	#tileEvent 		{order: 8}
+	#tileUpload 	{order: 10}
+	#tileAdmin 		{order: 11}
+	#tileSettings 	{order: 12}
+	#tileLogout 	{order: 13}
+	#tileActive 	{order: 9; max-width: 255px;}
+}
+
+/* REST OF CSS */
+
 body {
 	color: white;
 	background-color: #333333;
@@ -54,7 +161,86 @@ ul {
 	background-position: center -15vh;
 	background-clip: padding-box;
 }
-#tileglanceBackground {
+
+.modal {
+	visibility: hidden; 
+	position: fixed; 
+	overflow: hidden;
+	z-index: 10;
+	left: 0;
+	top: 0;
+	width: 100%; 
+	height: 100%; 
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+}
+
+.modal-content {
+	background-color: #333333;
+	margin: 15% auto;
+	padding: 20px;
+	border-bottom: 2px solid #0F4D8D;
+	box-shadow: 2px 5px 25px 2px #111111;
+	width: 30%; 
+}
+
+.modalButton {
+	cursor: pointer;
+	background-color: #444444;
+	color: white;
+	margin: 0px 2px 0px 2px;
+	border: none;
+	text-align: center;
+	font-size: 18px;
+	padding: 10px 40px;
+	border-bottom: 2px solid;
+	transition: all .1s ease-in-out;
+}
+.modalButton:hover {
+	background-color: #555555;
+}
+
+
+
+#snackbar {
+	visibility: hidden;
+	min-width: 250px;
+	background-color: #303030;
+	text-align: center;
+	border-bottom: 2px solid #0F4D8D;
+	box-shadow: 2px 5px 5px 2px #222222;
+	padding: 10px;
+	position: fixed;
+	z-index: 1;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 30px;
+}
+#snackbar.show {
+	visibility: visible;
+	/* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+	However, delay the fade out process for 2.5 seconds */
+	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+	animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+	from {bottom: 0; opacity: 0;}
+	to {bottom: 30px; opacity: 1;}
+}
+@keyframes fadein {
+	from {bottom: 0; opacity: 0;}
+	to {bottom: 30px; opacity: 1;}
+}
+@-webkit-keyframes fadeout {
+	from {bottom: 30px; opacity: 1;}
+	to {bottom: 0; opacity: 0;}
+}
+@keyframes fadeout {
+	from {bottom: 30px; opacity: 1;}
+	to {bottom: 0; opacity: 0;}
+}
+#tileBackground {
 	/*background-image: url("img/Glance Background - 2000w.png");*/
 	background-size: 45%;
 	background-position: center;
@@ -89,7 +275,6 @@ ul {
 	justify-content: flex-start;
 	align-items: flex-start;
 }
-
 .swissLogo {
 	height: auto;
 	padding-left: 5px;
@@ -98,9 +283,8 @@ ul {
 	transition: margin-left .5s;
 }
 #bodyContainer{
-	transition: margin-left .5s;
+	transition: margin-left .5s, filter 1s;
 }
-.pageHeader{}
 .bigBox {
 	height: 100px;
 	width: 100px;
@@ -184,23 +368,66 @@ ul {
 	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
-.infoBox h1, p { margin: 10px; }
-.infoHeader { display: flex; align-items: center; height: auto; border-bottom: 2px solid white }
-.infoRow { display: flex; margin-top: 5px; background-color: #09315A; }
-.infoLColumn { flex: 25%; }
-.infoRColumn { flex: 75%; }
-.infoWide { width: 510px; flex-grow: 5; }
-.infoReg { width: auto; min-width: 260px; flex-grow: 1; max-width: 700px; }
-.infoIcon { height: 7vh; padding: 10px; }
-
-.loginBox{
+.infoBox h1, p {
+	margin: 10px;
+}
+.vizBox {
+	display: inline-block;
+	min-height: 280px;
+	height: auto;
+	padding: 10px;
+	margin: 0px 0px 10px 10px;
+	background-color: #0F4D8D;
+	transition: all .2s ease-in-out; 
+}
+.vizBox:hover {
+	box-shadow: 2px 5px 25px 2px #232323;
+}
+.infoHeader { 
+	display: flex; 
+	align-items: center; 
+	height: auto; 
+	border-bottom: 2px solid white 
+}
+.infoLink { 
+	display: flex; 
+	align-items: center; 
+	height: auto; 
+	border-bottom: 2px solid white;
+	transition: all .2s ease-in-out;
+}
+.infoLink:hover { 
+	background-color: #09315A;
+}
+.infoRow {
+	display: flex;
+	margin-top: 5px;
+	background-color: #09315A;
+}
+.infoLColumn {
+	flex: 25%;
+}
+.infoRColumn {
+	flex: 75%;
+}
+.infoWide { 
+	width: 510px;
+}
+.infoReg { 
+	width: auto; 
+	min-width: 260px; 
+	flex-grow: 1; 
+	max-width: 760px; 
+}
+.infoIcon { 
+	height: 7vh; 
+	padding: 10px; }
+.loginBox {
 	width:auto;
 }
-
 .loginBox:hover {
 	transform: none;
 }
-
 .updateButton {
 	background: none;
 	width: 100%;
@@ -210,7 +437,6 @@ ul {
 	border: none;
 	color: white;
 }
-
 .dataButton {
 	background: none;
 	width: 20vw;
@@ -221,14 +447,12 @@ ul {
 	color: white;
 	margin: 0;
 }
-
 .loginButton {
 	padding: 20px;
 }
 .loginButton:hover {
 	box-shadow: 2px 5px 25px 2px #232323;
 }
-
 .wideBox {
 	display: flex;
 	padding: 100px;
@@ -257,9 +481,11 @@ ul {
 }
 .specialBox {
 	display: flex;
-	align-items: center;
+	flex-direction: column;
+	align-items: left;
 	padding: 22.5px;
 	height: 100px;
+	max-width: 255px;
 	margin: 0px 0px 10px 10px;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
@@ -268,12 +494,26 @@ ul {
 	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
+.specialBoxHeader {
+	margin: 10px 0px 16px 0px;
+}
 .homeText {
 	color: white;
 	text-decoration: none;
 	font-size: 75px;
-	font-weight: 1000;
+	font-weight: 900;
 	margin: 10px 0 0 0;
+}
+.pageTitle {
+	color: white;
+	margin: 0;
+	padding: 0;
+	font-size: 75px;
+	font-weight: 900;
+	animation-duration: 0.75s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+	animation-name: slideInFromRight;
 }
 #teamsText {
 	margin-top: 1.25em;
@@ -282,7 +522,6 @@ ul {
 .teamChip {
 	margin: 0px 0px 10px 10px;
 	padding: 20px;
-	height: Auto;
 	width: 260px;
 	background-color: #262626;
 	display: flex;
@@ -295,9 +534,26 @@ ul {
 	transform: scale(1.1); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
+.teamChipNoPic {
+	margin: 0px 0px 10px 10px;
+	padding: 20px;
+	height: auto;
+	width: 260px;
+	background-color: #262626;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	transition: all .2s ease-in-out;
+}
+.teamChipNoPic:hover {
+	transform: scale(1.1); 
+	box-shadow: 2px 5px 25px 2px #232323;
+}
 .robotPhoto {
 	width:inherit; 
-	height: inherit
+	height: inherit;
+	margin-bottom: 5px;
 }
 .stickyChip {
 	display: flex;
@@ -324,6 +580,7 @@ ul {
 }
 .pillSelect {
 	max-width: 50%;
+	margin: auto;
 }
 .teamnumberPill {
 	text-align: center;
@@ -356,105 +613,57 @@ ul {
 .largeGraph {
 	height: auto;
 	width: 100%;
-	background-color: aqua;
 }
 .tableContainer {
 	background-color: #333333;
-	height: 72.5vh;
+	height: 69vh;
 	width: 100%;
 	overflow: scroll;
 }
 table, th, td {
 	padding: 5px;
-	border: 1px solid white;
 	border-collapse: collapse;
 	white-space: nowrap;
 }
 tr:nth-child(even){
 	background: #555555
 }
-
 th {
 	position: sticky;
 	top: 0;
-	border: 1px solid white;
 	background: gray;
 	background-clip: padding-box;
 }
-
 .teamStick {
 	position: sticky;
 	width: 50px;
 	left: 0;
 	background: gray;
-	border: 1px solid white;
   	background-clip: padding-box;
 }
-
-.matchStick{
+.matchStick {
 	background-clip: padding-box;
 	position: sticky;
 	left: 70px;
 	margin-left: 1px;
 	background: gray;
-	border: 1px solid white;
-	background-clip: padding-box;
 }
-
 .positionIndicator {
 	padding-right: 20px;
 }
 
-
-
-
-@media screen and (max-width: 1860px){
-	.tileContainer #tileMatch {order : 1}
-	.tileContainer #tilePit {order: 2}
-	.tileContainer #tileGlance {order: 3}
-	.tileContainer #tileTeams {order: 5}
-	.tileContainer #tileData {order: 4}
-	.tileContainer #tileVisualize {order: 6}
-	.tileContainer #tileDownload {order: 7}
-	.tileContainer #tileEvent {
-		order: 8; 
-		min-width: 255px;
-		max-width: 565px;
+@keyframes slideInFromRight {
+	0% {
+		transform: translateX(25%);
+		opacity: 0;
 	}
-	.tileContainer #tileUpload {order: 10}
-	.tileContainer #tileAdmin {order: 11}
-	.tileContainer #tileSettings {order: 12}
-	.tileContainer #tileLogout {order: 13}
-	.tileContainer #tileActive {
-		order: 9; 
-		min-width: 255px;
-		max-width: 565px;
+	100% {
+		transform: translateX(0);
+		opacity: 100%;
 	}
 }
 
-@media screen and (max-width: 1600px){
-	.tileContainer #tileMatch {order : 1}
-	.tileContainer #tilePit {order: 2}
-	.tileContainer #tileGlance {order: 4}
-	.tileContainer #tileTeams {order: 3}
-	.tileContainer #tileData {order: 6}
-	.tileContainer #tileVisualize {order: 5}
-	.tileContainer #tileDownload {order: 7}
-	.tileContainer #tileEvent {
-		order: 8; 
-		min-width: 255px;
-		max-width: 565px;
-	}
-	.tileContainer #tileUpload {order: 10}
-	.tileContainer #tileAdmin {order: 11}
-	.tileContainer #tileSettings {order: 12}
-	.tileContainer #tileLogout {order: 13}
-	.tileContainer #tileActive {
-		order: 9; 
-		min-width: 255px;
-		max-width: 565px;
-	}
-}
+
 
 
 @media screen and (max-width: 1280px) {
@@ -486,35 +695,17 @@ th {
 		width: inherit;
 		height: 100%;
 		margin: unset;
-
 	}
-
 	#loginContainer {
 		width: 100%;
 	}
-
 	#password {
-		width: auto	;
+		width: 100%;
 	}
-	/* 
-	
-	Ordering of index boxes when on mobile (to prevent the jankey looking blank spaces) 
-	This SHOULD also apply to any viewports less than this. If this breaks on mobile let Nick know
-	
-	*/
-	.tileContainer #tileMatch {order : 1}
-	.tileContainer #tilePit {order: 3}
-	.tileContainer #tileGlance {order: 2}
-	.tileContainer #tileTeams {order: 4}
-	.tileContainer #tileData {order: 6}
-	.tileContainer #tileVisualize {order: 5}
-	.tileContainer #tileDownload {order: 7}
-	.tileContainer #tileEvent {order: 8; max-width: 255px;}
-	.tileContainer #tileUpload {order: 10}
-	.tileContainer #tileAdmin {order: 11}
-	.tileContainer #tileSettings {order: 12}
-	.tileContainer #tileLogout {order: 13}
-	.tileContainer #tileActive {order: 9; max-width: 255px;}
+	#username {
+		width: 100%;
+	}
+
 }
 
 /* for mobile phones, portrait and landscape */
@@ -559,6 +750,10 @@ th {
 	.homeText {
 		font-size: 28px;
 		margin-top: 55px;
+	}	
+	.pageTitle {
+		font-size: 28px;
+		margin-top: 55px;
 	}
 	#teamsText {
 		font-size: 0px;
@@ -572,18 +767,6 @@ th {
 		width: inherit;
 	}
 
-	.tileContainer #tileMatch {order: 2}
-	.tileContainer #tilePit {order: 1}
-	.tileContainer #tileGlance {order: 3}
-	.tileContainer #tileTeams {order: 4}
-	.tileContainer #tileData {order: 6}
-	.tileContainer #tileVisualize {order: 5}
-	.tileContainer #tileDownload {order: 7}
-	.tileContainer #tileUpload {order: 10}
-	.tileContainer #tileAdmin {order: 11}
-	.tileContainer #tileSettings {order: 12}
-	.tileContainer #tileLogout {order: 13}
-
 	#currentEvent {
 		display: none;
 	}
@@ -592,7 +775,12 @@ th {
 }
 
 
-
+.greeting {
+	display: inline;
+	margin-top: auto;
+	margin-bottom: 30%;
+	white-space: nowrap
+}
 .sidebar {
 	display: flex;
 	flex-direction: column;
@@ -613,13 +801,20 @@ th {
 	font-size: 25px;
 	color: #818181;
 	display: block;
-	font-weight: 1000;
-	transition: 0.3s;
+	font-weight: 900;
+}
+.sidebar p {
+	margin: 0;
+	padding: 4px 8px 4px 32px;
+	text-decoration: none;
+	font-size: 18px;
+	color: #818181;
+	display: block;
+	font-weight: 900;
 }
 .sidebar a:hover {
 	color: #f1f1f1;
 	transition: 0.3s;
-	
 }
 .sidebar a:active {
 	color: #0F4D8D;
@@ -649,6 +844,7 @@ th {
 	height: auto;
 	width: auto;
 	display: flex;
+	cursor: pointer;
 }
 .teamDrawer {
 	padding-top: 20px;
@@ -658,7 +854,8 @@ th {
 	z-index: 5;
 	top: 0;
 	left: 0;
-	background-color: #111;
+	background-color: #111; /* Fallback */
+	background-color: rgba(0,0,0,0.9); /* Transparent */
 	overflow-y: hidden;
 	overflow-x: hidden;
 	transition: 0.5s;
@@ -697,34 +894,19 @@ th {
 	flex-direction: column
 }
 
-/* manage index page tile ordering */
-#tileMatch { order: 1 }
-#tilePit {order: 2}
-#tileGlance {order: 3}
-#tileTeams {order: 4}
-#tileData {order: 5}
-#tileVisualize {order: 6}
-#tileDownload {order: 7}
-#tileEvent {order: 8}
-#tileUpload {order: 9}
-#tileAdmin {order: 10}
-#tileSettings {order: 11}
-#tileLogout {order: 12}
-#tileActive {order: 13}
 
+.graphOption {
+	padding: 10px;
+}
 .graphOption button {
 	background-color: #1C984F;
-	background-clip: padding-box;
 	padding: 10px;
-	border-style: solid;
-	border-width: 10px;
-	border-color: transparent;
+	border: none;
 }
 .graphOption button:hover {
-	transform: scale(1.025);
+	background-color: #60E1A7;
 	box-shadow: 2px 5px 25px 2px #232323;
-	border: none;
-	transition: 0.2s;
+	transition: all 0.2s ease-in-out;
 }
 .filterBox {
 	visibility: inherit;
@@ -764,7 +946,7 @@ th {
 	left: 0;
 	background-color: #0F4D8D;
 	width: 100%;
-	transition: 0.5s;
+	transition: all 0.5s ease-in-out;
 }
 .bottomBarButton {
 	background-color: transparent;
@@ -778,7 +960,7 @@ th {
 	bottom: 0;
 	border: none;
 	cursor: pointer;
-	transition: 0.5s;
+	transition: all 0.5s ease-in-out;
 }
 .bottomBarButton:hover {
 	background-color: RGBA(0,0,0,0.25)
@@ -812,30 +994,14 @@ th {
 	.pillSelect {
 		max-width: 75%;
 	}
-	/* 
-	
-	Ordering of index boxes when on mobile (to prevent the jankey looking blank spaces) 
-	This SHOULD also apply to any viewports less than this. If this breaks on mobile let Nick know
-	
-	*/
-	
-	#tileMatch { order: 1 }
-	#tilePit {order: 2}
-	#tileGlance {order: 3}
-	#tileTeams {order: 4}
-	#tileData {order: 6}
-	#tileVisualize {order: 5}
-	#tileDownload {order: 7}
-	#tileEvent {order: 8; max-width: 255px;}
-	#tileUpload {order: 10}
-	#tileAdmin {order: 11}
-	#tileSettings {order: 12}
-	#tileLogout {order: 13}
-	#tileActive {order: 9; max-width: 255px;}
+	.greeting {
+		margin-bottom: 10%;
+	}
+
+
 }
 
 /* for mobile phones, portrait and landscape */
-
 @media screen and (max-width: 820px) and (max-height: 800px) {
 	.bodyBackground {
 		background-size: 150%;
@@ -843,6 +1009,10 @@ th {
 	}
 	.tileContainer {
 		padding: 0 10px 0 10px;
+	}
+	.modal-content {
+		width: 80%;
+		margin: 50% auto;
 	}
 	.pillSelect {
 		max-width: 100%;
@@ -877,6 +1047,10 @@ th {
 		font-size: 28px;
 		margin-top: 55px;
 	}
+	.pageTitle {
+		font-size: 28px;
+		margin-top: 55px;
+	}
 	#teamsText {
 		font-size: 0px;
 	}
@@ -900,23 +1074,5 @@ th {
 		transform: scale(1);
 		box-shadow: none;
 	}
-	
-	/* 
-	Ordering of index boxes when on mobile (to prevent the jankey looking blank spaces) 
-	This SHOULD also apply to any viewports less than this. If this breaks on mobile let Nick know
-	*/
-	
-	#tileMatch { order: 1 }
-	#tilePit {order: 2}
-	#tileGlance {order: 3}
-	#tileTeams {order: 4}
-	#tileData {order: 6}
-	#tileVisualize {order: 5}
-	#tileDownload {order: 7}
-	#tileEvent {order: 8; max-width: 255px;}
-	#tileUpload {order: 10}
-	#tileAdmin {order: 11}
-	#tileSettings {order: 12}
-	#tileLogout {order: 13}
-	#tileActive {order: 9; max-width: 255px;}
+
 }
