@@ -179,38 +179,3 @@ function updateSlug(team){
 	getSlug(team)
 	return Slug
 }
-
-//////////////////////////////////////////////////////////////////////////
-//          SCRIPT FOR HANDLING THE ADD TO HOME SCREEN EXPERIENCE!      //
-//////////////////////////////////////////////////////////////////////////
-
-let deferredPrompt;
-const addBtn = document.querySelector('.add-button')
-addBtn.style.display = 'none';
-
-window.addEventListener('beforeinstallprompt', (e) => {
-	// This prevents Chrome 67 and earlier from automatically showing the prompt 
-	e.preventDefault();
-	// Stashed the event so it can be triggered later 
-	deferredPrompt = e;
-	// Uodate UI to notified the user they can add to home screen 
-	addBtn.style.display = 'block';
-	
-	addBtn.addEventListener('click', (e) => {
-		// hide our user interface that shows the add to home button 
-		addBtn.style.display = 'none';
-		// Show the prompt 
-		deferredPrompt.prompt();
-		// Wait for reponse to the prompt 
-		deferredPrompt.userChoice.then((choiceResult) => {
-			if (choiceResult.outcome === 'accepted') {
-				console.log('User accepted the A2HS prompt');
-			} else { 
-				console.log('User dismissed the A2HS prompt');
-			}
-			deferredPrompt = null; 
-		});
-	});
-});
-
-
