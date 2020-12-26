@@ -241,7 +241,6 @@ ul {
 	to {bottom: 0; opacity: 0;}
 }
 #tileBackground {
-	/*background-image: url("img/Glance Background - 2000w.png");*/
 	background-size: 45%;
 	background-position: center;
 	justify-content: center;
@@ -843,6 +842,7 @@ th {
 	border: none;
 	height: auto;
 	width: auto;
+    min-width: 200px;
 	display: flex;
 	cursor: pointer;
 }
@@ -1022,9 +1022,9 @@ th {
 		padding: 20px;
 	}
 	.headerBox {
-	width: 100px;
-	padding: 20px 20px 20px 20px;
-	margin: 5px 0px 0px 5px;
+	    width: 100px;
+	    padding: 20px 20px 20px 20px;
+	    margin: 5px 0px 0px 5px;
 	}
 	.wideBox {
 		margin: 5px 0 0 5px;
