@@ -65,7 +65,7 @@
 		<form class="formContainer" method="post" name="mainForm" id="mainForm" method="POST">
             {% csrf_token %}
 			<div class="formItem">
-                <label>User Role</label>
+                <label>{{ user.get_username }}</label>
                 <div class="positionIndicator">
                     {% get_user_role request %}
                 </div>
@@ -110,9 +110,9 @@
 					</label>
 				</div>
             </div>
-
             {% is_lead_scout request as lead_scout %}
             {% if lead_scout %}
+            <h1>User Registration</h1>
             <div class="formItem">
 				<label for="intakeType">Intake Type ----- Finish Implementation</label>
 				<select name="intakeType" id="intakeType" required>
@@ -122,7 +122,6 @@
 				</select>
 			</div>
             {% endif %}
-
             <div class="formItem" id="submit" onclick="validate('mainForm', false)">
                 <input name="submit" id="submitButton" type="submit" style="pointer-events: none" value="Save Settings">
 			</div>
