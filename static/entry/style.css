@@ -182,6 +182,10 @@ ul {
 	border-bottom: 2px solid #0F4D8D;
 	box-shadow: 2px 5px 25px 2px #111111;
 	width: 30%; 
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
 }
 
 .modalButton {
@@ -200,6 +204,15 @@ ul {
 	background-color: #555555;
 }
 
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
 
 
 #snackbar {
@@ -418,6 +431,9 @@ ul {
 	min-width: 260px; 
 	flex-grow: 1; 
 	max-width: 760px; 
+}
+#ScoutNowTile {
+    flex-grow: 0;
 }
 .infoIcon { 
 	height: 7vh; 
