@@ -771,6 +771,9 @@ th {
 		display: none;
 	}
 	
+    #ScoutNowTile {
+        flex-grow: 1;
+    }
 
 }
 

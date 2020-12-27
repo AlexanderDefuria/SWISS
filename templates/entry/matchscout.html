@@ -70,8 +70,8 @@
 		</div>
 	<div id="myModal" class="modal">
 		<div class="modal-content">
-			<h1 style="margin-left: 10px;">Are you sure the robot is not present?</h1>
-			<p>Clicking yes will set all form values to ZERO and scroll you to the bottom of the page.</p>
+			<h1 id="modal-header" style="margin-left: 10px;">Modal Popup Header</h1>
+			<p id="modal-desc">Lorem ipsum dolor sit amet.</p>
 			<div style="display: flex; justify-content: center">
 				<button class="modalButton" id="onFieldCancel">No</button>
 				<button class="modalButton" id="onFieldConfirm">Yes</button>
@@ -321,7 +321,7 @@
 			<script> 
 				function hideWheelScore() {
 					var x = document.getElementById("wheelScore").value;
-					if (x > 0){
+					if (x != 0){
 						document.getElementById("wheelRatingDiv").style.display="flex";
 					} else {
 						document.getElementById("wheelRatingDiv").style.display="none";
@@ -490,12 +490,16 @@ var opn = document.getElementById("onField_false");
 var bad = document.getElementById("onFieldCancel");
 var good = document.getElementById("onFieldConfirm");
 var main = document.getElementById("mainForm");
+var modhead = document.getElementById("modal-header")
+var moddesc = document.getElementById("modal-desc")
 
 // When the user clicks on the button, open the modal
 opn.onclick = function() {
 	modal.style.visibility = "visible";
 	main.style.filter="blur(2px)";
 	window.navigator.vibrate(40);
+    modhead.innerHTML="Are you sure the Robot is not Present?";
+    moddesc.innerHTML="Clicking yes will set all form values to ZERO and scroll you to the bottom of the page."
 }
 
 // When the user clicks on "no", close the modal
@@ -537,9 +541,7 @@ good.onclick = function() {
 	document.getElementById("pushRating").value = "0";
 	document.getElementById("lockStatus").value = "0";
 	document.getElementById("comment").value = "NOT PRESENT";
-	document.getElementById("submit").scrollIntoView({
-	behavior: 'smooth'
-	});
+    setTimeout(() => { document.getElementById("submit").scrollIntoView({behavior: 'smooth'	}); }, 2000);
 }
 </script>
 </body>
