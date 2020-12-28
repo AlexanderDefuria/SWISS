@@ -306,9 +306,9 @@
 			<div class="formItem">
 			<!-- Dropdown for control panel task -->
 				<label for="wheelScore">Control Panel</label>
-				<div>
+				<div style="align-self: flex-end">
 					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'ControlPanelIcon.png' %}" alt="Control Panel">
-					<select name="wheelScore" id="wheelScore" required onChange="hideWheelScore">
+					<select name="wheelScore" id="wheelScore" required onChange="hideWheelScore()">
 						<option value="">&#8230;</option>
 						<option value="0">Did not Attempt</option>
 						<option value="1">Unsuccessful</option>

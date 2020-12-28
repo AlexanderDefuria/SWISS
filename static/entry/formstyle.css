@@ -403,6 +403,7 @@ input:-webkit-autofill:focus {
 	}
 	.formItem input[type=number] {
 		font-size: 28px;
+        align-self: flex-end;
 	}
 	.radioGroup {
 		display: block
