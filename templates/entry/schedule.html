@@ -59,30 +59,32 @@
         <div class="heroContent" id="heroSpace">
 			<p class="pageTitle">Match Schedule</p>
 		</div>
-        <div class="scheduleContainer">
-            {% for match in schedule_list %}
-			<div class="scheduleTile">
-				<div style="margin-right: 20px;">
-                    <h3>Q-{{ match.match_number }}</h3>
-                    <p>&#x2705;</p>
-                </div>
-                <div>
-                    <div class="infoRow">
-                        <p>{{ match.blue1 }}</p>
-                        <p>{{ match.blue2 }}</p>
-                        <p>{{ match.blue3 }}</p>
-                        <p class="blueScore">Blue Score</p>
+            <div class="tileContainer">
+                <div class="scheduleContainer">
+                    {% for match in schedule_list %}
+                    <div class="scheduleTile">
+                        <div style="margin-right: 20px;">
+                            <h3>Q-{{ match.match_number }}</h3>
+                            <p>&#x2705;</p>
+                        </div>
+                        <div>
+                            <div class="infoRow">
+                                <p>{{ match.blue1 }}</p>
+                                <p>{{ match.blue2 }}</p>
+                                <p>{{ match.blue3 }}</p>
+                                <p class="blueScore">Blue Score</p>
+                            </div>
+                            <div class="infoRow" style="background-color: darkred">
+                                <p>{{ match.red1 }}</p>
+                                <p>{{ match.red2 }}</p>
+                                <p>{{ match.red3 }}</p>
+                                <p class="redScore">Red Score</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="infoRow" style="background-color: darkred">
-                        <p>{{ match.red1 }}</p>
-                        <p>{{ match.red2 }}</p>
-                        <p>{{ match.red3 }}</p>
-                        <p class="redScore">Red Score</p>
-                    </div>
+                    {% endfor %}
                 </div>
-			</div>
-            {% endfor %}
-        </div>
+            </div>
         <!--
         <div class="tableContainer">
             <table id="dataTable">
