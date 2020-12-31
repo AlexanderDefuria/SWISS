@@ -56,59 +56,84 @@
 	</div>
 	
 	<div class="bodyContainer bodyBackground" id="bodyContainer">
-		<div class="heroContent" id="heroSpace" style="padding-bottom: 0">
-		    <h1 style="font-size: 42px; margin: 0;">Schedule View</h1>
+        <div class="heroContent" id="heroSpace">
+			<p class="pageTitle">Match Schedule</p>
 		</div>
-			<div class="tableContainer">
-				<table id="dataTable">
-					<tr>
-						<th class="teamStick" style="z-index: 200">Match Number</th>
-						<th>Blue 1</th>
-						<th>Blue 2</th>
-						<th>Blue 3</th>
-                        <th>Red 1</th>
-						<th>Red 2</th>
-						<th>Red 3</th>
-						<th>Time</th>
-						<th>Completed?</th>
-						<th>Blue Score</th>
-						<th>Red Score</th>
-						<th>Match Type</th>
-						<th>Scores</th>
-                        <th>Blue 1</th>
-                        <th>Blue 2</th>
-                        <th>Blue 3</th>
-                        <th>Red 1</th>
-                        <th>Red 2</th>
-                        <th>Red 3</th>
-						<th></th>
+        <div class="scheduleContainer">
+            {% for match in schedule_list %}
+			<div class="scheduleTile">
+				<div style="margin-right: 20px;">
+                    <h3>Q-{{ match.match_number }}</h3>
+                    <p>&#x2705;</p>
+                </div>
+                <div>
+                    <div class="infoRow">
+                        <p>{{ match.blue1 }}</p>
+                        <p>{{ match.blue2 }}</p>
+                        <p>{{ match.blue3 }}</p>
+                        <p class="blueScore">Blue Score</p>
+                    </div>
+                    <div class="infoRow" style="background-color: darkred">
+                        <p>{{ match.red1 }}</p>
+                        <p>{{ match.red2 }}</p>
+                        <p>{{ match.red3 }}</p>
+                        <p class="redScore">Red Score</p>
+                    </div>
+                </div>
+			</div>
+            {% endfor %}
+        </div>
+        <!--
+        <div class="tableContainer">
+            <table id="dataTable">
+                <tr>
+                    <th class="teamStick" style="z-index: 200">Match Number</th>
+                    <th>Blue 1</th>
+                    <th>Blue 2</th>
+                    <th>Blue 3</th>
+                    <th>Red 1</th>
+                    <th>Red 2</th>
+                    <th>Red 3</th>
+                    <th>Time</th>
+                    <th>Completed?</th>
+                    <th>Blue Score</th>
+                    <th>Red Score</th>
+                    <th>Match Type</th>
+                    <th>Scores</th>
+                    <th>Blue 1</th>
+                    <th>Blue 2</th>
+                    <th>Blue 3</th>
+                    <th>Red 1</th>
+                    <th>Red 2</th>
+                    <th>Red 3</th>
+                    <th></th>
 
-					</tr>
-					{% for match in schedule_list %}
-                    <tr>
-                        <td class="teamStick" style="z-index: 100">{{ match.match_number }}</td>
-						<td>{{ match.blue1 }}</td>
-						<td>{{ match.blue2 }}</td>
-						<td>{{ match.blue3 }}</td>
-                        <td>{{ match.red1 }}</td>
-						<td>{{ match.red2 }}</td>
-						<td>{{ match.red3 }}</td>
-						<td> </td>
-						<td> </td>
-						<td>Blue Score</td>
-						<td>Red Score</td>
-						<td>Match Type</td>
-						<td>      </td>
-                        <td>{{ match.blue1 }}</td>
-                        <td>{{ match.blue2 }}</td>
-                        <td>{{ match.blue3 }}</td>
-                        <td>{{ match.red1 }}</td>
-                        <td>{{ match.red2 }}</td>
-                        <td>{{ match.red3 }}</td>
-                    </tr>
-                    {% endfor %}
-				</table>
-		</div>
+                </tr>
+                {% for match in schedule_list %}
+                <tr>
+                    <td class="teamStick" style="z-index: 100">{{ match.match_number }}</td>
+                    <td>{{ match.blue1 }}</td>
+                    <td>{{ match.blue2 }}</td>
+                    <td>{{ match.blue3 }}</td>
+                    <td>{{ match.red1 }}</td>
+                    <td>{{ match.red2 }}</td>
+                    <td>{{ match.red3 }}</td>
+                    <td> </td>
+                    <td> </td>
+                    <td>Blue Score</td>
+                    <td>Red Score</td>
+                    <td>Match Type</td>
+                    <td>      </td>
+                    <td>{{ match.blue1 }}</td>
+                    <td>{{ match.blue2 }}</td>
+                    <td>{{ match.blue3 }}</td>
+                    <td>{{ match.red1 }}</td>
+                    <td>{{ match.red2 }}</td>
+                    <td>{{ match.red3 }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
 		<br>
         <div class="bottomBar" id="bottomBar">
 			<div id="bottomBarContent">
@@ -120,6 +145,7 @@
 			</div>
 			<button class="bottomBarButton" id="bottomBarButton" onclick="expandBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
 		</div>
+-->
 	</div>
 
 </body>

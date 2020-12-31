@@ -667,6 +667,21 @@ th {
 .positionIndicator {
 	padding-right: 20px;
 }
+.scheduleTile {
+    height: auto;
+    width: auto;
+    padding: 10px;
+    background-color: #262626;
+    margin: 10px;
+    display: inline-flex;
+}
+.scheduleTile h3 {
+    margin: 5px 0 0 0;
+}
+.scheduleContainer {
+    display: flex;
+}
+
 
 @keyframes slideInFromRight {
 	0% {
