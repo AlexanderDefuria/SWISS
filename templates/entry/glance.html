@@ -187,7 +187,7 @@
 				</div>
 				<div class="infoRow" id="playedDefenseBG">
 					<div class="infoLColumn"><p>Played Defense</p></div>
-					<div class="infoLColumn"><p id="playedDefenseValue">{% get_info user team 'played_defense' 'average' 'match' %}%</p></div>
+					<div class="infoLColumn"><p id="playedDefenseValue">{% get_info user team 'played_defense' 'average' 'match' %}</p><p>%</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Avg. Quality</p></div>
@@ -195,7 +195,7 @@
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Push Ability</p></div>
-					<div class="infoLColumn"><p>{% get_info user team 'able_to_push' 'average' 'match' %}%</p></div>
+					<div class="infoLColumn"><p>{% get_info user team 'able_to_push' 'average' 'match' %}</p></div>
 				</div>
 			</div>
 			<div class="infoBox infoReg" id="powerCellTile">
@@ -327,10 +327,6 @@
                     }
 				</script>
 			</div>
-		<!--
-			<div class="infoBox infoReg">
-			</div>
-		-->
 			<div class="infoBox infoReg" id="ScoutNowTile" style="height: auto">
 <!-- This <a> tag is intended to redirect the user to the MatchScout or PitScout Page of the currently displayed team. 
      The url used to redirect is the landing page with the team id concatenated as a new part of the url to select the
@@ -348,7 +344,7 @@
 						<h1 style="color: #ffffff">Pit Scout</h1>
 					</div>
 				</a>
-                <a href="https://www.thebluealliance.com/team/{{ team.number }}">
+                <a href="https://www.thebluealliance.com/team/{{ team.number }}" target="_blank">
                     <div class="infoLink">
                         <img class="infoIcon" src="{{ MEDIA_URL }}{% static 'TheBlueAlliance.png' %}" alt="The Blue Alliance Icon">
                         <h1 style="color: #ffffff">The Blue Alliance</h1>
