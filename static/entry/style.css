@@ -702,9 +702,16 @@ th {
 .documentContent {
     max-width: 60%;
     margin: 0 auto;
+    padding: 10px;
     background-color: #444444;
     border: 1px solid #666666;
     border-radius: 6px;
+}
+.documentContent a {
+    color: #0F4D8D
+}
+.documentContent a:visited {
+    color: #5794FF; 
 }
 
 @keyframes slideInFromRight {
