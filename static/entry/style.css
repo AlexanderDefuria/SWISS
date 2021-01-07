@@ -693,7 +693,19 @@ th {
 .scheduleContainer {
     display: flex;
 }
-
+.scheduleTeamNumber {
+    width: 40px;
+}
+.documentContainer {
+    display: flex
+}
+.documentContent {
+    max-width: 60%;
+    margin: 0 auto;
+    background-color: #444444;
+    border: 1px solid #666666;
+    border-radius: 6px;
+}
 
 @keyframes slideInFromRight {
 	0% {
