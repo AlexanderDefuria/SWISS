@@ -780,6 +780,13 @@ th {
 	.tileContainer {
 		padding: 0 10px 0 10px;
 	}
+    .documentContainer {
+        width: 100%;
+    }
+    .documentContent {
+        width: 100%;
+        margin: 0;
+    }
 	.pillSelect {
 		max-width: 100%;
 	}

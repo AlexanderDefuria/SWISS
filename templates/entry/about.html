@@ -63,10 +63,10 @@
         <div class="documentContainer">
             <div class="documentContent" style="margin: 0 auto">
                 <h2>Welcome to SWISS</h2>
-                <span style="width: 100%; border-bottom: 2px solid #666666"></span>
+                <div style="width: 100%; border-bottom: 2px solid #666666"></div>
                 <p>SWISS is an application for the FIRST Robotics Competition game with the purpose of scouting robots during matches and providing a neat dashboard for the data collected by scouters. <br> 
                 Built by FRC 4343 Alumni Alex DeFuria and Nick Kerstens</p>
-                <span style="width: 100%; border-bottom: 2px solid #666666"></span>
+                <div style="width: 100%; border-bottom: 2px solid #666666"></div>
                 <h2>Github Repository Documet</h2>
                 <p>The web server is hosted from a raspberry pi during competition which creates a PAN network, (Bluetooth network) to allow other devices to connect to the web server. Using a wifi network would be much better but would be a violation of rule C05 of the 
                 <a href="https://firstfrc.blob.core.windows.net/frc2021/EventRules/EventRulesManual.pdf" target="_blank">FRC Event Rules Manual</a>, 
@@ -76,13 +76,11 @@
                 <h3>Image Installation</h3>
                 <p>To download a prebuilt image visit <a href="https://download.swiss-scouting.ca/" target="_blank">https://download.swiss-scouting.ca/</a> and unzip then install the same way as any other raspbian installation. Thorough instructions coming soon</p>
                 <h3>Source Setup Linux</h3>
-                <pre>
-                    <code>
-                        git clone https://github.com/AlexanderDefuria/FRC-Scouting.git
-                        sudo apt-get install python3-pandas python3-pip
-                        sudo pip3 install django==2.2 djangoajax==3.2
-                    </code>
-                </pre>
+                <code>
+                    git clone https://github.com/AlexanderDefuria/FRC-Scouting.git<br>
+                    sudo apt-get install python3-pandas python3-pip<br>
+                    sudo pip3 install django==2.2 djangoajax==3.2<br>
+                </code>
                 <h3>Running the Server</h3>
                 <p>Presently there is no configuration for a permemnant server deployment and it must be run in Django's development mode. <code>python3 manage.py runserver 127.0.0.1:80</code> To have it available from other devices on the local network follow the commands below. Record the ip address produced by <code>ipconfig</code> and after running <code>sudo python3 manage.py 0.0.0.0:80</code> navigate to the ip address from the other device.</p>
                 <h3>Connecting to Bluetooth</h3>
@@ -100,7 +98,7 @@
                 </details>
                 <h3>Viewing Images</h3>
                 <p>Images can be rotated using the <a href="https://github.com/AlexanderDeFuria/FRC-Scouting/blob/master/rotateImage.py" target="_blank">Rotate Image Utility</a> to correct landscape and portrait modes not being consistent.</p>
-                <span style="width: 100%; border-bottom: 2px solid #666666"></span>
+                <div style="width: 100%; border-bottom: 2px solid #666666"></div>
                 <p>Made with love from Toronto, ON</p>
             </div>
         </div>
