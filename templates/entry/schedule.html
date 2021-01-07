@@ -60,14 +60,10 @@
         <div class="heroContent">
 			<p class="pageTitle">Match Schedule</p>
 		</div>
-        <div style="display: flex; justify-content: center; width: auto">
-            <div class="formItem" id="currentEvent" style="justify-content: center; width: auto">
-                <p>{% get_current_event %}</p>
-            </div>
-        </div>
+        <span style="margin: 10px">{% get_current_event %}</span>
         <div class="scheduleContainer" style="flex-wrap: wrap; white-space: nowrap; justify-content: center">
             {% for match in schedule_list %}
-            <div class="scheduleTile">
+            <div class="scheduleTile" id="{{ match.match_number }}">
                 <div style="margin-right: 20px;">
                     <h3>Q-{{ match.match_number }}</h3>
                     <p>&#x2705;</p>

@@ -114,7 +114,7 @@
             {% if lead_scout %}
             <h1>User Registration</h1>
             <div class="formItem">
-				<label for="intakeType">Intake Type ----- Finish Implementation</label>
+				<label for="intakeType">Intake Type -- Finish Implementation</label>
 				<select name="intakeType" id="intakeType" required>
 					<option value="0">Manual Approval, Open Registration</option>
 					<option value="1">Manual Creation of All Users</option>
@@ -122,6 +122,13 @@
 				</select>
 			</div>
             {% endif %}
+            <h1>More</h1>
+            <div class="formItem" style="justify-content: center">
+                <a href="https://github.com/AlexanderDefuria/FRC-Scouting" target="_blank">
+                    <img class="socialIcon" src="{{ MEDIA_URL }}{% static 'GithubIcon.png' %}" alt="Github Logo">
+                </a>
+            </div>
+            <br>
             <div class="formItem" id="submit" onclick="validate('mainForm', false)">
                 <input name="submit" id="submitButton" type="submit" style="pointer-events: none" value="Save Settings">
 			</div>

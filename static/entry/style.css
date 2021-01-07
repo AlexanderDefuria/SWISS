@@ -338,7 +338,7 @@ ul {
 	width: 300px;
 	padding: 0;
 	margin: 0px 0px 10px 10px;
-	background-color: grey;
+	background-color: #262626;
 	transition: all .2s ease-in-out; 
 }
 .pictureBox img {
@@ -681,6 +681,11 @@ th {
     background-color: #262626;
     margin: 10px;
     display: inline-flex;
+	transition: all .2s ease-in-out; 
+}
+.scheduleTile:hover { 
+	transform: scale(1.075); 
+	box-shadow: 2px 5px 25px 2px #232323;
 }
 .scheduleTile h3 {
     margin: 5px 0 0 0;

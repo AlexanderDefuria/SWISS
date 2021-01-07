@@ -171,12 +171,12 @@
 					<p id="humanFoulValue">{% get_info user team 'hp_fouls' 'average' 'match' %}</p>
 					</div>
 				</div>
-				<div class="infoRow">
+				<div class="infoRow" id="yelCardBG">
 					<div class="infoLColumn">
 					<p>Yellow Cards</p>
 					</div>
 					<div class="infoLColumn">
-					<p>{% get_info user team 'yellow_card' 'average' 'match' %}</p>
+					<p id="yellowCardValue">{% get_info user team 'yellow_card' 'average' 'match' %}</p>
 					</div>
 				</div>
 			</div>
@@ -185,9 +185,9 @@
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'DefenseIcon.png' %}" alt="Defense Icon">
 					<h1>Defense</h1>
 				</div>
-				<div class="infoRow">
+				<div class="infoRow" id="playedDefenseBG">
 					<div class="infoLColumn"><p>Played Defense</p></div>
-					<div class="infoLColumn"><p>{% get_info user team 'played_defense' 'average' 'match' %}%</p></div>
+					<div class="infoLColumn"><p id="playedDefenseValue">{% get_info user team 'played_defense' 'average' 'match' %}%</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Avg. Quality</p></div>
@@ -285,6 +285,8 @@
 					var o = document.getElementById("offenseFoulValue").innerHTML;
 					var d = document.getElementById("defenseFoulValue").innerHTML;
 					var h = document.getElementById("humanFoulValue").innerHTML;
+                    var c = document.getElementById("yellowCardValue").innerHTML;
+                    var pd = document.getElementById("playedDefenseValue").innerHTML;
 					
 					if (f > 99) {
 						document.getElementById("onFieldBG").style.backgroundColor = "";
@@ -315,6 +317,14 @@
 					} else if (h > 0) {
 						document.getElementById("humFoulBG").style.backgroundColor = "#D7AE22";
 					}
+                    
+                    if (c > 0) {
+                        document.getElementById("yelCardBG").style.backgroundColor = "#D7AE22";
+                    }
+                    
+                    if (pd > 75) {
+                        document.getElementById("playedDefenseBG").style.backgroundColor = "#1C984F";
+                    }
 				</script>
 			</div>
 		<!--
