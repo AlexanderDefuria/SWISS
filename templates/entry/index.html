@@ -149,13 +149,14 @@
         
         if (z == "true") {
             x.className = "show";
-            y.innerHTML = "tutorial is valid";
+            y.innerHTML = "here's the tutorial prompt";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        } else if (z == "false" ) {
+            x.className = "show";
+            y.innerHTML = "there will be no tutorial prompt";
             setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
         } else {
-            x.className = "show";
-            y.innerHTML = "no tutorial";
-            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-
+            console.log("Tutorials Off")
         }
 }, false);
     

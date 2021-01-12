@@ -134,9 +134,13 @@
                     <img class="socialIcon" src="{{ MEDIA_URL }}{% static '4343Logo.png' %}" alt="FRC Team 4334 Logo">
                 </a>
             </div>
-            <div class="formItem" onClick="tutorialReset()">
-                <label>Click me to reset tutorials</label>
+            <div class="formItem" onClick="tutorialOn()">
+                <label>Click me to turn on tutorials</label>
             </div>
+            <div class="formItem" onClick="tutorialOff()">
+                <label>Click me to turn off tutorials</label>
+            </div>
+
             <br>
             <div class="formItem" id="submit" onclick="validate('mainForm', false)">
                 <input name="submit" id="submitButton" type="submit" style="pointer-events: none" value="Save Settings">
@@ -155,9 +159,13 @@
         {% if lead_scout %} //document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true; {% endif %}
     }
         
-    function tutorialReset() {
-        localStorage.setItem('tutorialPrompt', true);
-        console.log('reset tutorials');
+    function tutorialOn() {
+        localStorage.setItem('tutorialPrompt', 'true');
+        console.log('tutorials on');
+    }
+    function tutorialOff() {
+        localStorage.setItem('tutorialPrompt', 'false');
+        console.log('tutorials off');
     }
 </script>
 </body >
