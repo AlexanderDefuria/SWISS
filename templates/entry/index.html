@@ -147,7 +147,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         var z = localStorage.getItem('tutorialPrompt');
         
-        if (z == 1) {
+        if (z == "true") {
             x.className = "show";
             y.innerHTML = "tutorial is valid";
             setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
