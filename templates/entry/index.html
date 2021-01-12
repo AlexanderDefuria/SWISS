@@ -136,10 +136,29 @@
 				<h2 style="margin: 0">{% get_all_logged_in_users %}</h2>
 			</div>
 		</div>
-	<div id="snackbar">
-		<p id="snacktext">Default Text</p>
+        <div id="snackbar">
+            <p id="snacktext">Default Text</p>
+        </div>
 	</div>
-	</div>
+<script>
+	var x = document.getElementById("snackbar");
+	var y = document.getElementById("snacktext");
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var z = localStorage.getItem('tutorialPrompt');
+        
+        if (z == 1) {
+            x.className = "show";
+            y.innerHTML = "tutorial is valid";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        } else {
+            x.className = "show";
+            y.innerHTML = "no tutorial";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 
+        }
+}, false);
+    
+</script>
 </body>
 </html>
