@@ -143,9 +143,10 @@
 <script>
 	var x = document.getElementById("snackbar");
 	var y = document.getElementById("snacktext");
+    var z = localStorage.getItem('tutorialPrompt');
     
-    document.addEventListener('DOMContentLoaded', function() {
-        var z = localStorage.getItem('tutorialPrompt');
+    document.addEventListener('DOMContentLoaded', setTimeout(function() {
+        
         
         if (z == "true") {
             x.className = "show";
@@ -158,7 +159,7 @@
         } else {
             console.log("Tutorials Off")
         }
-}, false);
+}, 3000), false);
     
 </script>
 </body>

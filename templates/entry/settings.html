@@ -135,12 +135,12 @@
                 </a>
             </div>
             <div class="formItem" onClick="tutorialOn()">
-                <label>Click me to turn on tutorials</label>
+                <label for="tutorialPrompt">Click me to turn on tutorials</label>
+                <div>
+                    <input type="button" value="On" onClick="tutorialOn()" style="width: auto">
+                    <input type="button" value="Off" onClick="tutorialOff()" style="width: auto">
+                </div>
             </div>
-            <div class="formItem" onClick="tutorialOff()">
-                <label>Click me to turn off tutorials</label>
-            </div>
-
             <br>
             <div class="formItem" id="submit" onclick="validate('mainForm', false)">
                 <input name="submit" id="submitButton" type="submit" style="pointer-events: none" value="Save Settings">
@@ -159,13 +159,23 @@
         {% if lead_scout %} //document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true; {% endif %}
     }
         
+	var x = document.getElementById("snackbar");
+	var y = document.getElementById("snacktext");
+
+        
     function tutorialOn() {
         localStorage.setItem('tutorialPrompt', 'true');
         console.log('tutorials on');
+        x.className = "show";
+		y.innerHTML = "Tutorial Prompts are back on";
+		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
     }
     function tutorialOff() {
         localStorage.setItem('tutorialPrompt', 'false');
         console.log('tutorials off');
+        x.className = "show";
+		y.innerHTML = "Tutorial Prompts are now off";
+		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
     }
 </script>
 </body >
