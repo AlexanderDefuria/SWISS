@@ -134,8 +134,8 @@
                     <img class="socialIcon" src="{{ MEDIA_URL }}{% static '4343Logo.png' %}" alt="FRC Team 4334 Logo">
                 </a>
             </div>
-            <div class="formItem">
-                <button onClick="tutorialReset()"></button>
+            <div class="formItem" onClick="tutorialReset()">
+                <label>Click me to reset tutorials</label>
             </div>
             <br>
             <div class="formItem" id="submit" onclick="validate('mainForm', false)">
@@ -156,8 +156,8 @@
     }
         
     function tutorialReset() {
-        localStorage.setItem('tutorialPrompt', 1;
-        console.log('reset')
+        localStorage.setItem('tutorialPrompt', 1);
+        console.log('reset');
     }
 </script>
 </body >
