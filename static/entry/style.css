@@ -542,6 +542,12 @@ ul {
 	margin-top: 1.25em;
 	font-size: 36px;
 }
+#officialTeamName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: -webkit-fill-available;
+}
 .teamChip {
 	margin: 0px 0px 10px 10px;
 	padding: 20px;

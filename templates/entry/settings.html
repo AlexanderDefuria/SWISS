@@ -134,14 +134,58 @@
                     <img class="socialIcon" src="{{ MEDIA_URL }}{% static '4343Logo.png' %}" alt="FRC Team 4334 Logo">
                 </a>
             </div>
+            <div class="formItem">
+                <button onClick="storageAvailable()"></button>
+            </div>
             <br>
             <div class="formItem" id="submit" onclick="validate('mainForm', false)">
                 <input name="submit" id="submitButton" type="submit" style="pointer-events: none" value="Save Settings">
 			</div>
         </form>
+        <div id="snackbar">
+			<p id="snacktext">Default Text</p>
+		</div>
+
 	</div>
-</body >
-</html>
+<script>
+function storageAvailable(type) {
+    var storage;
+    try {
+        storage = window[type];
+        var x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch(e) {
+        return e instanceof DOMException && (
+            // everything except Firefox
+            e.code === 22 ||
+            // Firefox
+            e.code === 1014 ||
+            // test name field too, because code might not be present
+            // everything except Firefox
+            e.name === 'QuotaExceededError' ||
+            // Firefox
+            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+            // acknowledge QuotaExceededError only if there's something already stored
+            (storage && storage.length !== 0);
+    }
+}
+	var a = document.getElementById("snackbar");
+	var b = document.getElementById("snacktext");
+
+if (storageAvailable('localStorage')) {
+		a.className = "show";
+		b.innerHTML = "We can use local storage!";
+		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+else {
+		a.className = "show";
+		b.innerHTML = "Local storage not available sadface";
+		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
 <script>
     function update_cookie_fields(){
         document.getElementById('images_'.concat('{% get_cookie request 'images' %}'.toLowerCase())).checked = true;
@@ -150,3 +194,5 @@
         {% if lead_scout %} //document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true; {% endif %}
     }
 </script>
+</body >
+</html>
