@@ -702,6 +702,12 @@ th {
 .scheduleTeamNumber {
     width: 40px;
 }
+.redScore {
+    width: 30px;
+}
+.blueScore {
+    width: 30px;
+}
 .documentContainer {
     display: flex
 }

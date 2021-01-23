@@ -153,11 +153,9 @@
             y.innerHTML = "here's the tutorial prompt";
             setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
         } else if (z == "false" ) {
-            x.className = "show";
-            y.innerHTML = "there will be no tutorial prompt";
-            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-        } else {
             console.log("Tutorials Off")
+        } else {
+            console.log("No Tutorial Prompt Cookie set")
         }
 }, 3000), false);
     

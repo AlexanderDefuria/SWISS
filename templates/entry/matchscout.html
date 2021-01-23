@@ -135,7 +135,7 @@
 			<div class="formItem">
 				<label for="autoRoute">Autonomous Route</label>
 				<select name="autoRoute" id="autoRoute" required>
-					<option value="">&#8230;</option>
+					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">None</option>
 					<option value="1">Yes, Simple</option>
 					<option value="2">Yes, Complex</option>
@@ -242,7 +242,7 @@
 				<!-- Type of intake for Strategy purposes -->
 				<label for="intakeType">Intake Type</label>
 				<select name="intakeType" id="intakeType" required>
-					<option value="">&#8230;</option>
+					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">Did not Intake</option>
 					<option value="1">Ground</option>
 					<option value="2">Human</option>
@@ -275,7 +275,7 @@
 			<!-- Can the robot drive well and achieve tasks while under defense? -->
 				<label for="underDefense">Play well under defense</label>
 				<select name="underDefense" id="underDefense" required onChange="hideDefendedBy()"> 
-					<option value="">&#8230;</option>
+					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">Not Defended</option>
 					<option value="1">Played Poorly</option>
 					<option value="2">Played Well</option>
@@ -309,7 +309,7 @@
 				<div style="align-self: flex-end">
 					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'ControlPanelIcon.png' %}" alt="Control Panel">
 					<select name="wheelScore" id="wheelScore" required onChange="hideWheelScore()">
-						<option value="">&#8230;</option>
+						<option value="" disabled selected hidden>&#8230;</option>
 						<option value="0">Did not Attempt</option>
 						<option value="1">Unsuccessful</option>
 						<option value="2">Completed Rotation</option>
@@ -346,7 +346,7 @@
 			<!-- Not to be confused with Defensive fouls below -->
 				<label for="offensiveFouls">Incurred Offensive Fouls</label>
 				<select name="offensiveFouls" id="offensiveFouls" required>
-					<option value="">&#8230;</option>
+					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">None</option>
 					<option value="1">Yes, Minor</option>
 					<option value="2">Yes, Major</option>
@@ -396,7 +396,7 @@
 			<div class="formItem">
 				<label for="defenseFouls">Incurred Defensive Fouls</label>
 				<select name="defenseFouls" id="defenseFouls" required>
-					<option value="">&#8230;</option>
+					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">None</option>
 					<option value="1">Yes, Minor</option>
 					<option value="2">Yes, Major</option>
@@ -405,7 +405,7 @@
 			<div class="formItem">
 				<label for="pushRating">Ability to Push</label>
 				<select name="pushRating" id="pushRating" required>
-					<option value="">&#8230;</option>
+					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">N/A</option>
 					<option value="1">Poorly</option>
 					<option value="2">Well</option>
@@ -418,7 +418,7 @@
 			<div class="formItem">
 				<label for="lockStatus">Field Timeout Position (t=+5s)</label>
 				<select name="lockStatus" id="lockStatus" required onChange="hideClimbPosition">
-					<option value="">&#8230;</option>
+					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">None</option>
 					<option value="1">Parked</option>
 					<option value="2">Attempted Climb</option>
