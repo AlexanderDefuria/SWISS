@@ -91,7 +91,7 @@
 			</div>
 			<div class="formItem">
 				<label for="scouterName">Scouter's Name</label>
-				<input type="text" name="scouterName" id="scouterName" required placeholder="Scouter Name" autocomplete="off">
+				<input type="text" name="scouterName" id="scouterName" value="{{ user.get_username }}" required placeholder="Scouter Name" autocomplete="off">
 			</div>
 			<div class="formItem">
 				<label for="onField">Is Robot Present?</label>
@@ -204,7 +204,7 @@
 						document.getElementById("autoGoalsDiv").style.display="flex";
 						document.getElementById("autoMissedDiv").style.display="flex";
 					} else {
-                         document.getElementById("baseline_false").checked = false;
+                         document.getElementById("baseline_true").checked = true;
 				        document.getElementById("baselineDiv").style.display="none";
 						document.getElementById("autoGoalsDiv").style.display="none";
 						document.getElementById("autoMissedDiv").style.display="none";
