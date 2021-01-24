@@ -132,7 +132,7 @@
 <!--	AUTONOMOUS		-->
 			
 			<h1 id="aAutonomous">AUTONOMOUS</h1>
-			<div class="formItem">
+			<div class="formItem" id="autoRouteDiv">
 				<label for="autoRoute">Autonomous Route</label>
 				<select name="autoRoute" id="autoRoute" required>
 					<option value="" disabled selected hidden>&#8230;</option>
@@ -142,7 +142,7 @@
 				</select>
 			</div>
 			
-			<div class="formItem">
+			<div class="formItem" id="baselineDiv">
 			<!-- Boolean for if a Robot moved from the initiation line -->
 				<label for="baseline">Moved off Initiation Line</label>
 				<div class="radioGroup">
@@ -157,8 +157,8 @@
 				</div>
 			</div>
 			
-			<div class="formItem">
-			<!-- Power Port Goals in Teleoperated  -->
+			<div class="formItem" id="autoGoalsDiv">
+			<!-- Power Port Goals in Autonomous  -->
 				<label for="autoLowGoal">Power Port Goals</label>
 				<div class="ticker">
 					<!-- Lower Port Auto (RECTANGLE) -->
@@ -180,7 +180,7 @@
 					<input type="button" onclick="incrementValue('inner_auto')" value="+">
 				</div>
 			  </div>
-			<div class="formItem">
+			<div class="formItem" id="autoMissedDiv">
 				<label for="missed_balls_auto">Missed Balls (AUTO)</label>
 				<div class="ticker">
 					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'MissedIcon.png' %}" alt="missed">
@@ -189,10 +189,27 @@
 					<input type="button" onclick="incrementValue('missed_balls_auto')" value="+">
 				</div>
 			</div>
-			<div class="formItem">
+			<div class="formItem" id="autoCommentDiv">
 				<label for="autoComment">Auto Route Notes</label>
 				<input type="text" name="autoComment" id="autoComment" placeholder="Auto Notes" autocomplete="off" required>
 			</div>
+            
+            <script>
+                var aR = document.getElementById("autoRoute")
+                
+                if (aR == 0) {
+                document.getElementById("baseline_false").checked=true;
+                document.getElementById("baselineDiv").style.display="none";
+                document.getElementById("autoGoalsDiv").style.display="none";
+                document.getElementById("autoMissedDiv").style.display="none";
+                } else  {
+                document.getElementById("baseline_false").checked=false;
+                document.getElementById("baselineDiv").style.display="flex";
+                document.getElementById("autoGoalsDiv").style.display="flex";
+                document.getElementById("autoMissedDiv").style.display="flex";
+                }
+                
+            </script>
 			
 <!--	OFFENSE		-->
 			
