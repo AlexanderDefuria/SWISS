@@ -611,5 +611,7 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
         response.set_cookie('images', request.POST.get('images', ''))
         response.set_cookie('filters', request.POST.get('filters', ''))
         response.set_cookie('districtTeams', request.POST.get('districtTeams', ''))
+        response.set_cookie('tutorialCompleted', request.POST.get('districtTeams', ''))
+
 
         return response
