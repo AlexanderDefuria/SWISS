@@ -28,15 +28,32 @@
 		</div>
 	</div>
 	<div id="sideNav" class="sidebar">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-		<a href="{% url 'entry:index' %}">Home</a>
-		<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
-		<a href="{% url 'entry:glance_landing' %}">Glance</a>
-		<a href="{% url 'entry:teams' %}">Teams</a>
-		<a href="{% url 'entry:settings' %}">Settings</a>
-		<a href="{% url 'entry:about' %}">About</a>
+		<div>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+			<a href="{% url 'entry:index' %}">Home</a>
+			<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+			<a href="{% url 'entry:glance_landing' %}">Glance</a>
+			<a href="{% url 'entry:teams' %}">Teams</a>
+			<a href="{% url 'entry:match_data' %}">Data</a>
+			<a href="{% url 'entry:visualize' %}">Visualize</a>
+			<a href="{% url 'entry:settings' %}">Settings</a>
+			<a href="{% url 'entry:about' %}">About</a>
+		</div>
+		<div class="greeting">
+			<p id="timeOfDay"></p>
+			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
+		</div>
+		<script>
+			var hour = new Date().getHours();
+			var greeting; 
+			if (hour < 17) {
+				greeting = "Good day,";
+			} else {
+				greeting = "Good evening,";
+			}
+			document.getElementById("timeOfDay").innerHTML = greeting;
+		</script>
 	</div>
-
 	
 	<div class="bodyContainer">
 		<p>This button will download a generated CSV file of all the match and pit scouting data.</p>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>SWISS Match Scouting</title>
+<title>SWISS Match Scouting {{ team.number }}</title>
 <script src="{% static 'entry/jquery.min.js' %}"></script>
 <script src="{% static 'entry/validate.js' %}"></script>
 <script src="{% static 'entry/script.js' %}"></script>
@@ -30,15 +30,32 @@
 		</div>
 	</div>
 	<div id="sideNav" class="sidebar">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-		<a href="{% url 'entry:index' %}">Home</a>
-		<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
-		<a href="{% url 'entry:glance_landing' %}">Glance</a>
-		<a href="{% url 'entry:teams' %}">Teams</a>
-		<a href="{% url 'entry:settings' %}">Settings</a>
-		<a href="{% url 'entry:about' %}">About</a>
+		<div>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+			<a href="{% url 'entry:index' %}">Home</a>
+			<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+			<a href="{% url 'entry:glance_landing' %}">Glance</a>
+			<a href="{% url 'entry:teams' %}">Teams</a>
+			<a href="{% url 'entry:match_data' %}">Data</a>
+			<a href="{% url 'entry:visualize' %}">Visualize</a>
+			<a href="{% url 'entry:settings' %}">Settings</a>
+			<a href="{% url 'entry:about' %}">About</a>
+		</div>
+		<div class="greeting">
+			<p id="timeOfDay"></p>
+			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
+		</div>
+		<script>
+			var hour = new Date().getHours();
+			var greeting; 
+			if (hour < 17) {
+				greeting = "Good day,";
+			} else {
+				greeting = "Good evening,";
+			}
+			document.getElementById("timeOfDay").innerHTML = greeting;
+		</script>
 	</div>
-
 	
 	<div class="bodyContainer" id="bodyContainer">
 		<div class="heroContent" id="heroSpace">
@@ -95,7 +112,7 @@
 					<div style="text-align: center">
 					    <output name="autoStart_number" id="autoStart_number" for="autoStart">14</output>
 					</div>
-					<div>
+					<div style="text-align: center">
     					<img id="autoStart_img" src="{{ MEDIA_URL }}{% static 'InitiationLine.png' %}" alt="Initiation Line">
 					</div>
 					<div>
@@ -462,49 +479,54 @@
 			</div>
 		</form>
 	</div>
+	<div id="snackbar">
+		<p id="snacktext">Default Text</p>
+	</div>
 	</div>
 <datalist id="teams_at_event">
 {% for team in team_list %}	
 	<option value="{{ team.number }}"></option>
 {% endfor %}
 </datalist>
+	
 <script> 
 var modal = document.getElementById("myModal");
 var opn = document.getElementById("onField_false");
 var bad = document.getElementById("onFieldCancel");
-var good = document.getElementById("onFieldConfirm")
+var good = document.getElementById("onFieldConfirm");
+var main = document.getElementById("mainForm");
 
 // When the user clicks on the button, open the modal
 opn.onclick = function() {
-	modal.style.display = "block";
-	document.getElementById("mainForm").style.filter="blur(4px)";
+	modal.style.visibility = "visible";
+	main.style.filter="blur(2px)";
 	window.navigator.vibrate(40);
 }
 
 // When the user clicks on "no", close the modal
 bad.onclick = function() {
-	modal.style.display = "none";
+	modal.style.visibility = "hidden";
 	document.getElementById("onField_false").checked = false;
 	document.getElementById("onField_true").checked = true;
-	document.getElementById("mainForm").style.filter="blur(0)";
+	main.style.filter="blur(0)";
 	window.navigator.vibrate(40);
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
-	modal.style.display = "none";
+	modal.style.visibility = "hidden";
 	document.getElementById("onField_false").checked = false;
 	document.getElementById("onField_true").checked = true;
-	document.getElementById("mainForm").style.filter="blur(0)";
+	main.style.filter="blur(0)";
 	window.navigator.vibrate(40);
   }
 }
 
 good.onclick = function() {
-	modal.style.display = "none";
+	modal.style.visibility = "hidden";
 	window.navigator.vibrate([30,20,30,20,30]);
-	document.getElementById("mainForm").style.filter="blur(0)";
+	main.style.filter="blur(0)";
 	document.getElementById("preloadedBalls").value = "0";
 	document.getElementById("autoRoute").value = "0";
 	document.getElementById("baseline_false").checked = true;

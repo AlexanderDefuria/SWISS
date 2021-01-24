@@ -98,18 +98,25 @@ function updateGraph(...args) {
     formData.append('team_list', teamList);
     formData.append('graphType', "bar")
 
+	var x = document.getElementById("snackbar");
+	var y = document.getElementById("snacktext");
+	
     if (!fieldList.length > 0) {
-        window.alert("No Fields Are Selected!")
+        x.className = "show";
+		y.innerHTML = "No Metrics are Selected!";
+		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
         return
     }
     else if (!teamList.length > 0) {
-        window.alert("No Teams Are Selected!")
+        x.className = "show";
+		y.innerHTML = "No Teams are Selected!";
+		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
         return
     }
     // Below Code is designed to get the type of graph which determines the
     // return data and format in graphing.py def graph() function
     // presently hardcoded as a workaround TODO fix chart type selection
-    //console.log(document.getElementById("visualizationChart").value)
+    // console.log(document.getElementById("visualizationChart").value)
 
     let returnData = {};
 

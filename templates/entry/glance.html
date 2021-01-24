@@ -34,13 +34,31 @@
 		</div>
 	</div>
 	<div id="sideNav" class="sidebar">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-		<a href="{% url 'entry:index' %}">Home</a>
-		<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
-		<a href="{% url 'entry:glance_landing' %}">Glance</a>
-		<a href="{% url 'entry:teams' %}">Teams</a>
-		<a href="{% url 'entry:settings' %}">Settings</a>
-		<a href="{% url 'entry:about' %}">About</a>
+		<div>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+			<a href="{% url 'entry:index' %}">Home</a>
+			<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+			<a href="{% url 'entry:glance_landing' %}">Glance</a>
+			<a href="{% url 'entry:teams' %}">Teams</a>
+			<a href="{% url 'entry:match_data' %}">Data</a>
+			<a href="{% url 'entry:visualize' %}">Visualize</a>
+			<a href="{% url 'entry:settings' %}">Settings</a>
+			<a href="{% url 'entry:about' %}">About</a>
+		</div>
+		<div class="greeting">
+			<p id="timeOfDay"></p>
+			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
+		</div>
+		<script>
+			var hour = new Date().getHours();
+			var greeting; 
+			if (hour < 17) {
+				greeting = "Good day,";
+			} else {
+				greeting = "Good evening,";
+			}
+			document.getElementById("timeOfDay").innerHTML = greeting;
+		</script>
 	</div>
 	
 	<div id="teamDrawer" class="teamDrawer" onClick="closeTeamDrawer()" style="justify-content: center">
@@ -63,7 +81,6 @@
 		</div>
 	</div>
 
-	
 	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'GlanceBackground2000w.png' %})">
 		<div class="heroContent" id="heroSpace">
 			<div class="stickyChip">
@@ -78,15 +95,15 @@
 			</div>
 		</div>
 
-		<div class="infotileContainer" style="justify-content: flex-start">
+		<div class="infotileContainer" style="justify-content: flex-start; flex-grow: 0">
 			<div class="infoBox infoReg" id="teamInfoTile">
 				<div class="infoHeader">
 					<div class="teamnumberPill" style="background-color: {{team.colour}}"><p>{{ team.number }}</p></div>
 					<h1>{{ team.name }}</h1>
 				</div>
 				<div class="infoRow">
-					<div class="infoLColumn"><p>Shooter Style</p></div>
-					<div class="infoRColumn"><p> {% get_info user team 'shooter_style' 'average' 'pits' %}</p></div>
+					<div class="infoLColumn"><p>Shooter</p></div>
+					<div class="infoLColumn"><p> {% get_info user team 'shooter_style' 'average' 'pits' %}</p></div>
 				</div>
 				<!-- !!!THIS WILL BE MOVED TO ITS OWN BOX!!!
 				<div class="infoRow">
@@ -99,16 +116,16 @@
 				</div>
 				-->
 				<div class="infoRow">
-					<div class="infoLColumn"><p>Can Climb</p></div>
-					<div class="infoRColumn"><p>{% get_info user team 'climb_locations' 'possible' 'pits' %}</p></div>
+					<div class="infoLColumn"><p>Climb</p></div>
+					<div class="infoLColumn"><p>{% get_info user team 'climb_locations' 'possible' 'pits' %}</p></div>
 				</div>	
 				<div class="infoRow">
-					<div class="infoLColumn"><p>Control Panel</p></div>
-					<div class="infoRColumn"><p>{% get_info user team 'wheel_manipulator' 'possible' 'pits' %}</p></div>
+					<div class="infoLColumn"><p>Ctrl Pnl</p></div>
+					<div class="infoLColumn"><p>{% get_info user team 'wheel_manipulator' 'possible' 'pits' %}</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Matches Played</p></div>
-					<div class="infoRColumn"><p>{{ team.match_set.count }}</p></div>
+					<div class="infoLColumn"><p>{{ team.match_set.count }}</p></div>
 				</div>
 			</div>
 			<div class="pictureBox" id="pictureBoxTile">
@@ -248,7 +265,7 @@
             <div class="infoBox infoReg" id="onFieldTile">
 				<div class="infoHeader">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'ScheduleIcon.png' %}" alt="Schedule Icon">
-					<h1>Match Appearance</h1>
+					<h1>Appearance Info</h1>
 				</div>
                 {% get_info user team 'on_field' 'total' 'match' as MATCHES %}
 				<div class="infoRow">
@@ -262,24 +279,32 @@
 				<div class="infoRow" id="onFieldBG">
 					<div class="infoLColumn"><p>Percent On Field</p></div>
 					<div class="infoLColumn"><p id="onFieldValue">{% widthratio MATCHES team.match_set.count 100 %}</p></div>
-				</div>
+				</div>		
 				<script>
 					var f = document.getElementById("onFieldValue").innerHTML;
 					var o = document.getElementById("offenseFoulValue").innerHTML;
 					var d = document.getElementById("defenseFoulValue").innerHTML;
 					var h = document.getElementById("humanFoulValue").innerHTML;
 					
-					if (f < 90) {
-						document.getElementById("onFieldBG").style.backgroundColor = "#D7AE22";
+					if (f < 100) {
+						document.getElementById("onFieldBG").style.backgroundColor = "#590909";
+					} else if (f < 90) {
+						document.getElementById("onFieldBG").style.backgroundColor = "#B4150B";
+					} else { (f < 85)
+						document.getElementById("onFieldBG").style.backgroundColor = "#7a0d0d";
 					}
 
-					if (o > 75) {
+					if (o > 100) { 
+						document.getElementById("offFoulBG").style.backgroundColor = "#590909"
+					} else if (o > 75) {
 						document.getElementById("offFoulBG").style.backgroundColor = "#B4150B";
 					} else if (o > 25) {
 						document.getElementById("offFoulBG").style.backgroundColor = "#D7AE22";
 					}
 
-					if (d > 75) {
+					if (d > 100) {
+						document.getElementById("defFoulBG").style.backgroundColor = "#590909"
+					} else if (d > 75) {
 						document.getElementById("defFoulBG").style.backgroundColor = "#B4150B";
 					} else if (d > 25) {
 						document.getElementById("defFoulBG").style.backgroundColor = "#D7AE22";
@@ -290,8 +315,29 @@
 					} else if (h > 0) {
 						document.getElementById("humFoulBG").style.backgroundColor = "#D7AE22";
 					}
-
 				</script>
+			</div>
+		<!--
+			<div class="infoBox infoReg">
+			</div>
+		-->
+			<div class="infoBox infoReg" id="ScoutNowTile" style="flex-grow: 0; height: auto">
+<!-- This <a> tag is intended to redirect the user to the MatchScout or PitScout Page of the currently displayed team. 
+     The url used to redirect is the landing page with the team id concatenated as a new part of the url to select the
+     current team. Do not use 'entry:xyz_scout' as it requires a slug built in instead of concatenated. - Alex
+ -->
+				<a href="{% url 'entry:match_scout_landing' %}{{ team.id }}">
+					<div class="infoLink">
+						<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'ScoutIcon.png' %}" alt="Scout Icon">
+						<h1 style="color: #ffffff">Match Scout</h1>
+					</div>
+				</a>
+				<a href="{% url 'entry:pit_scout_landing' %}{{ team.id }}">
+					<div class="infoLink">
+						<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'PitScoutIcon.png' %}" alt="Pit Icon">
+						<h1 style="color: #ffffff">Pit Scout</h1>
+					</div>
+				</a>
 			</div>
 		</div>
 	</div>

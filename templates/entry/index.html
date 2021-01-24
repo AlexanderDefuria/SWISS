@@ -35,25 +35,28 @@
 			<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
 			<a href="{% url 'entry:glance_landing' %}">Glance</a>
 			<a href="{% url 'entry:teams' %}">Teams</a>
+			<a href="{% url 'entry:match_data' %}">Data</a>
+			<a href="{% url 'entry:visualize' %}">Visualize</a>
 			<a href="{% url 'entry:settings' %}">Settings</a>
 			<a href="{% url 'entry:about' %}">About</a>
 		</div>
 		<div class="greeting">
 			<p id="timeOfDay"></p>
+			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
 		</div>
 		<script>
 			var hour = new Date().getHours();
 			var greeting; 
 			if (hour < 17) {
-				greeting = "Good day, {{ user.get_username }}!";
+				greeting = "Good day,";
 			} else {
-				greeting = "Good evening, {{ user.get_username }}!";
+				greeting = "Good evening,";
 			}
 			document.getElementById("timeOfDay").innerHTML = greeting;
 		</script>
 	</div>
 	
-	<div class="bodyContainer" id="bodyContainer">
+	<div class="bodyContainer">
 		<div class="tileContainer">
 			<a href="{% url 'entry:match_scout_landing' %}" id="tileMatch">
 				<div class="bigBox">
@@ -66,7 +69,7 @@
 				</div>
 			</a>	
 			<a href="{% url 'entry:glance_landing' %}" id="tileGlance">
-				<div class="wideBox CeltXColor" id="tileglanceBackground" style="background-image: url({{ MEDIA_URL }}{% static 'GlanceBackground2000w.png' %})">
+				<div class="wideBox CeltXColor" id="tileBackground" style="background-image: url({{ MEDIA_URL }}{% static 'GlanceBackground2000w.png' %})">
 					<img src="{{ MEDIA_URL }}{% static 'StrategyIcon.png' %}" alt="Strategy icon">
 				</div>
 			</a>
@@ -97,9 +100,9 @@
 					<img src="{{ MEDIA_URL }}{% static 'DownloadIcon.png' %}" alt="Download Icon">
 				</div>
 			</a>
-			<div class="specialBox" id="tileEvent">
-				<p>Current Event Is:</p>
-				<h2>{% get_current_event %}</h2>
+			<div class="specialBox" id="tileEvent" style="flex-direction: column">
+				<p class="specialBoxHeader">Current Event Is:</p>
+				<h3 style="margin: 0">{% get_current_event %}</h3>
 			</div>
 			<a href="{% url 'entry:upload' %}" id="tileUpload">
 				<div class="smallBox">
@@ -124,18 +127,13 @@
 				</div>
 			</a>
             <div class="specialBox" id="tileActive">
-				<p>Current Active Users:</p>
-				<h1>{% get_all_logged_in_users %}</h1>
+				<p class="specialBoxHeader">Active Users:</p>
+				<h2 style="margin: 0">{% get_all_logged_in_users %}</h2>
 			</div>
-			<button class="add-button">Add to home screen!</button>
-			<style>
-				.add-button {
-					position: absolute;
-					bottom: 1px;
-					left: 1px;
-				}
-			</style>
 		</div>
+	<div id="snackbar">
+		<p id="snacktext">Default Text</p>
+	</div>
 	</div>
 
 </body>

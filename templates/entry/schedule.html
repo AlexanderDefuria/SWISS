@@ -28,15 +28,33 @@
 		</div>
 	</div>
 	<div id="sideNav" class="sidebar">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-		<a href="{% url 'entry:index' %}">Home</a>
-		<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
-		<a href="{% url 'entry:glance_landing' %}">Glance</a>
-		<a href="{% url 'entry:teams' %}">Teams</a>
-		<a href="{% url 'entry:settings' %}">Settings</a>
-		<a href="{% url 'entry:about' %}">About</a>
+		<div>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+			<a href="{% url 'entry:index' %}">Home</a>
+			<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+			<a href="{% url 'entry:glance_landing' %}">Glance</a>
+			<a href="{% url 'entry:teams' %}">Teams</a>
+			<a href="{% url 'entry:match_data' %}">Data</a>
+			<a href="{% url 'entry:visualize' %}">Visualize</a>
+			<a href="{% url 'entry:settings' %}">Settings</a>
+			<a href="{% url 'entry:about' %}">About</a>
+		</div>
+		<div class="greeting">
+			<p id="timeOfDay"></p>
+			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
+		</div>
+		<script>
+			var hour = new Date().getHours();
+			var greeting; 
+			if (hour < 17) {
+				greeting = "Good day,";
+			} else {
+				greeting = "Good evening,";
+			}
+			document.getElementById("timeOfDay").innerHTML = greeting;
+		</script>
 	</div>
-
+	
 	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'StatsBackground.png' %})">
 		<div class="heroContent" id="heroSpace" style="padding-bottom: 0">
 		    <h1 style="font-size: 42px; margin: 0;">Schedule View</h1>
@@ -96,20 +114,9 @@
 			<div id="bottomBarContent">
 				<div class="filterBox">
 					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
-					<input class="filterChip" type="text" id="teamNumber" onkeyup="tableFilter('teamNumber')" placeholder="Team Number">
+					<input class="filterChip" type="text" id="" onkeyup="tableFilter('teamNumber')" placeholder="Match Number">
 				</div>
 				<br>
-				<div class="filterBox">
-					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
-					<input class="filterChip" type="text" id="teamName" onkeyup="tableFilter('teamName')" placeholder="Team Name">
-				</div>
-				<br>
-				{% if user.is_staff %}
-				<div class="filterBox" onClick="location.href = '{% url 'entry:admin_redirect' 'pits' %}';" style="cursor: pointer">
-					<img src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" style="height: 50px;" alt="Edit">
-					<h3>Edit Pit Entries</h3>
-				</div>
-				{% endif %}
 			</div>
 			<button class="bottomBarButton" id="bottomBarButton" onclick="expandBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
 		</div>

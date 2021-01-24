@@ -1,0 +1,63 @@
+{% load static %}
+{% load common_tags %}
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SWISS Settings</title>
+<link rel="stylesheet" type="text/css" href="../static/entry/style.css">
+<link rel="stylesheet" type="text/css" href="colorsheet.css">
+<link rel="stylesheet" type="text/css" href="../static/entry/formstyle.css">
+<meta name="theme-color" content="0F4D8D">
+</head>
+
+<body>
+	<div class="topbar">
+		<div class="hamburgerButton" onClick="openNav()">
+			<button class="hamburgerButton" onClick="openNav()">☰</button>
+		</div>
+		<div class="swissLogo" id="swissLogo">
+			<a href="index.html">
+			<img src="img/Swiss Icon@2x.png" alt="SWISS Logo">
+			</a>
+		</div>
+	</div>
+	<div id="sideNav" class="sidebar">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		<a href="index.html">Home</a>
+		<a href="matchlanding.html">Scout</a>
+		<a href="experimental.html">Labs</a>
+		<a href="settings.html">Settings</a>
+		<a href="about.html">About</a>
+	</div>
+	
+	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url("../media/static/settings_background.png")">
+		<div class="heroContent">
+			<p class="pageTitle">Settings</p>
+		</div>
+		
+		<div class="formContainer">
+			<h2>SWISS Teams</h2>
+			<div class="formItem">
+				<p>This is a setting</p>
+			</div>
+		</div>
+		
+		
+	</div>
+<script>
+	function openNav() {
+		document.getElementById("sideNav").style.width="250px";
+		document.getElementById("bodyContainer").style.marginLeft="275px";
+		document.getElementById("swissLogo").style.marginLeft="215px";
+	}
+
+	function closeNav() {
+	  document.getElementById("sideNav").style.width = "0";
+	  document.getElementById("bodyContainer").style.marginLeft= "25px";
+	  document.getElementById("swissLogo").style.marginLeft= "0";
+	}
+</script>
+</body>
+</html>

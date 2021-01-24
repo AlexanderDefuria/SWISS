@@ -14,7 +14,7 @@ This SHOULD also apply to any viewports less than this. If this breaks on mobile
 #tileVisualize 	{order: 6}
 #tileSchedule   {order: 7}
 #tileDownload 	{order: 8}
-#tileEvent 		{order: 9}
+#tileEvent 		{order: 9; max-width: 255px;}
 #tileUpload 	{order: 10}
 #tileAdmin 		{order: 11}
 #tileSettings 	{order: 12}
@@ -29,8 +29,8 @@ This SHOULD also apply to any viewports less than this. If this breaks on mobile
 	.tileContainer #tileVisualize 	{order: 6}
 	.tileContainer #tlleSchedule 	{order: 7}
 	.tileContainer #tileDownload 	{order: 8}
-	.tileContainer #tileEvent 		{order: 9; min-width: 255px; max-width: 565px;}
-	.tileContainer #tileActive 		{order: 10; min-width: 255px; max-width: 565px;}
+	.tileContainer #tileEvent 		{order: 9}
+	.tileContainer #tileActive 		{order: 10; min-width: 100px; max-width: 565px;}
 	.tileContainer #tileUpload 		{order: 11}
 	.tileContainer #tileAdmin 		{order: 12}
 	.tileContainer #tileSettings 	{order: 13}
@@ -43,12 +43,12 @@ This SHOULD also apply to any viewports less than this. If this breaks on mobile
 	.tileContainer #tileData 		{order: 6}
 	.tileContainer #tileVisualize 	{order: 5}
 	.tileContainer #tileDownload 	{order: 7}
-	.tileContainer #tileEvent 		{order: 8; min-width: 255px; max-width: 565px;}
+	.tileContainer #tileEvent 		{order: 8;}
 	.tileContainer #tileUpload 		{order: 10}
 	.tileContainer #tileAdmin 		{order: 11}
 	.tileContainer #tileSettings 	{order: 12}
 	.tileContainer #tileLogout 		{order: 13}
-	.tileContainer #tileActive 		{order: 9; min-width: 255px; max-width: 565px;}
+	.tileContainer #tileActive 		{order: 9; min-width: 100px; max-width: 565px;}
 } @media screen and (max-width: 1280px) {
 	.tileContainer #tileMatch 		{order: 1}
 	.tileContainer #tilePit 		{order: 3}
@@ -57,7 +57,7 @@ This SHOULD also apply to any viewports less than this. If this breaks on mobile
 	.tileContainer #tileData 		{order: 6}
 	.tileContainer #tileVisualize 	{order: 5}
 	.tileContainer #tileDownload 	{order: 7}
-	.tileContainer #tileEvent 		{order: 8; max-width: 255px;}
+	.tileContainer #tileEvent 		{order: 8}
 	.tileContainer #tileActive 		{order: 9; max-width: 255px;}
 	.tileContainer #tileUpload 		{order: 10}
 	.tileContainer #tileAdmin 		{order: 11}
@@ -83,7 +83,7 @@ This SHOULD also apply to any viewports less than this. If this breaks on mobile
 	#tileData 		{order: 6}
 	#tileVisualize 	{order: 5}
 	#tileDownload 	{order: 7}
-	#tileEvent 		{order: 8; max-width: 255px;}
+	#tileEvent 		{order: 8}
 	#tileUpload 	{order: 10}
 	#tileAdmin 		{order: 11}
 	#tileSettings 	{order: 12}
@@ -97,7 +97,7 @@ This SHOULD also apply to any viewports less than this. If this breaks on mobile
 	#tileData 		{order: 6}
 	#tileVisualize 	{order: 5}
 	#tileDownload 	{order: 7}
-	#tileEvent 		{order: 8; max-width: 255px;}
+	#tileEvent 		{order: 8}
 	#tileUpload 	{order: 10}
 	#tileAdmin 		{order: 11}
 	#tileSettings 	{order: 12}
@@ -161,29 +161,29 @@ ul {
 	background-position: center -15vh;
 	background-clip: padding-box;
 }
-/* The Modal (background) */
+
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 10; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: scroll; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+	visibility: hidden; 
+	position: fixed; 
+	overflow: hidden;
+	z-index: 10;
+	left: 0;
+	top: 0;
+	width: 100%; 
+	height: 100%; 
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
 }
-/* Modal Content/Box */
+
 .modal-content {
 	background-color: #333333;
-	margin: 15% auto; /* 15% from the top and centered */
+	margin: 15% auto;
 	padding: 20px;
 	border-bottom: 2px solid #0F4D8D;
 	box-shadow: 2px 5px 25px 2px #111111;
-	width: 30%; /* Could be more or less, depending on screen size */
+	width: 30%; 
 }
-/* buttons found on Modals */
+
 .modalButton {
 	cursor: pointer;
 	background-color: #444444;
@@ -200,7 +200,47 @@ ul {
 	background-color: #555555;
 }
 
-#tileglanceBackground {
+
+
+#snackbar {
+	visibility: hidden;
+	min-width: 250px;
+	background-color: #303030;
+	text-align: center;
+	border-bottom: 2px solid #0F4D8D;
+	box-shadow: 2px 5px 5px 2px #222222;
+	padding: 10px;
+	position: fixed;
+	z-index: 1;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 30px;
+}
+#snackbar.show {
+	visibility: visible;
+	/* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+	However, delay the fade out process for 2.5 seconds */
+	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+	animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+	from {bottom: 0; opacity: 0;}
+	to {bottom: 30px; opacity: 1;}
+}
+@keyframes fadein {
+	from {bottom: 0; opacity: 0;}
+	to {bottom: 30px; opacity: 1;}
+}
+@-webkit-keyframes fadeout {
+	from {bottom: 30px; opacity: 1;}
+	to {bottom: 0; opacity: 0;}
+}
+@keyframes fadeout {
+	from {bottom: 30px; opacity: 1;}
+	to {bottom: 0; opacity: 0;}
+}
+#tileBackground {
 	/*background-image: url("img/Glance Background - 2000w.png");*/
 	background-size: 45%;
 	background-position: center;
@@ -243,7 +283,7 @@ ul {
 	transition: margin-left .5s;
 }
 #bodyContainer{
-	transition: margin-left .5s;
+	transition: margin-left .5s, filter 1s;
 }
 .bigBox {
 	height: 100px;
@@ -328,6 +368,9 @@ ul {
 	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
+.infoBox h1, p {
+	margin: 10px;
+}
 .vizBox {
 	display: inline-block;
 	min-height: 280px;
@@ -340,14 +383,21 @@ ul {
 .vizBox:hover {
 	box-shadow: 2px 5px 25px 2px #232323;
 }
-.infoBox .vizBox h1, p { 
-	margin: 10px; 
-}
 .infoHeader { 
 	display: flex; 
 	align-items: center; 
 	height: auto; 
 	border-bottom: 2px solid white 
+}
+.infoLink { 
+	display: flex; 
+	align-items: center; 
+	height: auto; 
+	border-bottom: 2px solid white;
+	transition: all .2s ease-in-out;
+}
+.infoLink:hover { 
+	background-color: #09315A;
 }
 .infoRow {
 	display: flex;
@@ -372,7 +422,7 @@ ul {
 .infoIcon { 
 	height: 7vh; 
 	padding: 10px; }
-.loginBox{
+.loginBox {
 	width:auto;
 }
 .loginBox:hover {
@@ -397,14 +447,12 @@ ul {
 	color: white;
 	margin: 0;
 }
-
 .loginButton {
 	padding: 20px;
 }
 .loginButton:hover {
 	box-shadow: 2px 5px 25px 2px #232323;
 }
-
 .wideBox {
 	display: flex;
 	padding: 100px;
@@ -433,9 +481,11 @@ ul {
 }
 .specialBox {
 	display: flex;
-	align-items: center;
+	flex-direction: column;
+	align-items: left;
 	padding: 22.5px;
 	height: 100px;
+	max-width: 255px;
 	margin: 0px 0px 10px 10px;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
@@ -443,6 +493,9 @@ ul {
 .specialBox:hover {
 	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
+}
+.specialBoxHeader {
+	margin: 10px 0px 16px 0px;
 }
 .homeText {
 	color: white;
@@ -469,7 +522,6 @@ ul {
 .teamChip {
 	margin: 0px 0px 10px 10px;
 	padding: 20px;
-	height: Auto;
 	width: 260px;
 	background-color: #262626;
 	display: flex;
@@ -479,6 +531,22 @@ ul {
 	transition: all .2s ease-in-out;
 }
 .teamChip:hover {
+	transform: scale(1.1); 
+	box-shadow: 2px 5px 25px 2px #232323;
+}
+.teamChipNoPic {
+	margin: 0px 0px 10px 10px;
+	padding: 20px;
+	height: auto;
+	width: 260px;
+	background-color: #262626;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	transition: all .2s ease-in-out;
+}
+.teamChipNoPic:hover {
 	transform: scale(1.1); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
@@ -512,6 +580,7 @@ ul {
 }
 .pillSelect {
 	max-width: 50%;
+	margin: auto;
 }
 .teamnumberPill {
 	text-align: center;
@@ -547,7 +616,7 @@ ul {
 }
 .tableContainer {
 	background-color: #333333;
-	height: 72.5vh;
+	height: 69vh;
 	width: 100%;
 	overflow: scroll;
 }
@@ -626,7 +695,6 @@ th {
 		width: inherit;
 		height: 100%;
 		margin: unset;
-
 	}
 	#loginContainer {
 		width: 100%;
@@ -737,7 +805,7 @@ th {
 }
 .sidebar p {
 	margin: 0;
-	padding: 8px;
+	padding: 4px 8px 4px 32px;
 	text-decoration: none;
 	font-size: 18px;
 	color: #818181;
@@ -786,7 +854,8 @@ th {
 	z-index: 5;
 	top: 0;
 	left: 0;
-	background-color: #111;
+	background-color: #111; /* Fallback */
+	background-color: rgba(0,0,0,0.9); /* Transparent */
 	overflow-y: hidden;
 	overflow-x: hidden;
 	transition: 0.5s;
@@ -826,20 +895,18 @@ th {
 }
 
 
-
+.graphOption {
+	padding: 10px;
+}
 .graphOption button {
 	background-color: #1C984F;
-	background-clip: padding-box;
 	padding: 10px;
-	border-style: solid;
-	border-width: 10px;
-	border-color: transparent;
+	border: none;
 }
 .graphOption button:hover {
-	transform: scale(1.025);
+	background-color: #60E1A7;
 	box-shadow: 2px 5px 25px 2px #232323;
-	border: none;
-	transition: 0.2s;
+	transition: all 0.2s ease-in-out;
 }
 .filterBox {
 	visibility: inherit;
@@ -879,7 +946,7 @@ th {
 	left: 0;
 	background-color: #0F4D8D;
 	width: 100%;
-	transition: 0.5s;
+	transition: all 0.5s ease-in-out;
 }
 .bottomBarButton {
 	background-color: transparent;
@@ -893,7 +960,7 @@ th {
 	bottom: 0;
 	border: none;
 	cursor: pointer;
-	transition: 0.5s;
+	transition: all 0.5s ease-in-out;
 }
 .bottomBarButton:hover {
 	background-color: RGBA(0,0,0,0.25)

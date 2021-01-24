@@ -3,7 +3,10 @@ function validate(formName, ajax=true) {
     let element;
     let elements = document.forms[formName].getElementsByTagName("input");
     let ignored = ["button", "hidden", "submit", "checkbox"]
+	var x = document.getElementById("snackbar");
+	var y = document.getElementById("snacktext");
 
+	
     // Go over each input and add them to a list to be verified by server
     for (element in elements)
         if (elements.hasOwnProperty(element)) {
@@ -47,16 +50,16 @@ function validate(formName, ajax=true) {
                             console.log(parent)
                         }
 
-
-		                parent.style.backgroundColor = 'lightcoral';
-		                window.alert("There is an issue with the data given for " + dataKey)
+		                parent.style.backgroundColor = '#FF3333';
+						x.className = "show";
+						y.innerHTML = "There is a problem with " + dataKey + "!";
+						setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                     }
             }
 
         },
         failure: function () {
             console.log("Failed");
-
         },
     });
 
