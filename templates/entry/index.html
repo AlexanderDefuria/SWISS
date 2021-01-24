@@ -58,44 +58,44 @@
 	
 	<div class="bodyContainer">
 		<div class="tileContainer">
-			<a href="{% url 'entry:match_scout_landing' %}" id="tileMatch">
+			<a href="{% url 'entry:match_scout_landing' %}" id="tileMatch" title="Match Scouting">
 				<div class="bigBox">
 					<img src="{{ MEDIA_URL }}{% static 'ScoutIcon.png' %}" alt="scout icon">
 				</div>
 			</a>
-			<a href="{% url 'entry:pit_scout_landing' %}" id="tilePit">
+			<a href="{% url 'entry:pit_scout_landing' %}" id="tilePit" title="Pit Scouting">
 				<div class="bigBox">
 					<img src="{{ MEDIA_URL }}{% static 'PitScoutIcon.png' %}" alt="scout icon">
 				</div>
 			</a>	
-			<a href="{% url 'entry:glance_landing' %}" id="tileGlance">
+			<a href="{% url 'entry:glance_landing' %}" id="tileGlance" title="Glance View">
 				<div class="wideBox CeltXColor" id="tileBackground" style="background-image: url({{ MEDIA_URL }}{% static 'GlanceBackground2000w.png' %})">
 					<img src="{{ MEDIA_URL }}{% static 'StrategyIcon.png' %}" alt="Strategy icon">
 				</div>
 			</a>
-			<a href="{% url 'entry:teams' %}" id="tileTeams">
+			<a href="{% url 'entry:teams' %}" id="tileTeams" title="Team Lookup">
 				<div class="wideBox OttawaTrashColor">
 					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" alt="Search Icon">
 					<p class="homeText">Teams</p>
 				</div>
 			</a>
-			<a href="{% url 'entry:match_data' %}" id="tileData">
+			<a href="{% url 'entry:match_data' %}" id="tileData" title="Data View">
 				<div class="bigBox">
 					<img src="{{ MEDIA_URL }}{% static 'DataIcon.png' %}" alt="Data Icon">
 				</div>
 			</a>
-			<a href="{% url 'entry:visualize' %}" id="tileVisualize">
+			<a href="{% url 'entry:visualize' %}" id="tileVisualize" title="Visualization">
 				<div class="wideBox SimboticsColor">
 					<img src="{{ MEDIA_URL }}{% static 'StatsIcon.png' %}" alt="Visualize Icon">
 					<p class="homeText">Visualize</p>
 				</div>
 			</a>
-			<a href="{% url 'entry:schedule' %}" id="tileSchedule">
+			<a href="{% url 'entry:schedule' %}" id="tileSchedule" title="Schedule View">
 				<div class="smallBox">
 					<img src="{{ MEDIA_URL }}{% static 'ScheduleIcon.png' %}" alt="Schedule Icon">
 				</div>
 			</a>
-			<a href="{% url 'entry:download' %}" id="tileDownload">
+			<a href="{% url 'entry:download' %}" id="tileDownload" title="Download CSV">
 				<div class="smallBox" style="background-color: #AAA300">
 					<img src="{{ MEDIA_URL }}{% static 'DownloadIcon.png' %}" alt="Download Icon">
 				</div>
@@ -104,29 +104,29 @@
 				<p class="specialBoxHeader">Current Event Is:</p>
 				<h3 style="margin: 0">{% get_current_event %}</h3>
 			</div>
-			<a href="{% url 'entry:upload' %}" id="tileUpload">
+			<a href="{% url 'entry:upload' %}" id="tileUpload" title="Upload an Image">
 				<div class="smallBox">
 					<img src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
 				</div>
 			</a>
             {% if user.is_staff %}
-                <a href="{% url 'entry:admin_redirect' %}" id="tileSettings">
+                <a href="{% url 'entry:admin_redirect' %}" id="tileAdmin" title="Administration Panel">
 				    <div class="smallBox">
-				    	<img src="{{ MEDIA_URL }}{% static 'AdminIcon.png' %}" alt="Settings Icon">
+				    	<img src="{{ MEDIA_URL }}{% static 'AdminIcon.png' %}" alt="Admin Icon">
 				    </div>
 			    </a>
             {% endif %}
-            <a href="{% url 'entry:settings' %}" id="tileAdmin">
+            <a href="{% url 'entry:settings' %}" id="tileSettings" title="Settings">
                 <div class="smallBox">
-                    <img src="{{ MEDIA_URL }}{% static 'SettingsIcon.png' %}" alt="Admin Icon">
+                    <img src="{{ MEDIA_URL }}{% static 'SettingsIcon.png' %}" alt="Settings Icon">
                 </div>
             </a>
-            <a href="https://www.thebluealliance.com/" id="tileTBA" target="_blank">
+            <a href="https://www.thebluealliance.com/" id="tileTBA" target="_blank" title="Go to The Blue Alliance">
                 <div class="smallBox">
                     <img src="{{ MEDIA_URL }}{% static 'TheBlueAlliance.png' %}" alt="TBA Icon">
                 </div>
             </a>
-			<a href="{% url 'entry:logout' %}" id="tileLogout">
+			<a href="{% url 'entry:logout' %}" id="tileLogout" title="Log Out">
 				<div class="smallBox">
 					<img src="{{ MEDIA_URL }}{% static 'log_out_icon.png' %}" alt="Logout Icon">
 				</div>
