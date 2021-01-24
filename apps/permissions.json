@@ -1,0 +1,56 @@
+{
+  "matchscout": {
+    "minimum": "G problem happy to S"
+  },
+  "pitscout": {
+    "minimum": "PS"
+  },
+  "glance": {
+    "minimum": "OV"
+  },
+  "visual": {
+    "minimum": "OV"
+  },
+  "download": {
+    "minimum": "GS"
+  },
+  "upload": {
+    "minimum": "GS"
+  },
+  "teams": {
+    "minimum": "OV"
+  },
+  "stats": {
+    "minimum": "OV"
+  },
+  "matchdata": {
+    "minimum": "OV"
+  },
+  "pitdata": {
+    "minimum": "OV"
+  },
+  "schedule": {
+    "minimum": "OV"
+  },
+  "experimental": {
+    "minimum": "LS"
+  },
+  "about": {
+    "minimum": "OV"
+  },
+  "settings": {
+    "minimum": "OV"
+  },
+  "logout": {
+    "minimum": "NA"
+  },
+  "login": {
+    "minimum": "NA"
+  },
+  "admin_redirect": {
+    "minimum": "DT"
+  },
+  "index": {
+    "minimum": "OV"
+  }
+}

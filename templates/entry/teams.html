@@ -28,18 +28,36 @@
 		</div>
 	</div>
 	<div id="sideNav" class="sidebar">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-		<a href="{% url 'entry:index' %}">Home</a>
-		<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
-		<a href="{% url 'entry:glance_landing' %}">Glance</a>
-		<a href="{% url 'entry:teams' %}">Teams</a>
-		<a href="{% url 'entry:settings' %}">Settings</a>
-		<a href="{% url 'entry:about' %}">About</a>
+		<div>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+			<a href="{% url 'entry:index' %}">Home</a>
+			<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+			<a href="{% url 'entry:glance_landing' %}">Glance</a>
+			<a href="{% url 'entry:teams' %}">Teams</a>
+			<a href="{% url 'entry:match_data' %}">Data</a>
+			<a href="{% url 'entry:visualize' %}">Visualize</a>
+			<a href="{% url 'entry:settings' %}">Settings</a>
+			<a href="{% url 'entry:about' %}">About</a>
+		</div>
+		<div class="greeting">
+			<p id="timeOfDay"></p>
+			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
+		</div>
+		<script>
+			var hour = new Date().getHours();
+			var greeting; 
+			if (hour < 17) {
+				greeting = "Good day,";
+			} else {
+				greeting = "Good evening,";
+			}
+			document.getElementById("timeOfDay").innerHTML = greeting;
+		</script>
 	</div>
-
+	
 	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'TeamsBackground.png' %})">
 		<div class="heroContent">
-			<p class="homeText">Teams</p>
+			<p class="pageTitle">Teams</p>
 		</div>
 
         <figure class="tileContainer teamTileContaienr">
@@ -56,12 +74,12 @@
                     {% get_cookie request 'images' as images %}
                     {% if 'False' != images %}
                         <div class="teamChip" style="overflow: hidden;">
-                            <img class="robotPhoto" src="{{ MEDIA_URL }}{{ team.first_image }}" alt="robot photo">
+                            <img class="robotPhoto" src="{{ MEDIA_URL }}{{ team.first_image }}" loading="lazy" height="260px" alt="robot photo">
                             <div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
                             <div class="teamnamePill"><p>{{ team.name }}</p></div>
                         </div>
                     {% else %}
-                        <div class="teamChip" style="height: auto">
+                        <div class="teamChipNoPic" style="height: auto">
                             <div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
                             <div class="teamnamePill"><p>{{ team.name }}</p></div>
                         </div>
@@ -94,14 +112,13 @@
 					<input class="filterChip" type="text" id="teamName" onkeyup="teamFilter('teamName')" placeholder="Filter Team Name">
 				</div>
 				{% if user.is_staff %}
-				<div class="filterBox" onClick="location.href = 'https://redstudiosmedia.ca/admin/entry/team/';" style="cursor: pointer">
+				<div class="filterBox" onClick="location.href ='{% url 'entry:admin_redirect' 'team' %}';" style="cursor: pointer">
 					<img src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" style="height: 50px;" alt="Edit">
 					<h3>Edit Teams</h3>
 				</div>
 				{% endif %}
 			</div>
-			<button class="bottomBarButton" id="expandBottomBar" onclick="expandBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
-			<button class="bottomBarButton" id="collapseBottomBar" onclick="collapseBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
+			<button class="bottomBarButton" id="bottomBarButton" onclick="expandBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
 		</div>
         {% endif %}
 	</div>

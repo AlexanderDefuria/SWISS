@@ -1,5 +1,4 @@
 requests==2.22.0
 djangoajax==3.2
 Django==2.2.13
-django_ajax==0.3.0
 Pillow==7.1.2
