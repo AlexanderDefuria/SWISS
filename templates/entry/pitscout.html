@@ -248,7 +248,7 @@
 		</div>
 		<div class="formItem">
 			<label for="scouterName">Scouter's Name</label>
-			<input type="text" name="scouterName" id="scouterName" placeholder="Scouter Name" required>
+			<input type="text" name="scouterName" id="scouterName" placeholder="Scouter Name" value="{{ user.get_username }}" required>
 		</div>
 		<br>
 		<div class="formItem" id="submit" onclick="validate('mainForm')">
