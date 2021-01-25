@@ -475,6 +475,7 @@ ul {
 }
 .loginButton:hover {
 	box-shadow: 2px 5px 25px 2px #232323;
+    background-color: #0B3866;
 }
 .wideBox {
 	display: flex;
