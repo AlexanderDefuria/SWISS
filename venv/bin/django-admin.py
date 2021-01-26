@@ -1,4 +1,4 @@
-#!/home/alexander/Desktop/FRC-Scouting/venv/bin/python
+#!/root/FRC-Scouting/venv/bin/python
 from django.core import management
 
 if __name__ == "__main__":
