@@ -7,7 +7,7 @@ const constCharts = {
                 inverted: true,
             },
             title: {
-                text: 'Fruit Consumption'
+                text: 'Match Data'
             },
             plotOptions: {
                 series: {
