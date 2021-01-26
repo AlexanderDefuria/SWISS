@@ -7,7 +7,7 @@ const constCharts = {
                 inverted: true,
             },
             title: {
-                text: 'Fruit Consumption'
+                text: 'Match Data'
             },
             plotOptions: {
                 series: {
@@ -15,19 +15,19 @@ const constCharts = {
                 }
             },
             xAxis: {
-                categories: ['Apples', 'Bananas', 'Oranges']
+                categories: ['Team 4343', 'Team 914']
             },
             yAxis: {
                 title: {
-                    text: 'Fruit eaten'
+                    text: 'Balls Scored'
                 }
             },
             series: [{
-                name: 'Jane',
-                data: [1, 0, 4]
+                name: 'Match 1',
+                data: [3, 4]
             }, {
-                name: 'John',
-                data: [5, 7, 3]
+                name: 'Match 2',
+                data: [5, 7]
             }]
         },
 
