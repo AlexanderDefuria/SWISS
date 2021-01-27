@@ -128,9 +128,13 @@
 					<div class="infoLColumn"><p>{{ team.match_set.count }}</p></div>
 				</div>
 			</div>
+            {% get_cookie request 'images' as images %}
+            {% if 'False' != images %}
 			<div class="pictureBox" id="pictureBoxTile">
 					<img src="{{ MEDIA_URL }}{{ team.first_image }}" alt="robot photo">
-			</div>			
+			</div>
+            {% elseif %}
+            {% endif %}
 			<div class="graphBoxWide" id="totalGraphTile">
 				<div id="avg_balls" style="height: 300px; width:auto">
 				<p></p>
