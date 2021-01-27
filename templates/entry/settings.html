@@ -63,11 +63,25 @@
 			<p class="pageTitle">Settings</p>
 		</div>
 		<form class="formContainer" method="post" name="mainForm" id="mainForm" method="POST">
+            <h1>User</h1>
             {% csrf_token %}
 			<div class="formItem">
                 <label>{{ user.get_username }}</label>
                 <div class="positionIndicator">
                     {% get_user_role request %}
+                </div>
+            </div>
+            <div class="formItem">
+                <label for="tutorialCompleted">Completed Tutorial (django Cookie)</label>
+                <div class="radioGroup">
+                    <label>
+                        <input type="radio" id="tutorialCompleted_true" name="tutorialCompleted" value="True">
+                        <span>Y</span>
+                    </label>
+                    <label>
+                        <input type="radio" id="tutorialCompleted_false" name="tutorialCompleted" value="False">
+                        <span>Y</span>
+                    </label>
                 </div>
             </div>
 			<h1>Teams</h1>
@@ -135,7 +149,7 @@
                 </a>
             </div>
             <div class="formItem">
-                <label>Tutorials</label>
+                <label>Tutorials (Old! - localStorage)</label>
                 <div>
                     <input type="button" value="On" onClick="tutorialOn()" style="width: auto">
                     <input type="button" value="Off" onClick="tutorialOff()" style="width: auto">
