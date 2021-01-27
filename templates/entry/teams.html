@@ -55,43 +55,12 @@
 			document.getElementById("timeOfDay").innerHTML = greeting;
 		</script>
 	</div>
-	{% get_cookie request 'filters' as filters %}
-	{% if 'False' != filters %}
-	<div class="bottomBar" id="bottomBar">
-		<div id="bottomBarContent">
-			<div class="filterBox">
-				<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
-				<input class="filterChip" type="text" id="teamNumber" onkeyup="teamFilter('teamNumber')"
-					placeholder="Team Number">
-			</div>
-			<br>
-			<div class="filterBox">
-				<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
-				<input class="filterChip" type="text" id="teamName" onkeyup="teamFilter('teamName')"
-					placeholder="Team Name">
-			</div>
-			{% if user.is_staff %}
-			<div class="filterBox" onClick="location.href ='{% url 'entry:admin_redirect' 'team' %}';"
-				style="cursor: pointer">
-				<img src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" style="height: 50px;" alt="Edit">
-				<h3>Edit Teams</h3>
-			</div>
-			{% endif %}
-		</div>
-		<button class="bottomBarButton" id="bottomBarButton" onclick="expandBottomBar()"
-			style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
-	</div>
-	{% endif %}
 	<div class="bodyContainer bodyBackground" id="bodyContainer"
 		style="background-image: url({{ MEDIA_URL }}{% static 'TeamsBackground.png' %})">
 		<div class="heroContent">
 			<p class="pageTitle">Teams</p>
 		</div>
 
-<<<<<<< HEAD
-		<figure class="tileContainer teamTileContaienr">
-			{% get_cookie request 'districtTeams' as districtTeams %}
-=======
         <figure class="tileContainer teamTileContaienr">
             {% get_cookie request 'districtTeams' as districtTeams %}
 
@@ -132,7 +101,6 @@
             {% endif %}
         </figure>
         <br>
->>>>>>> ecb692b65f7396117c8faceba3e55f4105f4383b
 
 			{% if districtTeams == 'True' %}
 			{% get_all_teams as teamList %}
@@ -181,6 +149,30 @@
 			</a>
 		</figure>
 		<br>
+
+		{% get_cookie request 'filters' as filters %}
+        {% if 'False' != filters %}
+        <div class="bottomBar" id="bottomBar">
+			<div id="bottomBarContent">
+				<div class="filterBox" >
+					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
+					<input class="filterChip" type="text" id="teamNumber" onkeyup="teamFilter('teamNumber')" placeholder="Team Number">
+				</div>
+				<br>
+				<div class="filterBox" >
+					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
+					<input class="filterChip" type="text" id="teamName" onkeyup="teamFilter('teamName')" placeholder="Team Name">
+				</div>
+				{% if user.is_staff %}
+				<div class="filterBox" onClick="location.href ='{% url 'entry:admin_redirect' 'team' %}';" style="cursor: pointer">
+					<img src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" style="height: 50px;" alt="Edit">
+					<h3>Edit Teams</h3>
+				</div>
+				{% endif %}
+			</div>
+			<button class="bottomBarButton" id="bottomBarButton" onclick="expandBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
+		</div>
+        {% endif %}
 	</div>
 </body>
 
