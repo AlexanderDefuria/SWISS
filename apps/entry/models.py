@@ -193,6 +193,9 @@ class TeamMember(models.Model):
     defaultTeam = Team.objects.filter(number=4343)[0].id
     team = models.ForeignKey(Team, on_delete=models.CASCADE, default=defaultTeam)
 
+    #TUTORIAL POPUP
+    tutorial_completed = models.BooleanField(default=False)
+
     AVAILABLE_POSITIONS = (
         # (Program Name, Human Readable name)
         ("NA", "No Access"),
