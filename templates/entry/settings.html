@@ -62,7 +62,7 @@
 		<div class="heroContent">
 			<p class="pageTitle">Settings</p>
 		</div>
-		<form class="formContainer" method="post" name="mainForm" id="mainForm" method="POST">
+		<form class="formContainer" name="mainForm" id="mainForm" method="POST">
             {% csrf_token %}
 			<div class="formItem">
                 <label>{{ user.get_username }}</label>
