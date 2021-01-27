@@ -6,24 +6,28 @@
 
 @import url(fonts.css);
 
+html, body {
+    height: 100%;
+}
+
 body {
     margin: 0;
     padding: 0;
     font-size: 14px;
     font-family: "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
-    color: #333;
-    background: #fff;
+    color: #ffffff;
+    background: #333333;
 }
 
 /* LINKS */
 
 a:link, a:visited {
-    color: #447e9b;
+    color: #ffffff;
     text-decoration: none;
 }
 
 a:focus, a:hover {
-    color: #036;
+    color: #576e82;
 }
 
 a:focus {
@@ -96,7 +100,7 @@ h5 {
     letter-spacing: 1px;
 }
 
-ul li {
+ul > li {
     list-style-type: square;
     padding: 1px 0;
 }
@@ -126,6 +130,7 @@ form {
 
 fieldset {
     margin: 0;
+    min-width: 0;
     padding: 0;
     border: none;
     border-top: 1px solid #eee;
@@ -143,6 +148,7 @@ code, pre {
     font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
     color: #666;
     font-size: 12px;
+    overflow-x: auto;
 }
 
 pre.literal-block {
@@ -173,20 +179,8 @@ hr {
     font-size: 11px;
 }
 
-.tiny {
-    font-size: 10px;
-}
-
-p.tiny {
-    margin-top: -2px;
-}
-
 .mini {
     font-size: 10px;
-}
-
-p.mini {
-    margin-top: -3px;
 }
 
 .help, p.help, form p.help, div.help, form div.help, div.help li {
@@ -211,30 +205,8 @@ p img, h1 img, h2 img, h3 img, h4 img, td img {
     font-weight: normal;
 }
 
-.float-right {
-    float: right;
-}
-
-.float-left {
-    float: left;
-}
-
 .clear {
     clear: both;
-}
-
-.align-left {
-    text-align: left;
-}
-
-.align-right {
-    text-align: right;
-}
-
-.example {
-    margin: 10px 0;
-    padding: 5px 10px;
-    background: #efefef;
 }
 
 .nowrap {
@@ -255,6 +227,7 @@ td, th {
     vertical-align: top;
     padding: 8px;
     font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+    background-color: #333333;
 }
 
 th {
@@ -286,11 +259,14 @@ tr.alt {
     background: #f6f6f6;
 }
 
-.row1 {
+tr:nth-child(odd), .row-form-errors {
     background: #fff;
 }
 
-.row2 {
+tr:nth-child(even),
+tr:nth-child(even) .errorlist,
+tr:nth-child(odd) + .row-form-errors,
+tr:nth-child(odd) + .row-form-errors .errorlist {
     background: #f9f9f9;
 }
 
@@ -498,7 +474,7 @@ input[type=button][disabled].default {
 .module {
     border: none;
     margin-bottom: 30px;
-    background: #fff;
+    background-color: #333333;
 }
 
 .module p, .module ul, .module h3, .module h4, .module dl, .module pre {
@@ -622,22 +598,9 @@ td ul.errorlist li {
     padding-left: 0;
 }
 
-.errors input, .errors select, .errors textarea {
+.errors input, .errors select, .errors textarea,
+td ul.errorlist + input, td ul.errorlist + select, td ul.errorlist + textarea {
     border: 1px solid #ba2121;
-}
-
-div.system-message {
-    background: #ffc;
-    margin: 10px;
-    padding: 6px 8px;
-    font-size: .8em;
-}
-
-div.system-message p.system-message-title {
-    padding: 4px 5px 4px 25px;
-    margin: 0;
-    color: #c11;
-    background: #ffefef url(../img/icon-no.svg) 5px 5px no-repeat;
 }
 
 .description {
@@ -661,7 +624,7 @@ div.breadcrumbs a {
 }
 
 div.breadcrumbs a:focus, div.breadcrumbs a:hover {
-    color: #c4dce8;
+    color: #ffffff;
 }
 
 /* ACTION ICONS */
@@ -738,7 +701,8 @@ a.deletelink:focus, a.deletelink:hover {
 }
 
 .object-tools a:focus, .object-tools a:hover {
-    background-color: #417690;
+    background-color: #ffffff;
+    color: #ffffff;
 }
 
 .object-tools a:focus{
@@ -776,6 +740,23 @@ table#change-history tbody th {
     width: 100%;
     min-width: 980px;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#container > div {
+    flex-shrink: 0;
+}
+
+#container > .main {
+    display: flex;
+    flex: 1 0 auto;
+}
+
+.main > .content {
+    flex:  1 0;
+    max-width: 100%;
 }
 
 #content {
@@ -789,6 +770,7 @@ table#change-history tbody th {
 #content-main {
     float: left;
     width: 100%;
+    border: solid 1px #ffffff;
 }
 
 #content-related {
@@ -895,22 +877,23 @@ table#change-history tbody th {
 #user-tools a:focus, #user-tools a:hover {
     text-decoration: none;
     border-bottom-color: #79aec8;
-    color: #79aec8;
+    color: #ffffff;
 }
 
 /* SIDEBAR */
 
 #content-related {
-    background: #f8f8f8;
+    background: #333333;
 }
 
 #content-related .module {
     background: none;
+    border: solid 1px #ffffff;
 }
 
 #content-related h3 {
     font-size: 14px;
-    color: #666;
+    color: #ffffff;
     padding: 0 16px;
     margin: 0 0 16px;
 }
@@ -941,7 +924,7 @@ table#change-history tbody th {
     margin-bottom: 16px;
     border-bottom: 1px solid #eaeaea;
     font-size: 18px;
-    color: #333;
+    color: #ffffff;
 }
 
 .delete-confirmation form input[type="submit"] {
@@ -987,3 +970,70 @@ table#change-history tbody th {
 .popup #header {
     padding: 10px 20px;
 }
+
+/* Common theme*/
+html,
+body,
+:not([style*="background-color:"]) {
+    background-color: rgb(16, 20, 23) !important;
+}
+html,
+body,
+:not([style*="color:"]) {
+    color: rgb(167, 158, 139) !important;
+}
+h1:not([style*="color:"]),
+h2:not([style*="color:"]),
+h3:not([style*="color:"]),
+h4:not([style*="color:"]),
+h5:not([style*="color:"]),
+h6:not([style*="color:"]) {
+    color: rgb(247, 142, 102) !important;
+}
+cite:not([style*="color:"]) {
+    color: rgb(128, 204, 148) !important;
+}
+input:not([style*="background-color:"]),
+textarea:not([style*="background-color:"]),
+button:not([style*="background-color:"]),
+[role="button"] {
+    background-color: rgb(32, 48, 64) !important;
+}
+input:not([style*="background-color:"]):hover,
+textarea:not([style*="background-color:"]):hover,
+button:not([style*="background-color:"]):hover,
+[role="button"]:hover {
+    background-color: rgb(30, 54, 78) !important;
+}
+input:not([style*="background-color:"]):active, input:not([style*="background-color:"]):focus,
+textarea:not([style*="background-color:"]):active, textarea:not([style*="background-color:"]):focus,
+button:not([style*="background-color:"]):active, button:not([style*="background-color:"]):focus,
+[role="button"]:active, [role="button"]:focus {
+    background-color: rgb(29, 56, 83) !important;
+}
+a:not([style*="color:"]) {
+    color: rgb(128, 182, 204) !important;
+}
+a:not([style*="color:"]):hover {
+    color: rgb(142, 193, 217) !important;
+}
+a:not([style*="color:"]):active, a:not([style*="color:"]):focus {
+    color: rgb(155, 203, 230) !important;
+}
+:not([style*="border-color:"]),
+::before,
+::after {
+    border-color: rgb(80, 115, 134) !important;
+}
+div:empty {
+    background-color: rgb(16, 20, 23) !important;
+}
+input::placeholder,
+textarea::placeholder {
+    color: rgb(167, 158, 139) !important;
+}
+input:not([style*="background-image:"]),
+textarea:not([style*="background-image:"]) {
+    background-image: none !important;
+}
+
