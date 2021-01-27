@@ -109,7 +109,7 @@
 			{% endif %}
 
 			{% for team in teamList %}
-			<a href='{% url ' entry:glance' team.id %}' class="teamLink" id="{{ team.number }}" name="{{ team.name }}"
+			<a href='{% url 'entry:glance' team.id %}' class="teamLink" id="{{ team.number }}" name="{{ team.name }}"
 				title="{{ team.name }} {{ team.number }}">
 				{% get_cookie request 'images' as images %}
 				{% if 'False' != images %}
