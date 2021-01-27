@@ -40,8 +40,7 @@
 	transition: all 0.2s ease-in-out;
 }
 /* Adds a background color, expands the input and adds a blue border when focused */
-.formItem input[type=text]:focus {
-	/* width: 400px; */ 
+.formItem input[type=text]:focus { 
 	border-color: #0F4D8D;
 	border-width: 3px;
 	background: #333333;
