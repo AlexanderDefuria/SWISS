@@ -84,7 +84,7 @@
                     </label>
                     <label>
                         <input type="radio" id="tutorialCompleted_false" name="tutorialCompleted" value="False">
-                        <span>Y</span>
+                        <span>N</span>
                     </label>
                 </div>
             </div>
@@ -174,6 +174,7 @@
         document.getElementById('images_'.concat('{% get_cookie request 'images' %}'.toLowerCase())).checked = true;
         document.getElementById('filters_'.concat('{% get_cookie request 'filters' %}'.toLowerCase())).checked = true;
         document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true;
+        document.getElementById('tutorialCompleted_'.concat('{% get_cookie request 'tutorialCompleted' %}'.toLowerCase())).checked = true;
         {% if lead_scout %} //document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true; {% endif %}
     }
         
