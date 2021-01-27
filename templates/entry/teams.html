@@ -88,8 +88,51 @@
 			<p class="pageTitle">Teams</p>
 		</div>
 
+<<<<<<< HEAD
 		<figure class="tileContainer teamTileContaienr">
 			{% get_cookie request 'districtTeams' as districtTeams %}
+=======
+        <figure class="tileContainer teamTileContaienr">
+            {% get_cookie request 'districtTeams' as districtTeams %}
+
+            {% if districtTeams == 'True' %}
+                {% get_all_teams as teamList %}
+            {% else %}
+                {% get_all_present_teams as teamList %}
+            {% endif %}
+
+            {% for team in teamList %}
+                <a href='{% url 'entry:glance' team.id %}' class="teamLink" id="{{ team.number }}" name="{{ team.name }}" title="{{ team.name }} {{ team.number }}">
+                    {% get_cookie request 'images' as images %}
+                    {% if 'False' != images %}
+                        <div class="teamChip" style="overflow: hidden;">
+                            <img class="robotPhoto" src="{{ MEDIA_URL }}{{ team.first_image }}" loading="lazy" height="260px" alt="robot photo">
+                            <div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
+                            <div class="teamnamePill"><p>{{ team.name }}</p></div>
+                        </div>
+                    {% else %}
+                        <div class="teamChipNoPic" style="height: auto">
+                            <div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
+                            <div class="teamnamePill"><p>{{ team.name }}</p></div>
+                        </div>
+                    {% endif %}
+			</a>
+            {% endfor %}
+            <br>
+            {% get_cookie request 'images' as images %}
+            {% if 'False' != images %}
+            <a href="{% url 'entry:upload' %}">
+                <div class="teamChip" style="background-color: #0F4D8D">
+                    <img class="robotPhoto" src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
+                    <div class="teamnumberPill" style="background-color: transparent; border-color: transparent"><p>{{ team.number }}</p></div>
+                    <div class="teamnamePill"><p>Upload Team Image</p></div>
+                </div>
+            </a>
+            {% else %}
+            {% endif %}
+        </figure>
+        <br>
+>>>>>>> ecb692b65f7396117c8faceba3e55f4105f4383b
 
 			{% if districtTeams == 'True' %}
 			{% get_all_teams as teamList %}
