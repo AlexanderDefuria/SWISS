@@ -347,6 +347,17 @@ input[type=number] {
 	cursor: pointer;
 }
 
+.log_out_btn {
+	background: none;
+	border: none;
+	color: white;
+	font-size: 24px;
+	font-weight: 1000;
+	height: 60px;
+	width: 100%;
+	cursor: pointer;
+}
+
 /* SOCIAL MEDIA ICONS ON SETTINGS PAGE */ 
 
 .socialIcon {
