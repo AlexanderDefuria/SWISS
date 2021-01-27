@@ -41,16 +41,10 @@
 }
 /* Adds a background color, expands the input and adds a blue border when focused */
 .formItem input[type=text]:focus {
-	width: 400px;  
+	/* width: 400px; */ 
 	border-color: #0F4D8D;
 	border-width: 3px;
 	background: #333333;
-}
-#username {
-    width: 200px;
-}
-#username:focus {
-	width: 200px;
 }
 
 
@@ -382,7 +376,7 @@ input:-webkit-autofill:focus {
 	border: none;
 	border-bottom: 2px solid green;
 	background-color: #0F4D8D;
-    color: #ffffff
+    color: #ffffff;
 	transition: background-color 5000s ease-in-out 0s;
 }
 
