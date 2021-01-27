@@ -87,6 +87,8 @@
 			</a>
             {% endfor %}
             <br>
+            {% get_cookie request 'images' as images %}
+            {% if 'False' != images %}
             <a href="{% url 'entry:upload' %}">
                 <div class="teamChip" style="background-color: #0F4D8D">
                     <img class="robotPhoto" src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
@@ -94,6 +96,8 @@
                     <div class="teamnamePill"><p>Upload Team Image</p></div>
                 </div>
             </a>
+            {% else %}
+            {% endif %}
         </figure>
         <br>
 
