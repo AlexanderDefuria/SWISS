@@ -607,13 +607,14 @@ ul {
 	padding: 5px;
 }
 .pillContainer > div, li {
-	margin: 8px 5px;
+	margin: 16px 5px;
 }
 .pillSelect {
 	max-width: 50%;
 	margin: auto;
 }
 .teamnumberPill {
+    display: flex;
 	text-align: center;
 	width: 72px;
 	height: 30px;
@@ -621,7 +622,7 @@ ul {
 	border: 1px solid white;
 }
 .teamnumberPill p {
-	margin: 0px;
+	margin: auto;
 	font-size: 23px;
 	font-weight: 700;
 	color: white;
