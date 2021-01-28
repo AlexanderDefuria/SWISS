@@ -160,7 +160,7 @@
                 <input name="submit" id="submitButton" type="submit" style="pointer-events: none" value="Save Settings">
 			</div>
 		</form>
-		<div class="log_out_btn" onclick="window.location.replace({% url 'entry:logout' %})">
+		<div class="log_out_btn" onclick="logout()">
 			<input id="log_out_btn" type="button" value="Log Out">
 		</div>
         <div id="snackbar">
@@ -169,6 +169,9 @@
 
 	</div>
 <script>
+	function logout() {
+		window.location.replace("{% url 'entry:logout' %}");
+	}
     function update_cookie_fields(){
         document.getElementById('images_'.concat('{% get_cookie request 'images' %}'.toLowerCase())).checked = true;
         document.getElementById('filters_'.concat('{% get_cookie request 'filters' %}'.toLowerCase())).checked = true;
