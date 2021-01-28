@@ -67,16 +67,16 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeTeamDrawer()">×</a>
         <div class="pillSelect" >
 			<div class="pillContainer" >
-                {% get_all_present_teams as team_list %}
-				{% for team in team_list %}
-					<ul>
+                <ul>
+                    {% get_all_present_teams as team_list %}
+                    {% for team in team_list %}
 						<li>
 							<div onclick="window.location='{% url 'entry:glance' team.id %}'"  class="teamnumberPill" style="background-color: {{team.colour}}; cursor: pointer;">
 								<p>{{ team.number }}</p>
 							</div>
 						</li>
-					</ul>
-				{% endfor %}
+                    {% endfor %}
+                </ul>
 			</div>
 		</div>
 	</div>
@@ -85,7 +85,7 @@
 		<div class="heroContent" id="heroSpace">
 			<div class="stickyChip">
 				<button class="changeTeam" id="changeTeam" onClick="openTeamDrawer()">
-					<div class="teamnumberPill" style="background-color: {{ team.colour }}">
+					<div class="teamnumberPill" style="background-color: {{ team.colour }}; min-width: 72px;">
 							<p>{{ team.number }}</p>
 					</div>
 					<div class="teamnamePill">

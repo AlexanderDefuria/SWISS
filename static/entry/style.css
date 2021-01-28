@@ -127,8 +127,9 @@ a {
 	text-decoration:none;
 }
 ul {
-  list-style-type: none;
-  padding: 0;
+    list-style-type: none;
+    padding: 0;
+    display: contents;
 }
 
 .topbar {
@@ -606,22 +607,22 @@ ul {
 	padding: 5px;
 }
 .pillContainer > div, li {
-	margin: 5px;
+	margin: 16px 5px;
 }
 .pillSelect {
 	max-width: 50%;
 	margin: auto;
 }
 .teamnumberPill {
+    display: flex;
 	text-align: center;
 	width: 72px;
-	height: 28px;
+	height: 30px;
 	border-radius: 10px;
 	border: 1px solid white;
 }
 .teamnumberPill p {
-	padding-top: 1px;
-	margin: 0px;
+	margin: auto;
 	font-size: 23px;
 	font-weight: 700;
 	color: white;
