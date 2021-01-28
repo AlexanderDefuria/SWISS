@@ -348,6 +348,7 @@ input[type=number] {
 }
 
 .logoutbtn {
+	background-color: #b32e2e;
 	background: none;
 	border: none;
 	color: white;
