@@ -103,7 +103,7 @@
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Shooter</p></div>
-					<div class="infoLColumn"><p> {% get_info user team 'shooter_style' 'average' 'pits' %}</p></div>
+					<div class="infoLColumn"><p>{% get_info user team 'shooter_style' 'average' 'pits' %}</p></div>
 				</div>
 				<!-- !!!THIS WILL BE MOVED TO ITS OWN BOX!!!
 				<div class="infoRow">
@@ -201,6 +201,24 @@
 					<div class="infoLColumn"><p>{% get_info user team 'able_to_push' 'average' 'match' %}</p></div>
 				</div>
 			</div>
+            <div class="infoBox infoReg" id="shooterTile">
+                <div class="infoHeader">
+                    <img class="infoIcon" src="{{ MEDIA_URL }}{% static 'GenericPowerPort.png' %}" alt="Shooter">
+                    <h1>Ball Scoring Info</h1>
+                </div>
+                <div class="infoRow">
+                    <div class="infoLColumn"><p>Shooter Type</p></div>
+                    <div class="infoLColumn"><p>{% get_info user team 'shooter_style' 'average' 'pits' %}</p></div>
+                </div>
+                <div class="infoRow">
+                    <div class="infoLColumn"><p>Shooting Locations</p></div>
+                    <div class="infoLColumn">
+                        {% get_info user team 'tele_positions' 'list' 'pits' as telePositionsList %}
+						<p>{{ telePositionsList.0 }}</p>
+						<p>{{ telePositionsList.1 }}</p>
+                    </div>
+                </div>
+            </div>
 			<div class="infoBox infoReg" id="powerCellTile">
 				<div class="infoHeader">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'GenericPowerPort.png' %}" alt="Power Port">
