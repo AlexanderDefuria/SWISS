@@ -105,16 +105,6 @@
 					<div class="infoLColumn"><p>Shooter</p></div>
 					<div class="infoLColumn"><p>{% get_info user team 'shooter_style' 'average' 'pits' %}</p></div>
 				</div>
-				<!-- !!!THIS WILL BE MOVED TO ITS OWN BOX!!!
-				<div class="infoRow">
-					<div class="infoLColumn"><p>Shooting Locations</p></div>
-					<div class="infoRColumn">
-                        {% get_info user team 'tele_positions' 'list' 'pits' as telePositionsList %}
-						<p>{{ telePositionsList.0 }}</p>
-						<p>{{ telePositionsList.1 }}</p>
-					</div>
-				</div>
-				-->
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Climb</p></div>
 					<div class="infoLColumn"><p>{% get_info user team 'climb_locations' 'possible' 'pits' %}</p></div>
@@ -217,6 +207,10 @@
 						<p>{{ telePositionsList.0 }}</p>
 						<p>{{ telePositionsList.1 }}</p>
                     </div>
+                </div>
+                <div class="infoRow">
+                    <div class="infoLColumn"><p>Intake Style</p></div>
+                    <div class="infoLColumn"><p>TODO: PitScout Intake Style</p></div>
                 </div>
             </div>
 			<div class="infoBox infoReg" id="powerCellTile">
