@@ -127,8 +127,9 @@ a {
 	text-decoration:none;
 }
 ul {
-  list-style-type: none;
-  padding: 0;
+    list-style-type: none;
+    padding: 0;
+    display: contents;
 }
 
 .topbar {
@@ -606,7 +607,7 @@ ul {
 	padding: 5px;
 }
 .pillContainer > div, li {
-	margin: 5px;
+	margin: 8px 5px;
 }
 .pillSelect {
 	max-width: 50%;
