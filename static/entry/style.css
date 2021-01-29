@@ -473,6 +473,7 @@ ul {
 }
 .loginButton {
 	padding: 20px;
+    cursor: pointer;
 }
 .loginButton:hover {
 	box-shadow: 2px 5px 25px 2px #232323;
@@ -989,11 +990,11 @@ th {
 	background-color: #1C984F;
 	padding: 10px;
 	border: none;
+	transition: all 0.2s ease-in-out;
 }
 .graphOption button:hover {
 	background-color: #60E1A7;
 	box-shadow: 2px 5px 25px 2px #232323;
-	transition: all 0.2s ease-in-out;
 }
 .filterBox {
 	visibility: inherit;

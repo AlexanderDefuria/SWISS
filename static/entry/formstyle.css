@@ -358,6 +358,11 @@ input[type=number] {
 	cursor: pointer;
 }
 
+.logoutbtn:hover {
+    box-shadow: 2px 5px 25px 2px #232323;
+}
+
+
 /* SOCIAL MEDIA ICONS ON SETTINGS PAGE */ 
 
 .socialIcon {
