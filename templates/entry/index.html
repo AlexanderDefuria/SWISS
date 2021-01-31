@@ -146,11 +146,12 @@
 		<div id="snackbar">
 			<p id="snacktext">Default Text</p>
 		</div>
+        <p style="visibility: hidden" id="tutorialCookie">{% get_cookie request 'tutorialCompleted' %}</p>
 	</div>
 	<script>
 		var x = document.getElementById("snackbar");
 		var y = document.getElementById("snacktext");
-		var z = {% get_cookie request 'tutorialCompleted' %};
+		var z = document.getElementById("tutorialCookie").innerHTML;
 
 		document.addEventListener('DOMContentLoaded', function () {
 			setTimeout(function () {
