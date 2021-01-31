@@ -148,7 +148,7 @@
 		</div>
 		<div id="alertbar">
 			<p id="alerttext">Default Text</p>
-			<button class="hamburgerButton">╳</button>
+			<button class="hamburgerButton" onClick="closeAlertBar()">╳</button>
 		</div>
         <p style="display: none" id="tutorialCookie">{% get_cookie request 'tutorialCompleted' %}</p>
 	</div>
@@ -170,6 +170,12 @@
 			}, 500), false
 		})
 
+        function closeAlertBar() {
+            setTimeout(function () {
+                x.className = "hide";
+                setTimeout(function(){ x.className = x.className.replace("hide", ""); }, 500);
+            }) 
+        }
 	</script>
 </body>
 

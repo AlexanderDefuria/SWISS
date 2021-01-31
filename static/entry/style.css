@@ -265,8 +265,8 @@ ul {
 #alertbar.show {
 	visibility: visible;
 	/* Add animation: Take 0.5 seconds to fade in and out the alertbar. */
-	-webkit-animation: fadein 0.5s;
-	animation: fadein 0.5s; 
+	-webkit-animation: alertfadein 0.5s;
+	animation: alertfadein 0.5s; 
 }
 
 #alerttext {
@@ -276,8 +276,8 @@ ul {
 #alertbar.hide {
     visibility: visible;
     /*adds the fadeout animation */
-    -webkit-animation: fadeout 0.5s;
-    animation: fadeout 0.5s;
+    -webkit-animation: alertfadeout 0.5s;
+    animation: alertfadeout 0.5s;
 }
 
 /* Animations to fade the snackbar in and out */
@@ -297,6 +297,27 @@ ul {
 	from {bottom: 30px; opacity: 1;}
 	to {bottom: 0; opacity: 0;}
 }
+
+
+/* Animations to fade the alertbar in and out */
+@-webkit-keyframes alertfadein {
+	from {bottom: -30px; opacity: 0;}
+	to {bottom: 0; opacity: 1;}
+}
+@keyframes alertfadein {
+	from {bottom: -30px; opacity: 0;}
+	to {bottom: 0; opacity: 1;}
+}
+@-webkit-keyframes alertfadeout {
+	from {bottom: 0; opacity: 1;}
+	to {bottom: -30px; opacity: 0;}
+}
+@keyframes alertfadeout {
+	from {bottom: 0; opacity: 1;}
+	to {bottom: -30px; opacity: 0;}
+}
+
+
 #tileBackground {
 	/*background-image: url("img/Glance Background - 2000w.png");*/
 	background-size: 45%;
