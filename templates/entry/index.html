@@ -148,7 +148,7 @@
 		</div>
 		<div id="alertbar">
 			<p id="alerttext">Default Text</p>
-			<button class="hamburgerButton" onClick="closeAlertBar()">╳</button>
+			<button class="alertcloseButton" onClick="closeAlertBar()">╳</button>
 		</div>
         <p style="display: none" id="tutorialCookie">{% get_cookie request 'tutorialCompleted' %}</p>
 	</div>
@@ -161,7 +161,7 @@
 			setTimeout(function () {
 				if (z == "True") {
 					x.className = "show";
-					y.innerHTML = "Prompt-can't close this yet, sorry";
+					y.innerHTML = "Welcome to SWISS! There will be a tutorial button here soon";
 				} else if (z == "False") {
 					console.log("Tutorials Off")
 				} else {

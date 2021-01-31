@@ -983,6 +983,19 @@ th {
 .hamburgerButton:hover {
 	background-color: #444;
 }
+.alertcloseButton {
+	height: 100%;
+	width: 50px;
+    margin: auto 0;
+	font-size: 20px;
+	cursor: pointer;
+	background-color: transparent;
+	color: white;
+	border-bottom: solid 1px #B4150B;
+}
+.alertcloseButton:hover {
+	background-color: #444;
+}
 .changeTeam {
 	background: none;
 	border: none;
