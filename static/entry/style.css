@@ -126,6 +126,10 @@ img {
 a {
 	text-decoration:none;
 }
+a:not([href]) {
+    /* Styles for anchors without href */
+    cursor: pointer;
+}
 ul {
     list-style-type: none;
     padding: 0;
