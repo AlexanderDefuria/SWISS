@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
 <script src="{% static 'entry/script.js' %}"></script>
+<script src="{% static 'entry/lottie.js'%}"></script>
 <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
@@ -59,6 +60,31 @@
         <div class="heroContent">
             <h1 class="pageTitle">Welcome!</h1>
         </div>
+        <div id="svgContainer">
+
+        </div>
+        <style>
+        #svgContainer {
+          max-width: 100%;
+          max-height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+        }
+        </style>
+        <script>
+        /* Shapes */
+        var svgContainer = document.getElementById('svgContainer');
+        var animItem = lottie.loadAnimation({
+          wrapper: svgContainer,
+          animType: 'svg',
+          loop: true,
+          path: '{% static 'entry/max_9.json' %}'
+        });
+        </script>
     </div>
 </body>
 </html>
