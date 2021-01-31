@@ -107,7 +107,7 @@
 					<img src="{{ MEDIA_URL }}{% static 'ScheduleIcon.png' %}" alt="Schedule Icon">
 				</div>
 			</a>
-			<a href="{% url 'entry:download' %}" id="tileDownload" title="Download CSV">
+			<a id="tileDownload" title="Download CSV">
 				<div class="smallBox" style="background-color: #AAA300">
 					<img src="{{ MEDIA_URL }}{% static 'DownloadIcon.png' %}" alt="Download Icon">
 				</div>
@@ -185,16 +185,16 @@
         var bad = document.getElementById("downloadCancel");
         var good = document.getElementById("downloadConfirm");
         var main = document.getElementById("tileContainer");
-        var modhead = document.getElementById("modal-header")
-        var moddesc = document.getElementById("modal-desc")
+        var modhead = document.getElementById("modal-header");
+        var moddesc = document.getElementById("modal-desc");
 
         // When the user clicks on the button, open the modal
         opn.onclick = function() {
             modal.style.visibility = "visible";
-            main.style.filter="blur(2px)";
+            main.style.filter = "blur(2px)";
             window.navigator.vibrate(40);
-            modhead.innerHTML="Download Match Data?";
-            moddesc.innerHTML="All match data for current event will be downloaded in a CSV format."
+            modhead.innerHTML = "Download Match Data?";
+            moddesc.innerHTML = "All match data for current event will be downloaded in a CSV format.";
         }
 
         // When the user clicks on "no", close the modal
@@ -208,7 +208,7 @@
         window.onclick = function(event) {
           if (event.target == modal) {
             modal.style.visibility = "hidden";
-            main.style.filter="blur(0)";
+            main.style.filter = "blur(0)";
             window.navigator.vibrate(40);
           }
         }
