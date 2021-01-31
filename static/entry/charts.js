@@ -33,10 +33,16 @@ const constCharts = {
 
     totalChart: {
             chart: {
-				backgroundColor: '#dddddd'
+				backgroundColor: '#0F4D8D',
+             style: {
+                    color: '#ffffff'
+                    }
 			},
             title: {
-			    text: 'Total Balls Scored Over Comp'
+                text: 'Total Balls Scored Over Comp',
+                style: {
+                    color: '#ffffff'
+                }
             },
             plotOptions: {
                 series: {
@@ -52,8 +58,14 @@ const constCharts = {
             }],
             xAxis: {
                 title: {
-                    text: 'Match'
+                    text: 'Match',
+                style: {
+                    color: '#ffffff'
                 }
+                }
+            },
+            tooltip: {
+                valueDecimals: 3,
             },
             responsive: {
                 rules: [{
@@ -106,6 +118,9 @@ const constCharts = {
                     }
                 }
                 },
+            tooltip: {
+                valueDecimals: 3,
+            },
             series: [{
                 name: 'Lower',
                 data: [0, 0]

@@ -210,7 +210,7 @@
                 </div>
                 <div class="infoRow">
                     <div class="infoLColumn"><p>Intake Style</p></div>
-                    <div class="infoLColumn"><p>TODO: PitScout Intake Style</p></div>
+                    <div class="infoLColumn"><p>{% get_info user team 'ball_intake' 'average' 'pits' %}</p></div>
                 </div>
             </div>
 			<div class="infoBox infoReg" id="powerCellTile">
@@ -236,7 +236,18 @@
                     {% get_info user team 'inner_auto' 'total' 'match' as totalAutoInner%}
 					<div class="infoLColumn"><p>{{totalTeleInner|add:totalAutoInner }} Power Cells</p></div>
 				</div>
+                <div class="infoRow">
+                    <div class="infoLColumn"><p>Missed Shots</p></div>
+                    {% get_info user team 'missed' 'total' 'match' as totalTeleMissed%}
+                    {% get_info user team 'missed_auto' 'total' 'match' as totalAutoMissed%}
+					<div class="infoLColumn"><p>{{totalTeleMissed|add:totalAutoMissed }} Power Cells</p></div>
+                </div>
 			</div>			
+            <div class="graphBoxWide" id="accuracyTile">
+                <div class="infoHeader">
+                    <h1>Accuracy Chart Soon</h1>
+                </div>
+            </div>
 			<div class="infoBox infoReg" id="endgameTile">
 				<div class="infoHeader">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'hangbar_icon.png' %}" alt="Hang Bar">
