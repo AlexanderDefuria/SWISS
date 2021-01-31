@@ -28,6 +28,14 @@ function collapseBottomBar() {
 }
 
 
+// Function that closes the alertbar
+function closeAlertBar() {
+    setTimeout(function () {
+        x.className = "hide";
+        setTimeout(function(){ x.className = x.className.replace("hide", ""); }, 500);
+    }) 
+}
+
 // Function that controls the team number filtering on the data page. 
 
 function tableFilter(field) {
