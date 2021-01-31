@@ -58,6 +58,16 @@
 	</div>
 
 	<div class="bodyContainer">
+    	<div id="myModal" class="modal">
+            <div class="modal-content">
+                <h1 id="modal-header" style="margin-left: 10px;">Modal Popup Header</h1>
+                <p id="modal-desc">Lorem ipsum dolor sit amet.</p>
+                <div style="display: flex; justify-content: center">
+                    <button class="modalButton" id="downloadCancel">No</button>
+                    <button class="modalButton" id="downloadConfirm">Yes</button>
+                </div>
+            </div>
+        </div>
 		<div class="tileContainer">
 			<a href="{% url 'entry:match_scout_landing' %}" id="tileMatch" title="Match Scouting">
 				<div class="bigBox">
@@ -169,6 +179,45 @@
 				}
 			}, 500), false
 		})
+        
+        var modal = document.getElementById("myModal");
+        var opn = document.getElementById("tileDownload");
+        var bad = document.getElementById("downloadCancel");
+        var good = document.getElementById("downloadConfirm");
+        var main = document.getElementById("tileContainer");
+        var modhead = document.getElementById("modal-header")
+        var moddesc = document.getElementById("modal-desc")
+
+        // When the user clicks on the button, open the modal
+        opn.onclick = function() {
+            modal.style.visibility = "visible";
+            main.style.filter="blur(2px)";
+            window.navigator.vibrate(40);
+            modhead.innerHTML="Download Match Data?";
+            moddesc.innerHTML="All match data for current event will be downloaded in a CSV format."
+        }
+
+        // When the user clicks on "no", close the modal
+        bad.onclick = function() {
+            modal.style.visibility = "hidden";
+            main.style.filter="blur(0)";
+            window.navigator.vibrate(40);
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.visibility = "hidden";
+            main.style.filter="blur(0)";
+            window.navigator.vibrate(40);
+          }
+        }
+
+        good.onclick = function() {
+        // When the user clicks "ok", href to download link 
+            document.location='{% url 'entry:download' %}';
+        }
+
 	</script>
 </body>
 
