@@ -991,7 +991,7 @@ th {
 	cursor: pointer;
 	background-color: transparent;
 	color: white;
-	border-bottom: solid 1px #B4150B;
+    border: none;
 }
 .alertcloseButton:hover {
 	background-color: #444;
