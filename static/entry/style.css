@@ -247,11 +247,13 @@ ul {
 
 #alertbar {
 	visibility: hidden;
+    display: flex;
+    justify-content: center;
     width: 100%;
     background-color: #303030;
 	text-align: center;
 	border-bottom: 2px solid #0F4D8D;
-    box-shadow: -5px 0px 5px 2px #222222;
+    box-shadow: -5px 0px 10px 5px #222222;
 	padding: 10px;
 	position: fixed;
 	z-index: 1;
@@ -265,6 +267,17 @@ ul {
 	/* Add animation: Take 0.5 seconds to fade in and out the alertbar. */
 	-webkit-animation: fadein 0.5s;
 	animation: fadein 0.5s; 
+}
+
+#alerttext {
+    width: 50vh;
+}
+
+#alertbar.hide {
+    visibility: visible;
+    /*adds the fadeout animation */
+    -webkit-animation: fadeout 0.5s;
+    animation: fadeout 0.5s;
 }
 
 /* Animations to fade the snackbar in and out */

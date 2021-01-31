@@ -148,20 +148,20 @@
 		</div>
 		<div id="alertbar">
 			<p id="alerttext">Default Text</p>
+			<button class="hamburgerButton">╳</button>
 		</div>
         <p style="display: none" id="tutorialCookie">{% get_cookie request 'tutorialCompleted' %}</p>
 	</div>
 	<script>
-		var x = document.getElementById("snackbar");
-		var y = document.getElementById("snacktext");
+		var x = document.getElementById("alertbar");
+		var y = document.getElementById("alerttext");
 		var z = document.getElementById("tutorialCookie").innerHTML;
 
 		document.addEventListener('DOMContentLoaded', function () {
 			setTimeout(function () {
 				if (z == "True") {
 					x.className = "show";
-					y.innerHTML = "Here's the tutorial prompt";
-					setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+					y.innerHTML = "Prompt-can't close this yet, sorry";
 				} else if (z == "False") {
 					console.log("Tutorials Off")
 				} else {
