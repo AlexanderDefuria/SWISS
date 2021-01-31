@@ -64,9 +64,6 @@ const constCharts = {
                 }
                 }
             },
-            tooltip: {
-                valueDecimals: 3,
-            },
             responsive: {
                 rules: [{
                     condition: {
