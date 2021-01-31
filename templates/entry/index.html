@@ -68,7 +68,7 @@
                 </div>
             </div>
         </div>
-		<div class="tileContainer">
+		<div class="tileContainer" id="tileContainer">
 			<a href="{% url 'entry:match_scout_landing' %}" id="tileMatch" title="Match Scouting">
 				<div class="bigBox">
 					<img src="{{ MEDIA_URL }}{% static 'ScoutIcon.png' %}" alt="scout icon">
@@ -127,7 +127,7 @@
 					<img src="{{ MEDIA_URL }}{% static 'AdminIcon.png' %}" alt="Admin Icon">
 				</div>
 			</a>
-			<a href="https://update.swiss-scouting.ca/" id="tileAdmin" title="Update Swiss">
+			<a href="https://update.swiss-scouting.ca/" id="tileUpdate" title="Update Swiss">
 				<div class="smallBox">
 					<img src="{{ MEDIA_URL }}{% static 'UpdateIcon.png' %}" alt="Admin Icon">
 				</div>
