@@ -58,8 +58,33 @@
 	</div>
     <div class="bodyContainer">
         <div class="heroContent">
-            <h1 class="pageTitle">Tutorial!</h1>
+            <h1 class="pageTitle">Welcome!</h1>
         </div>
+        <div id="svgContainer">
+
+        </div>
+        <style>
+        #svgContainer {
+          max-width: 100%;
+          max-height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+        }
+        </style>
+        <script>
+        /* Shapes */
+        var svgContainer = document.getElementById('svgContainer');
+        var animItem = lottie.loadAnimation({
+          wrapper: svgContainer,
+          animType: 'svg',
+          loop: true,
+          path: '{% static 'entry/max_9.json' %}'
+        });
+        </script>
     </div>
 </body>
 </html>

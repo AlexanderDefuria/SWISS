@@ -248,7 +248,6 @@ ul {
 	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
 	animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
-
 #alertbar {
 	visibility: hidden;
     display: flex;
@@ -265,24 +264,37 @@ ul {
 	transform: translateX(-50%);
 	bottom: 0;
 }
-
 #alertbar.show {
 	visibility: visible;
 	/* Add animation: Take 0.5 seconds to fade in and out the alertbar. */
 	-webkit-animation: alertfadein 0.5s;
 	animation: alertfadein 0.5s; 
 }
-
 #alerttext {
     width: 50vh;
 }
-
 #alertbar.hide {
     visibility: visible;
     /*adds the fadeout animation */
     -webkit-animation: alertfadeout 0.5s;
     animation: alertfadeout 0.5s;
 }
+.alertbutton {
+	cursor: pointer;
+	background-color: #0F4D8D;
+	color: white;
+	margin: auto 0;
+	border: none;
+	text-align: center;
+	font-size: 18px;
+	padding: 10px;
+	border-bottom: 2px solid;
+	transition: all .1s ease-in-out;
+}
+.alertbutton:hover {
+	background-color: #0B3866;
+}
+
 
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
@@ -589,7 +601,7 @@ ul {
 	text-decoration: none;
 	font-size: 75px;
 	font-weight: 900;
-	margin: 10px 0 0 0;
+	margin: 0
 }
 .pageTitle {
 	color: white;
@@ -987,7 +999,7 @@ th {
 .hamburgerButton:hover {
 	background-color: #444;
 }
-.alertcloseButton {
+.alertclose {
 	height: 100%;
 	width: 50px;
     margin: auto 0;
@@ -997,7 +1009,7 @@ th {
 	color: white;
     border: none;
 }
-.alertcloseButton:hover {
+.alertclose:hover {
 	background-color: #444;
 }
 .changeTeam {
