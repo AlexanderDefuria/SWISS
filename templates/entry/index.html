@@ -156,7 +156,7 @@
 		</div>
 		<div id="alertbar">
 			<p id="alerttext">Default Text</p>
-            <button id="alertbutton" onClick="document.location='{% url 'entry:tutorial' %}';"></button>
+            <button id="alertbutton" onClick="document.location='{% url 'entry:tutorial' %}';">Let's Go!</button>
 			<button class="alertclose" onClick="closeAlertBar()">╳</button>
 		</div>
         <p style="display: none" id="tutorialCookie">{% get_cookie request 'tutorialCompleted' %}</p>

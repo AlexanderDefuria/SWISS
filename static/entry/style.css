@@ -283,12 +283,11 @@ ul {
 	cursor: pointer;
 	background-color: #0F4D8D;
 	color: white;
-	margin: auto 0;
+	margin: auto 10px;
 	border: none;
 	text-align: center;
 	font-size: 18px;
 	padding: 10px;
-	border-bottom: 2px solid;
 	transition: all .1s ease-in-out;
 }
 #alertbutton:hover {
