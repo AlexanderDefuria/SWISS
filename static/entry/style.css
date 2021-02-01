@@ -279,7 +279,7 @@ ul {
     -webkit-animation: alertfadeout 0.5s;
     animation: alertfadeout 0.5s;
 }
-.alertbutton {
+#alertbutton {
 	cursor: pointer;
 	background-color: #0F4D8D;
 	color: white;
@@ -291,7 +291,7 @@ ul {
 	border-bottom: 2px solid;
 	transition: all .1s ease-in-out;
 }
-.alertbutton:hover {
+#alertbutton:hover {
 	background-color: #0B3866;
 }
 

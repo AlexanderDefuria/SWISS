@@ -156,13 +156,12 @@
 		</div>
 		<div id="alertbar">
 			<p id="alerttext">Default Text</p>
-            <button class="alertbutton" onClick="document.location='{% url 'entry:tutorial' %}';"></button>
+            <button id="alertbutton" onClick="document.location='{% url 'entry:tutorial' %}';"></button>
 			<button class="alertclose" onClick="closeAlertBar()">╳</button>
 		</div>
         <p style="display: none" id="tutorialCookie">{% get_cookie request 'tutorialCompleted' %}</p>
 	</div>
 	<script>
-        var w = document.getElementbyId("alertbutton");
 		var x = document.getElementById("alertbar");
 		var y = document.getElementById("alerttext");
 		var z = document.getElementById("tutorialCookie").innerHTML;
