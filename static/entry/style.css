@@ -541,7 +541,7 @@ ul {
 	align-items: center;
 	padding: 22.5px;
 	height: 100px;
-	margin: 0px 0px 10px 10px;
+	margin: 5px;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
