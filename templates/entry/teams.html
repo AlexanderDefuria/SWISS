@@ -136,7 +136,6 @@
 			</a>
 			{% endfor %}
 			<br>
--->
 			<a href="{% url 'entry:upload' %}">
 				<div class="teamChip" style="background-color: #0F4D8D">
 					<img class="robotPhoto" src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
@@ -150,7 +149,7 @@
 			</a>
 		</figure>
 		<br>
-
+-->
 		{% get_cookie request 'filters' as filters %}
         {% if 'False' != filters %}
         <div class="bottomBar" id="bottomBar">
