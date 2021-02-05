@@ -9,11 +9,8 @@
 <link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
 <link rel="stylesheet" href="{% static 'entry/flickity.min.css' %}" media="screen">
-<link rel="stylesheet" href="{% static 'entry/flickity.css' %}" media="screen">
 <script src="{% static 'entry/script.js' %}"></script>
 <script src="{% static 'entry/lottie.js' %}"></script>
-<script src="{% static 'entry/flickity.pkgd.min.js' %}"></script>
-<script src="{% static 'entry/flickity.pkgd.js' %}"></script>
 <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
@@ -82,14 +79,27 @@
             left: 0;
             right: 0;
         }
+        /* default full-width cells */
+        .carousel-cell {
+            width: 100%;
+            height: 160px;
+            margin-right: 10px;
+            background-color: #0F4D8D;
+        }
+
+        @media screen and ( min-width: 768px ) {
+          /* half-width cells for larger devices */
+          .carousel-cell { width: 50%; }
+        }
         </style>
+        <script src="{% static 'entry/flickity.pkgd.min.js' %}"></script>
         <script>
         // Flickity
         var elem = document.querySelector('.main-carousel');
         var flkty = new Flickity( elem, {
           // options
           cellAlign: 'left',
-          contain: true
+          contain: true,
         });
 
         // Lottie
