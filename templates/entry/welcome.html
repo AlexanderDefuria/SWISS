@@ -61,12 +61,9 @@
         <div class="heroContent"> 
         </div>
         <div class="main-carousel">
+            <div class="carousel-cell"><div id="swissContainer"></div></div>
             <div class="carousel-cell"><div id="svgContainer"></div></div>
-            <div class="carousel-cell"></div>
-            <div class="carousel-cell"></div>
-            <div class="carousel-cell"></div>
-            <div class="carousel-cell"></div>
-            <div class="carousel-cell"></div>
+            <div class="carousel-cell">More Animations Here Later</div>
         </div>
         <!--
         <div id="svgContainer">
@@ -74,8 +71,11 @@
 -->
         <style>
         #svgContainer {
-            max-width: 100%;
-            max-height: 100%;
+            width: 500px;
+            margin: auto;
+        }
+        #swissContainer {
+            width: 500px;
             margin: auto;
         }
         /* default full-width cells */
@@ -133,6 +133,13 @@
           animType: 'svg',
           loop: true,
           path: '{% static 'entry/max_9.json' %}'
+        });
+        var swissContainer = document.getElementById('swissContainer');
+        var animItem = lottie.loadAnimation({
+          wrapper: swissContainer,
+          animType: 'svg',
+          loop: true,
+          path: '{% static 'entry/swiss_logo.json' %}'
         });
         </script>
     </div>
