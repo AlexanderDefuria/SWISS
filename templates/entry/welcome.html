@@ -8,9 +8,10 @@
 <title>SWISS Welcome!</title>
 <link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
+<link rel="stylesheet" href="{% static 'entry/flickity.min' %}" media="screen">
 <script src="{% static 'entry/script.js' %}"></script>
 <script src="{% static 'entry/lottie.js' %}"></script>
-<script src="{% static 'entry/swipe.js' %}"></script>
+<script src="{% static 'entry/flickity.pkgd.min' %}"></script>
 <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
@@ -58,55 +59,38 @@
 		</script>
 	</div>
     <div class="bodyContainer">
-        <div class="heroContent">
-            
+        <div class="heroContent"> 
         </div>
-        <div id="slider" class="swipe">
-            <div class="swipe-wrap">
-                <div>        
-                    <div id="svgContainer">
-                    </div>
-                </div>
-                <div>2</div>
-                <div>3</div>
-            </div>
+        <div class="main-carousel">
+            <div class="carousel-cell">1</div>
+            <div class="carousel-cell">2</div>
+            <div class="carousel-cell">3</div>
         </div>
-        <script>
-        var element = document.getElementById('mySwipe');
-            window.mySwipe = new Swipe(element, {
-              startSlide: 0,
-              auto: 3000,
-              draggable: true,
-              autoRestart: false,
-              continuous: false,
-              disableScroll: true,
-              stopPropagation: true,
-              callback: function(index, element) {},
-              transitionEnd: function(index, element) {}
-            });
-        </script>
+        <!--
+        <div id="svgContainer">
+        </div>
+-->
         <style>
         #svgContainer {
-          max-width: 100%;
-          max-height: 100%;
-        }
-        .swipe {
-            overflow: hidden;
-            visibility: hidden;
-            position: relative;
-        }
-        .swipe-wrap {
-            overflow: hidden;
-            position: relative;
-        }
-        .swipe-wrap > div {
-            float: left;
-            width: 100%;
-            position: relative;
+            max-width: 100%;
+            max-height: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
         }
         </style>
         <script>
-        /* Shapes */
+        // Flickity
+        var elem = document.querySelector('.main-carousel');
+        var flkty = new Flickity( elem, {
+          // options
+          cellAlign: 'left',
+          contain: true
+        });
+
+        // Lottie
         var svgContainer = document.getElementById('svgContainer');
         var animItem = lottie.loadAnimation({
           wrapper: svgContainer,
