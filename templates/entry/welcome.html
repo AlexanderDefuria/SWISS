@@ -68,26 +68,34 @@
             </div>
             <div class="carousel-cell">
                 <div id="svgContainer"></div>
-                <h1 class="welcomeHeader">Match Scout</h1>
+                <h1 class="welcomeHeader">Scout!</h1>
                 <p class="welcomeText">Scout robots on the field with our intuitive form.</p>
             </div>
             <div class="carousel-cell">
-                <h1 class="welcomeHeader">Glance</h1>
+                <h1 class="welcomeHeader">Strategize!</h1>
                 <p class="welcomeText">Lorem ipsum dolor sit amet.</p>
-
+                <p class="welcomeText">Animation for Glance pending.</p>
+            </div>
+            <div class="carousel-cell">
+                <h1 class="welcomeHeader">Enjoy!</h1>
+                <p class="welcomeText">em ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <a href="{% url 'entry:index' %}">Link to Home</a>
+                <a href="{% url 'entry:tutorial' %}">Link to Tutorial</a>
             </div>
         </div>
         <!--
         <div id="svgContainer">
         </div>
--->
+        -->
         <style>
         #svgContainer {
             width: 100%;
+            max-height: 60%;
             margin: auto;
         }
         #swissContainer {
             width: 100%;
+            max-height: 60%;
             margin: auto;
         }
         .welcomeHeader {
