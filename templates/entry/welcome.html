@@ -61,8 +61,16 @@
         <div class="heroContent"> 
         </div>
         <div class="main-carousel">
-            <div class="carousel-cell"><div id="swissContainer"></div></div>
-            <div class="carousel-cell"><div id="svgContainer"></div></div>
+            <div class="carousel-cell">
+                <div id="swissContainer"></div>
+                <h1 class="welcomeHeader">Welcome to Swiss!</h1>
+                <p class="welcomeText">Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="carousel-cell">
+                <div id="svgContainer"></div>
+                <h1 class="welcomeHeader">Match Scout</h1>
+                <p class="welcomeText">Lorem ipsum dolor sit amet.</p>
+            </div>
             <div class="carousel-cell">More Animations Here Later</div>
         </div>
         <!--
@@ -78,6 +86,12 @@
             width: 500px;
             margin: auto;
         }
+            .welcomeHeader {
+                margin: 10px auto;
+            }
+            .welcomeText {
+                margin: 5px auto;
+            }
         /* default full-width cells */
         .carousel-cell {
             width: 100%;
@@ -86,9 +100,8 @@
             border-radius: 5px;
             counter-increment: carousel-cell;
             display: flex;
-            background-color: #444
+            flex-direction: column;
         }
-        
         /* position dots in gallery */
         .flickity-page-dots {
           bottom: 0px;
@@ -131,7 +144,7 @@
         var animItem = lottie.loadAnimation({
           wrapper: svgContainer,
           animType: 'svg',
-          loop: true,
+          loop: false,
           path: '{% static 'entry/max_9.json' %}'
         });
         var swissContainer = document.getElementById('swissContainer');
