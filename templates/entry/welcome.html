@@ -61,9 +61,12 @@
         <div class="heroContent"> 
         </div>
         <div class="main-carousel">
-            <div class="carousel-cell">1</div>
-            <div class="carousel-cell">2</div>
-            <div class="carousel-cell">3</div>
+            <div class="carousel-cell"></div>
+            <div class="carousel-cell"></div>
+            <div class="carousel-cell"></div>
+            <div class="carousel-cell"></div>
+            <div class="carousel-cell"></div>
+            <div class="carousel-cell"></div>
         </div>
         <!--
         <div id="svgContainer">
@@ -81,25 +84,62 @@
         }
         /* default full-width cells */
         .carousel-cell {
-            width: 100%;
-            height: 160px;
-            margin-right: 10px;
-            background-color: #0F4D8D;
+          width: 66%;
+          height: 200px;
+          margin-right: 10px;
+          background: #8C8;
+          border-radius: 5px;
+          counter-increment: carousel-cell;
         }
 
-        @media screen and ( min-width: 768px ) {
-          /* half-width cells for larger devices */
-          .carousel-cell { width: 50%; }
+        /* cell number */
+        .carousel-cell:before {
+          display: block;
+          text-align: center;
+          content: counter(carousel-cell);
+          line-height: 200px;
+          font-size: 80px;
+          color: white;
         }
+        
+        /* position dots in gallery */
+        .flickity-page-dots {
+          bottom: 0px;
+        }
+        /* white circles */
+        .flickity-page-dots .dot {
+          width: 12px;
+          height: 12px;
+          opacity: 1;
+          background: transparent;
+          border: 2px solid white;
+        }
+        /* fill-in selected dot */
+        .flickity-page-dots .dot.is-selected {
+          background: white;
+        }
+
+        .flickity-enabled:focus .flickity-viewport {
+          outline: thin dotted;
+          outline: 5px auto -webkit-focus-ring-color;
+        }
+        
+
         </style>
+        
+        
+        
+        
+        
         <script src="{% static 'entry/flickity.pkgd.min.js' %}"></script>
         <script>
         // Flickity
         var elem = document.querySelector('.main-carousel');
         var flkty = new Flickity( elem, {
           // options
-          cellAlign: 'left',
-          contain: true,
+            contain: true,
+            wrapAround: true, 
+            pageDots: true,
         });
 
         // Lottie
