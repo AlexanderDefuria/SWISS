@@ -69,9 +69,13 @@
             <div class="carousel-cell">
                 <div id="svgContainer"></div>
                 <h1 class="welcomeHeader">Match Scout</h1>
-                <p class="welcomeText">Lorem ipsum dolor sit amet.</p>
+                <p class="welcomeText">Scout robots on the field with our intuitive form.</p>
             </div>
-            <div class="carousel-cell">More Animations Here Later</div>
+            <div class="carousel-cell">
+                <h1 class="welcomeHeader">Glance</h1>
+                <p class="welcomeText">Lorem ipsum dolor sit amet.</p>
+
+            </div>
         </div>
         <!--
         <div id="svgContainer">
@@ -79,19 +83,21 @@
 -->
         <style>
         #svgContainer {
-            width: 500px;
+            width: 100%;
             margin: auto;
         }
         #swissContainer {
-            width: 500px;
+            width: 100%;
             margin: auto;
         }
-            .welcomeHeader {
-                margin: 10px auto;
-            }
-            .welcomeText {
-                margin: 5px auto;
-            }
+        .welcomeHeader {
+            margin: 0 auto;
+            text-align: center;
+        }
+        .welcomeText {
+            margin: 5px auto;
+            text-align: center;
+        }
         /* default full-width cells */
         .carousel-cell {
             width: 100%;
@@ -104,7 +110,7 @@
         }
         /* position dots in gallery */
         .flickity-page-dots {
-          bottom: 0px;
+          bottom: -30px;
         }
         /* white circles */
         .flickity-page-dots .dot {
@@ -118,17 +124,31 @@
         .flickity-page-dots .dot.is-selected {
           background: white;
         }
-
-        .flickity-enabled:focus .flickity-viewport {
-          outline: thin dotted;
-          outline: 5px auto -webkit-focus-ring-color;
+        /* smaller, dark, rounded square */
+        .flickity-prev-next-button {
+          width: 30px;
+          height: 30px;
+          border-radius: 5px;
+          background: #222;
+        }
+        .flickity-prev-next-button:hover {
+          background: #0F4D8D;
+        }
+        /* arrow color */
+        .flickity-prev-next-button .arrow {
+          fill: white;
+        }
+        .flickity-prev-next-button.no-svg {
+          color: white;
+        }
+        /* position outside */
+        .flickity-prev-next-button.previous {
+          left: -10px;
+        }
+        .flickity-prev-next-button.next {
+          right: -10px;
         }
         </style>
-        
-        
-        
-        
-        
         <script src="{% static 'entry/flickity.pkgd.min.js' %}"></script>
         <script>
         // Flickity
@@ -144,14 +164,14 @@
         var animItem = lottie.loadAnimation({
           wrapper: svgContainer,
           animType: 'svg',
-          loop: false,
+          loop: true,
           path: '{% static 'entry/max_9.json' %}'
         });
         var swissContainer = document.getElementById('swissContainer');
         var animItem = lottie.loadAnimation({
           wrapper: swissContainer,
           animType: 'svg',
-          loop: true,
+          loop: false,
           path: '{% static 'entry/swiss_logo.json' %}'
         });
         </script>
