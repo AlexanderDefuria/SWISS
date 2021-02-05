@@ -61,7 +61,7 @@
         <div class="heroContent"> 
         </div>
         <div class="main-carousel">
-            <div class="carousel-cell"></div>
+            <div class="carousel-cell"><div id="svgContainer"></div></div>
             <div class="carousel-cell"></div>
             <div class="carousel-cell"></div>
             <div class="carousel-cell"></div>
@@ -75,21 +75,17 @@
         <style>
         #svgContainer {
             max-width: 100%;
-            max-height: 100%;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            max-height: 70vh;
+            margin: auto;
         }
         /* default full-width cells */
         .carousel-cell {
           width: 66%;
-          height: 200px;
+          height: 80vh;
           margin-right: 10px;
-          background: #8C8;
           border-radius: 5px;
           counter-increment: carousel-cell;
+            display: flex;
         }
 
         /* cell number */
@@ -124,6 +120,23 @@
           outline: 5px auto -webkit-focus-ring-color;
         }
         
+        /* no circle */
+        .flickity-button {
+          background: transparent;
+        }
+        /* big previous & next buttons */
+        .flickity-prev-next-button {
+          width: 100px;
+          height: 100px;
+        }
+        /* icon color */
+        .flickity-button-icon {
+          fill: white;
+        }
+        /* hide disabled button */
+        .flickity-button:disabled {
+          display: none;
+        }
 
         </style>
         
@@ -138,7 +151,6 @@
         var flkty = new Flickity( elem, {
           // options
             contain: true,
-            wrapAround: true, 
             pageDots: true,
         });
 
