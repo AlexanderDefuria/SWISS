@@ -29,10 +29,11 @@ function collapseBottomBar() {
 
 
 // Function that closes the alertbar
+
 function closeAlertBar() {
     setTimeout(function () {
         x.className = "hide";
-        setTimeout(function(){ x.className = x.className.replace("hide", ""); }, 500);
+        setTimeout(function(){ x.className = x.className.replace("hide", ""); }, 450);
     }) 
 }
 
@@ -60,6 +61,8 @@ function tableFilter(field) {
   	}
 }
 
+// Function that filters teamLink elements on Teams page by either team number or team name
+
 function teamFilter(field) {
 	let filter = document.getElementById(field).value.toString();
 	let all = document.getElementsByClassName('teamLink')
@@ -80,6 +83,26 @@ function teamFilter(field) {
 
 		}
 	}
+	document.getElementsByClassName("teamChip")
+}
+
+
+// Function that filters schedule elements on Match Schedule page by match number
+
+
+function scheduleFilter(field) {
+	let filter = document.getElementById(field).value.toString();
+	let all = document.getElementsByClassName('scheduleTile')
+	if (field === "matchNumber") {
+		for (let i = 0; i < all.length; i++) {
+			if (all[i].id.toString().indexOf(filter) > -1)
+				all[i].style.display = "";
+			else
+				all[i].style.display = "none";
+
+		}
+	} 
+    
 	document.getElementsByClassName("teamChip")
 }
 

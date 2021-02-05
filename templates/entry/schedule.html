@@ -154,6 +154,26 @@
 			<button class="bottomBarButton" id="bottomBarButton" onclick="expandBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
 		</div>
 -->
+		{% get_cookie request 'filters' as filters %}
+        {% if 'False' != filters %}
+        <div class="bottomBar" id="bottomBar">
+			<div id="bottomBarContent">
+				<div class="filterBox" >
+					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
+					<input class="filterChip" type="text" id="matchNumber" onkeyup="scheduleFilter('matchNumber')" placeholder="Match Number">
+				</div>
+				<br>
+				{% if user.is_staff %}
+				<div class="filterBox" onClick="location.href ='{% url 'entry:admin_redirect' 'schedule' %}';" style="cursor: pointer">
+					<img src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" style="height: 50px;" alt="Edit">
+					<h3>Edit Teams</h3>
+				</div>
+				{% endif %}
+			</div>
+			<button class="bottomBarButton" id="bottomBarButton" onclick="expandBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
+		</div>
+        {% endif %}
+        
 	</div>
 
 </body>
