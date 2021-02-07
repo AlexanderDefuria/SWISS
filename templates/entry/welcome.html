@@ -82,6 +82,9 @@
                 max-height: 60%;
                 margin: auto;
             }
+            .welcomeMoreButtons {
+                margin: 0 auto;
+            }
             .welcomeMoreButtons button {
                 cursor: pointer;
                 background-color: #0F4D8D;
@@ -167,15 +170,15 @@
 
         // Lottie
         var animScout = document.getElementById('animScout');
-        var animItem = lottie.animScout({
-          wrapper: svgContainer,
+        var animItem = lottie.loadAnimation({
+          wrapper: animScout,
           animType: 'svg',
           loop: true,
           path: '{% static 'entry/max_9_v2.json' %}'
         });
         var animLogo = document.getElementById('animLogo');
-        var animItem = lottie.animLogo({
-          wrapper: swissContainer,
+        var animItem = lottie.loadAnimation({
+          wrapper: animLogo,
           animType: 'svg',
           loop: false,
           path: '{% static 'entry/swiss_logo.json' %}'
