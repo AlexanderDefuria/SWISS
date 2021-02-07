@@ -8,6 +8,7 @@
 <title>SWISS Welcome!</title>
 <link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/formstyle.css' %}">
 <link rel="stylesheet" href="{% static 'entry/flickity.min.css' %}" media="screen">
 <script src="{% static 'entry/script.js' %}"></script>
 <script src="{% static 'entry/lottie.js' %}"></script>
@@ -21,66 +22,39 @@
 
 <body>
 	<div class="topbar">
-		<div class="hamburgerButton" onClick="openNav()">
-			<button class="hamburgerButton" onClick="openNav()">☰</button>
-		</div>
 		<div class="swissLogo" id="swissLogo">
 			<a href="{% url 'entry:index' %}">
 			<img src="{{ MEDIA_URL }}{% static 'SwissIcon2x.png' %}" alt="SWISS Logo">
 			</a>
 		</div>
 	</div>
-	<div id="sideNav" class="sidebar">
-		<div>
-			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-			<a href="{% url 'entry:index' %}">Home</a>
-			<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
-			<a href="{% url 'entry:glance_landing' %}">Glance</a>
-			<a href="{% url 'entry:teams' %}">Teams</a>
-			<a href="{% url 'entry:match_data' %}">Data</a>
-			<a href="{% url 'entry:visualize' %}">Visualize</a>
-			<a href="{% url 'entry:settings' %}">Settings</a>
-			<a href="{% url 'entry:about' %}">About</a>
-		</div>
-		<div class="greeting">
-			<p id="timeOfDay"></p>
-			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
-		</div>
-		<script>
-			var hour = new Date().getHours();
-			var greeting; 
-			if (hour < 17) {
-				greeting = "Good day,";
-			} else {
-				greeting = "Good evening,";
-			}
-			document.getElementById("timeOfDay").innerHTML = greeting;
-		</script>
-	</div>
     <div class="bodyContainer">
         <div class="heroContent"> 
         </div>
         <div class="main-carousel">
             <div class="carousel-cell">
-                <div id="swissContainer"></div>
+                <div id="animLogo"></div>
                 <h1 class="welcomeHeader">Welcome to Swiss!</h1>
-                <p class="welcomeText">Lorem ipsum dolor sit amet.</p>
+                <p class="welcomeText">A platform for scouting and strategizing at FIRST Robotics Competition Events</p>
             </div>
             <div class="carousel-cell">
-                <div id="svgContainer"></div>
+                <div id="animScout"></div>
                 <h1 class="welcomeHeader">Scout!</h1>
-                <p class="welcomeText">Scout robots on the field with our intuitive form.</p>
+                <p class="welcomeText">Scout robots on the field with our intuitive forms</p>
             </div>
             <div class="carousel-cell">
+                <div id="animStrat"></div>
                 <h1 class="welcomeHeader">Strategize!</h1>
-                <p class="welcomeText">Lorem ipsum dolor sit amet.</p>
-                <p class="welcomeText">Animation for Glance pending.</p>
+                <p class="welcomeText">Get a glance at any team's performance or analyze further with our visualization tools</p>
             </div>
             <div class="carousel-cell">
+                <div id="animFinished"></div>
                 <h1 class="welcomeHeader">Enjoy!</h1>
-                <p class="welcomeText">em ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <a href="{% url 'entry:index' %}">Link to Home</a>
-                <a href="{% url 'entry:tutorial' %}">Link to Tutorial</a>
+                <p class="welcomeText">Built by FRC Teams MaxTech 4343 and NextGen 914</p>
+                <div class="welcomeMoreButtons">
+                    <button onClick="document.location='{% url 'entry:index' %}';">Get Started</button>
+                    <button onClick="document.location='{% url 'entry:tutorial' %}';">More Docs</button>
+                </div>
             </div>
         </div>
         <!--
@@ -88,74 +62,98 @@
         </div>
         -->
         <style>
-        #svgContainer {
-            width: 100%;
-            max-height: 60%;
-            margin: auto;
-        }
-        #swissContainer {
-            width: 100%;
-            max-height: 60%;
-            margin: auto;
-        }
-        .welcomeHeader {
-            margin: 0 auto;
-            text-align: center;
-        }
-        .welcomeText {
-            margin: 5px auto;
-            text-align: center;
-        }
-        /* default full-width cells */
-        .carousel-cell {
-            width: 100%;
-            height: 80vh;
-            margin-right: 10px;
-            border-radius: 5px;
-            counter-increment: carousel-cell;
-            display: flex;
-            flex-direction: column;
-        }
-        /* position dots in gallery */
-        .flickity-page-dots {
-          bottom: -30px;
-        }
-        /* white circles */
-        .flickity-page-dots .dot {
-          width: 12px;
-          height: 12px;
-          opacity: 1;
-          background: transparent;
-          border: 2px solid white;
-        }
-        /* fill-in selected dot */
-        .flickity-page-dots .dot.is-selected {
-          background: white;
-        }
-        /* smaller, dark, rounded square */
-        .flickity-prev-next-button {
-          width: 30px;
-          height: 30px;
-          border-radius: 5px;
-          background: #222;
-        }
-        .flickity-prev-next-button:hover {
-          background: #0F4D8D;
-        }
-        /* arrow color */
-        .flickity-prev-next-button .arrow {
-          fill: white;
-        }
-        .flickity-prev-next-button.no-svg {
-          color: white;
-        }
-        /* position outside */
-        .flickity-prev-next-button.previous {
-          left: -10px;
-        }
-        .flickity-prev-next-button.next {
-          right: -10px;
-        }
+            #animScout {
+                width: 100%;
+                max-height: 60%;
+                margin: auto;
+            }
+            #animLogo {
+                width: 100%;
+                max-height: 60%;
+                margin: auto;
+            }
+            #animStrat {
+                width: 100%;
+                max-height: 60%;
+                margin: auto;
+            }
+            #animFinished {
+                width: 100%;
+                max-height: 60%;
+                margin: auto;
+            }
+            .welcomeMoreButtons button {
+                cursor: pointer;
+                background-color: #0F4D8D;
+                color: white;
+                margin: auto 10px;
+                border: none;
+                text-align: center;
+                font-size: 18px;
+                padding: 10px;
+                transition: all .1s ease-in-out;
+            }
+            .welcomeMoreButtons button:hover {
+            	background-color: #0B3866;
+            }
+            .welcomeHeader {
+                margin: 0 auto;
+                text-align: center;
+            }
+            .welcomeText {
+                margin: 5px auto;
+                text-align: center;
+            }
+            /* default full-width cells */
+            .carousel-cell {
+                width: 100%;
+                height: 80vh;
+                margin-right: 10px;
+                border-radius: 5px;
+                counter-increment: carousel-cell;
+                display: flex;
+                flex-direction: column;
+            }
+            /* position dots in gallery */
+            .flickity-page-dots {
+              bottom: -30px;
+            }
+            /* white circles */
+            .flickity-page-dots .dot {
+              width: 12px;
+              height: 12px;
+              opacity: 1;
+              background: transparent;
+              border: 2px solid white;
+            }
+            /* fill-in selected dot */
+            .flickity-page-dots .dot.is-selected {
+              background: white;
+            }
+            /* smaller, dark, rounded square */
+            .flickity-prev-next-button {
+              width: 30px;
+              height: 30px;
+              border-radius: 5px;
+              background: #222;
+            }
+            .flickity-prev-next-button:hover {
+              background: #0F4D8D;
+            }
+            /* arrow color */
+            .flickity-prev-next-button .arrow {
+              fill: white;
+            }
+            .flickity-prev-next-button.no-svg {
+              color: white;
+            }
+            /* position outside */
+            .flickity-prev-next-button.previous {
+              left: -10px;
+            }
+            .flickity-prev-next-button.next {
+              right: -10px;
+            }
         </style>
         <script src="{% static 'entry/flickity.pkgd.min.js' %}"></script>
         <script>
@@ -173,7 +171,7 @@
           wrapper: svgContainer,
           animType: 'svg',
           loop: true,
-          path: '{% static 'entry/max_9.json' %}'
+          path: '{% static 'entry/max_9_v2.json' %}'
         });
         var swissContainer = document.getElementById('swissContainer');
         var animItem = lottie.loadAnimation({
