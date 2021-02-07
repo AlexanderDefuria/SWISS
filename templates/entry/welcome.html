@@ -52,8 +52,16 @@
                 <h1 class="welcomeHeader">Enjoy!</h1>
                 <p class="welcomeText">Built by FRC Teams MaxTech 4343 and NextGen 914</p>
                 <div class="welcomeMoreButtons">
-                    <button onClick="document.location='{% url 'entry:index' %}';">Get Started</button>
-                    <button onClick="document.location='{% url 'entry:tutorial' %}';">More Docs</button>
+                    <button onClick="setCookie(tutorialCompleted, True, 30); document.location='{% url 'entry:index' %}';">Get Started</button>
+                    <button onClick="setCookie(tutorialCompleted, True, 30); document.location='{% url 'entry:tutorial' %}';">More Docs</button>
+                    <script>
+                        function setCookie(cname, cvalue, exdays) {
+                          var d = new Date();
+                          d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                          var expires = "expires="+ d.toUTCString();
+                          document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                        }
+                    </script>
                 </div>
             </div>
         </div>
