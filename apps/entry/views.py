@@ -551,7 +551,6 @@ class Tutorial(LoginRequiredMixin, generic.TemplateView):
     template_name = 'entry/tutorial.html'
 
 class Welcome(LoginRequiredMixin, generic.TemplateView):
-    login_url = 'entry:login'
     template_name = 'entry/welcome.html'
 
 
