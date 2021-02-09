@@ -95,11 +95,11 @@
         </div>
         
         <div class="carousel">
-            <div class="carousel-cell"></div>
-            <div class="carousel-cell"></div>
-            <div class="carousel-cell"></div>
-            <div class="carousel-cell"></div>
-            <div class="carousel-cell"></div>
+            {% for match in schedule_list %}
+            <div class="carousel-cell">
+                <h3>Q-{{ match.match_number }}</h3>
+            </div>
+            {% endfor %}            
         </div>        
         
         <script>
@@ -110,27 +110,12 @@
         </script>
         
         <style>
-            .carousel {
-              background: #FAFAFA;
-            }
-
             .carousel-cell {
               width: 66%;
               height: 200px;
               margin-right: 10px;
               background: #8C8;
               border-radius: 5px;
-              counter-increment: carousel-cell;
-            }
-
-            /* cell number */
-            .carousel-cell:before {
-              display: block;
-              text-align: center;
-              content: counter(carousel-cell);
-              line-height: 200px;
-              font-size: 80px;
-              color: white;
             }
         </style>
         
