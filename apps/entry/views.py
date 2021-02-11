@@ -546,6 +546,14 @@ class About(LoginRequiredMixin, generic.TemplateView):
     template_name = 'entry/about.html'
 
 
+class Tutorial(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'entry:login'
+    template_name = 'entry/tutorial.html'
+
+class Welcome(LoginRequiredMixin, generic.TemplateView):
+    template_name = 'entry/welcome.html'
+
+
 class Glance(LoginRequiredMixin, generic.DetailView):
     login_url = 'entry:login'
     model = Team
@@ -611,7 +619,7 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
         response.set_cookie('images', request.POST.get('images', ''))
         response.set_cookie('filters', request.POST.get('filters', ''))
         response.set_cookie('districtTeams', request.POST.get('districtTeams', ''))
-        response.set_cookie('tutorialCompleted', request.POST.get('districtTeams', ''))
+        response.set_cookie('tutorialCompleted', request.POST.get('tutorialCompleted', ''))
 
 
         return response

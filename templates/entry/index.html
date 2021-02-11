@@ -4,19 +4,18 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>SWISS Home</title>
-<link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
-<script src="{% static 'entry/script.js' %}"></script>
-<link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
-<link rel="manifest" type="manifest" href="{% static 'entry/site.webmanifest' %}">
-<meta name="theme-color" content="0F4D8D">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta charset="utf-8">
+	<title>SWISS Home</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
+	<script src="{% static 'entry/script.js' %}"></script>
+	<link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
+	<link rel="manifest" type="manifest" href="{% static 'entry/site.webmanifest' %}">
+	<meta name="theme-color" content="0F4D8D">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
-
 <body>
 	<div class="topbar">
 		<div class="hamburgerButton" onClick="openNav()">
@@ -24,7 +23,7 @@
 		</div>
 		<div class="swissLogo" id="swissLogo">
 			<a href="{% url 'entry:index' %}">
-			<img src="{{ MEDIA_URL }}{% static 'SwissIcon2x.png' %}" alt="SWISS Logo">
+				<img src="{{ MEDIA_URL }}{% static 'SwissIcon2x.png' %}" alt="SWISS Logo">
 			</a>
 		</div>
 	</div>
@@ -42,11 +41,11 @@
 		</div>
 		<div class="greeting">
 			<p id="timeOfDay"></p>
-			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
+			<p style="padding-top: 0px">{{ user.get_username }}!</p>
 		</div>
 		<script>
 			var hour = new Date().getHours();
-			var greeting; 
+			var greeting;
 			if (hour < 17) {
 				greeting = "Good day,";
 			} else {
@@ -55,47 +54,58 @@
 			document.getElementById("timeOfDay").innerHTML = greeting;
 		</script>
 	</div>
-	
+
 	<div class="bodyContainer">
-		<div class="tileContainer">
-			<a href="{% url 'entry:match_scout_landing' %}" id="tileMatch">
+    	<div id="myModal" class="modal">
+            <div class="modal-content">
+                <h1 id="modal-header" style="margin-left: 10px;">Modal Popup Header</h1>
+                <p id="modal-desc">Lorem ipsum dolor sit amet.</p>
+                <div style="display: flex; justify-content: center">
+                    <button class="modalButton" id="downloadCancel">No</button>
+                    <button class="modalButton" id="downloadConfirm">Yes</button>
+                </div>
+            </div>
+        </div>
+		<div class="tileContainer" id="tileContainer">
+			<a href="{% url 'entry:match_scout_landing' %}" id="tileMatch" title="Match Scouting">
 				<div class="bigBox">
 					<img src="{{ MEDIA_URL }}{% static 'ScoutIcon.png' %}" alt="scout icon">
 				</div>
 			</a>
-			<a href="{% url 'entry:pit_scout_landing' %}" id="tilePit">
+			<a href="{% url 'entry:pit_scout_landing' %}" id="tilePit" title="Pit Scouting">
 				<div class="bigBox">
 					<img src="{{ MEDIA_URL }}{% static 'PitScoutIcon.png' %}" alt="scout icon">
 				</div>
-			</a>	
-			<a href="{% url 'entry:glance_landing' %}" id="tileGlance">
-				<div class="wideBox CeltXColor" id="tileBackground" style="background-image: url({{ MEDIA_URL }}{% static 'GlanceBackground2000w.png' %})">
+			</a>
+			<a href="{% url 'entry:glance_landing' %}" id="tileGlance" title="Glance View">
+				<div class="wideBox CeltXColor" id="tileBackground"
+					style="background-image: url({{ MEDIA_URL }}{% static 'GlanceBackground2000w.png' %})">
 					<img src="{{ MEDIA_URL }}{% static 'StrategyIcon.png' %}" alt="Strategy icon">
 				</div>
 			</a>
-			<a href="{% url 'entry:teams' %}" id="tileTeams">
+			<a href="{% url 'entry:teams' %}" id="tileTeams" title="Team Lookup">
 				<div class="wideBox OttawaTrashColor">
 					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" alt="Search Icon">
 					<p class="homeText">Teams</p>
 				</div>
 			</a>
-			<a href="{% url 'entry:match_data' %}" id="tileData">
+			<a href="{% url 'entry:match_data' %}" id="tileData" title="Data View">
 				<div class="bigBox">
 					<img src="{{ MEDIA_URL }}{% static 'DataIcon.png' %}" alt="Data Icon">
 				</div>
 			</a>
-			<a href="{% url 'entry:visualize' %}" id="tileVisualize">
+			<a href="{% url 'entry:visualize' %}" id="tileVisualize" title="Visualization">
 				<div class="wideBox SimboticsColor">
 					<img src="{{ MEDIA_URL }}{% static 'StatsIcon.png' %}" alt="Visualize Icon">
 					<p class="homeText">Visualize</p>
 				</div>
 			</a>
-			<a href="{% url 'entry:schedule' %}" id="tileSchedule">
+			<a href="{% url 'entry:schedule' %}" id="tileSchedule" title="Schedule View">
 				<div class="smallBox">
 					<img src="{{ MEDIA_URL }}{% static 'ScheduleIcon.png' %}" alt="Schedule Icon">
 				</div>
 			</a>
-			<a href="{% url 'entry:download' %}" id="tileDownload">
+			<a id="tileDownload" title="Download CSV">
 				<div class="smallBox" style="background-color: #AAA300">
 					<img src="{{ MEDIA_URL }}{% static 'DownloadIcon.png' %}" alt="Download Icon">
 				</div>
@@ -104,37 +114,108 @@
 				<p class="specialBoxHeader">Current Event Is:</p>
 				<h3 style="margin: 0">{% get_current_event %}</h3>
 			</div>
-			<a href="{% url 'entry:upload' %}" id="tileUpload">
+			<a href="{% url 'entry:upload' %}" id="tileUpload" title="Upload an Image">
 				<div class="smallBox">
 					<img src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
 				</div>
 			</a>
-            {% if user.is_staff %}
-                <a href="{% url 'entry:admin_redirect' %}" id="tileSettings">
-				    <div class="smallBox">
-				    	<img src="{{ MEDIA_URL }}{% static 'AdminIcon.png' %}" alt="Settings Icon">
-				    </div>
-			    </a>
-            {% endif %}
-            <a href="{% url 'entry:settings' %}" id="tileAdmin">
-                <div class="smallBox">
-                    <img src="{{ MEDIA_URL }}{% static 'SettingsIcon.png' %}" alt="Admin Icon">
-                </div>
-            </a>
-			<a href="{% url 'entry:logout' %}" id="tileLogout">
+			{% if user.is_staff %}
+			<a href="{% url 'entry:admin_redirect' %}" id="tileAdmin" title="Administration Panel">
 				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'log_out_icon.png' %}" alt="Logout Icon">
+					<img src="{{ MEDIA_URL }}{% static 'AdminIcon.png' %}" alt="Admin Icon">
 				</div>
 			</a>
-            <div class="specialBox" id="tileActive">
+			<a href="https://update.swiss-scouting.ca/" id="tileUpdate" title="Update Swiss">
+				<div class="smallBox">
+					<img src="{{ MEDIA_URL }}{% static 'UpdateIcon.png' %}" alt="Admin Icon">
+				</div>
+			</a>
+			{% endif %}
+			<a href="{% url 'entry:settings' %}" id="tileSettings" title="Settings">
+				<div class="smallBox">
+					<img src="{{ MEDIA_URL }}{% static 'SettingsIcon.png' %}" alt="Settings Icon">
+				</div>
+			</a>
+			<a href="https://www.thebluealliance.com/" id="tileTBA" target="_blank" title="Go to The Blue Alliance">
+				<div class="smallBox">
+					<img src="{{ MEDIA_URL }}{% static 'TheBlueAlliance.png' %}" alt="TBA Icon">
+				</div>
+			</a>
+			<div class="specialBox" id="tileActive">
 				<p class="specialBoxHeader">Active Users:</p>
 				<h2 style="margin: 0">{% get_all_logged_in_users %}</h2>
 			</div>
 		</div>
-	<div id="snackbar">
-		<p id="snacktext">Default Text</p>
+		<div id="snackbar">
+			<p id="snacktext">Default Text</p>
+		</div>
+		<div id="alertbar">
+			<p id="alerttext">Default Text</p>
+            <button id="alertbutton" onClick="document.location='{% url 'entry:welcome' %}';">Let's Go!</button>
+			<button class="alertclose" onClick="closeAlertBar()">╳</button>
+		</div>
+        <p style="display: none" id="tutorialCookie">{% get_cookie request 'tutorialCompleted' %}</p>
 	</div>
-	</div>
+	<script>
+		var x = document.getElementById("alertbar");
+		var y = document.getElementById("alerttext");
+		var z = document.getElementById("tutorialCookie").innerHTML;
 
+		document.addEventListener('DOMContentLoaded', function () {
+			setTimeout(function () {
+				if (z == "False") {
+					x.className = "show";
+					y.innerHTML = "Welcome to SWISS! Do you want a walkthrough?";
+                    console.log("Tutorial Prompt On");
+				} else if (z == "True") {
+					console.log("Tutorials Off")
+				} else {
+					x.className = "show";
+					y.innerHTML = "Welcome to SWISS! Do you want a walkthrough?";
+					console.log("No Tutorial Prompt Cookie set");
+				}
+			}, 500), false
+		})
+        
+        var modal = document.getElementById("myModal");
+        var opn = document.getElementById("tileDownload");
+        var bad = document.getElementById("downloadCancel");
+        var good = document.getElementById("downloadConfirm");
+        var main = document.getElementById("tileContainer");
+        var modhead = document.getElementById("modal-header");
+        var moddesc = document.getElementById("modal-desc");
+
+        // When the user clicks on the button, open the modal
+        opn.onclick = function() {
+            modal.style.visibility = "visible";
+            main.style.filter = "blur(2px)";
+            window.navigator.vibrate(40);
+            modhead.innerHTML = "Download Match Data?";
+            moddesc.innerHTML = "All match data for current event will be downloaded in a CSV format.";
+        }
+
+        // When the user clicks on "no", close the modal
+        bad.onclick = function() {
+            modal.style.visibility = "hidden";
+            main.style.filter="blur(0)";
+            window.navigator.vibrate(40);
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.visibility = "hidden";
+            main.style.filter = "blur(0)";
+            window.navigator.vibrate(40);
+          }
+        }
+
+        good.onclick = function() {
+        // When the user clicks "ok", href to download link 
+            document.location='{% url 'entry:download' %}';
+        }
+
+	</script>
 </body>
+
 </html>

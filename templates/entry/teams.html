@@ -3,27 +3,28 @@
 
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>SWISS Teams</title>
-<link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
-<script src="{% static 'entry/script.js' %}"></script>
-<link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
-<meta name="theme-color" content="0F4D8D">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta charset="utf-8">
+	<title>SWISS Teams</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
+	<script src="{% static 'entry/script.js' %}"></script>
+	<link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
+	<meta name="theme-color" content="0F4D8D">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
 
 <body>
-		<div class="topbar">
+	<div class="topbar">
 		<div class="hamburgerButton" onClick="openNav()">
 			<button class="hamburgerButton" onClick="openNav()">☰</button>
 		</div>
 		<div class="swissLogo" id="swissLogo">
 			<a href="{% url 'entry:index' %}">
-			<img src="{{ MEDIA_URL }}{% static 'SwissIcon2x.png' %}" alt="SWISS Logo">
+				<img src="{{ MEDIA_URL }}{% static 'SwissIcon2x.png' %}" alt="SWISS Logo">
 			</a>
 		</div>
 	</div>
@@ -41,11 +42,11 @@
 		</div>
 		<div class="greeting">
 			<p id="timeOfDay"></p>
-			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
+			<p style="padding-top: 0px">{{ user.get_username }}!</p>
 		</div>
 		<script>
 			var hour = new Date().getHours();
-			var greeting; 
+			var greeting;
 			if (hour < 17) {
 				greeting = "Good day,";
 			} else {
@@ -54,8 +55,8 @@
 			document.getElementById("timeOfDay").innerHTML = greeting;
 		</script>
 	</div>
-	
-	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'TeamsBackground.png' %})">
+	<div class="bodyContainer bodyBackground" id="bodyContainer"
+		style="background-image: url({{ MEDIA_URL }}{% static 'TeamsBackground.png' %})">
 		<div class="heroContent">
 			<p class="pageTitle">Teams</p>
 		</div>
@@ -70,7 +71,7 @@
             {% endif %}
 
             {% for team in teamList %}
-                <a href='{% url 'entry:glance' team.id %}' class="teamLink" id="{{ team.number }}" name="{{ team.name }}">
+                <a href='{% url 'entry:glance' team.id %}' class="teamLink" id="{{ team.number }}" name="{{ team.name }}" title="{{ team.name }} {{ team.number }}">
                     {% get_cookie request 'images' as images %}
                     {% if 'False' != images %}
                         <div class="teamChip" style="overflow: hidden;">
@@ -87,6 +88,8 @@
 			</a>
             {% endfor %}
             <br>
+            {% get_cookie request 'images' as images %}
+            {% if 'False' != images %}
             <a href="{% url 'entry:upload' %}">
                 <div class="teamChip" style="background-color: #0F4D8D">
                     <img class="robotPhoto" src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
@@ -94,22 +97,71 @@
                     <div class="teamnamePill"><p>Upload Team Image</p></div>
                 </div>
             </a>
+            {% else %}
+            {% endif %}
         </figure>
         <br>
+<!--
+			{% if districtTeams == 'True' %}
+			{% get_all_teams as teamList %}
+			{% else %}
+			{% get_all_present_teams as teamList %}
+			{% endif %}
 
-
-        {% get_cookie request 'filters' as filters %}
+			{% for team in teamList %}
+			<a href='{% url 'entry:glance' team.id %}' class="teamLink" id="{{ team.number }}" name="{{ team.name }}"
+				title="{{ team.name }} {{ team.number }}">
+				{% get_cookie request 'images' as images %}
+				{% if 'False' != images %}
+				<div class="teamChip" style="overflow: hidden;">
+					<img class="robotPhoto" src="{{ MEDIA_URL }}{{ team.first_image }}" loading="lazy" height="260px"
+						alt="robot photo">
+					<div class="teamnumberPill" style="background-color: {{ team.colour }}">
+						<p>{{ team.number }}</p>
+					</div>
+					<div class="teamnamePill">
+						<p>{{ team.name }}</p>
+					</div>
+				</div>
+				{% else %}
+				<div class="teamChipNoPic" style="height: auto">
+					<div class="teamnumberPill" style="background-color: {{ team.colour }}">
+						<p>{{ team.number }}</p>
+					</div>
+					<div class="teamnamePill">
+						<p>{{ team.name }}</p>
+					</div>
+				</div>
+				{% endif %}
+			</a>
+			{% endfor %}
+			<br>
+			<a href="{% url 'entry:upload' %}">
+				<div class="teamChip" style="background-color: #0F4D8D">
+					<img class="robotPhoto" src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
+					<div class="teamnumberPill" style="background-color: transparent; border-color: transparent">
+						<p>{{ team.number }}</p>
+					</div>
+					<div class="teamnamePill">
+						<p>Upload Team Image</p>
+					</div>
+				</div>
+			</a>
+		</figure>
+		<br>
+-->
+		{% get_cookie request 'filters' as filters %}
         {% if 'False' != filters %}
         <div class="bottomBar" id="bottomBar">
 			<div id="bottomBarContent">
 				<div class="filterBox" >
 					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
-					<input class="filterChip" type="text" id="teamNumber" onkeyup="teamFilter('teamNumber')" placeholder="Filter Team Number">
+					<input class="filterChip" type="text" id="teamNumber" onkeyup="teamFilter('teamNumber')" placeholder="Team Number">
 				</div>
 				<br>
 				<div class="filterBox" >
 					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
-					<input class="filterChip" type="text" id="teamName" onkeyup="teamFilter('teamName')" placeholder="Filter Team Name">
+					<input class="filterChip" type="text" id="teamName" onkeyup="teamFilter('teamName')" placeholder="Team Name">
 				</div>
 				{% if user.is_staff %}
 				<div class="filterBox" onClick="location.href ='{% url 'entry:admin_redirect' 'team' %}';" style="cursor: pointer">
@@ -123,4 +175,5 @@
         {% endif %}
 	</div>
 </body>
+
 </html>

@@ -113,12 +113,27 @@
 		<div id="snackbar">
 			<p id="snacktext">Default Text</p>
 		</div>
+		<div id="alertbar" style="border-bottom: 2px solid #B4150B;">
+			<p id="alerttext">Default Text</p>
+			<button class="alertclose" onClick="closeAlertBar()">╳</button>
+		</div>
 	</div>	
-<style>
-/* All of this will be moved to style.css once I get it to work the way I want */	
-	
-/* The snackbar - position it at the bottom and in the middle of the screen */
+<script>
+var x = document.getElementById("alertbar");
+var y = document.getElementById("alerttext");
+var a = window.matchMedia("(max-width: 1024px)")
+warning(a) // Call listener function at run time
+a.addListener(warning) // Attach listener function on state changes    
+function warning(a) {
+    if (a.matches) { // If media query matches
+			setTimeout(function () {
+					x.className = "show";
+					y.innerHTML = "WARNING: Page not designed for mobile.";
+            }, 500), false
 
-</style>
+    } else { 
+    }
+}
+</script>
 </body>
 </html>

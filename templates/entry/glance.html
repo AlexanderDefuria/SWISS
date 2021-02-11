@@ -67,16 +67,16 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeTeamDrawer()">×</a>
         <div class="pillSelect" >
 			<div class="pillContainer" >
-                {% get_all_present_teams as team_list %}
-				{% for team in team_list %}
-					<ul>
+                <ul>
+                    {% get_all_present_teams as team_list %}
+                    {% for team in team_list %}
 						<li>
 							<div onclick="window.location='{% url 'entry:glance' team.id %}'"  class="teamnumberPill" style="background-color: {{team.colour}}; cursor: pointer;">
 								<p>{{ team.number }}</p>
 							</div>
 						</li>
-					</ul>
-				{% endfor %}
+                    {% endfor %}
+                </ul>
 			</div>
 		</div>
 	</div>
@@ -85,7 +85,7 @@
 		<div class="heroContent" id="heroSpace">
 			<div class="stickyChip">
 				<button class="changeTeam" id="changeTeam" onClick="openTeamDrawer()">
-					<div class="teamnumberPill" style="background-color: {{ team.colour }}">
+					<div class="teamnumberPill" style="background-color: {{ team.colour }}; min-width: 72px;">
 							<p>{{ team.number }}</p>
 					</div>
 					<div class="teamnamePill">
@@ -99,22 +99,12 @@
 			<div class="infoBox infoReg" id="teamInfoTile">
 				<div class="infoHeader">
 					<div class="teamnumberPill" style="background-color: {{team.colour}}"><p>{{ team.number }}</p></div>
-					<h1>{{ team.name }}</h1>
+					<h1 id="officialTeamName">{{ team.name }}</h1>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Shooter</p></div>
-					<div class="infoLColumn"><p> {% get_info user team 'shooter_style' 'average' 'pits' %}</p></div>
+					<div class="infoLColumn"><p>{% get_info user team 'shooter_style' 'average' 'pits' %}</p></div>
 				</div>
-				<!-- !!!THIS WILL BE MOVED TO ITS OWN BOX!!!
-				<div class="infoRow">
-					<div class="infoLColumn"><p>Shooting Locations</p></div>
-					<div class="infoRColumn">
-                        {% get_info user team 'tele_positions' 'list' 'pits' as telePositionsList %}
-						<p>{{ telePositionsList.0 }}</p>
-						<p>{{ telePositionsList.1 }}</p>
-					</div>
-				</div>
-				-->
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Climb</p></div>
 					<div class="infoLColumn"><p>{% get_info user team 'climb_locations' 'possible' 'pits' %}</p></div>
@@ -128,9 +118,12 @@
 					<div class="infoLColumn"><p>{{ team.match_set.count }}</p></div>
 				</div>
 			</div>
+            {% get_cookie request 'images' as images %}
+            {% if 'False' != images %}
 			<div class="pictureBox" id="pictureBoxTile">
 					<img src="{{ MEDIA_URL }}{{ team.first_image }}" alt="robot photo">
-			</div>			
+			</div>
+            {% endif %}
 			<div class="graphBoxWide" id="totalGraphTile">
 				<div id="avg_balls" style="height: 300px; width:auto">
 				<p></p>
@@ -171,12 +164,12 @@
 					<p id="humanFoulValue">{% get_info user team 'hp_fouls' 'average' 'match' %}</p>
 					</div>
 				</div>
-				<div class="infoRow">
+				<div class="infoRow" id="yelCardBG">
 					<div class="infoLColumn">
 					<p>Yellow Cards</p>
 					</div>
 					<div class="infoLColumn">
-					<p>{% get_info user team 'yellow_card' 'average' 'match' %}</p>
+					<p id="yellowCardValue">{% get_info user team 'yellow_card' 'average' 'match' %}</p>
 					</div>
 				</div>
 			</div>
@@ -185,9 +178,9 @@
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'DefenseIcon.png' %}" alt="Defense Icon">
 					<h1>Defense</h1>
 				</div>
-				<div class="infoRow">
+				<div class="infoRow" id="playedDefenseBG">
 					<div class="infoLColumn"><p>Played Defense</p></div>
-					<div class="infoLColumn"><p>{% get_info user team 'played_defense' 'average' 'match' %}%</p></div>
+					<div class="infoLColumn"><p id="playedDefenseValue">{% get_info user team 'played_defense' 'average' 'match' %}</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Avg. Quality</p></div>
@@ -195,9 +188,31 @@
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Push Ability</p></div>
-					<div class="infoLColumn"><p>{% get_info user team 'able_to_push' 'average' 'match' %}%</p></div>
+					<div class="infoLColumn"><p>{% get_info user team 'able_to_push' 'average' 'match' %}</p></div>
 				</div>
 			</div>
+            <div class="infoBox infoReg" id="shooterTile">
+                <div class="infoHeader">
+                    <img class="infoIcon" src="{{ MEDIA_URL }}{% static 'GenericPowerPort.png' %}" alt="Shooter">
+                    <h1>Ball Scoring Info</h1>
+                </div>
+                <div class="infoRow">
+                    <div class="infoLColumn"><p>Shooter Type</p></div>
+                    <div class="infoLColumn"><p>{% get_info user team 'shooter_style' 'average' 'pits' %}</p></div>
+                </div>
+                <div class="infoRow">
+                    <div class="infoLColumn"><p>Shooting Locations</p></div>
+                    <div class="infoLColumn">
+                        {% get_info user team 'tele_positions' 'list' 'pits' as telePositionsList %}
+						<p>{{ telePositionsList.0 }}</p>
+						<p>{{ telePositionsList.1 }}</p>
+                    </div>
+                </div>
+                <div class="infoRow">
+                    <div class="infoLColumn"><p>Intake Style</p></div>
+                    <div class="infoLColumn"><p>{% get_info user team 'ball_intake' 'average' 'pits' %}</p></div>
+                </div>
+            </div>
 			<div class="infoBox infoReg" id="powerCellTile">
 				<div class="infoHeader">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'GenericPowerPort.png' %}" alt="Power Port">
@@ -221,7 +236,18 @@
                     {% get_info user team 'inner_auto' 'total' 'match' as totalAutoInner%}
 					<div class="infoLColumn"><p>{{totalTeleInner|add:totalAutoInner }} Power Cells</p></div>
 				</div>
+                <div class="infoRow">
+                    <div class="infoLColumn"><p>Missed Shots</p></div>
+                    {% get_info user team 'missed_balls' 'total' 'match' as totalTeleMissed%}
+                    {% get_info user team 'missed_balls_auto' 'total' 'match' as totalAutoMissed%}
+					<div class="infoLColumn"><p>{{totalTeleMissed|add:totalAutoMissed }} Power Cells</p></div>
+                </div>
 			</div>			
+            <div class="graphBoxWide" id="accuracyTile">
+                <div class="infoHeader">
+                    <h1>Accuracy Chart Soon</h1>
+                </div>
+            </div>
 			<div class="infoBox infoReg" id="endgameTile">
 				<div class="infoHeader">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'hangbar_icon.png' %}" alt="Hang Bar">
@@ -281,18 +307,20 @@
 					<div class="infoLColumn"><p id="onFieldValue">{% widthratio MATCHES team.match_set.count 100 %}</p></div>
 				</div>		
 				<script>
-					var f = document.getElementById("onFieldValue").innerHTML;
+                    var f = document.getElementById("onFieldValue").innerHTML;
 					var o = document.getElementById("offenseFoulValue").innerHTML;
 					var d = document.getElementById("defenseFoulValue").innerHTML;
 					var h = document.getElementById("humanFoulValue").innerHTML;
+                    var c = document.getElementById("yellowCardValue").innerHTML;
+                    var pd = document.getElementById("playedDefenseValue").innerHTML;
 					
-					if (f < 100) {
-						document.getElementById("onFieldBG").style.backgroundColor = "#590909";
-					} else if (f < 90) {
+					if (f > 99) {
+						document.getElementById("onFieldBG").style.backgroundColor = "";
+					} else if (f > 85) {
+						document.getElementById("onFieldBG").style.backgroundColor = "#D7AE22";
+                    } else if (f > 0) {
 						document.getElementById("onFieldBG").style.backgroundColor = "#B4150B";
-					} else { (f < 85)
-						document.getElementById("onFieldBG").style.backgroundColor = "#7a0d0d";
-					}
+                    }
 
 					if (o > 100) { 
 						document.getElementById("offFoulBG").style.backgroundColor = "#590909"
@@ -315,13 +343,17 @@
 					} else if (h > 0) {
 						document.getElementById("humFoulBG").style.backgroundColor = "#D7AE22";
 					}
+                    
+                    if (c > 0) {
+                        document.getElementById("yelCardBG").style.backgroundColor = "#D7AE22";
+                    }
+                    
+                    if (pd > 75) {
+                        document.getElementById("playedDefenseBG").style.backgroundColor = "#1C984F";
+                    }
 				</script>
 			</div>
-		<!--
-			<div class="infoBox infoReg">
-			</div>
-		-->
-			<div class="infoBox infoReg" id="ScoutNowTile" style="flex-grow: 0; height: auto">
+			<div class="infoBox infoReg" id="ScoutNowTile" style="height: auto">
 <!-- This <a> tag is intended to redirect the user to the MatchScout or PitScout Page of the currently displayed team. 
      The url used to redirect is the landing page with the team id concatenated as a new part of the url to select the
      current team. Do not use 'entry:xyz_scout' as it requires a slug built in instead of concatenated. - Alex
@@ -338,6 +370,12 @@
 						<h1 style="color: #ffffff">Pit Scout</h1>
 					</div>
 				</a>
+                <a href="https://www.thebluealliance.com/team/{{ team.number }}" target="_blank">
+                    <div class="infoLink">
+                        <img class="infoIcon" src="{{ MEDIA_URL }}{% static 'TheBlueAlliance.png' %}" alt="The Blue Alliance Icon">
+                        <h1 style="color: #ffffff">The Blue Alliance</h1>
+                    </div>
+                </a>
 			</div>
 		</div>
 	</div>

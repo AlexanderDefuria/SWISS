@@ -70,8 +70,8 @@
 		</div>
 	<div id="myModal" class="modal">
 		<div class="modal-content">
-			<h1 style="margin-left: 10px;">Are you sure the robot is not present?</h1>
-			<p>Clicking yes will set all form values to ZERO and scroll you to the bottom of the page.</p>
+			<h1 id="modal-header" style="margin-left: 10px;">Modal Popup Header</h1>
+			<p id="modal-desc">Lorem ipsum dolor sit amet.</p>
 			<div style="display: flex; justify-content: center">
 				<button class="modalButton" id="onFieldCancel">No</button>
 				<button class="modalButton" id="onFieldConfirm">Yes</button>
@@ -91,7 +91,7 @@
 			</div>
 			<div class="formItem">
 				<label for="scouterName">Scouter's Name</label>
-				<input type="text" name="scouterName" id="scouterName" required placeholder="Scouter Name" autocomplete="off">
+				<input type="text" name="scouterName" id="scouterName" value="{{ user.get_username }}" required placeholder="Scouter Name" autocomplete="off">
 			</div>
 			<div class="formItem">
 				<label for="onField">Is Robot Present?</label>
@@ -132,17 +132,17 @@
 <!--	AUTONOMOUS		-->
 			
 			<h1 id="aAutonomous">AUTONOMOUS</h1>
-			<div class="formItem">
+			<div class="formItem" id="autoRouteDiv">
 				<label for="autoRoute">Autonomous Route</label>
-				<select name="autoRoute" id="autoRoute" required>
-					<option value="">&#8230;</option>
+				<select name="autoRoute" id="autoRoute" onChange="hideAutonomous()" required>
+					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">None</option>
 					<option value="1">Yes, Simple</option>
 					<option value="2">Yes, Complex</option>
 				</select>
 			</div>
 			
-			<div class="formItem">
+			<div class="formItem" id="baselineDiv">
 			<!-- Boolean for if a Robot moved from the initiation line -->
 				<label for="baseline">Moved off Initiation Line</label>
 				<div class="radioGroup">
@@ -157,8 +157,8 @@
 				</div>
 			</div>
 			
-			<div class="formItem">
-			<!-- Power Port Goals in Teleoperated  -->
+			<div class="formItem" id="autoGoalsDiv">
+			<!-- Power Port Goals in Autonomous  -->
 				<label for="autoLowGoal">Power Port Goals</label>
 				<div class="ticker">
 					<!-- Lower Port Auto (RECTANGLE) -->
@@ -180,7 +180,7 @@
 					<input type="button" onclick="incrementValue('inner_auto')" value="+">
 				</div>
 			  </div>
-			<div class="formItem">
+			<div class="formItem" id="autoMissedDiv">
 				<label for="missed_balls_auto">Missed Balls (AUTO)</label>
 				<div class="ticker">
 					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'MissedIcon.png' %}" alt="missed">
@@ -189,10 +189,29 @@
 					<input type="button" onclick="incrementValue('missed_balls_auto')" value="+">
 				</div>
 			</div>
-			<div class="formItem">
+			<div class="formItem" id="autoCommentDiv">
 				<label for="autoComment">Auto Route Notes</label>
 				<input type="text" name="autoComment" id="autoComment" placeholder="Auto Notes" autocomplete="off" required>
 			</div>
+            
+            <script>
+				// Gets value of dropdown, hides div that becomes irrelevant
+				function hideAutonomous() {
+					var x = document.getElementById("autoRoute").value;
+					if (x != 0){
+                        document.getElementById("baseline_false").checked = true;
+				        document.getElementById("baselineDiv").style.display="flex";
+						document.getElementById("autoGoalsDiv").style.display="flex";
+						document.getElementById("autoMissedDiv").style.display="flex";
+					} else {
+                         document.getElementById("baseline_true").checked = true;
+				        document.getElementById("baselineDiv").style.display="none";
+						document.getElementById("autoGoalsDiv").style.display="none";
+						document.getElementById("autoMissedDiv").style.display="none";
+
+					}
+				}
+            </script>
 			
 <!--	OFFENSE		-->
 			
@@ -242,7 +261,7 @@
 				<!-- Type of intake for Strategy purposes -->
 				<label for="intakeType">Intake Type</label>
 				<select name="intakeType" id="intakeType" required>
-					<option value="">&#8230;</option>
+					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">Did not Intake</option>
 					<option value="1">Ground</option>
 					<option value="2">Human</option>
@@ -275,7 +294,7 @@
 			<!-- Can the robot drive well and achieve tasks while under defense? -->
 				<label for="underDefense">Play well under defense</label>
 				<select name="underDefense" id="underDefense" required onChange="hideDefendedBy()"> 
-					<option value="">&#8230;</option>
+					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">Not Defended</option>
 					<option value="1">Played Poorly</option>
 					<option value="2">Played Well</option>
@@ -306,10 +325,10 @@
 			<div class="formItem">
 			<!-- Dropdown for control panel task -->
 				<label for="wheelScore">Control Panel</label>
-				<div>
+				<div style="align-self: flex-end">
 					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'ControlPanelIcon.png' %}" alt="Control Panel">
-					<select name="wheelScore" id="wheelScore" required onChange="hideWheelScore">
-						<option value="">&#8230;</option>
+					<select name="wheelScore" id="wheelScore" required onChange="hideWheelScore()">
+						<option value="" disabled selected hidden>&#8230;</option>
 						<option value="0">Did not Attempt</option>
 						<option value="1">Unsuccessful</option>
 						<option value="2">Completed Rotation</option>
@@ -321,7 +340,7 @@
 			<script> 
 				function hideWheelScore() {
 					var x = document.getElementById("wheelScore").value;
-					if (x > 0){
+					if (x != 0){
 						document.getElementById("wheelRatingDiv").style.display="flex";
 					} else {
 						document.getElementById("wheelRatingDiv").style.display="none";
@@ -346,7 +365,7 @@
 			<!-- Not to be confused with Defensive fouls below -->
 				<label for="offensiveFouls">Incurred Offensive Fouls</label>
 				<select name="offensiveFouls" id="offensiveFouls" required>
-					<option value="">&#8230;</option>
+					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">None</option>
 					<option value="1">Yes, Minor</option>
 					<option value="2">Yes, Major</option>
@@ -396,7 +415,7 @@
 			<div class="formItem">
 				<label for="defenseFouls">Incurred Defensive Fouls</label>
 				<select name="defenseFouls" id="defenseFouls" required>
-					<option value="">&#8230;</option>
+					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">None</option>
 					<option value="1">Yes, Minor</option>
 					<option value="2">Yes, Major</option>
@@ -405,7 +424,7 @@
 			<div class="formItem">
 				<label for="pushRating">Ability to Push</label>
 				<select name="pushRating" id="pushRating" required>
-					<option value="">&#8230;</option>
+					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">N/A</option>
 					<option value="1">Poorly</option>
 					<option value="2">Well</option>
@@ -417,8 +436,8 @@
 			<h1>ENDGAME</h1>
 			<div class="formItem">
 				<label for="lockStatus">Field Timeout Position (t=+5s)</label>
-				<select name="lockStatus" id="lockStatus" required onChange="hideClimbPosition">
-					<option value="">&#8230;</option>
+				<select name="lockStatus" id="lockStatus" required onChange="hideClimbPosition()">
+					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">None</option>
 					<option value="1">Parked</option>
 					<option value="2">Attempted Climb</option>
@@ -483,11 +502,6 @@
 		<p id="snacktext">Default Text</p>
 	</div>
 	</div>
-<datalist id="teams_at_event">
-{% for team in team_list %}	
-	<option value="{{ team.number }}"></option>
-{% endfor %}
-</datalist>
 	
 <script> 
 var modal = document.getElementById("myModal");
@@ -495,12 +509,16 @@ var opn = document.getElementById("onField_false");
 var bad = document.getElementById("onFieldCancel");
 var good = document.getElementById("onFieldConfirm");
 var main = document.getElementById("mainForm");
+var modhead = document.getElementById("modal-header")
+var moddesc = document.getElementById("modal-desc")
 
 // When the user clicks on the button, open the modal
 opn.onclick = function() {
 	modal.style.visibility = "visible";
 	main.style.filter="blur(2px)";
 	window.navigator.vibrate(40);
+    modhead.innerHTML="Are you sure the Robot is not Present?";
+    moddesc.innerHTML="Clicking yes will set all form values to ZERO and scroll you to the bottom of the page."
 }
 
 // When the user clicks on "no", close the modal
@@ -542,9 +560,7 @@ good.onclick = function() {
 	document.getElementById("pushRating").value = "0";
 	document.getElementById("lockStatus").value = "0";
 	document.getElementById("comment").value = "NOT PRESENT";
-	document.getElementById("submit").scrollIntoView({
-	behavior: 'smooth'
-	});
+    setTimeout(() => { document.getElementById("submit").scrollIntoView({behavior: 'smooth'	}); }, 500);
 }
 </script>
 </body>

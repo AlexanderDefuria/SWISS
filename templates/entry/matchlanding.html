@@ -58,23 +58,22 @@
 	
 	<div class="bodyContainer bodyBackground matchImage" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'MatchBackground.png' %})">
 		<div class="heroContent">
-			<h1 class="homeText">Match Scouting</h1>
+			<h1 class="pageTitle">Match Scouting</h1>
 		</div>
 
 
 		<div style="display: flex; justify-content: center">
 			<div class="pillSelect">
 				<div class="pillContainer">
-					{% for team in team_list %}
-                        <ul>
+                    <ul>
+		    			{% for team in team_list %}
                             <li>
                                 <div onclick="window.location='{% url 'entry:match_scout' team.id %}'"  class="teamnumberPill" style="background-color: {{team.colour}}; cursor: pointer;">
                                     <p>{{ team.number }}</p>
                                 </div>
                             </li>
-                        </ul>
-					{% endfor %}
-
+	    				{% endfor %}
+                    </ul>
 				</div>
 				<div class="formItem" id="currentEvent">
 					<p>Current Event is:</p>
@@ -84,21 +83,5 @@
 			</div>
 		</div>
 	</div>
-	
-	
-	
-<script>
-	function openNav() {
-		document.getElementById("sideNav").style.width="250px";
-		document.getElementById("bodyContainer").style.marginLeft="275px";
-		document.getElementById("swissLogo").style.marginLeft="215px";
-	}
-
-	function closeNav() {
-	  document.getElementById("sideNav").style.width = "0";
-	  document.getElementById("bodyContainer").style.marginLeft= "0";
-	  document.getElementById("swissLogo").style.marginLeft= "0";
-	}
-</script>
 </body>
 </html>

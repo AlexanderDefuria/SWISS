@@ -73,7 +73,7 @@
 		<div class="formItem">
 			<label for="drivetrainStyle">Style of Drivetrain</label>
 			<select name="drivetrainStyle" id="drivetrainStyle" required> 
-				<option value="">&#8230;</option>
+				<option value="" selected disabled hidden>&#8230;</option>
 				<option value="Kitbot">Kitbot</option>
 				<option value="Tank">Tank</option>
 				<option value="West Coast Drive">West Coast</option>
@@ -89,7 +89,7 @@
 		<div class="formItem">
 			<label for="drivetrainMotor">Types of Motors in Drivetrain</label>
 			<select name="drivetrainMotor" id="drivetrainMottor" required> 
-				<option value="">&#8230;</option>
+				<option value="" selected disabled hidden="">&#8230;</option>
 				<option value="Falcon 500">Falcon 500</option>
 				<option value="Neo 500">Neo 500</option>
 				<option value="CIM">CIM</option>
@@ -123,7 +123,7 @@
 		<div class="formItem">
 			<label for="autoScoring">Scoring Goals in Autonomous</label>
 			<select name="autoScoring" id="autoScoring" required>
-				<option value="">&#8230;</option>
+				<option value="" selected disabled hidden>&#8230;</option>
 				<option value="0">No Scoring Ability</option>
 				<option value="1">Low Goal</option>
 				<option value="2">High Goal</option>
@@ -134,7 +134,7 @@
 		<div class="formItem">
 			<label for="teleScoring">Scoring Goals in Teleoperated</label>
 			<select name="teleScoring" id="teleScoring" required>
-				<option value="">&#8230;</option>
+				<option value="" selected disabled hidden>&#8230;</option>
 				<option value="0">No Scoring Ability</option>
 				<option value="1">Low Goal</option>
 				<option value="2">High Goal</option>
@@ -209,7 +209,7 @@
 		<div class="formItem">
 			<label for="climbLocations">Climbing Locations</label>
 			<select name="climbLocations" id="climbLocations" required>
-				<option value="">&#8230;</option>
+				<option value="" selected disabled hidden>&#8230;</option>
 				<option value="0">No Climb</option>
 				<option value="1">Center Only</option>
 				<option value="2">Side Only</option>
@@ -248,13 +248,17 @@
 		</div>
 		<div class="formItem">
 			<label for="scouterName">Scouter's Name</label>
-			<input type="text" name="scouterName" id="scouterName" placeholder="Scouter Name" required>
+			<input type="text" name="scouterName" id="scouterName" placeholder="Scouter Name" value="{{ user.get_username }}" required>
 		</div>
 		<br>
 		<div class="formItem" id="submit" onclick="validate('mainForm')">
                 <input name="submit" id="submitButton" type="submit" style="pointer-events: none">
 		</div>
 	</form>
+    <div id="snackbar">
+		<p id="snacktext">Default Text</p>
 	</div>
+	</div>
+    
 </body>
 </html>

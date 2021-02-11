@@ -8,7 +8,10 @@
 <title>SWISS Schedule</title>
 <link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/formstyle.css' %}">
+<link rel="stylesheet" href="{% static 'entry/flickity.min.css' %}" media="screen">
 <script src="{% static 'entry/script.js' %}"></script>
+<script src="{% static 'entry/flickity.pkgd.min.js' %}"></script>
 <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
@@ -55,60 +58,119 @@
 		</script>
 	</div>
 	
-	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'StatsBackground.png' %})">
-		<div class="heroContent" id="heroSpace" style="padding-bottom: 0">
-		    <h1 style="font-size: 42px; margin: 0;">Schedule View</h1>
+	<div class="bodyContainer bodyBackground" id="bodyContainer">
+        <div class="heroContent">
+			<p class="pageTitle">Match Schedule</p>
 		</div>
-			<div class="tableContainer">
-				<table id="dataTable">
-					<tr>
-						<th class="teamStick" style="z-index: 200">Match Number</th>
-						<th>Blue 1</th>
-						<th>Blue 2</th>
-						<th>Blue 3</th>
-                        <th>Red 1</th>
-						<th>Red 2</th>
-						<th>Red 3</th>
-						<th>Time</th>
-						<th>Completed?</th>
-						<th>Blue Score</th>
-						<th>Red Score</th>
-						<th>Match Type</th>
-						<th>Scores</th>
-                        <th>Blue 1</th>
-                        <th>Blue 2</th>
-                        <th>Blue 3</th>
-                        <th>Red 1</th>
-                        <th>Red 2</th>
-                        <th>Red 3</th>
-						<th></th>
+        <div style="display: flex" id="currentEvent">
+            <span style="margin: auto">{% get_current_event %}</span>
+        </div>
+        <div class="scheduleContainer" style="flex-wrap: wrap; white-space: nowrap; justify-content: center">
+            {% for match in schedule_list %}
+            <div class="scheduleTile" id="{{ match.match_number }}">
+                <div style="margin-right: 20px;">
+                    <h3>Q-{{ match.match_number }}</h3>
+                    <p>&#x2705;</p>
+                </div>
+                <div>
+                    <div class="infoRow">
+                        <p class="scheduleTeamNumber">{{ match.blue1 }}</p>
+                        <p class="scheduleTeamNumber">{{ match.blue2 }}</p>
+                        <p class="scheduleTeamNumber">{{ match.blue3 }}</p>
+                        <span style="border-left: 1px solid white">
+                            <p class="blueScore">{{ match.blue_score }}</p>
+                        </span>
+                    </div>
+                    <div class="infoRow" style="background-color: darkred">
+                        <p class="scheduleTeamNumber">{{ match.red1 }}</p>
+                        <p class="scheduleTeamNumber">{{ match.red2 }}</p>
+                        <p class="scheduleTeamNumber">{{ match.red3 }}</p>
+                        <span style="border-left: 1px solid white">
+                            <p class="redScore">{{ match.red_score }}</p>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}            
+        </div>
+        
+        <div class="carousel">
+            {% for match in schedule_list %}
+            <div class="carousel-cell">
+                <h3>Q-{{ match.match_number }}</h3>
+            </div>
+            {% endfor %}            
+        </div>        
+        
+        <script>
+        var flkty = new Flickity('.carousel');
+            flkty.on( 'settle', function( index ) {
+              console.log( 'Flickity settled at ' + index );
+            });        
+        </script>
+        
+        <style>
+            .carousel-cell {
+              width: 66%;
+              height: 200px;
+              margin-right: 10px;
+              background: #8C8;
+              border-radius: 5px;
+            }
+        </style>
+        
+        <!-- Old Table View -->
+        <!-- 
+        <div class="tableContainer">
+            <table id="dataTable">
+                <tr>
+                    <th class="teamStick" style="z-index: 200">Match Number</th>
+                    <th>Blue 1</th>
+                    <th>Blue 2</th>
+                    <th>Blue 3</th>
+                    <th>Red 1</th>
+                    <th>Red 2</th>
+                    <th>Red 3</th>
+                    <th>Time</th>
+                    <th>Completed?</th>
+                    <th>Blue Score</th>
+                    <th>Red Score</th>
+                    <th>Match Type</th>
+                    <th>Scores</th>
+                    <th>Blue 1</th>
+                    <th>Blue 2</th>
+                    <th>Blue 3</th>
+                    <th>Red 1</th>
+                    <th>Red 2</th>
+                    <th>Red 3</th>
+                    <th></th>
 
-					</tr>
-					{% for match in schedule_list %}
-                    <tr>
-                        <td class="teamStick" style="z-index: 100">{{ match.match_number }}</td>
-						<td>{{ match.blue1 }}</td>
-						<td>{{ match.blue2 }}</td>
-						<td>{{ match.blue3 }}</td>
-                        <td>{{ match.red1 }}</td>
-						<td>{{ match.red2 }}</td>
-						<td>{{ match.red3 }}</td>
-						<td> </td>
-						<td> </td>
-						<td>Blue Score</td>
-						<td>Red Score</td>
-						<td>Match Type</td>
-						<td>      </td>
-                        <td>{{ match.blue1 }}</td>
-                        <td>{{ match.blue2 }}</td>
-                        <td>{{ match.blue3 }}</td>
-                        <td>{{ match.red1 }}</td>
-                        <td>{{ match.red2 }}</td>
-                        <td>{{ match.red3 }}</td>
-                    </tr>
-                    {% endfor %}
-				</table>
-		</div>
+                </tr>
+                {% for match in schedule_list %}
+                <tr>
+                    <td class="teamStick" style="z-index: 100">{{ match.match_number }}</td>
+                    <td>{{ match.blue1 }}</td>
+                    <td>{{ match.blue2 }}</td>
+                    <td>{{ match.blue3 }}</td>
+                    <td>{{ match.red1 }}</td>
+                    <td>{{ match.red2 }}</td>
+                    <td>{{ match.red3 }}</td>
+                    <td> </td>
+                    <td> </td>
+                    <td>Blue Score</td>
+                    <td>Red Score</td>
+                    <td>Match Type</td>
+                    <td>      </td>
+                    <td>{{ match.blue1 }}</td>
+                    <td>{{ match.blue2 }}</td>
+                    <td>{{ match.blue3 }}</td>
+                    <td>{{ match.red1 }}</td>
+                    <td>{{ match.red2 }}</td>
+                    <td>{{ match.red3 }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
 		<br>
         <div class="bottomBar" id="bottomBar">
 			<div id="bottomBarContent">
@@ -120,6 +182,27 @@
 			</div>
 			<button class="bottomBarButton" id="bottomBarButton" onclick="expandBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
 		</div>
+-->
+		{% get_cookie request 'filters' as filters %}
+        {% if 'False' != filters %}
+        <div class="bottomBar" id="bottomBar">
+			<div id="bottomBarContent">
+				<div class="filterBox" >
+					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
+					<input class="filterChip" type="text" id="matchNumber" onkeyup="scheduleFilter('matchNumber')" placeholder="Match Number">
+				</div>
+				<br>
+				{% if user.is_staff %}
+				<div class="filterBox" onClick="location.href ='{% url 'entry:admin_redirect' 'schedule' %}';" style="cursor: pointer">
+					<img src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" style="height: 50px;" alt="Edit">
+					<h3>Edit Teams</h3>
+				</div>
+				{% endif %}
+			</div>
+			<button class="bottomBarButton" id="bottomBarButton" onclick="expandBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
+		</div>
+        {% endif %}
+        
 	</div>
 
 </body>

@@ -37,6 +37,8 @@ urlpatterns = [
     path('about/', views.About.as_view(), name='about'),
     path('settings/', views.Settings.as_view(), name='settings'),
     path('experimental/getcsv/', views.get_csv_ajax, name='getcsv'),
+    path('tutorial/', views.Tutorial.as_view(), name='tutorial'),
+    path('welcome/', views.Welcome.as_view(), name='welcome'),
 
     path('logout/', views.logout, name='logout'),
     path('login/', views.login, name='login'),
