@@ -30,6 +30,7 @@ class Team(models.Model):
     name = models.CharField(default="team", max_length=100)
     images = models.ManyToManyField(Images)
     colour = models.CharField(default="#000000", max_length=7)
+    pick_status = models.IntegerField(default=0, validators=[MaxValueValidator(2), MinValueValidator(0)])
 
     def first_image(self):
         # code to determine which image to show. The First in this case.
