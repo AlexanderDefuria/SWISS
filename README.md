@@ -3,7 +3,7 @@
 The web server is hosted from a raspberry pi during competition which creates a PAN network, (Bluetooth network) to allow other devices to connect to the web server. Using a wifi network would be much better but would be a violation of rule C05 of the [FRC Event Rules Manual](https://firstfrc.blob.core.windows.net/frc2019/EventRules/EventRulesManual.pdf), bluetooth setup of this scouting system is not a violation of rule C05 as the wording is specific to WiFi wireless bands and standards. [Community interpretation](https://www.reddit.com/r/FRC/comments/67c7z4/bluetooth_at_competitions/) also supports the legality of using bluetooth networks in the stands.
 
 ### Image Installation
-Prebuilt images are not currently available so one must follow the source setup. They will be available soon from the releases page of this github repo.
+To download a prebuilt image visit https://download.swiss-scouting.ca/ and unzip then install the same way as any other raspbian installation. TODO Add thorough instructions here.
 
 
 ### Source Setup Linux
@@ -39,3 +39,14 @@ link with picture of a cat
 
 ### Viewing Images
 Images can be rotated using the [Rotate Image Utility](https://github.com/AlexanderDeFuria/FRC-Scouting/blob/master/rotateImage.py) to correct landscape and portrait modes not being consistent.
+
+### TODOs
+
+ - [ ] Documentation
+   - [ ] Explanation of each page/card
+   - [ ] Mock scout match
+   - [ ] Multiple levels of tutorials? One level will take around 5 minutes, the other 10 minutes, etc. (one of the tutorials can do a whole match scout with you)
+
+BTC Address - 376g5uV5XF7pZGoyfEZnU6zEMLW4L6EHJs
+
+Should add more to readme.

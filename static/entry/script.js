@@ -4,31 +4,38 @@
 //Functions that control the Side Navbar on all pages
 function openNav() {
 	document.getElementById("sideNav").style.width="250px";
-	document.getElementById("bodyContainer").style.marginLeft="275px";
 	document.getElementById("swissLogo").style.marginLeft="215px";
 }
 function closeNav() {
-  document.getElementById("sideNav").style.width = "0";
-  document.getElementById("bodyContainer").style.marginLeft= "0";
-  document.getElementById("swissLogo").style.marginLeft= "0";
+	document.getElementById("sideNav").style.width = "0";
+	document.getElementById("swissLogo").style.marginLeft= "0";
 }
 
 //Function that controls the bottom bar
 function expandBottomBar() {
 	document.getElementById("bottomBar").style.height = "70px";
-	document.getElementById("expandBottomBar").style.visibility = "hidden";
-	document.getElementById("collapseBottomBar").style.visibility = "visible";
+	document.getElementById("bottomBarButton").style.height = "70px";
+	document.getElementById("bottomBarButton").onclick = function () {collapseBottomBar()};
 	document.getElementById("bottomBarContent").style.visibility = "visible";
-	document.getElementById("bodyContainer").style.paddingBottom = "70px";
+	document.getElementById("bodyContainer").style.paddingBottom = "0px";
 }	
 function collapseBottomBar() {
 	document.getElementById("bottomBar").style.height = "30px";
-	document.getElementById("expandBottomBar").style.visibility = "visible";
-	document.getElementById("collapseBottomBar").style.visibility = "hidden";
+	document.getElementById("bottomBarButton").style.height = "30px";
 	document.getElementById("bottomBarContent").style.visibility = "hidden";
 	document.getElementById("bodyContainer").style.paddingBottom = "20px";
+	document.getElementById("bottomBarButton").onclick = function () {expandBottomBar()};
 }
 
+
+// Function that closes the alertbar
+
+function closeAlertBar() {
+    setTimeout(function () {
+        x.className = "hide";
+        setTimeout(function(){ x.className = x.className.replace("hide", ""); }, 450);
+    }) 
+}
 
 // Function that controls the team number filtering on the data page. 
 
@@ -54,6 +61,8 @@ function tableFilter(field) {
   	}
 }
 
+// Function that filters teamLink elements on Teams page by either team number or team name
+
 function teamFilter(field) {
 	let filter = document.getElementById(field).value.toString();
 	let all = document.getElementsByClassName('teamLink')
@@ -78,13 +87,33 @@ function teamFilter(field) {
 }
 
 
+// Function that filters schedule elements on Match Schedule page by match number
+
+
+function scheduleFilter(field) {
+	let filter = document.getElementById(field).value.toString();
+	let all = document.getElementsByClassName('scheduleTile')
+	if (field === "matchNumber") {
+		for (let i = 0; i < all.length; i++) {
+			if (all[i].id.toString().indexOf(filter) > -1)
+				all[i].style.display = "";
+			else
+				all[i].style.display = "none";
+
+		}
+	} 
+    
+	document.getElementsByClassName("teamChip")
+}
+
+
 // Function that controls the team select drawer
 
 function openTeamDrawer() {
 	document.getElementById("teamDrawer").style.height="100%";
 }
 function closeTeamDrawer() {
-  document.getElementById("teamDrawer").style.height = "0";
+	document.getElementById("teamDrawer").style.height = "0";
 }
 
 
@@ -99,11 +128,16 @@ function incrementValue(id) {
 	window.navigator.vibrate(40);
 }
 function incrementPreload(id) {
+	var x = document.getElementById("snackbar");
+	var y = document.getElementById("snacktext");
 	console.log(id)
 	var value = parseInt(document.getElementById(id).value, 10);
 	if (value >= 3) {
 		value = 3;
 		window.navigator.vibrate([30,20,30,20,30]);
+		x.className = "show";
+		y.innerHTML = "Maximum Preload Reached";
+		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 	}	else	{
 			value++;
 		window.navigator.vibrate(40);
@@ -111,11 +145,16 @@ function incrementPreload(id) {
 	document.getElementById(id).value = value;
 }
 function decrementValue(id) {
+	var x = document.getElementById("snackbar");
+	var y = document.getElementById("snacktext");
 	console.log(id)
 	var value = parseInt(document.getElementById(id).value, 10);
 	if (value <= 0) {
 		value = 0;
 		window.navigator.vibrate([30,20,30,20,30]);
+		x.className = "show";
+		y.innerHTML = "Cannot have less than 0";
+		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 	}	else	{
 			value--;
 		window.navigator.vibrate(40);
@@ -126,6 +165,8 @@ function registerChange() {
 	console.log();
 	window.navigator.vibrate(40);
 }
+
+
 // General script functions doing exactly what their names state
 
 var Slug = 0;

@@ -37,31 +37,13 @@ urlpatterns = [
     path('about/', views.About.as_view(), name='about'),
     path('settings/', views.Settings.as_view(), name='settings'),
     path('experimental/getcsv/', views.get_csv_ajax, name='getcsv'),
+    path('tutorial/', views.Tutorial.as_view(), name='tutorial'),
+    path('welcome/', views.Welcome.as_view(), name='welcome'),
 
     path('logout/', views.logout, name='logout'),
     path('login/', views.login, name='login'),
+    path('register/', views.register_user, name='register_user'),
 
-    path('admin_redirect/', views.admin_redirect, name='admin_redirect')
+    path('admin_redirect/<str:whereto>', views.admin_redirect, name='admin_redirect'),
+    path('admin_redirect/', views.admin_redirect, name='admin_redirect'),
 ]
-
-# ----- 2019 ------
-# urlpatterns = [
-#     path('', views.TeamNumberList.as_view(), name='team_list'),
-#     path('<slug:pk>/auto/', views.Auto.as_view(), name='auto'),
-#     path('<slug:pk>/auto/check/', views.validate_match, name='validate_match'),
-#     path('<slug:pk>/auto/submit/', views.write_auto, name='write_auto'),
-#     path('<slug:pk>/teleop/<slug:match_number>', views.Teleop.as_view(), name='teleop'),
-#     path('<slug:pk>/teleop/', views.write_teleop, name='write_teleop'),
-#     path('visual/', views.Visualize.as_view(), name='visualize'),
-#     path('visual/update/', views.update_graph, name='update_graph'),
-#     path('visual/update/fields', views.update_fields, name='update_fields'),
-#     path('download/', views.download, name='download'),
-#     path('schedule/', views.ScheduleView.as_view(), name='schedule'),
-#     path('image_upload/', views.ImageUpload.as_view(), name='image_upload'),
-#     path('image_upload/submit', views.write_image_upload, name='write_image_upload'),
-#     path('image_viewer/', views.ImageViewer.as_view(), name='image_viewer'),
-#     path('pit_upload/', views.PitUpload.as_view(), name='pit_upload'),
-#     path('logout/', views.logout, name='logout'),
-#     path('login/', views.login, name='login'),
-#
-# ]

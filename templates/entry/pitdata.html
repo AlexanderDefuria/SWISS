@@ -1,0 +1,148 @@
+{% load static %}
+{% load common_tags %}
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SWISS Data</title>
+<link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
+<script src="{% static 'entry/script.js' %}"></script>
+<link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
+<meta name="theme-color" content="0F4D8D">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
+
+<body>
+	<div class="topbar">
+		<div class="hamburgerButton" onClick="openNav()">
+			<button class="hamburgerButton" onClick="openNav()">☰</button>
+		</div>
+		<div class="swissLogo" id="swissLogo">
+			<a href="{% url 'entry:index' %}">
+			<img src="{{ MEDIA_URL }}{% static 'SwissIcon2x.png' %}" alt="SWISS Logo">
+			</a>
+		</div>
+	</div>
+	<div id="sideNav" class="sidebar">
+		<div>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+			<a href="{% url 'entry:index' %}">Home</a>
+			<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+			<a href="{% url 'entry:glance_landing' %}">Glance</a>
+			<a href="{% url 'entry:teams' %}">Teams</a>
+			<a href="{% url 'entry:match_data' %}">Data</a>
+			<a href="{% url 'entry:visualize' %}">Visualize</a>
+			<a href="{% url 'entry:settings' %}">Settings</a>
+			<a href="{% url 'entry:about' %}">About</a>
+		</div>
+		<div class="greeting">
+			<p id="timeOfDay"></p>
+			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
+		</div>
+		<script>
+			var hour = new Date().getHours();
+			var greeting; 
+			if (hour < 17) {
+				greeting = "Good day,";
+			} else {
+				greeting = "Good evening,";
+			}
+			document.getElementById("timeOfDay").innerHTML = greeting;
+		</script>
+	</div>
+	
+	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'StatsBackground.png' %})">
+		<div class="heroContent" id="heroSpace" style="padding-bottom: 0">
+		    <h1 style="font-size: 42px; margin: 0;">Raw Pit Data</h1>
+		</div>
+        <div style="display: flex; justify-content: center; ">
+            <div class="formItem graphOption">
+                <button class="dataButton" onclick="window.location='{% url 'entry:match_data' %}';">Match Data</button>
+            </div>
+            <div class="formItem graphOption">
+                <button class="dataButton" onclick="window.location='{% url 'entry:pit_data' %}';">Pit Data</button>
+            </div>
+        </div>
+
+			<div class="tableContainer">
+				<table id="dataTable">
+					<tr>
+						<th class="teamStick" style="z-index: 200">Number</th>
+						<th>Names</th>
+                        <th>Drive Train Style</th>
+                        <th>Drive Train Wheels</th>
+                        <th>Drive Motor Type</th>
+                        <th>Drive Motor #</th>
+                        <th>Auto Route</th>
+                        <th>Auto Description</th>
+                        <th>Auto Scoring</th>
+                        <th>Tele Scoring</th>
+                        <th>Tele Positions</th>
+                        <th>Ball Intake</th>
+                        <th>Ball Capacity</th>
+                        <th>Shooter Style</th>
+                        <th>Low Bot?</th>
+                        <th>Wheel Manipulator</th>
+                        <th>Weight (lbs)</th>
+                        <th>Climb Locations</th>
+                        <th>Buddy Climb?</th>
+                        <th>Balanced Climb?</th>
+                        <th>Scouter Name</th>
+					</tr>
+					{% for pits in pits_list %}
+                    <tr>
+                        <td class="teamStick" style="z-index: 100">{{ pits.team.number }}</td>
+                        <td>{{ pits.team.name }}</td>
+                        <td>{{ pits.drivetrain_style }}</td>
+                        <td>{{ pits.drivetrain_wheels }}</td>
+                        <td>{{ pits.drivetrain_motortype }}</td>
+                        <td>{{ pits.drivetrain_motorquantity }}</td>
+                        <td>{{ pits.auto_route }}</td>
+                        <td>{{ pits.auto_description }}</td>
+                        <td>{{ pits.auto_scoring }}</td>
+                        <td>{{ pits.tele_scoring }}</td>
+                        <td>{{ pits.tele_positions }}</td>
+                        <td>{{ pits.ball_intake }}</td>
+                        <td>{{ pits.ball_capacity }}</td>
+                        <td>{{ pits.shooter_style }}</td>
+                        <td>{{ pits.low_bot }}</td>
+                        <td>{{ pits.wheel_manipulator }}</td>
+                        <td>{{ pits.weight }}</td>
+                        <td>{{ pits.climb_locations }}</td>
+                        <td>{{ pits.climb_buddy }}</td>
+                        <td>{{ pits.climb_balance }}</td>
+                        <td style="background-color: grey">{{ pits.scouter_name }}</td>
+                    </tr>
+                    {% endfor %}
+				</table>
+		</div>
+		<br>
+        <div class="bottomBar" id="bottomBar">
+			<div id="bottomBarContent">
+				<div class="filterBox">
+					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
+					<input class="filterChip" type="text" id="teamNumber" onkeyup="tableFilter('teamNumber')" placeholder="Team Number">
+				</div>
+				<br>
+				<div class="filterBox">
+					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
+					<input class="filterChip" type="text" id="teamName" onkeyup="tableFilter('teamName')" placeholder="Team Name">
+				</div>
+				<br>
+				{% if user.is_staff %}
+				<div class="filterBox" onClick="location.href = '{% url 'entry:admin_redirect' 'pits' %}';" style="cursor: pointer">
+					<img src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" style="height: 50px;" alt="Edit">
+					<h3>Edit Pit Entries</h3>
+				</div>
+				{% endif %}
+			</div>
+			<button class="bottomBarButton" id="bottomBarButton" onclick="expandBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
+		</div>
+	</div>
+
+</body>
+</html>

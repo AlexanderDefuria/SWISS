@@ -7,9 +7,14 @@
 <meta charset="utf-8">
 <title>SWISS About</title>
 <link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/formstyle.css' %}">
 <script src="{% static 'entry/script.js' %}"></script>
+<link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
 <meta name="theme-color" content="0F4D8D">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
 
 <body>
@@ -24,18 +29,92 @@
 		</div>
 	</div>
 	<div id="sideNav" class="sidebar">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-		<a href="{% url 'entry:index' %}">Home</a>
-		<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
-		<a href="{% url 'entry:glance_landing' %}">Glance</a>
-		<a href="{% url 'entry:teams' %}">Teams</a>
-		<a href="{% url 'entry:settings' %}">Settings</a>
-		<a href="{% url 'entry:about' %}">About</a>
+		<div>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+			<a href="{% url 'entry:index' %}">Home</a>
+			<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+			<a href="{% url 'entry:glance_landing' %}">Glance</a>
+			<a href="{% url 'entry:teams' %}">Teams</a>
+			<a href="{% url 'entry:match_data' %}">Data</a>
+			<a href="{% url 'entry:visualize' %}">Visualize</a>
+			<a href="{% url 'entry:settings' %}">Settings</a>
+			<a href="{% url 'entry:about' %}">About</a>
+		</div>
+		<div class="greeting">
+			<p id="timeOfDay"></p>
+			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
+		</div>
+		<script>
+			var hour = new Date().getHours();
+			var greeting; 
+			if (hour < 17) {
+				greeting = "Good day,";
+			} else {
+				greeting = "Good evening,";
+			}
+			document.getElementById("timeOfDay").innerHTML = greeting;
+		</script>
 	</div>
 	
 	<div class="bodyContainer">
-		<h1>ABOUT</h1>
-		<p>Alex and I can write the copyright here later.</p>
+        <div class="heroContent">
+            <h1 class="pageTitle">About</h1>
+        </div>
+        <div class="documentContainer">
+            <div class="documentContent" style="margin: 0 auto">
+                <h2>Welcome to SWISS</h2>
+                <div style="width: 100%; border-bottom: 2px solid #666666"></div>
+                <p>SWISS is an application for the FIRST Robotics Competition game with the purpose of scouting robots during matches and providing a neat dashboard for the data collected by scouters. <br> 
+                Built by FRC 4343 Alumni Alex DeFuria and Nick Kerstens</p>
+                <div style="width: 100%; border-bottom: 2px solid #666666"></div>
+                <h2>Github Repository Documentation</h2>
+                <p>The web server is hosted from a raspberry pi during competition which creates a PAN network, (Bluetooth network) to allow other devices to connect to the web server. Using a wifi network would be much better but would be a violation of rule C05 of the 
+                <a href="https://firstfrc.blob.core.windows.net/frc2021/EventRules/EventRulesManual.pdf" target="_blank">FRC Event Rules Manual</a>, 
+                bluetooth setup of this scouting system is not a violation of rule C05 as the wording is specific to WiFi wireless bands and standards. 
+                <a href="https://www.reddit.com/r/FRC/comments/67c7z4/bluetooth_at_competitions/" target="_blank">Community interpretation</a>
+                also supports the legality of using bluetooth networks in the stands. </p>
+                <h3>Image Installation</h3>
+                <p>To download a prebuilt image visit <a href="https://download.swiss-scouting.ca/" target="_blank">https://download.swiss-scouting.ca/</a> and unzip then install the same way as any other raspbian installation. Thorough instructions coming soon</p>
+                <h3>Source Setup Linux</h3>
+                <code>
+                    git clone https://github.com/AlexanderDefuria/FRC-Scouting.git<br>
+                    sudo apt-get install python3-pandas python3-pip<br>
+                    sudo pip3 install django==2.2 djangoajax==3.2<br>
+                </code>
+                <h3>Running the Server</h3>
+                <p>Presently there is no configuration for a permemnant server deployment and it must be run in Django's development mode. <code>python3 manage.py runserver 127.0.0.1:80</code> To have it available from other devices on the local network follow the commands below. Record the ip address produced by <code>ipconfig</code> and after running <code>sudo python3 manage.py 0.0.0.0:80</code> navigate to the ip address from the other device.</p>
+                <h3>Connecting to Bluetooth</h3>
+                <p>To reach the server running off the raspberry pi one must first connect to to the PAN netwrok named raspberrypi by default. The steps to do so are different on each platform.</p>
+                <details open>
+                    <summary> Mobile </summary>
+                    <ol>
+                        <li>Simply connect as per usual with any other bluetooth device.</li>
+                        <l1>On android one must change the settings of the connection to enable internet access over bluetooth. Connect to 127.20.1.1/entry.</l1>
+                    </ol>
+                </details>
+                <details open>
+                    <summary> Windows </summary>
+                    <p>Step 1 - Network Status Windows Settings</p>
+                    <img src="{{ MEDIA_URL }}{% static 'step1.png' %}" alt="Step 1 - Network Status Windows Settings">
+                    <p>Step 2 - Bluetooth in Windows Settings</p>
+                    <img src="{{ MEDIA_URL }}{% static 'step2.png' %}" alt="Step 2 - Bluetooth in Windows Settings">
+                    <p>Step 3 - Add A Device</p>
+                    <img src="{{ MEDIA_URL }}{% static 'step3.png' %}" alt="Step 3 - Add A Device">
+                    <p>Step 4a - Change Adapter Settings</p>
+                    <img src="{{ MEDIA_URL }}{% static 'step4a.png' %}" alt="Step 4a - Change Adapter Settings">
+                    <p>Step 4b - Network Connection Control Panel</p>
+                    <img src="{{ MEDIA_URL }}{% static 'step4b.png' %}" alt="Step 4b - Network Connection Control Panel">
+                    <p>Step 5 - View Bluetooth Network Devices</p>
+                    <img src="{{ MEDIA_URL }}{% static 'step5.png' %}" alt="Step 5 - View Bluetooth Network Devices">
+                    <p>Step 6 - Connect To Access Point</p>
+                    <img src="{{ MEDIA_URL }}{% static 'step6.png' %}" alt="Step 6 - Connect To Access Point">
+                </details>
+                <h3>Viewing Images</h3>
+                <p>Images can be rotated using the <a href="https://github.com/AlexanderDeFuria/FRC-Scouting/blob/master/rotateImage.py" target="_blank">Rotate Image Utility</a> to correct landscape and portrait modes not being consistent.</p>
+                <div style="width: 100%; border-bottom: 2px solid #666666"></div>
+                <p>Made with love from Toronto, ON</p>
+            </div>
+        </div>
 	</div>
 
     {% if user.is_superuser %}
@@ -43,6 +122,12 @@
             <button>test</button>
         </a>
     {% endif %}
-
+    
+    <style>
+        details > img {
+            max-width: 95%;
+            height: auto;
+        }
+    </style>
 </body>
 </html>

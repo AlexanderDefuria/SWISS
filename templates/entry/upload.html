@@ -29,13 +29,31 @@
 		</div>
 	</div>
 	<div id="sideNav" class="sidebar">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-		<a href="{% url 'entry:index' %}">Home</a>
-		<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
-		<a href="{% url 'entry:glance_landing' %}">Glance</a>
-		<a href="{% url 'entry:teams' %}">Teams</a>
-		<a href="{% url 'entry:settings' %}">Settings</a>
-		<a href="{% url 'entry:about' %}">About</a>
+		<div>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+			<a href="{% url 'entry:index' %}">Home</a>
+			<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+			<a href="{% url 'entry:glance_landing' %}">Glance</a>
+			<a href="{% url 'entry:teams' %}">Teams</a>
+			<a href="{% url 'entry:match_data' %}">Data</a>
+			<a href="{% url 'entry:visualize' %}">Visualize</a>
+			<a href="{% url 'entry:settings' %}">Settings</a>
+			<a href="{% url 'entry:about' %}">About</a>
+		</div>
+		<div class="greeting">
+			<p id="timeOfDay"></p>
+			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
+		</div>
+		<script>
+			var hour = new Date().getHours();
+			var greeting; 
+			if (hour < 17) {
+				greeting = "Good day,";
+			} else {
+				greeting = "Good evening,";
+			}
+			document.getElementById("timeOfDay").innerHTML = greeting;
+		</script>
 	</div>
 	
 	<div class="bodyContainer" id="bodyContainer">
@@ -53,9 +71,9 @@
 						<label for="teamNumber">Team Number</label>
 						<input style="width:100px;" type="number" name="teamNumber" id="teamNumber" min="1" max="9999">
 					</div>
-					<div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+					<div class="formItem" style="margin-top:10px; background:none; justify-content: space-between">
 						<label for="upload">Upload Image</label>
-						<input style="margin-left:10px; " type="file" name="upload" id="upload">
+						<input style="width: 200px " type="file" name="upload" id="upload">
 					</div>
 						<p>Remember, images must be cropped to a SQUARE (1:1).</p>
 					<div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">

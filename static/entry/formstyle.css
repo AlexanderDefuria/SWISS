@@ -6,6 +6,7 @@
 .formContainer {
 	max-width: 60%;
 	margin: 0 auto;
+	transition: all .2 ease-in-out;
 }
 .formItem {
 	display: flex;
@@ -39,23 +40,18 @@
 	transition: all 0.2s ease-in-out;
 }
 /* Adds a background color, expands the input and adds a blue border when focused */
-.formItem input[type=text]:focus {
-	width: 400px;  
+.formItem input[type=text]:focus { 
 	border-color: #0F4D8D;
 	border-width: 3px;
 	background: #333333;
 }
-/* Sets just the text input with the ID username */
-#username input[type=text] {
-	width: 400px;
-}
 
 
-/* PASSWORD ENTRY */
+/* OTHER TEXT ENTRY */
 
 
 .formItem input[type=password]{
-	width: 400px;
+	width: 200px;
 	outline: none;
 	color: white;
 	background: none;
@@ -65,6 +61,22 @@
 }
 /* Adds a background color, expands the input and adds a blue border when focused */
 .formItem input[type=password]:focus {
+	border-color: #0F4D8D;
+	border-width: 3px;
+	background: #333333;
+}
+
+.formItem input[type=email]{
+	width: 200px;
+	outline: none;
+	color: white;
+	background: none;
+	border: none;
+	border-bottom: 1px solid #ffffff;
+	transition: all 0.2s ease-in-out;
+}
+/* Adds a background color, expands the input and adds a blue border when focused */
+.formItem input[type=email]:focus {
 	border-color: #0F4D8D;
 	border-width: 3px;
 	background: #333333;
@@ -100,6 +112,18 @@
 .formItem input[type=number]:invalid {
 	background-color: #904444;
 }
+/* FOLLOWING CODE FIXES SOME ISSUES WITH THE NUMBER SPINNER */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
 
 /* SELECT/DROPDOWNS */
@@ -134,27 +158,27 @@
 	border-radius: 15px;
 	border: 2px solid white;
 	background-color: 0;
-	-webkit-appearance: none; /*to disable the default appearance of radio button*/
+	-webkit-appearance: none; /*to disable the default appearance of radio */
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
 }
-/* Makes the background colour of the radio button white when checked */
+/* Makes the background colour of the radio white when checked */
 .radioGroup input[type=radio]:checked {
 	background-color: white;
 }
-/* Sets the text (SPAN) in the radio button to black when checked */
+/* Sets the text (SPAN) in the radio to black when checked */
 .radioGroup input[type=radio]:checked ~ span:first-of-type {
 	color: #000000;
 	font-weight: bolder;
 }
-/* Sets up the text (SPAN) in the radio button */
+/* Sets up the text (SPAN) in the radio */
 .radioGroup label span:first-of-type {
 	position: relative;
 	left: -28px;
 	font-size: 15px;
 	color: white;
 }
-/* Sets up the text (SPAN) in the radio button */
+/* Sets up the text (SPAN) in the radio */
 .radioGroup label span {
 	position: relative;
 	top: -10px;
@@ -248,6 +272,7 @@
 	border: 2px solid white;
 	border-radius: 50px;
 	transition: all 0.1s ease-in-out;
+	cursor: pointer;
 	touch-action: manipulation; /* Stops iOS from zooming in when tapping repeatedly */
 }
 /* Sets the background and text colour in the button to white and black when clicked */
@@ -319,8 +344,32 @@
 	font-weight: 1000;
 	height: 60px;
 	width: 100%;
+	cursor: pointer;
 }
 
+.logoutbtn {
+	background-color: #b32e2e;
+	border: none;
+	color: white;
+	font-size: 24px;
+	font-weight: 1000;
+	height: 60px;
+	width: 100%;
+	cursor: pointer;
+}
+
+.logoutbtn:hover {
+    box-shadow: 2px 5px 25px 2px #232323;
+}
+
+
+/* SOCIAL MEDIA ICONS ON SETTINGS PAGE */ 
+
+.socialIcon {
+    height: 35px;
+    width: 35px;
+    padding: 0px 10px;
+}
 
 /* ID'S */
 
@@ -332,13 +381,26 @@
 #autoStart_img {
 	height: 50px;
 	
+}
+	
+/* Webkit Autofill Fixes */
+	
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+	border: none;
+	border-bottom: 2px solid green;
+	background-color: #0F4D8D;
+    color: #ffffff;
+	transition: background-color 5000s ease-in-out 0s;
+}
+
+
 	
 	
 	
 /* For MOST tablets in landscape */
-	
-	
-}
+
 @media screen and (max-width: 1280px) {
 	.formContainer {
 		max-width: 100%
@@ -360,6 +422,7 @@
 	}
 	.formItem input[type=number] {
 		font-size: 28px;
+        align-self: flex-end;
 	}
 	.radioGroup {
 		display: block

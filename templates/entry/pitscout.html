@@ -4,7 +4,7 @@
 <!doctype html>
 <html><head>
 <meta charset="utf-8">
-<title>SWISS Pit Scouting</title>
+<title>SWISS Pit Scouting {{ team.number }}</title>
 <link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/formstyle.css' %}">	
@@ -29,14 +29,33 @@
 		</div>
 	</div>
 	<div id="sideNav" class="sidebar">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-		<a href="{% url 'entry:index' %}">Home</a>
-		<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
-		<a href="{% url 'entry:glance_landing' %}">Glance</a>
-		<a href="{% url 'entry:teams' %}">Teams</a>
-		<a href="{% url 'entry:settings' %}">Settings</a>
-		<a href="{% url 'entry:about' %}">About</a>
+		<div>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+			<a href="{% url 'entry:index' %}">Home</a>
+			<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+			<a href="{% url 'entry:glance_landing' %}">Glance</a>
+			<a href="{% url 'entry:teams' %}">Teams</a>
+			<a href="{% url 'entry:match_data' %}">Data</a>
+			<a href="{% url 'entry:visualize' %}">Visualize</a>
+			<a href="{% url 'entry:settings' %}">Settings</a>
+			<a href="{% url 'entry:about' %}">About</a>
+		</div>
+		<div class="greeting">
+			<p id="timeOfDay"></p>
+			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
+		</div>
+		<script>
+			var hour = new Date().getHours();
+			var greeting; 
+			if (hour < 17) {
+				greeting = "Good day,";
+			} else {
+				greeting = "Good evening,";
+			}
+			document.getElementById("timeOfDay").innerHTML = greeting;
+		</script>
 	</div>
+	
 	<div class="bodyContainer bodyBackground scoutImage" id="bodyContainer">
 		<div class="heroContent" id="heroSpace">
 			<div class="stickyChip">
@@ -54,7 +73,7 @@
 		<div class="formItem">
 			<label for="drivetrainStyle">Style of Drivetrain</label>
 			<select name="drivetrainStyle" id="drivetrainStyle" required> 
-				<option value="">&#8230;</option>
+				<option value="" selected disabled hidden>&#8230;</option>
 				<option value="Kitbot">Kitbot</option>
 				<option value="Tank">Tank</option>
 				<option value="West Coast Drive">West Coast</option>
@@ -70,7 +89,7 @@
 		<div class="formItem">
 			<label for="drivetrainMotor">Types of Motors in Drivetrain</label>
 			<select name="drivetrainMotor" id="drivetrainMottor" required> 
-				<option value="">&#8230;</option>
+				<option value="" selected disabled hidden="">&#8230;</option>
 				<option value="Falcon 500">Falcon 500</option>
 				<option value="Neo 500">Neo 500</option>
 				<option value="CIM">CIM</option>
@@ -104,7 +123,7 @@
 		<div class="formItem">
 			<label for="autoScoring">Scoring Goals in Autonomous</label>
 			<select name="autoScoring" id="autoScoring" required>
-				<option value="">&#8230;</option>
+				<option value="" selected disabled hidden>&#8230;</option>
 				<option value="0">No Scoring Ability</option>
 				<option value="1">Low Goal</option>
 				<option value="2">High Goal</option>
@@ -115,27 +134,31 @@
 		<div class="formItem">
 			<label for="teleScoring">Scoring Goals in Teleoperated</label>
 			<select name="teleScoring" id="teleScoring" required>
-				<option value="">&#8230;</option>
+				<option value="" selected disabled hidden>&#8230;</option>
 				<option value="0">No Scoring Ability</option>
 				<option value="1">Low Goal</option>
 				<option value="2">High Goal</option>
 			</select>
 		</div>
 		<div class="formItem">
-			<label for="telePositions">Scoring Locations in Teleoperated</label>
+			<label for="telePositions">Scoring Locations in Teleop</label>
 			<div class="checkboxGroup" >
-					<input type="checkbox" name="telePositions" id="telePositions" value="0">
-					<span>Against Power Port</span>
-				<br>
-					<input type="checkbox" name="telePositions" id="telePositions" value="1">
-					<span>Initiation Line Area</span>
-				<br>
-					<input type="checkbox" name="telePositions" id="telePositions" value="2">
-					<span>Trench Run</span>
-				<br>
-					<input type="checkbox" name="telePositions" id="telePositions" value="4">
-					<span>Behind Control Panel</span>
-				<br>
+				<label class="checkContainer" onClick="registerChange()">Against Power Port
+				<input type="checkbox" id="againstPort" name="telePositions" value="0">
+				<span class="checkmark"></span>
+				</label>
+				<label class="checkContainer" onClick="registerChange()">Initiation Line Area
+				<input type="checkbox" id="initiationLine" name="telePositions" value="1">
+				<span class="checkmark"></span>
+				</label>
+				<label class="checkContainer" onClick="registerChange()">Trench Run
+				<input type="checkbox" id="trenchRun" name="telePositions" value="2">
+				<span class="checkmark"></span>
+				</label>
+				<label class="checkContainer" onClick="registerChange()">Behind Control Panel
+				<input type="checkbox" id="fullCourt" name="telePositions" value="4">
+				<span class="checkmark"></span>
+				</label>
 			</div>
 		</div>
 		<div class="formItem">
@@ -144,7 +167,11 @@
 		</div>
 		<div class="formItem">
 			<label for="ballCapacity">Ball Capacity</label>
-			<input type="number" name="ballCapacity" id="ballCapacity" min="0" max="5" value="5" required>
+			<div class="ticker">
+				<input type="button"  onclick="decrementValue('ballCapacity')" value="-">
+				<input type="number" name="lower_auto" id="ballCapacity" min="0" max="5" value="0" readonly required>
+				<input type="button"  onclick="incrementValue('ballCapacity')" value="+">
+			</div>
 		</div>
 		<div class="formItem">
 			<label for="shooterStyle">Style of Shooter</label>
@@ -154,11 +181,11 @@
 			<label for="lowBot">Can drive under the control panel</label>
 				<div class="radioGroup">
 					<label>
-						<input type="radio" name="lowBot" id="lowBot" value="False" onClick="registerChange()" required>
+						<input type="radio" name="lowBot" id="lowBot_False" value="False" onClick="registerChange()" required>
 						<span>N</span>
 					</label>
 					<label>
-						<input type="radio" name="lowBot" id="lowbot" value="True" onClick="registerChange()">
+						<input type="radio" name="lowBot" id="lowBot_True" value="True" onClick="registerChange()">
 						<span>Y</span>
 					</label>
 				</div>
@@ -182,7 +209,7 @@
 		<div class="formItem">
 			<label for="climbLocations">Climbing Locations</label>
 			<select name="climbLocations" id="climbLocations" required>
-				<option value="">&#8230;</option>
+				<option value="" selected disabled hidden>&#8230;</option>
 				<option value="0">No Climb</option>
 				<option value="1">Center Only</option>
 				<option value="2">Side Only</option>
@@ -221,13 +248,17 @@
 		</div>
 		<div class="formItem">
 			<label for="scouterName">Scouter's Name</label>
-			<input type="text" name="scouterName" id="scouterName" placeholder="Scouter Name" required>
+			<input type="text" name="scouterName" id="scouterName" placeholder="Scouter Name" value="{{ user.get_username }}" required>
 		</div>
 		<br>
 		<div class="formItem" id="submit" onclick="validate('mainForm')">
                 <input name="submit" id="submitButton" type="submit" style="pointer-events: none">
 		</div>
 	</form>
+    <div id="snackbar">
+		<p id="snacktext">Default Text</p>
 	</div>
+	</div>
+    
 </body>
 </html>
