@@ -291,15 +291,15 @@
             <div class="infoBox infoReg" id="onFieldTile">
 				<div class="infoHeader">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'ScheduleIcon.png' %}" alt="Schedule Icon">
-					<h1>Appearance Info</h1>
+					<h1>Match Attendance</h1>
 				</div>
                 {% get_info user team 'on_field' 'total' 'match' as MATCHES %}
 				<div class="infoRow">
-					<div class="infoLColumn"><p>On Field Total</p></div>
+					<div class="infoLColumn"><p>Matches Played</p></div>
 					<div class="infoLColumn"><p>{{ MATCHES }}</p></div>
 				</div>
                 <div class="infoRow">
-					<div class="infoLColumn"><p>Total Matches</p></div>
+					<div class="infoLColumn"><p>Scheduled Matches</p></div>
 					<div class="infoLColumn"><p>{{ team.match_set.count }}</p></div>
 				</div>
 				<div class="infoRow" id="onFieldBG">
