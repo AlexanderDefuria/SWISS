@@ -149,6 +149,7 @@ ul {
 .bodyContainer{
 	margin-top: 40px;
 	padding: 20px 15px 20px 15px;
+	overflow: hidden;
 }
 #loginContainer {
 	padding: auto;
