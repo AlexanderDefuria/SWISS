@@ -628,9 +628,13 @@ ul {
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .robotPhoto {
-	width:inherit; 
-	height: inherit;
+	min-height: 260px; 
+	min-width: 260px;
 	margin-bottom: 5px;
+}
+.robotPhoto>img {
+	width: 260px;
+	height: 260px; 
 }
 .stickyChip {
 	display: flex;
