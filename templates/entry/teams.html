@@ -74,13 +74,15 @@
                 <a href='{% url 'entry:glance' team.id %}' class="teamLink" id="{{ team.number }}" name="{{ team.name }}" title="{{ team.name }} {{ team.number }}">
                     {% get_cookie request 'images' as images %}
                     {% if 'False' != images %}
-                        <div class="teamChip" style="overflow: hidden;">
-                            <img class="robotPhoto" src="{{ MEDIA_URL }}{{ team.first_image }}" loading="lazy" height="260px" alt="robot photo">
+                        <div class="teamCard" style="overflow: hidden;">
+							<div class="robotPhoto">
+								<img src="{{ MEDIA_URL }}{{ team.first_image }}" loading="lazy" height="260px" alt="{{ team.name }} Robot Photo - SWISS">
+							</div>
                             <div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
                             <div class="teamnamePill"><p>{{ team.name }}</p></div>
                         </div>
                     {% else %}
-                        <div class="teamChipNoPic" style="height: auto">
+                        <div class="teamCardNoPic" style="height: auto">
                             <div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
                             <div class="teamnamePill"><p>{{ team.name }}</p></div>
                         </div>
@@ -91,7 +93,7 @@
             {% get_cookie request 'images' as images %}
             {% if 'False' != images %}
             <a href="{% url 'entry:upload' %}">
-                <div class="teamChip" style="background-color: #0F4D8D">
+                <div class="teamCard" style="background-color: #0F4D8D">
                     <img class="robotPhoto" src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
                     <div class="teamnumberPill" style="background-color: transparent; border-color: transparent"><p>{{ team.number }}</p></div>
                     <div class="teamnamePill"><p>Upload Team Image</p></div>
@@ -113,7 +115,7 @@
 				title="{{ team.name }} {{ team.number }}">
 				{% get_cookie request 'images' as images %}
 				{% if 'False' != images %}
-				<div class="teamChip" style="overflow: hidden;">
+				<div class="teamCard" style="overflow: hidden;">
 					<img class="robotPhoto" src="{{ MEDIA_URL }}{{ team.first_image }}" loading="lazy" height="260px"
 						alt="robot photo">
 					<div class="teamnumberPill" style="background-color: {{ team.colour }}">
@@ -124,7 +126,7 @@
 					</div>
 				</div>
 				{% else %}
-				<div class="teamChipNoPic" style="height: auto">
+				<div class="teamCardNoPic" style="height: auto">
 					<div class="teamnumberPill" style="background-color: {{ team.colour }}">
 						<p>{{ team.number }}</p>
 					</div>
@@ -137,7 +139,7 @@
 			{% endfor %}
 			<br>
 			<a href="{% url 'entry:upload' %}">
-				<div class="teamChip" style="background-color: #0F4D8D">
+				<div class="teamCard" style="background-color: #0F4D8D">
 					<img class="robotPhoto" src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
 					<div class="teamnumberPill" style="background-color: transparent; border-color: transparent">
 						<p>{{ team.number }}</p>

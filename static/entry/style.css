@@ -596,7 +596,7 @@ ul {
     text-overflow: ellipsis;
     width: -webkit-fill-available;
 }
-.teamChip {
+.teamCard {
 	margin: 0px 0px 10px 10px;
 	padding: 20px;
 	width: 260px;
@@ -607,11 +607,11 @@ ul {
 	align-items: center;
 	transition: all .2s ease-in-out;
 }
-.teamChip:hover {
+.teamCard:hover {
 	transform: scale(1.1); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
-.teamChipNoPic {
+.teamCardNoPic {
 	margin: 0px 0px 10px 10px;
 	padding: 20px;
 	height: auto;
@@ -623,7 +623,7 @@ ul {
 	align-items: center;
 	transition: all .2s ease-in-out;
 }
-.teamChipNoPic:hover {
+.teamCardNoPic:hover {
 	transform: scale(1.1); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
