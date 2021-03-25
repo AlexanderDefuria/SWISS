@@ -1,0 +1,110 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Ordering of index boxes when on mobile (to prevent the jankey looking blank spaces)
+This SHOULD also apply to any viewports less than this. If this breaks on mobile let Nick know */
+#tileMatch 		{order: 1 }
+#tilePit 		{order: 2}
+#tileGlance 	{order: 3}
+#tileTeams 		{order: 4}
+#tileData 		{order: 5}
+#tileVisualize 	{order: 6}
+#tileSchedule   {order: 7}
+#tileDownload 	{order: 8}
+#tileEvent 		{order: 9; max-width: 255px;}
+#tileUpload 	{order: 10}
+#tileAdmin 		{order: 11}
+#tileSettings 	{order: 12}
+#tileTBA        {order: 13}
+#tileUpdate 	{order: 14}
+#tileActive 	{order: 15}
+@media screen and (max-width: 1860px){
+	.tileContainer #tileMatch 		{order : 1}
+	.tileContainer #tilePit 		{order: 2}
+	.tileContainer #tileGlance 		{order: 3}
+	.tileContainer #tileTeams 		{order: 5}
+	.tileContainer #tileData 		{order: 4}
+	.tileContainer #tileVisualize 	{order: 6}
+	.tileContainer #tlleSchedule 	{order: 7}
+	.tileContainer #tileDownload 	{order: 8}
+	.tileContainer #tileEvent 		{order: 9}
+	.tileContainer #tileActive 		{order: 10; min-width: 100px; max-width: 565px;}
+	.tileContainer #tileUpload 		{order: 11}
+	.tileContainer #tileAdmin 		{order: 12}
+    .tileContainer #tileTBA         {order: 13}
+	.tileContainer #tileSettings 	{order: 14}
+	.tileContainer #tileUpdate 		{order: 15}
+} @media screen and (max-width: 1600px){
+	.tileContainer #tileMatch 		{order : 1}
+	.tileContainer #tilePit 		{order: 2}
+	.tileContainer #tileGlance 		{order: 4}
+	.tileContainer #tileTeams 		{order: 3}
+	.tileContainer #tileData 		{order: 6}
+	.tileContainer #tileVisualize 	{order: 5}
+	.tileContainer #tileDownload 	{order: 7}
+	.tileContainer #tileEvent 		{order: 8;}
+	.tileContainer #tileUpload 		{order: 10}
+	.tileContainer #tileAdmin 		{order: 11}
+	.tileContainer #tileSettings 	{order: 12}
+    .tileContainer #tileTBA         {order: 13}
+	.tileContainer #tileUpdate 		{order: 14}
+	.tileContainer #tileActive 		{order: 9; min-width: 100px; max-width: 565px;}
+} @media screen and (max-width: 1280px) {
+	.tileContainer #tileMatch 		{order: 1}
+	.tileContainer #tilePit 		{order: 3}
+	.tileContainer #tileGlance 		{order: 2}
+	.tileContainer #tileTeams 		{order: 4}
+	.tileContainer #tileData 		{order: 6}
+	.tileContainer #tileVisualize 	{order: 5}
+	.tileContainer #tileDownload 	{order: 7}
+	.tileContainer #tileEvent 		{order: 8}
+	.tileContainer #tileActive 		{order: 9; max-width: 255px;}
+	.tileContainer #tileUpload 		{order: 10}
+	.tileContainer #tileAdmin 		{order: 11}
+	.tileContainer #tileSettings 	{order: 12}
+	.tileContainer #tileUpdate 		{order: 14}
+    .tileContainer #tileTBA         {order: 15}
+} @media screen and (max-width: 820px) {
+	.tileContainer #tileMatch 		{order: 2}
+	.tileContainer #tilePit 		{order: 1}
+	.tileContainer #tileGlance 		{order: 3}
+	.tileContainer #tileTeams 		{order: 4}
+	.tileContainer #tileData 		{order: 6}
+	.tileContainer #tileVisualize 	{order: 5}
+	.tileContainer #tileDownload 	{order: 7}
+	.tileContainer #tileUpload 		{order: 10}
+	.tileContainer #tileAdmin 		{order: 11}
+	.tileContainer #tileSettings 	{order: 12}
+	.tileContainer #tileUpdate 		{order: 13}
+    .tileContainer #tileTBA         {order: 14}
+} @media screen and (max-width: 1280px) {
+	#tileMatch 		{order: 1}
+	#tilePit 		{order: 2}
+	#tileGlance 	{order: 3}
+	#tileTeams 		{order: 4}
+	#tileData 		{order: 6}
+	#tileVisualize 	{order: 5}
+	#tileDownload 	{order: 20}
+	#tileEvent 		{order: 8}
+	#tileUpload 	{order: 10}
+	#tileAdmin 		{order: 11}
+	#tileSettings 	{order: 12}
+    #tileTBA        {order: 13}
+	#tileUpdate 	{order: 14}
+	#tileActive 	{order: 9; max-width: 255px;}
+} @media screen and (max-width: 820px) and (max-height: 800px) {
+	#tileMatch 		{order: 1}
+	#tilePit 		{order: 2}
+	#tileGlance 	{order: 3}
+	#tileTeams 		{order: 4}
+	#tileData 		{order: 6}
+	#tileVisualize 	{order: 5}
+	#tileDownload 	{order: 20}
+	#tileEvent 		{order: 8}
+	#tileUpload 	{order: 10}
+	#tileAdmin 		{order: 11}
+	#tileSettings 	{order: 12}
+    #tileTBA        {order: 13}
+	#tileUpdate 	{order: 14}
+	#tileActive 	{order: 9; max-width: 255px;}
+}
