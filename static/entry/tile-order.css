@@ -35,7 +35,7 @@ This SHOULD also apply to any viewports less than this. If this breaks on mobile
 	.tileContainer #tileSettings 	{order: 14}
 	.tileContainer #tileUpdate 		{order: 15}
 } @media screen and (max-width: 1600px){
-	.tileContainer #tileMatch 		{order : 1}
+	.tileContainer #tileMatch 		{order: 1}
 	.tileContainer #tilePit 		{order: 2}
 	.tileContainer #tileGlance 		{order: 4}
 	.tileContainer #tileTeams 		{order: 3}
@@ -71,7 +71,7 @@ This SHOULD also apply to any viewports less than this. If this breaks on mobile
 	.tileContainer #tileTeams 		{order: 4}
 	.tileContainer #tileData 		{order: 6}
 	.tileContainer #tileVisualize 	{order: 5}
-	.tileContainer #tileDownload 	{order: 7}
+	.tileContainer #tileDownload 	{order: 15}
 	.tileContainer #tileUpload 		{order: 10}
 	.tileContainer #tileAdmin 		{order: 11}
 	.tileContainer #tileSettings 	{order: 12}
