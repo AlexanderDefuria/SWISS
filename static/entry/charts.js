@@ -64,7 +64,19 @@ const constCharts = {
                 }
                 }
             },
-            responsive: {
+			yAxis: {
+                title: {
+                    text: 'Balls Scored',
+                    style: {
+                        color: '#ffffff'
+                    }
+                    },
+                labels: {
+                    style: {
+                        color: '#ffffff'
+                    }
+                }
+                },            responsive: {
                 rules: [{
                     condition: {
                         maxWidth: 500
