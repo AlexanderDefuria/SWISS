@@ -84,7 +84,7 @@
 					</div>
 					<div class="pillContainer" id="TeamCheckBox" style="display: flex; flex-wrap: wrap; ">
 						{% for team in team_list %}
-                        <div class="teamnumberPill">
+                        <div class="teamnumberPill" style="background-color: {{team.colour}}; cursor: pointer;">
 							<label style="user-select: none" for="{{ team.id }}">{{ team.number }}</label>
                             <input name="teamCheckBox" type="checkbox" id="{{ team.id }}" value="{{ team.name }}">
                         </div>

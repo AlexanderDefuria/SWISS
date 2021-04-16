@@ -546,6 +546,8 @@ ul {
 }
 .pillContainer > div, li {
 	margin: 16px 5px;
+	justify-content: center;
+	align-items: center;
 }
 .pillSelect {
 	max-width: 50%;
