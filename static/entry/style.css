@@ -393,6 +393,10 @@ ul {
 	font-weight: 900;
 	border: none;
 	color: white;
+	transition: all .2s ease-in-out; 
+}
+.updateButton:hover {
+	background-color: #0B3866;
 }
 .dataButton {
 	background: none;
