@@ -9,9 +9,9 @@ class Event(models.Model):
     FIRST_key = models.TextField(default="NA")
     FIRST_eventType = models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
     start = models.DateField(default=date(2020, 1, 1),
-                             validators=[MaxValueValidator(date(2020, 12, 31)), MinValueValidator(date(2020, 1, 1))])
+                             validators=[MaxValueValidator(date(2222, 12, 31)), MinValueValidator(date(2020, 1, 1))])
     end = models.DateField(default=date(2020, 1, 1),
-                           validators=[MaxValueValidator(date(2020, 12, 31)), MinValueValidator(date(2020, 1, 1))])
+                           validators=[MaxValueValidator(date(2222, 12, 31)), MinValueValidator(date(2020, 1, 1))])
     imported = models.BooleanField(default=False)
 
     def __str__(self):
