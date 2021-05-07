@@ -25,6 +25,10 @@ class Images(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = "Images"
+        verbose_name = "Image"
+
 
 class Team(models.Model):
     number = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
@@ -46,6 +50,10 @@ class Team(models.Model):
     def __str__(self):
         return str(self.number) + "\t\t" + str(self.name)
 
+    class Meta:
+        verbose_name_plural = "Images"
+        verbose_name = "Image"
+
 
 class Schedule(models.Model):
     match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(0)])
@@ -63,6 +71,10 @@ class Schedule(models.Model):
 
     def __str__(self):
         return str(self.match_number)
+
+    class Meta:
+        verbose_name_plural = "Schedule"
+        verbose_name = "Schedule"
 
 
 class Match(models.Model):
@@ -127,6 +139,10 @@ class Match(models.Model):
     def __str__(self):
         return self.team.name + "  Match: " + str(self.match_number)
 
+    class Meta:
+        verbose_name_plural = "Matches"
+        verbose_name = "Match"
+
 
 class Pits(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
@@ -188,6 +204,10 @@ class Pits(models.Model):
 
     def __str__(self):
         return self.team.name
+
+    class Meta:
+        verbose_name_plural = "Pits"
+        verbose_name = "Pits"
 
 
 class TeamMember(models.Model):
