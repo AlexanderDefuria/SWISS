@@ -9,6 +9,7 @@ from django.core import serializers
 from django.shortcuts import render_to_response
 
 from apps import config
+from apps import importFRC
 import dbTools
 
 from datetime import datetime
@@ -403,6 +404,12 @@ def login(request):
         return HttpResponseRedirect(reverse_lazy('entry:index'))
 
     return HttpResponseRedirect(reverse_lazy('entry:login'))
+
+
+@login_required(login_url='entry:login')
+def import_from_first():
+    importFRC.import_event(config.get_current_event_key())
+    return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 
 @login_required(login_url='entry:login')

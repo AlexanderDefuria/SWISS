@@ -186,3 +186,7 @@ os.system('python3 manage.py flush --noinput')
 import_events()
 import_teams()
 import_schedule()
+
+
+def import_event(param):
+    return None
