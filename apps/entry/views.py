@@ -408,7 +408,7 @@ def login(request):
 
 @login_required(login_url='entry:login')
 def import_from_first(request):
-    importFRC.import_event(config.get_current_event_key())
+    //importFRC.import_event(config.get_current_event_key())
     return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 
