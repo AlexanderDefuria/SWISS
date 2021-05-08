@@ -467,8 +467,10 @@ def get_all_teams():
     return objects
 
 
+@login_required(login_url='entry:login')
 def import_from_first():
-    pass
+    importFRC.import_event(config.get_current_event_key())
+    return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 
 class TeamList(LoginRequiredMixin, generic.ListView):
