@@ -39,7 +39,7 @@ urlpatterns = [
     path('experimental/getcsv/', views.get_csv_ajax, name='getcsv'),
     path('tutorial/', views.Tutorial.as_view(), name='tutorial'),
     path('welcome/', views.Welcome.as_view(), name='welcome'),
-	path('import/', views.Import.as_view(), name='import'),
+	path('import/', views.import_from_first, name='import'),
 
     path('logout/', views.logout, name='logout'),
     path('login/', views.login, name='login'),
