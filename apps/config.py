@@ -59,13 +59,6 @@ def set_event(FIRST_key):
     write_changes()
 
 
-def set_xml_event(tag, value):
-    global root
-    element = root.find('events/' + tag)
-    element.text = value
-    write_changes()
-
-
 def set_district(FIRST_key):
     """
     :param FIRST_key: The FIRST Key of the District
@@ -78,9 +71,6 @@ def set_district(FIRST_key):
 def write_changes():
     global tree, path
     tree.write(path)
-
-
-
 
 
 update_from_xml()

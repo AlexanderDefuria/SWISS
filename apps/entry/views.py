@@ -10,7 +10,6 @@ from django.shortcuts import render_to_response
 
 from apps import config
 import dbTools
-from apps import importFRC
 
 from datetime import datetime
 from json import dumps
@@ -467,12 +466,6 @@ def get_all_teams():
     return objects
 
 
-@login_required(login_url='entry:login')
-def import_from_first():
-    importFRC.import_event(config.get_current_event_key())
-    return HttpResponseRedirect(reverse_lazy('entry:index'))
-
-
 class TeamList(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     template_name = 'entry/teams.html'
@@ -557,7 +550,6 @@ class Tutorial(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
     template_name = 'entry/tutorial.html'
 
-
 class Welcome(LoginRequiredMixin, generic.TemplateView):
     template_name = 'entry/welcome.html'
 
@@ -628,5 +620,6 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
         response.set_cookie('filters', request.POST.get('filters', ''))
         response.set_cookie('districtTeams', request.POST.get('districtTeams', ''))
         response.set_cookie('tutorialCompleted', request.POST.get('tutorialCompleted', ''))
+
 
         return response
