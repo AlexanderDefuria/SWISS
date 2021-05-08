@@ -9,9 +9,9 @@ class Event(models.Model):
     FIRST_key = models.TextField(default="NA")
     FIRST_eventType = models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
     start = models.DateField(default=date(2020, 1, 1),
-                             validators=[MaxValueValidator(date(2020, 12, 31)), MinValueValidator(date(2020, 1, 1))])
+                             validators=[MaxValueValidator(date(2220, 12, 31)), MinValueValidator(date(2020, 1, 1))])
     end = models.DateField(default=date(2020, 1, 1),
-                           validators=[MaxValueValidator(date(2020, 12, 31)), MinValueValidator(date(2020, 1, 1))])
+                           validators=[MaxValueValidator(date(2220, 12, 31)), MinValueValidator(date(2020, 1, 1))])
     imported = models.BooleanField(default=False)
 
     def __str__(self):
@@ -25,12 +25,18 @@ class Images(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = "Images"
+        verbose_name = "Image"
+
 
 class Team(models.Model):
     number = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
     name = models.CharField(default="team", max_length=100)
     images = models.ManyToManyField(Images)
     colour = models.CharField(default="#000000", max_length=7)
+    pick_status = models.IntegerField(default=0, validators=[MaxValueValidator(2), MinValueValidator(0)])
+
 
     def first_image(self):
         # code to determine which image to show. The First in this case.
@@ -43,6 +49,10 @@ class Team(models.Model):
 
     def __str__(self):
         return str(self.number) + "\t\t" + str(self.name)
+
+    class Meta:
+        verbose_name_plural = "Images"
+        verbose_name = "Image"
 
 
 class Schedule(models.Model):
@@ -61,6 +71,10 @@ class Schedule(models.Model):
 
     def __str__(self):
         return str(self.match_number)
+
+    class Meta:
+        verbose_name_plural = "Schedule"
+        verbose_name = "Schedule"
 
 
 class Match(models.Model):
@@ -125,6 +139,10 @@ class Match(models.Model):
     def __str__(self):
         return self.team.name + "  Match: " + str(self.match_number)
 
+    class Meta:
+        verbose_name_plural = "Matches"
+        verbose_name = "Match"
+
 
 class Pits(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
@@ -186,6 +204,10 @@ class Pits(models.Model):
 
     def __str__(self):
         return self.team.name
+
+    class Meta:
+        verbose_name_plural = "Pits"
+        verbose_name = "Pits"
 
 
 class TeamMember(models.Model):

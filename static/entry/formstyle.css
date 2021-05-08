@@ -40,17 +40,10 @@
 	transition: all 0.2s ease-in-out;
 }
 /* Adds a background color, expands the input and adds a blue border when focused */
-.formItem input[type=text]:focus {
-	width: 400px;  
+.formItem input[type=text]:focus { 
 	border-color: #0F4D8D;
 	border-width: 3px;
 	background: #333333;
-}
-#username {
-    width: 200px;
-}
-#username:focus {
-	width: 200px;
 }
 
 
@@ -191,6 +184,7 @@ input[type=number] {
 	top: -10px;
 	user-select: none;
 	width: 5px;
+	cursor: pointer;
 }
 
 
@@ -354,6 +348,22 @@ input[type=number] {
 	cursor: pointer;
 }
 
+.logoutbtn {
+	background-color: #b32e2e;
+	border: none;
+	color: white;
+	font-size: 24px;
+	font-weight: 1000;
+	height: 60px;
+	width: 100%;
+	cursor: pointer;
+}
+
+.logoutbtn:hover {
+    box-shadow: 2px 5px 25px 2px #232323;
+}
+
+
 /* SOCIAL MEDIA ICONS ON SETTINGS PAGE */ 
 
 .socialIcon {
@@ -370,7 +380,7 @@ input[type=number] {
 }
 /* The Initiation Line image */
 #autoStart_img {
-	height: 50px;
+	width: 200px;
 	
 }
 	
@@ -382,7 +392,7 @@ input:-webkit-autofill:focus {
 	border: none;
 	border-bottom: 2px solid green;
 	background-color: #0F4D8D;
-    color: #ffffff
+    color: #ffffff;
 	transition: background-color 5000s ease-in-out 0s;
 }
 

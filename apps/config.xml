@@ -1,5 +1,6 @@
 <root>
     <events>
+        <current-event-key> </current-event-key>
         <current-event>ONTO3</current-event>
         <district-key>ONT</district-key>
     </events>

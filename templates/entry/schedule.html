@@ -9,7 +9,9 @@
 <link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/formstyle.css' %}">
+<link rel="stylesheet" href="{% static 'entry/flickity.min.css' %}" media="screen">
 <script src="{% static 'entry/script.js' %}"></script>
+<script src="{% static 'entry/flickity.pkgd.min.js' %}"></script>
 <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
@@ -91,7 +93,36 @@
             </div>
             {% endfor %}            
         </div>
-        <!--
+        
+<!-- Carousel View -->
+<!--
+        <div class="carousel">
+            {% for match in schedule_list %}
+            <div class="carousel-cell">
+                <h3>Q-{{ match.match_number }}</h3>
+            </div>
+            {% endfor %}            
+        </div>        
+        
+        <script>
+        var flkty = new Flickity('.carousel');
+            flkty.on( 'settle', function( index ) {
+              console.log( 'Flickity settled at ' + index );
+            });        
+        </script>
+        
+        <style>
+            .carousel-cell {
+              width: 66%;
+              height: 200px;
+              margin-right: 10px;
+              background: #8C8;
+              border-radius: 5px;
+            }
+        </style>
+        -->
+        <!-- Old Table View -->
+        <!-- 
         <div class="tableContainer">
             <table id="dataTable">
                 <tr>
@@ -154,6 +185,26 @@
 			<button class="bottomBarButton" id="bottomBarButton" onclick="expandBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
 		</div>
 -->
+		{% get_cookie request 'filters' as filters %}
+        {% if 'False' != filters %}
+        <div class="bottomBar" id="bottomBar">
+			<div id="bottomBarContent">
+				<div class="filterBox" >
+					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
+					<input class="filterChip" type="text" id="matchNumber" onkeyup="scheduleFilter('matchNumber')" placeholder="Match Number">
+				</div>
+				<br>
+				{% if user.is_staff %}
+				<div class="filterBox" onClick="location.href ='{% url 'entry:admin_redirect' 'schedule' %}';" style="cursor: pointer">
+					<img src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" style="height: 50px;" alt="Edit">
+					<h3>Edit Teams</h3>
+				</div>
+				{% endif %}
+			</div>
+			<button class="bottomBarButton" id="bottomBarButton" onclick="expandBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
+		</div>
+        {% endif %}
+        
 	</div>
 
 </body>

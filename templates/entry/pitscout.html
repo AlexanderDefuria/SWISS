@@ -107,7 +107,7 @@
 			<label for="hasAuto">Has Autonomous Route?</label>			
 			<div class="radioGroup">
 				<label>
-					<input type="radio" name="hasAuto" id="hasAuto_false" value="False" onClick="registerChange()" required>
+					<input type="radio" name="hasAuto" id="hasAuto_false" value="False" onClick="registerChange(),hideAutoStuff()" required>
 					<span>N</span>
 				</label>
 				<label>
@@ -259,6 +259,19 @@
 		<p id="snacktext">Default Text</p>
 	</div>
 	</div>
+<script>
+    function hideAutoStuff() {
+        var x = document.getElementById("hasAuto_false").checked;
+        if (x != true){
+            document.getElementById("teamDefendedDiv").style.display="flex";
+            document.getElementById("defenseQualityDiv").style.display="flex";
+        } else {
+            document.getElementById("teamDefendedDiv").style.display="none";
+            document.getElementById("defenseRating").value="0";
+            document.getElementById("defenseQualityDiv").style.display="none";
+        }
+    }
     
+</script>
 </body>
 </html>

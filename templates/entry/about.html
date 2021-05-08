@@ -67,7 +67,7 @@
                 <p>SWISS is an application for the FIRST Robotics Competition game with the purpose of scouting robots during matches and providing a neat dashboard for the data collected by scouters. <br> 
                 Built by FRC 4343 Alumni Alex DeFuria and Nick Kerstens</p>
                 <div style="width: 100%; border-bottom: 2px solid #666666"></div>
-                <h2>Github Repository Documet</h2>
+                <h2>Github Repository Documentation</h2>
                 <p>The web server is hosted from a raspberry pi during competition which creates a PAN network, (Bluetooth network) to allow other devices to connect to the web server. Using a wifi network would be much better but would be a violation of rule C05 of the 
                 <a href="https://firstfrc.blob.core.windows.net/frc2021/EventRules/EventRulesManual.pdf" target="_blank">FRC Event Rules Manual</a>, 
                 bluetooth setup of this scouting system is not a violation of rule C05 as the wording is specific to WiFi wireless bands and standards. 
@@ -94,7 +94,20 @@
                 </details>
                 <details open>
                     <summary> Windows </summary>
-                    <p>Instructions coming soon. With pictures!</p>
+                    <p>Step 1 - Network Status Windows Settings</p>
+                    <img src="{{ MEDIA_URL }}{% static 'step1.png' %}" alt="Step 1 - Network Status Windows Settings">
+                    <p>Step 2 - Bluetooth in Windows Settings</p>
+                    <img src="{{ MEDIA_URL }}{% static 'step2.png' %}" alt="Step 2 - Bluetooth in Windows Settings">
+                    <p>Step 3 - Add A Device</p>
+                    <img src="{{ MEDIA_URL }}{% static 'step3.png' %}" alt="Step 3 - Add A Device">
+                    <p>Step 4a - Change Adapter Settings</p>
+                    <img src="{{ MEDIA_URL }}{% static 'step4a.png' %}" alt="Step 4a - Change Adapter Settings">
+                    <p>Step 4b - Network Connection Control Panel</p>
+                    <img src="{{ MEDIA_URL }}{% static 'step4b.png' %}" alt="Step 4b - Network Connection Control Panel">
+                    <p>Step 5 - View Bluetooth Network Devices</p>
+                    <img src="{{ MEDIA_URL }}{% static 'step5.png' %}" alt="Step 5 - View Bluetooth Network Devices">
+                    <p>Step 6 - Connect To Access Point</p>
+                    <img src="{{ MEDIA_URL }}{% static 'step6.png' %}" alt="Step 6 - Connect To Access Point">
                 </details>
                 <h3>Viewing Images</h3>
                 <p>Images can be rotated using the <a href="https://github.com/AlexanderDeFuria/FRC-Scouting/blob/master/rotateImage.py" target="_blank">Rotate Image Utility</a> to correct landscape and portrait modes not being consistent.</p>
@@ -109,6 +122,12 @@
             <button>test</button>
         </a>
     {% endif %}
-
+    
+    <style>
+        details > img {
+            max-width: 95%;
+            height: auto;
+        }
+    </style>
 </body>
 </html>
