@@ -1,11 +1,12 @@
 *.pyc
+venv/
 nickTest/oldabout.html
 nickTest/oldblank.html
 nickTest/olddata.html
 nickTest/oldexperimental.html
 nickTest/oldglance.html
 nickTest/oldindex.html
-nickTest/oldlogin.html
+nickTest/oldlogin.htmle
 nickTest/oldmatchlanding.html
 nickTest/oldmatchscout.html
 nickTest/oldpitlanding.html
