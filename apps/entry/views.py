@@ -8,8 +8,8 @@ import ast
 from django.core import serializers
 from django.shortcuts import render_to_response
 
-import importFRC
 from apps import config
+from apps import importFRC
 import dbTools
 
 from datetime import datetime
