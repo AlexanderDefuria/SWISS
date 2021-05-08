@@ -146,6 +146,11 @@
 				<p class="specialBoxHeader">Active Users:</p>
 				<h2 style="margin: 0">{% get_all_logged_in_users %}</h2>
 			</div>
+			<a href="{% url 'entry:import_from_first' %}" id="tileImport" title="Import Panel">
+				<div class="smallBox">
+					<img src="{{ MEDIA_URL }}{% static 'FirstImportIcon.png' %}" alt="Import Icon">
+				</div>
+			</a>
 		</div>
 		<div id="snackbar">
 			<p id="snacktext">Default Text</p>
