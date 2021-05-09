@@ -188,5 +188,3 @@ import_teams()
 import_schedule()
 
 
-def import_event(param):
-    return None
