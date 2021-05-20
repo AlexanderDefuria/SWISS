@@ -701,12 +701,12 @@ class DBTools:
         schedule_list = Schedule.objects.all().filter(event_id=event_id)
 
         for match in schedule_list:
-            team_list.append(match.blue1)
-            team_list.append(match.blue2)
-            team_list.append(match.blue3)
-            team_list.append(match.red1)
-            team_list.append(match.red2)
-            team_list.append(match.red3)
+            team_list.append(match.blue1.id)
+            team_list.append(match.blue2.id)
+            team_list.append(match.blue3.id)
+            team_list.append(match.red1.id)
+            team_list.append(match.red2.id)
+            team_list.append(match.red3.id)
 
         team_list.remove(0)
         print(team_list)
