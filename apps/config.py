@@ -54,8 +54,9 @@ def set_event(FIRST_key):
     :param FIRST_key: The FIRST Key of the Event
     """
     global current_event_key, current_event_id, root
-    current_event_key = root.find('events/current-event').text = FIRST_key
-    current_event_id = Event.objects.filter(FIRST_key=current_event_key)[0].id
+    root.find('events/current-event').text = FIRST_key
+    current_event_key = root.find('events/current-event').text
+    current_event_id = Event.objects.filter(FIRST_key=FIRST_key)[0].id
     write_changes()
 
 

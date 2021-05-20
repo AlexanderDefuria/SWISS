@@ -49,8 +49,45 @@ def import_event(key):
         new_event.FIRST_eventType = 1
         new_event.save()
 
+    # If we're populating teams for the event then purge the existing ones otherwise ignore
+    if teams is not None:
+        existing = Schedule.objects.all().filter(event_id=Event.objects.get(FIRST_key=key).id)
+        for each in existing:
+            each.delete()
+
+    # Populate schedule with dummies to display teams at event, not included in the schedule display frontend
+    i = 0
+    new_schedule = Schedule()
     for team in teams:
-        import_team_json(team)
+        new_team = import_team_json(team)
+
+        if i == 6:
+            new_schedule.blue_score = 0
+            new_schedule.red_score = 0
+            new_schedule.match_number = 0
+            new_schedule.match_type = "placeholder"
+            new_schedule.placeholder = True
+            print(new_schedule)
+            print("error after this")
+            new_schedule.save()
+            new_schedule = Schedule()
+            i = 0
+
+        if i == 0:
+            new_schedule.event = Event.objects.get(FIRST_key=key)
+            new_schedule.blue1 = new_team.id
+        elif i == 1:
+            new_schedule.blue2 = new_team.id
+        elif i == 2:
+            new_schedule.blue3 = new_team.id
+        elif i == 3:
+            new_schedule.red1 = new_team.id
+        elif i == 4:
+            new_schedule.red2 = new_team.id
+        elif i == 5:
+            new_schedule.red3 = new_team.id
+
+        i += 1
 
     return
 
@@ -71,6 +108,9 @@ def import_team_json(json_object):
     new_team.number = json_object['teamNumber']
     new_team.geo_location = json_object['stateProv']
     new_team.save()
+    print(new_team)
+    return new_team
+
 
 
 def import_schedule(event_slug):
@@ -86,9 +126,26 @@ def get_request(request):
         request += "/"
 
     if year is None:
-        year = requests.get(api_url_base, headers=header).json()["currentSeason"]
+        answer = requests.get(api_url_base, headers=header)
 
-    return requests.get(api_url_base + str(year) + request, headers=header).json()
+        # Raise error and pass over the function if the data is not cached and it is infact a good answer
+        print(answer)
+        if not answer.ok:
+            raise NoGoodResponseError
+
+        year = answer.json()["currentSeason"]
+
+    answer = requests.get(api_url_base + str(year) + request, headers=header)
+    if not answer.ok:
+        raise NoGoodResponseError
+
+    return answer.json()
+
+
+# Wooooowwwww custom error handling ooooooohhhh, thanks uottawa intro to comp sci.
+class NoGoodResponseError(Exception):
+    pass
+
 
 
 

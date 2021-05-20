@@ -27,7 +27,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from apps.entry.graphing import *
-from apps.entry.models import Team, Match, Schedule, Images, Event, Pits, TeamMember
+from apps.entry.models import *
 from apps.entry.templatetags import common_tags
 
 register = Library
@@ -408,7 +408,7 @@ def login(request):
 
 @login_required(login_url='entry:login')
 def import_from_first(request):
-    #importFRC.import_event(config.get_current_event_key())
+    # importFRC.import_event(config.get_current_event_key())
     return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 
@@ -459,18 +459,21 @@ def make_int(s):
     return int(s) if s else 0
 
 
-def get_present_teams():
-    event_key = config.get_current_event_key()
-    objects = Team.objects.filter(number__in=dbTools.get_event_teams(event_key))
+def get_present_teams(user):
+    objects = Team.objects.filter(
+        id__in=DBTools.get_event_teams(TeamSettings.objects.get(team=user.teammember.team).currentEvent.FIRST_key))
     objects = objects.order_by('number')
     return objects
 
 
 def get_all_teams():
-    event_key = config.get_current_event_key()
     objects = Team.objects.all()
     objects = objects.order_by('number')
     return objects
+
+
+def get_all_events():
+    return Event.objects.all().order_by('start')
 
 
 class TeamList(LoginRequiredMixin, generic.ListView):
@@ -480,7 +483,7 @@ class TeamList(LoginRequiredMixin, generic.ListView):
     model = Team
 
     def get_queryset(self):
-        return get_present_teams()
+        return get_present_teams(self.request.user)
 
 
 class Index(LoginRequiredMixin, generic.TemplateView):
@@ -502,7 +505,7 @@ class MatchScoutLanding(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/matchlanding.html'
 
     def get_queryset(self):
-        return get_present_teams()
+        return get_present_teams(self.request.user)
 
 
 class Visualize(LoginRequiredMixin, generic.ListView):
@@ -512,7 +515,7 @@ class Visualize(LoginRequiredMixin, generic.ListView):
     context_object_name = "team_list"
 
     def get_queryset(self):
-        return get_present_teams()
+        return get_present_teams(self.request.user)
 
 
 class ScheduleView(LoginRequiredMixin, generic.ListView):
@@ -539,7 +542,7 @@ class PitScoutLanding(LoginRequiredMixin, generic.ListView):
     context_object_name = "team_list"
 
     def get_queryset(self):
-        return get_present_teams()
+        return get_present_teams(self.request.user)
 
 
 class Experimental(LoginRequiredMixin, generic.TemplateView):
@@ -557,12 +560,14 @@ class Tutorial(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
     template_name = 'entry/tutorial.html'
 
+
 class Welcome(LoginRequiredMixin, generic.TemplateView):
     template_name = 'entry/welcome.html'
-	
+
+
 class Import(LoginRequiredMixin, generic.TemplateView):
-	login_url = 'entry:login'
-	template_name = 'entry/import.html'
+    login_url = 'entry:login'
+    template_name = 'entry/import.html'
 
 
 class Glance(LoginRequiredMixin, generic.DetailView):
@@ -585,7 +590,7 @@ class GlanceLanding(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/glancelanding.html'
 
     def get_queryset(self):
-        return get_present_teams()
+        return get_present_teams(self.request.user)
 
 
 class MatchData(LoginRequiredMixin, generic.ListView):
@@ -631,6 +636,89 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
         response.set_cookie('filters', request.POST.get('filters', ''))
         response.set_cookie('districtTeams', request.POST.get('districtTeams', ''))
         response.set_cookie('tutorialCompleted', request.POST.get('tutorialCompleted', ''))
+        config.set_event(request.POST.get('currentEvent', '21ONT'))
 
+        print(self.request.user.teammember.position)
+
+        if self.request.user.teammember.position == "LS":
+            new_settings = TeamSettings()
+            print("making")
+            try:
+                new_settings = TeamSettings.objects.get(team=self.request.user.teammember.team)
+                new_settings.currentEvent = Event.objects.get(FIRST_key=request.POST.get('currentEvent', '21ONT'))
+
+            except TeamSettings.DoesNotExist:
+                new_settings.team = self.request.user.teammember.team
+                new_settings.currentEvent = Event.objects.get(FIRST_key=request.POST.get('currentEvent', '21ONT'))
+
+            except Event.DoesNotExist:
+                print("User entered event that doesn't exist")
+                return response
+
+            new_settings.save()
 
         return response
+
+
+class DBTools:
+    present_team_list = None
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+    def team_id_lookup(team_number):
+        """
+        :param team_number: FRC Team Number
+        :type team_number: int
+        :return: Team ID within the DB
+        """
+        team_id = Team.objects.get(number=team_number).id
+
+        return team_id
+
+    def get_event_teams(event_key):
+        """
+        :param event_key: FIRST Event Key
+        :type event_key: str
+        :return : List of team IDs attending said event
+        :rtype : List
+        """
+        team_list = [0]
+        event_id = Event.objects.get(FIRST_key=event_key)
+        schedule_list = Schedule.objects.all().filter(event_id=event_id)
+
+        for match in schedule_list:
+            team_list.append(match.blue1)
+            team_list.append(match.blue2)
+            team_list.append(match.blue3)
+            team_list.append(match.red1)
+            team_list.append(match.red2)
+            team_list.append(match.red3)
+
+        team_list.remove(0)
+        print(team_list)
+        team_list.sort()
+        present_team_list = team_list
+        return present_team_list
+
+    def update_event_teams(event_key):
+        """
+        :param event_key: FIRST Event Key
+        :type event_key: str
+        :return None
+        """
+        DBTools.get_event_teams(event_key)
+
+    def event_id_lookup(FIRST_key):
+        conn = sqlite3.connect(str(os.path.join(DBTools.BASE_DIR, "db.sqlite3")))
+        c = conn.cursor()
+        try:
+            return c.execute('SELECT id FROM entry_event WHERE FIRST_key==?', (FIRST_key,)).fetchone()[0]
+        except Exception:
+            return None
+
+    def event_key_lookup(event_id):
+        conn = sqlite3.connect(str(os.path.join(DBTools.BASE_DIR, "db.sqlite3")))
+        c = conn.cursor()
+        try:
+            return c.execute('SELECT FIRST_key FROM entry_event WHERE id==?', (event_id,)).fetchone()[0]
+        except Exception:
+            return None
