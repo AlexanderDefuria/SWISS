@@ -76,8 +76,45 @@ def import_event(key):
         print(new_event)
         print("")
 
+    # If we're populating teams for the event then purge the existing ones otherwise ignore
+    if teams is not None:
+        existing = Schedule.objects.all().filter(event_id=Event.objects.get(FIRST_key=key).id)
+        for each in existing:
+            each.delete()
+
+    # Populate schedule with dummies to display teams at event, not included in the schedule display frontend
+    i = 0
+    new_schedule = Schedule()
     for team in teams:
-        import_team_json(team)
+        new_team = import_team_json(team)
+
+        if i == 6:
+            new_schedule.blue_score = 0
+            new_schedule.red_score = 0
+            new_schedule.match_number = 0
+            new_schedule.match_type = "placeholder"
+            new_schedule.placeholder = True
+            print(new_schedule)
+            print("error after this")
+            new_schedule.save()
+            new_schedule = Schedule()
+            i = 0
+
+        if i == 0:
+            new_schedule.event = Event.objects.get(FIRST_key=key)
+            new_schedule.blue1 = new_team.id
+        elif i == 1:
+            new_schedule.blue2 = new_team.id
+        elif i == 2:
+            new_schedule.blue3 = new_team.id
+        elif i == 3:
+            new_schedule.red1 = new_team.id
+        elif i == 4:
+            new_schedule.red2 = new_team.id
+        elif i == 5:
+            new_schedule.red3 = new_team.id
+
+        i += 1
 
     return
 
@@ -112,6 +149,7 @@ def import_team_json(json_object):
     new_team.geo_location = json_object['stateProv']
     new_team.save()
     print(new_team)
+    return new_team
 
 
 def import_schedule(event_slug):
@@ -142,6 +180,16 @@ def get_request(request):
         raise NoGoodResponseError
 
     return answer.json()
+
+
+class PresentTeams:
+    present_teams = 0
+
+    def update_present_teams(self):
+        config.get_current_event_key()
+        pass
+
+    pass
 
 
 # Wooooowwwww custom error handling ooooooohhhh, thanks uottawa intro to comp sci.

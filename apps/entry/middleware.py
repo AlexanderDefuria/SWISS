@@ -7,6 +7,7 @@ import traceback
 
 from apps.entry.urls import urlpatterns
 from apps import config
+from apps import importFRC
 
 
 class ValidateUser:
@@ -66,6 +67,9 @@ class ValidateUser:
     def valid_perms(self, view, user):
         if view == '':
             view = 'index'
+
+        # if 'matchscout' in view:
+
 
         reqlevel = 0
         for each in TeamMember.AVAILABLE_POSITIONS:

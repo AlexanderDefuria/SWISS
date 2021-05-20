@@ -5,6 +5,7 @@ present_team_list = None
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
+
 def team_id_lookup(team_number):
     """
     :param team_number: FRC Team Number
@@ -39,9 +40,11 @@ def get_event_teams(event_key):
     for match in match_list:
         for index in range(3, 8):
             if not team_list.__contains__(match[index]):
-                team_list.append(match[index])
+                if type(match[index]) is int:
+                    team_list.append(match[index])
 
     team_list.remove(0)
+    print(team_list)
     team_list.sort()
     present_team_list = team_list
     return present_team_list

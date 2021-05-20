@@ -77,13 +77,19 @@ def get_all_logged_in_users(*args):
 
 
 @register.simple_tag
-def get_all_present_teams():
-    return views.get_present_teams()
+def get_all_present_teams(user):
+    return views.get_present_teams(user)
 
 
 @register.simple_tag
 def get_all_teams():
     return views.get_all_teams()
+
+
+@register.simple_tag
+def get_all_events():
+    print(views.get_all_events().all())
+    return views.get_all_events()
 
 
 @register.simple_tag
