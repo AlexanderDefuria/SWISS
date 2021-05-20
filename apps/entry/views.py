@@ -408,22 +408,8 @@ def login(request):
 
 @login_required(login_url='entry:login')
 def import_from_first(request):
-    if request.method == 'GET':
-        return HttpResponseRedirect(reverse_lazy('entry:import'))
-
-    elif request.method == 'POST':
-        import_type = make_int(request.POST.get('importType', 0))
-        key = request.POST.get('key', 0)
-        behaviour = request.POST.get('behaviour', 0)  # TODO make this work lol
-
-        if import_type == 0:
-            importFRC.import_district(key)
-        elif import_type == 1:
-            importFRC.import_event(key)
-        elif import_type == 3:
-            importFRC.import_team(key)
-
-    return HttpResponseRedirect(reverse_lazy('entry:import'))
+    #importFRC.import_event(config.get_current_event_key())
+    return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 
 @login_required(login_url='entry:login')
@@ -495,12 +481,6 @@ class TeamList(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return get_present_teams()
-
-
-class Import(LoginRequiredMixin, generic.TemplateView):
-    login_url = 'entry:login'
-    template_name = 'entry/import.html'
-    model = Team
 
 
 class Index(LoginRequiredMixin, generic.TemplateView):
@@ -577,14 +557,12 @@ class Tutorial(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
     template_name = 'entry/tutorial.html'
 
-
 class Welcome(LoginRequiredMixin, generic.TemplateView):
     template_name = 'entry/welcome.html'
-
-
+	
 class Import(LoginRequiredMixin, generic.TemplateView):
-    login_url = 'entry:login'
-    template_name = 'entry/import.html'
+	login_url = 'entry:login'
+	template_name = 'entry/import.html'
 
 
 class Glance(LoginRequiredMixin, generic.DetailView):
@@ -653,5 +631,6 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
         response.set_cookie('filters', request.POST.get('filters', ''))
         response.set_cookie('districtTeams', request.POST.get('districtTeams', ''))
         response.set_cookie('tutorialCompleted', request.POST.get('tutorialCompleted', ''))
+
 
         return response

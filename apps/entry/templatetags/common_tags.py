@@ -23,10 +23,7 @@ def modulo(num, val):
 
 @register.simple_tag
 def get_current_event():
-    try:
-        return Event.objects.filter(FIRST_key=config.get_current_event_key())[0]
-    except:
-        return Event.objects.all()[0]
+    return Event.objects.filter(FIRST_key=config.get_current_event_key())[0]
 
 
 @register.simple_tag
