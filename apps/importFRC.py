@@ -22,7 +22,10 @@ def import_district():
 
 def import_district(key):
     request = "/events?districtCode=" + key
-    request = get_request(request)
+    try:
+        request = get_request(request)
+    except NoGoodResponseError:
+        return
     events = request['Events']
 
     for event in events:
@@ -32,22 +35,46 @@ def import_district(key):
 
 
 def import_event(key):
+    print(key)
+    teams = None
+    events = None
+
     request = "/teams?eventCode=" + key
-    request = get_request(request)
-    teams = request['teams']
+    try:
+        request = get_request(request)
+        teams = request['teams']
+    except NoGoodResponseError:
+        print("invalid teams list by eventCode")
+        print(print(request))
 
     request = "/events?eventCode=" + key
-    request = get_request(request)
-    events = request['Events']
+    try:
+        request = get_request(request)
+        events = request['Events']
+    except NoGoodResponseError:
+        print("invalid events list by eventCode")
+        print(print(request))
+        return
 
     for event in events:
         new_event = Event()
+        try:
+            if Event.objects.get(FIRST_key=event['code']):
+                new_event = Event.objects.get(FIRST_key=event['code'])
+                print("Updating existing event..." + str(event['name']))
+        except Event.DoesNotExist:
+            print("Creating new event..." + str(event['name']))
+
         new_event.name = event['name']
         new_event.FIRST_key = event['code']
-        new_event.start = datetime.date(event['dateStart'][0:3], event['dateStart'][5:6], event['dateStart'][8:9])
-        new_event.end = datetime.date(event['dateEnd'][0:3], event['dateEnd'][5:6], event['dateEnd'][8:9])
+        print(int(event['dateStart'][5:7]))
+        new_event.start = datetime.date(int(event['dateStart'][0:3]), int(event['dateStart'][5:7]), int(event['dateStart'][8:10]))
+        new_event.end = datetime.date(int(event['dateEnd'][0:3]), int(event['dateEnd'][5:7]), int(event['dateEnd'][8:10]))
         new_event.FIRST_eventType = 1
         new_event.save()
+        print("New EVENT:")
+        print(new_event)
+        print("")
 
     for team in teams:
         import_team_json(team)
@@ -57,7 +84,13 @@ def import_event(key):
 
 def import_team(team_number):
     request = "/teams?teamNumber=" + str(team_number)
-    request = get_request(request)
+    try:
+        request = get_request(request)
+    except NoGoodResponseError:
+        print(request)
+        print("NO GOOD RESPONSE")
+        return
+
     teams = request['teams']
     for team in teams:
         import_team_json(team)
@@ -67,10 +100,18 @@ def import_team(team_number):
 
 def import_team_json(json_object):
     new_team = Team()
+    try:
+        if Team.objects.get(number=json_object['teamNumber']):
+            new_team = Team.objects.get(number=json_object['teamNumber'])
+            print("Updating existing team..." + str(json_object['teamNumber']))
+    except Team.DoesNotExist:
+        print("Creating new team..." + str(json_object['teamNumber']))
+
     new_team.name = json_object['nameShort']
     new_team.number = json_object['teamNumber']
     new_team.geo_location = json_object['stateProv']
     new_team.save()
+    print(new_team)
 
 
 def import_schedule(event_slug):
@@ -79,6 +120,7 @@ def import_schedule(event_slug):
 
 def get_request(request):
     global year
+    year = '2021'
 
     request = str(request)
 
@@ -86,9 +128,25 @@ def get_request(request):
         request += "/"
 
     if year is None:
-        year = requests.get(api_url_base, headers=header).json()["currentSeason"]
+        answer = requests.get(api_url_base, headers=header)
 
-    return requests.get(api_url_base + str(year) + request, headers=header).json()
+        # Raise error and pass over the function if the data is not cached and it is infact a good answer
+        print(answer)
+        if not answer.ok:
+            raise NoGoodResponseError
+
+        year = answer.json()["currentSeason"]
+
+    answer = requests.get(api_url_base + str(year) + request, headers=header)
+    if not answer.ok:
+        raise NoGoodResponseError
+
+    return answer.json()
+
+
+# Wooooowwwww custom error handling ooooooohhhh, thanks uottawa intro to comp sci.
+class NoGoodResponseError(Exception):
+    pass
 
 
 
