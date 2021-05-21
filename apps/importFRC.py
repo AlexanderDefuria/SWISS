@@ -119,17 +119,29 @@ def import_event_page(key, page):
             i = 0
 
         if i == 0:
+            new_schedule.blue_score = 0
+            new_schedule.red_score = 0
+            new_schedule.match_number = 0
+            new_schedule.match_type = "placeholder"
+            new_schedule.placeholder = True
+            print(new_schedule)
+            print("error after this")
             new_schedule.event = Event.objects.get(FIRST_key=key)
             new_schedule.blue1 = new_team.number
         elif i == 1:
+            new_schedule.event = Event.objects.get(FIRST_key=key)
             new_schedule.blue2 = new_team.number
         elif i == 2:
+            new_schedule.event = Event.objects.get(FIRST_key=key)
             new_schedule.blue3 = new_team.number
         elif i == 3:
+            new_schedule.event = Event.objects.get(FIRST_key=key)
             new_schedule.red1 = new_team.number
         elif i == 4:
+            new_schedule.event = Event.objects.get(FIRST_key=key)
             new_schedule.red2 = new_team.number
         elif i == 5:
+            new_schedule.event = Event.objects.get(FIRST_key=key)
             new_schedule.red3 = new_team.number
 
         i += 1
@@ -168,7 +180,6 @@ def import_team_json(json_object):
     new_team.geo_location = json_object['stateProv']
     new_team.save()
     print(new_team)
-
 
     return new_team
 
