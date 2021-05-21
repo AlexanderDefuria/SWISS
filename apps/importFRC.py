@@ -120,17 +120,17 @@ def import_event_page(key, page):
 
         if i == 0:
             new_schedule.event = Event.objects.get(FIRST_key=key)
-            new_schedule.blue1 = new_team.id
+            new_schedule.blue1 = new_team.number
         elif i == 1:
-            new_schedule.blue2 = new_team.id
+            new_schedule.blue2 = new_team.number
         elif i == 2:
-            new_schedule.blue3 = new_team.id
+            new_schedule.blue3 = new_team.number
         elif i == 3:
-            new_schedule.red1 = new_team.id
+            new_schedule.red1 = new_team.number
         elif i == 4:
-            new_schedule.red2 = new_team.id
+            new_schedule.red2 = new_team.number
         elif i == 5:
-            new_schedule.red3 = new_team.id
+            new_schedule.red3 = new_team.number
 
         i += 1
 

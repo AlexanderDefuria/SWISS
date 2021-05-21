@@ -689,6 +689,14 @@ class DBTools:
 
         return team_id
 
+    def get_event_teams_number(event_key):
+        raw_list = DBTools.get_event_teams(event_key)
+        new_list = []
+
+        #for index in raw_list:
+        #    new_list.append(Team.objects.)
+
+
     def get_event_teams(event_key):
         """
         :param event_key: FIRST Event Key
@@ -713,6 +721,8 @@ class DBTools:
         team_list.sort()
         present_team_list = team_list
         return present_team_list
+
+
 
     def update_event_teams(event_key):
         """
