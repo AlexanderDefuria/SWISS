@@ -1,4 +1,6 @@
 import base64
+from typing import overload
+
 import requests
 from apps.entry.models import *
 from apps import config
@@ -35,26 +37,38 @@ def import_district(key):
 
 
 def import_event(key):
+    import_event_page(key, 1)
+
+
+def import_event_page(key, page):
     print(key)
     teams = None
     events = None
 
-    request = "/teams?eventCode=" + key
+    request = "/teams?eventCode=" + key + '&page=' + str(page)
     try:
         request = get_request(request)
         teams = request['teams']
+        if int(request['pageCurrent']) < int(request['pageTotal']):
+            import_event_page(key, page + 1)
     except NoGoodResponseError:
         print("invalid teams list by eventCode")
         print(print(request))
+    except KeyError:
+        pass
 
     request = "/events?eventCode=" + key
     try:
         request = get_request(request)
         events = request['Events']
+        if int(request['pageCurrent']) < int(request['pageTotal']):
+            import_event_page(key, page + 1)
     except NoGoodResponseError:
         print("invalid events list by eventCode")
         print(print(request))
         return
+    except KeyError:
+        pass
 
     for event in events:
         new_event = Event()
@@ -85,6 +99,10 @@ def import_event(key):
     # Populate schedule with dummies to display teams at event, not included in the schedule display frontend
     i = 0
     new_schedule = Schedule()
+
+    if teams is None:
+        return
+
     for team in teams:
         new_team = import_team_json(team)
 
@@ -123,6 +141,7 @@ def import_team(team_number):
     request = "/teams?teamNumber=" + str(team_number)
     try:
         request = get_request(request)
+
     except NoGoodResponseError:
         print(request)
         print("NO GOOD RESPONSE")
@@ -149,6 +168,8 @@ def import_team_json(json_object):
     new_team.geo_location = json_object['stateProv']
     new_team.save()
     print(new_team)
+
+
     return new_team
 
 

@@ -15,23 +15,8 @@
       </schema-mapping>
     </data-source>
     <data-source name="swiss_scouting@localhost" uuid="1fc8e5ff-880f-4c22-9f79-eed33896183d">
-      <database-info product="PostgreSQL" version="12.6 (Ubuntu 12.6-0ubuntu0.20.04.1)" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.5" dbms="POSTGRES" exact-version="12.6" exact-driver-version="42.2">
-        <identifier-quote-string>&quot;</identifier-quote-string>
-      </database-info>
-      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
-      <secret-storage>master_key</secret-storage>
-      <user-name>swiss_user</user-name>
-      <schema-mapping>
-        <introspection-scope>
-          <node kind="database" qname="@">
-            <node kind="schema" qname="@" />
-          </node>
-        </introspection-scope>
-      </schema-mapping>
-      <ssh-properties>
-        <enabled>true</enabled>
-        <ssh-config-id>4771b856-adbf-4c5d-9e01-80583c55cc94</ssh-config-id>
-      </ssh-properties>
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
+      <schema-mapping />
     </data-source>
   </component>
 </project>
