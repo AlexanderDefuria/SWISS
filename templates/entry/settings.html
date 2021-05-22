@@ -152,7 +152,7 @@
             <h2>Current Event</h2>
             <div class="formItem">
 				<label for="currentEvent">Current Event for Team -- Finish Implementation</label>
-				<select name="currentEvent" id="currentEvent" required>
+				<select name="currentEvent" id="currentEvent" style="display: block" required>
                     {% get_current_event as curEvent %}
                     <option value="{{ curEvent.FIRST_key }}">{{ curEvent.name }}</option>
                     {% get_all_events as eventList %}
