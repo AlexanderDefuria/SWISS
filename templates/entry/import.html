@@ -67,7 +67,7 @@
 					{% csrf_token %}
 					<p>Info on what everything means will go here in the future.</p>
                     <div class="formItem" style="margin-top:10px; background:none; justify-content: space-between;">
-						<label for="importType">Data Type</label>
+						<label class="requiredField" for="importType">Data Type</label>
 						<select name="importType" id="importType" required>
 							<option value="" disabled selected hidden>&#8230;</option>
 							<option value="0">By District Key</option>
@@ -77,20 +77,15 @@
 						</select>
 					</div>
 					<div class="formItem" style="margin-top:10px; background:none; justify-content: space-between">
-						<label for="key">Key</label>
+						<label class="requiredField" for="key">Key</label>
 						<input style="width: 100px" type="text" name="key" id="key" required>
 					</div>
 					<div class="formItem" style="margin-top:10px; background:none; justify-content: space-between">
-						<label for="behaviour">Behaviour</label>
-						<select name="behaviour" id="behaviour" required>
-							<option value="" disabled selected hidden>&#8230;</option>
-							<option value="0">Update Existing Entries</option>
-							<option value="1">Ignore Existing Entries</option>
-							<option value="2" disabled>A third option if necessary</option>
-						</select>
+						<label for="year">Year</label>
+						<input style="width: 100px" type="number" name="year" id="year" maxlength="4">
 					</div>
 					<div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
-						<input type="submit" value="Submit">
+						<input type="submit" value="Import">
 					</div>
 				</form>
 			</div>

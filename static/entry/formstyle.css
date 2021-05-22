@@ -372,6 +372,13 @@ input[type=number] {
     padding: 0px 10px;
 }
 
+/* REQUIRED */
+
+.requiredField::after {
+	content: "*";
+	color: red;
+}
+
 /* ID'S */
 
 
@@ -381,7 +388,6 @@ input[type=number] {
 /* The Initiation Line image */
 #autoStart_img {
 	width: 200px;
-	
 }
 	
 /* Webkit Autofill Fixes */
