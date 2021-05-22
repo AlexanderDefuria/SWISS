@@ -63,7 +63,8 @@
 			<p class="pageTitle">Settings</p>
 		</div>
 		<form class="formContainer" method="post" name="mainForm" id="mainForm" method="POST">
-            <h1>User</h1>
+            <h1>Personal Settings</h1>
+			<h2>User Info</h2>
             {% csrf_token %}
 			<div class="formItem">
                 <label>{{ user.get_username }}</label>
@@ -71,6 +72,7 @@
                     {% get_user_role request %}
                 </div>
             </div>
+			<h2>Tutorial</h2>
             <div class="formItem">
                 <label for="tutorialCompleted">Tutorial Completed</label>
                 <div class="radioGroup">
@@ -84,7 +86,7 @@
                     </label>
                 </div>
             </div>
-			<h1>Teams</h1>
+			<h2>Teams Page</h2>
             <div class="formItem">
                 <label for="images">Display Robot Photos</label>
                 <div class="radioGroup">
@@ -124,19 +126,30 @@
 					</label>
 				</div>
             </div>
+			<div class="formItem">
+				<label for="teamsBehaviour">Click/Tap Behaviour</label>
+				<select name="teamsBehaviour" id="teamsBehaviour" required>
+					<option value="" disabled selected hidden>&#8230;</option>
+					<option value="1">Go to Glance (Default)</option>
+					<option value="2">Go to Match Scouting</option>
+					<option value="3">Go to Pit Scouting</option>
+					<option value="4" Disabled>Go to Team Info (Coming soon)</option>
+				</select>
+			</div>
             {% is_lead_scout request as lead_scout %}
             {% if lead_scout %}
-            <h1>User Registration</h1>
+            <h1>Team-Wide Settings</h1>
+			<p>You are seeing these options because you are listed as a Team Lead Scouter or Mentor</p>
+			<h2>User Registration</h2>
             <div class="formItem">
-				<label for="intakeType">Intake Type -- Finish Implementation</label>
+				<label for="intakeType">Registration -- Finish Implementation</label>
 				<select name="intakeType" id="intakeType" required>
 					<option value="0">Manual Approval, Open Registration</option>
 					<option value="1">Manual Creation of All Users</option>
 					<option value="2">Open Registration, Free Entry </option>
 				</select>
 			</div>
-
-            <h1>Current Event</h1>
+            <h2>Current Event</h2>
             <div class="formItem">
 				<label for="currentEvent">Current Event for Team -- Finish Implementation</label>
 				<select name="currentEvent" id="currentEvent" required>
