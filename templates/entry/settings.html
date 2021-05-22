@@ -135,6 +135,19 @@
 					<option value="2">Open Registration, Free Entry </option>
 				</select>
 			</div>
+
+            <h1>Current Event</h1>
+            <div class="formItem">
+				<label for="currentEvent">Current Event for Team -- Finish Implementation</label>
+				<select name="currentEvent" id="currentEvent" required>
+                    {% get_current_event as curEvent %}
+                    <option value="{{ curEvent.FIRST_key }}">{{ curEvent.name }}</option>
+                    {% get_all_events as eventList %}
+                    {% for event in eventList %}
+					<option value="{{ event.FIRST_key }}">{{ event.name }}</option>
+                    {% endfor %}
+				</select>
+			</div>
             {% endif %}
             <h1>More</h1>
             <div class="formItem" style="justify-content: center; flex-direction: row">

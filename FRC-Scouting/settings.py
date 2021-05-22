@@ -129,7 +129,7 @@ USE_L10N = True
 USE_TZ = False
 
 
-# --------- SECURITY ---------
+
 
 # --------- Cookies ---------
 SESSION_COOKIE_HTTPONLY = True
@@ -141,10 +141,10 @@ SESSION_SAVE_EVERY_REQUEST = True
 # Static files (CSS, JavaScript, Images)
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-#STATICFILES_DIRS = [
-#    os.path.join(BASE_DIR, "static"),
-#    os.path.join(BASE_DIR, "media/static"),
-#]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "media/static"),
+]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -152,10 +152,3 @@ MEDIAFILES_DIRS = [
     os.path.join(BASE_DIR, "media")
 ]
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')

@@ -68,7 +68,7 @@
         <div class="pillSelect" >
 			<div class="pillContainer" >
                 <ul>
-                    {% get_all_present_teams as team_list %}
+                    {% get_all_present_teams user as team_list %}
                     {% for team in team_list %}
 						<li>
 							<div onclick="window.location='{% url 'entry:glance' team.id %}'"  class="teamnumberPill" style="background-color: {{team.colour}}; cursor: pointer;">
