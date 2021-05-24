@@ -414,14 +414,14 @@ def import_from_first(request):
     elif request.method == 'POST':
         import_type = make_int(request.POST.get('importType', 0))
         key = request.POST.get('key', 0)
-        behaviour = request.POST.get('behaviour', 0)  # TODO make this work lol
+        year = request.POST.get('year', 0)
 
         if import_type == 0:
-            importFRC.import_district(key)
+            importFRC.import_district(key, year)
         elif import_type == 1:
-            importFRC.import_event(key)
+            importFRC.import_event(key, year)
         elif import_type == 3:
-            importFRC.import_team(key)
+            importFRC.import_team(key, year)
 
     return HttpResponseRedirect(reverse_lazy('entry:import'))
 

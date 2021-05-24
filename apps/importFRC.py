@@ -9,7 +9,6 @@ import datetime
 api_user = 'alexanderdefuria'
 api_token = '75E35301-A10B-45BC-9453-396808B2E96C'
 api_url_base = "https://frc-api.firstinspires.org/v2.0/"
-year = None
 b64_token = base64.b64encode((api_user + ':' + api_token).encode("utf-8"))
 header = {"Authorization": "Basic " + str(b64_token, "utf-8"),
           "Accept": "application/json"}
@@ -22,10 +21,10 @@ def import_district():
     return import_district(key=config.get_current_district_key())
 
 
-def import_district(key):
+def import_district(key, year=2021):
     request = "/events?districtCode=" + key
     try:
-        request = get_request(request)
+        request = get_request(request, year)
     except NoGoodResponseError:
         return
     events = request['Events']
@@ -36,18 +35,18 @@ def import_district(key):
     return
 
 
-def import_event(key):
-    import_event_page(key, 1)
+def import_event(key, year='2021'):
+    import_event_page(key, 1, year=year)
 
 
-def import_event_page(key, page):
+def import_event_page(key, page, year='2021'):
     print(key)
     teams = None
     events = None
 
     request = "/teams?eventCode=" + key + '&page=' + str(page)
     try:
-        request = get_request(request)
+        request = get_request(request, year)
         teams = request['teams']
         if int(request['pageCurrent']) < int(request['pageTotal']):
             import_event_page(key, page + 1)
@@ -59,7 +58,7 @@ def import_event_page(key, page):
 
     request = "/events?eventCode=" + key
     try:
-        request = get_request(request)
+        request = get_request(request,year)
         events = request['Events']
         if int(request['pageCurrent']) < int(request['pageTotal']):
             import_event_page(key, page + 1)
@@ -113,7 +112,6 @@ def import_event_page(key, page):
             new_schedule.match_type = "placeholder"
             new_schedule.placeholder = True
             print(new_schedule)
-            print("error after this")
             new_schedule.save()
             new_schedule = Schedule()
             i = 0
@@ -125,7 +123,6 @@ def import_event_page(key, page):
             new_schedule.match_type = "placeholder"
             new_schedule.placeholder = True
             print(new_schedule)
-            print("error after this")
             new_schedule.event = Event.objects.get(FIRST_key=key)
             new_schedule.blue1 = new_team.number
         elif i == 1:
@@ -149,10 +146,10 @@ def import_event_page(key, page):
     return
 
 
-def import_team(team_number):
+def import_team(team_number, year='2021'):
     request = "/teams?teamNumber=" + str(team_number)
     try:
-        request = get_request(request)
+        request = get_request(request, year)
 
     except NoGoodResponseError:
         print(request)
@@ -188,9 +185,7 @@ def import_schedule(event_slug):
     return
 
 
-def get_request(request):
-    global year
-    year = '2021'
+def get_request(request, year='2021'):
 
     request = str(request)
 
