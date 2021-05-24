@@ -17,11 +17,12 @@ print(header)
 print("")
 
 
-def import_district():
-    return import_district(key=config.get_current_district_key())
+def clean_key(key):
+    return str(key).upper().strip()
 
 
-def import_district(key, year=2021):
+def import_district(key=config.get_current_district_key(), year=2021):
+    key = clean_key(key)
     request = "/events?districtCode=" + key
     try:
         request = get_request(request, year)
