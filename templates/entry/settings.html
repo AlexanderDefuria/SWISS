@@ -63,7 +63,7 @@
 			<p class="pageTitle">Settings</p>
 		</div>
 		<form class="formContainer" method="post" name="mainForm" id="mainForm" method="POST">
-            <h1>Personal Settings</h1>
+            <h1 class="sectionHeader">Personal Settings</h1>
 			<h2>User Info</h2>
             {% csrf_token %}
 			<div class="formItem">
@@ -138,8 +138,8 @@
 			</div>
             {% is_lead_scout request as lead_scout %}
             {% if lead_scout %}
-            <h1>Team-Wide Settings</h1>
-			<p>You are seeing these options because you are listed as a Team Lead Scouter or Mentor</p>
+            <h1 class="sectionHeader">Team-Wide Settings</h1>
+			<p style="margin: 0">You are seeing these options because you are listed as a Team Lead Scouter or Mentor</p>
 			<h2>User Registration</h2>
             <div class="formItem">
 				<label for="intakeType">Registration -- Finish Implementation</label>
@@ -162,7 +162,7 @@
 				</select>
 			</div>
             {% endif %}
-            <h1>More</h1>
+            <h1 class="sectionHeader">More</h1>
             <div class="formItem" style="justify-content: center; flex-direction: row">
                 <a href="https://github.com/AlexanderDefuria/FRC-Scouting" target="_blank">
                     <img class="socialIcon" src="{{ MEDIA_URL }}{% static 'GithubIcon.png' %}" alt="Github Logo">
