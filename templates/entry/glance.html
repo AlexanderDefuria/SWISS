@@ -80,7 +80,52 @@
 			</div>
 		</div>
 	</div>
+	<div id="myModal" class="modal">
+		<span class="close">&times;</span>
+		<img class="modal-image" id="modal-robot">
+	</div>
 
+	<style>
+	/* The Close Button */
+	.close {
+	  position: absolute;
+	  top: 15px;
+	  right: 35px;
+	  color: #f1f1f1;
+	  font-size: 40px;
+	  font-weight: bold;
+	  transition: 0.3s;
+	}
+
+	.close:hover,
+	.close:focus {
+	  color: #bbb;
+	  text-decoration: none;
+	  cursor: pointer;
+	}
+	</style>
+	<script>
+	// Get the modal
+	var modal = document.getElementById("myModal");
+
+	// Get the image and insert it inside the modal - use its "alt" text as a caption
+	var img = document.getElementById("robotImg");
+	var modalImg = document.getElementById("modal-robot");
+	var captionText = document.getElementById("caption");
+	img.onclick = function(){
+		modal.style.display = "block";
+		modalImg.src = this.src;
+  		captionText.innerHTML = this.alt;
+	}
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() { 
+		modal.style.display = "none";
+	}
+	</script>
 	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'GlanceBackground2000w.png' %})">
 		<div class="heroContent" id="heroSpace">
 			<div class="stickyChip">
@@ -94,7 +139,6 @@
 				</button>
 			</div>
 		</div>
-
 		<div class="infotileContainer" style="justify-content: flex-start; flex-grow: 0">
 			<div class="infoBox infoReg" id="teamInfoTile">
 				<div class="infoHeader">
@@ -121,19 +165,14 @@
             {% get_cookie request 'images' as images %}
             {% if 'False' != images %}
 			<div class="pictureBox" id="pictureBoxTile">
-					<img src="{{ MEDIA_URL }}{{ team.first_image }}" alt="robot photo">
+				<img src="{{ MEDIA_URL }}{{ team.first_image }}" id="robotImg" alt="{{ team.number }} {{ team.name }}">
 			</div>
             {% endif %}
 			<div class="graphBoxWide" id="totalGraphTile">
-				<div id="avg_balls" style="height: 300px; width:auto">
-				<p></p>
-
-				</div>		
+				<div id="avg_balls" style="height: 300px; width:auto"></div>		
 			</div>
 			<div class="graphBoxWide" id="lineGraphTile">
-				<div id="line" style="height: 300px; width: auto">
-
-				</div>
+				<div id="line" style="height: 300px; width: auto"></div>
 			</div>
 			<div class="infoBox infoReg" id="foulsTile">
 				<div class="infoHeader">
@@ -222,25 +261,25 @@
 					<div class="infoLColumn"><p>Low Goal</p></div>
                     {% get_info user team 'lower' 'total' 'match' as totalTeleLower%}
                     {% get_info user team 'lower_auto' 'total' 'match' as totalAutoLower%}
-					<div class="infoLColumn"><p>{{totalTeleLower|add:totalAutoLower }} Power Cells</p></div>
+					<div class="infoLColumn"><p>{{totalTeleLower|add:totalAutoLower }} Balls</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Outer Goal</p></div>
                     {% get_info user team 'outer' 'total' 'match' as totalTeleOuter%}
                     {% get_info user team 'outer_auto' 'total' 'match' as totalAutoOuter%}
-					<div class="infoLColumn"><p>{{totalTeleOuter|add:totalAutoOuter }} Power Cells</p></div>
+					<div class="infoLColumn"><p>{{totalTeleOuter|add:totalAutoOuter }} Balls</p></div>
 				</div>				
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Inner Goal</p></div>
                     {% get_info user team 'inner' 'total' 'match' as totalTeleInner%}
                     {% get_info user team 'inner_auto' 'total' 'match' as totalAutoInner%}
-					<div class="infoLColumn"><p>{{totalTeleInner|add:totalAutoInner }} Power Cells</p></div>
+					<div class="infoLColumn"><p>{{totalTeleInner|add:totalAutoInner }} Balls</p></div>
 				</div>
                 <div class="infoRow">
                     <div class="infoLColumn"><p>Missed</p></div>
                     {% get_info user team 'missed_balls' 'total' 'match' as totalTeleMissed%}
                     {% get_info user team 'missed_balls_auto' 'total' 'match' as totalAutoMissed%}
-					<div class="infoLColumn"><p>{{totalTeleMissed|add:totalAutoMissed }} Power Cells</p></div>
+					<div class="infoLColumn"><p>{{totalTeleMissed|add:totalAutoMissed }} Balls</p></div>
                 </div>
 			</div>			
             <div class="graphBoxWide" id="accuracyTile">
