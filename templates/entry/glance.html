@@ -60,7 +60,6 @@
 			document.getElementById("timeOfDay").innerHTML = greeting;
 		</script>
 	</div>
-	
 	<div id="teamDrawer" class="teamDrawer" onClick="closeTeamDrawer()" style="justify-content: center">
 		<br>
         <br>
@@ -81,57 +80,66 @@
 		</div>
 	</div>
 	<div id="myModal" class="modal">
-		<span class="close">&times;</span>
-		<img class="modal-image" id="modal-robot" src="{{ MEDIA_URL }}{{ team.first_image }}">
+		<div class="modal-image">
+			<span id="modal-close" class="modal-close">&times;</span>
+			<style>
+				.modal-close {
+				  position: relative;
+				  top: 15px;
+				  right: 35px;
+				  color: #f1f1f1;
+				  font-size: 40px;
+				  font-weight: bold;
+				  transition: 0.3s;
+				}
+				.modal-close:hover,
+				.modal-close:focus {
+				  color: #bbb;
+				  text-decoration: none;
+				  cursor: pointer;
+				}
+			</style>
+			<img src="{{ MEDIA_URL }}{{ team.first_image }}" id="robotImg-modal" alt="{{ team.number }} {{ team.name }}">
+		</div>
 	</div>
-
-	<style>
-	/* The Close Button */
-	.close {
-	  position: absolute;
-	  top: 15px;
-	  right: 35px;
-	  color: #f1f1f1;
-	  font-size: 40px;
-	  font-weight: bold;
-	  transition: 0.3s;
-	}
-
-	.close:hover,
-	.close:focus {
-	  color: #bbb;
-	  text-decoration: none;
-	  cursor: pointer;
-	}
-	</style>
 	<script>
-	// Get the modal
-	var modal = document.getElementById("myModal");
+		var modal = document.getElementById("myModal");
+		var opn = document.getElementById("pictureBoxTile");
+		var cls = document.getElementById("modal-close");
+		var main = document.getElementById("bodyContainer");
 
-	// Get the image and insert it inside the modal - use its "alt" text as a caption
-	var img = document.getElementById("pictureBoxTile");
-	var modalImg = document.getElementById("modal-robot");
-	img.onclick = function(){
-		modal.style.visibility = "visible";
-	}
+		// When the user clicks on the button, open the modal
+		opn.onclick = function() {
+			modal.style.visibility = "visible";
+			main.style.filter = "blur(2px)";
+			window.navigator.vibrate(40);
+		}
 
-	// Get the <span> element that closes the modal
-	var span = document.getElementsByClassName("close")[0];
+		// When the user clicks on "no", close the modal
+		cls.onclick = function() {
+			modal.style.visibility = "hidden";
+			main.style.filter="blur(0)";
+			window.navigator.vibrate(40);
+		}
 
-	// When the user clicks on <span> (x), close the modal
-	span.onclick = function() { 
-		modal.style.visibility = "hidden";
-	}
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+		  if (event.target == modal) {
+			modal.style.visibility = "hidden";
+			main.style.filter = "blur(0)";
+			window.navigator.vibrate(40);
+		  }
+		}
 	</script>
 	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'GlanceBackground2000w.png' %})">
 		<div class="heroContent" id="heroSpace">
 			<div class="stickyChip">
 				<button class="changeTeam" id="changeTeam" onClick="openTeamDrawer()">
 					<div class="teamnumberPill" style="background-color: {{ team.colour }}; min-width: 72px;">
-							<p>{{ team.number }}</p>
+						<p>{{ team.number }}</p>
 					</div>
 					<div class="teamnamePill">
-							<p>{{ team.name }}</p>
+						<p>{{ team.name }}</p>
 					</div>
 				</button>
 			</div>

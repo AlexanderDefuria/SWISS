@@ -81,10 +81,14 @@ ul {
 	border-bottom: 2px solid #0F4D8D;
 	box-shadow: 2px 5px 25px 2px #111111;
 	width: 30%; 
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s
+}
+.modal-image {
+	background-color: #333333;
+	margin: 10% auto;
+	padding: 20px;
+	border-bottom: 2px solid #0F4D8D;
+	box-shadow: 2px 5px 25px 2px #111111;
+	width: 60%; 
 }
 .modalButton {
 	cursor: pointer;
@@ -100,17 +104,6 @@ ul {
 }
 .modalButton:hover {
 	background-color: #555555;
-}
-.modal-image {
-	background-color: #333333;
-	margin: 10% auto; 
-	border-bottom: 2px solid #0F4D8D;
-	box-shadow: 2px 5px 25px 2px #111111;
-	height: 60%;
-	-webkit-animation-name: animatetop; 
-	-webkit-animation-duration: 0.4s;
-	animation-name: animatetop; 
-	animation-duration: 0.4s;
 }
 
 @-webkit-keyframes animatetop {
