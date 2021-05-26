@@ -123,11 +123,9 @@
 			</div>
             {% get_cookie request 'images' as images %}
             {% if 'False' != images %}
-			<a id="robotImgA">
-				<div class="pictureBox" id="pictureBoxTile">
-					<img src="{{ MEDIA_URL }}{{ team.first_image }}" id="robotImg" alt="{{ team.number }} {{ team.name }}">
-				</div>
-			</a>
+			<div class="pictureBox" id="pictureBoxTile">
+				<img src="{{ MEDIA_URL }}{{ team.first_image }}" id="robotImg" alt="{{ team.number }} {{ team.name }}">
+			</div>
             {% endif %}
 			<div class="graphBoxWide" id="totalGraphTile">
 				<div id="avg_balls" style="height: 300px; width:auto"></div>		
@@ -379,7 +377,7 @@
 	</div>
 	<script>
 		var modal = document.getElementById("myModal");
-		var opn = document.getElementById("robotImgA");
+		var opn = document.getElementById("pictureBoxTile");
 		var cls = document.getElementById("modal-close");
 		var main = document.getElementById("infoTiles");
 
@@ -406,6 +404,5 @@
 		  }
 		}
 	</script>
-
 </body>
 </html>
