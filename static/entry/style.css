@@ -90,7 +90,7 @@ ul {
 	background-color: #333333;
 	border-bottom: 2px solid #0F4D8D;
 	box-shadow: 2px 5px 25px 2px #111111;
-	width: 70%; 
+	width: 50%; 
 }
 .modal-image img {
 	object-fit: contain;
@@ -1051,6 +1051,9 @@ th {
 	.modal-content {
 		width: 80%;
 		margin: 50% auto;
+	}
+	.modal-image {
+		width: 95%;
 	}
 	.pillSelect {
 		max-width: 100%;
