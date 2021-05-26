@@ -109,7 +109,7 @@ ul {
 .modalButton:hover {
 	background-color: #555555;
 }
-.modal-close {
+#modal-close {
 	position: absolute;
 	top: 15px;
 	left: 95%;
@@ -118,8 +118,8 @@ ul {
 	font-weight: bold;
 	transition: 0.3s;
 }
-.close:hover,
-.close:focus {
+#modal-close:hover,
+#modal-close:focus {
 	color: #bbb;
 	text-decoration: none;
 	cursor: pointer;
