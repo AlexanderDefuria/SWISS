@@ -82,6 +82,18 @@ ul {
 	box-shadow: 2px 5px 25px 2px #111111;
 	width: 30%; 
 }
+.modal-image {
+	background-color: #333333;
+	margin: 5% auto;
+	padding: 0;
+	border-bottom: 2px solid #0F4D8D;
+	box-shadow: 2px 5px 25px 2px #111111;
+	width: 70%; 
+}
+.modal-img img {
+	object-fit: contain;
+	width: 100%;
+}
 .modalButton {
 	cursor: pointer;
 	background-color: #444444;
@@ -96,6 +108,21 @@ ul {
 }
 .modalButton:hover {
 	background-color: #555555;
+}
+.modal-close {
+	position: absolute;
+	top: 15px;
+	left: 95%;
+	color: #f1f1f1;
+	font-size: 40px;
+	font-weight: bold;
+	transition: 0.3s;
+}
+.close:hover,
+.close:focus {
+	color: #bbb;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 @-webkit-keyframes animatetop {
