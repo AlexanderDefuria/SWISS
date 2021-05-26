@@ -79,58 +79,6 @@
 			</div>
 		</div>
 	</div>
-	<div id="myModal" class="modal">
-		<div class="modal-image">
-			<span id="modal-close" class="modal-close">&times;</span>
-			<style>
-				.modal-close {
-				  position: relative;
-				  top: 15px;
-				  right: 35px;
-				  color: #f1f1f1;
-				  font-size: 40px;
-				  font-weight: bold;
-				  transition: 0.3s;
-				}
-				.modal-close:hover,
-				.modal-close:focus {
-				  color: #bbb;
-				  text-decoration: none;
-				  cursor: pointer;
-				}
-			</style>
-			<img src="{{ MEDIA_URL }}{{ team.first_image }}" id="robotImg-modal" alt="{{ team.number }} {{ team.name }}">
-		</div>
-	</div>
-	<script>
-		var modal = document.getElementById("myModal");
-		var opn = document.getElementById("pictureBoxTile");
-		var cls = document.getElementById("modal-close");
-		var main = document.getElementById("bodyContainer");
-
-		// When the user clicks on the button, open the modal
-		opn.onclick = function() {
-			modal.style.visibility = "visible";
-			main.style.filter = "blur(2px)";
-			window.navigator.vibrate(40);
-		}
-
-		// When the user clicks on "no", close the modal
-		cls.onclick = function() {
-			modal.style.visibility = "hidden";
-			main.style.filter="blur(0)";
-			window.navigator.vibrate(40);
-		}
-
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-		  if (event.target == modal) {
-			modal.style.visibility = "hidden";
-			main.style.filter = "blur(0)";
-			window.navigator.vibrate(40);
-		  }
-		}
-	</script>
 	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'GlanceBackground2000w.png' %})">
 		<div class="heroContent" id="heroSpace">
 			<div class="stickyChip">
@@ -144,7 +92,42 @@
 				</button>
 			</div>
 		</div>
-		<div class="infotileContainer" style="justify-content: flex-start; flex-grow: 0">
+		<div id="myModal" class="modal">
+			<div class="modal-content">
+				<span id="modal-close">&times;</span>
+				<img style="height: 50%" src="{{ MEDIA_URL }}{{ team.first_image }}" id="robotImg-modal" alt="{{ team.number }} {{ team.name }}">
+			</div>
+		</div>
+		<script>
+			var modal = document.getElementById("myModal");
+			var opn = document.getElementById("pictureBoxTile");
+			var cls = document.getElementById("modal-close");
+			var main = document.getElementById("infoTiles");
+
+			// When the user clicks on the button, open the modal
+			opn.onclick = function() {
+				modal.style.visibility = "visible";
+				main.style.filter = "blur(2px)";
+				window.navigator.vibrate(40);
+			}
+
+			// When the user clicks on "no", close the modal
+			cls.onclick = function() {
+				modal.style.visibility = "hidden";
+				main.style.filter="blur(0)";
+				window.navigator.vibrate(40);
+			}
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+			  if (event.target == modal) {
+				modal.style.visibility = "hidden";
+				main.style.filter = "blur(0)";
+				window.navigator.vibrate(40);
+			  }
+			}
+		</script>
+		<div id="infoTiles" class="infotileContainer" style="justify-content: flex-start; flex-grow: 0">
 			<div class="infoBox infoReg" id="teamInfoTile">
 				<div class="infoHeader">
 					<div class="teamnumberPill" style="background-color: {{team.colour}}"><p>{{ team.number }}</p></div>
