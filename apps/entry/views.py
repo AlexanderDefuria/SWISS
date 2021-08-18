@@ -42,7 +42,13 @@ def match_scout_submit(request, pk):
         team = Team.objects.get(id=pk)
         match = Match()
         match.team = team
-        match.event = Event.objects.get(FIRST_key=config.get_current_event_key())
+
+
+        teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
+
+        first_key = Event.objects.all().filter(id=make_int(teamsettings.currentEvent.id))[0].FIRST_key
+
+        match.event = Event.objects.get(FIRST_key=first_key)
         match_number = request.POST.get('matchNumber', -1)
         match.match_number = match_number if match_number != '' else -1
         match.on_field = request.POST.get('onField', False)
@@ -117,7 +123,9 @@ def validate_match_scout(request, pk):
     if data['matchNumber'][0] == 0:
         redo['matchNumber'] = True
 
-    if Match.objects.filter(team_id=pk, event_id=config.get_current_event_id(),
+    teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
+
+    if Match.objects.filter(team_id=pk, event_id=teamsettings.currentEvent,
                             match_number=data['matchNumber'][0]).exists():
         # Check if there are already 6 teams that have played this match
         if Match.objects.filter(match_number=data['matchNumber'][0]).count() <= 6:
@@ -202,7 +210,10 @@ def pit_scout_submit(request, pk):
         pits = Pits()
 
         pits.team = team
-        pits.event = Event.objects.get(FIRST_key=config.get_current_event_key())
+
+        first_key = Event.objects.all().filter(id=make_int(teamsettings.currentEvent.id))[0].FIRST_key
+
+        pits.event = Event.objects.get(FIRST_key=first_key)
         pits.drivetrain_style = request.POST.get('drivetrainStyle', ' ')
         pits.drivetrain_wheels = request.POST.get('drivetrainWheels', ' ')
         pits.drivetrain_motortype = request.POST.get('drivetrainMotor', ' ')
@@ -342,7 +353,9 @@ def update_csv():
     print("Updating CSV File")
     conn = sqlite3.connect("db.sqlite3")
     c = conn.cursor()
-    c.execute("SELECT * FROM entry_match WHERE event_id=?", (config.get_current_event_id(),))
+    teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
+
+    c.execute("SELECT * FROM entry_match WHERE event_id=?", (teamsettings.currentEvent,))
     with open("match_history.csv", "w") as csv_file:
         csv_writer = csv.writer(csv_file, delimiter="\t")
         csv_writer.writerow([i[0] for i in c.description])
@@ -544,7 +557,9 @@ class ScheduleView(LoginRequiredMixin, generic.ListView):
     model = Schedule
 
     def get_queryset(self):
-        return Schedule.objects.filter(event_id=config.current_event_id).order_by("match_type")
+        teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+
+        return Schedule.objects.filter(event_id=teamsettings.currentEvent).order_by("match_type")
 
 
 class PitScout(LoginRequiredMixin, generic.DetailView):
@@ -613,8 +628,9 @@ class MatchData(LoginRequiredMixin, generic.ListView):
     model = Match
 
     def get_queryset(self):
-        return Match.objects.all().filter(event_id=config.get_current_event_id()).filter(
-            team_ownership=self.request.user.teammember.team)
+        teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+
+        return Match.objects.all().filter(event_id=teamsettings.currentEvent).filter(team_ownership=self.request.user.teammember.team.id)
 
 
 class PitData(LoginRequiredMixin, generic.ListView):
@@ -623,7 +639,9 @@ class PitData(LoginRequiredMixin, generic.ListView):
     model = Pits
 
     def get_queryset(self):
-        return Pits.objects.all().filter(event_id=config.get_current_event_id())
+        teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+
+        return Pits.objects.all().filter(event_id=teamsettings.currentEvent).filter(team_ownership=self.request.user.teammember.team.id)
 
 
 class Upload(LoginRequiredMixin, generic.TemplateView):

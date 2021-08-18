@@ -41,6 +41,7 @@ def get_current_event_key():
 
 def get_current_event_id():
     update_from_xml()
+    print(current_event_id)
     return current_event_id
 
 
