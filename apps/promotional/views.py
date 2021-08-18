@@ -5,4 +5,4 @@ from django.views import generic
 
 
 class Index(generic.TemplateView):
-    template_name = 'promotional/index.html'
+    template_name = 'promotional/Index.html'

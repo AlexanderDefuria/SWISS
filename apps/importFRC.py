@@ -103,46 +103,63 @@ def import_event_page(key, page, year='2021'):
     if teams is None:
         return
 
+
     for team in teams:
         new_team = import_team_json(team)
 
-        if i == 6:
-            new_schedule.blue_score = 0
-            new_schedule.red_score = 0
-            new_schedule.match_number = 0
-            new_schedule.match_type = "placeholder"
-            new_schedule.placeholder = True
-            print(new_schedule)
-            new_schedule.save()
-            new_schedule = Schedule()
-            i = 0
+        new_schedule = Schedule()
 
-        if i == 0:
-            new_schedule.blue_score = 0
-            new_schedule.red_score = 0
-            new_schedule.match_number = 0
-            new_schedule.match_type = "placeholder"
-            new_schedule.placeholder = True
-            print(new_schedule)
-            new_schedule.event = Event.objects.get(FIRST_key=key)
-            new_schedule.blue1 = new_team.number
-        elif i == 1:
-            new_schedule.event = Event.objects.get(FIRST_key=key)
-            new_schedule.blue2 = new_team.number
-        elif i == 2:
-            new_schedule.event = Event.objects.get(FIRST_key=key)
-            new_schedule.blue3 = new_team.number
-        elif i == 3:
-            new_schedule.event = Event.objects.get(FIRST_key=key)
-            new_schedule.red1 = new_team.number
-        elif i == 4:
-            new_schedule.event = Event.objects.get(FIRST_key=key)
-            new_schedule.red2 = new_team.number
-        elif i == 5:
-            new_schedule.event = Event.objects.get(FIRST_key=key)
-            new_schedule.red3 = new_team.number
+        new_schedule.blue_score = 0
+        new_schedule.red_score = 0
+        new_schedule.match_number = 0
+        new_schedule.match_type = "placeholder"
+        new_schedule.placeholder = True
+        new_schedule.event = Event.objects.get(FIRST_key=key)
+        new_schedule.red1 = new_team.number
+        new_schedule.red2 = new_team.number
+        new_schedule.red3 = new_team.number
+        new_schedule.blue1 = new_team.number
+        new_schedule.blue2 = new_team.number
+        new_schedule.blue3 = new_team.number
+        new_schedule.save()
 
-        i += 1
+        #if i == 6:
+        #    new_schedule.blue_score = 0
+        #    new_schedule.red_score = 0
+        #    new_schedule.match_number = 0
+        #    new_schedule.match_type = "placeholder"
+        #    new_schedule.placeholder = True
+        #    print(new_schedule)
+        #    new_schedule.save()
+        #    new_schedule = Schedule()
+        #    i = 0
+        #
+        #if i == 0:
+        #    new_schedule.blue_score = 0
+        #    new_schedule.red_score = 0
+        #    new_schedule.match_number = 0
+        #    new_schedule.match_type = "placeholder"
+        #    new_schedule.placeholder = True
+        #    print(new_schedule)
+        #    new_schedule.event = Event.objects.get(FIRST_key=key)
+        #    new_schedule.blue1 = new_team.number
+        #elif i == 1:
+        #    new_schedule.event = Event.objects.get(FIRST_key=key)
+        #    new_schedule.blue2 = new_team.number
+        #elif i == 2:
+        #    new_schedule.event = Event.objects.get(FIRST_key=key)
+        #    new_schedule.blue3 = new_team.number
+        #elif i == 3:
+        #    new_schedule.event = Event.objects.get(FIRST_key=key)
+        #    new_schedule.red1 = new_team.number
+        #elif i == 4:
+        #    new_schedule.event = Event.objects.get(FIRST_key=key)
+        #    new_schedule.red2 = new_team.number
+        #elif i == 5:
+        #    new_schedule.event = Event.objects.get(FIRST_key=key)
+        #    new_schedule.red3 = new_team.number
+        #
+        #i += 1
 
     return
 
@@ -208,6 +225,7 @@ def get_request(request, year='2021'):
     if not answer.ok:
         print(api_url_base + str(year) + request)
         raise NoGoodResponseError
+    print(api_url_base + str(year) + request)
 
     return answer.json()
 
