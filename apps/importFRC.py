@@ -31,7 +31,7 @@ def import_district(key=config.get_current_district_key(), year=2021):
     events = request['Events']
 
     for event in events:
-        import_event(event['code'])
+        import_event(event['code'], year)
 
     return
 
@@ -50,7 +50,7 @@ def import_event_page(key, page, year='2021'):
         request = get_request(request, year)
         teams = request['teams']
         if int(request['pageCurrent']) < int(request['pageTotal']):
-            import_event_page(key, page + 1)
+            import_event_page(key, page + 1, year)
     except NoGoodResponseError:
         print("invalid teams list by eventCode")
         print(print(request))
@@ -62,7 +62,7 @@ def import_event_page(key, page, year='2021'):
         request = get_request(request,year)
         events = request['Events']
         if int(request['pageCurrent']) < int(request['pageTotal']):
-            import_event_page(key, page + 1)
+            import_event_page(key, page + 1, year)
     except NoGoodResponseError:
         print("invalid events list by eventCode")
         print(print(request))
@@ -176,6 +176,7 @@ def import_team_json(json_object):
     new_team.name = json_object['nameShort']
     new_team.number = json_object['teamNumber']
     new_team.geo_location = json_object['stateProv']
+    new_team.id = new_team.number
     new_team.save()
     print(new_team)
 
@@ -205,6 +206,7 @@ def get_request(request, year='2021'):
 
     answer = requests.get(api_url_base + str(year) + request, headers=header)
     if not answer.ok:
+        print(api_url_base + str(year) + request)
         raise NoGoodResponseError
 
     return answer.json()

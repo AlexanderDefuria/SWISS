@@ -25,6 +25,11 @@ def modulo(num, val):
 def get_current_event():
     try:
         return Event.objects.filter(FIRST_key=config.get_current_event_key())[0]
+    except IndexError:
+        event = Event()
+        event.name="Temp"
+        event.FIRST_key=""
+        return event
     except:
         return Event.objects.all()[0]
 
