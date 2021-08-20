@@ -489,8 +489,22 @@
 			</div>
 			<br>
 			<div class="formItem">
+				<label for="disabled">Disabled or Offline</label>
+				<div class="radioGroup">
+					<label>
+						<input type="radio" id="disabled_true" name="onField" value="True" onClick="registerChange()" required>
+						<span>Y</span>
+					</label>
+					<label>
+						<input type="radio" id="disabled_false" name="onField" value="False" onClick="registerChange()" selected>
+						<span>N</span>
+					</label>
+				</div>
+			</div>
+			<br>
+			<div class="formItem">
 				<label for="comment">Comments</label>
-				<input type="text" name="comment" id="comment" placeholder="e.g. Disabled" autocomplete="off" required>
+				<input type="text" name="comment" id="comment" placeholder="e.g. Drivetrain Issues" autocomplete="off" required>
 			</div>
 			<br>
 			<div class="formItem" id="submit" onclick="validate('mainForm', true)">
