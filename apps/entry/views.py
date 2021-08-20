@@ -211,7 +211,9 @@ def pit_scout_submit(request, pk):
 
         pits.team = team
 
-        first_key = Event.objects.all().filter(id=make_int(TeamSettings.currentEvent.id))[0].FIRST_key
+        teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
+
+        first_key = Event.objects.all().filter(id=make_int(teamsettings.currentEvent.id))[0].FIRST_key
 
         pits.event = Event.objects.get(FIRST_key=first_key)
         pits.drivetrain_style = request.POST.get('drivetrainStyle', ' ')
