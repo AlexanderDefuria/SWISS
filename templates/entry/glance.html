@@ -362,10 +362,10 @@
 				</script>
 			</div>
 			<div class="infoBox infoReg" id="ScoutNowTile" style="height: auto">
-<!-- This <a> tag is intended to redirect the user to the MatchScout or PitScout Page of the currently displayed team. 
-     The url used to redirect is the landing page with the team id concatenated as a new part of the url to select the
-     current team. Do not use 'entry:xyz_scout' as it requires a slug built in instead of concatenated. - Alex
- -->
+			<!-- This <a> tag is intended to redirect the user to the MatchScout or PitScout Page of the currently displayed team. 
+				 The url used to redirect is the landing page with the team id concatenated as a new part of the url to select the
+				 current team. Do not use 'entry:xyz_scout' as it requires a slug built in instead of concatenated. - Alex
+			 -->
 				<a href="{% url 'entry:match_scout_landing' %}{{ team.id }}">
 					<div class="infoLink">
 						<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'ScoutIcon.png' %}" alt="Scout Icon">
@@ -379,11 +379,27 @@
 					</div>
 				</a>
                 <a href="https://www.thebluealliance.com/team/{{ team.number }}" target="_blank">
-                    <div class="infoLink">
+                    <div class="infoLinkHalf">
                         <img class="infoIcon" src="{{ MEDIA_URL }}{% static 'TheBlueAlliance.png' %}" alt="The Blue Alliance Icon">
-                        <h1 style="color: #ffffff">The Blue Alliance</h1>
+                        <h1 style="color: #ffffff; margin-left: -10px">The Blue Alliance</h1>
                     </div>
                 </a>
+				{% if user.is_staff %}
+                <a href="https://www.thebluealliance.com/team/{{ team.number }}" target="_blank">
+                    <div class="infoLinkHalf">
+                        <img class="infoIcon" src="{{ MEDIA_URL }}{% static 'TheBlueAlliance.png' %}" alt="TBA Icon">
+                        <h1 style="color: #ffffff; margin-left: -10px">The Blue Alliance</h1>
+                    </div>
+                </a>
+				<a href="https://swiss-scouting.ca/admin/entry/team/{{ team.number}}/change/" target="_blank">
+					<div class="infoLinkHalf">
+						<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" alt="Edit Icon">
+						<h1 style="color: #ffffff; margin-left: -10px">Edit</h1>
+					</div>
+				</a>
+				{% else %}
+				
+				{% endif %}
 			</div>
 		</div>
 	</div>
