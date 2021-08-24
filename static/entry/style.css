@@ -382,7 +382,6 @@ ul {
 	display: flex; 
 	align-items: center; 
 	height: auto; 
-	width: 50%;
 	border-bottom: 2px solid white;
 	transition: all .2s ease-in-out;
 }
