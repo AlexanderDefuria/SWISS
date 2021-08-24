@@ -378,17 +378,11 @@
 						<h1 style="color: #ffffff">Pit Scout</h1>
 					</div>
 				</a>
-                <a href="https://www.thebluealliance.com/team/{{ team.number }}" target="_blank">
-                    <div class="infoLinkHalf">
-                        <img class="infoIcon" src="{{ MEDIA_URL }}{% static 'TheBlueAlliance.png' %}" alt="The Blue Alliance Icon">
-                        <h1 style="color: #ffffff; margin-left: -10px">The Blue Alliance</h1>
-                    </div>
-                </a>
 				{% if user.is_staff %}
                 <a href="https://www.thebluealliance.com/team/{{ team.number }}" target="_blank">
                     <div class="infoLinkHalf">
                         <img class="infoIcon" src="{{ MEDIA_URL }}{% static 'TheBlueAlliance.png' %}" alt="TBA Icon">
-                        <h1 style="color: #ffffff; margin-left: -10px">The Blue Alliance</h1>
+                        <h1 style="color: #ffffff; margin-left: -10px">TBA</h1>
                     </div>
                 </a>
 				<a href="https://swiss-scouting.ca/admin/entry/team/{{ team.number}}/change/" target="_blank">
@@ -398,7 +392,12 @@
 					</div>
 				</a>
 				{% else %}
-				
+                <a href="https://www.thebluealliance.com/team/{{ team.number }}" target="_blank">
+                    <div class="infoLink">
+                        <img class="infoIcon" src="{{ MEDIA_URL }}{% static 'TheBlueAlliance.png' %}" alt="The Blue Alliance Icon">
+                        <h1 style="color: #ffffff; margin-left: -10px">The Blue Alliance</h1>
+                    </div>
+                </a>
 				{% endif %}
 			</div>
 		</div>
