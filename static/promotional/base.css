@@ -1,0 +1,560 @@
+@charset "utf-8";
+/* CSS Document */
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --main-blue: #0F4D8D;
+    --dark-blue: #0B3866;
+}
+
+body {
+    background: #333;
+    color: #fff;
+    font-family: Roboto, Helvetica;
+    font-weight: 400;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+.bodyContent {
+    display: flex;
+    flex-direction: column;
+    min-height: 60vh;
+}
+
+#desktop {
+    display: flex;
+}
+
+#mobile {
+    display: none;
+    padding: 0;
+}
+
+a.anchor {
+    display: block;
+    position: relative;
+    top: -125px;
+    visibility: hidden;
+}
+
+.navBar {
+	height: 100px;
+	width: 100%;
+	display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: transparent;
+    transition: all .2s ease-in-out;
+}
+
+.logo {
+	height: 100px;
+    margin-left: 20px;
+}
+
+#logoLink {
+    display: flex;
+    height: inherit
+}
+
+.logo img {
+    margin: auto;
+    height: 50%;
+}
+
+.menuItems {
+	padding: 0 50px;
+	height: inherit;
+	display: flex;
+	flex-grow: 2;
+	justify-content: flex-end;
+	transition: all .1s ease-in-out;
+}
+
+.highLevelLink {
+    display: inherit;
+    height: inherit;
+    margin: 0;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 18px;
+    background-color: transparent;
+    color: #ffffff;
+    transition: all .1s;
+}
+
+.highLevelLink:hover {
+    text-decoration: none;
+    background-color: var(--main-blue);
+    color: #ffffff;
+}
+
+.menuItems span  {
+    margin: auto 20px;
+    overflow: hidden;
+    white-space: nowrap;
+	transition: all .0.5s ease-in-out;
+}
+
+#menuAbout span::after {
+    content: "" / ""; /* Visual only, don't read. */
+}
+
+#menuServices span::after {
+    content: "" / ""; /* Visual only, don't read. */
+}
+
+#menuContact span::after {
+    content: "" / ""; /* Visual only, don't read. */
+}
+
+.menuItems button {
+    margin: auto 10px;
+    background-color: var(--main-blue);
+    border: none;
+    border-bottom: 2px solid #0F4D8D;
+    color: white;
+    height: 50%;
+    padding: 0 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    display: inline-block;
+	transition: all .1s ease-in-out;
+}
+
+.menuItems button:hover {
+	transform: scale(1.075); 
+    border-bottom: 2px solid #0F4D8D;
+    box-shadow: 2px 5px 25px 2px #111111;
+}
+
+.dropdownTop {
+    height: 100px;
+    display: flex;
+}
+
+.dropdownContent {
+    display: none;
+    flex-direction: row;
+    justify-content: space-around;
+    position: absolute;
+    background-color: #0066CC;
+    width: 100%;
+    top: 100px;
+    left: 0;
+    padding: 50px;
+}
+
+.dropdownCol {
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+}
+
+.dropdownLargeLink {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #E1E1E1;
+    text-overflow: clip;
+    transition: all 0.2s ease;
+}
+
+.dropdownLargeLink:hover {
+    text-decoration: underline;
+    color: #ffffff;
+}
+
+.dropdownSmallLink {
+    height: 2rem !important; 
+    color: #E1E1E1;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.dropdownSmallLink:hover {
+    text-decoration: underline;
+    color: #ffffff;
+}
+
+.dropdownTop:hover .dropdownContent {
+    display: flex;
+    opacity: 0;
+    animation-duration: 0.2s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-out;
+	animation-name: slideInFromBottom;
+    animation-delay: 0.5s;
+    animation-fill-mode: both;
+}
+
+/* Sidebar Navigation */ 
+
+.hamburgerButton {
+    display: flex;
+    margin: auto 0;
+    height: 80%;
+	font-size: 20px;
+	cursor: pointer;
+	color: white;
+	border: none;
+}
+
+
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 2;
+	top: 0;
+	right: 0;
+	background-color: #111;
+    white-space: nowrap;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 60px;
+}
+
+.sidebar a {
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #ffffff;
+	display: block;
+    white-space: nowrap;
+	font-weight: 700;
+}
+
+.sidebar a:hover {
+	color: #f1f1f1;
+	transition: 0.3s;
+}
+
+.sidebar a:active {
+	color: #0F4D8D;
+}
+
+.sidebar .closebtn {
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
+}
+
+/* Main Hero */
+
+.hero {
+    width: 100%;
+    height: 90vh;
+    background-color: #111;
+    margin-bottom: 50px;
+    transition: all 0.75s ease-in-out;
+}
+
+.heroImage {
+    width: 100%;
+    height: inherit;
+    object-fit: cover;
+    user-select: none;
+    opacity: 1;
+}
+
+.heroImage img {
+    width: 100%;
+    height: inherit;
+    object-fit: cover;
+    user-select: none;
+    object-position: 0% 25%;
+}
+
+#heroImage {
+    transition: opacity 0.2s ease;
+}
+
+.heroContent {
+    position: absolute;
+    bottom: 20vh;
+    padding: 0 5rem;
+    transition: all 0.75s ease-in-out;
+}
+
+.heroContent h1 {
+    font-size: 5rem;
+    font-weight: 900;
+    width: 60%;
+    color: #ffffff;
+    margin: 25px;
+    user-select: none;
+    text-shadow: 2px 5px 25px #111111;
+    animation-duration: 0.75s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease;
+	animation-name: slideInFromLeft;
+}
+
+.heroCTA {
+    background-color: #0066CC;
+    border: 2px solid #0066CC;
+    color: white;
+    height: 50px;
+    padding: 0 50px;
+    margin: 0 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    opacity: 0;
+	transition: all .1s ease-in-out;
+    animation-duration: 0.75s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease;
+	animation-name: fadeIn;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+
+.heroCTA:hover {
+    background-color: #ffffff;
+    color: #0066CC;
+}
+
+/* Body */
+
+.scout-background {
+	color: white;
+	min-height: 300px;
+	background-image: url("../images/ScoutIcon.png");
+	background-repeat: no-repeat;
+	background-size: 32%;
+	background-position: 0% 50%;
+}
+
+.glance-background {
+	color: white;
+	min-height: 300px;
+	background-image: url("../images/StrategyIcon.png");
+	background-repeat: no-repeat;
+	background-size: 35%;
+	background-position: -2.2% 50%;
+}
+
+.analyze-background {
+	color: white;
+	min-height: 300px;
+	background-image: url("../images/StatsIcon.png");
+	background-repeat: no-repeat;
+	background-size: 35%;
+	background-position: 0% 50%;
+}
+
+.raise {
+	transform: scale(1.0);
+	transition: all .2s ease-in-out; 
+}
+
+.raise:hover {
+	transform: scale(1.075);
+	box-shadow: 2px 5px 25px 2px #232323;
+}
+
+.subfooter {
+    padding: 4rem 2rem 2rem;
+}
+
+.subfooterLogo {
+    width: 12rem;
+    margin: 0 25% 10%;
+}
+
+.subfooterLink {
+    padding-bottom: 1rem;
+	color: #fff;
+}
+
+.subfooter button {
+    background-color: var(--main-blue);
+    border: none;
+    border-bottom: 2px solid #0F4D8D;
+    color: white;
+    height: 3rem;
+    padding: 0 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    display: inline-block;
+	transition: all .1s ease-in-out;
+}
+
+.subfooter button:hover {
+	transform: scale(1.075); 
+    border-bottom: 2px solid #0F4D8D;
+    box-shadow: 2px 5px 25px 2px #111111;
+}
+
+
+
+/* Carousel */
+
+.carousel {
+    width: 100%;
+}
+
+.carousel-cell {
+    width: 100%;
+    height: 50%;
+    margin-right: 10px;
+    background: #0066CC;
+    border-radius: 5px;
+    counter-increment: carousel-cell;
+    transition: all 0.2s ease;
+}
+
+.carousel-cell.is-selected {
+    background-color: #0055AB;
+}
+
+.flickity-prev-next-button.next {
+    right: 0;
+}
+
+.flickity-prev-next-button.previous {
+    left: 0;
+}
+
+/* hide disabled button */
+.flickity-button:disabled {
+  display: none;
+}
+
+.flickity-enabled:focus .flickity-viewport {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+}
+
+/* Animations */
+
+@keyframes slideInFromLeft {
+	0% {
+		transform: translateX(-25%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateX(0);
+		opacity: 100%;
+	}
+}
+
+
+
+
+/* Small Desktop and Tablet Layout CSS */
+
+@media screen and (max-width: 1280px) {
+    
+    .hero h1 {
+        width: 80%;
+    }    
+}
+
+/* Mobile Alternate Layout CSS */ 
+
+@media screen and (max-width: 768px) {
+    
+    /* Mobile! Navbar and Menu */
+    
+    #desktop {
+        display: none;
+    }
+    
+    #mobile {
+        display: flex;
+    }
+    
+    .navBar {
+        height: 70px
+    }
+    
+    .logo {
+        height: 70px;
+    }
+    
+    .menuItems button {
+        height: 80%   
+    }
+    
+    /* Mobile! Hero */
+    
+    .heroContent {
+        bottom: 10vh;
+        padding: 1rem;;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .heroSmall h1 {
+        font-size: 2rem;
+        bottom: 60%;
+        width: 90%
+    }   
+    
+    .heroImage img {
+        object-position: 50% 25%;
+    }
+    
+    /* Mobile! Carousel */ 
+    
+    .carousel-cell {
+        width: 90%;
+        height: 300px;
+        margin: 5px;
+        border-radius: 5px;
+    }
+    
+    /* Mobile! Footer */
+    
+    .subfooter {
+        padding: 1rem 1rem 2rem;
+    }
+    
+    .subfooterLogo {
+        height: 4rem;
+        width: auto;
+        margin: 2rem 0;
+
+    }
+    
+    /* Mobile! Misc or Individual Elements */
+
+    .mobile-hide {
+    display: none;
+    }
+	
+	.analyze-background {
+		background-image: url();
+	}
+	.scout-background {
+		background-image: url();
+	}
+	.glance-background {
+		background-image: url();
+	}
+
+
+}

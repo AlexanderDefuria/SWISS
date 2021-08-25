@@ -1,10 +1,211 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="SWISS Scouting - An FRC Scouting App" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://test.nickkerstens.ca/images/SWISS_ICON_2x.png" />
+<meta property="og:description" content="SWISS Scouting is a web application built by FRC Team MaxTech 4343 for scouting matches and creating strategies during an entire competition season." />
+<title>SWISS Scouting - An FRC Scouting App</title>
+<link rel="stylesheet" href="static/flickity.min.css" media="screen">
+<link href="static/bootstrap-4.4.1.css" rel="stylesheet" type="text/css">
+<link href="static/base.css" rel="stylesheet" type="text/css">
+<script src="static/script.js"></script>
+<script src="static/lottie.js"></script>
+<script src="static/flickity.pkgd.min.js"></script>
 </head>
 <body>
+    <a name="top"></a>
+	<nav class="navBar" id="navBar" role="navigation">
+		<div class="logo">
+			<a href="#top" id="logoLink">
+                <img id="logo" src="images/SWISS_LOGO.png" alt="SWISS Logo">
+			</a>
+		</div>
+		<div class="menuItems" id="desktop">
+            <div class="dropdownTop">
+                <a href="#top" class="highLevelLink" id="menuHome"><span>Home</span></a>
+            </div>
+            <div class="dropdownTop">
+                <a href="#about" class="highLevelLink" id="menuAbout"> <span>About</span> </a>
+            </div>
+            <div class="dropdownTop">
+                <a href="#functions" class="highLevelLink" id="menuServices"> <span>What does it do?</span> </a>
+            </div>
+            <!-- LINK TO ENTRY LOGIN PAGE GOES BELOW -->
+            <button id="loginButton" onClick="location.href = 'https://swiss-scouting.ca/entry/' ">Login</button>
+		</div>
+        <div class="menuItems" id="mobile">
+            <div class="hamburgerButton" onClick="openNav()">
+			    <button class="hamburgerButton" onClick="openNav()">☰</button>
+		    </div>
+        </div>
+        <div id="sideNav" class="sidebar">
+            <div>
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                <a href="#top">Home</a>
+                <a href="#about">About</a>
+                <a href="#functions">What does it do?</a>
+                <a href="#">Contact</a>
+                <!-- LINK TO ENTRY LOGIN PAGE GOES BELOW -->
+                <a href="https://swiss-scouting.ca/entry" id="loginLink">Login </a>
+                <style>
+                    #loginLink:after { content: ' \279C';}
+                    #loginButton:after { content: ' \279C';}
+                </style>
+            </div>
+        </div>
+	</nav>
+    <main>
+        <div class="hero">
+                <div id="heroImage" class="heroImage">
+                    <img src="images/3-shot-scouting-humber-wide.jpg" alt="4343 Scouter">
+                </div> 
+            <div class="heroContent">
+                <h1 id="heroText">A New Scouting Tool for the <em>FIRST</em> Robotics Competition</h1>
+            </div>
+        </div>
+        <div class="bodyContent">
+            <div class="container">
+                <div class="row mt-3 mb-5 justify-content-lg-center">
+                    <a class="anchor" name="about"></a>
+                    <div class="col-sm-8 pt-4">
+                        <h1>Introducing SWISS Scouting.</h1>
+                        <p class="lead">SWISS Scouting is a web application built by FRC Team MaxTech 4343 for scouting matches and creating strategies during an entire competition season.</p>
+                    </div>
+                    <div class="col-sm-2">
+                        <img src="images/SWISS_ICON.png" class="mx-auto d-block" alt="SWISS Cheese Icon">
+                        <!-- This static image will be replaced with a way cooler animation -->
+                    </div>
+                </div>
+                <div class="row pt-5 pb-3">
+                    <div class="col-md">
+                        <h2>Why use SWISS?</h2>
+                    </div>
+                </div>
+                <div class="row pb-5">
+                    <div class="card-deck">
+                        <div class="card text-center raise" style="background: #444">
+                            <img src="images/cross-platform.png" class="card-img-top" alt="Cross Platform">
+                            <div class="card-body">
+                                <h4 class="card-title">Cross-Platform</h4>
+                                <p class="card-text">SWISS is a web-based application, which means you can use it wherever you want, on <em>almost</em> anything you want.</p>
+                            </div>
+                        </div>
+                        <div class="card text-center raise" style="background: #444">
+                            <img src="images/nick-jesse-phone-comp.jpg" class="card-img-top" alt="Boys on the Phone">
+                            <div class="card-body">
+                                <h4 class="card-title">Multiple Users</h4>
+                                <p class="card-text">Got a big scouting team? SWISS supports multiple users entering and accessing data at the same time. Gone are the days of paper forms and crowding around the lead scout's laptop!</p>
+                            </div>
+                        </div>
+                        <div class="card text-center raise" style="background: #444">
+                            <img src="images/technologies.png" class="card-img-top" alt="Technologies used with SWISS">
+                            <div class="card-body">
+                                <h4 class="card-title">No WiFi? No Problem!</h4>
+                                <p class="card-text">WiFi hotspots <a href="https://firstfrc.blob.core.windows.net/frc2020/EventRules/EventRulesManual.pdf#page=6" title="FRC Event Rules Manual: Rule E16." target="_blank">aren't allowed</a> at competitions. We've built a version of SWISS that runs off a Raspberry Pi - all you need is the Pi, a power source and your Bluetooth-enabled devices.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="pt-5 pb-5 mt-5 scout-background" style="background-color: #0F4D8D">
+			<div class="container">
+				<div class="row">
+					<a class="anchor" name="functions"></a>
+					<div class="col-sm-3 pb-4">
+						<!-- Spacing because I'm lazy, sorry -->
+					</div>
+					<div class="col-sm-3 mb-3">
+						<h2 style="font-weight: 700">SCOUT</h2>
+					</div>					
+					<div class="w-100"> <!-- Making space for the next row --> </div>
+					<div class="col-sm-3"> <!-- Just for spacing, sorry --> </div>
+					<div class="col-sm-3">
+						<p>Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="pt-5 pb-5 glance-background" style="background-color: #439651">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-3 pb-4">
+						<!-- Spacing because I'm lazy, sorry -->
+					</div>
+					<div class="col-sm-3 mb-3">
+						<h2 style="font-weight: 700">STRATEGIZE</h2>
+					</div>					
+					<div class="w-100"> <!-- Making space for the next row --> </div>
+					<div class="col-sm-3"> <!-- Just for spacing, sorry --> </div>
+					<div class="col-sm-3">
+						<p>Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="pt-5 pb-5 analyze-background" style="background-color: #A72014">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-3 pb-4">
+						<!-- Spacing because I'm lazy, sorry -->
+					</div>
+					<div class="col-sm-3 mb-3">
+						<h2 style="font-weight: 700">ANALYZE</h2>
+					</div>					
+					<div class="w-100"> <!-- Making space for the next row --> </div>
+					<div class="col-sm-3"> <!-- Just for spacing, sorry --> </div>
+					<div class="col-sm-3">
+						<p>Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+    </main>
+	<footer>
+		<div class="subfooter">
+			<div class="container">
+				<div class="row gy-5">
+					<div class="col-sm-5">
+						<a href="index.html">
+							<img class="subfooterLogo" src="images/SWISS_ICON.png" alt="Attesta Logo" style="object-fit: cover; float: left">
+						</a>
+					</div>
+					<div class="col-sm-3" style="display: flex; flex-direction: column; justify-content: center">
+						<a class="subfooterLink" href="contact.html">Contact </a>
+						<a class="subfooterLink" href="sitemap.html">Sitemap</a>
+					</div>
+					<div class="col-sm-4" style="display: flex; flex-direction: column; justify-content: center">
+						<h3>Access SWISS</h3>
+						<button onClick="location.href = 'https://swiss-scouting.ca/entry/' ">Sign Up / Login</button>
+					</div>
+				</div>
+			</div>
+			<div class="container-fluid" style="width: 100%;">
+				<div class="row mt-5">
+					<div style="margin: 0px auto;">
+						<p><strong>SWISS Scouting &reg; </strong>FRC Team MaxTech 4343</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--
+<script>
+var animItem = lottie.loadAnimation({
+    wrapper: SWISS-animation,
+    animType: 'svg',
+    loop: true,
+    path: 'static/swiss-categories.json'
+});
+</script>
+-->
 
+<script src="static/jquery-3.4.1.min.js"></script>
+<script src="static/popper.min.js"></script>
+<script src="static/bootstrap-4.4.1.js"></script>
 </body>
 </html>
