@@ -467,7 +467,7 @@ def validate_registration(request):
 
 @login_required(login_url='entry:login')
 def admin_redirect(request, **kwargs):
-    if request.user.is_superuser:
+    if request.user.is_staff:
         if 'whereto' in kwargs:
             return HttpResponseRedirect(reverse_lazy('admin:index') + 'entry/' + kwargs['whereto'] + "/")
 
