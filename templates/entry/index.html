@@ -151,6 +151,11 @@
 					<img src="{{ MEDIA_URL }}{% static 'FirstImportIcon.png' %}" alt="Import Icon">
 				</div>
 			</a>
+			<a href="{% url 'entry:register' %}" id="tileRegister" title="Register New User">
+				<div class="smallBox">
+					<img src="{{ MEDIA_URL }}{% static 'RegisterIcon.png' %}" alt="Registration Icon">
+				</div>
+			</a>
 		</div>
 		<div id="snackbar">
 			<p id="snacktext">Default Text</p>
