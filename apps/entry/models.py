@@ -1,3 +1,4 @@
+import uuid as uuid
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from datetime import date
@@ -32,6 +33,7 @@ class Team(models.Model):
     images = models.ManyToManyField(Images)
     colour = models.CharField(default="#000000", max_length=7)
     pick_status = models.IntegerField(default=0, validators=[MaxValueValidator(2), MinValueValidator(0)])
+    uuid = models.UUIDField(primary_key=False, default=uuid.uuid3, editable=True)
 
     def first_image(self):
         # code to determine which image to show. The First in this case.
