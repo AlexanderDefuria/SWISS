@@ -355,8 +355,10 @@
                         document.getElementById("playedDefenseBG").style.backgroundColor = "#1C984F";
                     }
 					
-					if (qd > 2) {
+					if (qd >= 2) {
 						document.getElementById("qualityDefenseBG").style.backgroundColor = "#1C984F";
+					} else if (qd >= 3) {
+						document.getElementById("qualityDefenseBG").style.backgroundColor = "#8C1D74";
 					}
 					
 					if (dis > 10) {
