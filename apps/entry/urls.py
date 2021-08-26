@@ -43,7 +43,8 @@ urlpatterns = [
 
     path('logout/', views.logout, name='logout'),
     path('login/', views.login, name='login'),
-    path('register/', views.register_user, name='register_user'),
+    path('register/', views.RegistrationLanding.as_view(), name='register'),
+    path('register/submit/', views.register_user, name='register_user'),
 
     path('admin_redirect/<str:whereto>', views.admin_redirect, name='admin_redirect'),
     path('admin_redirect/', views.admin_redirect, name='admin_redirect'),
