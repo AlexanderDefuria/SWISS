@@ -57,6 +57,11 @@ def get_user_role(request):
 
 
 @register.simple_tag
+def get_team_uuid(request):
+    return str(request.user.teammember.team.reg_id)[:6]
+
+
+@register.simple_tag
 def get_all_logged_in_users(*args):
     # Query all non-expired sessions
     # use timezone.now() instead of datetime.now() in latest versions of Django

@@ -623,6 +623,12 @@ class GlanceLanding(LoginRequiredMixin, generic.ListView):
         return get_present_teams(self.request.user)
 
 
+class RegistrationLanding(generic.TemplateView):
+    login_url = 'entry:login'
+    model = Team
+    template_name = 'entry/register.html'
+
+
 class MatchData(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     template_name = 'entry/matchdata.html'
