@@ -394,7 +394,6 @@ def write_pit_upload(request):
 
 
 def login(request):
-    print(request.method)
     if request.method == 'GET':
         template = loader.get_template('entry/login.html')
 
@@ -446,15 +445,6 @@ def logout(request):
     print("request.user.is_authenticated:" + str(request.user.is_authenticated))
     return HttpResponseRedirect(reverse_lazy('entry:index'))
 
-
-def register_user(request):
-    if request.method == 'GET':
-        template = loader.get_template('entry/register.html')
-        return HttpResponse(template.render({}, request))
-    elif request.method == 'POST':
-        username = request.POST.get('teamPosition')
-        print(username)
-        return HttpResponseRedirect(reverse_lazy('entry:register_user'))
 
 
 @ajax
@@ -623,10 +613,38 @@ class GlanceLanding(LoginRequiredMixin, generic.ListView):
         return get_present_teams(self.request.user)
 
 
-class RegistrationLanding(generic.TemplateView):
-    login_url = 'entry:login'
+class Registration(generic.TemplateView):
     model = Team
     template_name = 'entry/register.html'
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return HttpResponseRedirect(reverse_lazy('entry:index'))
+        else:
+            return super(Registration, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        user = User()
+
+        if request.POST.get('team_number'):
+            user.teammember = TeamMember()
+            user.teammember.team = Team.objects.get(id=make_int(request.POST.get('team_number')))
+            if request.POST.get('team_reg_id')[:6] != str(user.teammember.team.reg_id)[:6]:
+                return HttpResponse(reverse_lazy('entry:register'))
+
+        if request.POST.get('password') == request.POST.get('password'):
+            user.password = request.POST.get('password')
+        else:
+            return HttpResponse(reverse_lazy('entry:register'))
+
+        user.username = request.POST.get('username')
+        user.first_name = request.POST.get('first_name')
+        user.last_name = request.POST.get('first_name')
+        user.email = request.POST.get('first_name')
+
+        user.save()
+
+        return HttpResponseRedirect(reverse_lazy('entry:update_fields'))
 
 
 class MatchData(LoginRequiredMixin, generic.ListView):

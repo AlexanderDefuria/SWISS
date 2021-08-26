@@ -134,7 +134,7 @@ a.anchor {
 }
 
 .menuItems button:hover {
-	transform: scale(1.075); 
+	transform: scale(1.075);
     border-bottom: 2px solid #0F4D8D;
     box-shadow: 2px 5px 25px 2px #111111;
 }
@@ -176,7 +176,7 @@ a.anchor {
 }
 
 .dropdownSmallLink {
-    height: 2rem !important; 
+    height: 2rem !important;
     color: #E1E1E1;
     font-size: 1rem;
     transition: all 0.2s ease;
@@ -198,7 +198,7 @@ a.anchor {
     animation-fill-mode: both;
 }
 
-/* Sidebar Navigation */ 
+/* Sidebar Navigation */
 
 .hamburgerButton {
     display: flex;
@@ -336,7 +336,7 @@ a.anchor {
 .scout-background {
 	color: white;
 	min-height: 300px;
-	background-image: url("../images/ScoutIcon.png");
+	background-image: url("/static/ScoutIcon.png");
 	background-repeat: no-repeat;
 	background-size: 32%;
 	background-position: 0% 50%;
@@ -345,16 +345,19 @@ a.anchor {
 .glance-background {
 	color: white;
 	min-height: 300px;
-	background-image: url("../images/StrategyIcon.png");
-	background-repeat: no-repeat;
+    background-repeat: no-repeat;
 	background-size: 35%;
 	background-position: -2.2% 50%;
+}
+
+.glance-background {
+    background-image: url("/static/StrategyIcon.png");
 }
 
 .analyze-background {
 	color: white;
 	min-height: 300px;
-	background-image: url("../images/StatsIcon.png");
+	background-image: url("/static/StatsIcon.png");
 	background-repeat: no-repeat;
 	background-size: 35%;
 	background-position: 0% 50%;
@@ -362,7 +365,7 @@ a.anchor {
 
 .raise {
 	transform: scale(1.0);
-	transition: all .2s ease-in-out; 
+	transition: all .2s ease-in-out;
 }
 
 .raise:hover {
@@ -401,7 +404,7 @@ a.anchor {
 }
 
 .subfooter button:hover {
-	transform: scale(1.075); 
+	transform: scale(1.075);
     border-bottom: 2px solid #0F4D8D;
     box-shadow: 2px 5px 25px 2px #111111;
 }
@@ -465,95 +468,95 @@ a.anchor {
 /* Small Desktop and Tablet Layout CSS */
 
 @media screen and (max-width: 1280px) {
-    
+
     .hero h1 {
         width: 80%;
-    }    
+    }
 }
 
-/* Mobile Alternate Layout CSS */ 
+/* Mobile Alternate Layout CSS */
 
 @media screen and (max-width: 768px) {
-    
+
     /* Mobile! Navbar and Menu */
-    
+
     #desktop {
         display: none;
     }
-    
+
     #mobile {
         display: flex;
     }
-    
+
     .navBar {
         height: 70px
     }
-    
+
     .logo {
         height: 70px;
     }
-    
+
     .menuItems button {
-        height: 80%   
+        height: 80%
     }
-    
+
     /* Mobile! Hero */
-    
+
     .heroContent {
         bottom: 10vh;
         padding: 1rem;;
     }
-    
+
     .hero h1 {
         font-size: 2.5rem;
     }
-    
+
     .heroSmall h1 {
         font-size: 2rem;
         bottom: 60%;
         width: 90%
-    }   
-    
+    }
+
     .heroImage img {
         object-position: 50% 25%;
     }
-    
-    /* Mobile! Carousel */ 
-    
+
+    /* Mobile! Carousel */
+
     .carousel-cell {
         width: 90%;
         height: 300px;
         margin: 5px;
         border-radius: 5px;
     }
-    
+
     /* Mobile! Footer */
-    
+
     .subfooter {
         padding: 1rem 1rem 2rem;
     }
-    
+
     .subfooterLogo {
         height: 4rem;
         width: auto;
         margin: 2rem 0;
 
     }
-    
+
     /* Mobile! Misc or Individual Elements */
 
     .mobile-hide {
     display: none;
     }
-	
+
 	.analyze-background {
-		background-image: url();
+		background-image: url("");
 	}
 	.scout-background {
-		background-image: url();
+		background-image: url("");
 	}
 	.glance-background {
-		background-image: url();
+		background-image: url("");
 	}
 
 
