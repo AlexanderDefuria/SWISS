@@ -41,7 +41,7 @@ class ValidateUser:
             print("\n")
             return HttpResponseRedirect(reverse_lazy('entry:index'))
 
-        if view == "logout" or view == "login" or app == "media":
+        if view == "logout" or view == "login" or app == "media" or view == "register":
             return response
 
         if not request.user.is_authenticated:
