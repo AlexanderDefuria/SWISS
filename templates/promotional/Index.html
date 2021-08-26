@@ -1,3 +1,5 @@
+{% load static %}
+
 <!doctype html>
 <html>
 <head>
@@ -9,21 +11,26 @@
 <meta property="og:image" content="http://test.nickkerstens.ca/images/SWISS_ICON_2x.png" />
 <meta property="og:description" content="SWISS Scouting is a web application built by FRC Team MaxTech 4343 for scouting matches and creating strategies during an entire competition season." />
 <title>SWISS Scouting - An FRC Scouting App</title>
-<link rel="stylesheet" href="static/flickity.min.css" media="screen">
-<link href="static/bootstrap-4.4.1.css" rel="stylesheet" type="text/css">
-<link href="static/base.css" rel="stylesheet" type="text/css">
-<script src="static/script.js"></script>
-<script src="static/lottie.js"></script>
-<script src="static/flickity.pkgd.min.js"></script>
+<link href="{% static 'promotional/bootstrap-4.4.1.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'promotional/base.css' %}" rel="stylesheet" type="text/css">
+<script src="{% static 'promotional/script.js' %}"></script>
+<script src="{% static 'promotional/lottie.js' %}"></script>
+<script src="{% static 'promotional/flickity.pkgd.min.js' %}"></script>
+<link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
+
 </head>
+
 <body>
     <a name="top"></a>
 	<nav class="navBar" id="navBar" role="navigation">
 		<div class="logo">
 			<a href="#top" id="logoLink">
-                <img id="logo" src="images/SWISS_LOGO.png" alt="SWISS Logo">
+                <img id="logo" src="{% static 'SWISS_LOGO.png' %}" alt="SWISS Logo">
 			</a>
 		</div>
+
 		<div class="menuItems" id="desktop">
             <div class="dropdownTop">
                 <a href="#top" class="highLevelLink" id="menuHome"><span>Home</span></a>
@@ -35,7 +42,7 @@
                 <a href="#functions" class="highLevelLink" id="menuServices"> <span>What does it do?</span> </a>
             </div>
             <!-- LINK TO ENTRY LOGIN PAGE GOES BELOW -->
-            <button id="loginButton" onClick="location.href = 'https://swiss-scouting.ca/entry/' ">Login</button>
+            <button id="loginButton" onClick="location.href = '{% url 'entry:login' %}' ">Login</button>
 		</div>
         <div class="menuItems" id="mobile">
             <div class="hamburgerButton" onClick="openNav()">
@@ -50,7 +57,7 @@
                 <a href="#functions">What does it do?</a>
                 <a href="#">Contact</a>
                 <!-- LINK TO ENTRY LOGIN PAGE GOES BELOW -->
-                <a href="https://swiss-scouting.ca/entry" id="loginLink">Login </a>
+                <a href="{% url 'entry:login' %}" id="loginLink">Login </a>
                 <style>
                     #loginLink:after { content: ' \279C';}
                     #loginButton:after { content: ' \279C';}
@@ -61,12 +68,13 @@
     <main>
         <div class="hero">
                 <div id="heroImage" class="heroImage">
-                    <img src="images/3-shot-scouting-humber-wide.jpg" alt="4343 Scouter">
+                    <img src="{% static '3-shot-scouting-humber-wide.jpg' %}" alt="4343 Scouter">
                 </div> 
             <div class="heroContent">
                 <h1 id="heroText">A New Scouting Tool for the <em>FIRST</em> Robotics Competition</h1>
             </div>
         </div>
+
         <div class="bodyContent">
             <div class="container">
                 <div class="row mt-3 mb-5 justify-content-lg-center">
@@ -76,7 +84,7 @@
                         <p class="lead">SWISS Scouting is a web application built by FRC Team MaxTech 4343 for scouting matches and creating strategies during an entire competition season.</p>
                     </div>
                     <div class="col-sm-2">
-                        <img src="images/SWISS_ICON.png" class="mx-auto d-block" alt="SWISS Cheese Icon">
+                        <img src="{% static 'SWISS_ICON.png' %}" class="mx-auto d-block" alt="SWISS Cheese Icon">
                         <!-- This static image will be replaced with a way cooler animation -->
                     </div>
                 </div>
@@ -88,21 +96,21 @@
                 <div class="row pb-5">
                     <div class="card-deck">
                         <div class="card text-center raise" style="background: #444">
-                            <img src="images/cross-platform.png" class="card-img-top" alt="Cross Platform">
+                            <img src="{% static 'cross-platform.png' %}" class="card-img-top" alt="Cross Platform">
                             <div class="card-body">
                                 <h4 class="card-title">Cross-Platform</h4>
                                 <p class="card-text">SWISS is a web-based application, which means you can use it wherever you want, on <em>almost</em> anything you want.</p>
                             </div>
                         </div>
                         <div class="card text-center raise" style="background: #444">
-                            <img src="images/nick-jesse-phone-comp.jpg" class="card-img-top" alt="Boys on the Phone">
+                            <img src="{% static 'nick-jesse-phone-comp.jpg' %}" class="card-img-top" alt="Boys on the Phone">
                             <div class="card-body">
                                 <h4 class="card-title">Multiple Users</h4>
                                 <p class="card-text">Got a big scouting team? SWISS supports multiple users entering and accessing data at the same time. Gone are the days of paper forms and crowding around the lead scout's laptop!</p>
                             </div>
                         </div>
                         <div class="card text-center raise" style="background: #444">
-                            <img src="images/technologies.png" class="card-img-top" alt="Technologies used with SWISS">
+                            <img src="{% static 'technologies.png' %}" class="card-img-top" alt="Technologies used with SWISS">
                             <div class="card-body">
                                 <h4 class="card-title">No WiFi? No Problem!</h4>
                                 <p class="card-text">WiFi hotspots <a href="https://firstfrc.blob.core.windows.net/frc2020/EventRules/EventRulesManual.pdf#page=6" title="FRC Event Rules Manual: Rule E16." target="_blank">aren't allowed</a> at competitions. We've built a version of SWISS that runs off a Raspberry Pi - all you need is the Pi, a power source and your Bluetooth-enabled devices.</p>
@@ -159,6 +167,7 @@
 					<div class="w-100"> <!-- Making space for the next row --> </div>
 					<div class="col-sm-3"> <!-- Just for spacing, sorry --> </div>
 					<div class="col-sm-3">
+
 						<p>Lorem ipsum dolor sit amet.</p>
 					</div>
 				</div>
@@ -171,9 +180,11 @@
 				<div class="row gy-5">
 					<div class="col-sm-5">
 						<a href="index.html">
-							<img class="subfooterLogo" src="images/SWISS_ICON.png" alt="Attesta Logo" style="object-fit: cover; float: left">
+							<img class="subfooterLogo" src="{% static 'SWISS_ICON.png' %}" alt="Attesta Logo" style="object-fit: cover; float: left">
 						</a>
 					</div>
+
+
 					<div class="col-sm-3" style="display: flex; flex-direction: column; justify-content: center">
 						<a class="subfooterLink" href="contact.html">Contact </a>
 						<a class="subfooterLink" href="sitemap.html">Sitemap</a>
@@ -204,8 +215,8 @@ var animItem = lottie.loadAnimation({
 </script>
 -->
 
-<script src="static/jquery-3.4.1.min.js"></script>
-<script src="static/popper.min.js"></script>
-<script src="static/bootstrap-4.4.1.js"></script>
+<script src="{% static 'promotional/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'promotional/popper.min.js' %}"></script>
+<script src="{% static 'promotional/bootstrap-4.4.1.js' %}"></script>
 </body>
 </html>
