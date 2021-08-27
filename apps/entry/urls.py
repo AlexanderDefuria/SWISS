@@ -5,7 +5,7 @@ from django.conf import settings
 from . import views
 
 urlpatterns = [
-    path('index/', views.Index.as_view(), name='index'),
+    path('/', views.Index.as_view(), name='index'),
 
     path('matchscout/', views.MatchScoutLanding.as_view(), name='match_scout_landing'),
     path('matchscout/<slug:pk>/', views.MatchScout.as_view(), name='match_scout'),
