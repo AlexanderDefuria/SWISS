@@ -398,7 +398,7 @@ def login(request):
         template = loader.get_template('entry/login.html')
 
         if request.user.is_authenticated:
-            logout(request)
+            return HttpResponseRedirect(reverse_lazy('entry:index'))
 
         return HttpResponse(template.render({}, request))
 
@@ -410,7 +410,6 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            print(auth)
             if not TeamMember.objects.filter(user=user).exists():
                 TeamMember.objects.create(user_id=user.id)
 

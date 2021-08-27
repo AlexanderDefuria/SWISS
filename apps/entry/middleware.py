@@ -23,12 +23,12 @@ class ValidateUser:
         # the view (and later middleware) are called.
         response = self.get_response(request)
 
-        if str(request.path).__contains__('media') or str(request.path).__contains__('static') or str(request.path).__contains__('admin'):
+        if str(request.path).__contains__('media') or str(request.path).__contains__('static') or str(request.path).__contains__('admin') or str(request.path).__contains__('promotional'):
             return response
 
         try:
             if str(request.path) == "/":
-                return HttpResponseRedirect(reverse_lazy('entry:index'))
+                return HttpResponseRedirect(reverse_lazy('promotional:index'))
         except IndexError:
             print("INDEX ERROR")
             return response
