@@ -283,13 +283,27 @@ def update_graph(request):
 @csrf_exempt
 @login_required(login_url='entry:login')
 def update_glance(request, pk):
-    print(request.POST)
     matches = Match.objects.filter(team_id=pk, team_ownership_id=request.user.teammember.team_id).order_by(
         'match_number')
+    count = matches.count()
+    print("Time Start")
+    try:
+        if make_int(Team.objects.get(id=pk).glance.name.split('_')[2]) == count:
+            return HttpResponse(Team.objects.get(id=pk).glance.read(), content_type='application/json')
+    except IndexError:
+        print("")
     matches_json = serializers.serialize('json', matches)
-    print(matches_json)
+    f = open('/home/alexander/Desktop/FRC-Scouting/media/json/glance_temp.json', 'w')
+    f.write(str(matches_json))
+    f = open('/home/alexander/Desktop/FRC-Scouting/media/json/glance_temp.json', 'r')
 
+    Team.objects.get(id=pk).glance.save(
+        'glance_' + str(pk) + '_' + str(count) + '_' + str(datetime.now()) + '.json', f)
+    print("end")
     return HttpResponse(matches_json, content_type='application/json')
+
+
+
 
 
 @ajax
@@ -631,9 +645,12 @@ class Registration(generic.TemplateView):
             if request.POST.get('team_reg_id')[:6] != str(user.teammember.team.reg_id)[:6]:
                 return HttpResponse(reverse_lazy('entry:register'))
 
-        if request.POST.get('password') == request.POST.get('password'):
-            user.password = request.POST.get('password')
+        if request.POST.get('password') == request.POST.get('password_validate'):
+            user.set_password(request.POST.get('password'))
         else:
+            return HttpResponse(reverse_lazy('entry:register'))
+
+        if request.POST.get('username') == "":
             return HttpResponse(reverse_lazy('entry:register'))
 
         user.username = request.POST.get('username')
@@ -692,14 +709,13 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
         response.set_cookie('filters', request.POST.get('filters', ''))
         response.set_cookie('districtTeams', request.POST.get('districtTeams', ''))
         response.set_cookie('tutorialCompleted', request.POST.get('tutorialCompleted', ''))
-        config.set_event(request.POST.get('currentEvent', '21ONT'))
-
-        print(self.request.user.teammember.position)
+        response.set_cookie('teamsBehaviour', request.POST.get('teamsBehaviour', ''))
 
         if self.request.user.teammember.position == "LS":
             new_settings = TeamSettings()
             print("making")
             try:
+                config.set_event(request.POST.get('currentEvent', '21ONT'))
                 new_settings = TeamSettings.objects.get(team=self.request.user.teammember.team)
                 new_settings.currentEvent = Event.objects.get(FIRST_key=request.POST.get('currentEvent', '21ONT'))
 

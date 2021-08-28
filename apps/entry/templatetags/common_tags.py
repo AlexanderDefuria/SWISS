@@ -163,12 +163,7 @@ def get_total(user, team, field, model):
 
     for entry in object_list:
 
-        if model==Match:
-            print("climbed")
-            print(entry.climbed)
         if boolean:
-            print(field)
-            print(entry.__getattribute__(field))
             if entry.__getattribute__(field):
                 total += 1
         else:

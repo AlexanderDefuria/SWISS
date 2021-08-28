@@ -67,6 +67,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<div class="heroContent">
 			<p class="pageTitle">Teams</p>
 		</div>
+        {% get_cookie request 'teamsBehaviour' as teamsBehaviour%}
 		{% get_cookie request 'districtTeams' as districtTeams %}
 		{% if districtTeams == 'True' %}
 		{% else %}
@@ -84,7 +85,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             {% endif %}
 
             {% for team in teamList %}
-				<a href='{% url 'entry:glance' team.id %}' class="teamLink" id="{{ team.number }}" name="{{ team.name }}" title="{{ team.name }} {{ team.number }}">
+				<a href="
+				    {% if teamsBehaviour == '3' %}
+				        {% url 'entry:pit_scout' team.id %}
+                    {% elif teamsBehaviour == '2' %}
+                        {% url 'entry:match_scout' team.id %}
+                    {% else %}
+                        {% url 'entry:glance' team.id %}
+                    {% endif %}
+                    "
+                class="teamLink" id="{{ team.number }}" name="{{ team.name }}" title="{{ team.name }} {{ team.number }}">
 					{% get_cookie request 'images' as images %}
 					{% if 'False' != images %}
 						<div class="teamCard" style="overflow: hidden;">

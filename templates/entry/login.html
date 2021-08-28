@@ -15,7 +15,9 @@
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
 <link rel="manifest" type="manifest" href="{% static 'entry/site.webmanifest' %}">
 <meta name="theme-color" content="0F4D8D">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!-- Google Tag Manager -->
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<script></script>
+<!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -37,9 +39,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	</div>
 	
 	<div class="bodyContainer">
-		<div id="loginContainer">
-			<div class="infoBox loginBox">
-				<div class="infoHeader">
+		<div id="loginContainer" class="first_div">
+			<div class="infoBox loginBox" >
+				<div class="infoHeader" id="mainBox">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'UserIcon.png' %}" alt="Download Icon">
 					<h1>Log In</h1>
 				</div>
@@ -56,10 +58,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                     <button class="updateButton loginButton" type="submit">Log In</button>
 
-				
+
 				</form>
 			</div>
 		</div>
+        <a id="registerBox" class="div formItem" href="{% url 'entry:register' %}">
+
+            <button name="submit" id="submitButton" type="submit" style="pointer-events: none;">Register</button>
+
+        </a>
+
 	</div>
+
 </body>
+
 </html>

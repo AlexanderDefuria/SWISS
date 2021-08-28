@@ -34,6 +34,7 @@ class Team(models.Model):
     colour = models.CharField(default="#000000", max_length=7)
     pick_status = models.IntegerField(default=0, validators=[MaxValueValidator(2), MinValueValidator(0)])
     reg_id = models.UUIDField(primary_key=False, default=uuid.uuid4, editable=False)
+    glance = models.FileField(upload_to='json/', null=True)
 
 
     def first_image(self):
