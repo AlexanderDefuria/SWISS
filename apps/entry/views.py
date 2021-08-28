@@ -293,9 +293,9 @@ def update_glance(request, pk):
     except IndexError:
         print("")
     matches_json = serializers.serialize('json', matches)
-    f = open('/home/alexander/Desktop/FRC-Scouting/media/json/glance_temp.json', 'w')
+    f = open('../../../media/json/glance_temp.json', 'w')
     f.write(str(matches_json))
-    f = open('/home/alexander/Desktop/FRC-Scouting/media/json/glance_temp.json', 'r')
+    f = open('../../../media/json/glance_temp.json', 'r')
 
     Team.objects.get(id=pk).glance.save(
         'glance_' + str(pk) + '_' + str(count) + '_' + str(datetime.now()) + '.json', f)
