@@ -286,20 +286,22 @@ def update_glance(request, pk):
     matches = Match.objects.filter(team_id=pk, team_ownership_id=request.user.teammember.team_id).order_by(
         'match_number')
     count = matches.count()
-    print("Time Start")
     try:
         if make_int(Team.objects.get(id=pk).glance.name.split('_')[2]) == count:
             return HttpResponse(Team.objects.get(id=pk).glance.read(), content_type='application/json')
     except IndexError:
         print("")
-    matches_json = serializers.serialize('json', matches)
-    f = open('../../../media/json/glance_temp.json', 'w')
-    f.write(str(matches_json))
-    f = open('../../../media/json/glance_temp.json', 'r')
+    except AttributeError:
+        print("")
 
-    Team.objects.get(id=pk).glance.save(
+    matches_json = serializers.serialize('json', matches)
+    f = open(os.path.join(settings.BASE_DIR, 'glance_temp.json'), 'w')
+    f.write(str(matches_json))
+    f = open(os.path.join(settings.BASE_DIR, 'glance_temp.json'), 'r')
+    team = Team.objects.get(id=pk)
+    team.glance.delete()
+    team.glance.save(
         'glance_' + str(pk) + '_' + str(count) + '_' + str(datetime.now()) + '.json', f)
-    print("end")
     return HttpResponse(matches_json, content_type='application/json')
 
 
