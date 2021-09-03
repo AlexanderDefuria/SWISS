@@ -13,6 +13,7 @@ class Event(models.Model):
                              validators=[MaxValueValidator(date(2220, 12, 31)), MinValueValidator(date(2020, 1, 1))])
     end = models.DateField(default=date(2020, 1, 1),
                            validators=[MaxValueValidator(date(2220, 12, 31)), MinValueValidator(date(2020, 1, 1))])
+
     imported = models.BooleanField(default=False)
 
     def __str__(self):
