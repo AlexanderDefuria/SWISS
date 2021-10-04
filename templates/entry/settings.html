@@ -16,10 +16,19 @@
 <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
 <meta name="theme-color" content="0F4D8D">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N73L5WQ');</script>
+<!-- End Google Tag Manager -->
 </head>
 
-<body onload="update_cookie_fields()">
+<body onload="update_cookie_fields()"><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N73L5WQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 	<div class="topbar">
 		<div class="hamburgerButton" onClick="openNav()">
 			<button class="hamburgerButton" onClick="openNav()">☰</button>
@@ -63,14 +72,30 @@
 			<p class="pageTitle">Settings</p>
 		</div>
 		<form class="formContainer" method="post" name="mainForm" id="mainForm" method="POST">
+            <h1 class="sectionHeader">Personal Settings</h1>
+			<h2>User Info</h2>
             {% csrf_token %}
 			<div class="formItem">
-                <label>User Role</label>
+                <label>{{ user.get_username }}</label>
                 <div class="positionIndicator">
                     {% get_user_role request %}
                 </div>
             </div>
-			<h1>Teams</h1>
+			<h2>Tutorial</h2>
+            <div class="formItem">
+                <label for="tutorialCompleted">Tutorial Completed</label>
+                <div class="radioGroup">
+                    <label>
+                        <input type="radio" id="tutorialCompleted_true" name="tutorialCompleted" value="True">
+                        <span>Y</span>
+                    </label>
+                    <label>
+                        <input type="radio" id="tutorialCompleted_false" name="tutorialCompleted" value="False" checked="true">
+                        <span>N</span>
+                    </label>
+                </div>
+            </div>
+			<h2>Teams Page</h2>
             <div class="formItem">
                 <label for="images">Display Robot Photos</label>
                 <div class="radioGroup">
@@ -79,7 +104,7 @@
 						<span>Y</span>
 					</label>
 					<label>
-						<input type="radio" id="images_false" name="images" value="False">
+						<input type="radio" id="images_false" name="images" value="False" checked="true">
 						<span>N</span>
 					</label>
 				</div>
@@ -92,49 +117,101 @@
 						<span>Y</span>
 					</label>
 					<label>
-						<input type="radio" id="filters_false" name="filters" value="False">
+						<input type="radio" id="filters_false" name="filters" value="False" checked="true">
 						<span>N</span>
 					</label>
 				</div>
             </div>
             <div class="formItem">
-                <label for="districtTeams">Show All Teams in the District?</label>
+                <label for="districtTeams">Show All Teams in the District</label>
                 <div class="radioGroup">
 					<label>
 						<input type="radio" id="districtTeams_true" name="districtTeams" value="True">
 						<span>Y</span>
 					</label>
 					<label>
-						<input type="radio" id="districtTeams_false" name="districtTeams" value="False">
+						<input type="radio" id="districtTeams_false" name="districtTeams" value="False" checked="true">
 						<span>N</span>
 					</label>
 				</div>
             </div>
-
+			<div class="formItem">
+				<label for="teamsBehaviour">Click/Tap Behaviour</label>
+				<select name="teamsBehaviour" id="teamsBehaviour" required>
+					<option value="" disabled selected hidden>&#8230;</option>
+					<option value="1">Go to Glance (Default)</option>
+					<option value="2">Go to Match Scouting</option>
+					<option value="3">Go to Pit Scouting</option>
+					<option value="4" Disabled>Go to Team Info (Coming soon)</option>
+				</select>
+			</div>
             {% is_lead_scout request as lead_scout %}
             {% if lead_scout %}
+            <h1 class="sectionHeader">Team-Wide Settings</h1>
+			<p style="margin: 0">You are seeing these options because you are listed as a Team Lead Scouter or Mentor</p>
+			
+			<h2>User Registration</h2>
             <div class="formItem">
-				<label for="intakeType">Intake Type ----- Finish Implementation</label>
+				<label for="intakeType">Registration -- IMPLEMENTING</label>
 				<select name="intakeType" id="intakeType" required>
 					<option value="0">Manual Approval, Open Registration</option>
 					<option value="1">Manual Creation of All Users</option>
 					<option value="2">Open Registration, Free Entry </option>
 				</select>
 			</div>
+			<div class="formItem">
+				<label>Unique Team ID</label>
+				<div>
+					<p style="user-select: all">{% get_team_uuid request %}</p>
+				</div>
+			</div>
+            <h2>Current Event</h2>
+            <div class="formItem">
+				<label for="currentEvent">Current Event for Team -- IMPLEMENTING</label>
+				<select name="currentEvent" id="currentEvent" style="display: block" required>
+                    {% get_current_event as curEvent %}
+                    <option value="{{ curEvent.FIRST_key }}">{{ curEvent.name }}</option>
+                    {% get_all_events as eventList %}
+                    {% for event in eventList %}
+					<option value="{{ event.FIRST_key }}">{{ event.name }}</option>
+                    {% endfor %}
+				</select>
+			</div>
             {% endif %}
-
+            <h1 class="sectionHeader">More</h1>
+            <div class="formItem" style="justify-content: center; flex-direction: row">
+                <a href="https://github.com/AlexanderDefuria/FRC-Scouting" target="_blank">
+                    <img class="socialIcon" src="{{ MEDIA_URL }}{% static 'GithubIcon.png' %}" alt="Github Logo">
+                </a>
+                <a href="http://www.frc914.ca/" target="_blank">
+                    <img class="socialIcon" src="{{ MEDIA_URL }}{% static '914Logo.png' %}" alt="FRC Team 914 Logo">
+                </a>
+                <a href="http://4343.ca/" target="_blank">
+                    <img class="socialIcon" src="{{ MEDIA_URL }}{% static '4343Logo.png' %}" alt="FRC Team 4334 Logo">
+                </a>
+            </div>
+            <br>
             <div class="formItem" id="submit" onclick="validate('mainForm', false)">
                 <input name="submit" id="submitButton" type="submit" style="pointer-events: none" value="Save Settings">
 			</div>
-        </form>
+		</form>
+		<div class="formContainer">
+			<input class="logoutbtn" id="log_out_btn" type="button" value="Log Out" onclick="logout()">
+		</div>
 	</div>
-</body >
-</html>
 <script>
+	function logout() {
+		window.location.replace("{% url 'entry:logout' %}");
+	}
     function update_cookie_fields(){
         document.getElementById('images_'.concat('{% get_cookie request 'images' %}'.toLowerCase())).checked = true;
         document.getElementById('filters_'.concat('{% get_cookie request 'filters' %}'.toLowerCase())).checked = true;
         document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true;
-        {% if lead_scout %} //document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true; {% endif %}
-    }
+		document.getElementById('tutorialCompleted_'.concat('{% get_cookie request 'tutorialCompleted' %}'.toLowerCase())).checked = true;
+		document.getElementById('teamsBehaviour').value={% get_cookie request 'teamsBehaviour' %};
+		//Wasnt sure what was going on here, empty if statement below so I fully commented it -Carter
+        //{% if lead_scout %} document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true; {% endif %}
+    }        
 </script>
+</body >
+</html>

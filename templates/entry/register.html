@@ -15,10 +15,21 @@
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
 <link rel="manifest" type="manifest" href="{% static 'entry/site.webmanifest' %}">
 <meta name="theme-color" content="0F4D8D">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N73L5WQ');</script>
+<!-- End Google Tag Manager -->
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N73L5WQ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
 	<div class="topbar">
 		<div class="swissLogo" id="swissLogo">
 			<a href="{% url 'entry:index' %}">
@@ -34,51 +45,42 @@
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'NewUserIcon.png' %}" alt="Download Icon">
 					<h1>Register New User</h1>
 				</div>
-				<form action="{% url 'entry:register_user' %}" method="POST" enctype="multipart/form-data" id="form">
+				<form action="{% url 'entry:register' %}" method="POST" enctype="multipart/form-data" id="form">
                     {% csrf_token %}
-                    <div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+                    <div class="formItem" style="margin-top:10px; background:none;">
 						<label for="username">Username:</label>
 						<input style="margin-left:10px; " type="text" name="username" id="username">
 					</div>
-					<div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+					<div class="formItem" style="margin-top:10px; background:none">
 						<label for="password">Password:</label>
 						<input style="margin-left:10px; " type="password" name="password" id="password">
 					</div>
-                    <div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+                    <div class="formItem" style="margin-top:10px; background:none">
 						<label for="password_validate">Re-Enter Password:</label>
 						<input style="margin-left:10px; " type="password" name="password_validate" id="password_validate">
 					</div>
-                    <div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+                    <div class="formItem" style="margin-top:10px; background:none">
 						<label for="first_name">First Name:</label>
 						<input style="margin-left:10px; " type="text" name="first_name" id="first_name">
 					</div>
-                    <div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+                    <div class="formItem" style="margin-top:10px; background:none">
 						<label for="last_name">Last Name:</label>
 						<input style="margin-left:10px; " type="text" name="last_name" id="last_name">
 					</div>
-                    <div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+                    <div class="formItem" style="margin-top:10px; background:none">
 						<label for="email">Email:</label>
 						<input style="margin-left:10px; " type="email" name="email" id="email">
 					</div>
-                    <div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+                    <div class="formItem" style="margin-top:10px; background:none">
 						<label for="team_number">Team Number</label>
 						<input style="margin-left:10px; " type="number" name="team_number" id="team_number">
 					</div>
-                    <div class="formItem" style="background-color: #0F4D8D">
-			        	<label for="teamPosition">Team Position</label>
-			        	<select name="teamPosition" id="teamPosition" required>
-			        		<option value="0">Only View</option>
-			        		<option value="1">Match Scout</option>
-			        		<option value="2">General Scout</option>
-			        		<option value="3">Pit Scout</option>
-                            <option value="4">Drive Team</option>
-                            <option value="5">Lead Scout</option>
-			        	</select>
-			        </div>
-                    <div class="formItem" id="submit" onclick="validate('mainForm', true)">
-                        <button class="updateButton loginButton" type="submit">Register New User</button>
-			        </div>
-
+                    <div class="formItem" style="margin-top:10px; background:none">
+						<label for="team_reg_id">Team UUID</label>
+						<input style="margin-left:10px; " type="text" name="team_reg_id" id="team_reg_id">
+					</div>
+                    <br>
+                    <button class="updateButton loginButton" type="submit">Register</button>
 				</form>
 			</div>
 		</div>

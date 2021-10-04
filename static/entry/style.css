@@ -1,111 +1,6 @@
 @charset "utf-8";
 
-/* ORDER OF COMPONENTS */
 /* Base Index Page */
-/*
-Ordering of index boxes when on mobile (to prevent the jankey looking blank spaces)
-This SHOULD also apply to any viewports less than this. If this breaks on mobile let Nick know
-*/
-#tileMatch 		{order: 1 }
-#tilePit 		{order: 2}
-#tileGlance 	{order: 3}
-#tileTeams 		{order: 4}
-#tileData 		{order: 5}
-#tileVisualize 	{order: 6}
-#tileSchedule   {order: 7}
-#tileDownload 	{order: 8}
-#tileEvent 		{order: 9; max-width: 255px;}
-#tileUpload 	{order: 10}
-#tileAdmin 		{order: 11}
-#tileSettings 	{order: 12}
-#tileLogout 	{order: 13}
-#tileActive 	{order: 14}
-@media screen and (max-width: 1860px){
-	.tileContainer #tileMatch 		{order : 1}
-	.tileContainer #tilePit 		{order: 2}
-	.tileContainer #tileGlance 		{order: 3}
-	.tileContainer #tileTeams 		{order: 5}
-	.tileContainer #tileData 		{order: 4}
-	.tileContainer #tileVisualize 	{order: 6}
-	.tileContainer #tlleSchedule 	{order: 7}
-	.tileContainer #tileDownload 	{order: 8}
-	.tileContainer #tileEvent 		{order: 9}
-	.tileContainer #tileActive 		{order: 10; min-width: 100px; max-width: 565px;}
-	.tileContainer #tileUpload 		{order: 11}
-	.tileContainer #tileAdmin 		{order: 12}
-	.tileContainer #tileSettings 	{order: 13}
-	.tileContainer #tileLogout 		{order: 14}
-} @media screen and (max-width: 1600px){
-	.tileContainer #tileMatch 		{order : 1}
-	.tileContainer #tilePit 		{order: 2}
-	.tileContainer #tileGlance 		{order: 4}
-	.tileContainer #tileTeams 		{order: 3}
-	.tileContainer #tileData 		{order: 6}
-	.tileContainer #tileVisualize 	{order: 5}
-	.tileContainer #tileDownload 	{order: 7}
-	.tileContainer #tileEvent 		{order: 8;}
-	.tileContainer #tileUpload 		{order: 10}
-	.tileContainer #tileAdmin 		{order: 11}
-	.tileContainer #tileSettings 	{order: 12}
-	.tileContainer #tileLogout 		{order: 13}
-	.tileContainer #tileActive 		{order: 9; min-width: 100px; max-width: 565px;}
-} @media screen and (max-width: 1280px) {
-	.tileContainer #tileMatch 		{order: 1}
-	.tileContainer #tilePit 		{order: 3}
-	.tileContainer #tileGlance 		{order: 2}
-	.tileContainer #tileTeams 		{order: 4}
-	.tileContainer #tileData 		{order: 6}
-	.tileContainer #tileVisualize 	{order: 5}
-	.tileContainer #tileDownload 	{order: 7}
-	.tileContainer #tileEvent 		{order: 8}
-	.tileContainer #tileActive 		{order: 9; max-width: 255px;}
-	.tileContainer #tileUpload 		{order: 10}
-	.tileContainer #tileAdmin 		{order: 11}
-	.tileContainer #tileSettings 	{order: 12}
-	.tileContainer #tileLogout 		{order: 13}
-} @media screen and (max-width: 820px) {
-	.tileContainer #tileMatch 		{order: 2}
-	.tileContainer #tilePit 		{order: 1}
-	.tileContainer #tileGlance 		{order: 3}
-	.tileContainer #tileTeams 		{order: 4}
-	.tileContainer #tileData 		{order: 6}
-	.tileContainer #tileVisualize 	{order: 5}
-	.tileContainer #tileDownload 	{order: 7}
-	.tileContainer #tileUpload 		{order: 10}
-	.tileContainer #tileAdmin 		{order: 11}
-	.tileContainer #tileSettings 	{order: 12}
-	.tileContainer #tileLogout 		{order: 13}
-} @media screen and (max-width: 1280px) {
-	#tileMatch 		{order: 1}
-	#tilePit 		{order: 2}
-	#tileGlance 	{order: 3}
-	#tileTeams 		{order: 4}
-	#tileData 		{order: 6}
-	#tileVisualize 	{order: 5}
-	#tileDownload 	{order: 7}
-	#tileEvent 		{order: 8}
-	#tileUpload 	{order: 10}
-	#tileAdmin 		{order: 11}
-	#tileSettings 	{order: 12}
-	#tileLogout 	{order: 13}
-	#tileActive 	{order: 9; max-width: 255px;}
-} @media screen and (max-width: 820px) and (max-height: 800px) {
-	#tileMatch 		{order: 1}
-	#tilePit 		{order: 2}
-	#tileGlance 	{order: 3}
-	#tileTeams 		{order: 4}
-	#tileData 		{order: 6}
-	#tileVisualize 	{order: 5}
-	#tileDownload 	{order: 7}
-	#tileEvent 		{order: 8}
-	#tileUpload 	{order: 10}
-	#tileAdmin 		{order: 11}
-	#tileSettings 	{order: 12}
-	#tileLogout 	{order: 13}
-	#tileActive 	{order: 9; max-width: 255px;}
-}
-
-/* REST OF CSS */
 
 body {
 	color: white;
@@ -119,11 +14,15 @@ img {
 a {
 	text-decoration:none;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+a:not([href]) {
+    /* Styles for anchors without href */
+    cursor: pointer;
 }
-
+ul {
+    list-style-type: none;
+    padding: 0;
+    display: contents;
+}
 .topbar {
 	display: flex;
 	height: 40px;
@@ -138,6 +37,7 @@ ul {
 .bodyContainer{
 	margin-top: 40px;
 	padding: 20px 15px 20px 15px;
+	overflow: hidden;
 }
 #loginContainer {
 	padding: auto;
@@ -174,7 +74,6 @@ ul {
 	background-color: rgb(0,0,0); /* Fallback color */
 	background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
 }
-
 .modal-content {
 	background-color: #333333;
 	margin: 15% auto;
@@ -183,7 +82,20 @@ ul {
 	box-shadow: 2px 5px 25px 2px #111111;
 	width: 30%; 
 }
-
+.modal-image {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #333333;
+	border-bottom: 2px solid #0F4D8D;
+	box-shadow: 2px 5px 25px 2px #111111;
+	width: 50%; 
+}
+.modal-image img {
+	object-fit: contain;
+	width: 100%;
+}
 .modalButton {
 	cursor: pointer;
 	background-color: #444444;
@@ -199,9 +111,30 @@ ul {
 .modalButton:hover {
 	background-color: #555555;
 }
+#modal-close {
+	position: absolute;
+	top: 15px;
+	left: 95%;
+	color: #f1f1f1;
+	font-size: 40px;
+	font-weight: bold;
+	transition: 0.3s;
+}
+#modal-close:hover,
+#modal-close:focus {
+	color: #bbb;
+	text-decoration: none;
+	cursor: pointer;
+}
 
-
-
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
 #snackbar {
 	visibility: hidden;
 	min-width: 250px;
@@ -223,6 +156,51 @@ ul {
 	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
 	animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
+#alertbar {
+	visibility: hidden;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #303030;
+	text-align: center;
+	border-bottom: 2px solid #0F4D8D;
+    box-shadow: -5px 0px 10px 5px #222222;
+	padding: 10px;
+	position: fixed;
+	z-index: 1;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 0;
+}
+#alertbar.show {
+	visibility: visible;
+	/* Add animation: Take 0.5 seconds to fade in and out the alertbar. */
+	-webkit-animation: alertfadein 0.5s;
+	animation: alertfadein 0.5s; 
+}
+#alerttext {
+    width: 50vh;
+}
+#alertbar.hide {
+    visibility: visible;
+    /*adds the fadeout animation */
+    -webkit-animation: alertfadeout 0.5s;
+    animation: alertfadeout 0.5s;
+}
+#alertbutton {
+	cursor: pointer;
+	background-color: #0F4D8D;
+	color: white;
+	margin: auto 10px;
+	border: none;
+	text-align: center;
+	font-size: 18px;
+	padding: 10px;
+	transition: all .1s ease-in-out;
+}
+#alertbutton:hover {
+	background-color: #0B3866;
+}
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
 	from {bottom: 0; opacity: 0;}
@@ -239,6 +217,23 @@ ul {
 @keyframes fadeout {
 	from {bottom: 30px; opacity: 1;}
 	to {bottom: 0; opacity: 0;}
+}
+/* Animations to fade the alertbar in and out */
+@-webkit-keyframes alertfadein {
+	from {bottom: -30px; opacity: 0;}
+	to {bottom: 0; opacity: 1;}
+}
+@keyframes alertfadein {
+	from {bottom: -30px; opacity: 0;}
+	to {bottom: 0; opacity: 1;}
+}
+@-webkit-keyframes alertfadeout {
+	from {bottom: 0; opacity: 1;}
+	to {bottom: -30px; opacity: 0;}
+}
+@keyframes alertfadeout {
+	from {bottom: 0; opacity: 1;}
+	to {bottom: -30px; opacity: 0;}
 }
 #tileBackground {
 	/*background-image: url("img/Glance Background - 2000w.png");*/
@@ -289,27 +284,11 @@ ul {
 	height: 100px;
 	width: 100px;
 	padding: 100px;
-	margin: 0px 0px 10px 10px;
+	margin: 5px;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
 .bigBox:hover { 
-	transform: scale(1.075); 
-	box-shadow: 2px 5px 25px 2px #232323;
-}
-.headerBox {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	align-content: center;
-	height: 100px;
-	width: 250px;
-	padding: 100px 25px 100px 25px;
-	margin: 0px 0px 10px 10px;
-	background-color: #0F4D8D;
-	transition: all .2s ease-in-out; 
-}
-.headerBox:hover { 
 	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
@@ -318,7 +297,7 @@ ul {
 	width: 300px;
 	padding: 0;
 	margin: 0px 0px 10px 10px;
-	background-color: grey;
+	background-color: #262626;
 	transition: all .2s ease-in-out; 
 }
 .pictureBox img {
@@ -399,6 +378,16 @@ ul {
 .infoLink:hover { 
 	background-color: #09315A;
 }
+.infoLinkHalf {
+	display: flex; 
+	align-items: center; 
+	height: auto; 
+	border-bottom: 2px solid white;
+	transition: all .2s ease-in-out;
+}
+.infoLinkHalf:hover { 
+	background-color: #09315A;
+}
 .infoRow {
 	display: flex;
 	margin-top: 5px;
@@ -419,6 +408,9 @@ ul {
 	flex-grow: 1; 
 	max-width: 760px; 
 }
+#ScoutNowTile {
+    flex-grow: 0;
+}
 .infoIcon { 
 	height: 7vh; 
 	padding: 10px; }
@@ -436,6 +428,10 @@ ul {
 	font-weight: 900;
 	border: none;
 	color: white;
+	transition: all .2s ease-in-out; 
+}
+.updateButton:hover {
+	background-color: #0B3866;
 }
 .dataButton {
 	background: none;
@@ -449,16 +445,18 @@ ul {
 }
 .loginButton {
 	padding: 20px;
+    cursor: pointer;
 }
 .loginButton:hover {
 	box-shadow: 2px 5px 25px 2px #232323;
+    background-color: #0B3866;
 }
 .wideBox {
 	display: flex;
 	padding: 100px;
 	height: 100px;
 	width: 410px;
-	margin: 0px 0px 10px 10px;
+	margin: 5px;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
@@ -471,7 +469,7 @@ ul {
 	align-items: center;
 	padding: 22.5px;
 	height: 100px;
-	margin: 0px 0px 10px 10px;
+	margin: 5px;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
@@ -486,7 +484,7 @@ ul {
 	padding: 22.5px;
 	height: 100px;
 	max-width: 255px;
-	margin: 0px 0px 10px 10px;
+	margin: 5px;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
@@ -502,7 +500,7 @@ ul {
 	text-decoration: none;
 	font-size: 75px;
 	font-weight: 900;
-	margin: 10px 0 0 0;
+	margin: 0
 }
 .pageTitle {
 	color: white;
@@ -519,7 +517,13 @@ ul {
 	margin-top: 1.25em;
 	font-size: 36px;
 }
-.teamChip {
+#officialTeamName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: -webkit-fill-available;
+}
+.teamCard {
 	margin: 0px 0px 10px 10px;
 	padding: 20px;
 	width: 260px;
@@ -530,11 +534,11 @@ ul {
 	align-items: center;
 	transition: all .2s ease-in-out;
 }
-.teamChip:hover {
+.teamCard:hover {
 	transform: scale(1.1); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
-.teamChipNoPic {
+.teamCardNoPic {
 	margin: 0px 0px 10px 10px;
 	padding: 20px;
 	height: auto;
@@ -546,14 +550,18 @@ ul {
 	align-items: center;
 	transition: all .2s ease-in-out;
 }
-.teamChipNoPic:hover {
+.teamCardNoPic:hover {
 	transform: scale(1.1); 
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .robotPhoto {
-	width:inherit; 
-	height: inherit;
+	min-height: 260px; 
+	min-width: 260px;
 	margin-bottom: 5px;
+}
+.robotPhoto>img {
+	width: 260px;
+	height: 260px; 
 }
 .stickyChip {
 	display: flex;
@@ -576,22 +584,24 @@ ul {
 	padding: 5px;
 }
 .pillContainer > div, li {
-	margin: 5px;
+	margin: 16px 5px;
+	justify-content: center;
+	align-items: center;
 }
 .pillSelect {
 	max-width: 50%;
 	margin: auto;
 }
 .teamnumberPill {
+    display: flex;
 	text-align: center;
 	width: 72px;
-	height: 28px;
+	height: 30px;
 	border-radius: 10px;
 	border: 1px solid white;
 }
 .teamnumberPill p {
-	padding-top: 1px;
-	margin: 0px;
+	margin: auto;
 	font-size: 23px;
 	font-weight: 700;
 	color: white;
@@ -651,7 +661,51 @@ th {
 .positionIndicator {
 	padding-right: 20px;
 }
-
+.scheduleTile {
+    height: auto;
+    width: auto;
+    padding: 10px;
+    background-color: #262626;
+    margin: 10px;
+    display: inline-flex;
+	transition: all .2s ease-in-out; 
+}
+.scheduleTile:hover { 
+	transform: scale(1.075); 
+	box-shadow: 2px 5px 25px 2px #232323;
+}
+.scheduleTile h3 {
+    margin: 5px 0 0 0;
+}
+.scheduleContainer {
+    display: flex;
+}
+.scheduleTeamNumber {
+    width: 40px;
+}
+.redScore {
+    width: 30px;
+}
+.blueScore {
+    width: 30px;
+}
+.documentContainer {
+    display: flex
+}
+.documentContent {
+    max-width: 60%;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #444444;
+    border: 1px solid #666666;
+    border-radius: 6px;
+}
+.documentContent a {
+    color: #0F4D8D
+}
+.documentContent a:visited {
+    color: #5794FF; 
+}
 @keyframes slideInFromRight {
 	0% {
 		transform: translateX(25%);
@@ -662,16 +716,9 @@ th {
 		opacity: 100%;
 	}
 }
-
-
-
-
 @media screen and (max-width: 1280px) {
 	.glanceImage {
 		background-position: center -10vh;
-	}
-	.sidebar {
-	  padding-top: 15px;
 	}
 	.sidebar a {
 		font-size: 18px
@@ -707,9 +754,7 @@ th {
 	}
 
 }
-
 /* for mobile phones, portrait and landscape */
-
 @media screen and (max-width: 820px) {
 	.bodyBackground {
 		background-size: 150%;
@@ -718,17 +763,20 @@ th {
 	.tileContainer {
 		padding: 0 10px 0 10px;
 	}
+    .documentContainer {
+        width: 100%;
+    }
+    .documentContent {
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+    }
 	.pillSelect {
 		max-width: 100%;
 	}
 	.bigBox {
 		margin: 5px 0 0 5px;
 		padding: 20px;
-	}
-	.headerBox {
-		width: 100px;
-		padding: 20px 20px 20px 20px;
-		margin: 5px 0px 0px 5px;
 	}
 	.wideBox {
 		margin: 5px 0 0 5px;
@@ -745,7 +793,7 @@ th {
 		margin: 5px 0 0 5px;
 		height: 50px;
 		width: auto;
-		padding: 8.5px
+		padding: 8.75px
 	}
 	.homeText {
 		font-size: 28px;
@@ -771,10 +819,10 @@ th {
 		display: none;
 	}
 	
-
+    #ScoutNowTile {
+        flex-grow: 1;
+    }
 }
-
-
 .greeting {
 	display: inline;
 	margin-top: auto;
@@ -838,6 +886,19 @@ th {
 .hamburgerButton:hover {
 	background-color: #444;
 }
+.alertclose {
+	height: 100%;
+	width: 50px;
+    margin: auto 0;
+	font-size: 20px;
+	cursor: pointer;
+	background-color: transparent;
+	color: white;
+    border: none;
+}
+.alertclose:hover {
+	background-color: #444;
+}
 .changeTeam {
 	background: none;
 	border: none;
@@ -893,8 +954,6 @@ th {
 	width:auto;
 	flex-direction: column
 }
-
-
 .graphOption {
 	padding: 10px;
 }
@@ -902,11 +961,11 @@ th {
 	background-color: #1C984F;
 	padding: 10px;
 	border: none;
+	transition: all 0.2s ease-in-out;
 }
 .graphOption button:hover {
 	background-color: #60E1A7;
 	box-shadow: 2px 5px 25px 2px #232323;
-	transition: all 0.2s ease-in-out;
 }
 .filterBox {
 	visibility: inherit;
@@ -972,14 +1031,9 @@ th {
 #collapseBottomBar {
 	visibility: hidden;
 }
-
 @media screen and (max-width: 1280px) {
 	.glanceImage {
 		background-position: center -10vh;
-	}
-	.sidebar {
-	  background-color: #111111;
-	  padding-top: 15px;
 	}
 	.sidebar a {
 		font-size: 18px
@@ -994,13 +1048,7 @@ th {
 	.pillSelect {
 		max-width: 75%;
 	}
-	.greeting {
-		margin-bottom: 10%;
-	}
-
-
 }
-
 /* for mobile phones, portrait and landscape */
 @media screen and (max-width: 820px) and (max-height: 800px) {
 	.bodyBackground {
@@ -1014,17 +1062,15 @@ th {
 		width: 80%;
 		margin: 50% auto;
 	}
+	.modal-image {
+		width: 95%;
+	}
 	.pillSelect {
 		max-width: 100%;
 	}
 	.bigBox {
 		margin: 5px 0 0 5px;
 		padding: 20px;
-	}
-	.headerBox {
-	width: 100px;
-	padding: 20px 20px 20px 20px;
-	margin: 5px 0px 0px 5px;
 	}
 	.wideBox {
 		margin: 5px 0 0 5px;
@@ -1041,7 +1087,7 @@ th {
 		margin: 5px 0 0 5px;
 		height: 50px;
 		width: auto;
-		padding: 10px
+		padding: 8.75;
 	}
 	.homeText {
 		font-size: 28px;
@@ -1062,7 +1108,6 @@ th {
 		height: 100%;
 		width: inherit;
 	}
-
 	.infoBox:hover,
 	.infoReg:hover,
 	.graphBoxWide:hover,
@@ -1074,5 +1119,4 @@ th {
 		transform: scale(1);
 		box-shadow: none;
 	}
-
 }

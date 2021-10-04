@@ -20,9 +20,19 @@
 <script src="{% static 'entry/visualization.js' %}"></script>
 <meta name="theme-color" content="0F4D8D">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N73L5WQ');</script>
+<!-- End Google Tag Manager -->
 </head>
 
-<body>
+<body><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N73L5WQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 	<div class="topbar">
 		<div class="hamburgerButton" onClick="openNav()">
 			<button class="hamburgerButton" onClick="openNav()">☰</button>
@@ -84,8 +94,8 @@
 					</div>
 					<div class="pillContainer" id="TeamCheckBox" style="display: flex; flex-wrap: wrap; ">
 						{% for team in team_list %}
-                        <div class="teamnumberPill">
-							<label style="user-select: none" for="{{ team.id }}">{{ team.number }}</label>
+                        <div class="teamnumberPill" style="background-color: {{team.colour}};">
+							<label style="user-select: none; font-size: 18px; font-weight: 700;" for="{{ team.id }}">{{ team.number }}</label>
                             <input name="teamCheckBox" type="checkbox" id="{{ team.id }}" value="{{ team.name }}">
                         </div>
                     	{% endfor %}
@@ -113,12 +123,27 @@
 		<div id="snackbar">
 			<p id="snacktext">Default Text</p>
 		</div>
+		<div id="alertbar" style="border-bottom: 2px solid #B4150B;">
+			<p id="alerttext">Default Text</p>
+			<button class="alertclose" onClick="closeAlertBar()">╳</button>
+		</div>
 	</div>	
-<style>
-/* All of this will be moved to style.css once I get it to work the way I want */	
-	
-/* The snackbar - position it at the bottom and in the middle of the screen */
+<script>
+var x = document.getElementById("alertbar");
+var y = document.getElementById("alerttext");
+var a = window.matchMedia("(max-width: 1024px)")
+warning(a) // Call listener function at run time
+a.addListener(warning) // Attach listener function on state changes    
+function warning(a) {
+    if (a.matches) { // If media query matches
+			setTimeout(function () {
+					x.className = "show";
+					y.innerHTML = "WARNING: Page not designed for mobile.";
+            }, 500), false
 
-</style>
+    } else { 
+    }
+}
+</script>
 </body>
 </html>

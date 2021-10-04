@@ -15,9 +15,18 @@
 <script src="{% static 'entry/validate.js' %}"></script>
 <script src="{% static 'entry/script.js' %}"></script>
 <meta name="theme-color" content="0F4D8D">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N73L5WQ');</script>
+<!-- End Google Tag Manager -->
 </head>
-<body>
+<body><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N73L5WQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 	<div class="topbar">
 		<div class="hamburgerButton" onClick="openNav()">
 			<button class="hamburgerButton" onClick="openNav()">☰</button>
@@ -73,7 +82,7 @@
 		<div class="formItem">
 			<label for="drivetrainStyle">Style of Drivetrain</label>
 			<select name="drivetrainStyle" id="drivetrainStyle" required> 
-				<option value="">&#8230;</option>
+				<option value="" selected disabled hidden>&#8230;</option>
 				<option value="Kitbot">Kitbot</option>
 				<option value="Tank">Tank</option>
 				<option value="West Coast Drive">West Coast</option>
@@ -89,7 +98,7 @@
 		<div class="formItem">
 			<label for="drivetrainMotor">Types of Motors in Drivetrain</label>
 			<select name="drivetrainMotor" id="drivetrainMottor" required> 
-				<option value="">&#8230;</option>
+				<option value="" selected disabled hidden="">&#8230;</option>
 				<option value="Falcon 500">Falcon 500</option>
 				<option value="Neo 500">Neo 500</option>
 				<option value="CIM">CIM</option>
@@ -107,7 +116,7 @@
 			<label for="hasAuto">Has Autonomous Route?</label>			
 			<div class="radioGroup">
 				<label>
-					<input type="radio" name="hasAuto" id="hasAuto_false" value="False" onClick="registerChange()" required>
+					<input type="radio" name="hasAuto" id="hasAuto_false" value="False" onClick="registerChange(),hideAutoStuff()" required>
 					<span>N</span>
 				</label>
 				<label>
@@ -123,7 +132,7 @@
 		<div class="formItem">
 			<label for="autoScoring">Scoring Goals in Autonomous</label>
 			<select name="autoScoring" id="autoScoring" required>
-				<option value="">&#8230;</option>
+				<option value="" selected disabled hidden>&#8230;</option>
 				<option value="0">No Scoring Ability</option>
 				<option value="1">Low Goal</option>
 				<option value="2">High Goal</option>
@@ -134,7 +143,7 @@
 		<div class="formItem">
 			<label for="teleScoring">Scoring Goals in Teleoperated</label>
 			<select name="teleScoring" id="teleScoring" required>
-				<option value="">&#8230;</option>
+				<option value="" selected disabled hidden>&#8230;</option>
 				<option value="0">No Scoring Ability</option>
 				<option value="1">Low Goal</option>
 				<option value="2">High Goal</option>
@@ -209,7 +218,7 @@
 		<div class="formItem">
 			<label for="climbLocations">Climbing Locations</label>
 			<select name="climbLocations" id="climbLocations" required>
-				<option value="">&#8230;</option>
+				<option value="" selected disabled hidden>&#8230;</option>
 				<option value="0">No Climb</option>
 				<option value="1">Center Only</option>
 				<option value="2">Side Only</option>
@@ -248,13 +257,30 @@
 		</div>
 		<div class="formItem">
 			<label for="scouterName">Scouter's Name</label>
-			<input type="text" name="scouterName" id="scouterName" placeholder="Scouter Name" required>
+			<input type="text" name="scouterName" id="scouterName" placeholder="Scouter Name" value="{{ user.get_username }}" required>
 		</div>
 		<br>
 		<div class="formItem" id="submit" onclick="validate('mainForm')">
                 <input name="submit" id="submitButton" type="submit" style="pointer-events: none">
 		</div>
 	</form>
+    <div id="snackbar">
+		<p id="snacktext">Default Text</p>
 	</div>
+	</div>
+<script>
+    function hideAutoStuff() {
+        var x = document.getElementById("hasAuto_false").checked;
+        if (x != true){
+            document.getElementById("teamDefendedDiv").style.display="flex";
+            document.getElementById("defenseQualityDiv").style.display="flex";
+        } else {
+            document.getElementById("teamDefendedDiv").style.display="none";
+            document.getElementById("defenseRating").value="0";
+            document.getElementById("defenseQualityDiv").style.display="none";
+        }
+    }
+    
+</script>
 </body>
 </html>

@@ -16,9 +16,20 @@
 <link rel="manifest" type="manifest" href="{% static 'entry/site.webmanifest' %}">
 <meta name="theme-color" content="0F4D8D">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<script></script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N73L5WQ');</script>
+<!-- End Google Tag Manager -->
 </head>
 
-<body>
+<body><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N73L5WQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 	<div class="topbar">
 		<div class="swissLogo" id="swissLogo">
 			<a href="{% url 'entry:index' %}">
@@ -28,9 +39,9 @@
 	</div>
 	
 	<div class="bodyContainer">
-		<div id="loginContainer">
-			<div class="infoBox loginBox" style="">
-				<div class="infoHeader">
+		<div id="loginContainer" class="first_div">
+			<div class="infoBox loginBox" >
+				<div class="infoHeader" id="mainBox">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'UserIcon.png' %}" alt="Download Icon">
 					<h1>Log In</h1>
 				</div>
@@ -47,10 +58,18 @@
 
                     <button class="updateButton loginButton" type="submit">Log In</button>
 
-				
+
 				</form>
 			</div>
 		</div>
+        <a id="registerBox" class="div formItem" href="{% url 'entry:register' %}">
+
+            <button name="submit" id="submitButton" type="submit" style="pointer-events: none;">Register</button>
+
+        </a>
+
 	</div>
+
 </body>
+
 </html>
