@@ -1,0 +1,212 @@
+{% load static %}
+{% load common_tags %}
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SWISS Welcome!</title>
+<link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/formstyle.css' %}">
+<link rel="stylesheet" href="{% static 'entry/flickity.min.css' %}" media="screen">
+<script src="{% static 'entry/script.js' %}"></script>
+<script src="{% static 'entry/lottie.js' %}"></script>
+<link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
+<link rel="manifest" type="manifest" href="{% static 'entry/site.webmanifest' %}">
+<meta name="theme-color" content="0F4D8D">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N73L5WQ');</script>
+<!-- End Google Tag Manager -->
+</head>
+
+<body><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N73L5WQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+	<div class="topbar">
+		<div class="swissLogo" id="swissLogo">
+			<a href="{% url 'entry:index' %}">
+			<img src="{{ MEDIA_URL }}{% static 'SwissIcon2x.png' %}" alt="SWISS Logo">
+			</a>
+		</div>
+	</div>
+    <div class="bodyContainer" style="min-height: 80vh">
+        <div class="main-carousel">
+            <div class="carousel-cell">
+                <div id="animLogo"></div>
+                <h1 class="welcomeHeader">Welcome to Swiss!</h1>
+                <p class="welcomeText">A platform for scouting and strategizing at FIRST Robotics Competition Events</p>
+            </div>
+            <div class="carousel-cell">
+                <div id="animScout"></div>
+                <h1 class="welcomeHeader">Scout!</h1>
+                <p class="welcomeText">Scout robots on the field with our intuitive forms</p>
+            </div>
+            <div class="carousel-cell">
+                <div id="animStrat"></div>
+                <h1 class="welcomeHeader">Strategize!</h1>
+                <p class="welcomeText">Get a glance at any team's performance or analyze further with our visualization tools</p>
+            </div>
+            <div class="carousel-cell">
+                <div id="animFinished"></div>
+                <h1 class="welcomeHeader">Enjoy!</h1>
+                <p class="welcomeText">Built by FRC Teams MaxTech 4343 and NextGen 914</p>
+                <div class="welcomeMoreButtons">
+                    <button onClick="setCookie('tutorialCompleted', 'True', 30); document.location='{% url 'entry:index' %}';">Get Started</button>
+                    <button onClick="setCookie('tutorialCompleted', 'True', 30); document.location='{% url 'entry:tutorial' %}';">More Docs</button>
+                    <script>
+                        function setCookie(cname, cvalue, exdays) {
+                          var d = new Date();
+                          d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                          var expires = "expires="+ d.toUTCString();
+                          document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+        <!--
+        <div id="svgContainer">
+        </div>
+        -->
+        <style>
+            #animScout {
+                width: 100%;
+                max-height: 60%;
+                margin: auto;
+            }
+            #animLogo {
+                width: 100%;
+                max-height: 60%;
+                margin: auto;
+            }
+            #animStrat {
+                width: 100%;
+                max-height: 60%;
+                margin: auto;
+            }
+            #animFinished {
+                width: 100%;
+                max-height: 60%;
+                margin: auto;
+            }
+            .welcomeMoreButtons {
+                margin: 0 auto;
+            }
+            .welcomeMoreButtons button {
+                cursor: pointer;
+                background-color: #0F4D8D;
+                color: white;
+                margin: 0 auto;
+                border: none;
+                text-align: center;
+                font-size: 18px;
+                padding: 10px;
+                transition: all .1s ease-in-out;
+            }
+            .welcomeMoreButtons button:hover {
+            	background-color: #0B3866;
+            }
+            .welcomeHeader {
+                margin: 0 auto;
+                text-align: center;
+            }
+            .welcomeText {
+                margin: 5px auto;
+                text-align: center;
+            }
+            /* default full-width cells */
+            .carousel-cell {
+                width: 100%;
+                height: 80vh;
+                margin-right: 10px;
+                border-radius: 5px;
+                counter-increment: carousel-cell;
+                display: flex;
+                flex-direction: column;
+            }
+            /* position dots in gallery */
+            .flickity-page-dots {
+              bottom: -30px;
+            }
+            /* white circles */
+            .flickity-page-dots .dot {
+              width: 12px;
+              height: 12px;
+              opacity: 1;
+              background: transparent;
+              border: 2px solid white;
+            }
+            /* fill-in selected dot */
+            .flickity-page-dots .dot.is-selected {
+              background: white;
+            }
+            /* smaller, dark, rounded square */
+            .flickity-prev-next-button {
+              width: 30px;
+              height: 30px;
+              border-radius: 5px;
+              background: #222;
+            }
+            .flickity-prev-next-button:hover {
+              background: #0F4D8D;
+            }
+            /* arrow color */
+            .flickity-prev-next-button .arrow {
+              fill: white;
+            }
+            .flickity-prev-next-button.no-svg {
+              color: white;
+            }
+            /* position outside */
+            .flickity-prev-next-button.previous {
+              left: -10px;
+            }
+            .flickity-prev-next-button.next {
+              right: -10px;
+            }
+        </style>
+        <script src="{% static 'entry/flickity.pkgd.min.js' %}"></script>
+        <script>
+        // Flickity
+        var elem = document.querySelector('.main-carousel');
+        var flkty = new Flickity( elem, {
+          // options
+            contain: true,
+            pageDots: true,
+        });
+
+        // Lottie
+        var animScout = document.getElementById('animScout');
+        var animItem = lottie.loadAnimation({
+          wrapper: animScout,
+          animType: 'svg',
+          loop: true,
+          path: '{% static 'entry/max_9_v2.json' %}'
+        });
+        var animLogo = document.getElementById('animLogo');
+        var animItem = lottie.loadAnimation({
+          wrapper: animLogo,
+          animType: 'svg',
+          loop: false,
+          path: '{% static 'entry/swiss_logo.json' %}'
+        });
+        var animStrat = document.getElementById('animStrat');
+        var animItem = lottie.loadAnimation({
+          wrapper: animStrat,
+          animType: 'svg',
+          loop: true,
+          path: '{% static 'entry/strategize_v1.json' %}'
+        });
+        </script>
+    </div>
+</body>
+</html>

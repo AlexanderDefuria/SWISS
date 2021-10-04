@@ -1,3 +1,4 @@
+import uuid as uuid
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from datetime import date
@@ -9,9 +10,10 @@ class Event(models.Model):
     FIRST_key = models.TextField(default="NA")
     FIRST_eventType = models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
     start = models.DateField(default=date(2020, 1, 1),
-                             validators=[MaxValueValidator(date(2222, 12, 31)), MinValueValidator(date(2020, 1, 1))])
+                             validators=[MaxValueValidator(date(2220, 12, 31)), MinValueValidator(date(2020, 1, 1))])
     end = models.DateField(default=date(2020, 1, 1),
-                           validators=[MaxValueValidator(date(2222, 12, 31)), MinValueValidator(date(2020, 1, 1))])
+                           validators=[MaxValueValidator(date(2220, 12, 31)), MinValueValidator(date(2020, 1, 1))])
+
     imported = models.BooleanField(default=False)
 
     def __str__(self):
@@ -31,6 +33,10 @@ class Team(models.Model):
     name = models.CharField(default="team", max_length=100)
     images = models.ManyToManyField(Images)
     colour = models.CharField(default="#000000", max_length=7)
+    pick_status = models.IntegerField(default=0, validators=[MaxValueValidator(2), MinValueValidator(0)])
+    reg_id = models.UUIDField(primary_key=False, default=uuid.uuid4, editable=False)
+    glance = models.FileField(upload_to='json/', null=True)
+
 
     def first_image(self):
         # code to determine which image to show. The First in this case.
@@ -49,6 +55,7 @@ class Schedule(models.Model):
     match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(0)])
     event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
     match_type = models.TextField(default="NA", max_length=40)
+    placeholder = models.BooleanField(default=True)
 
     red1 = models.IntegerField(Team, default=0)
     red2 = models.IntegerField(Team, default=0)
@@ -229,6 +236,7 @@ class TeamSettings(models.Model):
     allowSchedule = models.BooleanField(default=True)
     newUserCreation = models.CharField(max_length=2, choices=NEW_USER_CREATION_OPTIONS, default="MM")
     newUserPosition = models.CharField(max_length=2, choices=NEW_USER_POSITIONS, default="OV")
+    currentEvent = models.ForeignKey(Event, on_delete=models.SET_DEFAULT, default=0)
 
     def __str__(self):
         return self.team

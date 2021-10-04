@@ -1,6 +1,7 @@
 {% load static %}
 {% load common_tags %}
 
+
 <!doctype html>
 <html>
 <head>
@@ -19,7 +20,13 @@
 <script src="{% static 'entry/highcharts-more.js' %}"></script>
 <script src="{% static 'entry/solid-gauge.js' %}"></script>
 <meta name="theme-color" content="0F4D8D">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N73L5WQ');</script>
+<!-- End Google Tag Manager -->
 </head>
 
 <body>
@@ -60,61 +67,54 @@
 			document.getElementById("timeOfDay").innerHTML = greeting;
 		</script>
 	</div>
-	
 	<div id="teamDrawer" class="teamDrawer" onClick="closeTeamDrawer()" style="justify-content: center">
 		<br>
         <br>
         <a href="javascript:void(0)" class="closebtn" onclick="closeTeamDrawer()">×</a>
         <div class="pillSelect" >
 			<div class="pillContainer" >
-                {% get_all_present_teams as team_list %}
-				{% for team in team_list %}
-					<ul>
+                <ul>
+                    {% get_all_present_teams user as team_list %}
+                    {% for team in team_list %}
 						<li>
 							<div onclick="window.location='{% url 'entry:glance' team.id %}'"  class="teamnumberPill" style="background-color: {{team.colour}}; cursor: pointer;">
 								<p>{{ team.number }}</p>
 							</div>
 						</li>
-					</ul>
-				{% endfor %}
+                    {% endfor %}
+                </ul>
 			</div>
 		</div>
 	</div>
-
 	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'GlanceBackground2000w.png' %})">
 		<div class="heroContent" id="heroSpace">
 			<div class="stickyChip">
 				<button class="changeTeam" id="changeTeam" onClick="openTeamDrawer()">
-					<div class="teamnumberPill" style="background-color: {{ team.colour }}">
-							<p>{{ team.number }}</p>
+					<div class="teamnumberPill" style="background-color: {{ team.colour }}; min-width: 72px;">
+						<p>{{ team.number }}</p>
 					</div>
 					<div class="teamnamePill">
-							<p>{{ team.name }}</p>
+						<p>{{ team.name }}</p>
 					</div>
 				</button>
 			</div>
 		</div>
-
-		<div class="infotileContainer" style="justify-content: flex-start; flex-grow: 0">
+		<div id="myModal" class="modal">
+			<div class="modal-image">
+				<span id="modal-close">&times;</span>
+				<img src="{{ MEDIA_URL }}{{ team.first_image }}" id="robotImg-modal" alt="{{ team.number }} {{ team.name }}">
+			</div>
+		</div>
+		<div id="infoTiles" class="infotileContainer" style="justify-content: flex-start; flex-grow: 0">
 			<div class="infoBox infoReg" id="teamInfoTile">
 				<div class="infoHeader">
 					<div class="teamnumberPill" style="background-color: {{team.colour}}"><p>{{ team.number }}</p></div>
-					<h1>{{ team.name }}</h1>
+					<h1 id="officialTeamName">{{ team.name }}</h1>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Shooter</p></div>
-					<div class="infoLColumn"><p> {% get_info user team 'shooter_style' 'average' 'pits' %}</p></div>
+					<div class="infoLColumn"><p>{% get_info user team 'shooter_style' 'average' 'pits' %}</p></div>
 				</div>
-				<!-- !!!THIS WILL BE MOVED TO ITS OWN BOX!!!
-				<div class="infoRow">
-					<div class="infoLColumn"><p>Shooting Locations</p></div>
-					<div class="infoRColumn">
-                        {% get_info user team 'tele_positions' 'list' 'pits' as telePositionsList %}
-						<p>{{ telePositionsList.0 }}</p>
-						<p>{{ telePositionsList.1 }}</p>
-					</div>
-				</div>
-				-->
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Climb</p></div>
 					<div class="infoLColumn"><p>{% get_info user team 'climb_locations' 'possible' 'pits' %}</p></div>
@@ -128,19 +128,17 @@
 					<div class="infoLColumn"><p>{{ team.match_set.count }}</p></div>
 				</div>
 			</div>
+            {% get_cookie request 'images' as images %}
+            {% if 'False' != images %}
 			<div class="pictureBox" id="pictureBoxTile">
-					<img src="{{ MEDIA_URL }}{{ team.first_image }}" alt="robot photo">
-			</div>			
+				<img src="{{ MEDIA_URL }}{{ team.first_image }}" id="robotImg" alt="{{ team.number }} {{ team.name }}">
+			</div>
+            {% endif %}
 			<div class="graphBoxWide" id="totalGraphTile">
-				<div id="avg_balls" style="height: 300px; width:auto">
-				<p></p>
-
-				</div>		
+				<div id="avg_balls" style="height: 300px; width:auto"></div>		
 			</div>
 			<div class="graphBoxWide" id="lineGraphTile">
-				<div id="line" style="height: 300px; width: auto">
-
-				</div>
+				<div id="line" style="height: 300px; width: auto"></div>
 			</div>
 			<div class="infoBox infoReg" id="foulsTile">
 				<div class="infoHeader">
@@ -171,12 +169,12 @@
 					<p id="humanFoulValue">{% get_info user team 'hp_fouls' 'average' 'match' %}</p>
 					</div>
 				</div>
-				<div class="infoRow">
+				<div class="infoRow" id="yelCardBG">
 					<div class="infoLColumn">
 					<p>Yellow Cards</p>
 					</div>
 					<div class="infoLColumn">
-					<p>{% get_info user team 'yellow_card' 'average' 'match' %}</p>
+					<p id="yellowCardValue">{% get_info user team 'yellow_card' 'average' 'match' %}</p>
 					</div>
 				</div>
 			</div>
@@ -185,19 +183,41 @@
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'DefenseIcon.png' %}" alt="Defense Icon">
 					<h1>Defense</h1>
 				</div>
-				<div class="infoRow">
+				<div class="infoRow" id="playedDefenseBG">
 					<div class="infoLColumn"><p>Played Defense</p></div>
-					<div class="infoLColumn"><p>{% get_info user team 'played_defense' 'average' 'match' %}%</p></div>
+					<div class="infoLColumn"><p id="playedDefenseValue">{% get_info user team 'played_defense' 'average' 'match' %}</p></div>
 				</div>
-				<div class="infoRow">
+				<div class="infoRow" id="qualityDefenseBG">
 					<div class="infoLColumn"><p>Avg. Quality</p></div>
-					<div class="infoLColumn"><p>{% get_info user team 'defense_rating' 'match' 'dependant' 'dependant-played_defense' %} / 5</p></div>
+					<div class="infoLColumn"><p id="qualityDefenseValue">{% get_info user team 'defense_rating' 'match' 'dependant' 'dependant-played_defense' %}</p><p> / 5</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Push Ability</p></div>
-					<div class="infoLColumn"><p>{% get_info user team 'able_to_push' 'average' 'match' %}%</p></div>
+					<div class="infoLColumn"><p>{% get_info user team 'able_to_push' 'average' 'match' %}</p></div>
 				</div>
 			</div>
+            <div class="infoBox infoReg" id="shooterTile">
+                <div class="infoHeader">
+                    <img class="infoIcon" src="{{ MEDIA_URL }}{% static 'GenericPowerPort.png' %}" alt="Shooter">
+                    <h1>Ball Scoring Info</h1>
+                </div>
+                <div class="infoRow">
+                    <div class="infoLColumn"><p>Shooter Type</p></div>
+                    <div class="infoLColumn"><p>{% get_info user team 'shooter_style' 'average' 'pits' %}</p></div>
+                </div>
+                <div class="infoRow">
+                    <div class="infoLColumn"><p>Shooting Locations</p></div>
+                    <div class="infoLColumn">
+                        {% get_info user team 'tele_positions' 'list' 'pits' as telePositionsList %}
+						<p>{{ telePositionsList.0 }}</p>
+						<p>{{ telePositionsList.1 }}</p>
+                    </div>
+                </div>
+                <div class="infoRow">
+                    <div class="infoLColumn"><p>Intake Style</p></div>
+                    <div class="infoLColumn"><p>{% get_info user team 'ball_intake' 'average' 'pits' %}</p></div>
+                </div>
+            </div>
 			<div class="infoBox infoReg" id="powerCellTile">
 				<div class="infoHeader">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'GenericPowerPort.png' %}" alt="Power Port">
@@ -207,21 +227,30 @@
 					<div class="infoLColumn"><p>Low Goal</p></div>
                     {% get_info user team 'lower' 'total' 'match' as totalTeleLower%}
                     {% get_info user team 'lower_auto' 'total' 'match' as totalAutoLower%}
-					<div class="infoLColumn"><p>{{totalTeleLower|add:totalAutoLower }} Power Cells</p></div>
+					<div class="infoLColumn"><p>{{totalTeleLower|add:totalAutoLower }} Balls</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Outer Goal</p></div>
                     {% get_info user team 'outer' 'total' 'match' as totalTeleOuter%}
                     {% get_info user team 'outer_auto' 'total' 'match' as totalAutoOuter%}
-					<div class="infoLColumn"><p>{{totalTeleOuter|add:totalAutoOuter }} Power Cells</p></div>
+					<div class="infoLColumn"><p>{{totalTeleOuter|add:totalAutoOuter }} Balls</p></div>
 				</div>				
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Inner Goal</p></div>
                     {% get_info user team 'inner' 'total' 'match' as totalTeleInner%}
                     {% get_info user team 'inner_auto' 'total' 'match' as totalAutoInner%}
-					<div class="infoLColumn"><p>{{totalTeleInner|add:totalAutoInner }} Power Cells</p></div>
+					<div class="infoLColumn"><p>{{totalTeleInner|add:totalAutoInner }} Balls</p></div>
 				</div>
+                <div class="infoRow">
+                    <div class="infoLColumn"><p>Missed</p></div>
+                    {% get_info user team 'missed_balls' 'total' 'match' as totalTeleMissed%}
+                    {% get_info user team 'missed_balls_auto' 'total' 'match' as totalAutoMissed%}
+					<div class="infoLColumn"><p>{{totalTeleMissed|add:totalAutoMissed }} Balls</p></div>
+                </div>
 			</div>			
+            <div class="graphBoxWide" id="accuracyTile">
+				
+            </div>
 			<div class="infoBox infoReg" id="endgameTile">
 				<div class="infoHeader">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'hangbar_icon.png' %}" alt="Hang Bar">
@@ -265,34 +294,42 @@
             <div class="infoBox infoReg" id="onFieldTile">
 				<div class="infoHeader">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'ScheduleIcon.png' %}" alt="Schedule Icon">
-					<h1>Appearance Info</h1>
+					<h1>Match Play</h1>
 				</div>
                 {% get_info user team 'on_field' 'total' 'match' as MATCHES %}
 				<div class="infoRow">
-					<div class="infoLColumn"><p>On Field Total</p></div>
+					<div class="infoLColumn"><p>Matches Played</p></div>
 					<div class="infoLColumn"><p>{{ MATCHES }}</p></div>
 				</div>
                 <div class="infoRow">
-					<div class="infoLColumn"><p>Total Matches</p></div>
+					<div class="infoLColumn"><p>Scheduled Matches</p></div>
 					<div class="infoLColumn"><p>{{ team.match_set.count }}</p></div>
 				</div>
 				<div class="infoRow" id="onFieldBG">
 					<div class="infoLColumn"><p>Percent On Field</p></div>
 					<div class="infoLColumn"><p id="onFieldValue">{% widthratio MATCHES team.match_set.count 100 %}</p></div>
-				</div>		
+				</div>
+				<div class="infoRow" id="disabledBG">
+					<div class="infoLColumn"><p>Disabled/Offline</p></div>
+					<div class="infoLColumn"><p id="disabledValue">Under Construction</p></div>
+				</div>
 				<script>
-					var f = document.getElementById("onFieldValue").innerHTML;
+                    var f = document.getElementById("onFieldValue").innerHTML;
 					var o = document.getElementById("offenseFoulValue").innerHTML;
 					var d = document.getElementById("defenseFoulValue").innerHTML;
 					var h = document.getElementById("humanFoulValue").innerHTML;
+                    var c = document.getElementById("yellowCardValue").innerHTML;
+                    var pd = document.getElementById("playedDefenseValue").innerHTML;
+					var qd = document.getElementById("qualityDefenseValue").innerHTML;
+					var dis = document.getElementById("disabledValue").innerHTML;
 					
-					if (f < 100) {
-						document.getElementById("onFieldBG").style.backgroundColor = "#590909";
-					} else if (f < 90) {
+					if (f > 99) {
+						document.getElementById("onFieldBG").style.backgroundColor = "";
+					} else if (f > 85) {
+						document.getElementById("onFieldBG").style.backgroundColor = "#D7AE22";
+                    } else if (f > 0) {
 						document.getElementById("onFieldBG").style.backgroundColor = "#B4150B";
-					} else { (f < 85)
-						document.getElementById("onFieldBG").style.backgroundColor = "#7a0d0d";
-					}
+                    }
 
 					if (o > 100) { 
 						document.getElementById("offFoulBG").style.backgroundColor = "#590909"
@@ -315,17 +352,33 @@
 					} else if (h > 0) {
 						document.getElementById("humFoulBG").style.backgroundColor = "#D7AE22";
 					}
+                    
+                    if (c > 0) {
+                        document.getElementById("yelCardBG").style.backgroundColor = "#D7AE22";
+                    }
+                    
+                    if (pd > 75) {
+                        document.getElementById("playedDefenseBG").style.backgroundColor = "#1C984F";
+                    }
+					
+					if (qd >= 2) {
+						document.getElementById("qualityDefenseBG").style.backgroundColor = "#1C984F";
+					} else if (qd >= 3) {
+						document.getElementById("qualityDefenseBG").style.backgroundColor = "#8C1D74";
+					}
+					
+					if (dis > 10) {
+						document.getElementById("disabledBG").style.backgroundColor = "#D7AE22";
+					} else if (dis > 25) {
+						document.getElementById("disabledBG").style.backgroundColor = "#B4150B";
+					}
 				</script>
 			</div>
-		<!--
-			<div class="infoBox infoReg">
-			</div>
-		-->
-			<div class="infoBox infoReg" id="ScoutNowTile" style="flex-grow: 0; height: auto">
-<!-- This <a> tag is intended to redirect the user to the MatchScout or PitScout Page of the currently displayed team. 
-     The url used to redirect is the landing page with the team id concatenated as a new part of the url to select the
-     current team. Do not use 'entry:xyz_scout' as it requires a slug built in instead of concatenated. - Alex
- -->
+			<div class="infoBox infoReg" id="ScoutNowTile" style="height: auto">
+			<!-- This <a> tag is intended to redirect the user to the MatchScout or PitScout Page of the currently displayed team. 
+				 The url used to redirect is the landing page with the team id concatenated as a new part of the url to select the
+				 current team. Do not use 'entry:xyz_scout' as it requires a slug built in instead of concatenated. - Alex
+			 -->
 				<a href="{% url 'entry:match_scout_landing' %}{{ team.id }}">
 					<div class="infoLink">
 						<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'ScoutIcon.png' %}" alt="Scout Icon">
@@ -338,8 +391,60 @@
 						<h1 style="color: #ffffff">Pit Scout</h1>
 					</div>
 				</a>
+				{% if user.is_staff %}
+				<div style="display: flex; flex-direction: row">
+					<a href="https://www.thebluealliance.com/team/{{ team.number }}" target="_blank">
+						<div class="infoLinkHalf">
+							<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'TheBlueAlliance.png' %}" alt="TBA Icon">
+							<h1 style="color: #ffffff; margin-left: -10px">TBA</h1>
+						</div>
+					</a>
+					<a href="https://swiss-scouting.ca/admin/entry/team/{{ team.number}}/change/" target="_blank">
+						<div class="infoLinkHalf">
+							<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" alt="Edit Icon">
+							<h1 style="color: #ffffff; margin-left: -10px">Edit</h1>
+						</div>
+					</a>
+				</div>
+				{% else %}
+                <a href="https://www.thebluealliance.com/team/{{ team.number }}" target="_blank">
+                    <div class="infoLink">
+                        <img class="infoIcon" src="{{ MEDIA_URL }}{% static 'TheBlueAlliance.png' %}" alt="The Blue Alliance Icon">
+                        <h1 style="color: #ffffff; margin-left: -10px">The Blue Alliance</h1>
+                    </div>
+                </a>
+				{% endif %}
 			</div>
 		</div>
 	</div>
+	<script>
+		var modal = document.getElementById("myModal");
+		var opn = document.getElementById("pictureBoxTile");
+		var cls = document.getElementById("modal-close");
+		var main = document.getElementById("infoTiles");
+
+		// When the user clicks on the button, open the modal
+		opn.onclick = function() {
+			modal.style.visibility = "visible";
+			main.style.filter = "blur(2px)";
+			window.navigator.vibrate(40);
+		}
+
+		// When the user clicks on "no", close the modal
+		cls.onclick = function() {
+			modal.style.visibility = "hidden";
+			main.style.filter="blur(0)";
+			window.navigator.vibrate(40);
+		}
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+		  if (event.target == modal) {
+			modal.style.visibility = "hidden";
+			main.style.filter = "blur(0)";
+			window.navigator.vibrate(40);
+		  }
+		}
+	</script>
 </body>
 </html>

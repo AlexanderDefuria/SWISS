@@ -28,6 +28,15 @@ function collapseBottomBar() {
 }
 
 
+// Function that closes the alertbar
+
+function closeAlertBar() {
+    setTimeout(function () {
+        x.className = "hide";
+        setTimeout(function(){ x.className = x.className.replace("hide", ""); }, 450);
+    }) 
+}
+
 // Function that controls the team number filtering on the data page. 
 
 function tableFilter(field) {
@@ -51,6 +60,8 @@ function tableFilter(field) {
   		}
   	}
 }
+
+// Function that filters teamLink elements on Teams page by either team number or team name
 
 function teamFilter(field) {
 	let filter = document.getElementById(field).value.toString();
@@ -76,17 +87,33 @@ function teamFilter(field) {
 }
 
 
+// Function that filters schedule elements on Match Schedule page by match number
+
+
+function scheduleFilter(field) {
+	let filter = document.getElementById(field).value.toString();
+	let all = document.getElementsByClassName('scheduleTile')
+	if (field === "matchNumber") {
+		for (let i = 0; i < all.length; i++) {
+			if (all[i].id.toString().indexOf(filter) > -1)
+				all[i].style.display = "";
+			else
+				all[i].style.display = "none";
+
+		}
+	} 
+    
+	document.getElementsByClassName("teamChip")
+}
+
+
 // Function that controls the team select drawer
 
 function openTeamDrawer() {
 	document.getElementById("teamDrawer").style.height="100%";
-//	document.getElementById("bodyContainer").style.filter="blur(4px)"
-//  commented out -- causes poor performance on low resource devices 
 }
 function closeTeamDrawer() {
 	document.getElementById("teamDrawer").style.height = "0";
-//	document.getElementById("bodyContainer").style.filter="blur(0px)"
-//  commented out -- causes poor performance on low resource devices 
 }
 
 
@@ -179,38 +206,3 @@ function updateSlug(team){
 	getSlug(team)
 	return Slug
 }
-
-//////////////////////////////////////////////////////////////////////////
-//          SCRIPT FOR HANDLING THE ADD TO HOME SCREEN EXPERIENCE!      //
-//////////////////////////////////////////////////////////////////////////
-
-let deferredPrompt;
-const addBtn = document.querySelector('.add-button')
-addBtn.style.display = 'none';
-
-window.addEventListener('beforeinstallprompt', (e) => {
-	// This prevents Chrome 67 and earlier from automatically showing the prompt 
-	e.preventDefault();
-	// Stashed the event so it can be triggered later 
-	deferredPrompt = e;
-	// Uodate UI to notified the user they can add to home screen 
-	addBtn.style.display = 'block';
-	
-	addBtn.addEventListener('click', (e) => {
-		// hide our user interface that shows the add to home button 
-		addBtn.style.display = 'none';
-		// Show the prompt 
-		deferredPrompt.prompt();
-		// Wait for reponse to the prompt 
-		deferredPrompt.userChoice.then((choiceResult) => {
-			if (choiceResult.outcome === 'accepted') {
-				console.log('User accepted the A2HS prompt');
-			} else { 
-				console.log('User dismissed the A2HS prompt');
-			}
-			deferredPrompt = null; 
-		});
-	});
-});
-
-

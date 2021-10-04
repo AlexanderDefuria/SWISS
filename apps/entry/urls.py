@@ -4,7 +4,6 @@ from django.conf import settings
 
 from . import views
 
-
 urlpatterns = [
     path('', views.Index.as_view(), name='index'),
 
@@ -37,10 +36,14 @@ urlpatterns = [
     path('about/', views.About.as_view(), name='about'),
     path('settings/', views.Settings.as_view(), name='settings'),
     path('experimental/getcsv/', views.get_csv_ajax, name='getcsv'),
+    path('tutorial/', views.Tutorial.as_view(), name='tutorial'),
+    path('welcome/', views.Welcome.as_view(), name='welcome'),
+    path('import/submit/', views.import_from_first, name='import_from_first'),
+    path('import/', views.Import.as_view(), name='import'),
 
     path('logout/', views.logout, name='logout'),
     path('login/', views.login, name='login'),
-    path('register/', views.register_user, name='register_user'),
+    path('register/', views.Registration.as_view(), name='register'),
 
     path('admin_redirect/<str:whereto>', views.admin_redirect, name='admin_redirect'),
     path('admin_redirect/', views.admin_redirect, name='admin_redirect'),

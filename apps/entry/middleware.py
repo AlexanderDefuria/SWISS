@@ -1,9 +1,13 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from apps.entry.models import TeamMember
+from django.http import HttpResponse
+from django.conf import settings
+import traceback
 
 from apps.entry.urls import urlpatterns
 from apps import config
+from apps import importFRC
 
 
 class ValidateUser:
@@ -19,12 +23,12 @@ class ValidateUser:
         # the view (and later middleware) are called.
         response = self.get_response(request)
 
-        if str(request.path).__contains__('media') or str(request.path).__contains__('static') or str(request.path).__contains__('admin'):
+        if str(request.path).__contains__('media') or str(request.path).__contains__('static') or str(request.path).__contains__('admin') or str(request.path).__contains__('promotional'):
             return response
 
         try:
             if str(request.path) == "/":
-                return HttpResponseRedirect(reverse_lazy('entry:index'))
+                return HttpResponseRedirect(reverse_lazy('promotional:index'))
         except IndexError:
             print("INDEX ERROR")
             return response
@@ -37,7 +41,7 @@ class ValidateUser:
             print("\n")
             return HttpResponseRedirect(reverse_lazy('entry:index'))
 
-        if view == "logout" or view == "login" or app == "media":
+        if view == "logout" or view == "login" or app == "media" or view == "register":
             return response
 
         if not request.user.is_authenticated:
@@ -64,6 +68,9 @@ class ValidateUser:
         if view == '':
             view = 'index'
 
+        # if 'matchscout' in view:
+
+
         reqlevel = 0
         for each in TeamMember.AVAILABLE_POSITIONS:
             if each[0] == self.permissions[view]:
@@ -79,3 +86,28 @@ class ValidateUser:
                 actlevel += 1
 
         return actlevel >= reqlevel
+
+
+class ErrorHandlerMiddleware:
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        return response
+
+    def process_exception(self, request, exception):
+        if not settings.DEBUG:
+            if exception:
+                # Format your message here
+                message = "**{url}**\n\n{error}\n\n````{tb}````".format(
+                    url=request.build_absolute_uri(),
+                    error=repr(exception),
+                    tb=traceback.format_exc()
+                )
+                # Do now whatever with this message
+                # e.g. requests.post(<slack channel/teams channel>, data=message)
+                # TODO Put discord thingy here @Nick
+
+            return HttpResponse("Error processing the request.", status=500)

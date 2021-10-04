@@ -32,7 +32,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'apps.entry.apps.EntryConfig',
     'django_ajax',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.entry.apps.EntryConfig',
+    'apps.promotional.apps.PromotionalConfig',
 ]
 
 MIDDLEWARE = [
@@ -85,11 +86,12 @@ DATABASES = {
     #}
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'swiss_scouting',
-        'USER': 'swiss_user',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'swissdb',
+        'USER': 'swiss',
+        'PASSWORD': 'l5oix3lgmz0p5gzp',
+        'HOST': 'db-postgresql-nyc3-00259-do-user-7775406-0.b.db.ondigitalocean.com',
+        'PORT': '25060',
+        'OPTIONS': {'sslmode': 'require'},
     }
 }
 
@@ -129,7 +131,7 @@ USE_L10N = True
 USE_TZ = False
 
 
-# --------- SECURITY ---------
+
 
 # --------- Cookies ---------
 SESSION_COOKIE_HTTPONLY = True
@@ -139,12 +141,12 @@ SESSION_SAVE_EVERY_REQUEST = True
 
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 # Static files (CSS, JavaScript, Images)
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-#STATICFILES_DIRS = [
-#    os.path.join(BASE_DIR, "static"),
-#    os.path.join(BASE_DIR, "media/static"),
-#]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "media/static"),
+]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -152,4 +154,3 @@ MEDIAFILES_DIRS = [
     os.path.join(BASE_DIR, "media")
 ]
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')

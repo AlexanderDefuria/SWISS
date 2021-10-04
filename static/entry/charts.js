@@ -7,7 +7,7 @@ const constCharts = {
                 inverted: true,
             },
             title: {
-                text: 'Fruit Consumption'
+                text: 'Match Data'
             },
             plotOptions: {
                 series: {
@@ -15,28 +15,34 @@ const constCharts = {
                 }
             },
             xAxis: {
-                categories: ['Apples', 'Bananas', 'Oranges']
+                categories: ['Team 4343', 'Team 914']
             },
             yAxis: {
                 title: {
-                    text: 'Fruit eaten'
+                    text: 'Balls Scored'
                 }
             },
             series: [{
-                name: 'Jane',
-                data: [1, 0, 4]
+                name: 'Match 1',
+                data: [3, 4]
             }, {
-                name: 'John',
-                data: [5, 7, 3]
+                name: 'Match 2',
+                data: [5, 7]
             }]
         },
 
     totalChart: {
             chart: {
-				backgroundColor: '#dddddd'
+				backgroundColor: '#0F4D8D',
+             style: {
+                    color: '#ffffff'
+                    }
 			},
             title: {
-			    text: 'Total Balls Scored Over Comp'
+                text: 'Total Balls Scored Over Comp',
+                style: {
+                    color: '#ffffff'
+                }
             },
             plotOptions: {
                 series: {
@@ -52,10 +58,25 @@ const constCharts = {
             }],
             xAxis: {
                 title: {
-                    text: 'Match'
+                    text: 'Match',
+                style: {
+                    color: '#ffffff'
+                }
                 }
             },
-            responsive: {
+			yAxis: {
+                title: {
+                    text: 'Balls Scored',
+                    style: {
+                        color: '#ffffff'
+                    }
+                    },
+                labels: {
+                    style: {
+                        color: '#ffffff'
+                    }
+                }
+                },            responsive: {
                 rules: [{
                     condition: {
                         maxWidth: 500
@@ -106,6 +127,9 @@ const constCharts = {
                     }
                 }
                 },
+            tooltip: {
+                valueDecimals: 3,
+            },
             series: [{
                 name: 'Lower',
                 data: [0, 0]

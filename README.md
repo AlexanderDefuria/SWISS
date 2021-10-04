@@ -40,6 +40,13 @@ link with picture of a cat
 ### Viewing Images
 Images can be rotated using the [Rotate Image Utility](https://github.com/AlexanderDeFuria/FRC-Scouting/blob/master/rotateImage.py) to correct landscape and portrait modes not being consistent.
 
+### TODOs
 
+ - [ ] Documentation
+   - [ ] Explanation of each page/card
+   - [ ] Mock scout match
+   - [ ] Multiple levels of tutorials? One level will take around 5 minutes, the other 10 minutes, etc. (one of the tutorials can do a whole match scout with you)
 
 BTC Address - 376g5uV5XF7pZGoyfEZnU6zEMLW4L6EHJs
+
+Should add more to readme.

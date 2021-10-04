@@ -23,7 +23,15 @@ def modulo(num, val):
 
 @register.simple_tag
 def get_current_event():
-    return Event.objects.filter(FIRST_key=config.get_current_event_key())[0]
+    try:
+        return Event.objects.filter(FIRST_key=config.get_current_event_key())[0]
+    except IndexError:
+        event = Event()
+        event.name="Temp"
+        event.FIRST_key=""
+        return event
+    except:
+        return Event.objects.all()[0]
 
 
 @register.simple_tag
@@ -46,6 +54,11 @@ def get_cookie(request, cookie_name):
 @register.simple_tag
 def get_user_role(request):
     return request.user.teammember.get_position_display() + ": Team " + str(request.user.teammember.team.number)
+
+
+@register.simple_tag
+def get_team_uuid(request):
+    return str(request.user.teammember.team.reg_id)[:6]
 
 
 @register.simple_tag
@@ -74,13 +87,19 @@ def get_all_logged_in_users(*args):
 
 
 @register.simple_tag
-def get_all_present_teams():
-    return views.get_present_teams()
+def get_all_present_teams(user):
+    return views.get_present_teams(user)
 
 
 @register.simple_tag
 def get_all_teams():
     return views.get_all_teams()
+
+
+@register.simple_tag
+def get_all_events():
+    print(views.get_all_events().all())
+    return views.get_all_events()
 
 
 @register.simple_tag
@@ -96,7 +115,8 @@ def get_info(user, team, field, *args):
         if "match" in args:
             model = Match
 
-        if len(model.objects.filter(team_id=team, event_id=config.get_current_event_id(), team_ownership=user.teammember.team_id)) == 0:
+        teamsettings = TeamSettings.objects.all().filter(team_id=user.teammember.team)[0]
+        if len(model.objects.all().filter(team_id=team.id).filter(event_id=teamsettings.currentEvent.id).filter(team_ownership=user.teammember.team.id)) == 0:
             return "No Data"
 
         if "dependant" in args:
@@ -143,12 +163,7 @@ def get_total(user, team, field, model):
 
     for entry in object_list:
 
-        if model==Match:
-            print("climbed")
-            print(entry.climbed)
         if boolean:
-            print(field)
-            print(entry.__getattribute__(field))
             if entry.__getattribute__(field):
                 total += 1
         else:

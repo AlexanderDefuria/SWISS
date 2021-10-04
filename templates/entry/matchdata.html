@@ -13,10 +13,19 @@
 <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
 <meta name="theme-color" content="0F4D8D">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N73L5WQ');</script>
+<!-- End Google Tag Manager -->
 </head>
 
-<body>
+<body><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N73L5WQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 	<div class="topbar">
 		<div class="hamburgerButton" onClick="openNav()">
 			<button class="hamburgerButton" onClick="openNav()">☰</button>
@@ -82,9 +91,11 @@
 						<th>Auto Low</th>
 						<th>Auto High</th>
 						<th>Auto Inner</th>
+                        <th>Auto Missed</th>
 						<th>Tele Low</th>
 						<th>Tele High</th>
 						<th>Tele Inner</th>
+                        <th>Tele Missed</th>
 						<th>Intake Type</th>
 						<th>Cycle Style</th>
 						<th>Under Defense</th>
@@ -96,11 +107,11 @@
 						<th>Dfns Fouls</th>
 						<th>Push Ability</th>
                         <th>Climb Position</th>
-						<th>Climbed</th>
 						<th>Timeout Position</th>
 						<th>Human Fouls</th>
 						<th>Driver Fouls</th>
 						<th>Yellow Card</th>
+                        <th>Comment</th>
 						<th>Scouter</th>
 					</tr>
 					{% for match in match_list %}
@@ -116,9 +127,11 @@
                             <td>{{ match.lower_auto }}</td>
                             <td>{{ match.outer_auto }}</td>
                             <td>{{ match.inner_auto }}</td>
+                            <td>{{ match.missed_balls_auto }}</td>
                             <td>{{ match.lower }}</td>
                             <td>{{ match.outer }}</td>
                             <td>{{ match.inner }}</td>
+                            <td>{{ match.missed_balls }}</td>
                             <td>{{ match.ball_intake_type }}</td>
                             <td>{{ match.cycle_style }}</td>
                             <td>{{ match.under_defense }}</td>
@@ -130,11 +143,11 @@
                             <td>{{ match.defense_fouls }}</td>
                             <td>{{ match.able_to_push }}</td>
                             <td>{{ match.climb_location }}</td>
-                            <td>{{ match.climbed }}</td>
                             <td>{{ match.field_timeout_pos }}</td>
                             <td>{{ match.hp_fouls }}</td>
                             <td>{{ match.dt_fouls }}</td>
                             <td>{{ match.yellow_card }}</td>
+                            <td>{{ match.comment }}</td>
                             <td style="background-color: grey">{{ match.scouter_name }}</td>
                     </tr>
                     {% endfor %}
