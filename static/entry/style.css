@@ -2,6 +2,12 @@
 
 /* Base Index Page */
 
+@font-face {
+  font-family: 'roboto';
+  src: local('Roboto'),
+       url('../static/fonts/abc.ttf') format("truetype");
+}
+
 body {
 	color: white;
 	background-color: #333333;
