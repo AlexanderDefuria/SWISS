@@ -7,6 +7,12 @@
   src: local('roboto'),
        url('./fonts/Roboto-Regular.ttf') format("truetype");
 }
+@font-face {
+	font-family: 'Roboto';
+	src: local('roboto'),
+		 url('./fonts/Roboto-Black.ttf') format("truetype");
+	font-weight: 900;
+}
 body {
 	color: white;
 	background-color: #333333;
