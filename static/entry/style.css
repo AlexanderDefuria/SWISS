@@ -3,11 +3,10 @@
 /* Base Index Page */
 
 @font-face {
-  font-family: 'roboto';
-  src: local('Roboto'),
+  font-family: 'Roboto';
+  src: local('roboto'),
        url('../static/fonts/abc.ttf') format("truetype");
 }
-
 body {
 	color: white;
 	background-color: #333333;
