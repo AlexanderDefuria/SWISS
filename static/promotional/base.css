@@ -37,6 +37,10 @@ body {
     font-weight: 400;
 }
 
+h1 {
+    font-weight: 900;
+}
+
 .bodyContent {
     display: flex;
     flex-direction: column;
