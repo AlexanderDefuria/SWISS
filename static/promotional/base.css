@@ -37,10 +37,6 @@ body {
     font-weight: 400;
 }
 
-h1 {
-    font-weight: 700;
-}
-
 .bodyContent {
     display: flex;
     flex-direction: column;
@@ -313,7 +309,7 @@ a.anchor {
 
 .heroContent h1 {
     font-size: 5rem;
-    font-weight: 900;
+    font-weight: bold;
     width: 60%;
     color: #ffffff;
     margin: 25px;
