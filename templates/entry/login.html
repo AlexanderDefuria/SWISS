@@ -55,21 +55,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<label for="password">Password:</label>
 						<input style="margin-left:10px; " type="password" name="password" id="password">
 					</div>
-
                     <button class="updateButton loginButton" type="submit">Log In</button>
-
-
+					<a id="registerBox" class="div formItem" href="{% url 'entry:register' %}">
+            			<button name="submit" id="submitButton" type="submit" style="pointer-events: none;">Register</button>
+        			</a>
 				</form>
 			</div>
 		</div>
-        <a id="registerBox" class="div formItem" href="{% url 'entry:register' %}">
-
-            <button name="submit" id="submitButton" type="submit" style="pointer-events: none;">Register</button>
-
-        </a>
-
 	</div>
-
 </body>
 
 </html>
