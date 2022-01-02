@@ -14,6 +14,7 @@
 	min-height: 35px;
 	height: auto;
 	background-color: #444444;
+	border: 3px solid transparent;
 	padding: 10px;
 	margin: 0 0 10px 0;
 	line-height: 35px;
@@ -23,6 +24,8 @@
 }
 .formItem:hover{ 	
 	background-color: #555555;
+	border-color: #777777;
+	border-radius: 5px;
 	box-shadow: 7px 7px 25px 10px #232323;
 }
 
@@ -36,14 +39,15 @@
 	color: white;
 	background: none;
 	border: none;
-	border-bottom: 1px solid #ffffff;
+	padding-left: 0.5rem;
+	border-bottom: 3px solid #ffffff;
 	transition: all 0.2s ease-in-out;
 }
 /* Adds a background color, expands the input and adds a blue border when focused */
 .formItem input[type=text]:focus { 
 	border-color: #0F4D8D;
-	border-width: 3px;
 	background: #333333;
+	border-radius: 5px;
 }
 
 
@@ -56,13 +60,12 @@
 	color: white;
 	background: none;
 	border: none;
-	border-bottom: 1px solid #ffffff;
+	border-bottom: 3px solid #ffffff;
 	transition: all 0.2s ease-in-out;
 }
 /* Adds a background color, expands the input and adds a blue border when focused */
 .formItem input[type=password]:focus {
 	border-color: #0F4D8D;
-	border-width: 3px;
 	background: #333333;
 }
 
@@ -72,13 +75,12 @@
 	color: white;
 	background: none;
 	border: none;
-	border-bottom: 1px solid #ffffff;
+	border-bottom: 3px solid #ffffff;
 	transition: all 0.2s ease-in-out;
 }
 /* Adds a background color, expands the input and adds a blue border when focused */
 .formItem input[type=email]:focus {
 	border-color: #0F4D8D;
-	border-width: 3px;
 	background: #333333;
 }
 
@@ -93,7 +95,7 @@
 	background: none;
 	text-align: center;
 	border: none;
-	border-bottom: 1px solid #ffffff;
+	border-bottom: 3px solid #ffffff;
 	font-size: 18px;
 	transition: all 0.2s ease-in-out;
 	border-radius: 0;
@@ -101,8 +103,8 @@
 /* Adds a background color, expands the input and adds a blue border when focused */
 .formItem input[type=number]:focus {
 	border-color: #0F4D8D;
-	border-width: 3px;
 	background: #333333;
+	border-radius: 5px;
 }
 /* Settings for if the input is set to read-only */
 .formItem input[type=number]:read-only {
@@ -135,13 +137,15 @@ input[type=number] {
 	background: none;
 	background-color: transparent;
 	border: none;
-	border-bottom: 1px solid #ffffff;
+	border-bottom: 3px solid #ffffff;
+	padding-left: 0.25rem;
 	transition: all 0.2s ease-in-out;
 }
 /* Customizes the input when focused */
 .formItem select:focus {
 	background-color: #333333;
-	border-bottom: 3px solid #0F4D8D;
+	border-color: #0F4D8D;
+	border-radius: 5px;
 }
 
 
@@ -156,11 +160,16 @@ input[type=number] {
 	width: 30px;
 	height: 30px;
 	border-radius: 15px;
-	border: 2px solid white;
+	border: 3px solid white;
 	background-color: 0;
 	-webkit-appearance: none; /*to disable the default appearance of radio */
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
+}
+/* Hover state for radio boxes" */
+
+.radioGroup input[type=radio]:hover {
+	background-color: #777;
 }
 /* Makes the background colour of the radio white when checked */
 .radioGroup input[type=radio]:checked {
@@ -217,7 +226,7 @@ input[type=number] {
 	height: 26px;
 	width: 26px;
 	background-color: transparent;
-	border: 2px solid white;
+	border: 3px solid white;
 	border-radius: 25px;
 	transition: all 0.2s ease-in-out;
 }
@@ -270,7 +279,7 @@ input[type=number] {
 	font-size: 21px;
 	width: 30px;
 	height: 30px;
-	border: 2px solid white;
+	border: 3px solid white;
 	border-radius: 50px;
 	transition: all 0.1s ease-in-out;
 	cursor: pointer;
@@ -315,7 +324,7 @@ input[type=number] {
 	width: 25px;
 	height: 25px;
 	border-radius: 50%;
-	border: 2px solid white;
+	border: 3px solid white;
 	background: #444444;
 	cursor: pointer;
 	transition: all 0.1s ease-in-out;
@@ -324,13 +333,11 @@ input[type=number] {
 	width: 25px;
 	height: 25px;
 	border-radius: 50%;
-	border: 2px solid white;
+	border: 3px solid white;
 	cursor: pointer;
 }
 .formItem [type=range]::-webkit-slider-thumb:hover {
 	background-color: #ffffff;
-	width: 30px;
-	height: 30px;
 }
 
 
@@ -403,7 +410,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus {
 	border: none;
-	border-bottom: 2px solid green;
+	border-bottom: 3px solid green;
 	background-color: #0F4D8D;
     color: #ffffff;
 	transition: background-color 5000s ease-in-out 0s;
@@ -445,7 +452,7 @@ input:-webkit-autofill:focus {
 		width: 50px;
 		height: 50px;
 		border-radius: 25px;
-		border: 2px solid white;
+		border: 3px solid white;
 		transition: all 0.3s ease-in-out;
 	}
 	.radioGroup label span:first-of-type {

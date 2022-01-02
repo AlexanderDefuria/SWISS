@@ -51,11 +51,11 @@ ul {
 	overflow: hidden;
 }
 #loginContainer {
-	padding: auto;
 	display: flex;
 	justify-content: center;
 	align-content: center;
 	align-items: center;
+	height: 80vh;
 }
 .heroContent {
 	display: flex;
@@ -296,11 +296,13 @@ ul {
 	width: 100px;
 	padding: 100px;
 	margin: 5px;
+	border: 3px solid transparent;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
 .bigBox:hover { 
-	transform: scale(1.075); 
+	border-color: #777;
+	background-color: #115599;
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .pictureBox {
@@ -308,7 +310,8 @@ ul {
 	width: 300px;
 	padding: 0;
 	margin: 0px 0px 10px 10px;
-	background-color: #262626;
+	border: 3px solid transparent;
+	cursor: pointer;
 	transition: all .2s ease-in-out; 
 }
 .pictureBox img {
@@ -316,9 +319,9 @@ ul {
 	object-fit: cover;
 }
 .pictureBox:hover { 
-	transform: scale(1.075); 
+	border-color: #777;
+	border-radius: 5px;
 	box-shadow: 2px 5px 25px 2px #232323;
-	z-index: 1;
 }
 .graphBox {
 	height: 300px;
@@ -329,20 +332,20 @@ ul {
 	transition: all .2s ease-in-out; 
 }
 .graphBox:hover { 
-	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
-	z-index: 1;
 }
 .graphBoxWide {
 	height: 300px;
 	width: 700px;
 	padding: 0;
 	margin: 0px 0px 10px 10px;
+	border: 3px solid transparent;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
 .graphBoxWide:hover { 
-	transform: scale(1.075); 
+	border-color: #777;
+	border-radius: 5px;
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .infoBox {
@@ -351,11 +354,13 @@ ul {
 	height: auto;
 	padding: 10px;
 	margin: 0px 0px 10px 10px;
+	border: 3px solid transparent;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
 .infoBox:hover { 
-	transform: scale(1.075); 
+	border-color: #777;
+	border-radius: 5px;
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .infoBox h1, p {
@@ -387,6 +392,7 @@ ul {
 	transition: all .2s ease-in-out;
 }
 .infoLink:hover { 
+	border-radius: 5px;
 	background-color: #09315A;
 }
 .infoLinkHalf {
@@ -426,7 +432,11 @@ ul {
 	height: 7vh; 
 	padding: 10px; }
 .loginBox {
-	width:auto;
+	background-color: #444;
+	border-radius: 5px;
+	padding: 0.5rem;
+	width: auto;
+    box-shadow: 7px 7px 25px 10px #232323;
 }
 .loginBox:hover {
 	transform: none;
@@ -468,11 +478,13 @@ ul {
 	height: 100px;
 	width: 410px;
 	margin: 5px;
+	border: 3px solid transparent;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
 .wideBox:hover { 
-	transform: scale(1.075); 
+	border-color: #777;
+	background-color: #115599;
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .smallBox {
@@ -481,11 +493,13 @@ ul {
 	padding: 22.5px;
 	height: 100px;
 	margin: 5px;
+	border: 3px solid transparent;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
 .smallBox:hover {
-	transform: scale(1.075); 
+	background-color: #115599;
+	border-color: #777;
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .specialBox {
@@ -496,11 +510,13 @@ ul {
 	height: 100px;
 	max-width: 255px;
 	margin: 5px;
+	border: 3px solid transparent;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
 .specialBox:hover {
-	transform: scale(1.075); 
+	border-color: #777;
+	background-color: #115599;
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .specialBoxHeader {
@@ -539,6 +555,7 @@ ul {
 	padding: 20px;
 	width: 260px;
 	background-color: #262626;
+	border: 3px solid transparent;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
@@ -546,8 +563,12 @@ ul {
 	transition: all .2s ease-in-out;
 }
 .teamCard:hover {
-	transform: scale(1.1); 
+	border-color: #777;
+	border-radius: 5px;
 	box-shadow: 2px 5px 25px 2px #232323;
+}
+.teamCard:hover .robotPhoto img {
+	transform: scale(1.1);
 }
 .teamCardNoPic {
 	margin: 0px 0px 10px 10px;
@@ -569,8 +590,10 @@ ul {
 	min-height: 260px; 
 	min-width: 260px;
 	margin-bottom: 5px;
+	overflow: hidden;
+	transition: all 0.2s ease-in-out;
 }
-.robotPhoto>img {
+.robotPhoto img {
 	width: 260px;
 	height: 260px; 
 }
@@ -609,7 +632,7 @@ ul {
 	width: 72px;
 	height: 30px;
 	border-radius: 10px;
-	border: 1px solid white;
+	border: 3px solid transparent;
 }
 .teamnumberPill p {
 	margin: auto;
@@ -751,11 +774,7 @@ th {
 
 	.loginBox {
 		width: inherit;
-		height: 100%;
 		margin: unset;
-	}
-	#loginContainer {
-		width: 100%;
 	}
 	#password {
 		width: 100%;
@@ -1068,6 +1087,9 @@ th {
 	}
 	.tileContainer {
 		padding: 0 10px 0 10px;
+	}
+	#loginContainer {
+		width: 90%;
 	}
 	.modal-content {
 		width: 80%;
