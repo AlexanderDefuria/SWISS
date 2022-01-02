@@ -50,12 +50,12 @@ ul {
 	padding: 20px 15px 20px 15px;
 	overflow: hidden;
 }
-#loginContainer {
+#soloContainer {
 	display: flex;
 	justify-content: center;
 	align-content: center;
 	align-items: center;
-	height: 80vh;
+	height: 90vh;
 }
 .heroContent {
 	display: flex;
@@ -302,6 +302,7 @@ ul {
 }
 .bigBox:hover { 
 	border-color: #777;
+	border-radius: 5px;
 	background-color: #115599;
 	box-shadow: 2px 5px 25px 2px #232323;
 }
@@ -431,14 +432,14 @@ ul {
 .infoIcon { 
 	height: 7vh; 
 	padding: 10px; }
-.loginBox {
+.soloBox {
 	background-color: #444;
 	border-radius: 5px;
 	padding: 0.5rem;
 	width: auto;
     box-shadow: 7px 7px 25px 10px #232323;
 }
-.loginBox:hover {
+.soloBox:hover {
 	transform: none;
 }
 .updateButton {
@@ -484,7 +485,7 @@ ul {
 }
 .wideBox:hover { 
 	border-color: #777;
-	background-color: #115599;
+	border-radius: 5px;
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .smallBox {
@@ -567,6 +568,9 @@ ul {
 	border-radius: 5px;
 	box-shadow: 2px 5px 25px 2px #232323;
 }
+.teamCard:hover .robotPhoto {
+	border-radius: 5px;
+}
 .teamCard:hover .robotPhoto img {
 	transform: scale(1.1);
 }
@@ -596,6 +600,7 @@ ul {
 .robotPhoto img {
 	width: 260px;
 	height: 260px; 
+	transition: all 0.75s ease-in-out;
 }
 .stickyChip {
 	display: flex;
@@ -772,7 +777,7 @@ th {
 		margin-left: 0;
 	}
 
-	.loginBox {
+	.soloBox {
 		width: inherit;
 		margin: unset;
 	}
@@ -1088,7 +1093,7 @@ th {
 	.tileContainer {
 		padding: 0 10px 0 10px;
 	}
-	#loginContainer {
+	#soloContainer {
 		width: 90%;
 	}
 	.modal-content {

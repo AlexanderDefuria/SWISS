@@ -47,11 +47,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</div>
 				<form action="{% url 'entry:login' %}" method="POST" enctype="multipart/form-data" id="form">
                     {% csrf_token %}
-                    <div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+                    <div class="formItem" style="margin-top:10px; background:none;">
 						<label for="username">Username:</label>
 						<input style="margin-left:10px; " type="text" name="username" id="username">
 					</div>
-					<div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+					<div class="formItem" style="margin-top:10px; background:none;">
 						<label for="password">Password:</label>
 						<input style="margin-left:10px; " type="password" name="password" id="password">
 					</div>
