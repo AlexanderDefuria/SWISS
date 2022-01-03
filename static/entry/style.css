@@ -518,6 +518,7 @@ ul {
 .specialBox:hover {
 	border-color: #777;
 	background-color: #115599;
+	border-radius: 5px;
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .specialBoxHeader {
@@ -668,6 +669,7 @@ ul {
 	height: 69vh;
 	width: 100%;
 	overflow: scroll;
+	border-radius: 5px;
 }
 table, th, td {
 	padding: 5px;
@@ -787,7 +789,6 @@ th {
 	#username {
 		width: 100%;
 	}
-
 }
 /* for mobile phones, portrait and landscape */
 @media screen and (max-width: 820px) {
