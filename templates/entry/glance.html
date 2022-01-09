@@ -248,9 +248,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<div class="infoLColumn"><p>{{totalTeleMissed|add:totalAutoMissed }} Balls</p></div>
                 </div>
 			</div>			
+<!--
             <div class="graphBoxWide" id="accuracyTile">
 				
             </div>
+-->
 			<div class="infoBox infoReg" id="endgameTile">
 				<div class="infoHeader">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'hangbar_icon.png' %}" alt="Hang Bar">
@@ -393,13 +395,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				</a>
 				{% if user.is_staff %}
 				<div style="display: flex; flex-direction: row">
-					<a href="https://www.thebluealliance.com/team/{{ team.number }}" target="_blank">
+					<a href="https://www.thebluealliance.com/team/{{ team.number }}" target="_blank" style="flex-grow: 2">
 						<div class="infoLinkHalf">
 							<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'TheBlueAlliance.png' %}" alt="TBA Icon">
 							<h1 style="color: #ffffff; margin-left: -10px">TBA</h1>
 						</div>
 					</a>
-					<a href="https://swiss-scouting.ca/admin/entry/team/{{ team.number}}/change/" target="_blank">
+					<a href="https://swiss-scouting.ca/admin/entry/team/{{ team.number}}/change/" target="_blank" style="flex-grow: 2">
 						<div class="infoLinkHalf">
 							<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" alt="Edit Icon">
 							<h1 style="color: #ffffff; margin-left: -10px">Edit</h1>
