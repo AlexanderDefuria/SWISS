@@ -7,5 +7,13 @@
   },
   "pitScout": {
     "scouterName": " "
+  },
+  "registration": {
+    "username": " ",
+    "first_name": " ",
+    "last_name": " ",
+    "email": " ",
+    "team_reg_id": " ",
+    "team_number": 0,
   }
 }

@@ -44,6 +44,7 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('login/', views.login, name='login'),
     path('register/', views.Registration.as_view(), name='register'),
+    path('register/check/', views.validate_registration, name='validate_register'),
 
     path('admin_redirect/<str:whereto>', views.admin_redirect, name='admin_redirect'),
     path('admin_redirect/', views.admin_redirect, name='admin_redirect'),
