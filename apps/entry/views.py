@@ -573,8 +573,12 @@ class MatchScoutLanding(LoginRequiredMixin, generic.ListView):
     context_object_name = "team_list"
     template_name = 'entry/matchlanding.html'
 
-    def get_queryset(self):
-        return get_present_teams(self.request.user)
+    def render_to_response(self, context, **response_kwargs):
+        teams = get_present_teams(self.request.user)
+        if teams.count() == 1 and teams.first() == Team.objects.first():
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
+
+        return teams
 
 
 class Visualize(LoginRequiredMixin, generic.ListView):
@@ -583,8 +587,12 @@ class Visualize(LoginRequiredMixin, generic.ListView):
     model = Team
     context_object_name = "team_list"
 
-    def get_queryset(self):
-        return get_present_teams(self.request.user)
+    def render_to_response(self, context, **response_kwargs):
+        teams = get_present_teams(self.request.user)
+        if teams.count() == 1 and teams.first() == Team.objects.first():
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
+
+        return teams
 
 
 class ScheduleView(LoginRequiredMixin, generic.ListView):
@@ -593,8 +601,11 @@ class ScheduleView(LoginRequiredMixin, generic.ListView):
     context_object_name = "schedule_list"
     model = Schedule
 
-    def get_queryset(self):
-        teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+    def render_to_response(self, context, **response_kwargs):
+        try:
+            teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+        except IndexError:
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
         return Schedule.objects.filter(event_id=teamsettings.currentEvent).order_by("match_type")
 
@@ -612,8 +623,12 @@ class PitScoutLanding(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/pitlanding.html'
     context_object_name = "team_list"
 
-    def get_queryset(self):
-        return get_present_teams(self.request.user)
+    def render_to_response(self, context, **response_kwargs):
+        teams = get_present_teams(self.request.user)
+        if teams.count() == 1 and teams.first() == Team.objects.first():
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
+
+        return teams
 
 
 class Experimental(LoginRequiredMixin, generic.TemplateView):
@@ -655,8 +670,12 @@ class GlanceLanding(LoginRequiredMixin, generic.ListView):
     model = Team
     template_name = 'entry/glancelanding.html'
 
-    def get_queryset(self):
-        return get_present_teams(self.request.user)
+    def render_to_response(self, context, **response_kwargs):
+        teams = get_present_teams(self.request.user)
+        if teams.count() == 1 and teams.first() == Team.objects.first():
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
+
+        return teams
 
 
 class Registration(generic.TemplateView):
@@ -702,7 +721,10 @@ class MatchData(LoginRequiredMixin, generic.ListView):
     model = Match
 
     def get_queryset(self):
-        teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+        try:
+            teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+        except IndexError:
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
         return Match.objects.all().filter(event_id=teamsettings.currentEvent).filter(team_ownership=self.request.user.teammember.team.id)
 
@@ -713,7 +735,10 @@ class PitData(LoginRequiredMixin, generic.ListView):
     model = Pits
 
     def get_queryset(self):
-        teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+        try:
+            teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+        except IndexError:
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
         return Pits.objects.all().filter(event_id=teamsettings.currentEvent).filter(team_ownership=self.request.user.teammember.team.id)
 
