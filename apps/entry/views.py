@@ -4,6 +4,7 @@ import json
 import os
 import sqlite3
 import ast
+import re
 
 from django.core import serializers
 from django.shortcuts import render_to_response
@@ -42,7 +43,6 @@ def match_scout_submit(request, pk):
         team = Team.objects.get(id=pk)
         match = Match()
         match.team = team
-
 
         teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
 
@@ -134,10 +134,8 @@ def validate_match_scout(request, pk):
     return HttpResponse(dumps(redo), content_type="application/json")
 
 
-@login_required(login_url='entry:login')
 def validate_types(request, data, reqlist):
     # TODO Add emoji validation in text fields
-
     reqfields = {}
     redo = {}
 
@@ -146,7 +144,10 @@ def validate_types(request, data, reqlist):
         path = os.path.join(settings.BASE_DIR, path)
         with open(path) as f:
             if reqlist:
-                reqfields = json.load(f)['matchScout']
+                if request.path.__contains__("register"):
+                    reqfields = json.load(f)['registration']
+                else:
+                    reqfields = json.load(f)['matchScout']
     except IOError:
         print("reqfields file not found")
 
@@ -186,7 +187,7 @@ def validate_types(request, data, reqlist):
 
         except AttributeError:
             print('issue')
-    if data['scouterName'][0] == '':
+    if request.path.__contains__("scout") and data['scouterName'][0] == '':
         redo['scouterName'] = True
 
     print(redo.keys())
@@ -461,12 +462,29 @@ def logout(request):
     return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 
-
 @ajax
 @csrf_exempt
 def validate_registration(request):
     data = decode_ajax(request)
     redo, data = validate_types(request, data, False)
+
+    print("redo")
+    print(redo)
+    print("data")
+    print(data)
+    print(data['email'][0])
+    if not re.fullmatch(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b', str(data['email'][0])):
+        redo['email'] = True
+    if len(str(data['username'])) < 5:
+        redo['username'] = True
+    if len(str(data['password'])) < 5:
+        redo['password'] = True
+    if data['password'] != data['password_validate']:
+        redo['password'] = True
+        redo['password_validate'] = True
+    if len(str(data['team_reg_id'])) != 6:
+        redo['team_reg_id'] = True
+
     return HttpResponse(dumps(redo), content_type="application/json")
 
 
@@ -657,8 +675,8 @@ class Registration(generic.TemplateView):
 
         user.username = request.POST.get('username')
         user.first_name = request.POST.get('first_name')
-        user.last_name = request.POST.get('first_name')
-        user.email = request.POST.get('first_name')
+        user.last_name = request.POST.get('last_name')
+        user.email = request.POST.get('email')
 
         user.save()
 

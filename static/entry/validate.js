@@ -17,7 +17,8 @@ function validate(formName, ajax=true) {
                     toSend[elements[element].name] = 0
             }
         }
-    console.log(toSend)
+    console.log("toSend");
+    console.log(toSend);
 
     if (ajax)
     $.ajax({
@@ -27,8 +28,10 @@ function validate(formName, ajax=true) {
         data: toSend,
         success: function(data) {
             let send = true;
+            console.log("data");
+            console.log(data);
             data = $.parseJSON(data.content);
-            console.log(data)
+            console.log(data);
             for (let dataKey in data)
                 if (data.hasOwnProperty(dataKey))
                     if (send)
@@ -37,25 +40,33 @@ function validate(formName, ajax=true) {
                 if (window.confirm("Are You Sure The Data You Entered is Accurate?"))
                     console.log(HTMLFormElement.prototype.submit.call(document.getElementById(formName)));
 		    console.log(data);
-            for (let dataKey in data){
-		        if (data.hasOwnProperty(dataKey))
-		            if (data[dataKey]) {
-		                console.log("TRYING TO REDLINE -- " + String(dataKey))
-		                let parent = document.getElementById(dataKey);
-		                let search = false
-
-		                while (!search) {
-		                    parent = parent.parentElement;
-                            search = (parent.className.includes("formItem"));
-                            console.log(parent)
-                        }
-
-		                parent.style.backgroundColor = '#FF3333';
-						x.className = "show";
-						y.innerHTML = "There is a problem with " + dataKey + "!";
-						setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+            let color;
+            for (let dataKey in data) {
+                if (data.hasOwnProperty(dataKey)) {
+                    if (data[dataKey]) {
+                        color = '#FF3333'
+                    } else {
+                        color = '#0F4D8D'
                     }
+                    console.log("TRYING TO COLOUR -- " + String(dataKey))
+                    let parent = document.getElementById(dataKey);
+                    let search = false
+
+                    while (!search) {
+                        parent = parent.parentElement;
+                        search = (parent.className.includes("formItem"));
+                        console.log(parent)
+                    }
+
+                    parent.style.backgroundColor = color;
+                    x.className = "show";
+                    y.innerHTML = "There is a problem with " + dataKey + "!";
+                    setTimeout(function () {
+                        x.className = x.className.replace("show", "");
+                    }, 3000);
+                }
             }
+
 
         },
         failure: function () {
