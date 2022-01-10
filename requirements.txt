@@ -5,10 +5,10 @@ Django==4.0.1
 djangoajaxswiss==4.0
 gunicorn==20.0.4
 idna==2.8
-Pillow==8.2.0
+Pillow==8.3.2
 psycopg2==2.8.6
 pytz==2020.5
 requests==2.22.0
-sqlparse==0.4.1
-urllib3==1.25.11
-uuid==1.30
+sqlparse==0.4.2
+urllib3==1.26.5
+uuid
