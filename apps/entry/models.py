@@ -197,7 +197,7 @@ class Pits(models.Model):
 
 class TeamMember(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    defaultTeam = Team.objects.filter(number=4343)[0].id
+    defaultTeam = Team.objects.filter(number=0)[0].id
     team = models.ForeignKey(Team, on_delete=models.CASCADE, default=defaultTeam)
 
     #TUTORIAL POPUP
@@ -221,7 +221,7 @@ class TeamMember(models.Model):
 
 
 class TeamSettings(models.Model):
-    defaultTeam = Team.objects.filter(number=4343)[0].id
+    defaultTeam = Team.objects.filter(number=0)[0].id
     team = models.ForeignKey(Team, on_delete=models.CASCADE, default=defaultTeam)
 
     NEW_USER_POSITIONS = TeamMember.AVAILABLE_POSITIONS[:-1]

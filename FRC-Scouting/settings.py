@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 
 # Application definition
 
@@ -86,7 +88,7 @@ DATABASES = {
     #}
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'swissdb',
+        'NAME': 'swissdb2022',
         'USER': 'swiss',
         'PASSWORD': 'l5oix3lgmz0p5gzp',
         'HOST': 'db-postgresql-nyc3-00259-do-user-7775406-0.b.db.ondigitalocean.com',
@@ -129,7 +131,6 @@ TIME_ZONE = 'America/Toronto'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = False
-
 
 
 

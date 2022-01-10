@@ -7,7 +7,7 @@ import ast
 import re
 
 from django.core import serializers
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 
 from apps import config
 from apps import importFRC
@@ -29,7 +29,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 
 from apps.entry.graphing import *
 from apps.entry.models import *
-from apps.entry.templatetags import common_tags
+from apps.entry.templatetags.common_tags import *
 
 register = Library
 
@@ -499,7 +499,7 @@ def admin_redirect(request, **kwargs):
 
 
 def handler404(request, exception, template_name="entry/secret.html"):
-    response = render_to_response(template_name)
+    response = render(request, template_name)
     response.status_code = 404
     return response
 
