@@ -511,8 +511,12 @@ def make_int(s):
 
 
 def get_present_teams(user):
-    objects = Team.objects.filter(number__in=DBTools.get_event_teams(TeamSettings.objects.get(team=user.teammember.team).currentEvent.FIRST_key))
-    objects = objects.order_by('number')
+    try:
+        objects = Team.objects.filter(number__in=DBTools.get_event_teams(TeamSettings.objects.get(team=user.teammember.team).currentEvent.FIRST_key))
+        objects = objects.order_by('number')
+    except TeamSettings.DoesNotExist:
+        return Team.objects.all()
+
     return objects
 
 
@@ -526,14 +530,23 @@ def get_all_events():
     return Event.objects.all().order_by('start')
 
 
+class TeamSettingsNotFoundError(LoginRequiredMixin,  generic.TemplateView):
+    login_url = 'entry:login'
+    template_name = 'entry/team_settings_not_found_error.html'
+
+
 class TeamList(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     template_name = 'entry/teams.html'
     context_object_name = "team_list"
     model = Team
 
-    def get_queryset(self):
-        return get_present_teams(self.request.user)
+    def render_to_response(self, context, **response_kwargs):
+        teams = get_present_teams(self.request.user)
+        if teams.count() == 1 and teams.first() == Team.objects.first():
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
+
+        return teams
 
 
 class Import(LoginRequiredMixin, generic.TemplateView):

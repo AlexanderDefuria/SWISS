@@ -88,7 +88,7 @@ DATABASES = {
     #}
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'swissdb2022',
+        'NAME': 'swissdbdev',
         'USER': 'swiss',
         'PASSWORD': 'l5oix3lgmz0p5gzp',
         'HOST': 'db-postgresql-nyc3-00259-do-user-7775406-0.b.db.ondigitalocean.com',

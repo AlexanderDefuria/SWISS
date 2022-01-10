@@ -76,52 +76,51 @@ class Match(models.Model):
     match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(-1)])
 
     # Pre Match
-    auto_start = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    preloaded_balls = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    # TODO make 2D Auto Start Field Based on Front End
+    # auto_start = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     on_field = models.BooleanField(default=False)
+    # TODO Remove?
+    # preloaded_balls = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(5),
+    # MinValueValidator(0)])
 
     # Auto
-    auto_route = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    # TODO Update Based on Front End
+    # auto_route = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     baseline = models.BooleanField(default=False)
-    outer_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
+    upper_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     lower_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    inner_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     fouls_auto = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
-    rating_auto = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     auto_comment = models.TextField(default="")
-    missed_balls_auto = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
 
     # Teleop
-    outer = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
+    upper = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     lower = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    inner = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    wheel_score = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    wheel_rating = models.SmallIntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
     balls_collected = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
     missed_balls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     ball_intake_type = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    cycle_style = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     under_defense = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
-    defended_by = models.IntegerField(default=0, validators=[MaxValueValidator(10000), MinValueValidator(0)])
+    fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
 
     # Defense
     played_defense = models.BooleanField(default=False)
+    defense_timer = models.IntegerField(default=0)
     defense_rating = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     defense_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(250), MinValueValidator(0)])
     team_defended = models.IntegerField(default=0)
     able_to_push = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
 
     # Climb
-    climb_location = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
-    field_timeout_pos = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    endgame_action = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    climb_timer = models.IntegerField(default=0)
     climbed = models.BooleanField(default=False)
+    climb_attempts = models.BooleanField(default=False)
+    climb_comments = models.TextField(default="")
 
     # Human Player
     hp_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     dt_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     yellow_card = models.BooleanField(default=False)
-    yellow_card_descrip = models.TextField(default="")
+    yellow_card_description = models.TextField(default="")
 
     # Scouter
     scouter_name = models.TextField(default="")
@@ -159,14 +158,11 @@ class Pits(models.Model):
     ball_capacity = models.SmallIntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
     shooter_style = models.TextField(default="")
     low_bot = models.BooleanField(default=False)
-    wheel_manipulator = models.BooleanField(default=False)
     weight = models.SmallIntegerField(default=0, validators=[MaxValueValidator(200), MinValueValidator(0)])
     targeting_system = models.TextField(default="")
 
     # Climb
     climb_locations = models.SmallIntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
-    climb_buddy = models.BooleanField(default=False)
-    climb_balance = models.BooleanField(default=False)
 
     # Name
     scouter_name = models.TextField(default="")

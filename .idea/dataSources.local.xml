@@ -25,7 +25,9 @@
       <schema-mapping>
         <introspection-scope>
           <node negative="1">
-            <node kind="database" qname="@">
+            <node kind="database">
+              <name qname="@" />
+              <name qname="swissdbdev" />
               <node kind="schema" qname="@" />
             </node>
             <node kind="database" qname="swissdb2022">
