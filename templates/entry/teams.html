@@ -72,7 +72,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		{% if districtTeams == 'True' %}
 		{% else %}
 			<div style="display: flex" id="currentEvent">
-				<span style="margin: auto">{% get_current_event %}</span>
+				<span style="margin: auto">{% get_current_event request %}</span>
 			</div>		
 		{% endif %}
         <figure class="tileContainer teamTileContaienr">

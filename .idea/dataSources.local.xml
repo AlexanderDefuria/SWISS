@@ -30,7 +30,9 @@
               <name qname="swissdbdev" />
               <node kind="schema" qname="@" />
             </node>
-            <node kind="database" qname="swissdb2022">
+            <node kind="database">
+              <name qname="swissdb2020" />
+              <name qname="swissdb2022" />
               <node kind="schema" qname="public" />
             </node>
           </node>
