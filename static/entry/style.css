@@ -501,6 +501,7 @@ ul {
 .smallBox:hover {
 	background-color: #115599;
 	border-color: #777;
+	border-radius: 5px;
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .specialBox {
