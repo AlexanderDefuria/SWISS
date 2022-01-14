@@ -85,33 +85,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<th class="matchStick" style="z-index: 200">Match #</th>
 						<th>Robot Present?</th>
 						<th>Starting Pos.</th>
-						<th>Balls PrLod</th>
 						<th>Auto Route</th>
-						<th>Exit Baseline</th>
+						<th>Exit Tarmac</th>
 						<th>Auto Low</th>
 						<th>Auto High</th>
-						<th>Auto Inner</th>
-                        <th>Auto Missed</th>
+						<th>Auto Fouls</th>
+
 						<th>Tele Low</th>
 						<th>Tele High</th>
-						<th>Tele Inner</th>
+						<th>Tele Collected</th>
                         <th>Tele Missed</th>
 						<th>Intake Type</th>
 						<th>Cycle Style</th>
 						<th>Under Defense</th>
-						<th>Ctrl Pnl Task</th>
-						<th>Ctrl Pnl Quality</th>
 						<th>Ofns Fouls</th>
+
 						<th>Played Dfns</th>
 						<th>Dfns Quality</th>
 						<th>Dfns Fouls</th>
 						<th>Push Ability</th>
-                        <th>Climb Position</th>
-						<th>Timeout Position</th>
+
+                        <th>Endgame Level</th>
+						<th>Climb Time</th>
+						<th>Climb Attempts</th>
+
 						<th>Human Fouls</th>
 						<th>Driver Fouls</th>
 						<th>Yellow Card</th>
+
+                        <th>Auto Comment</th>
+                        <th>Climb Comment</th>
                         <th>Comment</th>
+
 						<th>Scouter</th>
 					</tr>
 					{% for match in match_list %}
@@ -121,33 +126,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <td class="matchStick" style="z-index: 100">{{ match.match_number }}</td>
                             <td>{{ match.on_field }}</td>
                             <td>{{ match.auto_start }}</td>
-                            <td>{{ match.preloaded_balls }}</td>
                             <td>{{ match.auto_route }}</td>
                             <td>{{ match.baseline }}</td>
                             <td>{{ match.lower_auto }}</td>
-                            <td>{{ match.outer_auto }}</td>
-                            <td>{{ match.inner_auto }}</td>
-                            <td>{{ match.missed_balls_auto }}</td>
+                            <td>{{ match.upper_auto }}</td>
+                            <td>{{ match.fouls_auto }}</td>
+
                             <td>{{ match.lower }}</td>
-                            <td>{{ match.outer }}</td>
-                            <td>{{ match.inner }}</td>
+                            <td>{{ match.upper }}</td>
+                            <td>{{ match.balls_collected }}</td>
                             <td>{{ match.missed_balls }}</td>
                             <td>{{ match.ball_intake_type }}</td>
                             <td>{{ match.cycle_style }}</td>
                             <td>{{ match.under_defense }}</td>
-                            <td>{{ match.wheel_score }}</td>
-                            <td>{{ match.wheel_rating }}</td>
                             <td>{{ match.fouls }}</td>
+
                             <td>{{ match.played_defense }}</td>
                             <td>{{ match.defense_rating }}</td>
                             <td>{{ match.defense_fouls }}</td>
                             <td>{{ match.able_to_push }}</td>
-                            <td>{{ match.climb_location }}</td>
-                            <td>{{ match.field_timeout_pos }}</td>
-                            <td>{{ match.hp_fouls }}</td>
+
+                            <td>{{ match.endgame_action }}</td>
+                            <td>{{ match.climb_timer }}</td>
+                            <td>{{ match.climb_attempts }}</td>
+
                             <td>{{ match.dt_fouls }}</td>
+                            <td>{{ match.hp_fouls }}</td>
                             <td>{{ match.yellow_card }}</td>
+
+                            <td>{{ match.auto_comment }}</td>
+                            <td>{{ match.climb_comments }}</td>
                             <td>{{ match.comment }}</td>
+
                             <td style="background-color: grey">{{ match.scouter_name }}</td>
                     </tr>
                     {% endfor %}

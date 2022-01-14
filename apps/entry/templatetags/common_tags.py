@@ -22,9 +22,10 @@ def modulo(num, val):
 
 
 @register.simple_tag
-def get_current_event():
+def get_current_event(request):
     try:
-        return Event.objects.filter(FIRST_key=config.get_current_event_key())[0]
+        # return Event.objects.filter(FIRST_key=config.get_current_event_key())[0]
+        return TeamSettings.objects.get(team=request.user.teammember.team).currentEvent
     except IndexError:
         event = Event()
         event.name="Temp"

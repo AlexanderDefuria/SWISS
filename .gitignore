@@ -1,37 +1,9 @@
 *.pyc
 venv/*
-nickTest/oldabout.html
-nickTest/oldblank.html
-nickTest/olddata.html
-nickTest/oldexperimental.html
-nickTest/oldglance.html
-nickTest/oldindex.html
-nickTest/oldlogin.html
-nickTest/oldmatchlanding.html
-nickTest/oldmatchscout.html
-nickTest/oldpitlanding.html
-nickTest/oldpitscout.html
-nickTest/oldsettings.html
-nickTest/oldteams.html
-nickTest/oldupload.html
-nickTest/oldvisualization.html
-nickTest/testregister.html
-nickTest/oldabout (2020_07_20 19_29_48 UTC).html
-nickTest/oldblank (2020_07_20 19_29_48 UTC).html
-nickTest/olddata (2020_07_20 19_29_48 UTC).html
-nickTest/oldexperimental (2020_07_20 19_29_48 UTC).html
-nickTest/oldglance (2020_07_20 19_29_48 UTC).html
-nickTest/oldindex (2020_07_20 19_29_48 UTC).html
-nickTest/oldlogin (2020_07_20 19_29_48 UTC).html
-nickTest/oldmatchlanding (2020_07_20 19_29_48 UTC).html
-nickTest/oldmatchscout (2020_07_20 19_29_48 UTC).html
-nickTest/oldpitlanding (2020_07_20 19_29_48 UTC).html
-nickTest/oldpitscout (2020_07_20 19_29_48 UTC).html
-nickTest/oldsettings (2020_07_20 19_29_48 UTC).html
-nickTest/oldteams (2020_07_20 19_29_48 UTC).html
-nickTest/oldupload (2020_07_20 19_29_48 UTC).html
-nickTest/oldvisualization (2020_07_20 19_29_48 UTC).html
-nickTest/testregister (2020_07_20 19_29_48 UTC).html
-nickTest/abouttest.html
-nickTest/abouttest.html
 settings.py
+media/robots/*
+!media/robots/0.png
+!media/robots/1114.jpg
+!media/robots/3683.jpg
+!media/robots/4343.JPG
+!media/robots/default.jpg

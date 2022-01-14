@@ -7,6 +7,7 @@ import ast
 import re
 
 from django.core import serializers
+from django.db.models import Q
 from django.shortcuts import render
 
 from apps import config
@@ -302,11 +303,8 @@ def update_glance(request, pk):
     team = Team.objects.get(id=pk)
     team.glance.delete()
     team.glance.save(
-        'glance_' + str(pk) + '_' + str(count) + '_' + str(datetime.now()) + '.json', f)
+        'glance_' + str(pk) + '_' + str(count) + '_' + str(datetime.datetime.now()) + '.json', f)
     return HttpResponse(matches_json, content_type='application/json')
-
-
-
 
 
 @ajax
@@ -445,6 +443,9 @@ def import_from_first(request):
         key = request.POST.get('key', 0)
         year = request.POST.get('year', 0)
 
+        if year == 0:
+            year = None
+
         if import_type == 0:
             importFRC.import_district(key, year)
         elif import_type == 1:
@@ -511,9 +512,16 @@ def make_int(s):
 
 
 def get_present_teams(user):
-    objects = Team.objects.filter(number__in=DBTools.get_event_teams(TeamSettings.objects.get(team=user.teammember.team).currentEvent.FIRST_key))
-    objects = objects.order_by('number')
-    return objects
+    # TODO This NEEDS to be faster
+    try:
+        objects = Team.objects.filter(number__in=
+                                      DBTools.get_event_teams(
+                                        TeamSettings.objects.get(team=user.teammember.team).
+                                        currentEvent.FIRST_key))
+        return objects
+    except TeamSettings.DoesNotExist:
+
+        return Team.objects.all()
 
 
 def get_all_teams():
@@ -526,6 +534,19 @@ def get_all_events():
     return Event.objects.all().order_by('start')
 
 
+def handle_query_present_teams(view):
+    teams = get_present_teams(view.request.user)
+    if teams.count() == 1 and teams.first() == Team.objects.first():
+        return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
+
+    return teams
+
+
+class TeamSettingsNotFoundError(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'entry:login'
+    template_name = 'entry/team_settings_not_found_error.html'
+
+
 class TeamList(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     template_name = 'entry/teams.html'
@@ -533,7 +554,11 @@ class TeamList(LoginRequiredMixin, generic.ListView):
     model = Team
 
     def get_queryset(self):
-        return get_present_teams(self.request.user)
+        teams = get_present_teams(self.request.user)
+        if teams.count() == 1 and teams.first() == Team.objects.first():
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
+
+        return teams
 
 
 class Import(LoginRequiredMixin, generic.TemplateView):
@@ -561,7 +586,11 @@ class MatchScoutLanding(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/matchlanding.html'
 
     def get_queryset(self):
-        return get_present_teams(self.request.user)
+        teams = get_present_teams(self.request.user)
+        if teams.count() == 1 and teams.first() == Team.objects.first():
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
+
+        return teams
 
 
 class Visualize(LoginRequiredMixin, generic.ListView):
@@ -571,7 +600,11 @@ class Visualize(LoginRequiredMixin, generic.ListView):
     context_object_name = "team_list"
 
     def get_queryset(self):
-        return get_present_teams(self.request.user)
+        teams = get_present_teams(self.request.user)
+        if teams.count() == 1 and teams.first() == Team.objects.first():
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
+
+        return teams
 
 
 class ScheduleView(LoginRequiredMixin, generic.ListView):
@@ -580,8 +613,12 @@ class ScheduleView(LoginRequiredMixin, generic.ListView):
     context_object_name = "schedule_list"
     model = Schedule
 
-    def get_queryset(self):
-        teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+    def render_to_response(self, context, **response_kwargs):
+        try:
+            teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+        except IndexError as e:
+            print(str(e) + ": There are no team settings for this query.")
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
         return Schedule.objects.filter(event_id=teamsettings.currentEvent).order_by("match_type")
 
@@ -600,7 +637,11 @@ class PitScoutLanding(LoginRequiredMixin, generic.ListView):
     context_object_name = "team_list"
 
     def get_queryset(self):
-        return get_present_teams(self.request.user)
+        teams = get_present_teams(self.request.user)
+        if teams.count() == 1 and teams.first() == Team.objects.first():
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
+
+        return teams
 
 
 class Experimental(LoginRequiredMixin, generic.TemplateView):
@@ -643,7 +684,7 @@ class GlanceLanding(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/glancelanding.html'
 
     def get_queryset(self):
-        return get_present_teams(self.request.user)
+        return handle_query_present_teams(self)
 
 
 class Registration(generic.TemplateView):
@@ -689,9 +730,13 @@ class MatchData(LoginRequiredMixin, generic.ListView):
     model = Match
 
     def get_queryset(self):
-        teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+        try:
+            teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+        except IndexError:
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
-        return Match.objects.all().filter(event_id=teamsettings.currentEvent).filter(team_ownership=self.request.user.teammember.team.id)
+        return Match.objects.all().filter(event_id=teamsettings.currentEvent).filter(
+            team_ownership=self.request.user.teammember.team.id)
 
 
 class PitData(LoginRequiredMixin, generic.ListView):
@@ -700,9 +745,13 @@ class PitData(LoginRequiredMixin, generic.ListView):
     model = Pits
 
     def get_queryset(self):
-        teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+        try:
+            teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+        except IndexError:
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
-        return Pits.objects.all().filter(event_id=teamsettings.currentEvent).filter(team_ownership=self.request.user.teammember.team.id)
+        return Pits.objects.all().filter(event_id=teamsettings.currentEvent).filter(
+            team_ownership=self.request.user.teammember.team.id)
 
 
 class Upload(LoginRequiredMixin, generic.TemplateView):
@@ -713,15 +762,6 @@ class Upload(LoginRequiredMixin, generic.TemplateView):
 class Settings(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
     template_name = 'entry/settings.html'
-
-    settings_file = {}
-    try:
-        path = 'settings.json'
-        path = os.path.join(settings.BASE_DIR, path)
-        with open(path) as f:
-            settings_file = json.load(f)
-    except IOError:
-        print("settings.json file not found")
 
     def post(self, request, *args, **kwargs):
         response = HttpResponseRedirect(reverse_lazy('entry:settings'))
@@ -735,7 +775,6 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
             new_settings = TeamSettings()
             print("making")
             try:
-                config.set_event(request.POST.get('currentEvent', '21ONT'))
                 new_settings = TeamSettings.objects.get(team=self.request.user.teammember.team)
                 new_settings.currentEvent = Event.objects.get(FIRST_key=request.POST.get('currentEvent', '21ONT'))
 
@@ -753,7 +792,6 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
 
 
 class DBTools:
-
     present_team_list = None
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -771,9 +809,8 @@ class DBTools:
         raw_list = DBTools.get_event_teams(event_key)
         new_list = []
 
-        #for index in raw_list:
+        # for index in raw_list:
         #    new_list.append(Team.objects.)
-
 
     def get_event_teams(event_key):
         """
@@ -788,19 +825,11 @@ class DBTools:
 
         for match in schedule_list:
             team_list.append(match.blue1)
-            team_list.append(match.blue2)
-            team_list.append(match.blue3)
-            team_list.append(match.red1)
-            team_list.append(match.red2)
-            team_list.append(match.red3)
 
         team_list.remove(0)
-        print(team_list)
         team_list.sort()
         present_team_list = team_list
         return present_team_list
-
-
 
     def update_event_teams(event_key):
         """

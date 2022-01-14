@@ -119,7 +119,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			</a>
 			<div class="specialBox" id="tileEvent" style="flex-direction: column">
 				<p class="specialBoxHeader">Current Event Is:</p>
-				<h3 style="margin: 0">{% get_current_event %}</h3>
+				<h3 style="margin: 0">{% get_current_event request %}</h3>
 			</div>
 			<a href="{% url 'entry:upload' %}" id="tileUpload" title="Upload an Image">
 				<div class="smallBox">

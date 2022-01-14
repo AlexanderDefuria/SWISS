@@ -21,8 +21,10 @@ def clean_key(key):
     return str(key).upper().strip()
 
 
-def import_district(key=config.get_current_district_key(), year=2021):
+def import_district(key, year='2022'):
     key = clean_key(key)
+    if year is None or year is "":
+        year = '2022'
     request = "/events?districtCode=" + key
     try:
         request = get_request(request, year)
@@ -36,11 +38,11 @@ def import_district(key=config.get_current_district_key(), year=2021):
     return
 
 
-def import_event(key, year='2021'):
+def import_event(key, year='2022'):
     import_event_page(key, 1, year=year)
 
 
-def import_event_page(key, page, year='2021'):
+def import_event_page(key, page, year='2022'):
     print(key)
     teams = None
     events = None
@@ -59,7 +61,7 @@ def import_event_page(key, page, year='2021'):
 
     request = "/events?eventCode=" + key
     try:
-        request = get_request(request,year)
+        request = get_request(request, year)
         events = request['Events']
         if int(request['pageCurrent']) < int(request['pageTotal']):
             import_event_page(key, page + 1, year)
@@ -81,10 +83,18 @@ def import_event_page(key, page, year='2021'):
 
         new_event.name = event['name']
         new_event.FIRST_key = event['code']
-        print(int(event['dateStart'][5:7]))
-        new_event.start = datetime.date(int(event['dateStart'][0:3]), int(event['dateStart'][5:7]), int(event['dateStart'][8:10]))
-        new_event.end = datetime.date(int(event['dateEnd'][0:3]), int(event['dateEnd'][5:7]), int(event['dateEnd'][8:10]))
-        new_event.FIRST_eventType = 1
+        try:
+            new_event.FIRST_district_key = event['districtCode']
+        except Exception as e:
+            print(e)
+            new_event.FIRST_key = "Regional"
+
+        print((event['dateStart']))
+        new_event.start = datetime.date(int(event['dateStart'][0:3]), int(event['dateStart'][5:7]),
+                                        int(event['dateStart'][8:10]))
+        new_event.end = datetime.date(int(event['dateEnd'][0:3]), int(event['dateEnd'][5:7]),
+                                      int(event['dateEnd'][8:10]))
+        new_event.FIRST_eventType = event['type']
         new_event.save()
         print("New EVENT:")
         print(new_event)
@@ -92,18 +102,17 @@ def import_event_page(key, page, year='2021'):
 
     # If we're populating teams for the event then purge the existing ones otherwise ignore
     if teams is not None:
-        existing = Schedule.objects.all().filter(event_id=Event.objects.get(FIRST_key=key).id)
-        for each in existing:
-            each.delete()
-
-    # Populate schedule with dummies to display teams at event, not included in the schedule display frontend
-    i = 0
-    new_schedule = Schedule()
+        try:
+            existing = Schedule.objects.all().filter(event_id=Event.objects.get(FIRST_key=key).id)
+            for each in existing:
+                each.delete()
+        except Event.DoesNotExist:
+            NoGoodResponseError
 
     if teams is None:
         return
 
-
+    # Populate schedule with dummies to display teams at event, not included in the schedule display frontend
     for team in teams:
         new_team = import_team_json(team)
 
@@ -115,6 +124,8 @@ def import_event_page(key, page, year='2021'):
         new_schedule.match_type = "placeholder"
         new_schedule.placeholder = True
         new_schedule.event = Event.objects.get(FIRST_key=key)
+        # TODO Fix this hackish solution.
+        #                    vvvvvvvvvvvv
         new_schedule.red1 = new_team.number
         new_schedule.red2 = new_team.number
         new_schedule.red3 = new_team.number
@@ -123,48 +134,10 @@ def import_event_page(key, page, year='2021'):
         new_schedule.blue3 = new_team.number
         new_schedule.save()
 
-        #if i == 6:
-        #    new_schedule.blue_score = 0
-        #    new_schedule.red_score = 0
-        #    new_schedule.match_number = 0
-        #    new_schedule.match_type = "placeholder"
-        #    new_schedule.placeholder = True
-        #    print(new_schedule)
-        #    new_schedule.save()
-        #    new_schedule = Schedule()
-        #    i = 0
-        #
-        #if i == 0:
-        #    new_schedule.blue_score = 0
-        #    new_schedule.red_score = 0
-        #    new_schedule.match_number = 0
-        #    new_schedule.match_type = "placeholder"
-        #    new_schedule.placeholder = True
-        #    print(new_schedule)
-        #    new_schedule.event = Event.objects.get(FIRST_key=key)
-        #    new_schedule.blue1 = new_team.number
-        #elif i == 1:
-        #    new_schedule.event = Event.objects.get(FIRST_key=key)
-        #    new_schedule.blue2 = new_team.number
-        #elif i == 2:
-        #    new_schedule.event = Event.objects.get(FIRST_key=key)
-        #    new_schedule.blue3 = new_team.number
-        #elif i == 3:
-        #    new_schedule.event = Event.objects.get(FIRST_key=key)
-        #    new_schedule.red1 = new_team.number
-        #elif i == 4:
-        #    new_schedule.event = Event.objects.get(FIRST_key=key)
-        #    new_schedule.red2 = new_team.number
-        #elif i == 5:
-        #    new_schedule.event = Event.objects.get(FIRST_key=key)
-        #    new_schedule.red3 = new_team.number
-        #
-        #i += 1
-
     return
 
 
-def import_team(team_number, year='2021'):
+def import_team(team_number, year='2022'):
     request = "/teams?teamNumber=" + str(team_number)
     try:
         request = get_request(request, year)
@@ -204,8 +177,7 @@ def import_schedule(event_slug):
     return
 
 
-def get_request(request, year='2021'):
-
+def get_request(request, year='2022'):
     request = str(request)
 
     if request[0] != "/":
@@ -230,19 +202,5 @@ def get_request(request, year='2021'):
     return answer.json()
 
 
-class PresentTeams:
-    present_teams = 0
-
-    def update_present_teams(self):
-        config.get_current_event_key()
-        pass
-
-    pass
-
-
-# Wooooowwwww custom error handling ooooooohhhh, thanks uottawa intro to comp sci.
 class NoGoodResponseError(Exception):
     pass
-
-
-
