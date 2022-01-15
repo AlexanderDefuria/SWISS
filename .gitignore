@@ -1,6 +1,7 @@
 *.pyc
 venv/*
 settings.py
+media/json/*
 media/robots/*
 !media/robots/0.png
 !media/robots/1114.jpg
