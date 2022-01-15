@@ -1,4 +1,5 @@
-*.pyc
+*.py[co]
+*.sw[po]
 venv/*
 settings.py
 media/json/*
@@ -8,3 +9,4 @@ media/robots/*
 !media/robots/3683.jpg
 !media/robots/4343.JPG
 !media/robots/default.jpg
+/secrets.json
