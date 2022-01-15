@@ -33,9 +33,7 @@ class Team(models.Model):
         # code to determine which image to show. The First in this case.
         try:
             return self.images.all()[len(self.images.all()) - 1].image
-        except IndexError:
-            return '/robots/default.jpg'
-        except AssertionError:
+        except Exception:
             return '/robots/default.jpg'
 
     def __str__(self):
