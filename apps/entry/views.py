@@ -613,7 +613,7 @@ class ScheduleView(LoginRequiredMixin, generic.ListView):
     context_object_name = "schedule_list"
     model = Schedule
 
-    def render_to_response(self, context, **response_kwargs):
+    def get_queryset(self):
         try:
             teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
         except IndexError as e:
