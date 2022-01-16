@@ -31,7 +31,7 @@ jobs:
         with:
           config-file: 'control_template.json'
           deps-file: 'dependencies.txt'
-          output-path: '/'
+          output-path: '.'
       
       - name: Prints Output File Path
         run: echo "${{ steps.control-gen.outputs.control_file_path }}"
