@@ -1,0 +1,62 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master, deploy]
+    
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  deb-control-file-build:
+    name: Generate Debian Package
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Generate Control File
+        id: control-gen
+        uses: Nightwind-Developments/debian-control-file-builder@latest
+        with:
+          config-file: 'examples/control_file_generate/example_control_template.json'
+          deps-file: 'examples/control_file_generate/dependencies.txt'
+          output-path: 'examples/input_example/'
+      
+      - name: Prints Output File Path
+        run: echo "${{ steps.control-gen.outputs.control_file_path }}"
+
+      - name: Confirms Control File is Present
+        run: ls ${{ steps.control-gen.outputs.control_file_path }}
+        
+      - name: Prints Contents of Input Resources
+        run: ls -l examples/input_example/
+      
+      - name: Build Docker Container & Run Debian Packer
+        uses: Nightwind-Developments/debian-packer@latest
+        id: container
+        with:
+          input_dir: 'examples/input_example'
+          output_dir: 'output'
+          layout_map_file: 'examples/example-map.json'
+          package_name: 'HelloWorld'
+          package_version: '1.0.0'
+          package_arch: 'all'
+
+      - name: Upload Generated Package File
+        uses: actions/upload-artifact@v2
+        with:
+          name: generated-hello-world-package
+          path: "${{ steps.container.outputs.generated_package_path }}"
+          if-no-files-found: error
+
