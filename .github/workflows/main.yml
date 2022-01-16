@@ -46,10 +46,10 @@ jobs:
         uses: Nightwind-Developments/debian-packer@latest
         id: container
         with:
-          input_dir: 'examples/input_example'
-          output_dir: 'output'
-          layout_map_file: 'examples/example-map.json'
-          package_name: 'HelloWorld'
+          input_dir: '.'
+          output_dir: '.'
+          layout_map_file: 'deb-map.json'
+          package_name: 'SWISS'
           package_version: '1.0.0'
           package_arch: 'all'
 
