@@ -1,0 +1,7 @@
+{
+  "Package": "SWISS",
+  "Version": "1.0.0",
+  "Architecture": "all",
+  "Maintainer": "Alexander DeFuria",
+  "Description": "This is just a sample control file for a Debian package"
+}
