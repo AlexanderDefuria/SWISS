@@ -1,0 +1,7 @@
+{
+  "Package": "PackageName",
+  "Version": "1.0.0",
+  "Architecture": "all",
+  "Maintainer": "Alexander De Furia",
+  "Description": "This is just a sample control file for a Debian package"
+}
