@@ -11,22 +11,39 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import json
+import os
+from django.core.exceptions import ImproperlyConfigured
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+#
+with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
+    secrets = json.load(secrets_file)
+
+def get_secret(setting, secrets=secrets):
+    """Get secret setting or fail with ImproperlyConfigured"""
+    try:
+        return secrets[setting]
+    except KeyError:
+        raise ImproperlyConfigured("Set the {} setting".format(setting))
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'b1obhi$y6*ek*i3zf5fgxn&q11+$_28+@u4rai!byei+t1v)-x'
+SECRET_KEY = get_secret('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
 # Application definition
@@ -80,18 +97,14 @@ WSGI_APPLICATION = 'FRC-Scouting.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    #'default': {
-    #    'ENGINE': 'django.db.backends.sqlite3',
-    #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    #}
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'swissdb',
-        'USER': 'swiss',
-        'PASSWORD': 'l5oix3lgmz0p5gzp',
-        'HOST': 'db-postgresql-nyc3-00259-do-user-7775406-0.b.db.ondigitalocean.com',
-        'PORT': '25060',
-        'OPTIONS': {'sslmode': 'require'},
+        'ENGINE': get_secret("ENGINE"),
+        'NAME': get_secret("NAME"),
+        'USER': get_secret("USER"),
+        'PASSWORD': get_secret("PASSWORD"),
+        'HOST': get_secret("HOST"),
+        'PORT': get_secret("PORT"),
+        'OPTIONS': {'sslmode': get_secret("sslmode")},
     }
 }
 
@@ -129,7 +142,6 @@ TIME_ZONE = 'America/Toronto'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = False
-
 
 
 

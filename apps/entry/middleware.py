@@ -5,9 +5,7 @@ from django.http import HttpResponse
 from django.conf import settings
 import traceback
 
-from apps.entry.urls import urlpatterns
 from apps import config
-from apps import importFRC
 
 
 class ValidateUser:
@@ -36,6 +34,9 @@ class ValidateUser:
             view = str(request.path).split('/')[2]
             app = str(request.path).split('/')[1]
         except IndexError:
+            if str(request.path).__contains__("favicon.ico"):
+                return response
+
             print("\nINDEX ERROR FROM PATH SPLITTING IN MIDDLEWARE:")
             print(request.path)
             print("\n")
@@ -67,9 +68,6 @@ class ValidateUser:
     def valid_perms(self, view, user):
         if view == '':
             view = 'index'
-
-        # if 'matchscout' in view:
-
 
         reqlevel = 0
         for each in TeamMember.AVAILABLE_POSITIONS:

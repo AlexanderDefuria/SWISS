@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rm -r /usr/share/FRC-Scouting
+rm /etc/nginx/sites-available/FRC-Scouting
+rm /etc/nginx/sites-enabled/FRC-Scouting

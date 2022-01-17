@@ -24,5 +24,12 @@
       <jdbc-url>jdbc:postgresql://db-postgresql-nyc3-00259-do-user-7775406-0.b.db.ondigitalocean.com:25060/swissdb</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="testdbj@localhost" uuid="594ce8c5-cd93-47bd-8b44-c996a84784cb">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/testdbj</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

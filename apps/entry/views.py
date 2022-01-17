@@ -7,11 +7,12 @@ import ast
 import re
 
 from django.core import serializers
-from django.shortcuts import render_to_response
+from django.db.models import Q
+from django.shortcuts import render
+from django.db import IntegrityError
 
 from apps import config
 from apps import importFRC
-import dbTools
 
 from datetime import datetime
 from json import dumps
@@ -29,7 +30,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 
 from apps.entry.graphing import *
 from apps.entry.models import *
-from apps.entry.templatetags import common_tags
+from apps.entry.templatetags.common_tags import *
 
 register = Library
 
@@ -46,7 +47,7 @@ def match_scout_submit(request, pk):
 
         teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
 
-        first_key = Event.objects.all().filter(id=make_int(teamsettings.currentEvent.id))[0].FIRST_key
+        first_key = Event.objects.all().filter(id=make_int(teamsettings.current_event.id))[0].FIRST_key
 
         match.event = Event.objects.get(FIRST_key=first_key)
         match_number = request.POST.get('matchNumber', -1)
@@ -125,7 +126,7 @@ def validate_match_scout(request, pk):
 
     teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
 
-    if Match.objects.filter(team_id=pk, event_id=teamsettings.currentEvent,
+    if Match.objects.filter(team_id=pk, event_id=teamsettings.current_event,
                             match_number=data['matchNumber'][0]).exists():
         # Check if there are already 6 teams that have played this match
         if Match.objects.filter(match_number=data['matchNumber'][0]).count() <= 6:
@@ -214,7 +215,7 @@ def pit_scout_submit(request, pk):
 
         teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
 
-        first_key = Event.objects.all().filter(id=make_int(teamsettings.currentEvent.id))[0].FIRST_key
+        first_key = Event.objects.all().filter(id=make_int(teamsettings.current_event.id))[0].FIRST_key
 
         pits.event = Event.objects.get(FIRST_key=first_key)
         pits.drivetrain_style = request.POST.get('drivetrainStyle', ' ')
@@ -302,11 +303,8 @@ def update_glance(request, pk):
     team = Team.objects.get(id=pk)
     team.glance.delete()
     team.glance.save(
-        'glance_' + str(pk) + '_' + str(count) + '_' + str(datetime.now()) + '.json', f)
+        'glance_' + str(pk) + '_' + str(count) + '_' + str(datetime.datetime.now()) + '.json', f)
     return HttpResponse(matches_json, content_type='application/json')
-
-
-
 
 
 @ajax
@@ -369,11 +367,12 @@ def get_csv_ajax(request):
 
 
 def update_csv():
+    # TODO Needs to get updated to work with postgresql...
     print("Updating CSV File")
     conn = sqlite3.connect("db.sqlite3")
     c = conn.cursor()
 
-    c.execute("SELECT * FROM entry_match", ())
+    #c.execute("SELECT * FROM entry_match", ())
     with open("match_history.csv", "w") as csv_file:
         csv_writer = csv.writer(csv_file, delimiter="\t")
         csv_writer.writerow([i[0] for i in c.description])
@@ -445,6 +444,9 @@ def import_from_first(request):
         key = request.POST.get('key', 0)
         year = request.POST.get('year', 0)
 
+        if year == 0:
+            year = None
+
         if import_type == 0:
             importFRC.import_district(key, year)
         elif import_type == 1:
@@ -499,7 +501,7 @@ def admin_redirect(request, **kwargs):
 
 
 def handler404(request, exception, template_name="entry/secret.html"):
-    response = render_to_response(template_name)
+    response = render(request, template_name)
     response.status_code = 404
     return response
 
@@ -511,9 +513,34 @@ def make_int(s):
 
 
 def get_present_teams(user):
-    objects = Team.objects.filter(number__in=DBTools.get_event_teams(TeamSettings.objects.get(team=user.teammember.team).currentEvent.FIRST_key))
-    objects = objects.order_by('number')
-    return objects
+    # TODO This NEEDS to be faster
+    try:
+        objects = Team.objects.filter(number__in=
+                                      get_event_teams(
+                                        TeamSettings.objects.get(team=user.teammember.team).
+                                        current_event.FIRST_key))
+        return objects
+    except TeamSettings.DoesNotExist:
+
+        return Team.objects.all()
+
+
+def get_event_teams(event_key):
+    """
+    :param event_key: FIRST Event Key
+    :type event_key: str
+    :return : List of team IDs attending said event
+    :rtype : List
+    """
+    team_list = [0]
+    event_id = Event.objects.get(FIRST_key=event_key)
+    schedule_list = Schedule.objects.all().filter(event_id=event_id)
+    for match in schedule_list:
+        team_list.append(match.blue1)
+    team_list.remove(0)
+    team_list.sort()
+    present_team_list = team_list
+    return present_team_list
 
 
 def get_all_teams():
@@ -526,6 +553,19 @@ def get_all_events():
     return Event.objects.all().order_by('start')
 
 
+def handle_query_present_teams(view):
+    teams = get_present_teams(view.request.user)
+    if teams.count() == 1 and teams.first() == Team.objects.first():
+        return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
+
+    return teams
+
+
+class TeamSettingsNotFoundError(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'entry:login'
+    template_name = 'entry/team_settings_not_found_error.html'
+
+
 class TeamList(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     template_name = 'entry/teams.html'
@@ -533,7 +573,11 @@ class TeamList(LoginRequiredMixin, generic.ListView):
     model = Team
 
     def get_queryset(self):
-        return get_present_teams(self.request.user)
+        teams = get_present_teams(self.request.user)
+        if teams.count() == 1 and teams.first() == Team.objects.first():
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
+
+        return teams
 
 
 class Import(LoginRequiredMixin, generic.TemplateView):
@@ -561,7 +605,11 @@ class MatchScoutLanding(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/matchlanding.html'
 
     def get_queryset(self):
-        return get_present_teams(self.request.user)
+        teams = get_present_teams(self.request.user)
+        if teams.count() == 1 and teams.first() == Team.objects.first():
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
+
+        return teams
 
 
 class Visualize(LoginRequiredMixin, generic.ListView):
@@ -571,7 +619,11 @@ class Visualize(LoginRequiredMixin, generic.ListView):
     context_object_name = "team_list"
 
     def get_queryset(self):
-        return get_present_teams(self.request.user)
+        teams = get_present_teams(self.request.user)
+        if teams.count() == 1 and teams.first() == Team.objects.first():
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
+
+        return teams
 
 
 class ScheduleView(LoginRequiredMixin, generic.ListView):
@@ -581,9 +633,13 @@ class ScheduleView(LoginRequiredMixin, generic.ListView):
     model = Schedule
 
     def get_queryset(self):
-        teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+        try:
+            teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+        except IndexError as e:
+            print(str(e) + ": There are no team settings for this query.")
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
-        return Schedule.objects.filter(event_id=teamsettings.currentEvent).order_by("match_type")
+        return Schedule.objects.filter(event_id=teamsettings.current_event).order_by("match_type")
 
 
 class PitScout(LoginRequiredMixin, generic.DetailView):
@@ -600,7 +656,11 @@ class PitScoutLanding(LoginRequiredMixin, generic.ListView):
     context_object_name = "team_list"
 
     def get_queryset(self):
-        return get_present_teams(self.request.user)
+        teams = get_present_teams(self.request.user)
+        if teams.count() == 1 and teams.first() == Team.objects.first():
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
+
+        return teams
 
 
 class Experimental(LoginRequiredMixin, generic.TemplateView):
@@ -643,7 +703,7 @@ class GlanceLanding(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/glancelanding.html'
 
     def get_queryset(self):
-        return get_present_teams(self.request.user)
+        return handle_query_present_teams(self)
 
 
 class Registration(generic.TemplateView):
@@ -689,9 +749,13 @@ class MatchData(LoginRequiredMixin, generic.ListView):
     model = Match
 
     def get_queryset(self):
-        teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+        try:
+            teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+        except IndexError:
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
-        return Match.objects.all().filter(event_id=teamsettings.currentEvent).filter(team_ownership=self.request.user.teammember.team.id)
+        return Match.objects.all().filter(event_id=teamsettings.current_event).filter(
+            team_ownership=self.request.user.teammember.team.id)
 
 
 class PitData(LoginRequiredMixin, generic.ListView):
@@ -700,9 +764,13 @@ class PitData(LoginRequiredMixin, generic.ListView):
     model = Pits
 
     def get_queryset(self):
-        teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+        try:
+            teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+        except IndexError:
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
-        return Pits.objects.all().filter(event_id=teamsettings.currentEvent).filter(team_ownership=self.request.user.teammember.team.id)
+        return Pits.objects.all().filter(event_id=teamsettings.current_event).filter(
+            team_ownership=self.request.user.teammember.team.id)
 
 
 class Upload(LoginRequiredMixin, generic.TemplateView):
@@ -713,15 +781,6 @@ class Upload(LoginRequiredMixin, generic.TemplateView):
 class Settings(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
     template_name = 'entry/settings.html'
-
-    settings_file = {}
-    try:
-        path = 'settings.json'
-        path = os.path.join(settings.BASE_DIR, path)
-        with open(path) as f:
-            settings_file = json.load(f)
-    except IOError:
-        print("settings.json file not found")
 
     def post(self, request, *args, **kwargs):
         response = HttpResponseRedirect(reverse_lazy('entry:settings'))
@@ -735,13 +794,12 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
             new_settings = TeamSettings()
             print("making")
             try:
-                config.set_event(request.POST.get('currentEvent', '21ONT'))
                 new_settings = TeamSettings.objects.get(team=self.request.user.teammember.team)
-                new_settings.currentEvent = Event.objects.get(FIRST_key=request.POST.get('currentEvent', '21ONT'))
+                new_settings.current_event = Event.objects.get(FIRST_key=request.POST.get('currentEvent', '21ONT'))
 
             except TeamSettings.DoesNotExist:
                 new_settings.team = self.request.user.teammember.team
-                new_settings.currentEvent = Event.objects.get(FIRST_key=request.POST.get('currentEvent', '21ONT'))
+                new_settings.current_event = Event.objects.get(FIRST_key=request.POST.get('currentEvent', '21ONT'))
 
             except Event.DoesNotExist:
                 print("User entered event that doesn't exist")
@@ -752,76 +810,3 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
         return response
 
 
-class DBTools:
-
-    present_team_list = None
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-    def team_id_lookup(team_number):
-        """
-        :param team_number: FRC Team Number
-        :type team_number: int
-        :return: Team ID within the DB
-        """
-        team_id = Team.objects.get(number=team_number).id
-
-        return team_id
-
-    def get_event_teams_number(event_key):
-        raw_list = DBTools.get_event_teams(event_key)
-        new_list = []
-
-        #for index in raw_list:
-        #    new_list.append(Team.objects.)
-
-
-    def get_event_teams(event_key):
-        """
-        :param event_key: FIRST Event Key
-        :type event_key: str
-        :return : List of team IDs attending said event
-        :rtype : List
-        """
-        team_list = [0]
-        event_id = Event.objects.get(FIRST_key=event_key)
-        schedule_list = Schedule.objects.all().filter(event_id=event_id)
-
-        for match in schedule_list:
-            team_list.append(match.blue1)
-            team_list.append(match.blue2)
-            team_list.append(match.blue3)
-            team_list.append(match.red1)
-            team_list.append(match.red2)
-            team_list.append(match.red3)
-
-        team_list.remove(0)
-        print(team_list)
-        team_list.sort()
-        present_team_list = team_list
-        return present_team_list
-
-
-
-    def update_event_teams(event_key):
-        """
-        :param event_key: FIRST Event Key
-        :type event_key: str
-        :return None
-        """
-        DBTools.get_event_teams(event_key)
-
-    def event_id_lookup(FIRST_key):
-        conn = sqlite3.connect(str(os.path.join(DBTools.BASE_DIR, "db.sqlite3")))
-        c = conn.cursor()
-        try:
-            return c.execute('SELECT id FROM entry_event WHERE FIRST_key==?', (FIRST_key,)).fetchone()[0]
-        except Exception:
-            return None
-
-    def event_key_lookup(event_id):
-        conn = sqlite3.connect(str(os.path.join(DBTools.BASE_DIR, "db.sqlite3")))
-        c = conn.cursor()
-        try:
-            return c.execute('SELECT FIRST_key FROM entry_event WHERE id==?', (event_id,)).fetchone()[0]
-        except Exception:
-            return None

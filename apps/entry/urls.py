@@ -48,4 +48,6 @@ urlpatterns = [
 
     path('admin_redirect/<str:whereto>', views.admin_redirect, name='admin_redirect'),
     path('admin_redirect/', views.admin_redirect, name='admin_redirect'),
+
+    path('team_settings_not_found_error/', views.TeamSettingsNotFoundError.as_view(), name='team_settings_not_found_error'),
 ]

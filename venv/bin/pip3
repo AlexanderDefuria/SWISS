@@ -1,4 +1,4 @@
-#!/home/alexander/Desktop/FRC-Scouting/venv/bin/python3
+#!/root/FRC-Scouting/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

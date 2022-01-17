@@ -22,9 +22,10 @@ def modulo(num, val):
 
 
 @register.simple_tag
-def get_current_event():
+def get_current_event(request):
     try:
-        return Event.objects.filter(FIRST_key=config.get_current_event_key())[0]
+        # return Event.objects.filter(FIRST_key=config.get_current_event_key())[0]
+        return TeamSettings.objects.get(team=request.user.teammember.team).current_event
     except IndexError:
         event = Event()
         event.name="Temp"
@@ -116,7 +117,7 @@ def get_info(user, team, field, *args):
             model = Match
 
         teamsettings = TeamSettings.objects.all().filter(team_id=user.teammember.team)[0]
-        if len(model.objects.all().filter(team_id=team.id).filter(event_id=teamsettings.currentEvent.id).filter(team_ownership=user.teammember.team.id)) == 0:
+        if len(model.objects.all().filter(team_id=team.id).filter(event_id=teamsettings.current_event.id).filter(team_ownership=user.teammember.team.id)) == 0:
             return "No Data"
 
         if "dependant" in args:
