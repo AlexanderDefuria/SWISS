@@ -1,0 +1,14 @@
+server {
+    listen 80;
+    server_name swiss-scouting.ca www.swiss-scouting.ca localhost swiss-scouting.local 0.0.0.0 127.0.0.1;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /usr/share/FRC-Scouting;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix://usr/share/FRC-Scouting/FRC-Scouting.sock;
+    }
+}

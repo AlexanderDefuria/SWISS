@@ -23,7 +23,7 @@ def clean_key(key):
 
 def import_district(key, year='2022'):
     key = clean_key(key)
-    if year is None or year is "":
+    if year is None or year == "":
         year = '2022'
     request = "/events?districtCode=" + key
     try:

@@ -1,0 +1,103 @@
+#!/bin/bash
+
+echo "SWISS -- POSTINST"
+cd /usr/share || exit
+git clone https://github.com/AlexanderDefuria/FRC-Scouting.git
+cd FRC-Scouting || exit
+git stash
+git pull
+rm -r venv
+python3 -m venv ./venv
+./venv/bin/pip3 install -r requirements.txt
+
+# Setup DB
+echo "Choose an option for the database:"
+echo "(1) - Create a local database."
+echo "(2) - Connect to some existing database."
+DB_CHOICE=""
+while read DB_CHOICE
+do
+    if [ "$DB_CHOICE" -eq "1" ] || [ "$DB_CHOICE" -eq "2" ]; then
+        break
+    else
+        echo "Choose an option for the database:"
+        echo "(1) - Create a local database."
+        echo "(2) - Connect to some existing database."
+    fi
+done
+
+cd /usr/share/FRC-Scouting || exit
+if [ "$DB_CHOICE" == "2" ]; then
+    SECRET_KEY="$(./venv/bin/python3 -c 'import secrets; print(secrets.token_urlsafe())')"
+    {
+        printf '{\n\t"SECRET_KEY": "%s",\n' "$SECRET_KEY";
+        printf '\t"ENGINE": "django.db.backends.postgresql_psycopg2",\n';
+        printf '\t"NAME": "swissdbdev",\n';
+        printf '\t"USER": "swiss",\n';
+        printf '\t"PASSWORD": "l5oix3lgmz0p5gzp",\n';
+        printf '\t"HOST": "db-postgresql-nyc3-00259-do-user-7775406-0.b.db.ondigitalocean.com",\n';
+        printf '\t"PORT": "25060",\n';
+        printf '\t"sslmode": "require"\n';
+        printf '\n\n}';
+    } > secrets.json
+elif [ "$DB_CHOICE" == "1" ]; then
+    SECRET_KEY="$(./venv/bin/python3 -c 'import secrets; print(secrets.token_urlsafe())')"
+
+    read -p "DB Name: " DBNAME
+    read -p "DB Username: " USERNAME
+    read -s -p "DB Password: " PASSWORD
+    printf "\n\n"
+    sudo -u postgres bash -c "psql -c \"CREATE USER $USERNAME WITH PASSWORD '$PASSWORD';\""
+    sudo -u postgres createdb "$DBNAME"
+
+    {
+        printf '{\n\t"SECRET_KEY": "%s",\n' "$SECRET_KEY";
+        printf '\t"ENGINE": "django.db.backends.postgresql_psycopg2",\n';
+        printf '\t"NAME": "%s",\n' "$DBNAME";
+        printf '\t"USER": "%s",\n' "$USERNAME";
+        printf '\t"PASSWORD": "%s",\n' "$PASSWORD";
+        printf '\t"HOST": "localhost",\n';
+        printf '\t"PORT": "5432",\n';
+        printf '\t"sslmode": "require"\n';
+        printf '\n\n}';
+    } > secrets.json
+
+    ./venv/bin/python3 manage.py makemigrations
+    ./venv/bin/python3 manage.py migrate
+fi
+
+
+cp ./FRC-Scouting.nginx /etc/nginx/sites-available/FRC-Scouting
+sudo ln -s /etc/nginx/sites-available/FRC-Scouting /etc/nginx/sites-enabled
+
+sudo systemctl start gunicorn
+sudo systemctl enable gunicorn
+sudo systemctl daemon-reload
+sudo systemctl restart gunicorn
+
+sudo systemctl restart nginx
+sudo ufw allow 'Nginx Full'
+
+if [ "$DB_CHOICE" == "1" ]; then
+    cd /usr/share/FRC-Scouting/ || exit
+    read -p "Enter your team number: " TEAM_NUMBER
+    read -p "Enter your team name: " TEAM_NAME
+    sudo -u postgres bash -c "psql -d $DBNAME -c \"INSERT INTO entry_team (id, number, name, colour, pick_status, reg_id, glance) values($TEAM_NUMBER, $TEAM_NUMBER, '$TEAM_NAME', '#0', 0, '$(uuidgen)', '');\""
+    sudo -u postgres bash -c "psql -d $DBNAME -c \"INSERT INTO entry_event values(0, 'default', 'default', 0, '2000-01-01', '2000-01-02', false, 'default');\""
+    sudo -u postgres bash -c "psql -d $DBNAME -c \"INSERT INTO entry_teamsettings (id, allow_photos, allow_schedule, new_user_creation, new_user_position, current_event_id, team_id) values(0, true, true, 'AA', 'GS', 0, $TEAM_NUMBER);\""
+    ./venv/bin/python3 manage.py createsuperuser
+    sudo -u postgres bash -c "psql -d $DBNAME -c \"INSERT INTO entry_teammember (id, tutorial_completed, position, user_id, team_id) values(0, false, 'LS', 1, $TEAM_NUMBER);\""
+
+    printf "\n"
+    printf "***************************************************************\n"
+    printf "*\n"
+    printf "*\t\tWELCOME TEAM %s TO SWISS!!!\n" "$TEAM_NUMBER"
+    printf "*\t\t   - Team 4343\n"
+    printf "*\n"
+    printf "***************************************************************\n"
+    printf "\n\n"
+
+fi
+
+
+

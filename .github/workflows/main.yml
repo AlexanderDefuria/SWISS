@@ -1,0 +1,58 @@
+name: Debian Packer Example
+
+on:
+  push:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+jobs:
+  deb-control-file-build:
+    name: Generate Debian Package
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Generate Control File
+        id: control-gen
+        uses: Nightwind-Developments/debian-control-file-builder@latest
+        with:
+          config-file: 'debian/control.json'
+          deps-file: 'debian/dependencies.txt'
+          output-path: 'debian/input'
+
+      - name: Prints Output File Path
+        run: echo "${{ steps.control-gen.outputs.control_file_path }}"
+
+      - name: Confirms Control File is Present
+        run: ls ${{ steps.control-gen.outputs.control_file_path }}
+        
+      - name: Cat Control File
+        run: cat ${{ steps.control-gen.outputs.control_file_path }}
+        
+      #- name: Copies control File to Intended Location (useful if Debian Control file is not in the default location)
+      #  run: cp ${{ steps.control-gen.outputs.control_file_path }} examples/input_example
+
+      - name: Prints Contents of debian
+        run: ls -l ./debian
+      - name: Prints Contents of debian/input
+        run: ls -l ./debian/input
+
+      - name: Build Docker Container & Run Debian Packer
+        uses: Nightwind-Developments/debian-packer@latest
+        id: container
+        with:
+          input_dir: 'debian/input'
+          output_dir: 'debian'
+          layout_map_file: 'debian/deb-map.json'
+          package_name: 'SWISS'
+          package_version: '1.0.0'
+          package_arch: 'all'
+
+      - name: Upload Generated Package File
+        uses: actions/upload-artifact@v2
+        with:
+          name: swiss.deb
+          path: "${{ steps.container.outputs.generated_package_path }}"
+          if-no-files-found: error

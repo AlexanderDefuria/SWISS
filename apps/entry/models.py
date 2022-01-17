@@ -145,8 +145,7 @@ class Match(models.Model):
     scouter_name = models.TextField(default="")
     comment = models.TextField(default="")
     created_at = models.DateTimeField(auto_now_add=True)
-    team_ownership = models.ForeignKey(Team, on_delete=models.CASCADE, default=Team.objects.get(number=0).id,
-                                       related_name="+")
+    team_ownership = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
 
     def __str__(self):
         return self.team.name + "  Match: " + str(self.match_number)
@@ -191,8 +190,7 @@ class Pits(models.Model):
 
     # Name
     scouter_name = models.TextField(default="")
-    team_ownership = models.ForeignKey(Team, on_delete=models.CASCADE, default=Team.objects.get(number=0).id,
-                                       related_name="+")
+    team_ownership = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
 
     # Given Stats
     MOTOR_CHOICES = [
@@ -220,8 +218,7 @@ class Pits(models.Model):
 
 class TeamMember(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    defaultTeam = Team.objects.filter(number=0)[0].id
-    team = models.ForeignKey(Team, on_delete=models.CASCADE, default=defaultTeam)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
 
     # TUTORIAL POPUP
     tutorial_completed = models.BooleanField(default=False)
@@ -247,8 +244,7 @@ class TeamSettings(models.Model):
     class Meta:
         verbose_name_plural = "Team Settings"
 
-    defaultTeam = Team.objects.filter(number=0)[0].id
-    team = models.ForeignKey(Team, on_delete=models.CASCADE, default=defaultTeam)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
 
     NEW_USER_POSITIONS = TeamMember.AVAILABLE_POSITIONS[:-1]
     NEW_USER_CREATION_OPTIONS = (
@@ -258,11 +254,11 @@ class TeamSettings(models.Model):
         ("AA", "Open Registration and Use")
     )
 
-    allowPhotos = models.BooleanField(default=True)
-    allowSchedule = models.BooleanField(default=True)
-    newUserCreation = models.CharField(max_length=2, choices=NEW_USER_CREATION_OPTIONS, default="MM")
-    newUserPosition = models.CharField(max_length=2, choices=NEW_USER_POSITIONS, default="OV")
-    currentEvent = models.ForeignKey(Event, on_delete=models.SET_DEFAULT, default=0)
+    allow_photos = models.BooleanField(default=True)
+    allow_schedule = models.BooleanField(default=True)
+    new_user_creation = models.CharField(max_length=2, choices=NEW_USER_CREATION_OPTIONS, default="MM")
+    new_user_position = models.CharField(max_length=2, choices=NEW_USER_POSITIONS, default="OV")
+    current_event = models.ForeignKey(Event, on_delete=models.SET_DEFAULT, default=0)
 
     def __str__(self):
         return self.team

@@ -1,0 +1,10 @@
+[
+  {
+    "name": "control",
+    "path": "/DEBIAN/"
+  },
+  {
+    "name": "postinst",
+    "path": "/DEBIAN/"
+  }
+]
