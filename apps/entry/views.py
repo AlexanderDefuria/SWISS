@@ -674,8 +674,7 @@ class About(LoginRequiredMixin, generic.TemplateView):
     template_name = 'entry/about.html'
 
 
-class Tutorial(LoginRequiredMixin, generic.TemplateView):
-    login_url = 'entry:login'
+class Tutorial(generic.TemplateView):
     template_name = 'entry/tutorial.html'
 
 
