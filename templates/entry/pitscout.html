@@ -100,17 +100,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<select name="drivetrainMotor" id="drivetrainMottor" required> 
 				<option value="" selected disabled hidden="">&#8230;</option>
 				<option value="Falcon 500">Falcon 500</option>
-				<option value="Neo 500">Neo 500</option>
+				<option value="Neo">Neo</option>
 				<option value="CIM">CIM</option>
 				<option value="Mini CIM">Mini CIM</option>
 			</select>
 		</div>
-
 		<div class="formItem">
 			<label for="drivetrainMotorAmount">Number of Motors in Drivetrain</label>
 			<input id="drivetrainMotorAmount" name="drivetrainMotorAmount" type="number" min="2" max="20" value="0" step="2" required>
 		</div>
-		
 		<h1>Autonomous</h1>
 		<div class="formItem">
 			<label for="hasAuto">Has Autonomous Route?</label>			
@@ -134,38 +132,58 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<select name="autoScoring" id="autoScoring" required>
 				<option value="" selected disabled hidden>&#8230;</option>
 				<option value="0">No Scoring Ability</option>
-				<option value="1">Low Goal</option>
-				<option value="2">High Goal</option>
+				<option value="1">Low Hub</option>
+				<option value="2">High Hub</option>
 			</select>
 		</div>
-		
+		<div class="formItem">
+			<label for="autoScoringPositions">Scoring Locations in Autonomous</label>
+			<div class="checkboxGroup" >
+				<label class="checkContainer" onClick="registerChange()">Against Fender
+				<input type="checkbox" id="againstFenderAuto" name="autoScoringPositions" value="1">
+				<span class="checkmark"></span>
+				</label>
+				<label class="checkContainer" onClick="registerChange()">In/Edge of Tarmac
+				<input type="checkbox" id="tarmacAuto" name="autoScoringPositions" value="2">
+				<span class="checkmark"></span>
+				</label>
+				<label class="checkContainer" onClick="registerChange()">Launch Pad
+				<input type="checkbox" id="launchPadAuto" name="autoScoringPositions" value="3">
+				<span class="checkmark"></span>
+				</label>
+				<label class="checkContainer" onClick="registerChange()">Anywhere
+				<input type="checkbox" id="anywhereAuto" name="autoScoringPositions" value="4">
+				<span class="checkmark"></span>
+				</label>
+			</div>
+		</div>
 		<h1>Teleoperated</h1>
 		<div class="formItem">
 			<label for="teleScoring">Scoring Goals in Teleoperated</label>
 			<select name="teleScoring" id="teleScoring" required>
 				<option value="" selected disabled hidden>&#8230;</option>
 				<option value="0">No Scoring Ability</option>
-				<option value="1">Low Goal</option>
-				<option value="2">High Goal</option>
+				<option value="1">Low Hub</option>
+				<option value="2">High Hub</option>
 			</select>
 		</div>
 		<div class="formItem">
-			<label for="telePositions">Scoring Locations in Teleop</label>
+			<label for="teleScoringPositions">Scoring Locations in Teleop</label>
 			<div class="checkboxGroup" >
-				<label class="checkContainer" onClick="registerChange()">Against Power Port
-				<input type="checkbox" id="againstPort" name="telePositions" value="0">
+				<label class="checkContainer" onClick="registerChange()">Against Fender
+				<input type="checkbox" id="againstFenderTele" name="teleScoringPositions" value="1">
 				<span class="checkmark"></span>
 				</label>
-				<label class="checkContainer" onClick="registerChange()">Initiation Line Area
-				<input type="checkbox" id="initiationLine" name="telePositions" value="1">
+				<label class="checkContainer" onClick="registerChange()">In/Edge of Tarmac
+				<input type="checkbox" id="tarmacTele" name="teleScoringPositions" value="2">
 				<span class="checkmark"></span>
 				</label>
-				<label class="checkContainer" onClick="registerChange()">Trench Run
-				<input type="checkbox" id="trenchRun" name="telePositions" value="2">
+				<label class="checkContainer" onClick="registerChange()">Launch Pad
+				<input type="checkbox" id="launchPadTele" name="teleScoringPositions" value="3">
 				<span class="checkmark"></span>
 				</label>
-				<label class="checkContainer" onClick="registerChange()">Behind Control Panel
-				<input type="checkbox" id="fullCourt" name="telePositions" value="4">
+				<label class="checkContainer" onClick="registerChange()">Anywhere
+				<input type="checkbox" id="anywhereTele" name="teleScoringPositions" value="4">
 				<span class="checkmark"></span>
 				</label>
 			</div>
@@ -176,84 +194,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</div>
 		<div class="formItem">
 			<label for="ballCapacity">Ball Capacity</label>
-			<div class="ticker">
-				<input type="button"  onclick="decrementValue('ballCapacity')" value="-">
-				<input type="number" name="lower_auto" id="ballCapacity" min="0" max="5" value="0" readonly required>
-				<input type="button"  onclick="incrementValue('ballCapacity')" value="+">
-			</div>
+			<select name="ballCapacity" id="ballCapacity" required>
+				<option value="" selected disabled hidden>&#8230;</option>
+				<option value="0">0</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+			</select>
 		</div>
 		<div class="formItem">
 			<label for="shooterStyle">Style of Shooter</label>
 			<input type="text" name="shooterStyle" id="shooterStyle" autocomplete="off" placeholder="Shooter Style" required>
 		</div>
-		<div class="formItem">
-			<label for="lowBot">Can drive under the control panel</label>
-				<div class="radioGroup">
-					<label>
-						<input type="radio" name="lowBot" id="lowBot_False" value="False" onClick="registerChange()" required>
-						<span>N</span>
-					</label>
-					<label>
-						<input type="radio" name="lowBot" id="lowBot_True" value="True" onClick="registerChange()">
-						<span>Y</span>
-					</label>
-				</div>
-		</div>
-		<div class="formItem">
-			<label for="wheelManipulator">Control Panel Manipulator</label>
-			<div class="radioGroup">
-				<label>
-					<input type="radio" name="wheelManipulator" id="wheelManipulator" value="False" onClick="registerChange()" required>
-					<span>N</span>
-				</label>
-				<label>
-					<input type="radio" name="wheelManipulator" id="wheelManipulator" value="True" onClick="registerChange()">
-					<span>Y</span>
-				</label>
-			</div>
-		</div>
-		
-		
 		<h1>Endgame</h1>
 		<div class="formItem">
-			<label for="climbLocations">Climbing Locations</label>
+			<label for="climbLocations">Highest Possible Climb Level</label>
 			<select name="climbLocations" id="climbLocations" required>
 				<option value="" selected disabled hidden>&#8230;</option>
-				<option value="0">No Climb</option>
-				<option value="1">Center Only</option>
-				<option value="2">Side Only</option>
-				<option value="4">Anywhere on Bar</option>
+				<option value="0">Cannot Climb</option>
+				<option value="1">Low Rung</option>
+				<option value="2">Mid Rung</option>
+				<option value="3">High Rung</option>
+				<option value="4">Traversal Rung</option>
 			</select>
 		</div>
 		<div class="formItem">
-			<label for="climbBuddy">Buddy Climb?</label>
-				<div class="radioGroup">
-					<label>
-						<input type="radio" name="climbBuddy" id="climbBuddy_false" value="False" onClick="registerChange()" required>
-						<span>N</span>
-					</label>
-					<label>
-						<input type="radio" name="climbBuddy" id="climbBuddy_true" value="True" onClick="registerChange()">
-						<span>Y</span>
-					</label>
-				</div>
+			<label for="climbTime">Expected Time to Climb (in sec.)</label>
+			<input type="number" name="climbTime" id="climbTime" min="0" max="30" autocomplete="off" placeholder="in sec." required>
 		</div>
 		<div class="formItem">
-			<label for="climbBalance">Balancing Mechanism</label>
-				<div class="radioGroup">
-					<label>
-						<input type="radio" name="climbBalance" id="climbBalance_false" value="False" onClick="registerChange()" required>
-						<span>N</span>
-					</label>
-					<label>
-						<input type="radio" name="climbBalance" id="climbBalance_true" value="True" onClick="registerChange()">
-						<span>Y</span>
-					</label>
-				</div>
+			<label for="climbDescription">Expected Climb Description</label>
+			<input type="text" name="climbDescription" id="climbDescription" autocomplete="off" required>
 		</div>
+		<h1>Other</h1>
 		<div class="formItem">
-			<label for="weight">Robot Weight</label>
+			<label for="weight">Robot Weight (in pounds)</label>
 			<input type="number" name="weight" id="weight" min="0" max="150" autocomplete="off" placeholder="lbs" required>
+		</div>
+		<div class="formItem">
+			<label for="height">Robot Height (in inches)</label>
+			<input type="number" name="height" id="height" min="0" max="52" autocomplete="off" placeholder="inches" required>
 		</div>
 		<div class="formItem">
 			<label for="scouterName">Scouter's Name</label>
@@ -280,7 +259,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             document.getElementById("defenseQualityDiv").style.display="none";
         }
     }
-    
 </script>
 </body>
 </html>

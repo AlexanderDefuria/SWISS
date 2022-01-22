@@ -9,4 +9,4 @@ media/robots/*
 !media/robots/3683.jpg
 !media/robots/4343.JPG
 !media/robots/default.jpg
-/secrets.json
+secrets.json
