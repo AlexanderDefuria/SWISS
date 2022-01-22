@@ -2,7 +2,7 @@ from json import dumps
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.views import generic
-from hours.models import *
+from apps.hours.models import *
 
 
 class EnterHours(LoginRequiredMixin, generic.TemplateView):
@@ -12,8 +12,11 @@ class EnterHours(LoginRequiredMixin, generic.TemplateView):
     def post(self, request, *args, **kwargs):
         log = Log()
         log.minutes = request.POST.get('minutes', 0) + request.POST.get('hours', 0) * 60
+        if log.minutes <= 0:
+            return HttpResponse(status=428)
         log.gremlin = Gremlin.objects.get_or_create(request.user)[0]
         log.save()
+        return HttpResponse(status=204)
 
 
 class ViewHours(LoginRequiredMixin, generic.ListView):

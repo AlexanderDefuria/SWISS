@@ -5,3 +5,8 @@
 *.pyc linguist-vendored
 /static/entry/2019/highcharts* linguist-vendored
 /static/entry/2019/jquery.min.js linguist-vendored
+/static/entry/bootstrap-4.4.1.js linguist-vendored
+/static/entry/flickity.pkgd.js linguist-vendored
+/static/entry/flickity.pkgd.min.js linguist-vendored
+/static/entry/flickity.min.css linguist-vendored
+/static/entry/flickity.css linguist-vendored
