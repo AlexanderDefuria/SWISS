@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.entry.apps.EntryConfig',
     'apps.promotional.apps.PromotionalConfig',
+    'apps.hours.apps.HoursConfig',
 ]
 
 MIDDLEWARE = [
