@@ -1,36 +1,29 @@
-import base64
 import csv
-import json
 import os
 import sqlite3
 import ast
 import re
-
-from django.core import serializers
-from django.db.models import Q
-from django.shortcuts import render
-from django.db import IntegrityError
-
-from apps import config
-from apps import importFRC
-
 from datetime import datetime
 from json import dumps
+from openpyxl import Workbook
 
-from django.conf import settings
+from django.core import serializers
+from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect, HttpResponse, Http404, QueryDict, JsonResponse, FileResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404, JsonResponse
 from django.urls import reverse_lazy
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
 from django_ajax.decorators import ajax
-from django.template import Library, loader, RequestContext
+from django.template import Library, loader
 from django.contrib import auth
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
 
 from apps.entry.graphing import *
 from apps.entry.models import *
 from apps.entry.templatetags.common_tags import *
+from apps import importFRC
+
 
 register = Library
 
@@ -38,15 +31,10 @@ register = Library
 @login_required(login_url='entry:login')
 def match_scout_submit(request, pk):
     if request.method == 'POST':
-
-        print(request.POST)
-
         team = Team.objects.get(id=pk)
         match = Match()
         match.team = team
-
         teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
-
         first_key = Event.objects.all().filter(id=make_int(teamsettings.current_event.id))[0].FIRST_key
 
         match.event = Event.objects.get(FIRST_key=first_key)
@@ -156,7 +144,6 @@ def validate_types(request, data, reqlist):
 
     for field in reqfields.keys():
         # This would mean someone is editing the HTML therefore we log them out to ensure data integrity.
-
         print("FIELD " + field)
 
         if not data.__contains__(field):
@@ -193,7 +180,6 @@ def validate_types(request, data, reqlist):
 
     print(redo.keys())
     print(redo.values())
-    #    redo.__delitem__('Cleanup')
 
     return redo, data
 
@@ -205,16 +191,10 @@ def is_ascii(s):
 @login_required(login_url='entry:login')
 def pit_scout_submit(request, pk):
     if request.method == 'POST':
-
-        print(request.POST)
-
         team = Team.objects.get(id=pk)
         pits = Pits()
-
         pits.team = team
-
         teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
-
         first_key = Event.objects.all().filter(id=make_int(teamsettings.current_event.id))[0].FIRST_key
 
         pits.event = Event.objects.get(FIRST_key=first_key)
@@ -244,7 +224,6 @@ def pit_scout_submit(request, pk):
 
         print('Success')
         return HttpResponseRedirect(reverse_lazy('entry:pit_scout_landing'))
-
     else:
         print('Fail')
         return HttpResponseRedirect(reverse_lazy('entry:pit_scout_landing'))
@@ -264,7 +243,6 @@ def validate_pit_scout(request, pk):
 @login_required(login_url='entry:login')
 def update_graph(request):
     graph_type = request.POST.getlist('graphType')[0]
-
     try:
         output = graph(graph_type, request)
         if output == "lazy":
@@ -337,13 +315,15 @@ def scout_lead_check(user):
 # @user_passes_test(scout_lead_check, login_url='entry:login')
 @login_required(login_url='entry:login')
 def download(request):
-    path = 'match_history.csv'
+    # TODO find a way to prevent spamming this.
+
+    path = 'match_history.xlsx'
     path = os.path.join(settings.BASE_DIR, path)
-    update_csv()
+    update_csv(request.user.teammember.team_id)
 
     if request.method == "GET" and os.path.exists(path):
         with open(path, 'rb') as fh:
-            response = HttpResponse(fh.read(), content_type="text/csv")
+            response = HttpResponse(fh.read(), content_type="text/xlsx")
             response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(path)
             return response
 
@@ -354,29 +334,44 @@ def download(request):
 @csrf_exempt
 @login_required(login_url='entry:login')
 def get_csv_ajax(request):
-    path = 'match_history.csv'
+    path = 'match_history.xlsx'
     path = os.path.join(settings.BASE_DIR, path)
-    update_csv()
+    update_csv(request.user.teammember.team_id)
 
     if os.path.exists(path):
         with open(path, 'rb') as fh:
-            response = HttpResponse(fh.read(), content_type="text/csv")
+            response = HttpResponse(fh.read(), content_type="text/xlsx")
             response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(path)
             return response
     return Http404
 
 
-def update_csv():
+def update_csv(team_id):
     # TODO Needs to get updated to work with postgresql...
-    print("Updating CSV File")
-    conn = sqlite3.connect("db.sqlite3")
-    c = conn.cursor()
+    print("Updating XLSX File")
 
-    #c.execute("SELECT * FROM entry_match", ())
-    with open("match_history.csv", "w") as csv_file:
-        csv_writer = csv.writer(csv_file, delimiter="\t")
-        csv_writer.writerow([i[0] for i in c.description])
-        csv_writer.writerows(c)
+    workbook = Workbook()
+    writable_models = [Match, Pits]
+
+    for model in writable_models:
+        workbook.create_sheet(title=model._meta.model_name)
+        sheet = workbook.get_sheet_by_name(model._meta.model_name)
+        headers = model._meta.get_fields()
+        x = 1
+        for header in headers:
+            sheet.cell(column=x, row=1, value=str(header))
+            x += 1
+        data = model.objects.all().values_list()
+        x = 1
+        y = 2
+        for entry in data:
+            for field in entry:
+                sheet.cell(column=x, row=y, value=str(field))
+                x += 1
+            y += 1
+
+    workbook.remove_sheet(workbook.get_sheet_by_name("Sheet"))
+    workbook.save("match_history.xlsx")
 
 
 @login_required(login_url='entry:login')

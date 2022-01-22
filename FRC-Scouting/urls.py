@@ -23,6 +23,7 @@ from django.views.generic.base import RedirectView
 urlpatterns = [
     path('entry/', include(('apps.entry.urls', 'entry'), namespace='entry')),
     path('promotional/', include(('apps.promotional.urls', 'promotional'), namespace='promotional')),
+    path('hours/', include(('apps.hours.urls', 'hours'), namespace='hours')),
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url=reverse_lazy('promotional:index'), permanent=False))
 
