@@ -27,6 +27,8 @@ class Log(models.Model):
     datetime = models.DateField(auto_now=False, auto_now_add=True)
     minutes = models.IntegerField(default=0, validators=[MaxValueValidator(24*60), MinValueValidator(0)])
     tasks = models.TextField(default="")
+    completedDate = models.TextField(default="")
+
 
     def __str__(self):
         return self.gremlin.user.username + " " + str(self.datetime) + " " + str(self.minutes)
