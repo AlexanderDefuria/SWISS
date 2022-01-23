@@ -66,7 +66,7 @@
 	</div>
 	
 	<div>
-		<form action="{% url 'entry:write_match_scout' team.id %}" class="formContainer" method="post" name="mainForm" id="mainForm">
+		<form action="{% url 'hours:enter' %}" class="formContainer" method="post" name="mainForm" id="mainForm">
             {% csrf_token %}
 			
 			<h1>Build Season Hours Entry</h1>
