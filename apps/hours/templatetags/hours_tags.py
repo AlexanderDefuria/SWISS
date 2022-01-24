@@ -13,7 +13,7 @@ def modulo(num, val):
 def get_total_user_hours(request):
     logs = Log.objects.all().filter(status=1)
     if Gremlin.objects.all().contains(user=request.user.id):
-        logs = logs.filter(gremlin__user=request.user.id)
+        logs = logs.filter(gremlin__user=request.user)
 
     total_minutes = 0
     for log in logs:
