@@ -30,7 +30,7 @@ class EnterHours(LoginRequiredMixin, generic.TemplateView):
         if int(log.minutes) <= 0:
             return HttpResponse(status=204)
 
-        log.gremlin = Gremlin.objects.get_or_create(user=request.user.id)[0]
+        log.gremlin = Gremlin.objects.get_or_create(user=request.user)[0]
         log.save()
         return HttpResponseRedirect(reverse_lazy('hours:view'))
 
