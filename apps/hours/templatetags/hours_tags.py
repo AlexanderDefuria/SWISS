@@ -1,5 +1,5 @@
 from django import template
-from hours.models import *
+from apps.hours.models import *
 
 register = template.Library()
 
