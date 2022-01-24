@@ -4,3 +4,4 @@ from .models import *
 
 admin.site.register(Mentor)
 admin.site.register(Gremlin)
+admin.site.register(Log)

@@ -1,8 +1,14 @@
 from json import dumps
+
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.views import generic
+from django.views.decorators.csrf import csrf_exempt
+from django_ajax.decorators import ajax
+
 from apps.hours.models import *
+from apps.entry.views import decode_ajax, validate_types
 
 
 class EnterHours(LoginRequiredMixin, generic.TemplateView):
@@ -38,3 +44,14 @@ class ViewHours(LoginRequiredMixin, generic.ListView):
             return Log.objects.all()
         elif self.request.user is Gremlin:
             return Log.objects.get(gremlin__user=self.request.user)
+
+
+@ajax
+@csrf_exempt
+@login_required(login_url='entry:login')
+def validate_hours(request, pk):
+    data = decode_ajax(request)
+
+    redo, data = validate_types(request, data, True)
+
+    return HttpResponse(dumps(redo), content_type="application/json")
