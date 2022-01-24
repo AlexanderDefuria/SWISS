@@ -477,7 +477,8 @@ def validate_registration(request):
     print(data)
     print(data['email'][0])
     if not re.fullmatch(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b', str(data['email'][0])):
-        redo['email'] = True
+        if len(str(data['email'][0]).strip(" ")) != 0:
+            redo['email'] = True
     if len(str(data['username'])) < 5:
         redo['username'] = True
     if len(str(data['password'])) < 5:
