@@ -75,7 +75,7 @@
 			</div>
 			<div class="logTool" id="actionTool">
 				<input type="submit" class="updateLogsButton" value="Update Logs">
-				<a href="{% url 'hours:enter' %}" class="entryTool">Enter hours</a>
+				<a href="{% url 'hours:enter' %}" class="updateLogsButton" style="color: white">Enter hours</a>
 			</div>
 		</div>
 		<div class="logChipContainer">
@@ -89,7 +89,7 @@
 					<p>{{ log.tasks }}</p>
 				</div>
 				<div class="logChipHours">
-					<h4>Hours:</h4>
+					<h4>Hours/Minutes:</h4>
 					<h1>{{ log.minutes|modulo:60 }}</h1>
 				</div>
 				<div class="logChipAction">
