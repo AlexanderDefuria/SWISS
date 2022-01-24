@@ -196,4 +196,8 @@ select:focus {
 	.logChipAction {
 		flex: 60%
 	}
+	
+	.logToolsContainer {
+		flex-wrap: wrap;
+	}
 }
