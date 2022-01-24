@@ -58,6 +58,7 @@ class ValidateUser:
             if self.valid_perms(view, request.user):
                 return response
             else:
+                print(str(request.user) + " IS REQUESTING A PAGE WITH INVALID PERMS!")
                 return HttpResponseRedirect(reverse_lazy('entry:index'))
 
         return response

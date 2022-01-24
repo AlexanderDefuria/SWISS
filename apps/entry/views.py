@@ -607,6 +607,7 @@ class MatchScoutLanding(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         teams = get_present_teams(self.request.user)
+        print(teams)
         if teams.count() == 1 and teams.first() == Team.objects.first():
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
