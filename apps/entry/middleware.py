@@ -36,6 +36,8 @@ class ValidateUser:
         except IndexError:
             if str(request.path).__contains__("favicon.ico"):
                 return response
+            if str(request.path).__contains__("logout"):
+                return response
 
             print("\nINDEX ERROR FROM PATH SPLITTING IN MIDDLEWARE:")
             print(request.path)
