@@ -86,6 +86,23 @@ function teamFilter(field) {
 	document.getElementsByClassName("teamChip")
 }
 
+// Function that filter hour logs on Hours Log View page by student name 
+
+function logFilter(field) {
+	let filter = document.getElementById(field).value.toString();
+	let all = document.getElementsByClassName('logChip')
+	if (field === "studentName") {
+		for (let i = 0; i < all.length; i++) {
+			if (all[i].id.toString().indexOf(filter) > -1)
+				all[i].style.display = "";
+			else
+				all[i].style.display = "none";
+
+		}
+	}
+	document.getElementsByClassName("logChip")
+}
+
 
 // Function that filters schedule elements on Match Schedule page by match number
 
