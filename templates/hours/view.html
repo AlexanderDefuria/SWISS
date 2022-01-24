@@ -88,7 +88,8 @@
 					<small>{{ log.completedDate }}</small>
 					<p>{{ log.tasks }}</p>
 				</div>
-				<div class="logChipHours">
+				<!-- A Django IF statement will go around the following opening div tag to set up the colour of the text within. Use an inline style="color: #xxxxxx" attribute to accomplish this. -->
+				<div class="logChipHours" style="color: #D7AE22;">
 					<h4>Hours/Minutes:</h4>
 					<h1>{{ log.minutes|modulo:60 }}</h1>
 				</div>
