@@ -1,0 +1,115 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	background: #333;
+	font-family: sans-serif;
+}
+
+.bodyContainer {
+	margin-top: 40px;
+	padding: 20px 15px 20px 15px;
+	overflow: hidden;
+}
+
+.logChipContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.logChip {
+	display: flex;
+	flex-direction: row;
+	background: #444;
+	padding: 1rem;
+	color: white;
+	margin: 0.5rem;
+	border: 3px solid transparent;
+	transition: all 0.1s ease-in-out;
+}
+
+.logChip:hover{ 	
+	background-color: #555555;
+	border-color: #777777;
+	border-radius: 5px;
+	box-shadow: 7px 7px 25px 10px #232323;
+}
+
+.logChipInfo {
+	flex: 20%;
+}
+
+.logChipDescription {
+	flex: 40%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	margin-bottom: 0.5rem;
+}
+
+.logChipDescription p {
+	margin: 0.25rem 0 0 0;
+}
+
+.logChipHours {
+	text-align: center;
+	flex: 10%;
+	color: #D7AE22;
+	border-radius: 5px;
+}
+
+.logChipHours > * {
+	margin: 0.25rem;
+}
+
+.logChipAction {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	flex: 20%;
+}
+
+select {
+	color: white;
+	height: 3rem;
+	width: 100%;
+	background: none;
+	background-color: transparent;
+	border: none;
+	border-bottom: 3px solid #ffffff;
+	padding-left: 0.25rem;
+	transition: all 0.2s ease-in-out;
+}
+/* Customizes the input when focused */
+select:focus {
+	background-color: #333333;
+	border-color: #0F4D8D;
+	border-radius: 5px;
+}
+
+@media screen and (max-width: 768px) {
+	.logChip {
+		flex-wrap: wrap;
+	}
+	
+	.logChipInfo {
+		flex: 100%;
+	}
+	
+	.logChipDescription {
+		flex: 100%
+	}
+	
+	.logChipHours {
+		flex: 40%;
+	}
+	
+	.logChipHours > * {
+		margin: 0;
+	}
+	
+	.logChipAction {
+		flex: 60%
+	}
+}

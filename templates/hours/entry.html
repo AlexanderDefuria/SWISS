@@ -60,41 +60,42 @@
 	<div class="bodyContainer bodyBackground" id="bodyContainer">
 		<div class="heroContent" id="heroSpace">
 			<div class="stickyChip">
-				<p>{{ user.get_username }}</p>
-			</div>
-		</div>
-	</div>
-	
-	<div>
-		<form action="{% url 'hours:enter' %}" class="formContainer" method="post" name="mainForm" id="mainForm">
-            {% csrf_token %}
-			
-			<h1>Build Season Hours Entry</h1>
-			<div class="formItem">
-				<label for="gremlin">Student's Name:</label>
-				<input type="text" name="gremlin" id="gremlin" value="{{ user.get_username }}" required placeholder="Student Name" autocomplete="off">
-			</div>
-			<div class="formItem">
-				<label for="completedDate">Date hours were completed:</label>
-				<input type="date" id="completedDate" name="completedDate" required> 
-			</div>
-			<div class="formItem">
-				<label for="completedTasks">Tasks completed:</label>
-				<input type="text" name="completedTasks" id="tasks" rows="5" placeholder="i.e. Milled parts, Wrote Essay for Chairmans">
-			</div>
-			<div class="formItem">
-				<label for="hoursCompleted">Hours completed:</label>
-				<div class="ticker">
-					<label for="hours">Hr:</label>
-					<input type="number" name="hours" id="hours" min="0" max="12">
-					<label for="minutes">Min:</label>
-					<input type="number" name="minutes" id="min" min="0" max="59">
+				<div class="teamnamePill">
+					<p>{{ user.get_username }}</p>
 				</div>
 			</div>
-			<div class="formItem" id="submit" onclick="validate('mainForm', true)">
-                <input name="submit" id="submitButton" type="submit" style="pointer-events: none">
-			</div>
-		</form>
+		</div>
+		<div>
+			<form action="{% url 'hours:enter' %}" class="formContainer" method="post" name="mainForm" id="mainForm">
+				{% csrf_token %}
+
+				<h1>Build Season Hours Entry</h1>
+				<div class="formItem">
+					<label for="gremlin">Student's Name:</label>
+					<input type="text" name="gremlin" id="gremlin" value="{{ user.get_username }}" required placeholder="Student Name" autocomplete="off">
+				</div>
+				<div class="formItem">
+					<label for="completedDate">Date hours were completed:</label>
+					<input type="date" id="completedDate" name="completedDate" required> 
+				</div>
+				<div class="formItem">
+					<label for="completedTasks">Tasks completed:</label>
+					<input type="text" name="completedTasks" id="tasks" rows="5" placeholder="i.e. Milled parts, Wrote Essay for Chairmans">
+				</div>
+				<div class="formItem">
+					<label for="hoursCompleted">Hours completed:</label>
+					<div class="ticker">
+						<label for="hours">Hr:</label>
+						<input type="number" name="hours" id="hours" min="0" max="12">
+						<label for="minutes">Min:</label>
+						<input type="number" name="minutes" id="min" min="0" max="59">
+					</div>
+				</div>
+				<div class="formItem" id="submit" onclick="validate('mainForm', true)">
+					<input name="submit" id="submitButton" type="submit" style="pointer-events: none">
+				</div>
+			</form>
+		</div>
 	</div>
 	<div id="snackbar">
 		<p id="snacktext">Default Text</p>
