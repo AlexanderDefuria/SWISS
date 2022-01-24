@@ -2,7 +2,7 @@ function validate(formName, ajax=true) {
     let toSend = {};
     let element;
     let elements = document.forms[formName].getElementsByTagName("input");
-    let ignored = ["button", "hidden", "submit", "checkbox"]
+    let ignored = ["button", "hidden", "submit", "checkbox", "date"]
 	var x = document.getElementById("snackbar");
 	var y = document.getElementById("snacktext");
 
@@ -47,12 +47,14 @@ function validate(formName, ajax=true) {
                         color = '#FF3333'
                     } else {
                         color = '#0F4D8D'
+                        continue
                     }
                     console.log("TRYING TO COLOUR -- " + String(dataKey))
                     let parent = document.getElementById(dataKey);
                     let search = false
 
                     while (!search) {
+                        console.log(parent)
                         parent = parent.parentElement;
                         search = (parent.className.includes("formItem"));
                         console.log(parent)

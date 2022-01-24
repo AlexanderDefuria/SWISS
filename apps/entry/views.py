@@ -135,16 +135,19 @@ def validate_types(request, data, reqlist):
             if reqlist:
                 if request.path.__contains__("register"):
                     reqfields = json.load(f)['registration']
+                elif request.path.__contains__("hours"):
+                    reqfields = json.load(f)['hours']
                 else:
                     reqfields = json.load(f)['matchScout']
     except IOError:
         print("reqfields file not found")
 
+    print("Data:")
     print(data)
 
     for field in reqfields.keys():
         # This would mean someone is editing the HTML therefore we log them out to ensure data integrity.
-        print("FIELD " + field)
+        print("FIELD: " + field)
 
         if not data.__contains__(field):
             logout(request)
@@ -166,6 +169,9 @@ def validate_types(request, data, reqlist):
                 print(data[field])
                 print(e)
 
+        print("type")
+        print(type(data[field][0]))
+        print(type(reqfields[field]))
         redo[field] = False if (isinstance(data[field][0], type(reqfields[field]))) else True
 
     for field in request.POST:

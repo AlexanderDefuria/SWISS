@@ -21,7 +21,7 @@ class Mentor(models.Model):
 
 class Log(models.Model):
     gremlin = models.ForeignKey(Gremlin, on_delete=models.CASCADE)
-    mentor = models.ForeignKey(Mentor, on_delete=models.PROTECT)
+    mentor = models.ForeignKey(Mentor, on_delete=models.PROTECT, null=True)
     # 0-Pending 1-Accepted 2-Rejected
     status = models.IntegerField(default=0, validators=[MaxValueValidator(2), MinValueValidator(0)])
     datetime = models.DateField(auto_now=False, auto_now_add=True)

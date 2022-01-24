@@ -15,5 +15,11 @@
     "email": " ",
     "team_reg_id": " ",
     "team_number": 0
+  },
+  "hours": {
+    "gremlin": " ",
+    "tasks": " ",
+    "hours": 0,
+    "minutes": 0
   }
 }

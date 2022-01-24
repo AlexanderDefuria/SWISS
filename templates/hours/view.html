@@ -1,5 +1,5 @@
 {% load static %}
-{% load common_tags %}
+{% load hours_tags %}
 
 <!doctype html>
 <html>
@@ -63,17 +63,18 @@
 			<p class="pageTitle">Build Hours</p>
 		</div>
 		<div class="logChipContainer">
+            {% for log in log_list %}
 			<div class="logChip">
 				<div class="logChipInfo">
-					<h3>John Szewczyk</h3>
+					<h3>{{ user.username }}</h3>
 				</div>
 				<div class="logChipDescription">
-					<small>1/21/2022</small>
-					<p>Cad gussets, prototyped shooter, and started climber geometry sketch</p>
+					<small>{{ log.completedDate }}</small>
+					<p>{{ log.tasks }}</p>
 				</div>
 				<div class="logChipHours">
 					<h4>Hours:</h4>
-					<h1>4.5</h1>
+					<h1>{{ log.minutes|modulo:60 }}</h1>
 				</div>
 				<div class="logChipAction">
 					<select class="approvalSelect">
@@ -83,26 +84,8 @@
 					</select>
 				</div>
 			</div>
-			<div class="logChip">
-				<div class="logChipInfo">
-					<h3>MatthewWatson</h3>
-				</div>
-				<div class="logChipDescription">
-					<small>1/21/2022</small>
-					<p>Built prototype shooter</p>
-				</div>
-				<div class="logChipHours">
-					<h4>Hours:</h4>
-					<h1>3</h1>
-				</div>
-				<div class="logChipAction">
-					<select class="approvalSelect">
-						<option value="0">Pending Approval</option>
-						<option value="1">Approval Declined</option>
-						<option value="2">Hours Approved</option>
-					</select>
-				</div>
-			</div>
+            {% endfor %}
+
 		</div>
 	</div>
 	<div id="snackbar">

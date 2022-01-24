@@ -1,5 +1,5 @@
 {% load static %}
-{% load common_tags %}
+{% load hours_tags %}
 
 <!doctype html>
 <html>
@@ -79,8 +79,8 @@
 					<input type="date" id="completedDate" name="completedDate" required> 
 				</div>
 				<div class="formItem">
-					<label for="completedTasks">Tasks completed:</label>
-					<input type="text" name="completedTasks" id="tasks" rows="5" placeholder="i.e. Milled parts, Wrote Essay for Chairmans">
+					<label for="tasks">Tasks completed:</label>
+					<input type="text" name="tasks" id="tasks" rows="5" placeholder="i.e. Milled parts, Wrote Essay for Chairmans">
 				</div>
 				<div class="formItem">
 					<label for="hoursCompleted">Hours completed:</label>
@@ -88,7 +88,7 @@
 						<label for="hours">Hr:</label>
 						<input type="number" name="hours" id="hours" min="0" max="12">
 						<label for="minutes">Min:</label>
-						<input type="number" name="minutes" id="min" min="0" max="59">
+						<input type="number" name="minutes" id="minutes" min="0" max="59">
 					</div>
 				</div>
 				<div class="formItem" id="submit" onclick="validate('mainForm', true)">
