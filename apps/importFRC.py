@@ -5,10 +5,9 @@ import requests
 from apps.entry.models import *
 from apps import config
 import datetime
-from settings import get_secret
 
-api_user = get_secret("api_user")
-api_token = get_secret("api_token")
+api_user = 'alexanderdefuria'
+api_token = '75E35301-A10B-45BC-9453-396808B2E96C'
 api_url_base = "https://frc-api.firstinspires.org/v2.0/"
 b64_token = base64.b64encode((api_user + ':' + api_token).encode("utf-8"))
 header = {"Authorization": "Basic " + str(b64_token, "utf-8"),
