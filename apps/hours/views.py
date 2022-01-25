@@ -56,7 +56,7 @@ class ViewHours(LoginRequiredMixin, generic.ListView):
                 return Log.objects.all()
         except Exception as e:
             try:
-                elif Gremlin.objects.get(user=self.request.user):
+                if Gremlin.objects.get(user=self.request.user):
                     return Log.objects.all().filter(gremlin__user=self.request.user.id)
             except Exception:
         return None
