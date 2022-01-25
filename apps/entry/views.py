@@ -24,7 +24,6 @@ from apps.entry.models import *
 from apps.entry.templatetags.common_tags import *
 from apps import importFRC
 
-
 register = Library
 
 
@@ -486,7 +485,7 @@ def validate_registration(request):
     if data['password'] != data['password_validate']:
         redo['password'] = True
         redo['password_validate'] = True
-    if len(str(data['team_reg_id'])) != 6:
+    if len(str(data['team_reg_id']).strip(" ")) != 10:  # len==10 because the uuid is 6 + 4 for ['uuidxx']
         redo['team_reg_id'] = True
 
     return HttpResponse(dumps(redo), content_type="application/json")
@@ -518,9 +517,9 @@ def get_present_teams(user):
     # TODO This NEEDS to be faster
     try:
         objects = Team.objects.filter(number__in=
-                                      get_event_teams(
-                                        TeamSettings.objects.get(team=user.teammember.team).
-                                        current_event.FIRST_key))
+        get_event_teams(
+            TeamSettings.objects.get(team=user.teammember.team).
+                current_event.FIRST_key))
         return objects
     except TeamSettings.DoesNotExist:
 
@@ -810,5 +809,3 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
             new_settings.save()
 
         return response
-
-
