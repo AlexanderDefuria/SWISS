@@ -55,7 +55,6 @@ ul {
 	justify-content: center;
 	align-content: center;
 	align-items: center;
-	height: 90vh;
 }
 .heroContent {
 	display: flex;
@@ -1094,9 +1093,6 @@ th {
 	}
 	.tileContainer {
 		padding: 0 10px 0 10px;
-	}
-	#soloContainer {
-		width: 90%;
 	}
 	.modal-content {
 		width: 80%;
