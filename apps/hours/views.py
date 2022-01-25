@@ -52,11 +52,11 @@ class ViewHours(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         try:
-            if entor.objects.get(user=self.request.user):
+            if Mentor.objects.get(user=self.request.user):
                 return Log.objects.all()
         except Exception as e:
             try:
-                if Gremlin.objects.get(user=self.request.user):
+                if Gremlin.objects.get_or_create(user=self.request.user)[0]:
                     return Log.objects.all().filter(gremlin__user=self.request.user.id)
             except Exception:
                 print('Nothing found at all...')
