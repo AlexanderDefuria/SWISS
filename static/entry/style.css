@@ -21,6 +21,7 @@ body {
 }
 img {
 	height: 100%;
+	width: fit-content;
 }
 a {
 	text-decoration:none;
@@ -1093,9 +1094,6 @@ th {
 	}
 	.tileContainer {
 		padding: 0 10px 0 10px;
-	}
-	#soloContainer {
-		width: 90%;
 	}
 	.modal-content {
 		width: 80%;
