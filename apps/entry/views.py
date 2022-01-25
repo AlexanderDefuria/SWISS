@@ -725,6 +725,7 @@ class Registration(generic.TemplateView):
             user.teammember.team = Team.objects.get(id=make_int(request.POST.get('team_number')))
             if request.POST.get('team_reg_id')[:6] != str(user.teammember.team.reg_id)[:6]:
                 return HttpResponse(reverse_lazy('entry:register'))
+            user.teammember.save();
 
         if request.POST.get('password') == request.POST.get('password_validate'):
             user.set_password(request.POST.get('password'))
