@@ -356,7 +356,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<div class="formItem" id="defense_timer">
 				<label for="defense_time">Defense Timer - Coming Soon</label>
 				<div>
-					<input type="number" value="0" name="defense_time" id="defense_time">
+					<input type="number" name="defense_time" id="defense_time" pattern="[0-9]*[.,]?[0-9]+">
 					<input type="button" value="&#9658;" onclick="startstoptimer()">
 					<input type="reset" value="&#x21bb;" onclick="resettimer()">
 				</div>
