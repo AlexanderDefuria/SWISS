@@ -355,7 +355,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			</script>
 			<div class="formItem" id="defense_timer">
 				<label for="defense_time">Defense Timer - Coming Soon</label>
-				<input type="number" name="defense_time" id="defense_time" autocomplete="off">
+				<div>
+					<input type="text" size="8" name="defense_time" id="defense_time">
+					<input type="button" value="Start/Stop" onclick="startstoptimer()">
+					<input type="reset" onclick="resettimer()">
+				</div>
+			<script>
+				var millisec = 0;
+				var seconds = 0;
+				var timer;
+
+				function display(){
+
+				  if (millisec>=9){
+					 millisec=0
+					 seconds+=1
+				  }
+				  else
+					 millisec+=1
+					 document.getElementById('defense_time').value = seconds + "." + millisec;
+					 timer = setTimeout("display()",100);
+				  }
+
+				function starttimer() {
+
+				  if (timer > 0) {
+					return;
+				  }
+				  display();	
+				}
+				function stoptimer() {
+				  clearTimeout(timer);
+				  timer = 0;
+				}
+
+				function startstoptimer() {
+				  if (timer > 0) {
+					 clearTimeout(timer);
+					 timer = 0;
+				  } else {
+					 display();
+				  }
+				}
+
+				function resettimer() {
+					stoptimer();
+					millisec = 0;
+					seconds = 0;
+				}
+				</script>	
 			</div>
 			<div class="formItem" id="teamDefendedDiv">
 				<label for="team_defended">Team Defended</label>
