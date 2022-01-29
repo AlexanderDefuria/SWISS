@@ -134,12 +134,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</div>
 			</div>
 			<div class="formItem">
-				<label for="preloadedBalls">Ball Preloaded</label>
-				<div class="ticker">
-					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'SplitColourCargo.png' %}" alt="Split Colour Cargo Ball">
-					<input type="button" onclick="decrementValue('preloadedBalls')" value="-">
-					<input type="number" name="preloadedBalls" id="preloadedBalls" min="0" max="1" value="1" readonly>
-					<input type="button" onclick="incrementPreload('preloadedBalls')" value="+">
+				<label for="">Ball Preloaded</label>
+				<div class="radioGroup">
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'SplitColourCargo.png' %}" alt="Split Colour Cargo">
+					<label>
+						<input type="radio" id="preloaded_ball_true" name="preloadedBalls" value="True" onclick="registerChange()" required>
+						<span>Y</span>
+					</label>
+					<label>
+						<input type="radio" id="preloaded_ball_false" name="preloadedBalls" value="False" onClick="registerChange()">
+						<span>N</span>
+					</label>
 				</div>
 			</div>
 

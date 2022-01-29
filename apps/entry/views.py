@@ -43,7 +43,7 @@ def match_scout_submit(request, pk):
         # PRE MATCH
         match.on_field = request.POST.get('onField', False)
         # match.auto_start = request.POST.get('autoStart', 10)
-        # TODO match.preloaded_balls = request.POST.get('preloadedBalls', 1)
+        match.preloaded_balls = request.POST.get('preloadedBalls', 1)
 
         # AUTO
         match.auto_route = request.POST.get('autoRoute', 0)
