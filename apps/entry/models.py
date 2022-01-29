@@ -98,16 +98,16 @@ class Match(models.Model):
     # auto_start = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     on_field = models.BooleanField(default=False)
     # TODO Remove?
-    # preloaded_balls = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(5),
-    # MinValueValidator(0)])
+    preloaded_balls = models.fields.BooleanField(default=True)
 
     # Auto
     # TODO Update Based on Front End
-    # auto_route = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    auto_route = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     baseline = models.BooleanField(default=False)
     upper_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     lower_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    fouls_auto = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
+    missed_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
+    auto_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
     auto_comment = models.TextField(default="")
 
     # Teleop
@@ -116,29 +116,30 @@ class Match(models.Model):
     balls_collected = models.fields.SmallIntegerField(default=0,
                                                       validators=[MaxValueValidator(100), MinValueValidator(0)])
     missed_balls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    ball_intake_type = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
+    intake_type = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     under_defense = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
-    fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
+    defended_by = models.IntegerField(default=0)
+    offensive_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
 
     # Defense
-    played_defense = models.BooleanField(default=False)
-    defense_timer = models.IntegerField(default=0)
+    defense_time = models.IntegerField(default=0)
     defense_rating = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     defense_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(250), MinValueValidator(0)])
     team_defended = models.IntegerField(default=0)
     able_to_push = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
 
     # Climb
+    lock_status = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     endgame_action = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
-    climb_timer = models.IntegerField(default=0)
-    climbed = models.BooleanField(default=False)
-    climb_attempts = models.BooleanField(default=False)
+    climb_time = models.IntegerField(default=0)
+    climb_attempts = models.IntegerField(default=0)
     climb_comments = models.TextField(default="")
 
     # Human Player
-    hp_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
-    dt_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    fouls_hp = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    fouls_driver = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     yellow_card = models.BooleanField(default=False)
+    disabled = models.BooleanField(default=False)
     yellow_card_description = models.TextField(default="")
 
     # Scouter
