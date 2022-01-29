@@ -39,56 +39,67 @@ def match_scout_submit(request, pk):
         match.event = Event.objects.get(FIRST_key=first_key)
         match_number = request.POST.get('matchNumber', -1)
         match.match_number = match_number if match_number != '' else -1
+
+        # PRE MATCH
         match.on_field = request.POST.get('onField', False)
-        match.auto_start = request.POST.get('autoStart', 10)
-        match.preloaded_balls = request.POST.get('preloadedBalls', 3)
+        # match.auto_start = request.POST.get('autoStart', 10)
+        # TODO match.preloaded_balls = request.POST.get('preloadedBalls', 1)
+
+        # AUTO
         match.auto_route = request.POST.get('autoRoute', 0)
         match.baseline = request.POST.get('baseline', False)
-        match.outer_auto = request.POST.get('outer_auto', 0)
+        match.upper_auto = request.POST.get('upper_auto', 0)
         match.lower_auto = request.POST.get('lower_auto', 0)
-        match.inner_auto = request.POST.get('inner_auto', 0)
-        match.auto_comment = request.POST.get('autoComment', '')
-        match.outer = request.POST.get('outer', 0)
+        match.missed_auto = request.POST.get('missed_balls_auto', 0)
+        match.auto_fouls = request.POST.get('auto_fouls', '')
+        match.auto_comment = request.POST.get('auto_comment', '')
+
+        # TELEOP
         match.lower = request.POST.get('lower', 0)
-        match.inner = request.POST.get('inner', 0)
-        match.wheel_score = request.POST.get('wheelScore', 0)
-        match.wheel_rating = request.POST.get('wheelRating', 0)
-        match.fouls = request.POST.get('offensiveFouls', 0)
-        match.missed_balls = request.POST.get('missedBalls', 0)
-        match.ball_intake_type = request.POST.get('intakeType', 0)
-        match.under_defense = request.POST.get('underDefense', 0)
-        match.cycle_style = int(request.POST.get('cycleStyle', 0))
-        if type(request.POST.get('defendedBy', 0)) is not type(int()):
+        match.upper = request.POST.get('upper', 0)
+        match.missed_balls = request.POST.get('missed_balls', 0)
+        match.intake_type = request.POST.get('intakeType', 0)
+        match.under_defense = request.POST.get('under_defense', 0)
+        if type(request.POST.get('defended_by', 0)) is not type(int()):
             match.defended_by = 0
         else:
-            match.defended_by = request.POST.get('defendedBy', 0)
-        match.played_defense = request.POST.get('playedDefense', False)
-        match.defense_rating = request.POST.get('defenseRating', 0)
+            match.defended_by = request.POST.get('defended_by', 0)
+        match.offensive_fouls = request.POST.get('offensive_fouls', 0)
+
+        # DEFENSE
+        # TODO @NickKerstens match.defense_time = request.POST.get('defense_time', 0)
+        match.defense_rating = request.POST.get('defense_rating', 0)
+        team_defended = request.POST.get('team_defended', 0)
+        match.team_defended = team_defended if team_defended != '' else -1
         match.defense_fouls = request.POST.get('defenseFouls', 0)
         match.able_to_push = request.POST.get('pushRating', 0)
 
-        team_defended = request.POST.get('teamDefended', '')
-        match.team_defended = team_defended if team_defended != '' else -1
+        # CLIMB
+        match.lock_status = request.POST.get('lock_status', 0)
+        match.endgame_action = request.POST.get('endgame_action', 0)
+        # TODO @NickKerstens match.climb_time = request.POST.get('climb_time', 0)
+        match.climb_attempts = make_int(request.POST.get('climb_attempts', 0))
+        match.climb_comments = request.POST.get('climb_comments', 0)
 
-        match.climb_location = request.POST.get('climbLocation', 0)
-        match.field_timeout_pos = request.POST.get('lockStatus', 0)
-
-        match.climbed = 1 if match.field_timeout_pos == 3 else 0
-
-        match.hp_fouls = request.POST.get('humanFouls', 0)
-        match.dt_fouls = request.POST.get('driverFouls', 0)
+        # COMMENTS AND RANDOM IDEAS
+        match.fouls_hp = request.POST.get('humanFouls', 0)
+        match.fouls_driver = request.POST.get('driverFouls', 0)
         match.yellow_card = True if request.POST.get('cardFouls', 0) != '' else False
-        match.yellow_card_descrip = request.POST.get('cardFouls', '') if match.yellow_card else 'No Foul'
 
-        match.scouter_name = request.POST.get('scouterName', '')
+        match.scouter_name = request.user.first_name + " " + request.user.last_name
         match.comment = request.POST.get('comment', '')
         match.team_ownership = request.user.teammember.team
 
-        match.save()
+        print(match.get_deferred_fields())
 
-        print(match)
+        try:
+            match.save()
+            print('Success')
+        except Exception as e:
+            print(e)
 
-        print('Success')
+        #print("Fail with an error")
+
         return HttpResponseRedirect(reverse_lazy('entry:match_scout_landing'))
 
     else:
