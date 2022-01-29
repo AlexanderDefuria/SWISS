@@ -314,6 +314,28 @@ input[type=number] {
 	height: 35px; position: relative; top: 5px; left: -5px
 }
 
+/* RESET BUTTON */ 
+
+.formItem [type=reset] {
+	background: none;
+	color: white;
+	font-size: 21px;
+	width: 30px;
+	height: 30px;
+	border: 3px solid white;
+	border-radius: 0;
+	border-radius: 50px;
+	transition: all 0.1s ease-in-out;
+	cursor: pointer;
+	touch-action: manipulation; /* Stops iOS from zooming in when tapping repeatedly */
+}
+
+.formItem [type=reset]:active {
+	background-color: white;
+	color: black;
+}
+
+
 
 /* RANGE SLIDER */
 
