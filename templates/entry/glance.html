@@ -120,10 +120,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<div class="infoLColumn"><p>{% get_info user team 'climb_locations' 'possible' 'pits' %}</p></div>
 				</div>	
 				<div class="infoRow">
-					<div class="infoLColumn"><p>Ctrl Pnl</p></div>
-					<div class="infoLColumn"><p>{% get_info user team 'wheel_manipulator' 'possible' 'pits' %}</p></div>
-				</div>
-				<div class="infoRow">
 					<div class="infoLColumn"><p>Matches Played</p></div>
 					<div class="infoLColumn"><p>{{ team.match_set.count }}</p></div>
 				</div>
@@ -198,7 +194,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			</div>
             <div class="infoBox infoReg" id="shooterTile">
                 <div class="infoHeader">
-                    <img class="infoIcon" src="{{ MEDIA_URL }}{% static 'GenericPowerPort.png' %}" alt="Shooter">
+                    <img class="infoIcon" src="{{ MEDIA_URL }}{% static 'SplitColourCargo.png' %}" alt="Shooter">
                     <h1>Ball Scoring Info</h1>
                 </div>
                 <div class="infoRow">
@@ -220,27 +216,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
 			<div class="infoBox infoReg" id="powerCellTile">
 				<div class="infoHeader">
-					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'GenericPowerPort.png' %}" alt="Power Port">
+					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'HubFull.png' %}" alt="Power Port">
 					<h1>Total Balls Scored</h1>
 				</div>
+				<!-- The following need to be updated to 2022 -->
 				<div class="infoRow">
-					<div class="infoLColumn"><p>Low Goal</p></div>
-                    {% get_info user team 'lower' 'total' 'match' as totalTeleLower%}
-                    {% get_info user team 'lower_auto' 'total' 'match' as totalAutoLower%}
-					<div class="infoLColumn"><p>{{totalTeleLower|add:totalAutoLower }} Balls</p></div>
-				</div>
-				<div class="infoRow">
-					<div class="infoLColumn"><p>Outer Goal</p></div>
-                    {% get_info user team 'outer' 'total' 'match' as totalTeleOuter%}
-                    {% get_info user team 'outer_auto' 'total' 'match' as totalAutoOuter%}
-					<div class="infoLColumn"><p>{{totalTeleOuter|add:totalAutoOuter }} Balls</p></div>
-				</div>				
-				<div class="infoRow">
-					<div class="infoLColumn"><p>Inner Goal</p></div>
+					<div class="infoLColumn"><p>Upper Goal</p></div>
                     {% get_info user team 'inner' 'total' 'match' as totalTeleInner%}
                     {% get_info user team 'inner_auto' 'total' 'match' as totalAutoInner%}
 					<div class="infoLColumn"><p>{{totalTeleInner|add:totalAutoInner }} Balls</p></div>
 				</div>
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Lower Goal</p></div>
+                    {% get_info user team 'outer' 'total' 'match' as totalTeleOuter%}
+                    {% get_info user team 'outer_auto' 'total' 'match' as totalAutoOuter%}
+					<div class="infoLColumn"><p>{{totalTeleOuter|add:totalAutoOuter }} Balls</p></div>
+				</div>				
                 <div class="infoRow">
                     <div class="infoLColumn"><p>Missed</p></div>
                     {% get_info user team 'missed_balls' 'total' 'match' as totalTeleMissed%}
@@ -248,14 +239,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<div class="infoLColumn"><p>{{totalTeleMissed|add:totalAutoMissed }} Balls</p></div>
                 </div>
 			</div>			
-<!--
-            <div class="graphBoxWide" id="accuracyTile">
-				
-            </div>
--->
 			<div class="infoBox infoReg" id="endgameTile">
 				<div class="infoHeader">
-					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'hangbar_icon.png' %}" alt="Hang Bar">
+					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'Hangar.png' %}" alt="Hang Bar">
 					<h1>Endgame</h1>
 				</div>
 				<div class="infoRow">
