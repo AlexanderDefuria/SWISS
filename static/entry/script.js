@@ -13,7 +13,7 @@ function closeNav() {
 
 //Function that controls the bottom bar
 function expandBottomBar() {
-	document.getElementById("bottomBar").style.height = "70px";
+	document.getElementById("bottomBar").style.height = "auto";
 	document.getElementById("bottomBarButton").style.height = "70px";
 	document.getElementById("bottomBarButton").onclick = function () {collapseBottomBar()};
 	document.getElementById("bottomBarContent").style.visibility = "visible";

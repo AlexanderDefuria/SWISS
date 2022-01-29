@@ -1062,7 +1062,8 @@ th {
 }
 #bottomBarContent {
 	display: flex; 
-	visibility: hidden
+	flex-wrap: wrap;
+	visibility: hidden;
 }
 #collapseBottomBar {
 	visibility: hidden;
