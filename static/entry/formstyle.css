@@ -35,6 +35,7 @@
 input [type=text], input [type=button] {
 	-webkit-appearance: none;
 	-webkit-border-radius: 0;
+	border-radius: 0;
 }
 
 
@@ -100,7 +101,7 @@ input [type=text], input [type=button] {
 
 
 .formItem input[type=number]{
-	width: 60px;
+	width: 70px;
 	outline: none;
 	color: white;
 	background: none;
@@ -292,6 +293,7 @@ input[type=number] {
 	width: 30px;
 	height: 30px;
 	border: 3px solid white;
+	border-radius: 0;
 	border-radius: 50px;
 	transition: all 0.1s ease-in-out;
 	cursor: pointer;
