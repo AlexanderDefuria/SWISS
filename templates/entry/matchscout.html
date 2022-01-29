@@ -467,9 +467,54 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<div class="formItem">
 				<label for="climb_time">Climbing Time</label>
 				<div>
-					<p>Decide on second Javascript timer or qualitative "slow" or "fast"</p>
-					<input type="number" name="climb_time" id="climb_time" placeholder="milliseconds" autocomplete="off">
+					<input type="number" name="climb_time" id="climb_time" pattern="[-+]?[0-9]*[.,]?[0-9]+" readonly>
+					<input type="button" value="&#9658;" onclick="startstoptimer()">
+					<input type="reset" value="&#x21bb;" onclick="resettimer()">
 				</div>
+				<script>
+					var millisec = 0;
+					var seconds = 0;
+					var timer;
+
+					function display(){
+
+					  if (millisec>=9){
+						 millisec=0
+						 seconds+=1
+					  }
+					  else
+						 millisec+=1
+						 document.getElementById('climb_time').value = seconds + "." + millisec;
+						 timer = setTimeout("display()",100);
+					  }
+
+					function starttimer() {
+
+					  if (timer > 0) {
+						return;
+					  }
+					  display();	
+					}
+					function stoptimer() {
+					  clearTimeout(timer);
+					  timer = 0;
+					}
+
+					function startstoptimer() {
+					  if (timer > 0) {
+						 clearTimeout(timer);
+						 timer = 0;
+					  } else {
+						 display();
+					  }
+					}
+
+					function resettimer() {
+						stoptimer();
+						millisec = 0;
+						seconds = 0;
+					}
+					</script>	
 			</div>
 			<div class="formItem">
 				<label for="climb_attempts">Climb Attempts</label>
