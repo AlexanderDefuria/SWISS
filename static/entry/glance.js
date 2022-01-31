@@ -27,7 +27,7 @@ function updateGlance(team_id) {
 
     }).then(r => {
         // Total Line Chart
-        field = ["lower", "outer", "inner", "lower_auto", "outer_auto", "inner_auto"]
+        field = ["upper", "lower", "upper_auto", "lower_auto"]
 
         constCharts.totalChart.series[0].data = []
         teamData.forEach( function (info, index) {
@@ -58,12 +58,13 @@ function updateGlance(team_id) {
             }
 
             // check chart.js to make sense of this and the indexes being referenced
-            constCharts.avgChart.series[0].data[0] = result['lower_auto']
-            constCharts.avgChart.series[0].data[1] = result['lower']
-            constCharts.avgChart.series[1].data[0] = result['outer_auto']
-            constCharts.avgChart.series[1].data[1] = result['outer']
-            constCharts.avgChart.series[2].data[0] = result['inner_auto']
-            constCharts.avgChart.series[2].data[1] = result['inner']
+            console.log(result)
+
+            constCharts.avgChart.series[0].data[0] = result['upper_auto']
+            constCharts.avgChart.series[0].data[1] = result['upper']
+            constCharts.avgChart.series[1].data[0] = result['lower_auto']
+            constCharts.avgChart.series[1].data[1] = result['lower']
+
 
             avgChart = Highcharts.chart(avgChartName, constCharts.avgChart);
             avgChart.redraw()

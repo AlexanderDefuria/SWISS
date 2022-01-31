@@ -57,7 +57,7 @@ def match_scout_submit(request, pk):
         # TELEOP
         match.lower = request.POST.get('lower', 0)
         match.upper = request.POST.get('upper', 0)
-        match.missed_balls = request.POST.get('missed_balls', 0)
+        match.missed_balls_auto = request.POST.get('missed_balls', 0)
         match.intake_type = request.POST.get('intakeType', 0)
         match.under_defense = request.POST.get('under_defense', 0)
         if type(request.POST.get('defended_by', 0)) is not type(int()):

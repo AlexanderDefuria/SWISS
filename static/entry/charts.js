@@ -131,13 +131,10 @@ const constCharts = {
                 valueDecimals: 3,
             },
             series: [{
+                name: 'Upper',
+                data: [0, 0]
+            }, {
                 name: 'Lower',
-                data: [0, 0]
-            }, {
-                name: 'Outer',
-                data: [0, 0]
-            }, {
-                name: 'Inner',
                 data: [0, 0]
             }]
     }

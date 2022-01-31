@@ -194,11 +194,15 @@ def get_list(user, team, field, model):
             # print(k, d[k])
             rename = []
             if field == 'tele_positions':
-                rename = ["Against Power Port", "Initiation Line Area", "Trench Run", "Behind Control Panel"]
+                # TODO UPDATE THESE
+                rename = ["Against Fender", "Tarmac", "Launch Pad", "Anywhere"]
             elif field == 'field_timeout_pos':
                 rename = ["Nothing", "Parked", "Attempted Climb", "Successful Climb"]
 
             if rename is not []:
+                # print("\nd[" + str(k) + "]: " + str(d[k]))
+                # print("rename[" + str(k) + "]: " + str(rename[k]))
+                # print("return_list: " + str(d[k]))
                 return_list[rename[k]] = d[k]
             else:
                 return_list[k] = d[k]
