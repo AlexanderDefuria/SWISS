@@ -289,6 +289,8 @@ def update_glance(request, pk):
         print("")
     except AttributeError:
         print("")
+    except FileNotFoundError:
+        print("Creating new glance json file for " + str(Team.objects.get(id=pk).glance))
 
     matches_json = serializers.serialize('json', matches)
     f = open(os.path.join(settings.BASE_DIR, 'glance_temp.json'), 'w')
