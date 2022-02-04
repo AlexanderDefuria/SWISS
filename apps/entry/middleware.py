@@ -109,7 +109,7 @@ def process_exception(request, exception):
             )
             # Do now whatever with this message
             # e.g. requests.post(<slack channel/teams channel>, data=message)
-            # TODO Put discord thingy here @Nick
+            # TODO Integrate into other comm medium slack discord etc...
 
         return HttpResponse("Error processing the request.", status=500)
 

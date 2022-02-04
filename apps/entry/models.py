@@ -97,11 +97,9 @@ class Match(models.Model):
     # TODO make 2D Auto Start Field Based on Front End
     # auto_start = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     on_field = models.BooleanField(default=False)
-    # TODO Remove?
     preloaded_balls = models.fields.BooleanField(default=True)
 
     # Auto
-    # TODO Update Based on Front End
     auto_route = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     baseline = models.BooleanField(default=False)
     upper_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])

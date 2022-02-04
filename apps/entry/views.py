@@ -329,7 +329,6 @@ def scout_lead_check(user):
     return user.groups.filter(name="Scouting").exists()
 
 
-# TODO Export into .xls instead of .csv
 # @user_passes_test(scout_lead_check, login_url='entry:login')
 @login_required(login_url='entry:login')
 def download(request):
@@ -365,7 +364,6 @@ def get_csv_ajax(request):
 
 
 def update_csv(team_id):
-    # TODO Needs to get updated to work with postgresql...
     print("Updating XLSX File")
 
     workbook = Workbook()

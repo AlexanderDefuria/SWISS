@@ -194,7 +194,6 @@ def get_list(user, team, field, model):
             # print(k, d[k])
             rename = []
             if field == 'tele_positions':
-                # TODO UPDATE THESE
                 rename = ["Against Fender", "Tarmac", "Launch Pad", "Anywhere"]
             elif field == 'field_timeout_pos':
                 rename = ["Nothing", "Parked", "Attempted Climb", "Successful Climb"]
