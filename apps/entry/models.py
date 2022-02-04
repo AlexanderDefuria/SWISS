@@ -130,7 +130,6 @@ class Match(models.Model):
 
     # Climb
     lock_status = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
-    lock_status = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     endgame_action = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     climb_time = models.IntegerField(default=0)
     climb_attempts = models.IntegerField(default=0)
@@ -227,13 +226,14 @@ class TeamMember(models.Model):
 
     AVAILABLE_POSITIONS = (
         # (Program Name, Human Readable name)
-        ("NA", "No Access"),
+        ("PA", "Public Access"),
         ("OV", "Only View"),
         ("MS", "Match Scout"),
         ("GS", "General Scout"),
         ("PS", "Pit Scout"),
         ("DT", "Drive Team"),
-        ("LS", "Lead Scout")
+        ("LS", "Lead Scout"),
+        ("NA", "No Access"),
     )
 
     position = models.CharField(max_length=2, choices=AVAILABLE_POSITIONS, default="GS")

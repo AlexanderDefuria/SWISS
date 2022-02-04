@@ -60,7 +60,9 @@ class ValidateUser:
             if self.valid_perms(view, request.user):
                 return response
             else:
-                print(str(request.user) + " IS REQUESTING A PAGE WITH INVALID PERMS!")
+                print(view)
+                print(str(request.user) + " [" + str(request.user.teammember.position)
+                      + "] IS REQUESTING A PAGE WITH INVALID PERMS!")
                 return HttpResponseRedirect(reverse_lazy('entry:index'))
 
         return response
@@ -91,6 +93,8 @@ class ValidateUser:
             else:
                 actlevel += 1
 
+        print(reqlevel)
+        print(each[0])
         return actlevel >= reqlevel
 
 

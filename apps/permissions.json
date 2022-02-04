@@ -33,7 +33,7 @@
     "minimum": "OV"
   },
   "experimental": {
-    "minimum": "LS"
+    "minimum": "NA"
   },
   "about": {
     "minimum": "OV"
@@ -42,15 +42,18 @@
     "minimum": "OV"
   },
   "logout": {
-    "minimum": "NA"
+    "minimum": "PA"
   },
   "login": {
-    "minimum": "NA"
+    "minimum": "PA"
   },
   "admin_redirect": {
     "minimum": "DT"
   },
   "index": {
     "minimum": "OV"
+  },
+  "import": {
+    "minimum": "LS"
   }
 }

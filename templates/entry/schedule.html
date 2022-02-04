@@ -71,9 +71,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="heroContent">
 			<p class="pageTitle">Match Schedule</p>
 		</div>
-        <div style="display: flex" id="currentEvent">
-            <span style="margin: auto">{% get_current_event request %}</span>
+        <div style="display: flex;  justify-content: center" id="currentEvent">
+
+            {% is_lead_scout request as lead_scout %}
+            {% if lead_scout %}
+                <div class="graphOption" >
+                    <span class="dataButton" style="padding-right: 10px">{% get_current_event request %}</span>
+                    <button class="dataButton" style="width: 10vw; text-align: center; padding-left: 0px; padding-right: 0px" onclick="window.location='{% url 'entry:schedule' %}';" >Enter New Match</button>
+                </div>
+                {% else %}
+                <div style="display: flex" id="currentEvent">
+                    <span style="margin: auto">{% get_current_event request %}</span>
+                </div>
+            {% endif %}
         </div>
+
         <div class="scheduleContainer" style="flex-wrap: wrap; white-space: nowrap; justify-content: center">
             {% for match in schedule_list %}
                 {% if match.match_number > 0 %}

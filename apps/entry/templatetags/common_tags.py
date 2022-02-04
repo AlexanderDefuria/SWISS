@@ -106,7 +106,7 @@ def get_all_events():
 @register.simple_tag
 def is_lead_scout(request):
     # Check if user is highest level position
-    return request.user.teammember.position == TeamMember.AVAILABLE_POSITIONS[-1][0]
+    return request.user.teammember.position == 'LS'
 
 
 @register.simple_tag
