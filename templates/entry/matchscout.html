@@ -117,21 +117,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</div>
 			</div>
 			<div class="formItem">
-				<label for="autoStart">Starting Position</label>
-				<div class="ticker">
-					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'AllTarmacs.png' %}" alt="All Tarmacs">
-					<!--
-					<div style="text-align: center">
-					    <output name="autoStart_number" id="autoStart_number" for="autoStart">14</output>
-					</div>
-					<div style="text-align: center">
-    					<img id="autoStart_img" src="{{ MEDIA_URL }}{% static 'InitiationLine.png' %}" alt="Initiation Line">
-					</div>
+				<label>Starting Position</label>
+				<div>
+					<canvas width="200" height="100" style="background: url({{ MEDIA_URL }}{% static 'BlueTarmac.png' %})" alt="Blue Tarmac. If Broken call Nick."></canvas>
 					<div>
-					    <input type="range" name="autoStart" id="autoStart" min="0" max="20" value="14" oninput="autoStart_number.value=autoStart.value">
+						<input type="number" id="coordinate_x" name="coordinate_x" placeholder="x" readonly>
+						<input type="number" id="coordinate_y" name="coordinate_y" placeholder="y" readonly>
 					</div>
--->
 				</div>
+				<script type="text/javascript">
+					let fieldx = document.getElementById("coordinate_x");
+					let fieldy = document.getElementById("coordinate_y");
+
+					function getMousePosition(canvas, event) {
+						let rect = canvas.getBoundingClientRect();
+						let x = event.clientX - rect.left;
+						let y = event.clientY - rect.top;
+						fieldx.value = (x / 200);
+						fieldy.value = (y / 100);
+					}
+					let canvasElem = document.querySelector("canvas");
+					canvasElem.addEventListener("mousedown", function(e)
+					{
+						getMousePosition(canvasElem, e);
+					});
+				</script>
 			</div>
 			<div class="formItem">
 				<label for="">Ball Preloaded</label>
