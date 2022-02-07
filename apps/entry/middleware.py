@@ -61,8 +61,8 @@ class ValidateUser:
                 return response
             else:
                 print(view)
-                print(str(request.user) + " [" + str(request.user.teammember.position)
-                      + "] IS REQUESTING A PAGE WITH INVALID PERMS!")
+                print("\n" + str(request.user) + " [" + str(request.user.teammember.position)
+                      + "] IS REQUESTING " + request.path + " WITH INVALID PERMS!\n")
                 return HttpResponseRedirect(reverse_lazy('entry:index'))
 
         return response
