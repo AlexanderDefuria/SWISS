@@ -95,7 +95,8 @@ class Match(models.Model):
 
     # Pre Match
     # TODO make 2D Auto Start Field Based on Front End
-    # auto_start = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
+    auto_start_x = models.fields.FloatField(default=0, validators=[MaxValueValidator(1), MinValueValidator(0)])
+    auto_start_y = models.fields.FloatField(default=0, validators=[MaxValueValidator(1), MinValueValidator(0)])
     on_field = models.BooleanField(default=False)
     preloaded_balls = models.fields.BooleanField(default=True)
 
@@ -120,6 +121,7 @@ class Match(models.Model):
     offensive_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
 
     # Defense
+    defense_played = models.BooleanField(default=False)
     defense_time = models.IntegerField(default=0)
     defense_rating = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     defense_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(250), MinValueValidator(0)])

@@ -108,6 +108,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <th>Endgame Level</th>
 						<th>Climb Time</th>
 						<th>Climb Attempts</th>
+						<th>Timeout Position</th>
 
 						<th>Human Fouls</th>
 						<th>Driver Fouls</th>
@@ -130,7 +131,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <td>{{ match.baseline }}</td>
                             <td>{{ match.lower_auto }}</td>
                             <td>{{ match.upper_auto }}</td>
-                            <td>{{ match.fouls_auto }}</td>
+                            <td>{{ match.auto_fouls }}</td>
 
                             <td>{{ match.lower }}</td>
                             <td>{{ match.upper }}</td>
@@ -139,16 +140,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <td>{{ match.ball_intake_type }}</td>
                             <td>{{ match.cycle_style }}</td>
                             <td>{{ match.under_defense }}</td>
-                            <td>{{ match.fouls }}</td>
+                            <td>{{ match.offensive_fouls }}</td>
 
-                            <td>{{ match.played_defense }}</td>
+                            <td>{{ match.defense_played }}</td>
                             <td>{{ match.defense_rating }}</td>
                             <td>{{ match.defense_fouls }}</td>
                             <td>{{ match.able_to_push }}</td>
 
                             <td>{{ match.endgame_action }}</td>
-                            <td>{{ match.climb_timer }}</td>
+                            <td>{{ match.climb_time }}</td>
                             <td>{{ match.climb_attempts }}</td>
+                            <td>{{ match.lock_status }}</td>
 
                             <td>{{ match.dt_fouls }}</td>
                             <td>{{ match.hp_fouls }}</td>

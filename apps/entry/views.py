@@ -42,7 +42,8 @@ def match_scout_submit(request, pk):
 
         # PRE MATCH
         match.on_field = request.POST.get('onField', False)
-        # match.auto_start = request.POST.get('autoStart', 10)
+        match.auto_start_x = request.POST.get('coordinate_x', 0.0)
+        match.auto_start_y = request.POST.get('coordinate_y', 0.0)
         match.preloaded_balls = request.POST.get('preloadedBalls', 1)
 
         # AUTO
@@ -67,7 +68,8 @@ def match_scout_submit(request, pk):
         match.offensive_fouls = request.POST.get('offensive_fouls', 0)
 
         # DEFENSE
-        # TODO @NickKerstens match.defense_time = request.POST.get('defense_time', 0)
+        match.defense_played = request.POST.get('playedDefense', False)
+        match.defense_time = request.POST.get('defense_time', 0)
         match.defense_rating = request.POST.get('defense_rating', 0)
         team_defended = request.POST.get('team_defended', 0)
         match.team_defended = team_defended if team_defended != '' else -1
@@ -77,14 +79,14 @@ def match_scout_submit(request, pk):
         # CLIMB
         match.lock_status = request.POST.get('lock_status', 0)
         match.endgame_action = request.POST.get('endgame_action', 0)
-        # TODO @NickKerstens match.climb_time = request.POST.get('climb_time', 0)
+        match.climb_time = request.POST.get('climb_time', 0)
         match.climb_attempts = make_int(request.POST.get('climb_attempts', 0))
         match.climb_comments = request.POST.get('climb_comments', 0)
 
         # COMMENTS AND RANDOM IDEAS
         match.fouls_hp = request.POST.get('humanFouls', 0)
         match.fouls_driver = request.POST.get('driverFouls', 0)
-        match.yellow_card = True if request.POST.get('cardFouls', 0) != '' else False
+        match.yellow_card = True if request.POST.get('cardFouls', '') != '' else False
 
         match.scouter_name = request.user.first_name + " " + request.user.last_name
         match.comment = request.POST.get('comment', '')
