@@ -88,19 +88,17 @@ def match_scout_submit(request, pk):
         match.fouls_driver = request.POST.get('driverFouls', 0)
         match.yellow_card = True if request.POST.get('cardFouls', '') != '' else False
 
-        match.scouter_name = request.user.first_name + " " + request.user.last_name
+        match.scouter_name = request.user.username
         match.comment = request.POST.get('comment', '')
         match.team_ownership = request.user.teammember.team
 
-        print(match.get_deferred_fields())
+        #print(match.get_deferred_fields())
 
         try:
             match.save()
             print('Success')
         except Exception as e:
             print(e)
-
-        #print("Fail with an error")
 
         return HttpResponseRedirect(reverse_lazy('entry:match_scout_landing'))
 

@@ -96,7 +96,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<th>Tele Collected</th>
                         <th>Tele Missed</th>
 						<th>Intake Type</th>
-						<th>Cycle Style</th>
 						<th>Under Defense</th>
 						<th>Ofns Fouls</th>
 
@@ -126,7 +125,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <td  style="background: gray"> {{ match.team.name }}</td>
                             <td class="matchStick" style="z-index: 100">{{ match.match_number }}</td>
                             <td>{{ match.on_field }}</td>
-                            <td>{{ match.auto_start }}</td>
+                            <td>{{ match.auto_start_x }}</td>
+                            <td>{{ match.auto_start_y }}</td>
                             <td>{{ match.auto_route }}</td>
                             <td>{{ match.baseline }}</td>
                             <td>{{ match.lower_auto }}</td>
@@ -137,8 +137,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <td>{{ match.upper }}</td>
                             <td>{{ match.balls_collected }}</td>
                             <td>{{ match.missed_balls }}</td>
-                            <td>{{ match.ball_intake_type }}</td>
-                            <td>{{ match.cycle_style }}</td>
+                            <td>{{ match.intake_type }}</td>
                             <td>{{ match.under_defense }}</td>
                             <td>{{ match.offensive_fouls }}</td>
 
@@ -152,8 +151,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <td>{{ match.climb_attempts }}</td>
                             <td>{{ match.lock_status }}</td>
 
-                            <td>{{ match.dt_fouls }}</td>
-                            <td>{{ match.hp_fouls }}</td>
+                            <td>{{ match.fouls_driver }}</td>
+                            <td>{{ match.fouls_hp }}</td>
                             <td>{{ match.yellow_card }}</td>
 
                             <td>{{ match.auto_comment }}</td>
