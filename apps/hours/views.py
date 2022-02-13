@@ -17,11 +17,6 @@ class EnterHours(LoginRequiredMixin, generic.TemplateView):
     template_name = 'hours/entry.html'
 
     def post(self, request, *args, **kwargs):
-        try:
-            if Log.objects.all().get(completedDate=request.POST.get('completedDate', ' ')):
-                return HttpResponse(status=204)
-        except Exception as e:
-            print(e)
 
         log = Log()
         log.minutes = int(request.POST.get('minutes', 0)) + int(request.POST.get('hours', 0)) * 60
