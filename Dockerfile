@@ -16,9 +16,8 @@ RUN set -ex \
 
 ADD ./FRC-Scouting.nginx /etc/nginx/sites-available/FRC-Scouting
 RUN set -ex \
-    && ln -s /etc/nginx/sites-available/FRC-Scouting /etc/nginx/sites-enabled
-    
-RUN     
+    && ln -s /etc/nginx/sites-available/FRC-Scouting /etc/nginx/sites-enabled \
+    && echo "STATIC_ROOT = os.path.join(BASE_DIR, 'static')" >> ./FRC-Scouting/settings.py
 
 ENV VIRTUAL_ENV ./venv
 ENV PATH ./venv/bin:$PATH
@@ -31,14 +30,7 @@ ARG DB_PASSWORD
 ARG DB_HOST
 ARG DB_PORT
 ARG DB_SSLMODE
-RUN echo "$DJANGO_SECRET_KEY"
-RUN echo "$DB_ENGINE"
-RUN echo "$DB_NAME"
-RUN echo $DB_USER
-RUN echo $DB_PASSWORD
-RUN echo $DB_HOST
-RUN echo $DB_PORT
-RUN echo $DB_SSLMODE
+
 RUN set -ex \
     && { \
         printf '{\n\t"SECRET_KEY": "%s",\n' "$DJANGO_SECRET_KEY"; \
