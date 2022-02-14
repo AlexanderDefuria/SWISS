@@ -7,3 +7,10 @@ bootstrap* linguist-vendored
 *.min.js linguist-vendored
 *.min.css linguist-vendored
 flickity.* linguist-vendored
+/.idea/* liguist-vendored
+
+/static/entry/2019/* linguist-detectable=false
+/templates/entry/2019/* linguist-detectable=false
+/template/admin/* linguist-detectable=false
+/static/admin/* linguist-detectable=false
+/media/json/* linguist-detectable=false
