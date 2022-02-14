@@ -55,7 +55,6 @@ ul {
 	justify-content: center;
 	align-content: center;
 	align-items: center;
-	height: 90vh;
 }
 .heroContent {
 	display: flex;
@@ -468,10 +467,15 @@ ul {
 .loginButton {
 	padding: 20px;
     cursor: pointer;
+	background: #0F4D8D;
+	border: 3px solid transparent;
+	
 }
 .loginButton:hover {
 	box-shadow: 2px 5px 25px 2px #232323;
-    background-color: #0B3866;
+    background-color: #0d72d6;
+	border: 3px solid rgba(255,255,255,0.25);
+	border-radius: 5px;
 }
 .wideBox {
 	display: flex;
@@ -639,7 +643,7 @@ ul {
 	width: 72px;
 	height: 30px;
 	border-radius: 10px;
-	border: 3px solid transparent;
+	border: 3px solid rgba(255,255,255,0.25);
 }
 .teamnumberPill p {
 	margin: auto;
@@ -1063,7 +1067,8 @@ th {
 }
 #bottomBarContent {
 	display: flex; 
-	visibility: hidden
+	flex-wrap: wrap;
+	visibility: hidden;
 }
 #collapseBottomBar {
 	visibility: hidden;
@@ -1094,9 +1099,6 @@ th {
 	}
 	.tileContainer {
 		padding: 0 10px 0 10px;
-	}
-	#soloContainer {
-		width: 90%;
 	}
 	.modal-content {
 		width: 80%;

@@ -50,6 +50,15 @@ function loadFields() {
             let node = document.createElement("DIV");
             node.classList.add("teamnumberPill");
             node.style.width = "auto";
+            node.onclick = function (event) {
+                if (event.target.className === "teamnumberPill") {
+                    event.target.childNodes[1].checked = !event.target.childNodes[1].checked ;
+                } else if (event.target.tagName === "LABEL") {
+                    event.target.parentNode.childNodes[1].checked = !event.target.parentNode.childNodes[1].checked ;
+                } else {
+                    console.log(event.target.tagName)
+                }
+            }
 
             let inputNode = document.createElement("INPUT");
             inputNode.setAttribute("type", "checkbox");
@@ -184,6 +193,12 @@ function updateGraph(...args) {
         varChart.xAxis.categories = teams;
         varChart.yAxis.title.text = 'Total Points'
         varChart.title.text = ''
+        varChart.yAxis.plotLines = [{
+            color: '#000000',
+            width: 2,
+            value: 0,
+            zIndex: 10
+        }]
 
 
        //  console.log(varChart.series)

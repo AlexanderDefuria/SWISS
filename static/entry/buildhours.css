@@ -1,0 +1,201 @@
+@charset "utf-8";
+/* CSS Document */
+
+.logToolsContainer {
+	display: flex;
+	justify-content: space-around;
+	margin: 1rem 0;
+}
+
+.logTool {
+	background: #444;
+	border: 3px solid transparent;
+	border-radius: 0px;
+	margin: 0.5rem;
+	color: white;
+	transition: all 0.1s ease-in-out;
+}
+
+#filterTool {
+	flex: 20%;
+}
+
+#totalTool {
+	flex: 10%;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+}
+
+#totalTool > * {
+	margin: 0;
+}
+
+#actionTool {
+	flex: 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+#actionTool > h4 {
+	margin: 0;
+}
+
+.logTool:hover {
+	background: #555;
+	border-color: #777;
+	border-radius: 5px;
+}
+
+.logFilter {
+	visibility: inherit;
+	display: flex;
+	padding: 10px 20px;
+	flex-grow: 0;
+	height: auto;
+	transition: all .2s ease-in-out;
+}
+
+.logFilterInput {
+	width: 200px;
+	outline: none;
+	color: white;
+	background: none;
+	border: none;
+	border-bottom: 3px solid #ffffff;
+	padding-left: 5px;
+	transition: all 0.2s ease-in-out;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.logFilterInput:focus {
+	border-color: #0F4D8D;
+	border-width: 3px;
+	background-color: rgba(0,0,0,0.2);
+	border-radius: 5px;
+}
+
+.updateLogsButton {
+	background: #0F4D8D;
+	color: white;
+	border: 3px solid transparent;
+	margin: 10px;
+	font-size: 16px;
+	padding: 10px;
+	transition: all 0.1s ease-in-out;
+}
+
+.updateLogsButton:hover {
+	background: #0d72d6; 
+	border: 3px solid rgba(255,255,255,0.25);
+	border-radius: 5px;
+}
+
+.logChipContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.logChip {
+	display: flex;
+	flex-direction: row;
+	background: #444;
+	padding: 1rem;
+	color: white;
+	margin: 0.5rem;
+	border: 3px solid transparent;
+	transition: all 0.1s ease-in-out;
+}
+
+.logChip:hover{ 	
+	background-color: #555555;
+	border-color: #777777;
+	border-radius: 5px;
+	box-shadow: 7px 7px 25px 10px #232323;
+}
+
+.logChipInfo {
+	flex: 20%;
+}
+
+.logChipDescription {
+	flex: 40%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	margin-bottom: 0.5rem;
+}
+
+.logChipDescription p {
+	margin: 0.25rem 0 0 0;
+}
+
+.logChipHours {
+	text-align: center;
+	flex: 10%;
+	border-radius: 5px;
+}
+
+.logChipHours > * {
+	margin: 0.25rem;
+}
+
+.logChipAction {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	flex: 20%;
+}
+
+select {
+	color: white;
+	height: 3rem;
+	width: 100%;
+	background: none;
+	background-color: transparent;
+	border: none;
+	border-bottom: 3px solid #ffffff;
+	padding-left: 0.25rem;
+	transition: all 0.2s ease-in-out;
+}
+/* Customizes the input when focused */
+select:focus {
+	background-color: #333333;
+	border-color: #0F4D8D;
+	border-radius: 5px;
+}
+
+@media screen and (max-width: 768px) {
+	.logChip {
+		flex-wrap: wrap;
+	}
+	
+	.logChipInfo {
+		flex: 100%;
+	}
+	
+	.logChipDescription {
+		flex: 100%
+	}
+	
+	.logChipHours {
+		flex: 40%;
+	}
+	
+	.logChipHours > * {
+		margin: 0;
+	}
+	
+	.logChipAction {
+		flex: 60%
+	}
+	
+	.logToolsContainer {
+		flex-wrap: wrap;
+	}
+}

@@ -5,6 +5,7 @@ from django import template
 from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 from django.db import models
+from django.db.models import Max, Count
 from django.utils import timezone
 
 from apps.entry.models import *
@@ -106,7 +107,7 @@ def get_all_events():
 @register.simple_tag
 def is_lead_scout(request):
     # Check if user is highest level position
-    return request.user.teammember.position == TeamMember.AVAILABLE_POSITIONS[-1][0]
+    return request.user.teammember.position == 'LS'
 
 
 @register.simple_tag
@@ -146,15 +147,20 @@ def get_average(user, team, field, model):
             if result_list.count(each) > occured:
                 occured = result_list.count(each)
                 most_common = each
-
-        # print(str(most_common) + " occured " + str(occured) + " times.")
-
         return most_common
+
+    total = get_total(user, team, field, model)
+    model_instances = model.objects.filter(team_id=team.id, team_ownership=user.teammember.team)
+
+    if field == 'lock_status':
+        most_common = model_instances.annotate(mc=Count('lock_status')).order_by('-mc')[0].lock_status
+        total = model_instances.filter(lock_status=most_common).count()
+
 
     # If its to do with scoring or fouls return a percent
     scale = 1000 if model == Pits else 10
 
-    return round(1000 * (get_total(user, team, field, model) / len(model.objects.filter(team_id=team.id, team_ownership=user.teammember.team)))) / scale
+    return round(1000 * (total / len(model_instances))) / scale
 
 
 def get_total(user, team, field, model):
@@ -194,11 +200,16 @@ def get_list(user, team, field, model):
             # print(k, d[k])
             rename = []
             if field == 'tele_positions':
-                rename = ["Against Power Port", "Initiation Line Area", "Trench Run", "Behind Control Panel"]
+                rename = ["Against Fender", "Tarmac", "Launch Pad", "Anywhere"]
             elif field == 'field_timeout_pos':
                 rename = ["Nothing", "Parked", "Attempted Climb", "Successful Climb"]
+            elif field == 'lock_status':
+                rename = ["No Attempt", "Low Rung", "Mid Rung", "High Rung", "Traversal"]
 
             if rename is not []:
+                # print("\nd[" + str(k) + "]: " + str(d[k]))
+                # print("rename[" + str(k) + "]: " + str(rename[k]))
+                # print("return_list: " + str(d[k]))
                 return_list[rename[k]] = d[k]
             else:
                 return_list[k] = d[k]

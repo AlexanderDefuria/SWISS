@@ -30,6 +30,15 @@
 }
 
 
+/* iOS Browser Resets */ 
+
+input [type=text], input [type=button] {
+	-webkit-appearance: none;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+}
+
+
 /* TEXT INPUTS */
 
 
@@ -41,6 +50,7 @@
 	border: none;
 	padding-left: 0.5rem;
 	border-bottom: 3px solid #ffffff;
+	border-radius: 0;
 	transition: all 0.2s ease-in-out;
 }
 /* Adds a background color, expands the input and adds a blue border when focused */
@@ -61,6 +71,7 @@
 	background: none;
 	border: none;
 	border-bottom: 3px solid #ffffff;
+	border-radius: 0;
 	transition: all 0.2s ease-in-out;
 }
 /* Adds a background color, expands the input and adds a blue border when focused */
@@ -76,6 +87,7 @@
 	background: none;
 	border: none;
 	border-bottom: 3px solid #ffffff;
+	border-radius: 0;
 	transition: all 0.2s ease-in-out;
 }
 /* Adds a background color, expands the input and adds a blue border when focused */
@@ -89,16 +101,16 @@
 
 
 .formItem input[type=number]{
-	width: 60px;
+	width: 70px;
 	outline: none;
 	color: white;
 	background: none;
 	text-align: center;
 	border: none;
 	border-bottom: 3px solid #ffffff;
+	border-radius: 0;
 	font-size: 18px;
 	transition: all 0.2s ease-in-out;
-	border-radius: 0;
 }
 /* Adds a background color, expands the input and adds a blue border when focused */
 .formItem input[type=number]:focus {
@@ -138,6 +150,7 @@ input[type=number] {
 	background-color: transparent;
 	border: none;
 	border-bottom: 3px solid #ffffff;
+	border-radius: 0;
 	padding-left: 0.25rem;
 	transition: all 0.2s ease-in-out;
 }
@@ -280,6 +293,7 @@ input[type=number] {
 	width: 30px;
 	height: 30px;
 	border: 3px solid white;
+	border-radius: 0;
 	border-radius: 50px;
 	transition: all 0.1s ease-in-out;
 	cursor: pointer;
@@ -299,6 +313,28 @@ input[type=number] {
 .goalIcon {
 	height: 35px; position: relative; top: 5px; left: -5px
 }
+
+/* RESET BUTTON */ 
+
+.formItem [type=reset] {
+	background: none;
+	color: white;
+	font-size: 21px;
+	width: 30px;
+	height: 30px;
+	border: 3px solid white;
+	border-radius: 0;
+	border-radius: 50px;
+	transition: all 0.1s ease-in-out;
+	cursor: pointer;
+	touch-action: manipulation; /* Stops iOS from zooming in when tapping repeatedly */
+}
+
+.formItem [type=reset]:active {
+	background-color: white;
+	color: black;
+}
+
 
 
 /* RANGE SLIDER */
@@ -473,8 +509,6 @@ input:-webkit-autofill:focus {
 	}
 	.formItem [type=range]::-webkit-slider-thumb:hover {
 		background-color: #ffffff;
-		width: 45px;
-		height: 45px;
 	}
 	.checkContainer {
 		margin-bottom: 20px;

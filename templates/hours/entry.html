@@ -1,0 +1,104 @@
+{% load static %}
+{% load hours_tags %}
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Build Hours - Entry</title>
+<script src="{% static 'entry/jquery.min.js' %}"></script>
+<script src="{% static 'entry/validate.js' %}"></script>
+<script src="{% static 'entry/script.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/formstyle.css' %}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
+<meta name="theme-color" content="0F4D8D">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
+
+<body>
+	<div class="topbar">
+		<div class="hamburgerButton" onClick="openNav()">
+			<button class="hamburgerButton" onClick="openNav()">☰</button>
+		</div>
+		<div class="swissLogo" id="swissLogo">
+			<a href="{% url 'entry:index' %}">
+			<img src="{{ MEDIA_URL }}{% static 'SwissIcon2x.png' %}" alt="SWISS Logo">
+			</a>
+		</div>
+	</div>
+	<div id="sideNav" class="sidebar">
+		<div>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+			<a href="{% url 'entry:index' %}">Home</a>
+			<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
+			<a href="{% url 'entry:glance_landing' %}">Glance</a>
+			<a href="{% url 'entry:teams' %}">Teams</a>
+			<a href="{% url 'entry:stats' %}">Data</a>
+			<a href="{% url 'entry:visualize' %}">Visualize</a>
+			<a href="{% url 'entry:settings' %}">Settings</a>
+			<a href="{% url 'entry:about' %}">About</a>
+		</div>
+		<div class="greeting">
+			<p id="timeOfDay"></p>
+			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
+		</div>
+		<script>
+			var hour = new Date().getHours();
+			var greeting; 
+			if (hour < 17) {
+				greeting = "Good day,";
+			} else {
+				greeting = "Good evening,";
+			}
+			document.getElementById("timeOfDay").innerHTML = greeting;
+		</script>
+	</div>
+	<div class="bodyContainer bodyBackground" id="bodyContainer">
+		<div class="heroContent" id="heroSpace">
+			<div class="stickyChip">
+				<div class="teamnamePill">
+					<p>{{ user.get_username }}</p>
+				</div>
+			</div>
+		</div>
+		<div>
+			<form action="{% url 'hours:enter' %}" class="formContainer" method="post" name="mainForm" id="mainForm">
+				{% csrf_token %}
+
+				<h1>Build Season Hours Entry</h1>
+				<div class="formItem">
+					<label for="gremlin">Student Name:</label>
+					<input type="text" id="gremlin" name="gremlin" required>
+				</div>
+				<div class="formItem">
+					<label for="completedDate">Date hours were completed:</label>
+					<input type="date" id="completedDate" name="completedDate" required> 
+				</div>
+				<div class="formItem">
+					<label for="tasks">Tasks completed:</label>
+					<input type="text" name="tasks" id="tasks" rows="5" placeholder="i.e. Milled parts, Wrote Essay for Chairmans">
+				</div>
+				<div class="formItem">
+					<label for="hoursCompleted">Hours completed:</label>
+					<div class="ticker">
+						<label for="hours">Hr:</label>
+						<input type="number" name="hours" id="hours" min="0" max="12">
+						<label for="minutes">Min:</label>
+						<input type="number" name="minutes" id="minutes" min="0" max="59">
+					</div>
+				</div>
+				<div class="formItem" id="submit" onclick="validate('mainForm', true)">
+					<input name="submit" id="submitButton" type="submit" style="pointer-events: none">
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="snackbar">
+		<p id="snacktext">Default Text</p>
+	</div>
+</body>
+</html>

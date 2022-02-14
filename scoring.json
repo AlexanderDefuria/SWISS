@@ -1,43 +1,13 @@
 {
-  "inner" : {
+  "upper" : {
     "points" : 1,
-    "alias" : "Inner Port",
+    "alias" : "Upper Hub",
     "weight" : 1,
     "visible":true
   },
-  "outer" : {
-    "points" : 1,
-    "alias" : "Outer Port",
-    "weight" : 1,
-    "visible": true
-  },
   "lower" : {
     "points" : 1,
-    "alias" : "Lower Port",
-    "weight" : 1,
-    "visible": true
-  },
-  "auto_route" : {
-    "points" : 1,
-    "alias" : "Auto Route",
-    "weight" : 1,
-    "visible": true
-  },
-  "auto_start" : {
-    "points" : 1,
-    "alias" : "Auto Start",
-    "weight" : 1,
-    "visible": true
-  },
-  "rating_auto" : {
-    "points" : 1,
-    "alias" : "Auto Rating",
-    "weight" : 1,
-    "visible": true
-  },
-  "preloaded_balls" : {
-    "points" : 1,
-    "alias" : "Preloaded Balls",
+    "alias" : "Lower Hub",
     "weight" : 1,
     "visible": true
   },
@@ -47,23 +17,11 @@
     "weight" : 1,
     "visible": true
   },
-  "outer_auto" : {
+  "auto_route" : {
     "points" : 1,
-    "alias" : "Auto Powercells",
+    "alias" : "Auto Route",
     "weight" : 1,
     "visible": true
-  },
-  "inner_auto" : {
-    "points" : 1,
-    "alias" : "Auto Inner Powercells",
-    "weight" : 1,
-    "visible": false
-  },
-  "lower_auto" : {
-    "points" : 1,
-    "alias" : "Auto Lower Powercells",
-    "weight" : 1,
-    "visible": false
   },
   "baseline" : {
     "points" : 1,
@@ -71,27 +29,56 @@
     "weight" : 1,
     "visible": true
   },
-  "wheel_score" : {
+  "lower_auto" : {
     "points" : 1,
-    "alias" : "Control Panel",
+    "alias" : "Lower Auto",
     "weight" : 1,
     "visible": true
   },
-  "wheel_rating" : {
+  "upper_auto" : {
     "points" : 1,
-    "alias" : "Control Panel Rating",
+    "alias" : "Upper Auto",
     "weight" : 1,
-    "visible": false
+    "visible": true
   },
-  "fouls" : {
+  "auto_fouls" : {
+    "points" : 1,
+    "alias" : "Auto Fouls",
+    "weight" : 1,
+    "visible": true
+  },
+
+  "balls_collected" : {
+    "points" : 1,
+    "alias" : "Balls Collected",
+    "weight" : 1,
+    "visible": true
+  },
+
+  "missed_balls" : {
+    "points" : -1,
+    "alias" : "Missed Balls",
+    "weight" : 1,
+    "visible": true
+  },
+
+  "under_defense" : {
+    "points" : 1,
+    "alias" : "Under Defense",
+    "weight" : 1,
+    "visible": true
+  },
+
+  "offensive_fouls" : {
     "points" : 1,
     "alias" : "Offensive Fouls",
     "weight" : 1,
     "visible": true
   },
-  "played_defense" : {
+
+  "defense_time" : {
     "points" : 1,
-    "alias" : "Defense Played",
+    "alias" : "Defense Time",
     "weight" : 1,
     "visible": true
   },
@@ -105,75 +92,47 @@
     "points" : 1,
     "alias" : "Defense Fouls",
     "weight" : 1,
-    "visible": false
-  },
-  "team_defended" : {
-    "points" : 1,
-    "alias" : "Team Defended",
-    "weight" : 1,
-    "visible": false
+    "visible": true
   },
   "able_to_push" : {
     "points" : 1,
     "alias" : "Pushing",
     "weight" : 1,
-    "visible": false
+    "visible": true
   },
-  "missed_balls" : {
+  "lock_status" : {
     "points" : 1,
-    "alias" : "Missed Balls",
+    "alias" : "Endgame Lock",
     "weight" : 1,
     "visible": true
   },
-  "cycle_style" : {
+
+  "endgame_action" : {
     "points" : 1,
-    "alias" : "Cycle Style",
-    "weight" : 1,
-    "visible": false
-  },
-  "defended_by" : {
-    "points" : 1,
-    "alias" : "Defended By",
-    "weight" : 1,
-    "visible": false
-  },
-  "ball_intake_type" : {
-    "points" : 1,
-    "alias" : "Ball Intake Type",
-    "weight" : 1,
-    "visible": false
-  },
-  "climb_location" : {
-    "points" : 1,
-    "alias" : "Climb Location",
+    "alias" : "Endgame Action",
     "weight" : 1,
     "visible": true
   },
-  "field_timeout_pos" : {
+  "climb_time" : {
     "points" : 1,
-    "alias" : "End Position",
+    "alias" : "Climb Time",
     "weight" : 1,
-    "visible": false
+    "visible": true
   },
-  "balls_collected" : {
+  "climb_attempts" : {
     "points" : 1,
-    "alias" : "Balls Collected",
+    "alias" : "Climb Attempts",
     "weight" : 1,
-    "visible": false
+    "visible": true
   },
-  "full_cycles" : {
-    "points" : 1,
-    "alias" : "Full Cycles",
-    "weight" : 1,
-    "visible": false
-  },
-  "hp_fouls" : {
+
+  "fouls_hp" : {
     "points" : 1,
     "alias" : "HP Fouls",
     "weight" : 1,
     "visible": false
   },
-  "dt_fouls" : {
+  "fouls_driver" : {
     "points" : 1,
     "alias" : "DT Fouls",
     "weight" : 1,

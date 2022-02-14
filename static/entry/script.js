@@ -13,8 +13,8 @@ function closeNav() {
 
 //Function that controls the bottom bar
 function expandBottomBar() {
-	document.getElementById("bottomBar").style.height = "70px";
-	document.getElementById("bottomBarButton").style.height = "70px";
+	document.getElementById("bottomBar").style.height = "auto";
+	document.getElementById("bottomBarButton").style.height = "80px";
 	document.getElementById("bottomBarButton").onclick = function () {collapseBottomBar()};
 	document.getElementById("bottomBarContent").style.visibility = "visible";
 	document.getElementById("bodyContainer").style.paddingBottom = "0px";
@@ -84,6 +84,23 @@ function teamFilter(field) {
 		}
 	}
 	document.getElementsByClassName("teamChip")
+}
+
+// Function that filter hour logs on Hours Log View page by student name 
+
+function logFilter(field) {
+	let filter = document.getElementById(field).value.toString();
+	let all = document.getElementsByClassName('logChip')
+	if (field === "studentName") {
+		for (let i = 0; i < all.length; i++) {
+			if (all[i].id.toString().indexOf(filter) > -1)
+				all[i].style.display = "";
+			else
+				all[i].style.display = "none";
+
+		}
+	}
+	document.getElementsByClassName("logChip")
 }
 
 

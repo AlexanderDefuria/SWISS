@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'entry/tile-order.css' %}">
 	<script src="{% static 'entry/script.js' %}"></script>
+	<script src="{% static 'entry/index.js' %}"></script>
 	<link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
 	<link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
 	<link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
@@ -162,6 +163,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<img src="{{ MEDIA_URL }}{% static 'NewUserIcon.png' %}" alt="Registration Icon">
 				</div>
 			</a>
+			<a href="{% url 'hours:view' %}" id="tileHours" title="View Build Hours">
+				<div class="smallBox">
+					<img src="{{ MEDIA_URL }}{% static 'BuildHoursBinder.png' %}" alt="Build Hours Binder Icon">
+				</div>
+			</a>
 		</div>
 		<div id="snackbar">
 			<p id="snacktext">Default Text</p>
@@ -169,70 +175,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<div id="alertbar">
 			<p id="alerttext">Default Text</p>
             <button id="alertbutton" onClick="document.location='{% url 'entry:welcome' %}';">Let's Go!</button>
-			<button class="alertclose" onClick="closeAlertBar()">╳</button>
+			<button class="alertclose" onClick='closeAlertBar(); document.cookie = "tutorialCompleted=True; path=/";'>╳</button>
 		</div>
         <p style="display: none" id="tutorialCookie">{% get_cookie request 'tutorialCompleted' %}</p>
 	</div>
-	<script>
-		var x = document.getElementById("alertbar");
-		var y = document.getElementById("alerttext");
-		var z = document.getElementById("tutorialCookie").innerHTML;
-
-		document.addEventListener('DOMContentLoaded', function () {
-			setTimeout(function () {
-				if (z == "False") {
-					x.className = "show";
-					y.innerHTML = "Welcome to SWISS! Do you want a walkthrough?";
-                    console.log("Tutorial Prompt On");
-				} else if (z == "True") {
-					console.log("Tutorials Off")
-				} else {
-					x.className = "show";
-					y.innerHTML = "Welcome to SWISS! Do you want a walkthrough?";
-					console.log("No Tutorial Prompt Cookie set");
-				}
-			}, 500), false
-		})
-        
-        var modal = document.getElementById("myModal");
-        var opn = document.getElementById("tileDownload");
-        var bad = document.getElementById("downloadCancel");
-        var good = document.getElementById("downloadConfirm");
-        var main = document.getElementById("tileContainer");
-        var modhead = document.getElementById("modal-header");
-        var moddesc = document.getElementById("modal-desc");
-
-        // When the user clicks on the button, open the modal
-        opn.onclick = function() {
-            modal.style.visibility = "visible";
-            main.style.filter = "blur(2px)";
-            window.navigator.vibrate(40);
-            modhead.innerHTML = "Download Match Data?";
-            moddesc.innerHTML = "All match data for current event will be downloaded in a CSV format.";
-        }
-
-        // When the user clicks on "no", close the modal
-        bad.onclick = function() {
-            modal.style.visibility = "hidden";
-            main.style.filter="blur(0)";
-            window.navigator.vibrate(40);
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-          if (event.target == modal) {
-            modal.style.visibility = "hidden";
-            main.style.filter = "blur(0)";
-            window.navigator.vibrate(40);
-          }
-        }
-
-        good.onclick = function() {
-        // When the user clicks "ok", href to download link 
-            document.location='{% url 'entry:download' %}';
-        }
-
-	</script>
 </body>
-
 </html>

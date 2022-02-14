@@ -194,10 +194,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="formItem" id="submit" onclick="validate('mainForm', false)">
                 <input name="submit" id="submitButton" type="submit" style="pointer-events: none" value="Save Settings">
 			</div>
+			<div class="formItem">
+				<a class="logoutbtn" id="log_out_btn" href="/entry/logout">Log Out</a>
+			</div>
 		</form>
-		<div class="formContainer">
-			<input class="logoutbtn" id="log_out_btn" type="button" value="Log Out" onclick="logout()">
-		</div>
 	</div>
 <script>
 	function logout() {
@@ -208,7 +208,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         document.getElementById('filters_'.concat('{% get_cookie request 'filters' %}'.toLowerCase())).checked = true;
         document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true;
 		document.getElementById('tutorialCompleted_'.concat('{% get_cookie request 'tutorialCompleted' %}'.toLowerCase())).checked = true;
-		document.getElementById('teamsBehaviour').value={% get_cookie request 'teamsBehaviour' %};
+		//document.getElementById('teamsBehaviour').value={% get_cookie request 'teamsBehaviour' %};
 		//Wasnt sure what was going on here, empty if statement below so I fully commented it -Carter
         //{% if lead_scout %} document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true; {% endif %}
     }        

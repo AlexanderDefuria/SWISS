@@ -104,6 +104,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			</div>
 			<div class="formItem">
 				<label for="onField">Is Robot Present?</label>
+				<div>-- Automation is broken</div>
 				<div class="radioGroup">
 					<label>
 						<input type="radio" id="onField_true" name="onField" value="True" onClick="registerChange()" required>
@@ -116,25 +117,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</div>
 			</div>
 			<div class="formItem">
-				<label for="autoStart">Starting Position</label>
-				<div class="right">
-					<div style="text-align: center">
-					    <output name="autoStart_number" id="autoStart_number" for="autoStart">14</output>
-					</div>
-					<div style="text-align: center">
-    					<img id="autoStart_img" src="{{ MEDIA_URL }}{% static 'InitiationLine.png' %}" alt="Initiation Line">
-					</div>
-					<div>
-					    <input type="range" name="autoStart" id="autoStart" min="0" max="20" value="14" oninput="autoStart_number.value=autoStart.value">
+				<label>Starting Position</label>
+				<div style="align-self: flex-end">
+					<canvas width="200" height="100" style="background: url({{ MEDIA_URL }}{% static 'BlueTarmac.png' %})" alt="Blue Tarmac. If Broken call Nick."></canvas>
+					<div style="text-align: right">
+						<input type="number" id="coordinate_x" name="coordinate_x" placeholder="x" readonly>
+						<input type="number" id="coordinate_y" name="coordinate_y" placeholder="y" readonly>
 					</div>
 				</div>
+				<script type="text/javascript">
+					let fieldx = document.getElementById("coordinate_x");
+					let fieldy = document.getElementById("coordinate_y");
+
+					function getMousePosition(canvas, event) {
+						let rect = canvas.getBoundingClientRect();
+						let x = event.clientX - rect.left;
+						let y = event.clientY - rect.top;
+						fieldx.value = (x / rect.width);
+						fieldy.value = (y / rect.height);
+					}
+					let canvasElem = document.querySelector("canvas");
+					canvasElem.addEventListener("mousedown", function(e)
+					{
+						getMousePosition(canvasElem, e);
+					});
+				</script>
 			</div>
 			<div class="formItem">
-				<label for="preloadedBalls">Number of Balls Preloaded</label>
-				<div class="ticker">
-					<input type="button" onclick="decrementValue('preloadedBalls')" value="-">
-					<input type="number" name="preloadedBalls" id="preloadedBalls" min="0" max="3" value="3" readonly>
-					<input type="button" onclick="incrementPreload('preloadedBalls')" value="+">
+				<label for="">Ball Preloaded</label>
+				<div class="radioGroup">
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'SplitColourCargo.png' %}" alt="Split Colour Cargo">
+					<label>
+						<input type="radio" id="preloaded_ball_true" name="preloadedBalls" value="True" onclick="registerChange()" required>
+						<span>Y</span>
+					</label>
+					<label>
+						<input type="radio" id="preloaded_ball_false" name="preloadedBalls" value="False" onClick="registerChange()">
+						<span>N</span>
+					</label>
 				</div>
 			</div>
 
@@ -143,7 +163,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<h1 id="aAutonomous">AUTONOMOUS</h1>
 			<div class="formItem" id="autoRouteDiv">
 				<label for="autoRoute">Autonomous Route</label>
-				<select name="autoRoute" id="autoRoute" onChange="hideAutonomous()" required>
+				<!-- onChange="hideAutonomous()" was removed from the <select> below -->
+				<div>Automation temporarily broken</div>
+				<select name="autoRoute" id="autoRoute" required>
 					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">None</option>
 					<option value="1">Yes, Simple</option>
@@ -152,9 +174,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			</div>
 			
 			<div class="formItem" id="baselineDiv">
-			<!-- Boolean for if a Robot moved from the initiation line -->
-				<label for="baseline">Moved off Initiation Line</label>
+			<!-- Boolean for if a Robot moved off of the tarmac -->
+				<label for="baseline">Left Tarmac Zone</label>
 				<div class="radioGroup">
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'AllTarmacs.png' %}" alt="All Tarmacs">
 					<label>
 						<input type="radio" id="baseline_true" name="baseline" value="True" onclick="registerChange()" required>
 						<span>Y</span>
@@ -167,26 +190,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			</div>
 			
 			<div class="formItem" id="autoGoalsDiv">
-			<!-- Power Port Goals in Autonomous  -->
-				<label for="autoLowGoal">Power Port Goals</label>
+			<!-- Hub Goals in Autonomous  -->
+				<label for="autoLowGoal">Power Port Goals (AUTO)</label>
 				<div class="ticker">
-					<!-- Lower Port Auto (RECTANGLE) -->
-					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'LowerAutoIcon.png' %}" alt="lower">
+					<!-- Upper Hub Auto -->
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'HubUpper.png' %}" alt="inner">
+					<input type="button" onclick="decrementValue('upper_auto')" value="-">
+					<input name="upper_auto" id="upper_auto" type="number" min="0" max="100" value="0" readonly>
+					<input type="button" onclick="incrementValue('upper_auto')" value="+">
+					<br>
+					<!-- Lower Hub Auto -->
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'HubLower.png' %}" alt="lower">
 					<input type="button"  onclick="decrementValue('lower_auto')" value="-">
 					<input type="number" name="lower_auto" id="lower_auto" min="0" max="100" value="0" readonly>
 					<input type="button"  onclick="incrementValue('lower_auto')" value="+">
-					<br>
-					<!-- Upper Port Auto (HEXAGON) -->
-					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'OuterAutoIcon.png' %}" alt="outer">
-					<input type="button" onclick="decrementValue('outer_auto')" value="-">
-					<input name="outer_auto" id="outer_auto" type="number" min="0" max="100" value="0" readonly>
-					<input type="button" onclick="incrementValue('outer_auto')" value="+">
-					<br>
-					<!-- Inner Port Auto (CIRCLE) -->
-					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'InnerAutoIcon.png' %}" alt="inner">
-					<input type="button" onclick="decrementValue('inner_auto')" value="-">
-					<input name="inner_auto" id="inner_auto" type="number" min="0" max="100" value="0" readonly>
-					<input type="button" onclick="incrementValue('inner_auto')" value="+">
 				</div>
 			  </div>
 			<div class="formItem" id="autoMissedDiv">
@@ -198,11 +215,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					<input type="button" onclick="incrementValue('missed_balls_auto')" value="+">
 				</div>
 			</div>
-			<div class="formItem" id="autoCommentDiv">
-				<label for="autoComment">Auto Route Notes</label>
-				<input type="text" name="autoComment" id="autoComment" placeholder="Auto Notes" autocomplete="off" required>
+			<div class="formItem">
+			<!-- Communicates frequency or severeness of fouls against team -->
+			<!-- Not to be confused with Teleoperated Fouls Below -->
+				<label for="auto_fouls">Incurred Offensive Fouls</label>
+				<select name="auto_fouls" id="auto_fouls" required>
+					<option value="" disabled selected hidden>&#8230;</option>
+					<option value="0">None</option>
+					<option value="1">Yes, Minor</option>
+					<option value="2">Yes, Major</option>
+				</select>
 			</div>
-            
+			<div class="formItem" id="autoCommentDiv">
+				<label for="auto_comment">Auto Route Notes</label>
+				<input type="text" name="auto_comment" id="auto_comment" placeholder="Auto Notes" autocomplete="off" required>
+			</div>
             <script>
 				// Gets value of dropdown, hides div that becomes irrelevant
 				function hideAutonomous() {
@@ -217,7 +244,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				        document.getElementById("baselineDiv").style.display="none";
 						document.getElementById("autoGoalsDiv").style.display="none";
 						document.getElementById("autoMissedDiv").style.display="none";
-
 					}
 				}
             </script>
@@ -225,30 +251,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!--	OFFENSE		-->
 			
 			<h1>TELEOP - OFFENSE</h1>
-			
 		<!-- Shooting specific inputs -->
-			
 			<div class="formItem">
-			<!-- Power Port Goals in Teleoperated  -->
+			<!-- Hub Goals in Teleoperated  -->
 				<label>Power Port Goals</label>
                 <div class="ticker">
-					<!-- Lower Port Teleop (RECTANGLE) -->
-					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'LowerTeleIcon.png' %}" alt="lower">
+					<!-- Upper Hub Teleop -->
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'HubUpper.png' %}" alt="upper">
+					<input type="button" onclick="decrementValue('upper')" value="-">
+					<input name="upper" id="upper" type="number" min="0" max="100" value="0" readonly>
+					<input type="button" onclick="incrementValue('upper')" value="+">
+					<br>
+					<!-- Lower Hub Teleop -->
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'HubLower.png' %}" alt="lower">
   					<input type="button" onclick="decrementValue('lower')" value="-">
 					<input id="lower" name="lower" type="number" min="0" max="100" value="0" readonly>
 					<input type="button" onclick="incrementValue('lower')" value="+">
-					<br>
-					<!-- Upper Port Teleop (HEXAGON) -->
-					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'OuterTeleIcon.png' %}" alt="outer">
-					<input type="button" onclick="decrementValue('outer')" value="-">
-					<input name="outer" id="outer" type="number" min="0" max="100" value="0" readonly>
-					<input type="button" onclick="incrementValue('outer')" value="+">
-					<br>
-					<!-- Inner Port Teleop (CIRCLE) -->
-					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'InnerTeleIcon.png' %}" alt="inner">
-					<input type="button" onclick="decrementValue('inner')" value="-">
-					<input name="inner" id="inner" type="number" min="0" max="100" value="0" readonly>
-					<input type="button" onclick="incrementValue('inner')" value="+">
 			 	</div>
 		 	 </div>
 
@@ -258,9 +276,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				<label>Missed balls</label>
                 <div class="ticker">
 					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'MissedIcon.png' %}" alt="missed">
-  					<input type="button" onclick="decrementValue('missedBalls')" value="-">
-					<input id="missedBalls" name="missedBalls" type="number" min="0" max="100" value="0" readonly>
-					<input type="button" onclick="incrementValue('missedBalls')" value="+">
+  					<input type="button" onclick="decrementValue('missed_balls')" value="-">
+					<input id="missed_balls" name="missed_balls" type="number" min="0" max="100" value="0" readonly>
+					<input type="button" onclick="incrementValue('missed_balls')" value="+">
 			 	</div>
 		 	 </div>
 			
@@ -276,44 +294,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					<option value="2">Human</option>
 					<option value="3">Both</option>
 				</select>
-			</div>
-
-			<div class="formItem">
-			<!-- Style of Cycles for Strategy Purposes -->
-			<!-- Checkbox as multiple options are allowed -->
-			<!-- Need to find way to disable bottom two checkboxes if "No Cycles" is chosen --> 
-				<label for="cycleStyle">Cycle Style</label>
-				<div class="checkboxGroup">
-					<label class="checkContainer" onClick="registerChange()">No Cycles
-						<input type="checkbox" id="noCycles" name="cycleStyle" value="0">
-						<span class="checkmark"></span>
-					</label>
-					<label class="checkContainer" onClick="registerChange()">Full Field
-						<input type="checkbox" id="fullField" name="cycleStyle" value="1">
-						<span class="checkmark"></span>
-					</label>
-					<label class="checkContainer" onClick="registerChange()">Cleanup
-						<input type="checkbox" id="cleanup" name="Cleanup" value="2">
-						<span class="checkmark"></span>
-					</label>
-				</div>
-			</div>
-			
+			</div>			
 			<div class="formItem">
 			<!-- Can the robot drive well and achieve tasks while under defense? -->
-				<label for="underDefense">Play well under defense</label>
-				<select name="underDefense" id="underDefense" required onChange="hideDefendedBy()"> 
+				<label for="under_defense">Play well under defense</label>
+				<select name="under_defense" id="under_defense" required onChange="hideDefendedBy()"> 
 					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">Not Defended</option>
 					<option value="1">Played Poorly</option>
 					<option value="2">Played Well</option>
 				</select>
 			</div>
-			
 			<script> 
 				// Gets value of dropdown, hides div that becomes irrelevant
 				function hideDefendedBy() {
-					var x = document.getElementById("underDefense").value;
+					var x = document.getElementById("under_defense").value;
 					if (x != 0){
 						document.getElementById("defendedByDiv").style.display="flex";
 					} else {
@@ -321,59 +316,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					}
 				}
 			</script>
-			
 			<div class="formItem" id="defendedByDiv">
 			<!-- Text string for team number defending the currently scouted one -->
 			<!-- Backend only accepts strings that only contain numbers -->
-				<label for="defendedBy">Defended by</label>
-				<input type="number" name="defendedBy" id="defendedBy" list="teams_at_event" placeholder="Team #" min="1" max="9999">
+				<label for="defended_by">Defended by</label>
+				<input type="number" name="defended_by" id="defended_by" placeholder="Team #" min="1" max="9999">
 			</div>
-			
-		<!-- Control Panel Items -->
-			
-			<div class="formItem">
-			<!-- Dropdown for control panel task -->
-				<label for="wheelScore">Control Panel</label>
-				<div style="align-self: flex-end">
-					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'ControlPanelIcon.png' %}" alt="Control Panel">
-					<select name="wheelScore" id="wheelScore" required onChange="hideWheelScore()">
-						<option value="" disabled selected hidden>&#8230;</option>
-						<option value="0">Did not Attempt</option>
-						<option value="1">Unsuccessful</option>
-						<option value="2">Completed Rotation</option>
-						<option value="3">Completed Colour</option>
-					</select>
-				</div>
-			</div>
-			
-			<script> 
-				function hideWheelScore() {
-					var x = document.getElementById("wheelScore").value;
-					if (x != 0){
-						document.getElementById("wheelRatingDiv").style.display="flex";
-					} else {
-						document.getElementById("wheelRatingDiv").style.display="none";
-					}
-				}
-			</script>
-			
-			<div class="formItem" id="wheelRatingDiv">
-			<!-- Range slider for Control Panel task Quality -->
-			<!-- May be taken out depending on usage and effectiveness --> 
-				<label for="wheelRating">Control Panel Quality</label>
-				<div class="right">
-					<output name="wheelRating_number" id="wheelRating_number" for="wheelRating">0</output>
-					<input name="wheelRating" id="wheelRating" type="range" min="0" max="5" value="0" oninput="wheelRating_number.value=wheelRating.value">
-			  	</div>
-			</div>
-			
+						
 		<!-- Offensive Fouls -->
 			
 			<div class="formItem">
 			<!-- Communicates frequency or severeness of fouls against team -->
 			<!-- Not to be confused with Defensive fouls below -->
-				<label for="offensiveFouls">Incurred Offensive Fouls</label>
-				<select name="offensiveFouls" id="offensiveFouls" required>
+				<label for="offensive_fouls">Incurred Offensive Fouls</label>
+				<select name="offensive_fouls" id="offensive_fouls" required>
 					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">None</option>
 					<option value="1">Yes, Minor</option>
@@ -398,6 +354,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</div>
 			</div>
 			<script>
+				/*
 				function hideDefenseStuff() {
 					var x = document.getElementById("playedDefense_false").checked;
 					if (x != true){
@@ -409,21 +366,79 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						document.getElementById("defenseQualityDiv").style.display="none";
 					}
 				}
+				*/
 			</script>
+			<div class="formItem" id="defense_timer">
+				<label for="defense_time">Defense Timer - Coming Soon</label>
+				<div>
+					<input type="number" name="defense_time" id="defense_time" pattern="[-+]?[0-9]*[.,]?[0-9]+" readonly>
+					<input type="button" value="&#9658;" onclick="startstoptimer()">
+					<input type="button" value="&#x21bb;" onclick="resettimer()">
+				</div>
+			<script>
+				var millisec = 0;
+				var seconds = 0;
+				var timer;
+
+				function display(){
+
+				  if (millisec>=9){
+					 millisec=0
+					 seconds+=1
+				  }
+				  else
+					 millisec+=1
+					 document.getElementById('defense_time').value = seconds + "." + millisec;
+					 timer = setTimeout("display()",100);
+				  }
+
+				function starttimer() {
+
+				  if (timer > 0) {
+					return;
+				  }
+				  display();	
+				}
+				function stoptimer() {
+				  clearTimeout(timer);
+				  timer = 0;
+				}
+
+				function startstoptimer() {
+				  if (timer > 0) {
+					 clearTimeout(timer);
+					 timer = 0;
+				  } else {
+					 display();
+				  }
+				}
+
+				function resettimer() {
+					stoptimer();
+					millisec = 0;
+					seconds = 0;
+				}
+				</script>	
+			</div>
 			<div class="formItem" id="teamDefendedDiv">
-				<label for="teamDefended">Team Defended</label>
-				<input type="number" name="teamDefended" id="teamDefended" placeholder="Team #" min="1" max="9999" autocomplete="off">
+				<label for="team_defended">Team Defended</label>
+				<input type="number" name="team_defended" id="team_defended" placeholder="Team #" min="1" max="9999" autocomplete="off">
 			</div>
 			<div class="formItem" id="defenseQualityDiv">
-				<label for="defenseRating">Quality of Defense</label>
-			  	<div class="right">
-					<output name="defenseRatingnumber" id="defenseRatingnumber" for="defenseRating">0</output>
-					<input name="defenseRating" id="defenseRating" type="range" min="0" max="5" value="0" oninput="defenseRatingnumber.value=defenseRating.value">
-				</div>
+				<label for="defense_rating">Quality of Defense</label>
+				<select name="defense_rating" id="defense_rating" required>
+					<option value="" disabled selected hidden>&#8230;</option>
+					<option value="0">Not Applicable</option>
+					<option value="1">Attempted, Poor</option>
+					<option value="2">Minor Annoyance</option>
+					<option value="3">Good</option>
+					<option value="4">Excellent</option>
+					<option value="5">God-like</option>
+				</select>
 			</div>
 			<div class="formItem">
-				<label for="defenseFouls">Incurred Defensive Fouls</label>
-				<select name="defenseFouls" id="defenseFouls" required>
+				<label for="defense_fouls">Incurred Defensive Fouls</label>
+				<select name="defense_fouls" id="defense_fouls" required>
 					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">None</option>
 					<option value="1">Yes, Minor</option>
@@ -444,34 +459,86 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			
 			<h1>ENDGAME</h1>
 			<div class="formItem">
-				<label for="lockStatus">Field Timeout Position (t=+5s)</label>
-				<select name="lockStatus" id="lockStatus" required onChange="hideClimbPosition()">
+				<label for="lock_status">Field Timeout Position (t=+5s)</label>
+				<select name="lock_status" id="lock_status" required>
 					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">None</option>
-					<option value="1">Parked</option>
-					<option value="2">Attempted Climb</option>
+					<option value="1">Unsuccessful</option>
+					<option value="2">Invalidated</option>
 					<option value="3">Successful Climb</option>
 				</select>
-			</div>
-			
-			<script> 
-				function hideClimbPosition() {
-					var x = document.getElementById("lockStatus").value;
-					if (x > 1){
-						document.getElementById("climbLocationDiv").style.display="flex";
-					} else {
-						document.getElementById("climbLocationDiv").style.display="none";
+			</div>			
+			<div class="formItem">
+				<label for="endgame_action">Climbing Position</label>
+				<select name="endgame_action" id="endgame_action">
+					<option value="" disabled selected hidden>&#8230;</option>
+					<option value="0">No Attempt</option>
+					<option value="1">Low Rung</option>
+					<option value="2">Mid Rung</option>
+					<option value="3">High Rung</option>
+					<option value="4">Traversal Rung</option>
+				</select>
+		  	</div>
+			<div class="formItem">
+				<label for="climb_time">Climbing Time</label>
+				<div>
+					<input type="number" name="climb_time" id="climb_time" pattern="[-+]?[0-9]*[.,]?[0-9]+" readonly>
+					<input type="button" value="&#9658;" onclick="startstoptimer()">
+					<input type="button" value="&#x21bb;" onclick="resettimer()">
+				</div>
+				<script>
+					var millisec = 0;
+					var seconds = 0;
+					var timer;
+
+					function display(){
+
+					  if (millisec>=9){
+						 millisec=0
+						 seconds+=1
+					  }
+					  else
+						 millisec+=1
+						 document.getElementById('climb_time').value = seconds + "." + millisec;
+						 timer = setTimeout("display()",100);
+					  }
+
+					function starttimer() {
+
+					  if (timer > 0) {
+						return;
+					  }
+					  display();	
 					}
-				}
-			</script>
-			
-			<div class="formItem" id="climbLocationDiv">
-				<label for="climbLocation">Climbing Position</label>
-			  	<div class="right">
-					<output name="climbLocation_number" id="climbLocation_number" for="climbLocation">0</output>
-					<input name="climbLocation" id="climbLocation" type="range" min="0" max="5" value="0" oninput="climbLocation_number.value=climbLocation.value">
-			  	</div>
-		  </div>
+					function stoptimer() {
+					  clearTimeout(timer);
+					  timer = 0;
+					}
+
+					function startstoptimer() {
+					  if (timer > 0) {
+						 clearTimeout(timer);
+						 timer = 0;
+					  } else {
+						 display();
+					  }
+					}
+
+					function resettimer() {
+						stoptimer();
+						millisec = 0;
+						seconds = 0;
+					}
+					</script>	
+			</div>
+			<div class="formItem">
+				<label for="climb_attempts">Climb Attempts</label>
+				<input type="number" name="climb_attempts" id="climb_attempts" autocomplete="off">
+			</div>
+			<div class="formItem">
+				<label for="climb_comments">Climb Performance Comment</label>
+				<input type="text" name="climb_comments" id="climb_comments" autocomplete="off">
+			</div>
 			
 <!-- HUMAN FOULS AND COMMENTS	-->
 			
