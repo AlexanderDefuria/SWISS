@@ -76,6 +76,9 @@ jobs:
           
       - name: Prints Contents of debian
         run: ls -la
+      
+      - name: Prints Contents of debian
+        run: pwd
         
       - name: Login to DockerHub
         uses: docker/login-action@v1 
