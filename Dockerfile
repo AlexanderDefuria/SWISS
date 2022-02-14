@@ -11,6 +11,7 @@ RUN set -ex \
     && apt-get update \
     && apt-get install -y libpq-dev \
     && apt-get install -y nginx \
+    && apt-get install -y python3.9-venv \
     && python3 -m venv ./venv \
     && ./venv/bin/pip3 install -r requirements.txt
 
