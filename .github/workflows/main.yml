@@ -62,15 +62,17 @@ jobs:
     steps:
       - name: Add environment variables to .env
         run: |
-          echo GITHUB=TRUE >> .env
-          echo DATABASE=postgres >> .env
-          echo DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }} >> .env
-          echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
-          echo DB_USER=${{ secrets.DB_USER }} >> .env
-          echo DB_PASSWORD=${{ secrets.DB_PASSWORD }} >> .env
-          echo DB_HOST=${{ secrets.DB_HOST }} >> .env
-          echo DB_PORT=${{ secrets.DB_PORT }} >> .env
-          echo DB_SSLMODE=${{ secrets.DB_SSLMODE }} >> .env
+          {
+            printf '{\n\t"SECRET_KEY": "%s",\n' "${{ secrets.DJANGO_SECRET_KEY }}";
+            printf '\t"ENGINE": "${{ secrets.DB_ENGINE }}",\n';
+            printf '\t"NAME": "${{ secrets.DB_NAME }}",\n';
+            printf '\t"USER": "${{ secrets.DB_USER }}",\n';
+            printf '\t"PASSWORD": "${{ secrets.DB_PASSWORD }}",\n';
+            printf '\t"HOST": "${{ secrets.DB_HOST }}",\n';
+            printf '\t"PORT": "${{ secrets.DB_PORT }}",\n';
+            printf '\t"sslmode": "${{ secrets.DB_SSLMODE }}"\n';
+            printf '\n\n}';
+          } > secrets.json
         
       - name: Login to DockerHub
         uses: docker/login-action@v1 
