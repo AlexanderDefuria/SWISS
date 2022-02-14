@@ -15,4 +15,4 @@ flickity.* linguist-vendored
 /template/admin/* linguist-detectable=false
 /static/admin/* linguist-detectable=false
 /media/json/* linguist-detectable=false
-*.html linguist-detectable=false
+
