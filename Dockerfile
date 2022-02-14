@@ -25,7 +25,7 @@ ENV PATH ./venv/bin:$PATH
 
 RUN set -ex \
     && { \
-        printf '{\n\t"SECRET_KEY": "%s",\n' "$SECRET_KEY"; \
+        printf '{\n\t"SECRET_KEY": "%s",\n' "$DJANGO_SECRET_KEY"; \
         printf '\t"ENGINE": "django.db.backends.postgresql_psycopg2",\n'; \
         printf '\t"NAME": "swissdbdev",\n'; \
         printf '\t"USER": "swiss",\n'; \
