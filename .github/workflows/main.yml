@@ -62,24 +62,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-    
-      - name: Add environment variables to .env
-        run: |
-          {
-            printf '{\n\t"SECRET_KEY": "%s",\n' "${{ secrets.DJANGO_SECRET_KEY }}";
-            printf '\t"ENGINE": "${{ secrets.DB_ENGINE }}",\n';
-            printf '\t"NAME": "${{ secrets.DB_NAME }}",\n';
-            printf '\t"USER": "${{ secrets.DB_USER }}",\n';
-            printf '\t"PASSWORD": "${{ secrets.DB_PASSWORD }}",\n';
-            printf '\t"HOST": "${{ secrets.DB_HOST }}",\n';
-            printf '\t"PORT": "${{ secrets.DB_PORT }}",\n';
-            printf '\t"sslmode": "${{ secrets.DB_SSLMODE }}"\n';
-            printf '\n\n}';
-          } > ${{ github.workspace }}/secrets.json
-          
-      - name: Build site assets
-        working-directory: ${{ github.workspace }}
-        run: ls -la
         
       - name: Login to DockerHub
         uses: docker/login-action@v1 
@@ -92,3 +74,13 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/swiss-scouting:latest
+          secrets: |
+            "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}"
+            "DB_ENGINE=${{ secrets.DB_ENGINE }}"
+            "DB_NAME=${{ secrets.DB_NAME }}"
+            "DB_USER=${{ secrets.DB_USER }}"
+            "DB_PASSWORD=${{ secrets.DB_PASSWORD }}"
+            "DB_HOST=${{ secrets.DB_HOST }}"
+            "DB_HOST=${{ secrets.DB_HOST }}"
+            "DB_SSLMODE=${{ secrets.DB_SSLMODE }}"
+            
