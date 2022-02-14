@@ -11,7 +11,7 @@ RUN set -ex \
     && apt-get update \
     && apt-get install -y libpq-dev \
     && apt-get install -y nginx \
-    && python -m venv ./venv \
+    && python3 -m venv ./venv \
     && ./venv/bin/pip3 install -r requirements.txt
 
 ADD ./FRC-Scouting.nginx /etc/nginx/sites-available/FRC-Scouting
