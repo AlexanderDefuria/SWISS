@@ -41,14 +41,14 @@ RUN echo $DB_PORT
 RUN echo $DB_SSLMODE
 RUN set -ex \
     && { \
-        printf '{\n\t"SECRET_KEY": "$DJANGO_SECRET_KEY",\n'; \
-        printf '\t"ENGINE": "$DB_ENGINE",\n'; \
-        printf '\t"NAME": "$DB_NAME",\n'; \
-        printf '\t"USER": "$DB_USER",\n'; \
-        printf '\t"PASSWORD": "$DB_PASSWORD",\n'; \
-        printf '\t"HOST": "$DB_HOST",\n'; \
-        printf '\t"PORT": "$DB_PORT",\n'; \
-        printf '\t"sslmode": "$DB_SSLMODE"\n'; \
+        printf '{\n\t"SECRET_KEY": "%s",\n' "$DJANGO_SECRET_KEY"; \
+        printf '\t"ENGINE": "%s",\n' "$DB_ENGINE"; \
+        printf '\t"NAME": "%s",\n' "$DB_NAME"; \
+        printf '\t"USER": "%s",\n' "$DB_USER"; \
+        printf '\t"PASSWORD": "%s",\n' "$DB_PASSWORD"; \
+        printf '\t"HOST": "%s",\n' "$DB_HOST"; \
+        printf '\t"PORT": "%s",\n' "$DB_PORT"; \
+        printf '\t"sslmode":"%s" \n' "$DB_SSLMODE"; \
         printf '\n\n}'; \
     } > secrets.json
 
