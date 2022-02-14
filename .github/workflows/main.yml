@@ -75,13 +75,11 @@ jobs:
             printf '\t"PORT": "${{ secrets.DB_PORT }}",\n';
             printf '\t"sslmode": "${{ secrets.DB_SSLMODE }}"\n';
             printf '\n\n}';
-          } > secrets.json
+          } > ${{ github.workspace }}/secrets.json
           
-      - name: Prints Contents of debian
-        run: ls -la ..
-      
-      - name: Prints Contents of debian
-        run: pwd
+      - name: Build site assets
+        working-directory: ${{ github.workspace }}
+        run: ls -la
         
       - name: Login to DockerHub
         uses: docker/login-action@v1 
