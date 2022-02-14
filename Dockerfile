@@ -31,6 +31,14 @@ ARG DB_PASSWORD
 ARG DB_HOST
 ARG DB_PORT
 ARG DB_SSLMODE
+RUN echo $DJANGO_SECRET_KEY
+RUN echo $DB_ENGINE
+RUN echo $DB_NAME
+RUN echo $DB_USER
+RUN echo $DB_PASSWORD
+RUN echo $DB_HOST
+RUN echo $DB_PORT
+RUN echo $DB_SSLMODE
 RUN set -ex \
     && { \
         printf '{\n\t"SECRET_KEY": "$DJANGO_SECRET_KEY",\n'; \
