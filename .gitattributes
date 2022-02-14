@@ -1,4 +1,5 @@
 /static/admin/* linguist-vendored
+/templates/admin/* linguist-vendored
 solid-gauge.js linguist-vendored
 *.pyc linguist-vendored
 highcharts* linguist-vendored
