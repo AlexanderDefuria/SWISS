@@ -25,16 +25,17 @@ ENV PATH ./venv/bin:$PATH
 
 RUN set -ex \
     && { \
-        printf '{\n\t"SECRET_KEY": "%s",\n' "$DJANGO_SECRET_KEY"; \
-        printf '\t"ENGINE": "django.db.backends.postgresql_psycopg2",\n'; \
-        printf '\t"NAME": "swissdbdev",\n'; \
-        printf '\t"USER": "swiss",\n'; \
-        printf '\t"PASSWORD": "l5oix3lgmz0p5gzp",\n'; \
-        printf '\t"HOST": "db-postgresql-nyc3-00259-do-user-7775406-0.b.db.ondigitalocean.com",\n'; \
-        printf '\t"PORT": "25060",\n'; \
-        printf '\t"sslmode": "require"\n'; \
+        printf '{\n\t"SECRET_KEY": "$DJANGO_SECRET_KEY",\n'; \
+        printf '\t"ENGINE": "$DB_ENGINE",\n'; \
+        printf '\t"NAME": "$DB_NAME",\n'; \
+        printf '\t"USER": "$DB_USER",\n'; \
+        printf '\t"PASSWORD": "$DB_PASSWORD",\n'; \
+        printf '\t"HOST": "$DB_HOST",\n'; \
+        printf '\t"PORT": "$DB_PORT",\n'; \
+        printf '\t"sslmode": "$DB_SSLMODE"\n'; \
         printf '\n\n}'; \
     } > secrets.json
+
 
 
 EXPOSE 8000
