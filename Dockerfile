@@ -21,7 +21,8 @@ RUN set -ex \
 ENV VIRTUAL_ENV ./venv
 ENV PATH ./venv/bin:$PATH
 
-CMD [ "ls", "-R" ]
+run set -ex \
+    && ls -R
 
 EXPOSE 8000
 
