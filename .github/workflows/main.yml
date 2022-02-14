@@ -60,6 +60,9 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+    
       - name: Add environment variables to .env
         run: |
           {
@@ -75,7 +78,7 @@ jobs:
           } > secrets.json
           
       - name: Prints Contents of debian
-        run: ls -la
+        run: ls -la ..
       
       - name: Prints Contents of debian
         run: pwd
