@@ -17,7 +17,11 @@
     </data-source>
     <data-source name="Django default" uuid="b4c13f70-b87b-44f7-9ac2-31281d91fb55">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
-      <schema-mapping />
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="database" qname="swissdb2022" />
+        </introspection-scope>
+      </schema-mapping>
     </data-source>
     <data-source name="testdbj@localhost" uuid="594ce8c5-cd93-47bd-8b44-c996a84784cb">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />

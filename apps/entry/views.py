@@ -293,13 +293,14 @@ def update_glance(request, pk):
         print("Creating new glance json file for " + str(Team.objects.get(id=pk).glance))
 
     matches_json = serializers.serialize('json', matches)
-    f = open(os.path.join(settings.BASE_DIR, 'glance_temp.json'), 'w')
-    f.write(str(matches_json))
-    f = open(os.path.join(settings.BASE_DIR, 'glance_temp.json'), 'r')
-    team = Team.objects.get(id=pk)
-    team.glance.delete()
-    team.glance.save(
-        'glance_' + str(pk) + '_' + str(count) + '_' + str(datetime.datetime.now()) + '.json', f)
+    if not settings.USE_MEDIA_SPACES:
+        f = open(os.path.join(settings.BASE_DIR, 'glance_temp.json'), 'w')
+        f.write(str(matches_json))
+        f = open(os.path.join(settings.BASE_DIR, 'glance_temp.json'), 'r', encoding='UTF-8')
+        team = Team.objects.get(id=pk)
+        team.glance.delete()
+        team.glance.save(
+            'glance_' + str(pk) + '_' + str(count) + '_' + str(datetime.datetime.now()) + '.json', f)
     return HttpResponse(matches_json, content_type='application/json')
 
 
