@@ -1,5 +1,6 @@
 *.py[co]
 *.sw[po]
+venv/*
 venv/
 settings.py
 media/json/*
