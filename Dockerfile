@@ -47,11 +47,11 @@ RUN set -ex \
         printf '\t"HOST": "%s",\n' "$DB_HOST"; \
         printf '\t"PORT": "%s",\n' "$DB_PORT"; \
         printf '\t"sslmode":"%s", \n' "$DB_SSLMODE"; \
-        printf '\t""AWS_ACCESS_KEY_ID": "%s",\n' "$AWS_ACCESS_KEY_ID"; \
-        printf '\t""AWS_LOCATION": "%s",\n' "$AWS_LOCATION"; \
-        printf '\t""AWS_S3_ENDPOINT_URL": "%s",\n' "$AWS_S3_ENDPOINT_URL"; \
-        printf '\t""AWS_SECRET_ACCESS_KEY": "%s",\n' "$AWS_SECRET_ACCESS_KEY"; \
-        printf '\t""AWS_STORAGE_BUCKET_NAME": "%s"\n' "$AWS_STORAGE_BUCKET_NAME"; \
+        printf '\t"AWS_ACCESS_KEY_ID": "%s",\n' "$AWS_ACCESS_KEY_ID"; \
+        printf '\t"AWS_LOCATION": "%s",\n' "$AWS_LOCATION"; \
+        printf '\t"AWS_S3_ENDPOINT_URL": "%s",\n' "$AWS_S3_ENDPOINT_URL"; \
+        printf '\t"AWS_SECRET_ACCESS_KEY": "%s",\n' "$AWS_SECRET_ACCESS_KEY"; \
+        printf '\t"AWS_STORAGE_BUCKET_NAME": "%s"\n' "$AWS_STORAGE_BUCKET_NAME"; \
         printf '\n\n}'; \
     } > secrets.json
 
