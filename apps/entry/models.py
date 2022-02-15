@@ -34,7 +34,7 @@ class Team(models.Model):
         try:
             return self.images.all()[len(self.images.all()) - 1].image
         except Exception:
-            return '/robots/default.jpg'
+            return 'robots/default.jpg'
 
     def __str__(self):
         return str(self.number) + "\t\t" + str(self.name)
