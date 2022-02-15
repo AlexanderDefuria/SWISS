@@ -15,24 +15,29 @@ RUN set -ex \
     && ./venv/bin/pip3 install -r requirements.txt
 
 ADD ./FRC-Scouting.nginx /etc/nginx/sites-available/FRC-Scouting
-
-
-RUN --mount=type=secret,id=DJANGO_SECRET_KEY \
-    --mount=type=secret,id=DB_ENGINE \
-    --mount=type=secret,id=DB_NAME \
-    --mount=type=secret,id=DB_USER \
-    --mount=type=secret,id=DB_PASSWORD \
-    --mount=type=secret,id=DB_HOST \
-    --mount=type=secret,id=DB_PORT \
-    --mount=type=secret,id=DB_SSLMODE \
-    --mount=type=secret,id=AWS_ACCESS_KEY_ID \
-    --mount=type=secret,id=AWS_LOCATION \
-    --mount=type=secret,id=AWS_S3_ENDPOINT_URL \
-    --mount=type=secret,id=AWS_SECRET_ACCESS_KEY \
-    --mount=type=secret,id=AWS_STORAGE_BUCKET_NAME
 RUN set -ex \
     && ln -s /etc/nginx/sites-available/FRC-Scouting /etc/nginx/sites-enabled \
-    && echo "STATIC_ROOT = os.path.join(BASE_DIR, 'static')" >> ./FRC-Scouting/settings.py; \
+    && echo "STATIC_ROOT = os.path.join(BASE_DIR, 'static')" >> ./FRC-Scouting/settings.py
+
+ENV VIRTUAL_ENV ./venv
+ENV PATH ./venv/bin:$PATH
+
+ARG DJANGO_SECRET_KEY
+ARG DB_ENGINE
+ARG DB_NAME
+ARG DB_USER
+ARG DB_PASSWORD
+ARG DB_HOST
+ARG DB_PORT
+ARG DB_SSLMODE
+ARG AWS_ACCESS_KEY_ID
+ARG AWS_LOCATION
+ARG AWS_S3_ENDPOINT_URL
+ARG AWS_SECRET_ACCESS_KEY
+ARG AWS_STORAGE_BUCKET_NAME
+
+
+RUN set -ex \
     && { \
         printf '{\n\t"SECRET_KEY": "%s",\n' "$DJANGO_SECRET_KEY"; \
         printf '\t"ENGINE": "%s",\n' "$DB_ENGINE"; \
@@ -51,8 +56,6 @@ RUN set -ex \
     } > secrets.json
 
 
-ENV VIRTUAL_ENV ./venv
-ENV PATH ./venv/bin:$PATH
 
 EXPOSE 8000
 
