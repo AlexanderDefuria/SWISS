@@ -402,7 +402,7 @@ def write_image_upload(request):
         files = files.popitem()[1]
 
         for file in files:
-            file.name = str(team_number) + "-----" + str(datetime.now()).replace('.', '') + '.jpg'
+            file.name = str(team_number) + "-----" + str(datetime.datetime.now()).replace('.', '') + '.jpg'
             image = Images(name=team.name, image=file)
             image.save()
             team.images.add(image)

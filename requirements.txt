@@ -14,3 +14,5 @@ requests==2.27.0
 sqlparse==0.4.2
 urllib3
 uuid
+boto3==1.21.0
+django-storages==1.12.3
