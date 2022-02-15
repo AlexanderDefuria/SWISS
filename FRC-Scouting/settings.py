@@ -43,6 +43,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = ['https://*.swiss-scouting.ca']
+
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
