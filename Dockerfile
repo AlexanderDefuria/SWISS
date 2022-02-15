@@ -31,7 +31,8 @@ ARG DB_HOST
 ARG DB_PORT
 ARG DB_SSLMODE
 ARG AWS_ACCESS_KEY_ID
-ARG AWS_LOCATION
+ARG AWS_STATIC_LOCATION
+ARG AWS_MEDIA_LOCATION
 ARG AWS_S3_ENDPOINT_URL
 ARG AWS_SECRET_ACCESS_KEY
 ARG AWS_STORAGE_BUCKET_NAME
@@ -48,7 +49,8 @@ RUN set -ex \
         printf '\t"PORT": "%s",\n' "$DB_PORT"; \
         printf '\t"sslmode":"%s", \n' "$DB_SSLMODE"; \
         printf '\t"AWS_ACCESS_KEY_ID": "%s",\n' "$AWS_ACCESS_KEY_ID"; \
-        printf '\t"AWS_LOCATION": "%s",\n' "$AWS_LOCATION"; \
+        printf '\t"AWS_STATIC_LOCATION": "%s",\n' "AWS_STATIC_LOCATION"; \
+        printf '\t"AWS_MEDIA_LOCATION": "%s",\n' "AWS_MEDIA_LOCATION"; \
         printf '\t"AWS_S3_ENDPOINT_URL": "%s",\n' "$AWS_S3_ENDPOINT_URL"; \
         printf '\t"AWS_SECRET_ACCESS_KEY": "%s",\n' "$AWS_SECRET_ACCESS_KEY"; \
         printf '\t"AWS_STORAGE_BUCKET_NAME": "%s"\n' "$AWS_STORAGE_BUCKET_NAME"; \
