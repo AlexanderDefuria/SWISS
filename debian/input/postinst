@@ -46,7 +46,13 @@ elif [ "$DB_CHOICE" == "1" ]; then
     read -p "DB Name: " DBNAME
     read -p "DB Username: " USERNAME
     read -s -p "DB Password: " PASSWORD
-    printf "\n\n"
+    printf "If not using AWS S3 Buckets leave the following fields blank\n";
+    read -p "AWS_LOCATION: " AWS_LOCATION
+    read -p "AWS_S3_ENDPOINT_URL: " AWS_S3_ENDPOINT_URL
+    read -p "AWS_STORAGE_BUCKET_NAME: " AWS_STORAGE_BUCKET_NAME
+    read -p "AWS_ACCESS_KEY_ID: " AWS_ACCESS_KEY_ID
+    read -s -p "AWS_SECRET_ACCESS_KEY: " AWS_SECRET_ACCESS_KEY
+    printf '\n\n';
     sudo -u postgres bash -c "psql -c \"CREATE USER $USERNAME WITH PASSWORD '$PASSWORD';\""
     sudo -u postgres createdb "$DBNAME"
 
@@ -58,7 +64,12 @@ elif [ "$DB_CHOICE" == "1" ]; then
         printf '\t"PASSWORD": "%s",\n' "$PASSWORD";
         printf '\t"HOST": "localhost",\n';
         printf '\t"PORT": "5432",\n';
-        printf '\t"sslmode": "require"\n';
+        printf '\t"sslmode": "require",\n\n';
+        printf '\t""AWS_ACCESS_KEY_ID": "%s",\n' "$AWS_ACCESS_KEY_ID";
+        printf '\t""AWS_LOCATION" : "%s",\n' "$AWS_LOCATION";
+        printf '\t""AWS_S3_ENDPOINT_URL" : "%s",\n' "$AWS_S3_ENDPOINT_URL";
+        printf '\t""AWS_SECRET_ACCESS_KEY" : "%s",\n' "$AWS_SECRET_ACCESS_KEY";
+        printf '\t""AWS_STORAGE_BUCKET_NAME" : "%s"\n' "$AWS_STORAGE_BUCKET_NAME";
         printf '\n\n}';
     } > secrets.json
 
