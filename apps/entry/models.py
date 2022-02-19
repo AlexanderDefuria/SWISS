@@ -1,8 +1,13 @@
 import uuid as uuid
+
+import requests
+from io import BytesIO
+from PIL import Image
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from datetime import date
 from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class Images(models.Model):
