@@ -14,3 +14,4 @@ jobs:
       with:
         url: 'https://update.swiss-scouting.ca/'
         method: 'GET'
+        timeout: 60000
