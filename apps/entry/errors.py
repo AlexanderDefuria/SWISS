@@ -1,5 +1,3 @@
-
-
 class NoTeamsProvided(Exception):
     """No teams were provided resulting in an error"""
     pass

@@ -2,18 +2,13 @@ import datetime
 import inspect
 
 from django import template
-from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
-from django.db import models
-from django.db.models import Max, Count
+from django.db.models import Count
 from django.utils import timezone
 
 from apps.entry.models import *
-from apps import config
-import json
-from django.conf import settings
-
 from apps.entry import views
+
 register = template.Library()
 
 
@@ -38,7 +33,7 @@ def get_current_event(request):
 
 @register.simple_tag
 def get_current_event_id():
-    return config.get_current_event_key()
+    return get_current_event.id
 
 
 @register.simple_tag

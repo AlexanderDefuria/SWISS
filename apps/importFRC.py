@@ -3,7 +3,6 @@ from typing import overload
 
 import requests
 from apps.entry.models import *
-from apps import config
 import datetime
 
 api_user = 'alexanderdefuria'

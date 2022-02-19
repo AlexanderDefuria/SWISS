@@ -4,15 +4,21 @@ from apps.entry.models import TeamMember
 from django.http import HttpResponse
 from django.conf import settings
 import traceback
+import json
+import os
 
-from apps import config
+jpath = os.path.join(settings.BASE_DIR, './apps/permissions.json')
+permissions_global = []
+logged_in_users = []
+
+# Note, update_permissions_from_file() runs at start.
 
 
 class ValidateUser:
     def __init__(self, get_response):
         # One-time configuration and initialization.
-        config.update_permissions()
-        self.permissions = config.permissions
+        update_permissions_from_file()
+        self.permissions = permissions_global
         self.update_permissions()
         self.get_response = get_response
 
@@ -70,8 +76,8 @@ class ValidateUser:
     def update_permissions(self):
         self.permissions = {}
 
-        for each in config.permissions:
-            self.permissions[each] = config.permissions[each]['minimum']
+        for each in permissions_global:
+            self.permissions[each] = permissions_global[each]['minimum']
 
     def valid_perms(self, view, user):
         if view == '':
@@ -123,3 +129,11 @@ class ErrorHandlerMiddleware:
         response = self.get_response(request)
         return response
 
+
+def update_permissions_from_file():
+    global permissions_global
+    with open(jpath) as f:
+        permissions_global = json.load(f)
+
+
+update_permissions_from_file()

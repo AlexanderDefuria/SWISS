@@ -1,10 +1,10 @@
-import csv
 import os
-import sqlite3
 import ast
 import re
 from datetime import datetime
 from json import dumps
+
+from PIL import Image
 from openpyxl import Workbook
 
 from django.core import serializers
@@ -20,7 +20,6 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 
 from apps.entry.graphing import *
-from apps.entry.models import *
 from apps.entry.templatetags.common_tags import *
 from apps import importFRC
 
