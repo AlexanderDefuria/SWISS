@@ -10,8 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Deploy Stage
+      id: request
       uses: fjogeleit/http-request-action@master
       with:
         url: 'https://update.swiss-scouting.ca/'
         method: 'GET'
         timeout: 60000
+    - name: Show Response
+      run: echo ${{ steps.request.outputs.response }}
