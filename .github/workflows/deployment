@@ -1,0 +1,19 @@
+name: Update Site
+
+on:
+  push:
+    branches: [ deploy ]
+  workflow_dispatch:
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Update
+        id: update
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: "https://update.swiss-scouting.ca/"
+      - name: Show Response
+        run: echo ${{ steps.update.outputs.response }}  
