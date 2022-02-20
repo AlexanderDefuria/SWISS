@@ -84,7 +84,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<th>Names</th>
 						<th class="matchStick" style="z-index: 200">Match #</th>
 						<th>Robot Present?</th>
-						<th>Starting Pos.</th>
+						<th>Starting Pos. X</th>
+						<th>Starting Pos. Y</th>
 						<th>Auto Route</th>
 						<th>Exit Tarmac</th>
 						<th>Auto Low</th>
@@ -96,7 +97,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<th>Tele Collected</th>
                         <th>Tele Missed</th>
 						<th>Intake Type</th>
-						<th>Cycle Style</th>
 						<th>Under Defense</th>
 						<th>Ofns Fouls</th>
 
@@ -108,6 +108,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <th>Endgame Level</th>
 						<th>Climb Time</th>
 						<th>Climb Attempts</th>
+						<th>Timeout Position</th>
 
 						<th>Human Fouls</th>
 						<th>Driver Fouls</th>
@@ -125,33 +126,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <td  style="background: gray"> {{ match.team.name }}</td>
                             <td class="matchStick" style="z-index: 100">{{ match.match_number }}</td>
                             <td>{{ match.on_field }}</td>
-                            <td>{{ match.auto_start }}</td>
+                            <td>{{ match.auto_start_x }}</td>
+                            <td>{{ match.auto_start_y }}</td>
                             <td>{{ match.auto_route }}</td>
                             <td>{{ match.baseline }}</td>
                             <td>{{ match.lower_auto }}</td>
                             <td>{{ match.upper_auto }}</td>
-                            <td>{{ match.fouls_auto }}</td>
+                            <td>{{ match.auto_fouls }}</td>
 
                             <td>{{ match.lower }}</td>
                             <td>{{ match.upper }}</td>
                             <td>{{ match.balls_collected }}</td>
                             <td>{{ match.missed_balls }}</td>
-                            <td>{{ match.ball_intake_type }}</td>
-                            <td>{{ match.cycle_style }}</td>
+                            <td>{{ match.intake_type }}</td>
                             <td>{{ match.under_defense }}</td>
-                            <td>{{ match.fouls }}</td>
+                            <td>{{ match.offensive_fouls }}</td>
 
-                            <td>{{ match.played_defense }}</td>
+                            <td>{{ match.defense_played }}</td>
                             <td>{{ match.defense_rating }}</td>
                             <td>{{ match.defense_fouls }}</td>
                             <td>{{ match.able_to_push }}</td>
 
                             <td>{{ match.endgame_action }}</td>
-                            <td>{{ match.climb_timer }}</td>
+                            <td>{{ match.climb_time }}</td>
                             <td>{{ match.climb_attempts }}</td>
+                            <td>{{ match.lock_status }}</td>
 
-                            <td>{{ match.dt_fouls }}</td>
-                            <td>{{ match.hp_fouls }}</td>
+                            <td>{{ match.fouls_driver }}</td>
+                            <td>{{ match.fouls_hp }}</td>
                             <td>{{ match.yellow_card }}</td>
 
                             <td>{{ match.auto_comment }}</td>

@@ -12,17 +12,16 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import json
-import os
+import boto3
 from django.core.exceptions import ImproperlyConfigured
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 #
 with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
     secrets = json.load(secrets_file)
+
 
 def get_secret(setting, secrets=secrets):
     """Get secret setting or fail with ImproperlyConfigured"""
@@ -43,8 +42,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+CSRF_TRUSTED_ORIGINS = ['https://*.swiss-scouting.ca']
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Application definition
 
@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'apps.entry.apps.EntryConfig',
     'apps.promotional.apps.PromotionalConfig',
     'apps.hours.apps.HoursConfig',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -93,7 +94,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'FRC-Scouting.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -108,7 +108,6 @@ DATABASES = {
         'OPTIONS': {'sslmode': get_secret("sslmode")},
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -128,12 +127,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'apps.entry.backends.HashedPasswordAuthBackend',
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -144,26 +141,54 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = False
 
-
-
 # --------- Cookies ---------
 SESSION_COOKIE_HTTPONLY = True
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 SESSION_SAVE_EVERY_REQUEST = True
 
+AWS_ACCESS_KEY_ID = get_secret("AWS_ACCESS_KEY_ID")
+AWS_S3_ACCESS_KEY_ID = get_secret("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = get_secret("AWS_SECRET_ACCESS_KEY")
+AWS_S3_SECRET_ACCESS_KEY = get_secret("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = get_secret("AWS_STORAGE_BUCKET_NAME")
+AWS_S3_ENDPOINT_URL = get_secret("AWS_S3_ENDPOINT_URL")
+AWS_S3_REGION_NAME = "nyc3"
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_DEFAULT_ACL = 'public-read'
+AWS_STATIC_LOCATION = get_secret("AWS_STATIC_LOCATION")
+AWS_MEDIA_LOCATION = get_secret("AWS_MEDIA_LOCATION")
 
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-# Static files (CSS, JavaScript, Images)
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    os.path.join(BASE_DIR, "media/static"),
-]
+USE_STATIC_SPACES = get_secret("AWS_STATIC_LOCATION") != ""
+USE_MEDIA_SPACES = get_secret("AWS_MEDIA_LOCATION") != ""
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-MEDIAFILES_DIRS = [
-    os.path.join(BASE_DIR, "media")
-]
+if USE_MEDIA_SPACES:
+    # public media settings
+    PUBLIC_MEDIA_LOCATION = 'media'
+    MEDIA_URL = '%s%s' % (AWS_S3_ENDPOINT_URL, AWS_MEDIA_LOCATION)
+    print(MEDIA_URL)
+    DEFAULT_FILE_STORAGE = 'FRC-Scouting.storage_backends.MediaStorage'
 
+else:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIA_URL = '/media/'
+    MEDIAFILES_DIRS = [
+        os.path.join(BASE_DIR, "media")
+    ]
+
+if USE_STATIC_SPACES:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "static"),
+        os.path.join(BASE_DIR, "media/static"),
+    ]
+    STATIC_URL = '%s%s' % (AWS_S3_ENDPOINT_URL, AWS_STATIC_LOCATION)
+    print(STATIC_URL)
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+else:
+    # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATIC_URL = '/static/'
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "static"),
+        os.path.join(BASE_DIR, "media/static"),
+    ]

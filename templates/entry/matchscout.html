@@ -133,8 +133,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						let rect = canvas.getBoundingClientRect();
 						let x = event.clientX - rect.left;
 						let y = event.clientY - rect.top;
-						fieldx.value = (x / 200);
-						fieldy.value = (y / 100);
+						fieldx.value = (x / rect.width);
+						fieldy.value = (y / rect.height);
 					}
 					let canvasElem = document.querySelector("canvas");
 					canvasElem.addEventListener("mousedown", function(e)

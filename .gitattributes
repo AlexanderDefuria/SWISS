@@ -1,12 +1,19 @@
 /static/admin/* linguist-vendored
-/static/entry/highcharts* linguist-vendored
-/static/entry/solid-gauge.js linguist-vendored
-/static/entry/jquery.min.js linguist-vendored
+/templates/admin/* linguist-vendored
+solid-gauge.js linguist-vendored
 *.pyc linguist-vendored
-/static/entry/2019/highcharts* linguist-vendored
-/static/entry/2019/jquery.min.js linguist-vendored
-/static/entry/bootstrap-4.4.1.js linguist-vendored
-/static/entry/flickity.pkgd.js linguist-vendored
-/static/entry/flickity.pkgd.min.js linguist-vendored
-/static/entry/flickity.min.css linguist-vendored
-/static/entry/flickity.css linguist-vendored
+highcharts* linguist-vendored
+jquery* linguist-vendored
+bootstrap* linguist-vendored
+*.min.js linguist-vendored
+*.min.css linguist-vendored
+flickity.* linguist-vendored
+/.idea/* liguist-vendored
+
+/static/entry/2019/* linguist-detectable=false
+/templates/entry/2019/* linguist-detectable=false
+/template/admin/* linguist-detectable=false
+/static/admin/* linguist-detectable=false
+/media/json/* linguist-detectable=false
+*.html linguist-detectable=false
+

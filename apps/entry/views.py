@@ -1,10 +1,10 @@
-import csv
 import os
-import sqlite3
 import ast
 import re
 from datetime import datetime
 from json import dumps
+
+from PIL import Image
 from openpyxl import Workbook
 
 from django.core import serializers
@@ -20,7 +20,6 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 
 from apps.entry.graphing import *
-from apps.entry.models import *
 from apps.entry.templatetags.common_tags import *
 from apps import importFRC
 
@@ -42,7 +41,8 @@ def match_scout_submit(request, pk):
 
         # PRE MATCH
         match.on_field = request.POST.get('onField', False)
-        # match.auto_start = request.POST.get('autoStart', 10)
+        match.auto_start_x = request.POST.get('coordinate_x', 0.0)
+        match.auto_start_y = request.POST.get('coordinate_y', 0.0)
         match.preloaded_balls = request.POST.get('preloadedBalls', 1)
 
         # AUTO
@@ -67,7 +67,8 @@ def match_scout_submit(request, pk):
         match.offensive_fouls = request.POST.get('offensive_fouls', 0)
 
         # DEFENSE
-        # TODO @NickKerstens match.defense_time = request.POST.get('defense_time', 0)
+        match.defense_played = request.POST.get('playedDefense', False)
+        match.defense_time = request.POST.get('defense_time', 0)
         match.defense_rating = request.POST.get('defense_rating', 0)
         team_defended = request.POST.get('team_defended', 0)
         match.team_defended = team_defended if team_defended != '' else -1
@@ -77,28 +78,26 @@ def match_scout_submit(request, pk):
         # CLIMB
         match.lock_status = request.POST.get('lock_status', 0)
         match.endgame_action = request.POST.get('endgame_action', 0)
-        # TODO @NickKerstens match.climb_time = request.POST.get('climb_time', 0)
+        match.climb_time = request.POST.get('climb_time', 0)
         match.climb_attempts = make_int(request.POST.get('climb_attempts', 0))
         match.climb_comments = request.POST.get('climb_comments', 0)
 
         # COMMENTS AND RANDOM IDEAS
         match.fouls_hp = request.POST.get('humanFouls', 0)
         match.fouls_driver = request.POST.get('driverFouls', 0)
-        match.yellow_card = True if request.POST.get('cardFouls', 0) != '' else False
+        match.yellow_card = True if request.POST.get('cardFouls', '') != '' else False
 
-        match.scouter_name = request.user.first_name + " " + request.user.last_name
+        match.scouter_name = request.user.username
         match.comment = request.POST.get('comment', '')
         match.team_ownership = request.user.teammember.team
 
-        print(match.get_deferred_fields())
+        #print(match.get_deferred_fields())
 
         try:
             match.save()
             print('Success')
         except Exception as e:
             print(e)
-
-        #print("Fail with an error")
 
         return HttpResponseRedirect(reverse_lazy('entry:match_scout_landing'))
 
@@ -293,13 +292,14 @@ def update_glance(request, pk):
         print("Creating new glance json file for " + str(Team.objects.get(id=pk).glance))
 
     matches_json = serializers.serialize('json', matches)
-    f = open(os.path.join(settings.BASE_DIR, 'glance_temp.json'), 'w')
-    f.write(str(matches_json))
-    f = open(os.path.join(settings.BASE_DIR, 'glance_temp.json'), 'r')
-    team = Team.objects.get(id=pk)
-    team.glance.delete()
-    team.glance.save(
-        'glance_' + str(pk) + '_' + str(count) + '_' + str(datetime.datetime.now()) + '.json', f)
+    if not settings.USE_MEDIA_SPACES:
+        f = open(os.path.join(settings.BASE_DIR, 'glance_temp.json'), 'w')
+        f.write(str(matches_json))
+        f = open(os.path.join(settings.BASE_DIR, 'glance_temp.json'), 'r', encoding='UTF-8')
+        team = Team.objects.get(id=pk)
+        team.glance.delete()
+        team.glance.save(
+            'glance_' + str(pk) + '_' + str(count) + '_' + str(datetime.datetime.now()) + '.json', f)
     return HttpResponse(matches_json, content_type='application/json')
 
 
@@ -402,7 +402,7 @@ def write_image_upload(request):
         files = files.popitem()[1]
 
         for file in files:
-            file.name = str(team_number) + "-----" + str(datetime.now()).replace('.', '') + '.jpg'
+            file.name = str(team_number) + "-----" + str(datetime.datetime.now()).replace('.', '') + '.jpg'
             image = Images(name=team.name, image=file)
             image.save()
             team.images.add(image)
