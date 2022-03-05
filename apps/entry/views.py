@@ -53,7 +53,7 @@ def match_scout_submit(request, pk):
         match.lower_auto = request.POST.get('lower_auto', 0)
         match.missed_auto = request.POST.get('missed_balls_auto', 0)
         match.auto_fouls = 0 # request.POST.get('auto_fouls', '')
-        match.auto_comment = request.POST.get('auto_comment', '')
+        match.auto_comment = request.POST.get('auto_comment', 'na')
 
         # TELEOP
         match.lower = request.POST.get('lower', 0)
@@ -85,15 +85,16 @@ def match_scout_submit(request, pk):
         match.endgame_action = request.POST.get('endgame_action', 0)
         match.climb_time = 0 #request.POST.get('climb_time', 0)
         match.climb_attempts = make_int(request.POST.get('climb_attempts', 0))
-        match.climb_comments = request.POST.get('climb_comments', 0)
+        match.climb_comments = request.POST.get('climb_comments', "na")
 
         # COMMENTS AND RANDOM IDEAS
         match.fouls_hp = request.POST.get('humanFouls', 0)
         match.fouls_driver = request.POST.get('driverFouls', 0)
         match.yellow_card = True if request.POST.get('cardFouls', '') != '' else False
+        match.yellow_card_description = request.POST.get('cardFouls', 'na')
 
         match.scouter_name = request.user.username
-        match.comment = request.POST.get('comment', '')
+        match.comment = request.POST.get('comment', 'na')
         match.team_ownership = request.user.teammember.team
 
         #print(match.get_deferred_fields())
