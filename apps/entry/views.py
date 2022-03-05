@@ -251,7 +251,7 @@ def pit_scout_submit(request, pk):
 def validate_pit_scout(request, pk):
     data = decode_ajax(request)
     redo, data = validate_types(request, data, False)
-    return HttpResponse(dumps(redo), content_type="application/json")
+    return HttpResponse(json.dumps(redo), content_type="application/json")
 
 
 @ajax
@@ -264,7 +264,7 @@ def update_graph(request):
         if output == "lazy":
             return HttpResponseRedirect(reverse_lazy('entry:visualize'))
         print(output)
-        response = HttpResponse(dumps(output), content_type="application/json")
+        response = HttpResponse(json.dumps(output), content_type="application/json")
         return response
     except IOError:
         print("Image not found")
@@ -500,7 +500,7 @@ def validate_registration(request):
     if len(str(data['team_reg_id']).strip(" ")) != 10:  # len==10 because the uuid is 6 + 4 for ['uuidxx']
         redo['team_reg_id'] = True
 
-    return HttpResponse(dumps(redo), content_type="application/json")
+    return HttpResponse(json.dumps(redo), content_type="application/json")
 
 
 @login_required(login_url='entry:login')
