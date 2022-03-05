@@ -65,6 +65,10 @@ def match_scout_submit(request, pk):
             match.defended_by = int(request.POST.get('defended_by', '0'))
         except:
             match.defended_by = request.POST.get('defended_by', 0)
+            
+        print("VIEW:  " + request.POST.get('defended_by', ''))
+        print("VIEW:  " + request.POST.get('defended_by', 0))
+
         match.offensive_fouls = request.POST.get('offensive_fouls', 0)
 
         # DEFENSE
