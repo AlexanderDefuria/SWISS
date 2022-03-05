@@ -1,6 +1,6 @@
 {
   "upper" : {
-    "points" : 1,
+    "points" : 2,
     "alias" : "Upper Hub",
     "weight" : 1,
     "visible":true
@@ -30,19 +30,19 @@
     "visible": true
   },
   "lower_auto" : {
-    "points" : 1,
+    "points" : 2,
     "alias" : "Lower Auto",
     "weight" : 1,
     "visible": true
   },
   "upper_auto" : {
-    "points" : 1,
+    "points" : 4,
     "alias" : "Upper Auto",
     "weight" : 1,
     "visible": true
   },
   "auto_fouls" : {
-    "points" : 1,
+    "points" : -10,
     "alias" : "Auto Fouls",
     "weight" : 1,
     "visible": true
@@ -70,7 +70,7 @@
   },
 
   "offensive_fouls" : {
-    "points" : 1,
+    "points" : -5,
     "alias" : "Offensive Fouls",
     "weight" : 1,
     "visible": true
@@ -83,13 +83,13 @@
     "visible": true
   },
   "defense_rating" : {
-    "points" : 1,
+    "points" : 0,
     "alias" : "Defense Rating",
     "weight" : 1,
     "visible": true
   },
   "defense_fouls" : {
-    "points" : 1,
+    "points" : -10,
     "alias" : "Defense Fouls",
     "weight" : 1,
     "visible": true
@@ -101,7 +101,7 @@
     "visible": true
   },
   "lock_status" : {
-    "points" : 1,
+    "points" : 5,
     "alias" : "Endgame Lock",
     "weight" : 1,
     "visible": true
@@ -127,13 +127,13 @@
   },
 
   "fouls_hp" : {
-    "points" : 1,
+    "points" : -4,
     "alias" : "HP Fouls",
     "weight" : 1,
     "visible": false
   },
   "fouls_driver" : {
-    "points" : 1,
+    "points" : -4,
     "alias" : "DT Fouls",
     "weight" : 1,
     "visible": false
