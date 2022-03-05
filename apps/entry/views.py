@@ -706,7 +706,7 @@ class Glance(LoginRequiredMixin, generic.DetailView):
         output = {
             "test": 1
         }
-        response = HttpResponse(dumps(output), content_type="application/json")
+        response = HttpResponse(json.dumps(output), content_type="application/json")
         return response
 
 
