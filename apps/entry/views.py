@@ -69,7 +69,7 @@ def match_scout_submit(request, pk):
 
         # DEFENSE
         match.defense_played = request.POST.get('playedDefense', False)
-        match.defense_time = request.POST.get('defense_time', 0)
+        match.defense_time = 0 #request.POST.get('defense_time', 0)
         match.defense_rating = request.POST.get('defense_rating', 0)
         team_defended = request.POST.get('team_defended', 0)
         match.team_defended = team_defended if team_defended != '' else -1
@@ -79,7 +79,7 @@ def match_scout_submit(request, pk):
         # CLIMB
         match.lock_status = request.POST.get('lock_status', 0)
         match.endgame_action = request.POST.get('endgame_action', 0)
-        match.climb_time = request.POST.get('climb_time', 0)
+        match.climb_time = 0 #request.POST.get('climb_time', 0)
         match.climb_attempts = make_int(request.POST.get('climb_attempts', 0))
         match.climb_comments = request.POST.get('climb_comments', 0)
 
