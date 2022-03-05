@@ -52,7 +52,7 @@ def match_scout_submit(request, pk):
         match.upper_auto = request.POST.get('upper_auto', 0)
         match.lower_auto = request.POST.get('lower_auto', 0)
         match.missed_auto = request.POST.get('missed_balls_auto', 0)
-        match.auto_fouls = request.POST.get('auto_fouls', '')
+        match.auto_fouls = 0 # request.POST.get('auto_fouls', '')
         match.auto_comment = request.POST.get('auto_comment', '')
 
         # TELEOP
