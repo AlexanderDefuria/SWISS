@@ -41,8 +41,8 @@ def match_scout_submit(request, pk):
 
         # PRE MATCH
         match.on_field = request.POST.get('onField', False)
-        match.auto_start_x = request.POST.get('coordinate_x', 0.0)
-        match.auto_start_y = request.POST.get('coordinate_y', 0.0)
+        match.auto_start_x = 0#request.POST.get('coordinate_x', 0.0)
+        match.auto_start_y = 0#request.POST.get('coordinate_y', 0.0)
         match.preloaded_balls = request.POST.get('preloadedBalls', 1)
 
         # AUTO
