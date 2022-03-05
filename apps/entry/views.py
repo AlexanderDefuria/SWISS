@@ -2,7 +2,8 @@ import os
 import ast
 import re
 from datetime import datetime
-from json import dumps
+import json
+
 
 from PIL import Image
 from openpyxl import Workbook
@@ -129,7 +130,7 @@ def validate_match_scout(request, pk):
         if Match.objects.filter(match_number=data['matchNumber'][0]).count() <= 6:
             redo['matchNumber'] = True
 
-    return HttpResponse(dumps(redo), content_type="application/json")
+    return HttpResponse(json.dumps(redo), content_type="application/json")
 
 
 def validate_types(request, data, reqlist):
