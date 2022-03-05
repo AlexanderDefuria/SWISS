@@ -60,10 +60,7 @@ def match_scout_submit(request, pk):
         match.missed_balls_auto = request.POST.get('missed_balls', 0)
         match.intake_type = request.POST.get('intakeType', 0)
         match.under_defense = request.POST.get('under_defense', 0)
-        if type(request.POST.get('defended_by', 0)) is not type(int()):
-            match.defended_by = 0
-        else:
-            match.defended_by = request.POST.get('defended_by', 0)
+        match.defended_by = request.POST.get('defended_by', 0)
         match.offensive_fouls = request.POST.get('offensive_fouls', 0)
 
         # DEFENSE
