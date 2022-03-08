@@ -311,7 +311,7 @@ input[type=number] {
 }
 /* Sets an icon before the ticker container. Do not change (if you do you might break the whole thing) */
 .goalIcon {
-	height: 35px; position: relative; top: 5px; left: -5px
+	height: 35px; position: relative; top: 10px; left: -5px
 }
 
 /* RESET BUTTON */ 
@@ -452,6 +452,12 @@ input:-webkit-autofill:focus {
 	transition: background-color 5000s ease-in-out 0s;
 }
 
+/* More classes */
+
+.icon {
+	height: 35px; position: relative; top: 5px; left: -5px
+}
+
 
 	
 	
@@ -472,6 +478,10 @@ input:-webkit-autofill:focus {
 	.goalIcon {
 		height: 50px;
 		top: 15px;
+	}
+	.icon {
+		height: 50px;
+		top: 0;
 	}
 	.formItem input[type=text], select {
 		height: auto;

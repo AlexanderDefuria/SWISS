@@ -218,7 +218,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<div class="formItem">
 			<!-- Communicates frequency or severeness of fouls against team -->
 			<!-- Not to be confused with Teleoperated Fouls Below -->
-				<label for="auto_fouls">Incurred Offensive Fouls</label>
+				<label for="auto_fouls">Auto Fouls</label>
 				<select name="auto_fouls" id="auto_fouls" required>
 					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">None</option>
@@ -328,7 +328,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<div class="formItem">
 			<!-- Communicates frequency or severeness of fouls against team -->
 			<!-- Not to be confused with Defensive fouls below -->
-				<label for="offensive_fouls">Incurred Offensive Fouls</label>
+				<label for="offensive_fouls">Offensive Fouls</label>
 				<select name="offensive_fouls" id="offensive_fouls" required>
 					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">None</option>
@@ -344,29 +344,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				<label for="playedDefense">Played Defense?</label>
 				<div class="radioGroup">
 					<label>
-						<input type="radio" id="playedDefense_true" name="playedDefense" value="True" onClick="registerChange(),hideDefenseStuff()" required>
+						<input type="radio" id="playedDefense_true" name="playedDefense" value="True" onClick="hideDefenseStuff()" required>
 						<span>Y</span>
 					</label>
 					<label>
-						<input type="radio" id="playedDefense_false" name="playedDefense" value="False" onClick="registerChange(),hideDefenseStuff()">
+						<input type="radio" id="playedDefense_false" name="playedDefense" value="False" onClick="hideDefenseStuff()">
 						<span>N</span>
 					</label>
 				</div>
 			</div>
 			<script>
-				/*
 				function hideDefenseStuff() {
 					var x = document.getElementById("playedDefense_false").checked;
 					if (x != true){
+						document.getElementById("defense_timer").style.display="flex";
 						document.getElementById("teamDefendedDiv").style.display="flex";
 						document.getElementById("defenseQualityDiv").style.display="flex";
 					} else {
+						document.getElementById("defense_timer").style.display="none";
 						document.getElementById("teamDefendedDiv").style.display="none";
-						document.getElementById("defenseRating").value="0";
+						document.getElementById("teamDefendedDiv").value="0";
+						document.getElementById("defense_rating").value="0";
 						document.getElementById("defenseQualityDiv").style.display="none";
 					}
 				}
-				*/
 			</script>
 			<div class="formItem" id="defense_timer">
 				<label for="defense_time">Defense Timer - Coming Soon</label>
@@ -422,7 +423,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			</div>
 			<div class="formItem" id="teamDefendedDiv">
 				<label for="team_defended">Team Defended</label>
-				<input type="number" name="team_defended" id="team_defended" placeholder="Team #" min="1" max="9999" autocomplete="off">
+				<input type="number" name="team_defended" id="team_defended" placeholder="Team #" min="0" max="9999" autocomplete="off">
 			</div>
 			<div class="formItem" id="defenseQualityDiv">
 				<label for="defense_rating">Quality of Defense</label>
@@ -437,7 +438,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</select>
 			</div>
 			<div class="formItem">
-				<label for="defense_fouls">Incurred Defensive Fouls</label>
+				<label for="defense_fouls">Defensive Fouls</label>
 				<select name="defense_fouls" id="defense_fouls" required>
 					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">None</option>
