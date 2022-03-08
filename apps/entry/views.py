@@ -2,7 +2,8 @@ import os
 import ast
 import re
 from datetime import datetime
-from json import dumps
+import json
+
 
 from PIL import Image
 from openpyxl import Workbook
@@ -40,9 +41,9 @@ def match_scout_submit(request, pk):
         match.match_number = match_number if match_number != '' else -1
 
         # PRE MATCH
-        match.on_field = request.POST.get('onField', False)
-        match.auto_start_x = request.POST.get('coordinate_x', 0.0)
-        match.auto_start_y = request.POST.get('coordinate_y', 0.0)
+        match.on_field = request.POST.get('onField', True)
+        match.auto_start_x = 0#request.POST.get('coordinate_x', 0.0)
+        match.auto_start_y = 0#request.POST.get('coordinate_y', 0.0)
         match.preloaded_balls = request.POST.get('preloadedBalls', 1)
 
         # AUTO
@@ -51,8 +52,8 @@ def match_scout_submit(request, pk):
         match.upper_auto = request.POST.get('upper_auto', 0)
         match.lower_auto = request.POST.get('lower_auto', 0)
         match.missed_auto = request.POST.get('missed_balls_auto', 0)
-        match.auto_fouls = request.POST.get('auto_fouls', '')
-        match.auto_comment = request.POST.get('auto_comment', '')
+        match.auto_fouls = 0 # request.POST.get('auto_fouls', '')
+        match.auto_comment = request.POST.get('auto_comment', 'na')
 
         # TELEOP
         match.lower = request.POST.get('lower', 0)
@@ -60,15 +61,13 @@ def match_scout_submit(request, pk):
         match.missed_balls_auto = request.POST.get('missed_balls', 0)
         match.intake_type = request.POST.get('intakeType', 0)
         match.under_defense = request.POST.get('under_defense', 0)
-        if type(request.POST.get('defended_by', 0)) is not type(int()):
-            match.defended_by = 0
-        else:
-            match.defended_by = request.POST.get('defended_by', 0)
+        match.defended_by = 0
+
         match.offensive_fouls = request.POST.get('offensive_fouls', 0)
 
         # DEFENSE
         match.defense_played = request.POST.get('playedDefense', False)
-        match.defense_time = request.POST.get('defense_time', 0)
+        match.defense_time = 0 #request.POST.get('defense_time', 0)
         match.defense_rating = request.POST.get('defense_rating', 0)
         team_defended = request.POST.get('team_defended', 0)
         match.team_defended = team_defended if team_defended != '' else -1
@@ -78,17 +77,18 @@ def match_scout_submit(request, pk):
         # CLIMB
         match.lock_status = request.POST.get('lock_status', 0)
         match.endgame_action = request.POST.get('endgame_action', 0)
-        match.climb_time = request.POST.get('climb_time', 0)
+        match.climb_time = 0 #request.POST.get('climb_time', 0)
         match.climb_attempts = make_int(request.POST.get('climb_attempts', 0))
-        match.climb_comments = request.POST.get('climb_comments', 0)
+        match.climb_comments = request.POST.get('climb_comments', "na")
 
         # COMMENTS AND RANDOM IDEAS
         match.fouls_hp = request.POST.get('humanFouls', 0)
         match.fouls_driver = request.POST.get('driverFouls', 0)
         match.yellow_card = True if request.POST.get('cardFouls', '') != '' else False
+        match.yellow_card_description = request.POST.get('cardFouls', 'na')
 
         match.scouter_name = request.user.username
-        match.comment = request.POST.get('comment', '')
+        match.comment = request.POST.get('comment', 'na')
         match.team_ownership = request.user.teammember.team
 
         #print(match.get_deferred_fields())
@@ -129,7 +129,7 @@ def validate_match_scout(request, pk):
         if Match.objects.filter(match_number=data['matchNumber'][0]).count() <= 6:
             redo['matchNumber'] = True
 
-    return HttpResponse(dumps(redo), content_type="application/json")
+    return HttpResponse(json.dumps(redo), content_type="application/json")
 
 
 def validate_types(request, data, reqlist):
@@ -250,7 +250,7 @@ def pit_scout_submit(request, pk):
 def validate_pit_scout(request, pk):
     data = decode_ajax(request)
     redo, data = validate_types(request, data, False)
-    return HttpResponse(dumps(redo), content_type="application/json")
+    return HttpResponse(json.dumps(redo), content_type="application/json")
 
 
 @ajax
@@ -263,7 +263,7 @@ def update_graph(request):
         if output == "lazy":
             return HttpResponseRedirect(reverse_lazy('entry:visualize'))
         print(output)
-        response = HttpResponse(dumps(output), content_type="application/json")
+        response = HttpResponse(json.dumps(output), content_type="application/json")
         return response
     except IOError:
         print("Image not found")
@@ -499,7 +499,7 @@ def validate_registration(request):
     if len(str(data['team_reg_id']).strip(" ")) != 10:  # len==10 because the uuid is 6 + 4 for ['uuidxx']
         redo['team_reg_id'] = True
 
-    return HttpResponse(dumps(redo), content_type="application/json")
+    return HttpResponse(json.dumps(redo), content_type="application/json")
 
 
 @login_required(login_url='entry:login')
@@ -705,7 +705,7 @@ class Glance(LoginRequiredMixin, generic.DetailView):
         output = {
             "test": 1
         }
-        response = HttpResponse(dumps(output), content_type="application/json")
+        response = HttpResponse(json.dumps(output), content_type="application/json")
         return response
 
 
