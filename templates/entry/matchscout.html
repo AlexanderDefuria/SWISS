@@ -104,7 +104,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			</div>
 			<div class="formItem">
 				<label for="onField">Is Robot Present?</label>
-				<div>-- Automation is broken</div>
 				<div class="radioGroup">
 					<label>
 						<input type="radio" id="onField_true" name="onField" value="True" onClick="registerChange()" required>
@@ -636,23 +635,28 @@ window.onclick = function(event) {
 
 good.onclick = function() {
 	modal.style.visibility = "hidden";
-	window.navigator.vibrate([30,20,30,20,30]);
+	const canVibrate = window.navigator.vibrate
+	if (canVibrate) window.navigator.vibrate(40)
 	main.style.filter="blur(0)";
-	document.getElementById("preloadedBalls").value = "0";
+	document.getElementById("coordinate_x").value = "0";
+	document.getElementById("coordinate_y").value = "0";
+	document.getElementById("preloaded_ball_false").checked = true;
 	document.getElementById("autoRoute").value = "0";
 	document.getElementById("baseline_false").checked = true;
-	document.getElementById("autoComment").value = "NOT PRESENT";
+	document.getElementById("auto_fouls").value = "0";
+	document.getElementById("auto_comment").value = "NOT PRESENT";
 	document.getElementById("intakeType").value = "0";
-	document.getElementById("noCycles").checked = true;
-	document.getElementById("underDefense").value = "0";
-	document.getElementById("wheelScore").value = "0";
-	document.getElementById("wheelRating").value = "0";	
-	document.getElementById("offensiveFouls").value = "0";
+	document.getElementById("under_defense").value = "0";
+	document.getElementById("offensive_fouls").value = "0";
 	document.getElementById("playedDefense_false").checked = true;
-	document.getElementById("defenseFouls").value = "0";	
+	document.getElementById("defense_rating").value = "0";
+	document.getElementById("defense_fouls").value = "0";	
 	document.getElementById("pushRating").value = "0";
-	document.getElementById("lockStatus").value = "0";
+	document.getElementById("lock_status").value = "0";
+	document.getElementById("endgame_action").value = "0";
+	document.getElementById("climb_attempts").value = "0";
 	document.getElementById("comment").value = "NOT PRESENT";
+	document.getElementById("disabled_true").checked = true;
     setTimeout(() => { document.getElementById("submit").scrollIntoView({behavior: 'smooth'	}); }, 500);
 }
 </script>
