@@ -141,9 +141,11 @@ function incrementValue(id) {
 	value = isNaN(value) ? 0 : value;
 	value++;
 	document.getElementById(id).value = value;
-	window.navigator.vibrate(40);
+	const canVibrate = window.navigator.vibrate
+	if (canVibrate) window.navigator.vibrate(40)
 	console.log(id);
 }
+
 function incrementPreload(idplus) {
 	var x = document.getElementById("snackbar");
 	var y = document.getElementById("snacktext");
@@ -161,23 +163,27 @@ function incrementPreload(idplus) {
 	}
 	document.getElementById(idplus).value = value;
 }
+
 function decrementValue(idminus) {
 	var x = document.getElementById("snackbar");
 	var y = document.getElementById("snacktext");
 	var value = parseInt(document.getElementById(idminus).value, 10);
 	if (value <= 0) {
 		value = 0;
-		window.navigator.vibrate([30,20,30,20,30]);
+		const canVibrate = window.navigator.vibrate
+		if (canVibrate) window.navigator.vibrate([30,20,30,20,30])
 		x.className = "show";
 		y.innerHTML = "Cannot have less than 0";
 		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 	}	else	{
 			value--;
-		window.navigator.vibrate(40);
+			const canVibrate = window.navigator.vibrate
+			if (canVibrate) window.navigator.vibrate(40)
 	}
 	document.getElementById(idminus).value = value;
 	console.log(idminus);
 }
+
 function registerChange() {
 	console.log();
 	window.navigator.vibrate(40);
