@@ -146,7 +146,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<div class="formItem">
 				<label for="">Ball Preloaded</label>
 				<div class="radioGroup">
-					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'SplitColourCargo.png' %}" alt="Split Colour Cargo">
+					<img class="icon" src="{{ MEDIA_URL }}{% static 'SplitColourCargo.png' %}" alt="Split Colour Cargo">
 					<label>
 						<input type="radio" id="preloaded_ball_true" name="preloadedBalls" value="True" onclick="registerChange()" required>
 						<span>Y</span>
@@ -164,7 +164,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<div class="formItem" id="autoRouteDiv">
 				<label for="autoRoute">Autonomous Route</label>
 				<!-- onChange="hideAutonomous()" was removed from the <select> below -->
-				<div>Automation temporarily broken</div>
 				<select name="autoRoute" id="autoRoute" required>
 					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">None</option>
@@ -177,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<!-- Boolean for if a Robot moved off of the tarmac -->
 				<label for="baseline">Left Tarmac Zone</label>
 				<div class="radioGroup">
-					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'AllTarmacs.png' %}" alt="All Tarmacs">
+					<img class="icon" src="{{ MEDIA_URL }}{% static 'AllTarmacs.png' %}" alt="All Tarmacs">
 					<label>
 						<input type="radio" id="baseline_true" name="baseline" value="True" onclick="registerChange()" required>
 						<span>Y</span>
