@@ -144,11 +144,11 @@ function incrementValue(id) {
 	document.getElementById(id).value = value;
 	window.navigator.vibrate(40);
 }
-function incrementPreload(id) {
+function incrementPreload(idplus) {
 	var x = document.getElementById("snackbar");
 	var y = document.getElementById("snacktext");
-	console.log(id)
-	var value = parseInt(document.getElementById(id).value, 10);
+	Console.log(idplus);
+	var value = parseInt(document.getElementById(idplus).value, 10);
 	if (value >= 3) {
 		value = 3;
 		window.navigator.vibrate([30,20,30,20,30]);
@@ -159,13 +159,13 @@ function incrementPreload(id) {
 			value++;
 		window.navigator.vibrate(40);
 	}
-	document.getElementById(id).value = value;
+	document.getElementById(idplus).value = value;
 }
-function decrementValue(id) {
+function decrementValue(idminus) {
 	var x = document.getElementById("snackbar");
 	var y = document.getElementById("snacktext");
-	console.log(id)
-	var value = parseInt(document.getElementById(id).value, 10);
+	Console.log(idminus);
+	var value = parseInt(document.getElementById(idminus).value, 10);
 	if (value <= 0) {
 		value = 0;
 		window.navigator.vibrate([30,20,30,20,30]);
@@ -176,7 +176,7 @@ function decrementValue(id) {
 			value--;
 		window.navigator.vibrate(40);
 	}
-	document.getElementById(id).value = value;
+	document.getElementById(idminus).value = value;
 }
 function registerChange() {
 	console.log();
