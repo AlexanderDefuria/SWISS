@@ -768,9 +768,6 @@ th {
 	}
 	.sidebar a {
 		font-size: 18px
-	}
-	.topbar {
-		height: 60px;
 	}	
 	.bodyContainer { 
 		margin-top: 60px;
@@ -1080,9 +1077,6 @@ th {
 	.sidebar a {
 		font-size: 18px
 	}
-	.topbar {
-		height: 60px;
-	}	
 	.bodyContainer { 
 		margin-top: 60px;
 		background-position: center -10vh;
