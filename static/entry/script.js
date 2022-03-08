@@ -137,17 +137,17 @@ function closeTeamDrawer() {
 // Function that operates the increment and decrement buttons and logs any changes for Scouting pages
 
 function incrementValue(id) {
-	console.log(id)
 	var value = parseInt(document.getElementById(id).value, 10);
 	value = isNaN(value) ? 0 : value;
 	value++;
 	document.getElementById(id).value = value;
 	window.navigator.vibrate(40);
+	console.log(id);
 }
 function incrementPreload(idplus) {
 	var x = document.getElementById("snackbar");
 	var y = document.getElementById("snacktext");
-	Console.log(idplus);
+	console.log(idplus);
 	var value = parseInt(document.getElementById(idplus).value, 10);
 	if (value >= 3) {
 		value = 3;
@@ -164,7 +164,6 @@ function incrementPreload(idplus) {
 function decrementValue(idminus) {
 	var x = document.getElementById("snackbar");
 	var y = document.getElementById("snacktext");
-	Console.log(idminus);
 	var value = parseInt(document.getElementById(idminus).value, 10);
 	if (value <= 0) {
 		value = 0;
@@ -177,6 +176,7 @@ function decrementValue(idminus) {
 		window.navigator.vibrate(40);
 	}
 	document.getElementById(idminus).value = value;
+	console.log(idminus);
 }
 function registerChange() {
 	console.log();
