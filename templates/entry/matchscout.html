@@ -606,7 +606,8 @@ var moddesc = document.getElementById("modal-desc")
 opn.onclick = function() {
 	modal.style.visibility = "visible";
 	main.style.filter="blur(2px)";
-	window.navigator.vibrate(40);
+	const canVibrate = window.navigator.vibrate;
+	if (canVibrate) window.navigator.vibrate(40);
     modhead.innerHTML="Are you sure the Robot is not Present?";
     moddesc.innerHTML="Clicking yes will set all form values to ZERO and scroll you to the bottom of the page."
 }
@@ -617,7 +618,8 @@ bad.onclick = function() {
 	document.getElementById("onField_false").checked = false;
 	document.getElementById("onField_true").checked = true;
 	main.style.filter="blur(0)";
-	window.navigator.vibrate(40);
+	const canVibrate = window.navigator.vibrate;
+	if (canVibrate) window.navigator.vibrate(40);
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -627,7 +629,8 @@ window.onclick = function(event) {
 	document.getElementById("onField_false").checked = false;
 	document.getElementById("onField_true").checked = true;
 	main.style.filter="blur(0)";
-	window.navigator.vibrate(40);
+	const canVibrate = window.navigator.vibrate
+	if (canVibrate) window.navigator.vibrate(40)
   }
 }
 
