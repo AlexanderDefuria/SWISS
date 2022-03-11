@@ -39,6 +39,8 @@ function updateGlance(team_id) {
         totalChart = Highcharts.chart(totalChartName, constCharts.totalChart);
         totalChart.redraw()
 
+        field = ["upper", "lower", "upper_auto", "lower_auto", "missed_balls", "missed_balls_auto"]
+
         // Average Bar Graph
         if (!teamData.length < 1) {
             constCharts.avgChart.series[0].data = []
@@ -47,6 +49,7 @@ function updateGlance(team_id) {
             field.forEach(function (field, index) {
                 result[field] = 0
             })
+            console.log(teamData[0]["fields"]["missed_balls"])
             teamData.forEach( function (info, index) {
                 field.forEach(function (field, index) {
                     result[field] += info["fields"][field]
@@ -64,6 +67,8 @@ function updateGlance(team_id) {
             constCharts.avgChart.series[0].data[1] = result['upper']
             constCharts.avgChart.series[1].data[0] = result['lower_auto']
             constCharts.avgChart.series[1].data[1] = result['lower']
+            constCharts.avgChart.series[2].data[0] = result['missed_balls']
+            constCharts.avgChart.series[2].data[1] = result['missed_balls_auto']
 
 
             avgChart = Highcharts.chart(avgChartName, constCharts.avgChart);
