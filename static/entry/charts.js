@@ -115,7 +115,6 @@ const constCharts = {
                 }
                 },
             yAxis: {
-            yAxis: {
                 title: {
                     text: 'Balls Scored',
                     style: {
@@ -139,8 +138,7 @@ const constCharts = {
                 data: [0, 0]
             }, {
                 name: 'Missed',
-                data: [0,0]
-
+                data: [0, 0]
             }]
     }
 
