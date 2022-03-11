@@ -38,6 +38,7 @@ urlpatterns = [
     path('welcome/', views.Welcome.as_view(), name='welcome'),
     path('import/submit/', views.import_from_first, name='import_from_first'),
     path('import/', views.Import.as_view(), name='import'),
+    path('import/schedule/submit', views.import_schedule_from_first, name='import_schedule_from_first'),
 
     path('logout/', views.logout, name='logout'),
     path('login/', views.login, name='login'),

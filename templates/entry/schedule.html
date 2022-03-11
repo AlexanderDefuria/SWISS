@@ -77,7 +77,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             {% if lead_scout %}
                 <div class="graphOption" >
                     <span class="dataButton" style="padding-right: 10px">{% get_current_event request %}</span>
-                    <button class="dataButton" style="width: 10vw; text-align: center; padding-left: 0px; padding-right: 0px" onclick="window.location='{% url 'entry:schedule' %}';" >Enter New Match</button>
+                    <button class="dataButton" style="width: 10vw; text-align: center; padding-left: 0px; padding-right: 0px" onclick="window.location='{% url 'entry:import_schedule_from_first' %}';" >Update Schedule</button>
                 </div>
                 {% else %}
                 <div style="display: flex" id="currentEvent">
@@ -89,32 +89,68 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="scheduleContainer" style="flex-wrap: wrap; white-space: nowrap; justify-content: center">
             {% for match in schedule_list %}
                 {% if match.match_number > 0 %}
-                    <div class="scheduleTile" id="{{ match.match_number }}">
-                        <div style="margin-right: 20px;">
-                            <h3>Q-{{ match.match_number }}</h3>
-                            <p>&#x2705;</p>
-                        </div>
-                        <div>
-                            <div class="infoRow">
-                                <p class="scheduleTeamNumber">{{ match.blue1 }}</p>
-                                <p class="scheduleTeamNumber">{{ match.blue2 }}</p>
-                                <p class="scheduleTeamNumber">{{ match.blue3 }}</p>
-                                <span style="border-left: 1px solid white">
-                                    <p class="blueScore">{{ match.blue_score }}</p>
-                                </span>
+                    {% if match.match_type == "Playoff" %}
+                        <div class="scheduleTile" id="{{ match.match_number }}">
+                            <div style="margin-right: 20px;">
+                                <h3>P-{{ match.match_number }}</h3>
+                                <p>&#x2705;</p>
                             </div>
-                            <div class="infoRow" style="background-color: darkred">
-                                <p class="scheduleTeamNumber">{{ match.red1 }}</p>
-                                <p class="scheduleTeamNumber">{{ match.red2 }}</p>
-                                <p class="scheduleTeamNumber">{{ match.red3 }}</p>
-                                <span style="border-left: 1px solid white">
-                                    <p class="redScore">{{ match.red_score }}</p>
-                                </span>
+                            <div>
+                                <div class="infoRow">
+                                    <p class="scheduleTeamNumber">{{ match.blue1 }}</p>
+                                    <p class="scheduleTeamNumber">{{ match.blue2 }}</p>
+                                    <p class="scheduleTeamNumber">{{ match.blue3 }}</p>
+                                    <span style="border-left: 1px solid white">
+                                        <p class="blueScore">{{ match.blue_score }}</p>
+                                    </span>
+                                </div>
+                                <div class="infoRow" style="background-color: darkred">
+                                    <p class="scheduleTeamNumber">{{ match.red1 }}</p>
+                                    <p class="scheduleTeamNumber">{{ match.red2 }}</p>
+                                    <p class="scheduleTeamNumber">{{ match.red3 }}</p>
+                                    <span style="border-left: 1px solid white">
+                                        <p class="redScore">{{ match.red_score }}</p>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {% endif %}
                 {% endif %}
-            {% endfor %}            
+            {% endfor %}
+
+        <br>
+
+            <!-- Playoffs -->
+            {% for match in schedule_list %}
+                {% if match.match_number > 0 %}
+                    {% if match.match_type == "Qualification" %}
+                        <div class="scheduleTile" id="{{ match.match_number }}">
+                            <div style="margin-right: 20px;">
+                                <h3>Q-{{ match.match_number }}</h3>
+                                <p>&#x2705;</p>
+                            </div>
+                            <div>
+                                <div class="infoRow">
+                                    <p class="scheduleTeamNumber">{{ match.blue1 }}</p>
+                                    <p class="scheduleTeamNumber">{{ match.blue2 }}</p>
+                                    <p class="scheduleTeamNumber">{{ match.blue3 }}</p>
+                                    <span style="border-left: 1px solid white">
+                                        <p class="blueScore">{{ match.blue_score }}</p>
+                                    </span>
+                                </div>
+                                <div class="infoRow" style="background-color: darkred">
+                                    <p class="scheduleTeamNumber">{{ match.red1 }}</p>
+                                    <p class="scheduleTeamNumber">{{ match.red2 }}</p>
+                                    <p class="scheduleTeamNumber">{{ match.red3 }}</p>
+                                    <span style="border-left: 1px solid white">
+                                        <p class="redScore">{{ match.red_score }}</p>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
         </div>
         
 <!-- Carousel View -->

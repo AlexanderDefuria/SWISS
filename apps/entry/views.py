@@ -4,7 +4,6 @@ import re
 from datetime import datetime
 import json
 
-
 from PIL import Image
 from openpyxl import Workbook
 
@@ -42,8 +41,8 @@ def match_scout_submit(request, pk):
 
         # PRE MATCH
         match.on_field = request.POST.get('onField', True)
-        match.auto_start_x = 0#request.POST.get('coordinate_x', 0.0)
-        match.auto_start_y = 0#request.POST.get('coordinate_y', 0.0)
+        match.auto_start_x = 0  # request.POST.get('coordinate_x', 0.0)
+        match.auto_start_y = 0  # request.POST.get('coordinate_y', 0.0)
         match.preloaded_balls = request.POST.get('preloadedBalls', 1)
 
         # AUTO
@@ -52,7 +51,7 @@ def match_scout_submit(request, pk):
         match.upper_auto = request.POST.get('upper_auto', 0)
         match.lower_auto = request.POST.get('lower_auto', 0)
         match.missed_auto = request.POST.get('missed_balls_auto', 0)
-        match.auto_fouls = 0 # request.POST.get('auto_fouls', '')
+        match.auto_fouls = 0  # request.POST.get('auto_fouls', '')
         match.auto_comment = request.POST.get('auto_comment', 'na')
 
         # TELEOP
@@ -67,7 +66,7 @@ def match_scout_submit(request, pk):
 
         # DEFENSE
         match.defense_played = request.POST.get('playedDefense', False)
-        match.defense_time = 0 #request.POST.get('defense_time', 0)
+        match.defense_time = 0  # request.POST.get('defense_time', 0)
         match.defense_rating = request.POST.get('defense_rating', 0)
         team_defended = request.POST.get('team_defended', 0)
         match.team_defended = team_defended if team_defended != '' else -1
@@ -77,7 +76,7 @@ def match_scout_submit(request, pk):
         # CLIMB
         match.lock_status = request.POST.get('lock_status', 0)
         match.endgame_action = request.POST.get('endgame_action', 0)
-        match.climb_time = 0 #request.POST.get('climb_time', 0)
+        match.climb_time = 0  # request.POST.get('climb_time', 0)
         match.climb_attempts = make_int(request.POST.get('climb_attempts', 0))
         match.climb_comments = request.POST.get('climb_comments', "na")
 
@@ -91,7 +90,7 @@ def match_scout_submit(request, pk):
         match.comment = request.POST.get('comment', 'na')
         match.team_ownership = request.user.teammember.team
 
-        #print(match.get_deferred_fields())
+        # print(match.get_deferred_fields())
 
         try:
             match.save()
@@ -469,6 +468,16 @@ def import_from_first(request):
 
 
 @login_required(login_url='entry:login')
+def import_schedule_from_first(request):
+    teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
+    first_key = Event.objects.all().filter(id=make_int(teamsettings.current_event.id))[0].FIRST_key
+    importFRC.import_schedule(first_key, playoffs=False)
+    importFRC.import_schedule(first_key, playoffs=True)
+
+    return HttpResponseRedirect(reverse_lazy('entry:schedule'))
+
+
+@login_required(login_url='entry:login')
 def logout(request):
     auth.logout(request)
     print("request.user.is_authenticated:" + str(request.user.is_authenticated))
@@ -530,7 +539,7 @@ def get_present_teams(user):
         objects = Team.objects.filter(number__in=
         get_event_teams(
             TeamSettings.objects.get(team=user.teammember.team).
-                current_event.FIRST_key))
+                current_event.FIRST_key)).filter(number__lt=9500)
         return objects
     except TeamSettings.DoesNotExist:
 
@@ -652,7 +661,7 @@ class ScheduleView(LoginRequiredMixin, generic.ListView):
             print(str(e) + ": There are no team settings for this query.")
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
-        return Schedule.objects.filter(event_id=teamsettings.current_event).order_by("match_type")
+        return Schedule.objects.filter(event_id=teamsettings.current_event).order_by("match_type").order_by("match_number")
 
 
 class PitScout(LoginRequiredMixin, generic.DetailView):

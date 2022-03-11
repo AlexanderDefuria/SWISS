@@ -74,6 +74,7 @@ class Schedule(models.Model):
     match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(0)])
     event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
     match_type = models.TextField(default="NA", max_length=40)
+    description = models.TextField(default="NA", max_length=100)
     placeholder = models.BooleanField(default=True)
 
     red1 = models.IntegerField(Team, default=0)
