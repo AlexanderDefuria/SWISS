@@ -367,6 +367,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					}
 				}
 			</script>
+			<!-- 
 			<div class="formItem" id="defense_timer">
 				<label for="defense_time">Defense Timer - Coming Soon</label>
 				<div>
@@ -419,6 +420,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				}
 				</script>	
 			</div>
+-->
 			<div class="formItem" id="teamDefendedDiv">
 				<label for="team_defended">Team Defended</label>
 				<input type="number" name="team_defended" id="team_defended" placeholder="Team #" min="0" max="9999" autocomplete="off">
@@ -478,6 +480,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					<option value="4">Traversal Rung</option>
 				</select>
 		  	</div>
+			<!-- 
 			<div class="formItem">
 				<label for="climb_time">Climbing Time</label>
 				<div>
@@ -530,9 +533,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					}
 					</script>	
 			</div>
+-->
 			<div class="formItem">
 				<label for="climb_attempts">Climb Attempts</label>
-				<input type="number" name="climb_attempts" id="climb_attempts" autocomplete="off">
+                <div class="ticker">
+					<img class="goalIcon" src="{{ MEDIA_URL }}{% static 'MissedIcon.png' %}" alt="missed">
+  					<input type="button" onclick="decrementValue('climb_attempts')" value="-">
+					<input type="number" name="climb_attempts" id="climb_attempts" autocomplete="off">
+					<input type="button" onclick="incrementValue('climb_attempts')" value="+">
+			 	</div>
 			</div>
 			<div class="formItem">
 				<label for="climb_comments">Climb Performance Comment</label>
