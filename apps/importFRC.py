@@ -2,7 +2,7 @@ import base64
 from typing import overload
 
 import requests
-from apps.entry.models import *
+#from apps.entry.models import *
 import datetime
 
 api_user = 'alexanderdefuria'
@@ -172,9 +172,46 @@ def import_team_json(json_object):
     return new_team
 
 
-def import_schedule(event_slug):
+def import_schedule(event_slug, year="2022", playoffs=True):
+    event_slug = clean_key(event_slug)
+    if year is None or year == "":
+        year = '2022'
+    request = "/schedule/" + event_slug + "?tournamentLevel=" + ("Playoff" if playoffs else "Qualification")
+    try:
+        request = get_request(request, year)
+    except NoGoodResponseError:
+        print(request)
+        print("NO GOOD RESPONSE")
+        return
+
+
+
+
+    matches = request['Schedule']
+    for match in matches:
+        import_schedule_json(match)
+    print(request)
+
     return
 
+
+def import_schedule_json(json_object, event_id):
+    new_team = Schedule()
+    try:
+        if Schedule.objects.get(number=json_object['teamNumber']):
+            new_schedule = Schedule.objects.get(number=json_object['teamNumber'])
+            print("Updating existing team..." + str(json_object['teamNumber']))
+    except Schedule.DoesNotExist:
+        print("Creating new team..." + str(json_object['teamNumber']))
+
+    new_schedule.name = json_object['nameShort']
+    new_schedule.number = json_object['teamNumber']
+    new_schedule.geo_location = json_object['stateProv']
+    new_schedule.id = new_schedule.number
+    new_schedule.save()
+    print(new_schedule)
+
+    return new_team
 
 def get_request(request, year='2022'):
     request = str(request)
@@ -203,3 +240,6 @@ def get_request(request, year='2022'):
 
 class NoGoodResponseError(Exception):
     pass
+
+
+import_schedule("ON306")
