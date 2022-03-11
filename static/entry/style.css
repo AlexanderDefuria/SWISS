@@ -370,8 +370,9 @@ ul {
 	display: inline-block;
 	min-height: 280px;
 	height: auto;
+	width: 50%;
 	padding: 10px;
-	margin: 0px 0px 10px 10px;
+	margin: 10px 10px 0 0;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
@@ -703,6 +704,11 @@ th {
 	left: 70px;
 	margin-left: 1px;
 	background: gray;
+}
+.visualizationChart {
+	width: 100vw;
+	height: 90vh;
+	overflow: hidden;
 }
 .positionIndicator {
 	padding-right: 20px;
