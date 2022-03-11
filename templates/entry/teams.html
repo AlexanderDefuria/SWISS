@@ -70,6 +70,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {% get_cookie request 'teamsBehaviour' as teamsBehaviour%}
 		{% get_cookie request 'districtTeams' as districtTeams %}
 		{% if districtTeams == 'True' %}
+			<div style="display: flex" id="currentEvent">
+				<span style="margin: auto">All Teams in District</span>
+			</div>
 		{% else %}
 			<div style="display: flex" id="currentEvent">
 				<span style="margin: auto">{% get_current_event request %}</span>
