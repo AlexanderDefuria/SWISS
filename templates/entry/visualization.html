@@ -77,7 +77,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<div class="statsContainer">
 			<div id="visualizationChart" style="width: 100vw; height: 90vh; overflow: hidden;">
 			</div>
-			<div style="display: flex">
+			<div style="display: flex; flex-wrap: wrap">
 				<div class="vizBox infoReg" >
 					<div class="infoHeader">
 						<h1>Teams Included</h1>
@@ -136,7 +136,7 @@ function warning(a) {
     if (a.matches) { // If media query matches
 			setTimeout(function () {
 					x.className = "show";
-					y.innerHTML = "WARNING: Page not designed for mobile.";
+					y.innerHTML = "WARNING: Better viewing on Tablet or Desktop.";
             }, 500), false
 
     } else { 
