@@ -705,12 +705,6 @@ th {
 	margin-left: 1px;
 	background: gray;
 }
-
-.visualizationChart {
-	width: 100vw;
-	height: 90vh;
-	overflow: hidden;
-}
 .positionIndicator {
 	padding-right: 20px;
 }
