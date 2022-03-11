@@ -167,7 +167,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			</div>
             <h2>Current Event</h2>
             <div class="formItem">
-				<label for="currentEvent">Current Event for Team -- IMPLEMENTING</label>
+				<label for="currentEvent">Current Event for Team</label>
 				<select name="currentEvent" id="currentEvent" style="display: block" required>
                     {% get_current_event request as curEvent %}
                     <option value="{{ curEvent.FIRST_key }}">{{ curEvent.name }}</option>
