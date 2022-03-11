@@ -270,7 +270,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<div class="infoLColumn"><p>{% get_info user team 'drivetrain_wheels' 'average' 'pits' %}</p></div>
 				</div>				
 				<div class="infoRow">
-					<div class="infoLColumn"><p>Drivetrain Motors</p></div>
+					<div class="infoLColumn"><p>Motor Type</p></div>
 					<div class="infoLColumn"><p>{% get_info user team 'drivetrain_motortype' 'average' 'pits' %}: {% get_info user team 'drivetrain_motorquantity' 'average' 'pits' %}</p></div>
 				</div>
 				<div class="infoRow">
@@ -360,6 +360,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 						document.getElementById("disabledBG").style.backgroundColor = "#B4150B";
 					}
 				</script>
+			</div>
+			<div class="infoBox infoReg" id="CommentTile">
+				<div class="infoHeader">
+					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'CommentIcon.png' %}" alt="Comment Icon">
+					<h1>Scouting Comments</h1>
+				</div>
+				<div class="infoRow" id="pitComments">
+					<div class="infoLColumn"><p>See Pit Comments &rarr;</p></div>
+				</div>
+				<div class="infoRow" id="autoComments">
+					<div class="infoLColumn"><p>See Auto Comments &rarr;</p></div>
+				</div>
+				<div class="infoRow" id="climbComments">
+					<div class="infoLColumn"><p>See Climb Comments &rarr;</p></div>
+				</div>
+				<div class="infoRow" id="matchComments">
+					<div class="infoLColumn"><p>See Match Comments &rarr;</p></div>
+				</div>
 			</div>
 			<div class="infoBox infoReg" id="ScoutNowTile" style="height: auto">
 			<!-- This <a> tag is intended to redirect the user to the MatchScout or PitScout Page of the currently displayed team. 
