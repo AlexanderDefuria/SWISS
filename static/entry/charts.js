@@ -107,13 +107,14 @@ const constCharts = {
                 }
                 },
             xAxis: {
-                categories: ['Auto', 'Teleop'],
+                categories: ['Auto', 'Teleop', 'Missed'],
                 labels: {
                     style: {
                         color: '#ffffff'
                     }
                 }
                 },
+            yAxis: {
             yAxis: {
                 title: {
                     text: 'Balls Scored',
@@ -136,6 +137,10 @@ const constCharts = {
             }, {
                 name: 'Lower',
                 data: [0, 0]
+            }, {
+                name: 'Missed',
+                data: [0,0]
+
             }]
     }
 
