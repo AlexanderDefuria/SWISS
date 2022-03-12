@@ -408,10 +408,12 @@ ul {
 }
 .commentsLink {
 	cursor: pointer;
+	border: solid 3px transparent;
 	transition: all .2s ease-in-out;
 }
 .commentsLink:hover {
 	background-color: #09315A;
+	border: solid 3px #777;
 	border-radius: 5px;
 }
 .infoRow {
