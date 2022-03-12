@@ -406,6 +406,14 @@ ul {
 .infoLinkHalf:hover { 
 	background-color: #09315A;
 }
+.commentsLink {
+	cursor: pointer;
+	transition: all .2s ease-in-out;
+}
+.commentsLink:hover {
+	background-color: #09315A;
+	border-radius: 5px;
+}
 .infoRow {
 	display: flex;
 	margin-top: 5px;
