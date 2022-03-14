@@ -41,7 +41,7 @@ def match_scout_submit(request, pk):
 
         # PRE MATCH
         match.on_field = request.POST.get('onField', True)
-        match.auto_start_x = 0  # request.POST.get('coordinate_x', 0.0)
+        match.auto_start_x = 0  # request.POST.get('coordinate_x', 0.0) TODO FIX THIS
         match.auto_start_y = 0  # request.POST.get('coordinate_y', 0.0)
         match.preloaded_balls = request.POST.get('preloadedBalls', 1)
 
@@ -50,23 +50,22 @@ def match_scout_submit(request, pk):
         match.baseline = request.POST.get('baseline', False)
         match.upper_auto = request.POST.get('upper_auto', 0)
         match.lower_auto = request.POST.get('lower_auto', 0)
-        match.missed_auto = request.POST.get('missed_balls_auto', 0)
+        match.missed_balls_auto = request.POST.get('missed_balls_auto', 0)
         match.auto_fouls = 0  # request.POST.get('auto_fouls', '')
         match.auto_comment = request.POST.get('auto_comment', 'na')
 
         # TELEOP
         match.lower = request.POST.get('lower', 0)
         match.upper = request.POST.get('upper', 0)
-        match.missed_balls_auto = request.POST.get('missed_balls', 0)
+        match.missed_balls = request.POST.get('missed_balls', 0)
         match.intake_type = request.POST.get('intakeType', 0)
         match.under_defense = request.POST.get('under_defense', 0)
-        match.defended_by = 0
-
+        match.defended_by = 0 # TODO FIX THIS
         match.offensive_fouls = request.POST.get('offensive_fouls', 0)
 
         # DEFENSE
         match.defense_played = request.POST.get('playedDefense', False)
-        match.defense_time = 0  # request.POST.get('defense_time', 0)
+        match.defense_time = 0  # request.POST.get('defense_time', 0) TODO FIX THIS
         match.defense_rating = request.POST.get('defense_rating', 0)
         team_defended = request.POST.get('team_defended', 0)
         match.team_defended = team_defended if team_defended != '' else -1
@@ -76,7 +75,7 @@ def match_scout_submit(request, pk):
         # CLIMB
         match.lock_status = request.POST.get('lock_status', 0)
         match.endgame_action = request.POST.get('endgame_action', 0)
-        match.climb_time = 0  # request.POST.get('climb_time', 0)
+        match.climb_time = 0  # request.POST.get('climb_time', 0) TODO FIX THIS
         match.climb_attempts = make_int(request.POST.get('climb_attempts', 0))
         match.climb_comments = request.POST.get('climb_comments', "na")
 
