@@ -90,6 +90,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<th>Exit Tarmac</th>
 						<th>Auto Low</th>
 						<th>Auto High</th>
+						<th>Auto Missed</th>
 						<th>Auto Fouls</th>
 
 						<th>Tele Low</th>
@@ -106,7 +107,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<th>Push Ability</th>
 
                         <th>Endgame Level</th>
-						<th>Climb Time</th>
 						<th>Climb Attempts</th>
 						<th>Timeout Position</th>
 
@@ -132,6 +132,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <td>{{ match.baseline }}</td>
                             <td>{{ match.lower_auto }}</td>
                             <td>{{ match.upper_auto }}</td>
+							<td>{{ match.missed_auto }}</td>
                             <td>{{ match.auto_fouls }}</td>
 
                             <td>{{ match.lower }}</td>
@@ -148,7 +149,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <td>{{ match.able_to_push }}</td>
 
                             <td>{{ match.endgame_action }}</td>
-                            <td>{{ match.climb_time }}</td>
                             <td>{{ match.climb_attempts }}</td>
                             <td>{{ match.lock_status }}</td>
 
