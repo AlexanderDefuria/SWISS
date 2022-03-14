@@ -84,8 +84,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<th>Names</th>
 						<th class="matchStick" style="z-index: 200">Match #</th>
 						<th>Robot Present?</th>
+						<!--
 						<th>Starting Pos. X</th>
 						<th>Starting Pos. Y</th>
+						-->
 						<th>Auto Route</th>
 						<th>Exit Tarmac</th>
 						<th>Auto Low</th>
@@ -126,8 +128,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <td  style="background: gray"> {{ match.team.name }}</td>
                             <td class="matchStick" style="z-index: 100">{{ match.match_number }}</td>
                             <td>{{ match.on_field }}</td>
+							<!--
                             <td>{{ match.auto_start_x }}</td>
                             <td>{{ match.auto_start_y }}</td>
+							-->
                             <td>{{ match.auto_route }}</td>
                             <td>{{ match.baseline }}</td>
                             <td>{{ match.lower_auto }}</td>
