@@ -1,5 +1,6 @@
 import datetime
 import inspect
+import math
 
 from django import template
 from django.contrib.sessions.models import Session
@@ -103,6 +104,26 @@ def get_all_events():
 def is_lead_scout(request):
     # Check if user is highest level position
     return request.user.teammember.position == 'LS'
+
+
+@register.simple_tag
+def get_gouda(team):
+    try:
+        gouda_list = Match.objects.filter(team_id=team).order_by('-created_at')
+        gouda = 0
+        n = 0
+        total_weight = 0
+        for i in gouda_list.iterator():
+            n += 1
+            i * (1/(math.sqrt(n)))
+            total_weight += (1/(math.sqrt(n)))
+            gouda += i
+
+        return gouda/total_weight
+
+    except IndexError as e:
+        print("INDEX ERROR GOUDA TEMPLATE TAG - " + str(e))
+        return
 
 
 @register.simple_tag

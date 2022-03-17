@@ -89,6 +89,34 @@ def match_scout_submit(request, pk):
         match.comment = request.POST.get('comment', 'na')
         match.team_ownership = request.user.teammember.team
 
+        # GOUDA POINT CALCS
+        gouda = 0
+        gouda += 0 if match.on_field else -15
+        gouda += 5 * match.auto_route
+        gouda += 5 if match.baseline else 0
+        gouda += 4 * match.upper_auto
+        gouda += 2 * match.lower_auto
+        gouda += -0.5 * match.missed_balls_auto
+        gouda += -6 * match.auto_fouls
+        gouda += 2 * match.upper
+        gouda += 1 * match.lower
+        gouda += -0.5 * match.missed_balls
+        gouda += 5 * match.intake_type
+        gouda += (0, -5, 10)[match.under_defense]
+        gouda += -6 * match.offensive_fouls
+        gouda += 5 if match.defense_played else 0
+        gouda += match.defense_played ** 2
+        gouda += -6 * match.defense_fouls
+        gouda += (0, -5, 10)[match.able_to_push]
+        gouda += match.endgame_action * (0.5 if match.lock_status == 1 or match.lock_status == 2 else 1)
+        gouda += (0, 4, 6, 10, 15)[match.endgame_action]
+        gouda += 10*(1/match.climb_attempts)
+        gouda += (0, -3, -10)[match.fouls_hp]
+        gouda += (0, -3, -10)[match.fouls_driver]
+        gouda += -15 if match.disabled else 0
+
+        match.gouda = gouda
+
         # print(match.get_deferred_fields())
 
         try:
