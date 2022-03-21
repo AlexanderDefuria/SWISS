@@ -123,8 +123,6 @@ def import_event_page(key, page, year='2022'):
         new_schedule.match_type = "placeholder"
         new_schedule.placeholder = True
         new_schedule.event = Event.objects.get(FIRST_key=key)
-        # TODO Fix this hackish solution.
-        #                    vvvvvvvvvvvv
         new_schedule.red1 = new_team.number
         new_schedule.red2 = new_team.number
         new_schedule.red3 = new_team.number
@@ -200,12 +198,16 @@ def import_schedule_json(json_object, event_key, playoffs=False):
 
     print(json_object)
     try:
-        if Schedule.objects.get(match_number=json_object['matchNumber'], match_type=("Playoff" if playoffs else "Qualification"), event_id=Event.objects.get(FIRST_key=event_key)):
-            new_schedule = Schedule.objects.get(match_number=json_object['matchNumber'], match_type=("Playoff" if playoffs else "Qualification"), event_id=Event.objects.get(FIRST_key=event_key))
+        if Schedule.objects.get(match_number=json_object['matchNumber'],
+                                match_type=("Playoff" if playoffs else "Qualification"),
+                                event_id=Event.objects.get(FIRST_key=event_key)):
+            new_schedule = Schedule.objects.get(match_number=json_object['matchNumber'],
+                                                match_type=("Playoff" if playoffs else "Qualification"),
+                                                event_id=Event.objects.get(FIRST_key=event_key))
             print("Updating existing schedule entry..." + str(json_object['matchNumber']))
     except Schedule.DoesNotExist:
         print("Creating new schedule entry... Match:" + str(json_object['matchNumber']))
-        new_schedule.event_id=Event.objects.get(FIRST_key=event_key).id
+        new_schedule.event_id = Event.objects.get(FIRST_key=event_key).id
 
     new_schedule.match_number = json_object['matchNumber']
     new_schedule.match_type = json_object['tournamentLevel']
@@ -224,7 +226,14 @@ def import_schedule_json(json_object, event_key, playoffs=False):
     new_schedule.save()
     print(new_schedule)
 
+    import_match_results(json_object['matchNumber'], event_key, new_schedule)
+
     return new_schedule
+
+
+def import_match_results(match_number, event_key, schedule_object):
+    # TODO import scores to the schedule.
+    return
 
 
 def get_request(request, year='2022'):
@@ -255,5 +264,4 @@ def get_request(request, year='2022'):
 class NoGoodResponseError(Exception):
     pass
 
-
-#import_schedule("ON306")
+# import_schedule("ON306")

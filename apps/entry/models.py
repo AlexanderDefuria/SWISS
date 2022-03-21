@@ -1,3 +1,4 @@
+import random
 import uuid as uuid
 
 import requests
@@ -37,7 +38,7 @@ class Team(models.Model):
     def first_image(self):
         # code to determine which image to show. The First in this case.
         try:
-            return self.images.all()[len(self.images.all()) - 1].image
+            return self.images.all()[random.randint(0, len(self.images.all()) - 1)].image
         except Exception:
             return 'robots/default.jpg'
 
@@ -60,7 +61,6 @@ class Event(models.Model):
                            validators=[MaxValueValidator(date(2220, 12, 31)), MinValueValidator(date(2020, 1, 1))])
 
     imported = models.BooleanField(default=False)
-
 
     def __str__(self):
         return self.name
@@ -101,7 +101,6 @@ class Match(models.Model):
     gouda = models.FloatField(default=0)
 
     # Pre Match
-    # TODO make 2D Auto Start Field Based on Front End
     auto_start_x = models.fields.FloatField(default=0, validators=[MaxValueValidator(1), MinValueValidator(0)])
     auto_start_y = models.fields.FloatField(default=0, validators=[MaxValueValidator(1), MinValueValidator(0)])
     on_field = models.BooleanField(default=False)

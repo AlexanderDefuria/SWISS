@@ -27,7 +27,8 @@ class TeamMemberInline(admin.StackedInline):
 # Define a new User admin
 class UserAdmin(BaseUserAdmin):
     inlines = (TeamMemberInline,)
-    fieldsets = (
+    fieldsets = BaseUserAdmin.fieldsets
+    old_fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('first_name', 'last_name')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),

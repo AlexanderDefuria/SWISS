@@ -25,8 +25,8 @@ def get_current_event(request):
         return TeamSettings.objects.get(team=request.user.teammember.team).current_event
     except IndexError:
         event = Event()
-        event.name="Temp"
-        event.FIRST_key=""
+        event.name = "Temp"
+        event.FIRST_key = ""
         return event
     except:
         return Event.objects.all()[0]
@@ -115,11 +115,11 @@ def get_gouda(team):
         total_weight = 0
         for i in gouda_list.iterator():
             n += 1
-            i * (1/(math.sqrt(n)))
-            total_weight += (1/(math.sqrt(n)))
+            i * (1 / (math.sqrt(n)))
+            total_weight += (1 / (math.sqrt(n)))
             gouda += i
 
-        return gouda/total_weight
+        return gouda / total_weight
 
     except IndexError as e:
         print("INDEX ERROR GOUDA TEMPLATE TAG - " + str(e))
@@ -134,7 +134,9 @@ def get_info(user, team, field, *args):
             model = Match
 
         teamsettings = TeamSettings.objects.all().filter(team_id=user.teammember.team)[0]
-        if len(model.objects.all().filter(team_id=team.id).filter(event_id=teamsettings.current_event.id).filter(team_ownership=user.teammember.team.id)) == 0:
+        if len(model.objects.all().filter(team_id=team.id,
+                                          event_id=teamsettings.current_event.id,
+                                          team_ownership=user.teammember.team.id)) == 0:
             return "No Data"
 
         if "dependant" in args:
@@ -155,7 +157,8 @@ def get_info(user, team, field, *args):
 
 
 def get_average(user, team, field, model):
-    if model.objects.first()._meta.get_field(field).get_internal_type() not in ('IntegerField', 'SmallIntegerField', 'BooleanField'):
+    if model.objects.first()._meta.get_field(field).get_internal_type() not in (
+            'IntegerField', 'SmallIntegerField', 'BooleanField'):
         result_list = get_list(user, team, field, model)
         most_common = 'None'
         occured = 0
@@ -171,7 +174,8 @@ def get_average(user, team, field, model):
     if field == 'lock_status':
         most_common = model_instances.annotate(mc=Count('lock_status')).order_by('-mc')[0].lock_status
         total = model_instances.filter(lock_status=most_common).count()
-
+        model_instances = model.objects.filter(team_id=team.id,
+                                               team_ownership=user.teammember.team, lock_status=most_common)
 
     # If its to do with scoring or fouls return a percent
     scale = 1000 if model == Pits else 10
@@ -203,7 +207,8 @@ def get_list(user, team, field, model):
     for entry in object_list:
         result_list.append(entry.__getattribute__(field))
 
-    if inspect.stack()[1].function == 'get_info':  # https://stackoverflow.com/questions/900392/getting-the-caller-function-name-inside-another-function-in-python
+    if inspect.stack()[1].function == 'get_info':
+        # https://stackoverflow.com/questions/900392/getting-the-caller-function-name-inside-another-function-in-python
         for each in result_list:
             if return_list.get(each) is None:
                 return_list[each] = 1
@@ -212,7 +217,8 @@ def get_list(user, team, field, model):
 
         d = return_list
         return_list = {}
-        for k in sorted(d, key=d.get, reverse=True):
+
+        for k in sorted(d, key=d.get, reverse=(not isinstance(model, Pits))):
             # print(k, d[k])
             rename = []
             if field == 'tele_positions':
@@ -241,7 +247,6 @@ def get_possible(user, team, field, model):
     default = model._meta.get_field(field).default
 
     # print("DEFAULT: " + str(default))
-
     for each in object_list:
         if each.__getattribute__(field) != default:
             return "Yes"

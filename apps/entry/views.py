@@ -41,8 +41,14 @@ def match_scout_submit(request, pk):
 
         # PRE MATCH
         match.on_field = request.POST.get('onField', True)
-        match.auto_start_x = 0  # request.POST.get('coordinate_x', 0.0) TODO FIX THIS
-        match.auto_start_y = 0  # request.POST.get('coordinate_y', 0.0)
+        try:
+            match.auto_start_x = float(request.POST.get('coordinate_x', '0.0'))
+            match.auto_start_y = float(request.POST.get('coordinate_y', '0.0'))
+        except Exception as e:
+            print(e)
+            match.auto_start_x = 0
+            match.auto_start_y = 0
+
         match.preloaded_balls = request.POST.get('preloadedBalls', 1)
 
         # AUTO
@@ -51,7 +57,7 @@ def match_scout_submit(request, pk):
         match.upper_auto = request.POST.get('upper_auto', 0)
         match.lower_auto = request.POST.get('lower_auto', 0)
         match.missed_balls_auto = request.POST.get('missed_balls_auto', 0)
-        match.auto_fouls = 0  # request.POST.get('auto_fouls', '')
+        match.auto_fouls = request.POST.get('auto_fouls', 0)
         match.auto_comment = request.POST.get('auto_comment', 'na')
 
         # TELEOP
@@ -60,7 +66,7 @@ def match_scout_submit(request, pk):
         match.missed_balls = request.POST.get('missed_balls', 0)
         match.intake_type = request.POST.get('intakeType', 0)
         match.under_defense = request.POST.get('under_defense', 0)
-        match.defended_by = 0 # TODO FIX THIS
+        match.defended_by = request.POST.get('defended_by', 0)
         match.offensive_fouls = request.POST.get('offensive_fouls', 0)
 
         # DEFENSE
@@ -116,8 +122,6 @@ def match_scout_submit(request, pk):
         gouda += -15 if match.disabled else 0
 
         match.gouda = gouda
-
-        # print(match.get_deferred_fields())
 
         try:
             match.save()
