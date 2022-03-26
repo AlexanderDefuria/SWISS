@@ -115,6 +115,7 @@ def match_scout_submit(request, pk):
         gouda += (0, -3, -10)[match.fouls_driver]
         gouda += -15 if match.disabled else 0
 
+        print(gounda)
         match.gouda = gouda
 
         # print(match.get_deferred_fields())
