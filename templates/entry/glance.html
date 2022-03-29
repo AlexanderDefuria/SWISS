@@ -120,7 +120,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Climb</p></div>
-					<div class="infoLColumn"><p>{% get_info user team 'climb_locations' 'possible' 'pits' %}</p></div>
+					<div class="infoLColumn"><p>{% get_info user team 'climb_locations' 'possible' 'pits' %}, height here</p></div>
 				</div>	
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Matches Played</p></div>
@@ -242,6 +242,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				<div class="infoHeader">
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'Hangar.png' %}" alt="Hang Bar">
 					<h1>Endgame</h1>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Climb Descripton</p></div>
+					<div class="infoLColumn"><p>Get climb description from pits</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Average Climb Success</p></div>
