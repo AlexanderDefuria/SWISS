@@ -305,8 +305,7 @@ def update_graph(request):
 @csrf_exempt
 @login_required(login_url='entry:login')
 def update_glance(request, pk):
-    matches = Match.objects.filter(team_id=pk, team_ownership_id=request.user.teammember.team_id).order_by(
-        'match_number')
+    matches = Match.objects.filter(team_id=pk, team_ownership_id=request.user.teammember.team_id).order_by('event', 'match_number')
     count = matches.count()
     try:
         if make_int(Team.objects.get(id=pk).glance.name.split('_')[2]) == count:
