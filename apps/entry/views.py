@@ -1,3 +1,4 @@
+from multiprocessing import context
 import os
 import ast
 import re
@@ -689,6 +690,11 @@ class ScheduleView(LoginRequiredMixin, generic.ListView):
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
         return Schedule.objects.filter(event_id=teamsettings.current_event).order_by("match_type").order_by("match_number")
+
+
+class ScheduleDetails(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'entry:login'
+    template_name = 'entry/scheduledetails.html'
 
 
 class PitScout(LoginRequiredMixin, generic.DetailView):

@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* CSS Document */
+
+.tripleContainer {
+	display: flex; 
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+
+.tripleContainer > div { 
+	width: 33vw;
+	margin: 5px;
+}
