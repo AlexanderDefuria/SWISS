@@ -168,6 +168,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<img src="{{ MEDIA_URL }}{% static 'BuildHoursBinder.png' %}" alt="Build Hours Binder Icon">
 				</div>
 			</a>
+			<!-- This link is temporary --> 
+			<a href="{% url 'hours:scheduledetails' %}" id="tileScheduleDetails" title="Schedule Details">
+				<div class="smallBox">
+					<img src="{{ MEDIA_URL }}{% static 'LabsIcon.png' %}" alt="Schedule Details">
+				</div>
+			</a>
 		</div>
 		<div id="snackbar">
 			<p id="snacktext">Default Text</p>
