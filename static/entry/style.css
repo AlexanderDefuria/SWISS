@@ -419,13 +419,19 @@ ul {
 .infoRow {
 	display: flex;
 	margin-top: 5px;
-	background-color: #09315A;
+	background-color: rgba(0,0,0,0.4);
 }
 .infoLColumn {
 	flex: 25%;
 }
 .infoRColumn {
 	flex: 75%;
+}
+.infoFColumn {
+	width: 100%;
+}
+.info33Column {
+	flex: 33%;
 }
 .infoWide { 
 	width: 510px;
@@ -563,6 +569,12 @@ ul {
 	font-size: 36px;
 }
 #officialTeamName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: -webkit-fill-available;
+}
+.officialTeamName {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -724,18 +736,24 @@ th {
     padding: 10px;
     background-color: #262626;
     margin: 10px;
+	border: 3px solid transparent;
     display: inline-flex;
 	transition: all .2s ease-in-out; 
 }
 .scheduleTile:hover { 
-	transform: scale(1.075); 
 	box-shadow: 2px 5px 25px 2px #232323;
+	border-color: #777;
+	border-radius: 5px;
 }
 .scheduleTile h3 {
+	width: 45px;
     margin: 5px 0 0 0;
 }
 .scheduleContainer {
     display: flex;
+}
+.scheduleLink {
+	color: white;
 }
 .scheduleTeamNumber {
     width: 40px;

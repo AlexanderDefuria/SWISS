@@ -98,7 +98,7 @@ class Match(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
     match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(-1)])
-    gouda = models.FloatField(default=0)
+    gouda = models.FloatField(default=0, blank=True, null=True)
 
     # Pre Match
     auto_start_x = models.fields.FloatField(default=0, validators=[MaxValueValidator(1), MinValueValidator(0)])

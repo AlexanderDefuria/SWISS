@@ -1,3 +1,4 @@
+from multiprocessing import context
 import os
 import ast
 import re
@@ -121,6 +122,7 @@ def match_scout_submit(request, pk):
         gouda += (0, -3, -10)[match.fouls_driver]
         gouda += -15 if match.disabled else 0
 
+        print(gounda)
         match.gouda = gouda
 
         try:
@@ -308,8 +310,7 @@ def update_graph(request):
 @csrf_exempt
 @login_required(login_url='entry:login')
 def update_glance(request, pk):
-    matches = Match.objects.filter(team_id=pk, team_ownership_id=request.user.teammember.team_id).order_by(
-        'match_number')
+    matches = Match.objects.filter(team_id=pk, team_ownership_id=request.user.teammember.team_id).order_by('event', 'match_number')
     count = matches.count()
     try:
         if make_int(Team.objects.get(id=pk).glance.name.split('_')[2]) == count:
@@ -693,6 +694,11 @@ class ScheduleView(LoginRequiredMixin, generic.ListView):
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
         return Schedule.objects.filter(event_id=teamsettings.current_event).order_by("match_type").order_by("match_number")
+
+
+class ScheduleDetails(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'entry:login'
+    template_name = 'entry/scheduledetails.html'
 
 
 class PitScout(LoginRequiredMixin, generic.DetailView):

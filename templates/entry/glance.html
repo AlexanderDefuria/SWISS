@@ -120,7 +120,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Climb</p></div>
-					<div class="infoLColumn"><p>{% get_info user team 'climb_locations' 'possible' 'pits' %}</p></div>
+					<div class="infoLColumn"><p>{% get_info user team 'climb_locations' 'possible' 'pits' %}, height here</p></div>
 				</div>	
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Matches Played</p></div>
@@ -244,6 +244,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<h1>Endgame</h1>
 				</div>
 				<div class="infoRow">
+					<div class="infoLColumn"><p>Climb Descripton</p></div>
+					<div class="infoLColumn"><p>Get climb description from pits</p></div>
+				</div>
+				<div class="infoRow">
 					<div class="infoLColumn"><p>Average Climb Success</p></div>
 					<div class="infoLColumn">
                         {% get_info user team 'lock_status' 'list' 'match' as teleTimeOutList %}
@@ -274,7 +278,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<div class="infoLColumn"><p>{% get_info user team 'drivetrain_motortype' 'average' 'pits' %}: {% get_info user team 'drivetrain_motorquantity' 'average' 'pits' %}</p></div>
 				</div>
 				<div class="infoRow">
-					<div class="infoLColumn"><p>Push Ability</p></div>
+					<div class="infoLColumn"><p>Pushing Score</p></div>
 					<div class="infoLColumn"><p>{% get_info user team 'able_to_push' 'average' 'match' %}</p></div>
 				</div>
 			</div>
