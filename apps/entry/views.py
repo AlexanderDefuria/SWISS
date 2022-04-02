@@ -99,9 +99,13 @@ def match_scout_submit(request, pk):
         match.team_ownership = request.user.teammember.team
 
         # GOUDA POINT CALCS
+        print("GOUDA v")
         gouda = 0
+        print(gouda)
         gouda += 0 if make_int(match.on_field) else -15
+        print(gouda)
         gouda += 5 * make_int(match.auto_route)
+        print(gouda)
         gouda += 5 if make_int(match.baseline) else 0
         print(type(gouda))
         print(type(make_int(match.upper_auto))
