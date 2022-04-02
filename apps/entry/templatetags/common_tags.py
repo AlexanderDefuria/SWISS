@@ -65,6 +65,8 @@ def get_team_onfield(user, team_number):
                                              event=TeamSettings.objects.get(team=user.teammember.team).current_event)
         present = total.filter(on_field=True).count()
         total = total.count()
+        if total == 0:
+            return 1
         return int(present/total * 100)
     except IndexError as e:
         return "NA"
