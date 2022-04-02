@@ -570,6 +570,9 @@ def handler404(request, exception, template_name="entry/secret.html"):
 
 
 def make_int(s):
+    if isinstance(s, str):
+        if len(s) == 0:
+            return 0
     if s == 'False':
         return False
     elif s == 'True':
