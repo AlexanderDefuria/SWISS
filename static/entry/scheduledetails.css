@@ -15,7 +15,7 @@
 .smallGraph {
 	height: 200px;
 	width: auto;
-	margin: none;
+	margin: 0;
 	background: none;
 	transition: none;
 }
