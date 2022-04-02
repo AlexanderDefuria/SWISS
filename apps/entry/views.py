@@ -132,14 +132,14 @@ def match_scout_submit(request, pk):
 
         try:
             match.save()
-            print('Success')
+            print('Match Scout Submission Success')
         except Exception as e:
             print(e)
 
         return HttpResponseRedirect(reverse_lazy('entry:match_scout_landing'))
 
     else:
-        print('Fail')
+        print('Match Scout Submission Fail')
         return HttpResponseRedirect(reverse_lazy('entry:match_scout_landing'))
 
 
@@ -193,7 +193,7 @@ def validate_types(request, data, reqlist):
 
     for field in reqfields.keys():
         # This would mean someone is editing the HTML therefore we log them out to ensure data integrity.
-        print("FIELD: " + field)
+        # print("FIELD: " + field)
 
         if not data.__contains__(field):
             logout(request)
@@ -215,23 +215,23 @@ def validate_types(request, data, reqlist):
                 print(data[field])
                 print(e)
 
-        print("type")
-        print(type(data[field][0]))
-        print(type(reqfields[field]))
+        # print("type")
+        # print(type(data[field][0]))
+        # print(type(reqfields[field]))
         redo[field] = False if (isinstance(data[field][0], type(reqfields[field]))) else True
 
     for field in request.POST:
         try:
             redo[field] = not is_ascii(request.POST.get(field))
-            print(request.POST.get(field))
+            # print(request.POST.get(field))
 
         except AttributeError:
             print('issue')
     if request.path.__contains__("scout") and data['scouterName'][0] == '':
         redo['scouterName'] = True
 
-    print(redo.keys())
-    print(redo.values())
+    print("Keys: " + str(redo.keys()))
+    print("Needs Correcting: " + str(redo.values()))
 
     return redo, data
 
@@ -274,10 +274,10 @@ def pit_scout_submit(request, pk):
 
         print(pits)
 
-        print('Success')
+        print('Pit Scout Submission Success')
         return HttpResponseRedirect(reverse_lazy('entry:pit_scout_landing'))
     else:
-        print('Fail')
+        print('Pit Scout Submission Fail')
         return HttpResponseRedirect(reverse_lazy('entry:pit_scout_landing'))
 
 
@@ -672,7 +672,7 @@ class MatchScoutLanding(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         teams = get_present_teams(self.request.user)
-        print(teams)
+        # print(teams)
         if teams.count() == 1 and teams.first() == Team.objects.first():
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
