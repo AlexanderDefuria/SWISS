@@ -11,3 +11,11 @@
 	width: 30%;
 	margin: 5px;
 }
+
+.smallGraph {
+	height: 200px;
+	width: auto;
+	margin: none;
+	background: none;
+	transition: none;
+}
