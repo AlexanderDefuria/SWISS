@@ -208,8 +208,8 @@ def get_average(user, team, field, model):
                                            team_ownership=user.teammember.team,
                                            event=TeamSettings.objects.get(team=user.teammember.team).current_event)
 
-    if field == 'lock_status':
-        most_common = model_instances.annotate(mc=Count('lock_status')).order_by('-mc')[0].lock_status
+    if field == 'lock_status' or field == 'endgame_action':
+        most_common = model_instances.annotate(mc=Count(field)).order_by('-mc')[0].lock_status
         total = model_instances.filter(lock_status=most_common).count()
         model_instances = model.objects.filter(team_id=team.id,
                                                team_ownership=user.teammember.team,
@@ -218,7 +218,7 @@ def get_average(user, team, field, model):
 
     # If its to do with scoring or fouls return a percent
     scale = 1000 if model == Pits else 1000
-    if str(field).__contains__("lock_status"):
+    if str(field).__contains__("lock_status") or str(field).__contains__("endgame_action"):
         scale = 10
 
     return round(1000 * (total / len(model_instances))) / scale
@@ -270,6 +270,8 @@ def get_list(user, team, field, model):
             elif field == 'field_timeout_pos':
                 rename = ["Nothing", "Parked", "Attempted Climb", "Successful Climb"]
             elif field == 'lock_status':
+                rename = ["No Attempt", "Low Rung", "Mid Rung", "High Rung", "Traversal"]
+            elif field == 'endgame_action':
                 rename = ["No Attempt", "Low Rung", "Mid Rung", "High Rung", "Traversal"]
 
             if rename is not []:
