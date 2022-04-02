@@ -69,7 +69,11 @@ def match_scout_submit(request, pk):
         match.missed_balls = request.POST.get('missed_balls', 0)
         match.intake_type = request.POST.get('intakeType', 0)
         match.under_defense = request.POST.get('under_defense', 0)
-        match.defended_by = request.POST.get('defended_by', 0)
+        try:
+            match.defended_by = request.POST.get('defended_by', 0)
+        except Exception as e:
+            match.defended_by = 0
+            print(e)
         match.offensive_fouls = request.POST.get('offensive_fouls', 0)
 
         # DEFENSE
@@ -100,7 +104,7 @@ def match_scout_submit(request, pk):
 
         # GOUDA POINT CALCS
         print("GOUDA v")
-        gouda = 0
+        gouda = 100
         gouda += 0 if match.on_field else -15
         print(0 if match.on_field else -15)
         gouda += 5 * match.auto_route
@@ -128,7 +132,7 @@ def match_scout_submit(request, pk):
         #gouda += -15 if make_int(match.disabled )else 0
 
         print(gouda)
-        match.gouda = gouda
+        match.gouda = make_int(gouda)
 
         try:
             match.save()
