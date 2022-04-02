@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>SWISS Schedule Details (( Match Number ))</title>
+<title>SWISS Details {{ schedule.match_type }} {{ schedule.match_number }}</title>
 <link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/scheduledetails.css' %}">
@@ -74,7 +74,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<div class="teamnamePill">
 						<p style="padding-right: 10px">{{ schedule.match_type }}</p>
 					</div>
-					<div class="teamnumberPill">
+					<div class="teamnumberPill" style="background-color: ">
 						<p>{{ schedule.match_number }}</p>
 					</div>
 				</a>
@@ -82,10 +82,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		</div>
 		<div class="tripleContainer" style="justify-content: flex-start; flex-grow: 0">
             <div class="infoBox infoReg">
-            <div class="infoHeader">
+            	<div class="infoHeader">
 					<!--<h1>B1</h1>-->
 					<div class="teamnumberPill" style="background-color: {% get_team_colour schedule.blue1 %}"><p>{{ schedule.blue1 }}</p></div>
 					<h1 id="officialTeamName">{% get_team_name schedule.blue1 %}</h1>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Gouda</p></div>
+					<div class="infoRColumn"><p></p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Shooter</p></div>
@@ -116,6 +120,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<h1 id="officialTeamName">{% get_team_name schedule.blue2 %}</h1>
 				</div>
 				<div class="infoRow">
+					<div class="infoLColumn"><p>Gouda</p></div>
+					<div class="infoRColumn"><p></p></div>
+				</div>
+				<div class="infoRow">
 					<div class="infoLColumn"><p>Shooter</p></div>
 					<div class="infoRColumn"><p>{% get_info user schedule.blue2 'shooter_style' 'average' 'pits' %}</p></div>
 				</div>
@@ -142,6 +150,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<!--<h1>B3</h1>-->
 					<div class="teamnumberPill" style="background-color: {% get_team_colour schedule.blue3 %}"><p>{{ schedule.blue3 }}</p></div>
 					<h1 id="officialTeamName">{% get_team_name schedule.blue3 %}</h1>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Gouda</p></div>
+					<div class="infoRColumn"><p></p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Shooter</p></div>
@@ -176,6 +188,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<h1 id="officialTeamName">{% get_team_name schedule.red1 %}</h1>
 				</div>
 				<div class="infoRow">
+					<div class="infoLColumn"><p>Gouda</p></div>
+					<div class="infoRColumn"><p></p></div>
+				</div>
+				<div class="infoRow">
 					<div class="infoLColumn"><p>Shooter</p></div>
 					<div class="infoRColumn"><p>{% get_info user schedule.red1 'shooter_style' 'average' 'pits' %}</p></div>
 				</div>
@@ -204,6 +220,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<h1 id="officialTeamName">{% get_team_name schedule.red2 %}</h1>
 				</div>
 				<div class="infoRow">
+					<div class="infoLColumn"><p>Gouda</p></div>
+					<div class="infoRColumn"><p></p></div>
+				</div>
+				<div class="infoRow">
 					<div class="infoLColumn"><p>Shooter</p></div>
 					<div class="infoRColumn"><p>{% get_info user schedule.red2 'shooter_style' 'average' 'pits' %}</p></div>
 				</div>
@@ -230,6 +250,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<!--<h1>B3</h1>-->
 					<div class="teamnumberPill" style="background-color: {% get_team_colour schedule.red3 %}"><p>{{ schedule.red3 }}</p></div>
 					<h1 id="officialTeamName">{% get_team_name schedule.red3 %}</h1>
+				</div>
+				<div class="infoRow">
+					<div class="infoLColumn"><p>Gouda</p></div>
+					<div class="infoRColumn"><p></p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Shooter</p></div>
