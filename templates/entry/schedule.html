@@ -90,7 +90,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             {% for match in schedule_list %}
                 {% if match.match_number > 0 %}
                     {% if match.match_type == "Qualification" %}
-					<a href="#">
+					<a href="#" class="scheduleLink">
                         <div class="scheduleTile" id="{{ match.match_number }}">
                             <div style="margin-right: 20px;">
                                 <h3>Q-{{ match.match_number }}</h3>
@@ -115,7 +115,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             {% for match in schedule_list %}
                 {% if match.match_number > 0 %}
                     {% if match.match_type == "Playoff" %}
-					<a href="#">
+					<a href="#" class="scheduleLink">
                         <div class="scheduleTile" id="{{ match.match_number }}">
                             <div style="margin-right: 20px;">
                                 <h3>P-{{ match.match_number }}</h3>

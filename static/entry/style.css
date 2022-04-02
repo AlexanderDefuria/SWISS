@@ -746,6 +746,9 @@ th {
 .scheduleContainer {
     display: flex;
 }
+.scheduleLink {
+	colour: white;
+}
 .scheduleTeamNumber {
     width: 40px;
 }
