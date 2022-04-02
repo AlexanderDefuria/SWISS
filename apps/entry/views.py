@@ -571,9 +571,9 @@ def handler404(request, exception, template_name="entry/secret.html"):
 
 
 def make_int(s):
-    if s == 'False'
+    if s == 'False':
         return False
-    elif s == 'True'
+    elif s == 'True':
         return True
     s = str(s)
     s = s.strip()
