@@ -100,29 +100,29 @@ def match_scout_submit(request, pk):
 
         # GOUDA POINT CALCS
         gouda = 0
-        gouda += 0 if match.on_field else -15
-        gouda += 5 * match.auto_route
-        gouda += 5 if match.baseline else 0
-        gouda += 4 * match.upper_auto
-        gouda += 2 * match.lower_auto
-        gouda += -0.5 * match.missed_balls_auto
-        gouda += -6 * match.auto_fouls
-        gouda += 2 * match.upper
-        gouda += 1 * match.lower
-        gouda += -0.5 * match.missed_balls
-        gouda += 5 * match.intake_type
-        gouda += (0, -5, 10)[match.under_defense]
-        gouda += -6 * match.offensive_fouls
-        gouda += 5 if match.defense_played else 0
-        gouda += match.defense_played ** 2
-        gouda += -6 * match.defense_fouls
-        gouda += (0, -5, 10)[match.able_to_push]
-        gouda += match.endgame_action * (0.5 if match.lock_status == 1 or match.lock_status == 2 else 1)
-        gouda += (0, 4, 6, 10, 15)[match.endgame_action]
-        gouda += 10*(1/match.climb_attempts)
-        gouda += (0, -3, -10)[match.fouls_hp]
-        gouda += (0, -3, -10)[match.fouls_driver]
-        gouda += -15 if match.disabled else 0
+        gouda += 0 if make_int(match.on_field) else -15
+        gouda += 5 * make_int(match.auto_route)
+        gouda += 5 if make_int(match.baseline) else 0
+        gouda += 4 * make_int(match.upper_auto)
+        gouda += 2 * make_int(match.lower_auto)
+        gouda += -0.5 * make_int(match.missed_balls_auto)
+        gouda += -6 * make_int(match.auto_fouls)
+        gouda += 2 * make_int(match.upper)
+        gouda += 1 * make_int(match.lower)
+        gouda += -0.5 * make_int(match.missed_balls)
+        gouda += 5 * make_int(match.intake_type)
+        gouda += (0, -5, 10)[make_int(match.under_defense)]
+        gouda += -6 * make_int(match.offensive_fouls)
+        gouda += 5 if make_int(match.defense_played) else 0
+        gouda += make_int(match.defense_played) ** 2
+        gouda += -6 * make_int(match.defense_fouls)
+        gouda += (0, -5, 10)[make_int(match.able_to_push)]
+        gouda += make_int(match.endgame_action) * (0.5 if make_int(match.lock_status) == 1 or make_int(match.lock_status) == 2 else 1)
+        gouda += (0, 4, 6, 10, 15)[make_int(match.endgame_action)]
+        gouda += 10*(1/make_int(match.climb_attempts))
+        gouda += (0, -3, -10)[make_int(match.fouls_hp)]
+        gouda += (0, -3, -10)[make_int(match.fouls_driver)]
+        gouda += -15 if make_int(match.disabled )else 0
 
         print(gouda)
         match.gouda = gouda
