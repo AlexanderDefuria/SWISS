@@ -103,6 +103,8 @@ def match_scout_submit(request, pk):
         gouda += 0 if make_int(match.on_field) else -15
         gouda += 5 * make_int(match.auto_route)
         gouda += 5 if make_int(match.baseline) else 0
+        print(type(gouda))
+        print(type(make_int(match.upper_auto))
         gouda += 4 * make_int(match.upper_auto)
         gouda += 2 * make_int(match.lower_auto)
         gouda += -0.5 * make_int(match.missed_balls_auto)
