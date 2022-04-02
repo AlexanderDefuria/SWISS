@@ -11,14 +11,6 @@
 	width: 20%;
 }
 
-.smallGraph {
-	height: 300px;
-	width: auto;
-	margin: 0;
-	background: none;
-	transition: none;
-}
-
 .redAllianceBox {
-	background-color: #B4150B;
+	background-color: darkred;
 }
