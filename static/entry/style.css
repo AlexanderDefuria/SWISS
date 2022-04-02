@@ -427,6 +427,9 @@ ul {
 .infoRColumn {
 	flex: 75%;
 }
+.infoFColumn {
+	width: 100%;
+}
 .infoWide { 
 	width: 510px;
 }
