@@ -93,8 +93,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Climb</p></div>
-					<div class="infoRColumn"><p>{% get_info user schedule.blue1 'climb_locations' 'possible' 'pits' %}</p></div>
-				</div>
+                    {% get_info user schedule.blue1 'lock_status' 'list' 'match' as teleTimeOutListBlueOne %}
+					<div class="infoRColumn"><p>{{ teleTimeOutListBlueOne.0 }}, {{ teleTimeOutListBlueOne.1 }}</p></div>				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Defense</p></div>
 					<div class="infoRColumn"><p>5 / 5 Quality</p><p>{% get_info user schedule.blue1 'able_to_push' 'average' 'match' %}</p></div>
@@ -121,8 +121,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Climb</p></div>
-					<div class="infoRColumn"><p>{% get_info user schedule.blue2 'climb_locations' 'possible' 'pits' %}</p></div>
-				</div>
+                    {% get_info user schedule.blue2 'lock_status' 'list' 'match' as teleTimeOutListBlueTwo %}
+					<div class="infoRColumn"><p>{{ teleTimeOutListBlueTwo.0 }}, {{ teleTimeOutListBlueTwo.1 }}</p></div>				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Defense</p></div>
 					<div class="infoRColumn"><p>5 / 5 Quality</p><p>{% get_info user schedule.blue2 'able_to_push' 'average' 'match' %}</p></div>
@@ -149,7 +149,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Climb</p></div>
-					<div class="infoRColumn"><p>{% get_info user schedule.blue3 'climb_locations' 'possible' 'pits' %}</p></div>
+                    {% get_info user schedule.blue3 'lock_status' 'list' 'match' as teleTimeOutListBlueThree %}
+					<div class="infoRColumn"><p>{{ teleTimeOutListBlueThree.0 }}, {{ teleTimeOutListBlueThree.1 }}</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Defense</p></div>
@@ -180,8 +181,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Climb</p></div>
-					<div class="infoRColumn"><p>{% get_info user schedule.red1 'climb_locations' 'possible' 'pits' %}</p></div>
-				</div>
+                    {% get_info user schedule.red1 'lock_status' 'list' 'match' as teleTimeOutListRedOne %}
+					<div class="infoRColumn"><p>{{ teleTimeOutListRedOne.0 }}, {{ teleTimeOutListRedOne.1 }}</p></div>				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Defense</p></div>
 					<div class="infoRColumn"><p>5 / 5 Quality</p><p>{% get_info user schedule.red1 'able_to_push' 'average' 'match' %}</p></div>
@@ -208,8 +209,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Climb</p></div>
-					<div class="infoRColumn"><p>{% get_info user schedule.red2 'climb_locations' 'possible' 'pits' %}</p></div>
-				</div>
+                    {% get_info user schedule.red2 'lock_status' 'list' 'match' as teleTimeOutListRedTwo %}
+					<div class="infoRColumn"><p>{{ teleTimeOutListRedTwo.0 }}, {{ teleTimeOutListRedTwo.1 }}</p></div>				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Defense</p></div>
 					<div class="infoRColumn"><p>5 / 5 Quality</p><p>{% get_info user schedule.red2 'able_to_push' 'average' 'match' %}</p></div>
@@ -236,8 +237,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Climb</p></div>
-					<div class="infoRColumn"><p>{% get_info user schedule.red3 'climb_locations' 'possible' 'pits' %}</p></div>
-				</div>
+                    {% get_info user schedule.red3 'lock_status' 'list' 'match' as teleTimeOutListRedThree %}
+					<div class="infoRColumn"><p>{{ teleTimeOutListRedThree.0 }}, {{ teleTimeOutListRedThree.1 }}</p></div>				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Defense</p></div>
 					<div class="infoRColumn"><p>5 / 5 Quality</p><p>{% get_info user schedule.red3 'able_to_push' 'average' 'match' %}</p></div>
