@@ -99,13 +99,13 @@ def match_scout_submit(request, pk):
         match.team_ownership = request.user.teammember.team
 
         # GOUDA POINT CALCS
-        print("GOUDA v")
-        gouda = 100
-        gouda += 0 if match.on_field else -15
-        print(0 if match.on_field else -15)
-        gouda += 5 * match.auto_route
-        gouda += 5 if match.baseline else 0
-        print(gouda)
+        #print("GOUDA v")
+        #gouda = 100
+        #gouda += 0 if match.on_field else -15
+        #print(0 if match.on_field else -15)
+        #gouda += 5 * match.auto_route
+        #gouda += 5 if match.baseline else 0
+        #print(gouda)
         #gouda += 4 * make_int(match.upper_auto)
         #gouda += 2 * make_int(match.lower_auto)
         #gouda += -0.5 * make_int(match.missed_balls_auto)
@@ -127,8 +127,8 @@ def match_scout_submit(request, pk):
         #gouda += (0, -3, -10)[make_int(match.fouls_driver)]
         #gouda += -15 if make_int(match.disabled )else 0
 
-        print(gouda)
-        match.gouda = gouda
+        #print(gouda)
+        #match.gouda = gouda
 
         try:
             match.save()
