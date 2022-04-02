@@ -4,7 +4,7 @@ import math
 
 from django import template
 from django.contrib.sessions.models import Session
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.utils import timezone
 
 from apps.entry.models import *
@@ -56,6 +56,18 @@ def get_team_colour(team_number):
         return Team.objects.all().get(id=team_number).colour
     except IndexError as e:
         return "No Such Team"
+
+
+@register.simple_tag
+def get_team_onfield(user, team_number):
+    try:
+        total = Match.objects.all().filter(team_id=team_number,
+                                             event=TeamSettings.objects.get(team=user.teammember.team).current_event)
+        present = total.filter(on_field=True).count()
+        total = total.count()
+        return int(present/total * 100)
+    except IndexError as e:
+        return "NA"
 
 
 @register.simple_tag

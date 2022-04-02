@@ -250,14 +250,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Average Climb Success</p></div>
 					<div class="infoLColumn">
-                        {% get_info user team 'lock_status' 'list' 'match' as teleTimeOutList %}
+                        {% get_info user team 'endgame_action' 'list' 'match' as teleTimeOutList %}
 						<p>{{ teleTimeOutList.0 }}</p>
 						<p>{{ teleTimeOutList.1 }}</p>
 					</div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Climb Percentage</p></div>
-					<div class="infoLColumn"><p>{% get_info user team 'lock_status' 'average' 'match' %}%</p></div>
+					<div class="infoLColumn"><p>{% get_info user team 'endgame_action' 'average' 'match' %}%</p></div>
 				</div>
 			</div>
 			<div class="infoBox infoReg" id="driveTrainTile">
@@ -298,7 +298,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				</div>
 				<div class="infoRow" id="onFieldBG">
 					<div class="infoLColumn"><p>Percent On Field</p></div>
-					<div class="infoLColumn"><p id="onFieldValue">{% widthratio MATCHES team.match_set.count 100 %}</p></div>
+					<div class="infoLColumn"><p id="onFieldValue">{% get_team_onfield user team.number %}</p></div>
 				</div>
 				<div class="infoRow" id="disabledBG">
 					<div class="infoLColumn"><p>Disabled/Offline</p></div>
