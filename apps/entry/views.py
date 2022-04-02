@@ -102,9 +102,9 @@ def match_scout_submit(request, pk):
         print("GOUDA v")
         gouda = 0
         print(gouda)
-        #gouda += 0 if match.on_field else -15
+        gouda += 0 if match.on_field else -15
         print(match.on_field)
-        #print(0 if match.on_field else -15)
+        print(0 if match.on_field else -15)
         print(gouda)
         gouda += 5 * make_int(match.auto_route)
         print(gouda)
