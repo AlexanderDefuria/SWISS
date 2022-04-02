@@ -419,7 +419,7 @@ ul {
 .infoRow {
 	display: flex;
 	margin-top: 5px;
-	background-color: #09315A;
+	background-color: rgba(0,0,0,0.7);
 }
 .infoLColumn {
 	flex: 25%;
