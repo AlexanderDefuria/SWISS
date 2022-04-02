@@ -20,6 +20,8 @@ def modulo(num, val):
 
 @register.filter
 def divide(num, val):
+    if val == 0:
+        return -1
     return num / val
 
 
