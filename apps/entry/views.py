@@ -69,19 +69,18 @@ def match_scout_submit(request, pk):
         match.missed_balls = request.POST.get('missed_balls', 0)
         match.intake_type = request.POST.get('intakeType', 0)
         match.under_defense = request.POST.get('under_defense', 0)
-        #try:
-        #    match.defended_by = request.POST.get('defended_by', 0)
-        #except Exception as e:
-        #    match.defended_by = 0
-        #    print(e)
-        match.defended_by = 0
+        try:
+            match.defended_by = request.POST.get('defended_by', 0)
+        except Exception as e:
+            match.defended_by = 0
+            print(e)
         match.offensive_fouls = request.POST.get('offensive_fouls', 0)
 
         # DEFENSE
         match.defense_played = request.POST.get('playedDefense', False)
         match.defense_time = 0  # request.POST.get('defense_time', 0) TODO FIX THIS
         match.defense_rating = request.POST.get('defense_rating', 0)
-        team_defended = request.POST.get('team_defended', 0)
+        team_defended = make_int(request.POST.get('team_defended', ''))
         match.team_defended = team_defended if team_defended != '' else -1
         match.defense_fouls = request.POST.get('defenseFouls', 0)
         match.able_to_push = request.POST.get('pushRating', 0)
@@ -133,7 +132,7 @@ def match_scout_submit(request, pk):
         #gouda += -15 if make_int(match.disabled )else 0
 
         print(gouda)
-        match.gouda = make_int(gouda)
+        match.gouda = gouda
 
         try:
             match.save()
