@@ -430,6 +430,9 @@ ul {
 .infoFColumn {
 	width: 100%;
 }
+.info33Column {
+	flex: 33%;
+}
 .infoWide { 
 	width: 510px;
 }
