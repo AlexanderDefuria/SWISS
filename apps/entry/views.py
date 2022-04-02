@@ -69,14 +69,14 @@ def match_scout_submit(request, pk):
         match.missed_balls = request.POST.get('missed_balls', 0)
         match.intake_type = request.POST.get('intakeType', 0)
         match.under_defense = request.POST.get('under_defense', 0)
-        match.defended_by = request.POST.get('defended_by', 0)
+        match.defended_by = 0
         match.offensive_fouls = request.POST.get('offensive_fouls', 0)
 
         # DEFENSE
         match.defense_played = request.POST.get('playedDefense', False)
         match.defense_time = 0  # request.POST.get('defense_time', 0) TODO FIX THIS
         match.defense_rating = request.POST.get('defense_rating', 0)
-        team_defended = request.POST.get('team_defended', 0)
+        team_defended = make_int(request.POST.get('team_defended', ''))
         match.team_defended = team_defended if team_defended != '' else -1
         match.defense_fouls = request.POST.get('defenseFouls', 0)
         match.able_to_push = request.POST.get('pushRating', 0)
@@ -100,17 +100,12 @@ def match_scout_submit(request, pk):
 
         # GOUDA POINT CALCS
         print("GOUDA v")
-        gouda = 0
+        gouda = 100
+        gouda += 0 if match.on_field else -15
+        print(0 if match.on_field else -15)
+        gouda += 5 * match.auto_route
+        gouda += 5 if match.baseline else 0
         print(gouda)
-        gouda += 0 if make_int(match.on_field) else -15
-        print(match.on_field)
-        print(0 if make_int(match.on_field) else -15)
-        print(gouda)
-        gouda += 5 * make_int(match.auto_route)
-        print(gouda)
-        gouda += 5 if make_int(match.baseline) else 0
-        print(type(gouda))
-        print(type(make_int(match.upper_auto))
         #gouda += 4 * make_int(match.upper_auto)
         #gouda += 2 * make_int(match.lower_auto)
         #gouda += -0.5 * make_int(match.missed_balls_auto)
@@ -571,6 +566,13 @@ def handler404(request, exception, template_name="entry/secret.html"):
 
 
 def make_int(s):
+    if isinstance(s, str):
+        if len(s) == 0:
+            return 0
+    if s == 'False':
+        return False
+    elif s == 'True':
+        return True
     s = str(s)
     s = s.strip()
     return int(s) if s else 0

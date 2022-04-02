@@ -62,6 +62,8 @@ class ValidateUser:
         if request.user.teammember.position == "NA":
             return HttpResponseRedirect(reverse_lazy('entry:logout'))
 
+        print(str(request.user) + " from " + str(request.user.teammember.team))
+
         if app == 'entry':
             if self.valid_perms(view, request.user):
                 return response
@@ -99,8 +101,8 @@ class ValidateUser:
             else:
                 actlevel += 1
 
-        print(reqlevel)
-        print(each[0])
+        #print(reqlevel)
+        #print(each[0])
         return actlevel >= reqlevel
 
 
