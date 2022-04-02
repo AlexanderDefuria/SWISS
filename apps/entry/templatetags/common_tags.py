@@ -18,6 +18,11 @@ def modulo(num, val):
     return num % val == 0
 
 
+@register.filter
+def divide(num, val):
+    return num / val
+
+
 @register.simple_tag
 def get_current_event(request):
     try:
@@ -35,6 +40,22 @@ def get_current_event(request):
 @register.simple_tag
 def get_current_event_id():
     return get_current_event.id
+
+
+@register.simple_tag
+def get_team_name(team_number):
+    try:
+        return Team.objects.all().get(id=team_number).name
+    except IndexError as e:
+        return "No Such Team"
+
+
+@register.simple_tag
+def get_team_colour(team_number):
+    try:
+        return Team.objects.all().get(id=team_number).colour
+    except IndexError as e:
+        return "No Such Team"
 
 
 @register.simple_tag
@@ -129,6 +150,19 @@ def get_gouda(team):
 @register.simple_tag
 def get_info(user, team, field, *args):
     try:
+        if type(team) is type(str()):
+            try:
+                team = int(team)
+            except ValueError as e:
+                print("Passed wrong value: " + team)
+                return
+        if type(team) is type(int()):
+            try:
+                team = Team.objects.all().get(id=team)
+            except IndexError as e:
+                print(e)
+                return
+
         model = Pits
         if "match" in args:
             model = Match
@@ -136,7 +170,8 @@ def get_info(user, team, field, *args):
         teamsettings = TeamSettings.objects.all().filter(team_id=user.teammember.team)[0]
         if len(model.objects.all().filter(team_id=team.id,
                                           event_id=teamsettings.current_event.id,
-                                          team_ownership=user.teammember.team.id)) == 0:
+                                          team_ownership=user.teammember.team.id,
+                                          event=TeamSettings.objects.get(team=user.teammember.team).current_event)) == 0:
             return "No Data"
 
         if "dependant" in args:
@@ -169,27 +204,34 @@ def get_average(user, team, field, model):
         return most_common
 
     total = get_total(user, team, field, model)
-    model_instances = model.objects.filter(team_id=team.id, team_ownership=user.teammember.team)
+    model_instances = model.objects.filter(team_id=team.id,
+                                           team_ownership=user.teammember.team,
+                                           event=TeamSettings.objects.get(team=user.teammember.team).current_event)
 
     if field == 'lock_status':
         most_common = model_instances.annotate(mc=Count('lock_status')).order_by('-mc')[0].lock_status
         total = model_instances.filter(lock_status=most_common).count()
         model_instances = model.objects.filter(team_id=team.id,
-                                               team_ownership=user.teammember.team, lock_status=most_common)
+                                               team_ownership=user.teammember.team,
+                                               lock_status=most_common,
+                                               event=TeamSettings.objects.get(team=user.teammember.team).current_event)
 
     # If its to do with scoring or fouls return a percent
-    scale = 1000 if model == Pits else 10
+    scale = 1000 if model == Pits else 1000
+    if str(field).__contains__("lock_status"):
+        scale = 10
 
     return round(1000 * (total / len(model_instances))) / scale
 
 
 def get_total(user, team, field, model):
     total = 0
-    object_list = model.objects.filter(team_id=team.id, team_ownership=user.teammember.team)
+    object_list = model.objects.filter(team_id=team.id,
+                                       team_ownership=user.teammember.team,
+                                       event=TeamSettings.objects.get(team=user.teammember.team).current_event)
     boolean = model.objects.first()._meta.get_field(field).get_internal_type() == 'BooleanField'
 
     for entry in object_list:
-
         if boolean:
             if entry.__getattribute__(field):
                 total += 1
@@ -200,7 +242,9 @@ def get_total(user, team, field, model):
 
 
 def get_list(user, team, field, model):
-    object_list = model.objects.filter(team_id=team.id, team_ownership=user.teammember.team)
+    object_list = model.objects.filter(team_id=team.id,
+                                       team_ownership=user.teammember.team,
+                                       event=TeamSettings.objects.get(team=user.teammember.team).current_event)
     result_list = []
     return_list = {}
 
@@ -243,7 +287,9 @@ def get_list(user, team, field, model):
 
 
 def get_possible(user, team, field, model):
-    object_list = model.objects.filter(team_id=team.id, team_ownership=user.teammember.team)
+    object_list = model.objects.filter(team_id=team.id,
+                                       team_ownership=user.teammember.team,
+                                       event=TeamSettings.objects.get(team=user.teammember.team).current_event)
     default = model._meta.get_field(field).default
 
     # print("DEFAULT: " + str(default))
@@ -263,7 +309,9 @@ def dependant(user, team, field, model, args):
         if args.index(arg) == len(args) - 1:
             return 0
 
-    object_list = model.objects.filter(team_id=team.id, team_ownership=user.teammember.team)
+    object_list = model.objects.filter(team_id=team.id,
+                                       team_ownership=user.teammember.team,
+                                       event=TeamSettings.objects.get(team=user.teammember.team).current_event)
     return_list = []
     total = 0
 
