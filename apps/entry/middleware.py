@@ -62,7 +62,7 @@ class ValidateUser:
         if request.user.teammember.position == "NA":
             return HttpResponseRedirect(reverse_lazy('entry:logout'))
 
-        print(str(request.user) + " from " + str(request.user.teammember.team))
+        print(str(request.user) + " from " + str(request.user.teammember.team.number))
 
         if app == 'entry':
             if self.valid_perms(view, request.user):
