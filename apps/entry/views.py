@@ -110,7 +110,7 @@ def match_scout_submit(request, pk):
         print(gouda)
         gouda += 5 if make_int(match.baseline) else 0
         print(type(gouda))
-        print(type(make_int(match.upper_auto))
+        print(type(make_int(match.upper_auto)))
         #gouda += 4 * make_int(match.upper_auto)
         #gouda += 2 * make_int(match.lower_auto)
         #gouda += -0.5 * make_int(match.missed_balls_auto)
@@ -132,8 +132,8 @@ def match_scout_submit(request, pk):
         #gouda += (0, -3, -10)[make_int(match.fouls_driver)]
         #gouda += -15 if make_int(match.disabled )else 0
 
-        #print(gouda)
-        #match.gouda = gouda
+        print(gouda)
+        match.gouda = gouda
 
         try:
             match.save()
