@@ -132,8 +132,8 @@ def match_scout_submit(request, pk):
         #gouda += (0, -3, -10)[make_int(match.fouls_driver)]
         #gouda += -15 if make_int(match.disabled )else 0
 
-        print(gouda)
-        match.gouda = gouda
+        #print(gouda)
+        #match.gouda = gouda
 
         try:
             match.save()
