@@ -108,7 +108,7 @@ def match_scout_submit(request, pk):
         print(gouda)
         gouda += 5 * make_int(match.auto_route)
         print(gouda)
-        gouda += 5 if bool(match.baseline) else 0
+        #gouda += 5 if match.baseline else 0
         print(type(gouda))
         print(type(make_int(match.upper_auto)))
         #gouda += 4 * make_int(match.upper_auto)
