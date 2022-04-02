@@ -69,7 +69,8 @@ def match_scout_submit(request, pk):
         match.missed_balls = request.POST.get('missed_balls', 0)
         match.intake_type = request.POST.get('intakeType', 0)
         match.under_defense = request.POST.get('under_defense', 0)
-        match.defended_by = 0
+        defended_by = make_int(request.POST.get('defended_by', ''))
+        match.defended_by = defended_by if defended_by != '' else -1
         match.offensive_fouls = request.POST.get('offensive_fouls', 0)
 
         # DEFENSE
