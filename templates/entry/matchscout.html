@@ -47,16 +47,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<a href="{% url 'entry:teams' %}">Teams</a>
 			<a href="{% url 'entry:match_data' %}">Data</a>
 			<a href="{% url 'entry:visualize' %}">Visualize</a>
+			<a href="{% url 'entry:schedule' %}">Schedule</a>
 			<a href="{% url 'entry:settings' %}">Settings</a>
 			<a href="{% url 'entry:about' %}">About</a>
 		</div>
 		<div class="greeting">
 			<p id="timeOfDay"></p>
-			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
+			<p style="padding-top: 0px">{{ user.get_username }}!</p>
 		</div>
 		<script>
 			var hour = new Date().getHours();
-			var greeting; 
+			var greeting;
 			if (hour < 17) {
 				greeting = "Good day,";
 			} else {
@@ -173,7 +174,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			
 			<div class="formItem" id="baselineDiv">
 			<!-- Boolean for if a Robot moved off of the tarmac -->
-				<label for="baseline">Left Tarmac Zone</label>
+				<label for="baseline">Taxi from Tarmac</label>
 				<div class="radioGroup">
 					<img class="icon" src="{{ MEDIA_URL }}{% static 'AllTarmacs.png' %}" alt="All Tarmacs">
 					<label>
@@ -228,6 +229,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				<label for="auto_comment">Auto Route Notes</label>
 				<input type="text" name="auto_comment" id="auto_comment" placeholder="Auto Notes" autocomplete="off" required>
 			</div>
+			<!--
             <script>
 				// Gets value of dropdown, hides div that becomes irrelevant
 				function hideAutonomous() {
@@ -238,13 +240,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						document.getElementById("autoGoalsDiv").style.display="flex";
 						document.getElementById("autoMissedDiv").style.display="flex";
 					} else {
-                         document.getElementById("baseline_false").checked = true;
+                        document.getElementById("baseline_false").checked = true;
 				        document.getElementById("baselineDiv").style.display="none";
 						document.getElementById("autoGoalsDiv").style.display="none";
 						document.getElementById("autoMissedDiv").style.display="none";
 					}
 				}
             </script>
+			-->
 			
 <!--	OFFENSE		-->
 			
@@ -355,11 +358,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				function hideDefenseStuff() {
 					var x = document.getElementById("playedDefense_false").checked;
 					if (x != true){
-						document.getElementById("defense_timer").style.display="flex";
 						document.getElementById("teamDefendedDiv").style.display="flex";
 						document.getElementById("defenseQualityDiv").style.display="flex";
 					} else {
-						document.getElementById("defense_timer").style.display="none";
 						document.getElementById("teamDefendedDiv").style.display="none";
 						document.getElementById("teamDefendedDiv").value="0";
 						document.getElementById("defense_rating").value="0";
@@ -470,7 +471,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</select>
 			</div>			
 			<div class="formItem">
-				<label for="endgame_action">Climbing Position</label>
+				<label for="endgame_action">Climb Height</label>
 				<select name="endgame_action" id="endgame_action">
 					<option value="" disabled selected hidden>&#8230;</option>
 					<option value="0">No Attempt</option>
@@ -480,60 +481,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					<option value="4">Traversal Rung</option>
 				</select>
 		  	</div>
-			<!-- 
-			<div class="formItem">
-				<label for="climb_time">Climbing Time</label>
-				<div>
-					<input type="number" name="climb_time" id="climb_time" pattern="[-+]?[0-9]*[.,]?[0-9]+" readonly>
-					<input type="button" value="&#9658;" onclick="startstoptimer()">
-					<input type="button" value="&#x21bb;" onclick="resettimer()">
-				</div>
-				<script>
-					var millisec = 0;
-					var seconds = 0;
-					var timer;
-
-					function display(){
-
-					  if (millisec>=9){
-						 millisec=0
-						 seconds+=1
-					  }
-					  else
-						 millisec+=1
-						 document.getElementById('climb_time').value = seconds + "." + millisec;
-						 timer = setTimeout("display()",100);
-					  }
-
-					function starttimer() {
-
-					  if (timer > 0) {
-						return;
-					  }
-					  display();	
-					}
-					function stoptimer() {
-					  clearTimeout(timer);
-					  timer = 0;
-					}
-
-					function startstoptimer() {
-					  if (timer > 0) {
-						 clearTimeout(timer);
-						 timer = 0;
-					  } else {
-						 display();
-					  }
-					}
-
-					function resettimer() {
-						stoptimer();
-						millisec = 0;
-						seconds = 0;
-					}
-					</script>	
-			</div>
--->
 			<div class="formItem">
 				<label for="climb_attempts">Climb Attempts</label>
                 <div class="ticker">
@@ -551,7 +498,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			
 			<h1>MORE</h1>
 			<div class="formItem">
-				<label for="humanFouls">Human Player Incurred Fouls</label>
+				<label for="humanFouls">Human Player Fouls</label>
 				<select name="humanFouls" id="humanFouls">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
@@ -559,7 +506,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</select>
 			</div>
 			<div class="formItem">
-				<label for="driverFouls">Driver/Coach Incurred Fouls</label>
+				<label for="driverFouls">Driver/Coach Fouls</label>
 				<select name="driverFouls" id="driverFouls">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
@@ -587,7 +534,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<br>
 			<div class="formItem">
 				<label for="comment">Comments</label>
-				<input type="text" name="comment" id="comment" placeholder="e.g. Drivetrain Issues" autocomplete="off" required>
+				<input type="textarea" name="comment" id="comment" placeholder="e.g. Drivetrain Issues" autocomplete="off" required>
 			</div>
 			<br>
 			<div class="formItem" id="submit" onclick="validate('mainForm', true)">
