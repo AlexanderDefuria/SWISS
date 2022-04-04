@@ -123,7 +123,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Climb</p></div>
-					<div class="infoLColumn"><p>{% get_info user team 'climb_locations' 'possible' 'pits' %}, height here</p></div>
+					<div class="infoLColumn"><p>{% get_info user team 'climb_locations' 'possible' 'pits' %},
+						{% get_info user team 'endgame_action' 'list' 'match' as teleTimeOutList %}
+						{{ teleTimeOutList.0 }}
+						</p>
+					</div>
 				</div>	
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Matches Played</p></div>
@@ -191,7 +195,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				</div>
 				<div class="infoRow" id="qualityDefenseBG">
 					<div class="infoLColumn"><p>Avg. Quality</p></div>
-					<div class="infoLColumn"><p id="qualityDefenseValue">{% get_info user team 'defense_rating' 'match' 'dependant' 'dependant-defense_time' %}</p><p> / 5</p></div>
+					<div class="infoLColumn"><p id="qualityDefenseValue">{% get_info user team 'defense_rating' 'match' 'dependant' 'dependant-defense_time' %}</p> / 5</div>
 				</div>
 			</div>
             <div class="infoBox infoReg" id="shooterTile">
