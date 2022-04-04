@@ -45,16 +45,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<a href="{% url 'entry:teams' %}">Teams</a>
 			<a href="{% url 'entry:match_data' %}">Data</a>
 			<a href="{% url 'entry:visualize' %}">Visualize</a>
+			<a href="{% url 'entry:schedule' %}">Schedule</a>
 			<a href="{% url 'entry:settings' %}">Settings</a>
 			<a href="{% url 'entry:about' %}">About</a>
 		</div>
 		<div class="greeting">
 			<p id="timeOfDay"></p>
-			<p style="padding-top: 0px">{{ user.get_username }}!</p> 
+			<p style="padding-top: 0px">{{ user.get_username }}!</p>
 		</div>
 		<script>
 			var hour = new Date().getHours();
-			var greeting; 
+			var greeting;
 			if (hour < 17) {
 				greeting = "Good day,";
 			} else {

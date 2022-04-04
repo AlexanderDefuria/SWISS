@@ -44,6 +44,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<a href="{% url 'entry:teams' %}">Teams</a>
 			<a href="{% url 'entry:match_data' %}">Data</a>
 			<a href="{% url 'entry:visualize' %}">Visualize</a>
+			<a href="{% url 'entry:schedule' %}">Schedule</a>
 			<a href="{% url 'entry:settings' %}">Settings</a>
 			<a href="{% url 'entry:about' %}">About</a>
 		</div>
@@ -62,6 +63,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			document.getElementById("timeOfDay").innerHTML = greeting;
 		</script>
 	</div>
+
 	<div class="bodyContainer bodyBackground" id="bodyContainer"
 		style="background-image: url({{ MEDIA_URL }}{% static 'TeamsBackground.png' %})">
 		<div class="heroContent">
