@@ -112,6 +112,7 @@ input [type=text], input [type=button] {
 .formItem textarea:focus {
 	background: #333;
 	border-color: #0F4D9D;
+	border-radius: 5px;
 }
 
 
