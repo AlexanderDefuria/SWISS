@@ -324,8 +324,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     } else if (f > 2) {
 						document.getElementById("onFieldBG").style.backgroundColor = "#B4150B";
                     } else if (f == 1 ) {
-						f.innerHTML = "Event has not started.";
-						console.log("Event has not started.")
+						document.getElementById("onFieldValue").innerHTML = "Event has not started";
+						console.log("Event has not started")
 					}
 
 					if (o > 100) { 
