@@ -96,6 +96,21 @@ input [type=text], input [type=button] {
 	background: #333333;
 }
 
+.formItem textarea {
+	outline: none;
+	color: white; 
+	background: none;
+	border: none; 
+	border-bottom: 3px solid #ffffff;
+	border-radius: 0;
+	transition: all 0.2s ease-in-out
+}
+
+.formItem textarea:focus {
+	background: #333;
+	border-color: #0F4D9D;
+}
+
 
 /* NUMBER INPUTS */
 
