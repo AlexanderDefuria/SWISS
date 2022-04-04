@@ -321,9 +321,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 						document.getElementById("onFieldBG").style.backgroundColor = "";
 					} else if (f > 85) {
 						document.getElementById("onFieldBG").style.backgroundColor = "#D7AE22";
-                    } else if (f > 0) {
+                    } else if (f > 2) {
 						document.getElementById("onFieldBG").style.backgroundColor = "#B4150B";
-                    }
+                    } else if (f == 1 ) {
+						f.innerHTML = "Event has not started."
+					}
 
 					if (o > 100) { 
 						document.getElementById("offFoulBG").style.backgroundColor = "#590909"
