@@ -435,6 +435,15 @@ input[type=number] {
 #submit {
 	background-color: #0F4D8D;
 }
+
+#logout {
+	background-color: darkred;
+	text-align: center;
+	color: white;
+	font-weight: 900; 
+	line-height: 4rem;
+}
+
 /* The Initiation Line image */
 #autoStart_img {
 	width: 200px;
