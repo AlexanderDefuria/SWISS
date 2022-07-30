@@ -451,13 +451,13 @@ ul {
 	padding: 10px; }
 .soloBox {
 	background-color: #1e1e1e;
-	border-radius: 5px;
+	border-radius: 15px;
 	padding: 0.5rem;
 	width: auto;
     box-shadow: 7px 7px 25px 10px #111;
 }
 .soloBox:hover {
-	transform: none;
+	border-radius: 25px;
 }
 .updateButton {
 	background: none;
