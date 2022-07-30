@@ -15,7 +15,8 @@
 }
 body {
 	color: white;
-	background-color: #1e1e1e;
+	background-color: #111;
+	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 30, 77, 0.24));
 	font-family: Roboto, Helvetica;
 	margin: 0px;
 }
@@ -297,12 +298,13 @@ ul {
 	padding: 100px;
 	margin: 5px;
 	border: 3px solid transparent;
+	border-radius: 15px;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
 .bigBox:hover { 
 	border-color: #777;
-	border-radius: 5px;
+	border-radius: 25px;
 	background-color: #115599;
 	box-shadow: 2px 5px 25px 2px #232323;
 }
@@ -356,12 +358,13 @@ ul {
 	padding: 10px;
 	margin: 0px 0px 10px 10px;
 	border: 3px solid transparent;
+	border-radius: 15px;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
 .infoBox:hover { 
 	border-color: #777;
-	border-radius: 5px;
+	border-radius: 25px;
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .infoBox h1, p {
@@ -447,8 +450,8 @@ ul {
     flex-grow: 0;
 }
 .infoIcon { 
-	height: 7vh; 
-	padding: 10px; }
+	height: 5vh; 
+	padding: 0.25rem; }
 .soloBox {
 	background-color: #1e1e1e;
 	border-radius: 15px;
@@ -503,12 +506,13 @@ ul {
 	width: 416px;
 	margin: 5px;
 	border: 3px solid transparent;
+	border-radius: 15px;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
 .wideBox:hover { 
 	border-color: #777;
-	border-radius: 5px;
+	border-radius: 25px;
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .smallBox {
@@ -518,13 +522,14 @@ ul {
 	height: 100px;
 	margin: 5px;
 	border: 3px solid transparent;
+	border-radius: 15px;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
 .smallBox:hover {
 	background-color: #115599;
 	border-color: #777;
-	border-radius: 5px;
+	border-radius: 25px;
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .specialBox {
@@ -536,13 +541,14 @@ ul {
 	max-width: 255px;
 	margin: 5px;
 	border: 3px solid transparent;
+	border-radius: 15px;
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
 .specialBox:hover {
 	border-color: #777;
 	background-color: #115599;
-	border-radius: 5px;
+	border-radius: 25px;
 	box-shadow: 2px 5px 25px 2px #232323;
 }
 .specialBoxHeader {
@@ -913,6 +919,7 @@ th {
 .changeTeam {
 	border: 3px solid transparent;
 	cursor: pointer;
+	transition: all 0.1s ease-in-out;
 }
 .changeTeam:hover {
 	border-color: #777;

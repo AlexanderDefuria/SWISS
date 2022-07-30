@@ -5,7 +5,7 @@
 	margin: 0px 0px 10px 10px;
 	padding-bottom: 1rem;
 	width: 260px;
-	background-color: #262626;
+	background-color: #1e1e1e;
 	border: 3px solid transparent;
 	display: flex;
 	flex-direction: column;
@@ -30,7 +30,7 @@
 	padding: 20px;
 	height: auto;
 	width: 260px;
-	background-color: #262626;
+	background-color: #1e1e1e;
 	border: 3px solid transparent;
 	display: flex;
 	flex-direction: column;
