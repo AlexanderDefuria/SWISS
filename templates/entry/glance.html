@@ -90,16 +90,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	</div>
 	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'GlanceBackground2000w.png' %})">
 		<div class="heroContent" id="heroSpace">
-			<div class="stickyChip">
-				<button class="changeTeam" id="changeTeam" onClick="openTeamDrawer()">
-					<div class="teamnumberPill" style="background-color: {{ team.colour }}; min-width: 72px;">
-						<p>{{ team.number }}</p>
-					</div>
-					<div class="teamnamePill">
-						<p>{{ team.name }}</p>
-					</div>
-				</button>
-			</div>
+			<button class="stickyChip changeTeam" id="changeTeam" onClick="openTeamDrawer()">
+				<div class="teamnumberPill" style="background-color: {{ team.colour }}; min-width: 72px;">
+					<p>{{ team.number }}</p>
+				</div>
+				<div class="teamnamePill">
+					<p>{{ team.name }}</p>
+				</div>
+			</button>
 		</div>
 		<div id="myModal" class="modal">
 			<div class="modal-image">

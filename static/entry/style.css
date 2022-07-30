@@ -44,7 +44,6 @@ ul {
 	position: fixed;
 	top: 0;
 	z-index: 9;
-	box-shadow: 2px 5px 25px 2px #111111;
 }
 .bodyContainer{
 	margin-top: 40px;
@@ -586,7 +585,7 @@ ul {
 .stickyChip {
 	display: flex;
 	flex-wrap: wrap;
-	background-color: #444444;
+	background-color: #1e1e1e;
 	border-radius: 15px;
 	height: auto;
 	min-width: 200px;
@@ -912,12 +911,12 @@ th {
 	background-color: #444;
 }
 .changeTeam {
-	background: none;
-	border: none;
-	height: auto;
-	width: auto;
-	display: flex;
+	border: 3px solid transparent;
 	cursor: pointer;
+}
+.changeTeam:hover {
+	border-color: #777;
+	border-radius: 25px;
 }
 .teamDrawer {
 	padding-top: 20px;
