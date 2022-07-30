@@ -26,42 +26,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 </head>
 
-<body><!-- Google Tag Manager (noscript) -->
+<body style="background-color: #111; background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 30, 77, 0.24))"><!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N73L5WQ"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-	<div class="topbar">
+	<div class="topbar" style="background-color: unset">
 		<div class="swissLogo" id="swissLogo">
 			<a href="{% url 'entry:index' %}">
 			<img src="{{ MEDIA_URL }}{% static 'SwissIcon2x.png' %}" alt="SWISS Logo">
 			</a>
 		</div>
 	</div>
-	
-	<div class="bodyContainer" style="min-height: 85vh">
-		<div id="soloContainer" class="first_div">
-			<div class="soloBox" >
-				<div class="infoHeader" id="mainBox">
-					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'UserIcon.png' %}" alt="Download Icon">
-					<h1>Log In</h1>
-				</div>
-				<form action="{% url 'entry:login' %}" method="POST" enctype="multipart/form-data" id="form">
-                    {% csrf_token %}
-                    <div class="formItem" style="margin-top:10px; background:none;">
-						<label for="username">Username:</label>
-						<input type="text" name="username" id="username">
-					</div>
-					<div class="formItem" style="margin-top:10px; background:none;">
-						<label for="password">Password:</label>
-						<input type="password" name="password" id="password">
-					</div>
-                    <button class="updateButton loginButton" type="submit">Log In</button>
-					<a id="registerBox" class="div formItem" href="{% url 'entry:register' %}">
-            			<button name="submit" id="submitButton" type="submit" style="pointer-events: none;">Register</button>
-        			</a>
-					<a href="#" style="color: white; padding-left: 1rem;">Forgot Password?</a>
-				</form>
+	<div id="soloContainer" class="first_div">
+		<div class="soloBox" >
+			<div class="infoHeader" id="mainBox">
+				<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'UserIcon.png' %}" alt="Download Icon">
+				<h1>Log In</h1>
 			</div>
+			<form action="{% url 'entry:login' %}" method="POST" enctype="multipart/form-data" id="form">
+				{% csrf_token %}
+				<div class="formItem" style="margin-top:10px; background:none;">
+					<label for="username">Username:</label>
+					<input type="text" name="username" id="username" style="margin-left: 1rem">
+				</div>
+				<div class="formItem" style="margin-top:10px; background:none;">
+					<label for="password">Password:</label>
+					<input type="password" name="password" id="password" style="margin-left: 1rem">
+				</div>
+				<button class="updateButton loginButton" type="submit">Log In</button>
+				<a id="registerBox" class="div formItem" href="{% url 'entry:register' %}" style="background-color: #1e1e1e">
+					<button name="submit" id="submitButton" type="submit" style="pointer-events: none;">Register</button>
+				</a>
+				<a href="#" style="color: white; padding-left: 1rem;">Forgot Password?</a>
+			</form>
 		</div>
 	</div>
 </body>

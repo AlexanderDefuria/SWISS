@@ -1,0 +1,59 @@
+@charset "utf-8";
+/* CSS Classes and ID's specific to the SWISS Teams Page */
+
+.teamCard {
+	margin: 0px 0px 10px 10px;
+	padding-bottom: 1rem;
+	width: 260px;
+	background-color: #262626;
+	border: 3px solid transparent;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	border-radius: 15px;
+	transition: all .2s ease-in-out;
+}
+.teamCard:hover {
+	border-color: #777;
+	border-radius: 25px;
+	box-shadow: 2px 5px 25px 2px #232323;
+}
+.teamCard:hover .robotPhoto {
+	border-radius: 15px;
+}
+.teamCard:hover .robotPhoto img {
+	transform: scale(1.1);
+}
+.teamCardNoPic {
+	margin: 0px 0px 10px 10px;
+	padding: 20px;
+	height: auto;
+	width: 260px;
+	background-color: #262626;
+	border: 3px solid transparent;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	border-radius: 15px;
+	transition: all .2s ease-in-out;
+}
+.teamCardNoPic:hover {
+	border-color: #777;
+	border-radius: 25px;
+	box-shadow: 2px 5px 25px 2px #232323;
+}
+.robotPhoto {
+	width: 260px;
+	height: 260px;
+	margin-bottom: 5px;
+	overflow: hidden;
+	transition: all 0.2s ease-in-out;
+}
+.robotPhoto img {
+	width: 260px;
+	height: 260px; 
+	object-fit: cover;
+	transition: all 0.75s ease-in-out;
+}

@@ -55,6 +55,7 @@ ul {
 	justify-content: center;
 	align-content: center;
 	align-items: center;
+	min-height: 100vh;
 }
 .heroContent {
 	display: flex;
@@ -449,11 +450,11 @@ ul {
 	height: 7vh; 
 	padding: 10px; }
 .soloBox {
-	background-color: #444;
+	background-color: #1e1e1e;
 	border-radius: 5px;
 	padding: 0.5rem;
 	width: auto;
-    box-shadow: 7px 7px 25px 10px #232323;
+    box-shadow: 7px 7px 25px 10px #111;
 }
 .soloBox:hover {
 	transform: none;
@@ -579,59 +580,6 @@ ul {
     overflow: hidden;
     text-overflow: ellipsis;
     width: -webkit-fill-available;
-}
-.teamCard {
-	margin: 0px 0px 10px 10px;
-	padding-bottom: 1rem;
-	width: 260px;
-	background-color: #262626;
-	border: 3px solid transparent;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: center;
-	border-radius: 15px;
-	transition: all .2s ease-in-out;
-}
-.teamCard:hover {
-	border-color: #777;
-	border-radius: 25px;
-	box-shadow: 2px 5px 25px 2px #232323;
-}
-.teamCard:hover .robotPhoto {
-	border-radius: 15px;
-}
-.teamCard:hover .robotPhoto img {
-	transform: scale(1.1);
-}
-.teamCardNoPic {
-	margin: 0px 0px 10px 10px;
-	padding: 20px;
-	height: auto;
-	width: 260px;
-	background-color: #262626;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: center;
-	border-radius: 15px;
-	transition: all .2s ease-in-out;
-}
-.teamCardNoPic:hover {
-	transform: scale(1.1); 
-	border-radius: 25px;
-	box-shadow: 2px 5px 25px 2px #232323;
-}
-.robotPhoto {
-	margin-bottom: 5px;
-	overflow: hidden;
-	transition: all 0.2s ease-in-out;
-}
-.robotPhoto img {
-	width: 260px;
-	height: 260px; 
-	object-fit: cover;
-	transition: all 0.75s ease-in-out;
 }
 .stickyChip {
 	display: flex;
@@ -1067,7 +1015,6 @@ th {
 	left: 0;
 	background-color: #0F4D8D;
 	width: 100%;
-	transition: all 0.5s ease-in-out;
 }
 .bottomBarButton {
 	background-color: transparent;
@@ -1081,7 +1028,6 @@ th {
 	bottom: 0;
 	border: none;
 	cursor: pointer;
-	transition: all 0.5s ease-in-out;
 }
 .bottomBarButton:hover {
 	background-color: RGBA(0,0,0,0.25)
