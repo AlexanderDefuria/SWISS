@@ -15,7 +15,7 @@
 }
 body {
 	color: white;
-	background-color: #333333;
+	background-color: #1e1e1e;
 	font-family: Roboto, Helvetica;
 	margin: 0px;
 }
@@ -38,12 +38,13 @@ ul {
 	display: flex;
 	height: 40px;
 	width: 100%;
-	background-color: #0F4D8D;
+	background-color: #111;
 	margin: 0px;
 	padding: 0px;
 	position: fixed;
 	top: 0;
 	z-index: 9;
+	box-shadow: 2px 5px 25px 2px #111111;
 }
 .bodyContainer{
 	margin-top: 40px;
@@ -455,6 +456,7 @@ ul {
 	padding: 0.5rem;
 	width: auto;
     box-shadow: 7px 7px 25px 10px #111;
+	transition: all .2s ease-in-out; 
 }
 .soloBox:hover {
 	border-radius: 25px;
@@ -585,7 +587,7 @@ ul {
 	display: flex;
 	flex-wrap: wrap;
 	background-color: #444444;
-	border: none;
+	border-radius: 15px;
 	height: auto;
 	min-width: 200px;
 	max-width: 80%;
