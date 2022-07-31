@@ -32,10 +32,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</div>
 		<div class="swissLogo" id="swissLogo">
 			<a href="{% url 'entry:index' %}">
-				<img src="{{ MEDIA_URL }}{% static 'SwissIcon2x.png' %}" alt="SWISS Logo">
+				<img src="{{ MEDIA_URL }}{% static 'TeamsHeader@2x.png' %}" alt="SWISS Logo">
 			</a>
 		</div>
-		<h3 class="topbarText">TEAMS</h3>
 	</div>
 	<div id="sideNav" class="sidebar">
 		<div>
@@ -69,19 +68,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<div class="bodyContainer bodyBackground" id="bodyContainer"
 		style="background-image: url({{ MEDIA_URL }}{% static 'TeamsBackground.png' %})">
 		<div class="heroContent">
-			<p class="pageTitle">Teams</p>
+			{% get_cookie request 'teamsBehaviour' as teamsBehaviour%}
+			{% get_cookie request 'districtTeams' as districtTeams %}
+			{% if districtTeams == 'True' %}
+				<div style="display: flex" id="currentEvent">
+					<span style="margin: auto">All Teams in District</span>
+				</div>
+			{% else %}
+				<div style="display: flex" id="currentEvent">
+					<span style="margin: auto">{% get_current_event request %}</span>
+				</div>		
+			{% endif %}
 		</div>
-        {% get_cookie request 'teamsBehaviour' as teamsBehaviour%}
-		{% get_cookie request 'districtTeams' as districtTeams %}
-		{% if districtTeams == 'True' %}
-			<div style="display: flex" id="currentEvent">
-				<span style="margin: auto">All Teams in District</span>
-			</div>
-		{% else %}
-			<div style="display: flex" id="currentEvent">
-				<span style="margin: auto">{% get_current_event request %}</span>
-			</div>		
-		{% endif %}
         <figure class="tileContainer teamTileContaienr">
             {% get_cookie request 'districtTeams' as districtTeams %}
 

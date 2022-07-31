@@ -50,12 +50,6 @@ ul {
 	top: 0;
 	z-index: 9;
 }
-.topbarText {
-	margin: auto;
-	margin-left: 0.5rem;
-	font-style: italic;
-	animation: slideInFromRight 1s;
-}
 .bodyContainer{
 	margin-top: 40px;
 	padding: 20px 15px 20px 15px;
@@ -295,7 +289,7 @@ ul {
 .swissLogo {
 	height: auto;
 	padding-left: 5px;
-	animation: slideInFromRight 0.75s;
+	animation: slideInFromLeft 0.75s;
 }
 #swissLogo {
 	transition: margin-left .5s;
@@ -752,6 +746,16 @@ th {
 @keyframes slideInFromRight {
 	0% {
 		transform: translateX(25%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateX(0);
+		opacity: 100%;
+	}
+}
+@keyframes slideInFromLeft {
+	0% {
+		transform: translateX(-25%);
 		opacity: 0;
 	}
 	100% {
