@@ -868,6 +868,7 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
         response.set_cookie('districtTeams', request.POST.get('districtTeams', ''))
         response.set_cookie('tutorialCompleted', request.POST.get('tutorialCompleted', ''))
         response.set_cookie('teamsBehaviour', request.POST.get('teamsBehaviour', ''))
+        response.set_cookie('teamListType', request.POST.get('teamListType', ''))
 
         if self.request.user.teammember.position == "LS":
             new_settings = TeamSettings()
