@@ -89,6 +89,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </li>
 	    				{% endfor %}
                     </ul>
+					<div>
+					{% for team in team_list %}
+						<div class="teamCardNoPic" style="height: auto">
+							<div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
+							<div class="teamnamePill"><p>{{ team.name }}</p></div>
+						</div>
+					{% endfor %}
+					</div>
 				</div>
 			</div>
 		</div>
