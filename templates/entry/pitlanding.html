@@ -68,10 +68,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	
 	<div class="bodyContainer bodyBackground scoutImage" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'ScoutBackground.png' %})">
 		<div class="heroContent">
-			<h1 class="pageTitle">Pit Scouting</h1>
-		</div>
-
-		
+			<div class="heroBox" id="currentEvent">
+				<p>Current Event is:</p>
+				<br>
+				<p>{% get_current_event request %}</p>
+			</div>
+			<div class="heroBox">
+				<p>Search box coming soon!</p>
+			</div>
+		</div>		
 		<div style="display: flex; justify-content: center">
 			<div class="pillSelect">
 				<div class="pillContainer">

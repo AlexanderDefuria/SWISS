@@ -66,9 +66,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	</div>
 	
 	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'StatsBackground.png' %})">
-		<div class="heroContent" id="heroSpace" style="padding-bottom: 0">
-		    <h1 style="font-size: 42px; margin: 0;">Raw Match Data</h1>
-		</div>
         <div style="display: flex; justify-content: center; ">
             <div class="formItem graphOption">
                 <button class="dataButton" onclick="window.location='{% url 'entry:match_data' %}';">Match Data</button>
