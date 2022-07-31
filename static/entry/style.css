@@ -39,12 +39,20 @@ ul {
 	display: flex;
 	height: 40px;
 	width: 100%;
-	background-color: #111;
+	/* From https://css.glass */
+	background: rgba(0, 0, 0, 0.66);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(6.1px);
+	-webkit-backdrop-filter: blur(6.1px);
 	margin: 0px;
 	padding: 0px;
 	position: fixed;
 	top: 0;
 	z-index: 9;
+}
+.topbarText {
+	margin: auto;
+	margin-left: 0.5rem;
 }
 .bodyContainer{
 	margin-top: 40px;
