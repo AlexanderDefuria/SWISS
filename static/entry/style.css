@@ -54,6 +54,7 @@ ul {
 	margin-top: 40px;
 	padding: 20px 15px 20px 15px;
 	overflow: hidden;
+	min-height: 100vh;
 }
 #soloContainer {
 	display: flex;
@@ -914,6 +915,7 @@ th {
 	background-color: #111;
 	color: white;
 	border: none;
+	z-index: 5;
 }
 .hamburgerButton:hover {
 	background-color: #444;
