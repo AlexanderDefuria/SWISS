@@ -72,6 +72,25 @@ ul {
 	height: 60px;
 	padding-bottom: 20px;
 }
+.heroBox {
+	display: flex;
+	justify-content: space-between;
+	min-height: 35px;
+	height: auto;
+	background-color: #0c0e14;
+	border: 3px solid transparent;
+	border-radius: 15px;
+	padding: 10px;
+	margin-bottom: 10px;
+	font-size: 21px;
+	transition: all 0.1s ease-in-out;
+	user-select: none;
+}
+.heroBox:hover {
+	background-color: #13161e;
+	border-radius: 25px;
+	border-color: #222734;
+}
 .bodyBackground {
 	background-repeat: no-repeat;
 	background-size: 100%;
