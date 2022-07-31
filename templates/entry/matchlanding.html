@@ -8,6 +8,7 @@
 <title>SWISS Match Landing</title>
 <link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/css/teams.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/formstyle.css' %}">
 <script src="{% static 'entry/script.js' %}"></script>
 <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
@@ -89,14 +90,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </li>
 	    				{% endfor %}
                     </ul>
-					<div>
-					{% for team in team_list %}
-						<div class="teamCardNoPic" style="height: auto">
-							<div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
-							<div class="teamnamePill"><p>{{ team.name }}</p></div>
-						</div>
-					{% endfor %}
+				</div>
+				<div>
+				{% for team in team_list %}
+					<div class="teamCardNoPic" style="height: auto">
+						<div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
+						<div class="teamnamePill"><p>{{ team.name }}</p></div>
 					</div>
+				{% endfor %}
 				</div>
 			</div>
 		</div>
