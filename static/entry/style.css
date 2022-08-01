@@ -168,7 +168,6 @@ ul {
 	text-decoration: none;
 	cursor: pointer;
 }
-
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0} 
     to {top:0; opacity:1}
@@ -502,13 +501,6 @@ ul {
 	border: 3px solid rgba(255,255,255,0.25);
 	border-radius: 5px;
 }
-.homeText {
-	color: white;
-	text-decoration: none;
-	font-size: 75px;
-	font-weight: 900;
-	margin: 0
-}
 .pageTitle {
 	color: white;
 	margin: 0;
@@ -748,31 +740,6 @@ th {
 	.pillSelect {
 		max-width: 100%;
 	}
-	.bigBox {
-		margin: 5px 0 0 5px;
-		padding: 20px;
-	}
-	.wideBox {
-		margin: 5px 0 0 5px;
-		width: 245px;
-		padding: 20px;
-	}	
-	.specialBox {
-		margin: 5px 0 0 5px;
-		height: auto;
-		width: 245px;
-		padding: 20px;
-	}
-	.smallBox {
-		margin: 5px 0 0 5px;
-		height: 50px;
-		width: auto;
-		padding: 8.75px
-	}
-	.homeText {
-		font-size: 28px;
-		margin-top: 55px;
-	}	
 	.pageTitle {
 		font-size: 28px;
 		margin-top: 55px;
@@ -788,11 +755,9 @@ th {
 		height: 100%;
 		width: inherit;
 	}
-
 	#currentEvent {
 		display: none;
 	}
-	
     #ScoutNowTile {
         flex-grow: 1;
     }
@@ -1038,31 +1003,6 @@ th {
 	}
 	.pillSelect {
 		max-width: 100%;
-	}
-	.bigBox {
-		margin: 5px 0 0 5px;
-		padding: 20px;
-	}
-	.wideBox {
-		margin: 5px 0 0 5px;
-		width: 245px;
-		padding: 20px;
-	}	
-	.specialBox {
-		margin: 5px 0 0 5px;
-		height: auto;
-		width: 245px;
-		padding: 20px;
-	}
-	.smallBox {
-		margin: 5px 0 0 5px;
-		height: 50px;
-		width: auto;
-		padding: 8.75;
-	}
-	.homeText {
-		font-size: 28px;
-		margin-top: 55px;
 	}
 	.pageTitle {
 		font-size: 28px;
