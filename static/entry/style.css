@@ -530,7 +530,7 @@ ul {
 }
 .stickyChip {
 	display: flex;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
 	background-color: #1e1e1e;
 	border-radius: 15px;
 	height: auto;
@@ -596,6 +596,7 @@ ul {
 .teamnamePill {
 	text-align: left;
 	height: 28px;
+	overflow: hidden;
 }
 .teamnamePill p {
 	padding: 3px 0 0 10px;
@@ -605,6 +606,8 @@ ul {
 	color: white;
 	user-select: none;
 	white-space:nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .largeGraph {
 	height: auto;
