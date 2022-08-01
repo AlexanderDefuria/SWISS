@@ -57,6 +57,12 @@ ul {
 	overflow: hidden;
 	min-height: 100vh;
 }
+.tileContainer{
+	display: flex;
+	flex-wrap: wrap;
+	overflow: visible;
+	margin: 0px
+}
 #soloContainer {
 	display: flex;
 	justify-content: center;
