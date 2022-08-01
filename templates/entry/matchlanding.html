@@ -79,7 +79,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			</div>
 		</div>
 		{% get_cookie request 'teamListType' as teamListType %}
-		{% if teamListType == 'False' %}
+		{% if teamListType == 'True' %}
 		<div style="display: flex; justify-content: center">
 			<div class="pillSelect">
 				<div class="pillContainer">
@@ -97,12 +97,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</div>
 		{% else %}
 		<div style="display: flex; flex-wrap: wrap; justify-content: center">
-		{% for team in team_list %}
+			{% for team in team_list %}
 			<div class="teamCardNoPic" style="height: auto" onclick="window.location='{% url 'entry:match_scout' team.id %}'">
 				<div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
 				<div class="teamnamePill"><p>{{ team.name }}</p></div>
 			</div>
-		{% endfor %}
+			{% endfor %}
 		</div>
 		{% endif %}
 	</div>
