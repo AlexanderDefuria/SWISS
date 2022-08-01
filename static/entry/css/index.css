@@ -28,7 +28,6 @@
 .bigBox:hover { 
 	border-color: #777;
 	border-radius: 25px;
-	background-color: #115599;
 	box-shadow: 2px 5px 25px 2px #0e0e0e;
 }
 .bigBox h1 {

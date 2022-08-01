@@ -120,61 +120,64 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<img src="{{ MEDIA_URL }}{% static 'ScheduleIcon.png' %}" alt="Schedule Icon">
 				</div>
 			</a>
-			<a id="tileDownload" title="Download CSV">
-				<div class="smallBox" style="background-color: #AAA300">
-					<img src="{{ MEDIA_URL }}{% static 'DownloadIcon.png' %}" alt="Download Icon">
-				</div>
-			</a>
-			<div class="specialBox" id="tileEvent" style="flex-direction: column">
-				<p class="specialBoxHeader">Current Event Is:</p>
-				<h3 style="margin: 0">{% get_current_event request %}</h3>
-			</div>
-			<a href="{% url 'entry:upload' %}" id="tileUpload" title="Upload an Image">
-				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
-				</div>
-			</a>
-			{% if user.is_staff %}
-			<a href="{% url 'entry:admin_redirect' %}" id="tileAdmin" title="Administration Panel">
-				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'AdminIcon.png' %}" alt="Admin Icon">
-				</div>
-			</a>
-			<a href="https://update.swiss-scouting.ca/" id="tileUpdate" title="Update Swiss">
-				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'UpdateIcon.png' %}" alt="Admin Icon">
-				</div>
-			</a>
-			{% endif %}
 			<a href="{% url 'entry:settings' %}" id="tileSettings" title="Settings">
-				<div class="smallBox">
+				<div class="bigBox">
+					<h1>Settings</h1>
 					<img src="{{ MEDIA_URL }}{% static 'SettingsIcon.png' %}" alt="Settings Icon">
 				</div>
 			</a>
-			<a href="https://www.thebluealliance.com/" id="tileTBA" target="_blank" title="Go to The Blue Alliance">
-				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'TheBlueAlliance.png' %}" alt="TBA Icon">
+			<div style="display: inherit">
+				<a id="tileDownload" title="Download CSV">
+					<div class="smallBox" style="background-color: #AAA300">
+						<img src="{{ MEDIA_URL }}{% static 'DownloadIcon.png' %}" alt="Download Icon">
+					</div>
+				</a>
+				<div class="specialBox" id="tileEvent" style="flex-direction: column">
+					<p class="specialBoxHeader">Current Event Is:</p>
+					<h3 style="margin: 0">{% get_current_event request %}</h3>
 				</div>
-			</a>
-			<div class="specialBox" id="tileActive">
-				<p class="specialBoxHeader">Active Users:</p>
-				<h2 style="margin: 0">{% get_all_logged_in_users %}</h2>
+				<a href="{% url 'entry:upload' %}" id="tileUpload" title="Upload an Image">
+					<div class="smallBox">
+						<img src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
+					</div>
+				</a>
+				{% if user.is_staff %}
+				<a href="{% url 'entry:admin_redirect' %}" id="tileAdmin" title="Administration Panel">
+					<div class="smallBox">
+						<img src="{{ MEDIA_URL }}{% static 'AdminIcon.png' %}" alt="Admin Icon">
+					</div>
+				</a>
+				<a href="https://update.swiss-scouting.ca/" id="tileUpdate" title="Update Swiss">
+					<div class="smallBox">
+						<img src="{{ MEDIA_URL }}{% static 'UpdateIcon.png' %}" alt="Admin Icon">
+					</div>
+				</a>
+				{% endif %}
+				<a href="https://www.thebluealliance.com/" id="tileTBA" target="_blank" title="Go to The Blue Alliance">
+					<div class="smallBox">
+						<img src="{{ MEDIA_URL }}{% static 'TheBlueAlliance.png' %}" alt="TBA Icon">
+					</div>
+				</a>
+				<div class="specialBox" id="tileActive">
+					<p class="specialBoxHeader">Active Users:</p>
+					<h2 style="margin: 0">{% get_all_logged_in_users %}</h2>
+				</div>
+				<a href="{% url 'entry:import' %}" id="tileImport" title="Import Panel">
+					<div class="smallBox">
+						<img src="{{ MEDIA_URL }}{% static 'FirstImportIcon.png' %}" alt="Import Icon">
+					</div>
+				</a>
+				<a href="{% url 'entry:register' %}" id="tileRegister" title="Register New User">
+					<div class="smallBox">
+						<img src="{{ MEDIA_URL }}{% static 'NewUserIcon.png' %}" alt="Registration Icon">
+					</div>
+				</a>
+				<a href="{% url 'hours:view' %}" id="tileHours" title="View Build Hours">
+					<div class="smallBox">
+						<img src="{{ MEDIA_URL }}{% static 'BuildHoursBinder.png' %}" alt="Build Hours Binder Icon">
+					</div>
+				</a>
 			</div>
-			<a href="{% url 'entry:import' %}" id="tileImport" title="Import Panel">
-				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'FirstImportIcon.png' %}" alt="Import Icon">
-				</div>
-			</a>
-			<a href="{% url 'entry:register' %}" id="tileRegister" title="Register New User">
-				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'NewUserIcon.png' %}" alt="Registration Icon">
-				</div>
-			</a>
-			<a href="{% url 'hours:view' %}" id="tileHours" title="View Build Hours">
-				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'BuildHoursBinder.png' %}" alt="Build Hours Binder Icon">
-				</div>
-			</a>
 		</div>
 		<div id="snackbar">
 			<p id="snacktext">Default Text</p>
