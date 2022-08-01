@@ -7,9 +7,9 @@
 	<meta charset="utf-8">
 	<title>SWISS Home</title>
 	<link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'entry/css/index.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'entry/tile-order.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'entry/css/index.css' %}">
 	<script src="{% static 'entry/script.js' %}"></script>
 	<script src="{% static 'entry/index.js' %}"></script>
 	<link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
@@ -90,30 +90,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				</div>
 			</a>
 			<a href="{% url 'entry:glance_landing' %}" id="tileGlance" title="Glance View">
-				<div class="wideBox CeltXColor" id="tileBackground"
+				<div class="bigBox CeltXColor" id="tileBackground"
 					style="background-image: url({{ MEDIA_URL }}{% static 'GlanceBackground2000w.png' %})">
+					<h1>Glance</h1>
 					<img src="{{ MEDIA_URL }}{% static 'StrategyIcon.png' %}" alt="Strategy icon">
 				</div>
 			</a>
 			<a href="{% url 'entry:teams' %}" id="tileTeams" title="Team Lookup">
-				<div class="wideBox OttawaColor">
+				<div class="bigBox OttawaColor">
+					<h1>Teams</h1>
 					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" alt="Search Icon">
-					<p class="homeText">Teams</p>
 				</div>
 			</a>
 			<a href="{% url 'entry:match_data' %}" id="tileData" title="Data View">
 				<div class="bigBox">
+					<h1>Data</h1>
 					<img src="{{ MEDIA_URL }}{% static 'DataIcon.png' %}" alt="Data Icon">
 				</div>
 			</a>
 			<a href="{% url 'entry:visualize' %}" id="tileVisualize" title="Visualization">
-				<div class="wideBox SimboticsColor">
+				<div class="bigBox SimboticsColor">
+					<h1>Visualize</h1>
 					<img src="{{ MEDIA_URL }}{% static 'StatsIcon.png' %}" alt="Visualize Icon">
-					<p class="homeText">Visualize</p>
 				</div>
 			</a>
 			<a href="{% url 'entry:schedule' %}" id="tileSchedule" title="Schedule View">
 				<div class="bigBox">
+					<h1>Schedule</h1>
 					<img src="{{ MEDIA_URL }}{% static 'ScheduleIcon.png' %}" alt="Schedule Icon">
 				</div>
 			</a>
