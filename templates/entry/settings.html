@@ -133,8 +133,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					</label>
 				</div>
             </div>
+			<div class="formItem">
+				<label for="teamsBehaviour">Click/Tap Behaviour</label>
+				<select name="teamsBehaviour" id="teamsBehaviour" required>
+					<option value="" disabled selected hidden>&#8230;</option>
+					<option value="1">Go to Glance (Default)</option>
+					<option value="2">Go to Match Scouting</option>
+					<option value="3">Go to Pit Scouting</option>
+					<option value="4" Disabled>Go to Team Info (Coming soon)</option>
+				</select>
+			</div>
+			<h2>Landing Pages (Match Scout, Pit Scout, Glance)</h2>
             <div class="formItem">
-                <label for="teamListType">NICK PUT YOUR THING HERE</label>
+                <label for="teamListType">Team selection as a list</label>
                 <div class="radioGroup">
 					<label>
 						<input type="radio" id="teamListType_true" name="teamListType" value="True">
@@ -146,16 +157,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					</label>
 				</div>
             </div>
-			<div class="formItem">
-				<label for="teamsBehaviour">Click/Tap Behaviour</label>
-				<select name="teamsBehaviour" id="teamsBehaviour" required>
-					<option value="" disabled selected hidden>&#8230;</option>
-					<option value="1">Go to Glance (Default)</option>
-					<option value="2">Go to Match Scouting</option>
-					<option value="3">Go to Pit Scouting</option>
-					<option value="4" Disabled>Go to Team Info (Coming soon)</option>
-				</select>
-			</div>
             {% is_lead_scout request as lead_scout %}
             {% if lead_scout %}
             <h1 class="sectionHeader">Team-Wide Settings</h1>

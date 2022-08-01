@@ -68,6 +68,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 	
 	<div class="bodyContainer bodyBackground matchImage" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'GlanceBackground2000w.png' %})">
+		{% get_cookie request 'teamListType' as teamListType %}
+		{% if teamListType == 'False' %}
 		<div style="display: flex; justify-content: center">
 			<div class="pillSelect">
 				<div class="pillContainer">
@@ -88,6 +90,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</div>
 			</div>
 		</div>
+		{% else %}
+		<div style="display: flex; flex-wrap: wrap; justify-content: center">
+			{% for team in team_list %}
+			<div class="teamCardNoPic" style="height: auto" onclick="window.location='{% url 'entry:glance' team.id %}'">
+				<div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
+				<div class="teamnamePill"><p>{{ team.name }}</p></div>
+			</div>
+			{% endfor %}
+		</div>
+		{% endif %}
+
 	</div>
 </body>
 </html>
