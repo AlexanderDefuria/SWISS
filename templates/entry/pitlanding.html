@@ -97,7 +97,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		{% else %}
 		<div style="display: flex; flex-wrap: wrap; justify-content: center">
 			{% for team in team_list %}
-			<div class="teamCardNoPic" style="height: auto" onclick="window.location='{% url 'entry:pit_scout' team.id %}'">
+			<div class="teamCardSelect" style="height: auto" onclick="window.location='{% url 'entry:pit_scout' team.id %}'">
 				<div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
 				<div class="teamnamePill"><p>{{ team.name }}</p></div>
 			</div>
