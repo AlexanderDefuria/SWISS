@@ -6,12 +6,6 @@
 	background-position: center;
 	justify-content: center;
 }
-.tileContainer{
-	display: flex;
-	flex-wrap: wrap;
-	overflow: visible;
-	margin: 0px
-}
 .bigBox {
 	display: flex;
 	justify-content: center;
@@ -105,4 +99,33 @@
 }
 .specialBoxHeader {
 	margin: 10px 0px 16px 0px;
+}
+/* for mobile phones, portrait and landscape */
+@media screen and (max-width: 820px) {
+	.bigBox {
+		margin: 5px 0 0 5px;
+		padding: 20px;
+	}
+	.wideBox {
+		margin: 5px 0 0 5px;
+		width: 245px;
+		padding: 20px;
+	}	
+	.specialBox {
+		margin: 5px 0 0 5px;
+		height: auto;
+		width: 245px;
+		padding: 20px;
+	}
+	.smallBox {
+		margin: 5px 0 0 5px;
+		height: 50px;
+		width: auto;
+		padding: 8.75px
+	}
+	.homeText {
+		font-size: 28px;
+		margin-top: 55px;
+	}	
+
 }
