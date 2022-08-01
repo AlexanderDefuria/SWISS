@@ -132,10 +132,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 						<img src="{{ MEDIA_URL }}{% static 'DownloadIcon.png' %}" alt="Download Icon">
 					</div>
 				</a>
-				<div class="specialBox" id="tileEvent" style="flex-direction: column">
-					<p class="specialBoxHeader">Current Event Is:</p>
-					<h3 style="margin: 0">{% get_current_event request %}</h3>
-				</div>
 				<a href="{% url 'entry:upload' %}" id="tileUpload" title="Upload an Image">
 					<div class="smallBox">
 						<img src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
@@ -158,10 +154,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 						<img src="{{ MEDIA_URL }}{% static 'TheBlueAlliance.png' %}" alt="TBA Icon">
 					</div>
 				</a>
-				<div class="specialBox" id="tileActive">
-					<p class="specialBoxHeader">Active Users:</p>
-					<h2 style="margin: 0">{% get_all_logged_in_users %}</h2>
-				</div>
 				<a href="{% url 'entry:import' %}" id="tileImport" title="Import Panel">
 					<div class="smallBox">
 						<img src="{{ MEDIA_URL }}{% static 'FirstImportIcon.png' %}" alt="Import Icon">
@@ -177,6 +169,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 						<img src="{{ MEDIA_URL }}{% static 'BuildHoursBinder.png' %}" alt="Build Hours Binder Icon">
 					</div>
 				</a>
+			</div>
+			<div style="display: inherit; flex-wrap: wrap; order: 100;">
+				<div class="specialBox" id="tileEvent" style="flex-direction: column">
+					<p class="specialBoxHeader">Current Event Is:</p>
+					<h3 style="margin: 0">{% get_current_event request %}</h3>
+				</div>
+				<div class="specialBox" id="tileActive">
+					<p class="specialBoxHeader">Active Users:</p>
+					<h2 style="margin: 0">{% get_all_logged_in_users %}</h2>
+				</div>
 			</div>
 		</div>
 		<div id="snackbar">
