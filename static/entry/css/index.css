@@ -1,0 +1,109 @@
+@charset "utf-8";
+/* CSS Document */
+
+#tileBackground {
+	background-size: 45%;
+	background-position: center;
+	justify-content: center;
+}
+.tileContainer{
+	display: flex;
+	flex-wrap: wrap;
+	overflow: visible;
+	margin: 0px
+}
+.bigBox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 250px;
+	width: 250px;
+	padding: 25px;
+	margin: 5px;
+	border: 3px solid transparent;
+	border-radius: 15px;
+	background-color: #0F4D8D;
+	transition: all .2s ease-in-out; 
+}
+.bigBox:hover { 
+	border-color: #777;
+	border-radius: 25px;
+	background-color: #115599;
+	box-shadow: 2px 5px 25px 2px #0e0e0e;
+}
+.bigBox h1 {
+	font-size: 2.5em;
+	background-image: linear-gradient(currentColor, currentColor);
+	background-position: 0% 100%;
+	background-repeat: no-repeat;
+	background-size: 0% 3px;
+	user-select: none;
+	transition: background-size cubic-bezier(0,.5,0,1) 0.3s;
+}
+.bigBox img {
+	height: 100px;
+	transition: all .2s ease-in-out;
+}
+.bigBox:hover h1 {
+	background-size: 100% 3px;
+}
+.bigBox:hover img {
+	transform: translateX(10%);
+}
+
+/* old stuff is below */
+.wideBox {
+	display: flex;
+	padding: 100px;
+	height: 100px;
+	width: 416px;
+	margin: 5px;
+	border: 3px solid transparent;
+	border-radius: 15px;
+	background-color: #0F4D8D;
+	transition: all .2s ease-in-out; 
+}
+.wideBox:hover { 
+	border-color: #777;
+	border-radius: 25px;
+	box-shadow: 2px 5px 25px 2px #232323;
+}
+.smallBox {
+	display: flex;
+	align-items: center;
+	padding: 22.5px;
+	height: 100px;
+	margin: 5px;
+	border: 3px solid transparent;
+	border-radius: 15px;
+	background-color: #0F4D8D;
+	transition: all .2s ease-in-out; 
+}
+.smallBox:hover {
+	background-color: #115599;
+	border-color: #777;
+	border-radius: 25px;
+	box-shadow: 2px 5px 25px 2px #232323;
+}
+.specialBox {
+	display: flex;
+	flex-direction: column;
+	align-items: left;
+	padding: 22.5px;
+	height: 100px;
+	max-width: 255px;
+	margin: 5px;
+	border: 3px solid transparent;
+	border-radius: 15px;
+	background-color: #0F4D8D;
+	transition: all .2s ease-in-out; 
+}
+.specialBox:hover {
+	border-color: #777;
+	background-color: #115599;
+	border-radius: 25px;
+	box-shadow: 2px 5px 25px 2px #232323;
+}
+.specialBoxHeader {
+	margin: 10px 0px 16px 0px;
+}

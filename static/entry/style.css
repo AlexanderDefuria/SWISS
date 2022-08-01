@@ -97,7 +97,6 @@ ul {
 	background-position: center -15vh;
 	background-clip: padding-box;
 }
-
 .modal {
 	visibility: hidden; 
 	position: fixed; 
@@ -271,18 +270,6 @@ ul {
 	from {bottom: 0; opacity: 1;}
 	to {bottom: -30px; opacity: 0;}
 }
-#tileBackground {
-	/*background-image: url("img/Glance Background - 2000w.png");*/
-	background-size: 45%;
-	background-position: center;
-	justify-content: center;
-}
-.tileContainer{
-	display: flex;
-	flex-wrap: wrap;
-	overflow: visible;
-	margin: 0px
-}
 .infotileContainer{
 	display: flex;
 	flex-wrap: wrap;
@@ -316,22 +303,6 @@ ul {
 }
 #bodyContainer{
 	transition: margin-left .5s, filter 1s;
-}
-.bigBox {
-	height: 100px;
-	width: 100px;
-	padding: 100px;
-	margin: 5px;
-	border: 3px solid transparent;
-	border-radius: 15px;
-	background-color: #0F4D8D;
-	transition: all .2s ease-in-out; 
-}
-.bigBox:hover { 
-	border-color: #777;
-	border-radius: 25px;
-	background-color: #115599;
-	box-shadow: 2px 5px 25px 2px #232323;
 }
 .pictureBox {
 	height: 300px;
@@ -523,61 +494,6 @@ ul {
     background-color: #0d72d6;
 	border: 3px solid rgba(255,255,255,0.25);
 	border-radius: 5px;
-}
-.wideBox {
-	display: flex;
-	padding: 100px;
-	height: 100px;
-	width: 416px;
-	margin: 5px;
-	border: 3px solid transparent;
-	border-radius: 15px;
-	background-color: #0F4D8D;
-	transition: all .2s ease-in-out; 
-}
-.wideBox:hover { 
-	border-color: #777;
-	border-radius: 25px;
-	box-shadow: 2px 5px 25px 2px #232323;
-}
-.smallBox {
-	display: flex;
-	align-items: center;
-	padding: 22.5px;
-	height: 100px;
-	margin: 5px;
-	border: 3px solid transparent;
-	border-radius: 15px;
-	background-color: #0F4D8D;
-	transition: all .2s ease-in-out; 
-}
-.smallBox:hover {
-	background-color: #115599;
-	border-color: #777;
-	border-radius: 25px;
-	box-shadow: 2px 5px 25px 2px #232323;
-}
-.specialBox {
-	display: flex;
-	flex-direction: column;
-	align-items: left;
-	padding: 22.5px;
-	height: 100px;
-	max-width: 255px;
-	margin: 5px;
-	border: 3px solid transparent;
-	border-radius: 15px;
-	background-color: #0F4D8D;
-	transition: all .2s ease-in-out; 
-}
-.specialBox:hover {
-	border-color: #777;
-	background-color: #115599;
-	border-radius: 25px;
-	box-shadow: 2px 5px 25px 2px #232323;
-}
-.specialBoxHeader {
-	margin: 10px 0px 16px 0px;
 }
 .homeText {
 	color: white;
@@ -800,7 +716,6 @@ th {
 		justify-content: center;
 		margin-left: 0;
 	}
-
 	.soloBox {
 		width: inherit;
 		margin: unset;

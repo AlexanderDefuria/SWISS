@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'entry/tile-order.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'entry/css/index.css' %}">
 	<script src="{% static 'entry/script.js' %}"></script>
 	<script src="{% static 'entry/index.js' %}"></script>
 	<link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
@@ -78,11 +79,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<div class="tileContainer" id="tileContainer">
 			<a href="{% url 'entry:match_scout_landing' %}" id="tileMatch" title="Match Scouting">
 				<div class="bigBox">
+					<h1>Scout</h1>
 					<img src="{{ MEDIA_URL }}{% static 'ScoutIcon.png' %}" alt="scout icon">
 				</div>
 			</a>
 			<a href="{% url 'entry:pit_scout_landing' %}" id="tilePit" title="Pit Scouting">
 				<div class="bigBox">
+					<h1>Pit</h1>
 					<img src="{{ MEDIA_URL }}{% static 'PitScoutIcon.png' %}" alt="scout icon">
 				</div>
 			</a>
