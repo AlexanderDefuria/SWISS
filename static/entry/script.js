@@ -112,7 +112,7 @@ function scheduleFilter(field) {
 	let all = document.getElementsByClassName('scheduleTile')
 	if (field === "matchNumber") {
 		for (let i = 0; i < all.length; i++) {
-			if (all[i].id.toString().indexOf(filter) > -1)
+			if (all[i].name.toString().indexOf(filter) > -1)
 				all[i].style.display = "";
 			else
 				all[i].style.display = "none";
