@@ -658,13 +658,14 @@ th {
     background-color: #262626;
     margin: 10px;
 	border: 3px solid transparent;
+	border-radius: 15px;
     display: inline-flex;
 	transition: all .2s ease-in-out; 
 }
 .scheduleTile:hover { 
 	box-shadow: 2px 5px 25px 2px #232323;
 	border-color: #777;
-	border-radius: 5px;
+	border-radius: 25px;
 }
 .scheduleTile h3 {
 	width: 45px;
