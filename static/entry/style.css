@@ -871,13 +871,10 @@ th {
 .filterBox {
 	visibility: inherit;
 	display: flex;
-	padding: 10px 20px;
+	padding: 0 20px;
 	height: auto;
 	width: auto;
 	transition: all .2s ease-in-out;
-}
-.filterBox:hover {
-	box-shadow: 2px 5px 25px 2px #232323;
 }
 .filterChip {
 	width: 150px;
@@ -885,7 +882,7 @@ th {
 	color: white;
 	background: none;
 	border: none;
-	border-bottom: 1px solid #ffffff;
+	border-bottom: 3px solid #ffffff;
 	padding-left: 5px;
 	transition: all 0.2s ease-in-out;
 	overflow: hidden;
