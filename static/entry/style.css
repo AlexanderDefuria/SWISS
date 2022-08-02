@@ -722,70 +722,6 @@ th {
 		opacity: 100%;
 	}
 }
-@media screen and (max-width: 1280px) {
-	.glanceImage {
-		background-position: center -10vh;
-	}
-	.sidebar a {
-		font-size: 18px
-	}	
-	.bodyContainer { 
-		background-position: center -10vh;
-	}
-	.pillSelect {
-		max-width: 75%;
-	}
-	.tileContainer {
-		justify-content: center;
-		margin-left: 0;
-	}
-	.soloBox {
-		width: inherit;
-		margin: unset;
-	}
-}
-/* for mobile phones, portrait and landscape */
-@media screen and (max-width: 820px) {
-	.bodyBackground {
-		background-size: 150%;
-		background-position: center 3vh;
-	}
-	.tileContainer {
-		padding: 0 10px 0 10px;
-	}
-    .documentContainer {
-        width: 100%;
-    }
-    .documentContent {
-        max-width: 100%;
-        width: 100%;
-        margin: 0;
-    }
-	.pillSelect {
-		max-width: 100%;
-	}
-	.pageTitle {
-		font-size: 28px;
-		margin-top: 55px;
-	}
-	#teamsText {
-		font-size: 0px;
-	}
-	.pictureBox {
-		width: 100%;
-		height: fit-content;
-	}
-	.pictureBox img {
-		height: 100%;
-		width: inherit;
-	}
-	#currentEvent {
-		display: none;
-	}
-    #ScoutNowTile {
-        flex-grow: 1;
-    }
-}
 .greeting {
 	display: inline;
 	margin-top: auto;
@@ -1001,6 +937,26 @@ th {
 	}
 	.sidebar a {
 		font-size: 18px
+	}	
+	.bodyContainer { 
+		background-position: center -10vh;
+	}
+	.pillSelect {
+		max-width: 75%;
+	}
+	.tileContainer {
+		justify-content: center;
+		margin-left: 0;
+	}
+	.soloBox {
+		width: inherit;
+		margin: unset;
+	}
+	.glanceImage {
+		background-position: center -10vh;
+	}
+	.sidebar a {
+		font-size: 18px
 	}
 	.bodyContainer { 
 		background-position: center -10vh;
@@ -1010,13 +966,49 @@ th {
 	}
 }
 /* for mobile phones, portrait and landscape */
-@media screen and (max-width: 820px) and (max-height: 800px) {
+@media screen and (max-width: 820px) {
 	.bodyBackground {
 		background-size: 150%;
 		background-position: center 3vh;
 	}
-	.tileContainer {
-		padding: 0 10px 0 10px;
+    .documentContainer {
+        width: 100%;
+    }
+    .documentContent {
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+    }
+	.pillSelect {
+		max-width: 100%;
+	}
+	.pageTitle {
+		font-size: 28px;
+		margin-top: 55px;
+	}
+	#teamsText {
+		font-size: 0px;
+	}
+	.pictureBox {
+		width: 100%;
+		height: fit-content;
+	}
+	.pictureBox img {
+		height: 100%;
+		width: inherit;
+	}
+	#currentEvent {
+		display: none;
+	}
+    #ScoutNowTile {
+        flex-grow: 1;
+    }
+}
+/* for mobile phones, portrait and landscape */
+@media screen and (max-width: 820px) and (max-height: 800px) {
+	.bodyBackground {
+		background-size: 150%;
+		background-position: center 3vh;
 	}
 	.modal-content {
 		width: 80%;
