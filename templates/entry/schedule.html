@@ -85,13 +85,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				<p>{% get_current_event request %}</p>
 			</div>
 			{% endif %}
+			<div class="heroBox">
+				<div class="filterBox" >
+					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
+					<input class="filterChip" type="text" id="matchNumber" onkeyup="scheduleFilter('matchNumber')" placeholder="Search">
+				</div>
+			</div>
 		</div>		
         <div class="scheduleContainer" style="flex-wrap: wrap; white-space: nowrap; justify-content: center">
             {% for match in schedule_list %}
                 {% if match.match_number > 0 %}
                     {% if match.match_type == "Qualification" %}
 					<a href="{% url 'entry:schedule_details' match.pk %}" class="scheduleLink">
-                        <div class="scheduleTile" id="{{ match.match_number }}">
+                        <div class="scheduleTile" name="{{ match.match_number }} {{ match.blue1 }} {{ match.blue2 }} {{ match.blue3 }} {{ match.red1 }} {{ match.red2 }} {{ match.red3 }}">
                             <div style="margin-right: 20px;">
                                 <h3>Q-{{ match.match_number }}</h3>
                             </div>
@@ -116,7 +122,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 {% if match.match_number > 0 %}
                     {% if match.match_type == "Playoff" %}
 					<a href="{% url 'entry:schedule_details' match.pk %}" class="scheduleLink">
-                        <div class="scheduleTile" id="{{ match.match_number }}">
+                        <div class="scheduleTile" name="{{ match.match_number }} {{ match.blue1 }} {{ match.blue2 }} {{ match.blue3 }} {{ match.red1 }} {{ match.red2 }} {{ match.red3 }}">
                             <div style="margin-right: 20px;">
                                 <h3>P-{{ match.match_number }}</h3>
                             </div>
@@ -233,11 +239,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {% if 'False' != filters %}
         <div class="bottomBar" id="bottomBar">
 			<div id="bottomBarContent">
-				<div class="filterBox" >
-					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
-					<input class="filterChip" type="text" id="matchNumber" onkeyup="scheduleFilter('matchNumber')" placeholder="Match Number">
-				</div>
-				<br>
 				{% if user.is_staff %}
 				<div class="filterBox" onClick="location.href ='{% url 'entry:admin_redirect' 'schedule' %}';" style="cursor: pointer">
 					<img src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" style="height: 50px;" alt="Edit">
