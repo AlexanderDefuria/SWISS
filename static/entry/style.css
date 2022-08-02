@@ -877,7 +877,7 @@ th {
 	transition: all .2s ease-in-out;
 }
 .filterChip {
-	width: 150px;
+	width: 100px;
 	outline: none;
 	color: white;
 	background: none;
@@ -901,7 +901,9 @@ th {
 	top: auto;
 	bottom: 0;
 	left: 0;
-	background-color: #0F4D8D;
+	background: rgba(0, 0, 0, 0.66);
+    box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+    backdrop-filter: blur(6.1px);
 	width: 100%;
 }
 .bottomBarButton {
@@ -924,6 +926,7 @@ th {
 	display: flex; 
 	flex-wrap: wrap;
 	visibility: hidden;
+	padding: 10px 0;
 }
 #collapseBottomBar {
 	visibility: hidden;
