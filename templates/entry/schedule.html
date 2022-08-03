@@ -84,7 +84,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<div class="heroBox">
 				<div class="filterBox" >
 					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
-					<input class="filterChip" type="text" id="teamName" onkeyup="scheduleFilter('teamName')" placeholder="Team Number">
+					<input class="filterChip" type="text" id="teamName" onkeyup="scheduleFilter('teamName')" placeholder="Team Name">
 				</div>
 			</div>
 		</div>		
@@ -92,8 +92,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             {% for match in schedule_list %}
                 {% if match.match_number > 0 %}
                     {% if match.match_type == "Qualification" %}
-					<a href="{% url 'entry:schedule_details' match.pk %}" class="scheduleLink">
-                        <div class="scheduleTile" id="{{ match.match_number }}" name="{{ match.blue1 }} {{ match.blue2 }} {{ match.blue3 }} {{ match.red1 }} {{ match.red2 }} {{ match.red3 }}">
+					<a href="{% url 'entry:schedule_details' match.pk %}" class="scheduleLink" id="{{ match.match_number }}" name="{{ match.blue1 }} {{ match.blue2 }} {{ match.blue3 }} {{ match.red1 }} {{ match.red2 }} {{ match.red3 }}">
+                        <div class="scheduleTile">
                             <div style="margin-right: 20px;">
                                 <h3>Q-{{ match.match_number }}</h3>
                             </div>
@@ -117,8 +117,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             {% for match in schedule_list %}
                 {% if match.match_number > 0 %}
                     {% if match.match_type == "Playoff" %}
-					<a href="{% url 'entry:schedule_details' match.pk %}" class="scheduleLink">
-                        <div class="scheduleTile" id="{{ match.match_number }}" name="{{ match.blue1 }} {{ match.blue2 }} {{ match.blue3 }} {{ match.red1 }} {{ match.red2 }} {{ match.red3 }}">
+					<a href="{% url 'entry:schedule_details' match.pk %}" class="scheduleLink" id="{{ match.match_number }}" name="{{ match.blue1 }} {{ match.blue2 }} {{ match.blue3 }} {{ match.red1 }} {{ match.red2 }} {{ match.red3 }}">
+                        <div class="scheduleTile">
                             <div style="margin-right: 20px;">
                                 <h3>P-{{ match.match_number }}</h3>
                             </div>

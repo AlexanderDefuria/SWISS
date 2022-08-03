@@ -109,7 +109,7 @@ function logFilter(field) {
 
 function scheduleFilter(field) {
 	let filter = document.getElementById(field).value.toString();
-	let all = document.getElementsByClassName('scheduleTile')
+	let all = document.getElementsByClassName('scheduleLink')
 	if (field === "matchNumber") {
 		for (let i = 0; i < all.length; i++) {
 			if (all[i].id.toString().indexOf(filter) > -1)
