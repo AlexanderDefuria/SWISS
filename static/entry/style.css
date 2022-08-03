@@ -287,6 +287,7 @@ ul {
 	flex-wrap: wrap;
 }
 .teamTileContainer {
+	margin-top: 1rem;
 	justify-content: center;
 }
 .flexColumn60 {

@@ -74,7 +74,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				<p>{% get_current_event request %}</p>
 			</div>
 			<div class="heroBox">
-				<p>Search box coming soon!</p>
+				<div class="heroBox">
+					<div class="filterBox">
+						<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
+						<input class="filterChip" type="text" id="search" onkeyup="filterTextInput()" placeholder="Search">
+					</div>
+				</div>
 			</div>
 		</div>
 		{% get_cookie request 'teamListType' as teamListType %}
@@ -84,7 +89,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				<div class="pillContainer">
                     <ul>
 		    			{% for team in team_list %}
-                            <li>
+                            <li class="teamLink" data-content="{{ team.name }} {{ team.number }}">
                                 <div onclick="window.location='{% url 'entry:match_scout' team.id %}'"  class="teamnumberPill" style="background-color: {{team.colour}}; cursor: pointer;">
                                     <p>{{ team.number }}</p>
                                 </div>
@@ -97,7 +102,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		{% else %}
 		<div style="display: flex; flex-wrap: wrap; justify-content: center">
 			{% for team in team_list %}
-			<div class="teamCardSelect" style="height: auto" onclick="window.location='{% url 'entry:match_scout' team.id %}'">
+			<div class="teamCardSelect teamLink" data-content="{{ team.name }} {{ team.number }}" style="height: auto" onclick="window.location='{% url 'entry:match_scout' team.id %}'">
 				<div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
 				<div class="teamnamePill"><p>{{ team.name }}</p></div>
 			</div>
@@ -105,5 +110,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</div>
 		{% endif %}
 	</div>
+<script>
+	function filterTextInput() {
+	  var input, radios, radio_filter, text_filter, td0, i, divList;
+	  input = document.getElementById("search");
+	  text_filter = input.value.toUpperCase();
+	  divList = document.getElementsByClassName("teamLink");
+
+	 // Loop through all table rows, and hide those who don't match the search query
+	  for (i = 0; i < divList.length; i++) {
+		td0 = divList[i].getAttribute('data-content');
+		if (td0) {
+		  if (td0.toUpperCase().indexOf(text_filter) > -1) {
+			divList[i].style.display = "";
+		  } else {
+			divList[i].style.display = "none";
+		  }
+		} 
+	  }
+	}
+</script>
 </body>
 </html>
