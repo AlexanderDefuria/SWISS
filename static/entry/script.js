@@ -118,7 +118,7 @@ function scheduleFilter(field) {
 				all[i].style.display = "none";
 
 		}
-	} else if (field === "teamNumber") {
+	} else if (field === "teamName") {
 		for (let i = 0; i < all.length; i++) {
 			if (all[i].name.toString().toUpperCase().indexOf(filter.toString().toUpperCase()) > -1)
 				all[i].style.display = "";
