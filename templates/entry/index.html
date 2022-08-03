@@ -120,13 +120,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<img src="{{ MEDIA_URL }}{% static 'ScheduleIcon.png' %}" alt="Schedule Icon">
 				</div>
 			</a>
-			<a href="{% url 'entry:settings' %}" id="tileSettings" title="Settings">
+			<a onclick="getSnacky()" title="Event View">
 				<div class="bigBox">
-					<h1>Settings</h1>
-					<img src="{{ MEDIA_URL }}{% static 'SettingsIcon.png' %}" alt="Settings Icon">
+					<h1>Event Stats</h1>
+					<img src="{{ MEDIA_URL }}{% static 'EventIcon.png' %}" alt="Event Icon">
 				</div>
 			</a>
 			<div style="display: inherit; flex-wrap: wrap; order: 100;">
+				<a href="{% url 'entry:settings' %}" id="tileSettings" title="Settings">
+					<div class="smallBox">
+						<img src="{{ MEDIA_URL }}{% static 'SettingsIcon.png' %}" alt="Settings Icon">
+					</div>
+				</a>
 				<a id="tileDownload" title="Download CSV">
 					<div class="smallBox" style="background-color: #AAA300">
 						<img src="{{ MEDIA_URL }}{% static 'DownloadIcon.png' %}" alt="Download Icon">
@@ -186,10 +191,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		</div>
 		<div id="alertbar">
 			<p id="alerttext">Default Text</p>
-            <button id="alertbutton" onClick="document.location='{% url 'entry:welcome' %}';">Let's Go!</button>
 			<button class="alertclose" onClick='closeAlertBar(); document.cookie = "tutorialCompleted=True; path=/";'>╳</button>
 		</div>
         <p style="display: none" id="tutorialCookie">{% get_cookie request 'tutorialCompleted' %}</p>
 	</div>
+<script>
+var x = document.getElementById("alertbar");
+var y = document.getElementById("alerttext");
+function getSnacky() {
+		setTimeout(function () {
+				x.className = "show";
+				y.innerHTML = "Event view coming soon!";
+		}, 500), false
+}
+</script>
 </body>
 </html>
