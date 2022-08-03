@@ -286,7 +286,7 @@ ul {
 	display: flex;
 	flex-wrap: wrap;
 }
-.teamTileContaienr {
+.teamTileContainer {
 	justify-content: center;
 }
 .flexColumn60 {
