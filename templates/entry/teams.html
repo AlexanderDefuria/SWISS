@@ -110,7 +110,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         {% url 'entry:glance' team.id %}
                     {% endif %}
                     "
-                class="teamLink" id="{{ team.number }}" name="{{ team.name }}" title="{{ team.name }} {{ team.number }}">
+                class="teamLink" name="{{ team.name }} {{ team.number }}" title="{{ team.name }} {{ team.number }}">
 					{% get_cookie request 'images' as images %}
 					{% if 'False' != images %}
 						<div class="teamCard" style="overflow: hidden;">

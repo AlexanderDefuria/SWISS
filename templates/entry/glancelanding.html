@@ -107,5 +107,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</div>
 		{% endif %}
 	</div>
+<script>
+	function filterTextInput() {
+	  var input, radios, radio_filter, text_filter, td0, i, divList;
+	  input = document.getElementById("search");
+	  text_filter = input.value.toUpperCase();
+	  divList = document.getElementsByClassName("teamLink");
+
+	 // Loop through all table rows, and hide those who don't match the search query
+	  for (i = 0; i < divList.length; i++) {
+		td0 = divList[i].getAttribute('data-content');
+		if (td0) {
+		  if (td0.toUpperCase().indexOf(text_filter) > -1) {
+			divList[i].style.display = "";
+		  } else {
+			divList[i].style.display = "none";
+		  }
+		} 
+	  }
+	}
+</script>
 </body>
 </html>
