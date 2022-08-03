@@ -66,13 +66,12 @@ function tableFilter(field) {
 function teamFilter(field) {
 	let filter = document.getElementById(field).value.toString();
 	let all = document.getElementsByClassName('teamLink')
-	if (field === "teamName") {
+	if (field === "teamSearch") {
 		for (let i = 0; i < all.length; i++) {
 			if (all[i].name.toString().toUpperCase().indexOf(filter.toString().toUpperCase()) > -1)
 				all[i].style.display = "";
 			else
 				all[i].style.display = "none";
-
 		}
 	}
 	document.getElementsByClassName("teamChip")
