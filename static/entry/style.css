@@ -179,10 +179,12 @@ ul {
 #snackbar {
 	visibility: hidden;
 	min-width: 250px;
-	background-color: #303030;
 	text-align: center;
+    background: rgba(0, 0, 0, 0.66);
+    box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+    backdrop-filter: blur(6.1px);
+    -webkit-backdrop-filter: blur(6.1px);
 	border-bottom: 2px solid #0F4D8D;
-	box-shadow: 2px 5px 5px 2px #222222;
 	padding: 10px;
 	position: fixed;
 	z-index: 1;
@@ -202,10 +204,12 @@ ul {
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: #303030;
+    background: rgba(0, 0, 0, 0.66);
+    box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+    backdrop-filter: blur(6.1px);
+    -webkit-backdrop-filter: blur(6.1px);
 	text-align: center;
 	border-bottom: 2px solid #0F4D8D;
-    box-shadow: -5px 0px 10px 5px #222222;
 	padding: 10px;
 	position: fixed;
 	z-index: 1;
