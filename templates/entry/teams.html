@@ -71,16 +71,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			{% get_cookie request 'teamsBehaviour' as teamsBehaviour%}
 			{% get_cookie request 'districtTeams' as districtTeams %}
 			{% if districtTeams == 'True' %}
-				<div style="display: flex" id="currentEvent">
-					<span style="margin: auto">All Teams in District</span>
+				<div class="heroBox" id="currentEvent">
+					<p>All Teams in District</p>
 				</div>
 			{% else %}
-				<div style="display: flex" id="currentEvent">
-					<span style="margin: auto">{% get_current_event request %}</span>
-				</div>		
+				<div class="heroBox" id="currentEvent">
+					<p>Current Event is:</p>
+					<br>
+					<p>{% get_current_event request %}</p>
+				</div>
 			{% endif %}
-		</div>
-        <figure class="tileContainer teamTileContaienr">
+			{% get_cookie request 'filters' as filters %}
+			{% if 'False' != filters %}
+			<div class="heroBox">
+				<div class="filterBox" >
+					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
+					<input class="filterChip" type="text" id="matchNumber" onkeyup="teamFilter('teamNumber')" placeholder="Match Number">
+				</div>
+			</div>
+			<div class="heroBox">
+				<div class="filterBox" >
+					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
+					<input class="filterChip" type="text" id="teamName" onkeyup="teamFilter('teamName')" placeholder="Team Name">
+				</div>
+			</div>
+			{% endif %}
+		</div>		
+        <figure class="tileContainer teamTileContainer">
             {% get_cookie request 'districtTeams' as districtTeams %}
 
             {% if districtTeams == 'True' %}
@@ -135,15 +152,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {% if 'False' != filters %}
         <div class="bottomBar" id="bottomBar">
 			<div id="bottomBarContent">
-				<div class="filterBox" >
-					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
-					<input class="filterChip" type="text" id="teamNumber" onkeyup="teamFilter('teamNumber')" placeholder="Team Number">
-				</div>
-				<br>
-				<div class="filterBox" >
-					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
-					<input class="filterChip" type="text" id="teamName" onkeyup="teamFilter('teamName')" placeholder="Team Name">
-				</div>
 				<div class="filterBox" onClick="location.href ='{% url 'entry:upload' %}';" style="cursor: pointer">
 					<img src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" style="height: 50px;" alt="Upload">
 					<h3>Upload Robot Photo</h3>

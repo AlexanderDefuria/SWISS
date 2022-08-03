@@ -872,7 +872,7 @@ th {
 .filterBox {
 	visibility: inherit;
 	display: flex;
-	padding: 0 20px;
+	padding: 0 10px;
 	height: auto;
 	width: auto;
 	transition: all .2s ease-in-out;
