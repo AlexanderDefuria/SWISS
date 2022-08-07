@@ -30,6 +30,7 @@ urlpatterns = [
     path('matchdata/', views.MatchData.as_view(), name='match_data'),
     path('pitdata/', views.PitData.as_view(), name='pit_data'),
     path('schedule/', views.ScheduleView.as_view(), name='schedule'),
+    path('schedule/all/', views.ScheduleView.as_view(show_completed=True), name='schedule_all'),
     path('schedule/details/<slug:pk>/', views.ScheduleDetails.as_view(), name='schedule_details'),
     path('experimental/', views.Experimental.as_view(), name='experimental'),
     path('about/', views.About.as_view(), name='about'),

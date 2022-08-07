@@ -87,6 +87,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					<input class="filterChip" type="text" id="teamName" onkeyup="scheduleFilter('teamName')" placeholder="Team #">
 				</div>
 			</div>
+            <div>
+                <a href="{% url 'entry:schedule_all' %}">ALL MATCHES</a>
+            </div>
 		</div>		
         <div class="scheduleContainer" style="flex-wrap: wrap; white-space: nowrap; justify-content: center">
             {% for match in schedule_list %}

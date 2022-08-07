@@ -99,6 +99,12 @@ def match_scout_submit(request, pk):
         match.comment = request.POST.get('comment', 'na')
         match.team_ownership = request.user.teammember.team
 
+        schedule = Schedule.objects.get(match_number=match.match_number, event=match.event)
+
+        if schedule:
+            schedule.completed = True
+            schedule.save()
+
         # GOUDA POINT CALCS
         # print("GOUDA v")
         # gouda = 100
@@ -703,6 +709,7 @@ class ScheduleView(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/schedule.html'
     context_object_name = "schedule_list"
     model = Schedule
+    show_completed = False
 
     def get_queryset(self):
         try:
@@ -711,7 +718,9 @@ class ScheduleView(LoginRequiredMixin, generic.ListView):
             print(str(e) + ": There are no team settings for this query.")
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
-        return Schedule.objects.filter(event_id=teamsettings.current_event).order_by("match_type").order_by("match_number")
+        if self.show_completed:
+            return Schedule.objects.filter(event_id=teamsettings.current_event).order_by("match_type").order_by("match_number")
+        return Schedule.objects.filter(event_id=teamsettings.current_event, completed=False).order_by("match_type").order_by("match_number")
 
 
 class ScheduleDetails(LoginRequiredMixin, generic.DetailView):

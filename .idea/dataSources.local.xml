@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="PY-213.6777.50">
+  <component name="dataSourceStorageLocal" created-in="PY-221.5921.27">
     <data-source name="db" uuid="91310532-be4a-410e-936c-d004483e49b4">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" exact-version="0" />
-      <schema-mapping />
-    </data-source>
-    <data-source name="Django default" uuid="b4c13f70-b87b-44f7-9ac2-31281d91fb55">
-      <database-info product="PostgreSQL" version="13.6" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.3.3" dbms="POSTGRES" exact-version="13.6" exact-driver-version="42.3">
+      <database-info product="SQLite" version="3.25.1" jdbc-version="2.1" driver-name="SQLite JDBC" driver-version="3.25.1" dbms="SQLITE" exact-version="3.25.1" exact-driver-version="3.25">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
-      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
       <secret-storage>master_key</secret-storage>
-      <user-name>swiss</user-name>
+      <auth-provider>no-auth</auth-provider>
+      <user-name>admin</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="database" qname="swissdb2022">
-            <node kind="schema" negative="1" />
-          </node>
+          <node kind="schema" qname="@" />
         </introspection-scope>
       </schema-mapping>
+    </data-source>
+    <data-source name="Django default" uuid="b4c13f70-b87b-44f7-9ac2-31281d91fb55">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
+      <schema-mapping />
     </data-source>
     <data-source name="testdbj@localhost" uuid="594ce8c5-cd93-47bd-8b44-c996a84784cb">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
