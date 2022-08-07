@@ -65,33 +65,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			document.getElementById("timeOfDay").innerHTML = greeting;
 		</script>
 	</div>
-	
-	<div class="bodyContainer" id="bodyContainer">
-		<div id="soloContainer">
-			<div class="soloBox" style="width:auto;">
-				<div class="infoHeader">
-					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
-					<h1>Upload Robot Photo</h1>
+	<div id="soloContainer">
+		<div class="soloBox" style="width:auto;">
+			<div class="infoHeader">
+				<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
+				<h1>Upload Robot Photo</h1>
+			</div>
+
+			<form action="{% url 'entry:upload_submit' %}" method="post" enctype="multipart/form-data" id="form">
+				{% csrf_token %}
+
+				<div class="formItem" style="margin-top:10px; background:none; justify-content: space-between;">
+					<label for="teamNumber">Team Number</label>
+					<input style="width:100px;" type="number" name="teamNumber" id="teamNumber" min="1" max="9999">
+				</div>
+				<div class="formItem" style="margin-top:10px; background:none; justify-content: space-between">
+					<label for="upload">Upload Image</label>
+					<input style="width: 200px " type="file" name="upload" id="upload">
+				</div>
+					<p>Remember, images must be cropped to a SQUARE (1:1).</p>
+				<div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
+					<input type="submit" value="Submit">
 				</div>
 
-				<form action="{% url 'entry:upload_submit' %}" method="post" enctype="multipart/form-data" id="form">
-					{% csrf_token %}
-
-                    <div class="formItem" style="margin-top:10px; background:none; justify-content: space-between;">
-						<label for="teamNumber">Team Number</label>
-						<input style="width:100px;" type="number" name="teamNumber" id="teamNumber" min="1" max="9999">
-					</div>
-					<div class="formItem" style="margin-top:10px; background:none; justify-content: space-between">
-						<label for="upload">Upload Image</label>
-						<input style="width: 200px " type="file" name="upload" id="upload">
-					</div>
-						<p>Remember, images must be cropped to a SQUARE (1:1).</p>
-					<div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
-						<input type="submit" value="Submit">
-					</div>
-				
-				</form>
-			</div>
+			</form>
 		</div>
 	</div>
 </body>

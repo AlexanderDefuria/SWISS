@@ -33,62 +33,59 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-	<div class="topbar">
+	<div class="topbar" style="background-color: unset">
 		<div class="swissLogo" id="swissLogo">
 			<a href="{% url 'entry:index' %}">
 			<img src="{{ MEDIA_URL }}{% static 'SwissIcon2x.png' %}" alt="SWISS Logo">
 			</a>
 		</div>
 	</div>
-	
-	<div class="bodyContainer">
-		<div id="soloContainer">
-			<div class="soloBox" style="">
-				<div class="infoHeader">
-					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'NewUserIcon.png' %}" alt="Download Icon">
-					<h1>Register New User</h1>
-				</div>
-				<form action="{% url 'entry:register' %}" class="" method="post" name="mainForm" id="mainForm">
-                    {% csrf_token %}
-                    <div class="formItem" style="background:none;">
-						<label for="username">Username:</label>
-						<input type="text" name="username" id="username" required>
-					</div>
-					<div class="formItem" style="background:none">
-						<label for="password">Password:</label>
-						<input type="password" name="password" id="password" required>
-					</div>
-                    <div class="formItem" style="background:none">
-						<label for="password_validate">Re-Enter Password:</label>
-						<input type="password" name="password_validate" id="password_validate" required>
-					</div>
-                    <div class="formItem" style="background:none">
-						<label for="first_name">First Name:</label>
-						<input type="text" name="first_name" id="first_name">
-					</div>
-                    <div class="formItem" style="background:none">
-						<label for="last_name">Last Name:</label>
-						<input type="text" name="last_name" id="last_name">
-					</div>
-                    <div class="formItem" style="background:none">
-						<label for="email">Email:</label>
-						<input type="email" name="email" id="email">
-					</div>
-                    <div class="formItem" style="background:none">
-						<label for="team_number">Team Number</label>
-						<input type="number" name="team_number" id="team_number" required>
-					</div>
-                    <div class="formItem" style="background:none">
-						<label for="team_reg_id">Team UUID</label>
-						<input type="text" name="team_reg_id" id="team_reg_id" required>
-					</div>
-                    <br>
-                    <div class="formItem" id="submit" onclick="validate('mainForm', true)">
-                <input name="submit" id="submitButton" type="submit" style="pointer-events: none">
-			        </div>
-
-				</form>
+	<div id="soloContainer">
+		<div class="soloBox" style="">
+			<div class="infoHeader">
+				<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'NewUserIcon.png' %}" alt="Download Icon">
+				<h1>Register New User</h1>
 			</div>
+			<form action="{% url 'entry:register' %}" class="" method="post" name="mainForm" id="mainForm">
+				{% csrf_token %}
+				<div class="formItem" style="background:none;">
+					<label for="username">Username:</label>
+					<input type="text" name="username" id="username" required>
+				</div>
+				<div class="formItem" style="background:none">
+					<label for="password">Password:</label>
+					<input type="password" name="password" id="password" required>
+				</div>
+				<div class="formItem" style="background:none">
+					<label for="password_validate">Re-Enter Password:</label>
+					<input type="password" name="password_validate" id="password_validate" required>
+				</div>
+				<div class="formItem" style="background:none">
+					<label for="first_name">First Name:</label>
+					<input type="text" name="first_name" id="first_name">
+				</div>
+				<div class="formItem" style="background:none">
+					<label for="last_name">Last Name:</label>
+					<input type="text" name="last_name" id="last_name">
+				</div>
+				<div class="formItem" style="background:none">
+					<label for="email">Email:</label>
+					<input type="email" name="email" id="email">
+				</div>
+				<div class="formItem" style="background:none">
+					<label for="team_number">Team Number</label>
+					<input type="number" name="team_number" id="team_number" required>
+				</div>
+				<div class="formItem" style="background:none">
+					<label for="team_reg_id">Team UUID</label>
+					<input type="text" name="team_reg_id" id="team_reg_id" required>
+				</div>
+				<br>
+				<div class="formItem" id="submit" onclick="validate('mainForm', true)">
+			<input name="submit" id="submitButton" type="submit" style="pointer-events: none">
+				</div>
+
+			</form>
 		</div>
 	</div>
 </body>

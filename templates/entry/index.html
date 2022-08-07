@@ -7,6 +7,7 @@
 	<meta charset="utf-8">
 	<title>SWISS Home</title>
 	<link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'entry/css/index.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'entry/tile-order.css' %}">
 	<script src="{% static 'entry/script.js' %}"></script>
@@ -78,107 +79,131 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<div class="tileContainer" id="tileContainer">
 			<a href="{% url 'entry:match_scout_landing' %}" id="tileMatch" title="Match Scouting">
 				<div class="bigBox">
+					<h1>Scout</h1>
 					<img src="{{ MEDIA_URL }}{% static 'ScoutIcon.png' %}" alt="scout icon">
 				</div>
 			</a>
 			<a href="{% url 'entry:pit_scout_landing' %}" id="tilePit" title="Pit Scouting">
 				<div class="bigBox">
+					<h1>Pit</h1>
 					<img src="{{ MEDIA_URL }}{% static 'PitScoutIcon.png' %}" alt="scout icon">
 				</div>
 			</a>
 			<a href="{% url 'entry:glance_landing' %}" id="tileGlance" title="Glance View">
-				<div class="wideBox CeltXColor" id="tileBackground"
+				<div class="bigBox CeltXColor" id="tileBackground"
 					style="background-image: url({{ MEDIA_URL }}{% static 'GlanceBackground2000w.png' %})">
+					<h1>Glance</h1>
 					<img src="{{ MEDIA_URL }}{% static 'StrategyIcon.png' %}" alt="Strategy icon">
 				</div>
 			</a>
 			<a href="{% url 'entry:teams' %}" id="tileTeams" title="Team Lookup">
-				<div class="wideBox OttawaColor">
+				<div class="bigBox OttawaColor">
+					<h1>Teams</h1>
 					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" alt="Search Icon">
-					<p class="homeText">Teams</p>
 				</div>
 			</a>
 			<a href="{% url 'entry:match_data' %}" id="tileData" title="Data View">
 				<div class="bigBox">
+					<h1>Data</h1>
 					<img src="{{ MEDIA_URL }}{% static 'DataIcon.png' %}" alt="Data Icon">
 				</div>
 			</a>
 			<a href="{% url 'entry:visualize' %}" id="tileVisualize" title="Visualization">
-				<div class="wideBox SimboticsColor">
+				<div class="bigBox SimboticsColor">
+					<h1>Visualize</h1>
 					<img src="{{ MEDIA_URL }}{% static 'StatsIcon.png' %}" alt="Visualize Icon">
-					<p class="homeText">Visualize</p>
 				</div>
 			</a>
 			<a href="{% url 'entry:schedule' %}" id="tileSchedule" title="Schedule View">
 				<div class="bigBox">
+					<h1>Schedule</h1>
 					<img src="{{ MEDIA_URL }}{% static 'ScheduleIcon.png' %}" alt="Schedule Icon">
 				</div>
 			</a>
-			<a id="tileDownload" title="Download CSV">
-				<div class="smallBox" style="background-color: #AAA300">
-					<img src="{{ MEDIA_URL }}{% static 'DownloadIcon.png' %}" alt="Download Icon">
+			<a onclick="getSnacky()" id="tileEvent" title="Event View">
+				<div class="bigBox">
+					<h1>Event Stats</h1>
+					<img src="{{ MEDIA_URL }}{% static 'EventIcon.png' %}" alt="Event Icon">
 				</div>
 			</a>
-			<div class="specialBox" id="tileEvent" style="flex-direction: column">
-				<p class="specialBoxHeader">Current Event Is:</p>
-				<h3 style="margin: 0">{% get_current_event request %}</h3>
+			<div style="display: inherit; flex-wrap: wrap; order: 100;">
+				<a href="{% url 'entry:settings' %}" id="tileSettings" title="Settings">
+					<div class="smallBox">
+						<img src="{{ MEDIA_URL }}{% static 'SettingsIcon.png' %}" alt="Settings Icon">
+					</div>
+				</a>
+				<a id="tileDownload" title="Download CSV">
+					<div class="smallBox" style="background-color: #AAA300">
+						<img src="{{ MEDIA_URL }}{% static 'DownloadIcon.png' %}" alt="Download Icon">
+					</div>
+				</a>
+				<a href="{% url 'entry:upload' %}" id="tileUpload" title="Upload an Image">
+					<div class="smallBox">
+						<img src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
+					</div>
+				</a>
+				{% if user.is_staff %}
+				<a href="{% url 'entry:admin_redirect' %}" id="tileAdmin" title="Administration Panel">
+					<div class="smallBox">
+						<img src="{{ MEDIA_URL }}{% static 'AdminIcon.png' %}" alt="Admin Icon">
+					</div>
+				</a>
+				<a href="https://update.swiss-scouting.ca/" id="tileUpdate" title="Update Swiss">
+					<div class="smallBox">
+						<img src="{{ MEDIA_URL }}{% static 'UpdateIcon.png' %}" alt="Admin Icon">
+					</div>
+				</a>
+				{% endif %}
+				<a href="https://www.thebluealliance.com/" id="tileTBA" target="_blank" title="Go to The Blue Alliance">
+					<div class="smallBox">
+						<img src="{{ MEDIA_URL }}{% static 'TheBlueAlliance.png' %}" alt="TBA Icon">
+					</div>
+				</a>
+				<a href="{% url 'entry:import' %}" id="tileImport" title="Import Panel">
+					<div class="smallBox">
+						<img src="{{ MEDIA_URL }}{% static 'FirstImportIcon.png' %}" alt="Import Icon">
+					</div>
+				</a>
+				<a href="{% url 'entry:register' %}" id="tileRegister" title="Register New User">
+					<div class="smallBox">
+						<img src="{{ MEDIA_URL }}{% static 'NewUserIcon.png' %}" alt="Registration Icon">
+					</div>
+				</a>
+				<a href="{% url 'hours:view' %}" id="tileHours" title="View Build Hours">
+					<div class="smallBox">
+						<img src="{{ MEDIA_URL }}{% static 'BuildHoursBinder.png' %}" alt="Build Hours Binder Icon">
+					</div>
+				</a>
 			</div>
-			<a href="{% url 'entry:upload' %}" id="tileUpload" title="Upload an Image">
-				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'UploadIcon.png' %}" alt="Upload Icon">
+			<div style="display: inherit; flex-wrap: wrap; order: 100;">
+				<div class="specialBox" id="tileEvent" style="flex-direction: column">
+					<p class="specialBoxHeader">Current Event Is:</p>
+					<h3 style="margin: 0">{% get_current_event request %}</h3>
 				</div>
-			</a>
-			{% if user.is_staff %}
-			<a href="{% url 'entry:admin_redirect' %}" id="tileAdmin" title="Administration Panel">
-				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'AdminIcon.png' %}" alt="Admin Icon">
+				<div class="specialBox" id="tileActive">
+					<p class="specialBoxHeader">Active Users:</p>
+					<h2 style="margin: 0">{% get_all_logged_in_users %}</h2>
 				</div>
-			</a>
-			<a href="https://update.swiss-scouting.ca/" id="tileUpdate" title="Update Swiss">
-				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'UpdateIcon.png' %}" alt="Admin Icon">
-				</div>
-			</a>
-			{% endif %}
-			<a href="{% url 'entry:settings' %}" id="tileSettings" title="Settings">
-				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'SettingsIcon.png' %}" alt="Settings Icon">
-				</div>
-			</a>
-			<a href="https://www.thebluealliance.com/" id="tileTBA" target="_blank" title="Go to The Blue Alliance">
-				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'TheBlueAlliance.png' %}" alt="TBA Icon">
-				</div>
-			</a>
-			<div class="specialBox" id="tileActive">
-				<p class="specialBoxHeader">Active Users:</p>
-				<h2 style="margin: 0">{% get_all_logged_in_users %}</h2>
 			</div>
-			<a href="{% url 'entry:import' %}" id="tileImport" title="Import Panel">
-				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'FirstImportIcon.png' %}" alt="Import Icon">
-				</div>
-			</a>
-			<a href="{% url 'entry:register' %}" id="tileRegister" title="Register New User">
-				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'NewUserIcon.png' %}" alt="Registration Icon">
-				</div>
-			</a>
-			<a href="{% url 'hours:view' %}" id="tileHours" title="View Build Hours">
-				<div class="smallBox">
-					<img src="{{ MEDIA_URL }}{% static 'BuildHoursBinder.png' %}" alt="Build Hours Binder Icon">
-				</div>
-			</a>
 		</div>
 		<div id="snackbar">
 			<p id="snacktext">Default Text</p>
 		</div>
 		<div id="alertbar">
 			<p id="alerttext">Default Text</p>
-            <button id="alertbutton" onClick="document.location='{% url 'entry:welcome' %}';">Let's Go!</button>
 			<button class="alertclose" onClick='closeAlertBar(); document.cookie = "tutorialCompleted=True; path=/";'>╳</button>
 		</div>
         <p style="display: none" id="tutorialCookie">{% get_cookie request 'tutorialCompleted' %}</p>
 	</div>
+<script>
+var x = document.getElementById("alertbar");
+var y = document.getElementById("alerttext");
+function getSnacky() {
+		setTimeout(function () {
+				x.className = "show";
+				y.innerHTML = "Event view coming soon!";
+		}, 500), false
+}
+</script>
 </body>
 </html>

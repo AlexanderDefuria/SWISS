@@ -33,7 +33,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</div>
 		<div class="swissLogo" id="swissLogo">
 			<a href="{% url 'entry:index' %}">
-			<img src="{{ MEDIA_URL }}{% static 'SwissIcon2x.png' %}" alt="SWISS Logo">
+			<img src="{{ MEDIA_URL }}{% static 'headers/00_PitHeader.png' %}" alt="SWISS Logo">
 			</a>
 		</div>
 	</div>
@@ -68,16 +68,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	
 	<div class="bodyContainer bodyBackground scoutImage" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'ScoutBackground.png' %})">
 		<div class="heroContent">
-			<h1 class="pageTitle">Pit Scouting</h1>
+			<div class="heroBox" id="currentEvent">
+				<p>Current Event is:</p>
+				<br>
+				<p>{% get_current_event request %}</p>
+			</div>
+			<div class="heroBox">
+				<div class="filterBox">
+					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
+					<input class="filterChip" type="text" id="search" onkeyup="filterTextInput()" placeholder="Search">
+				</div>
+			</div>
 		</div>
-
-		
+		{% get_cookie request 'teamListType' as teamListType %}
+		{% if teamListType == 'False' %}
 		<div style="display: flex; justify-content: center">
 			<div class="pillSelect">
 				<div class="pillContainer">
                     <ul>
                         {% for team in team_list %}
-                            <li>
+                            <li class="teamLink" data-content="{{ team.name }} {{ team.number }}">
                                 <div onclick="window.location='{% url 'entry:pit_scout' team.id %}'"  class="teamnumberPill" style="background-color: {{team.colour}}; cursor: pointer;">
                                     <p>{{ team.number }}</p>
                                 </div>
@@ -85,13 +95,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         {% endfor %}
                     </ul>
 				</div>
-				<div class="formItem" id="currentEvent">
-					<p>Current Event is:</p>
-					<br>
-					<p>{% get_current_event request %}</p>
-				</div>
 			</div>
 		</div>
+		{% else %}
+		<div style="display: flex; flex-wrap: wrap; justify-content: center">
+			{% for team in team_list %}
+			<div class="teamCardSelect teamLink" style="height: auto" onclick="window.location='{% url 'entry:pit_scout' team.id %}'" data-content="{{ team.name }} {{ team.number }}">
+				<div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
+				<div class="teamnamePill"><p>{{ team.name }}</p></div>
+			</div>
+			{% endfor %}
+		</div>
+		{% endif %}
 	</div>
+<script>
+	function filterTextInput() {
+	  var input, radios, radio_filter, text_filter, td0, i, divList;
+	  input = document.getElementById("search");
+	  text_filter = input.value.toUpperCase();
+	  divList = document.getElementsByClassName("teamLink");
+
+	 // Loop through all table rows, and hide those who don't match the search query
+	  for (i = 0; i < divList.length; i++) {
+		td0 = divList[i].getAttribute('data-content');
+		if (td0) {
+		  if (td0.toUpperCase().indexOf(text_filter) > -1) {
+			divList[i].style.display = "";
+		  } else {
+			divList[i].style.display = "none";
+		  }
+		} 
+	  }
+	}
+</script>
 </body>
 </html>

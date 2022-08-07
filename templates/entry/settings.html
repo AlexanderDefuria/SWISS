@@ -35,7 +35,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</div>
 		<div class="swissLogo" id="swissLogo">
 			<a href="{% url 'entry:index' %}">
-			<img src="{{ MEDIA_URL }}{% static 'SwissIcon2x.png' %}" alt="SWISS Logo">
+			<img src="{{ MEDIA_URL }}{% static 'headers/00_SettingsHeader.png' %}" alt="SWISS Logo">
 			</a>
 		</div>
 	</div>
@@ -69,9 +69,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	</div>
 	
 	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'SettingsBackground.png' %})">
-		<div class="heroContent">
-			<p class="pageTitle">Settings</p>
-		</div>
 		<form class="formContainer" method="post" name="mainForm" id="mainForm" method="POST">
             <h1 class="sectionHeader">Personal Settings</h1>
 			<h2>User Info</h2>
@@ -146,6 +143,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					<option value="4" Disabled>Go to Team Info (Coming soon)</option>
 				</select>
 			</div>
+			<h2>Landing Pages (Match Scout, Pit Scout, Glance)</h2>
+            <div class="formItem">
+                <label for="teamListType">Team selection as a list</label>
+                <div class="radioGroup">
+					<label>
+						<input type="radio" id="teamListType_true" name="teamListType" value="True">
+						<span>Y</span>
+					</label>
+					<label>
+						<input type="radio" id="teamListType_false" name="teamListType" value="False" checked="true">
+						<span>N</span>
+					</label>
+				</div>
+            </div>
             {% is_lead_scout request as lead_scout %}
             {% if lead_scout %}
             <h1 class="sectionHeader">Team-Wide Settings</h1>
@@ -207,6 +218,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         document.getElementById('filters_'.concat('{% get_cookie request 'filters' %}'.toLowerCase())).checked = true;
         document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true;
 		document.getElementById('tutorialCompleted_'.concat('{% get_cookie request 'tutorialCompleted' %}'.toLowerCase())).checked = true;
+		document.getElementById('teamListType_'.concat('{% get_cookie request 'teamListType' %}'.toLowerCase())).checked = true;
 		//document.getElementById('teamsBehaviour').value={% get_cookie request 'teamsBehaviour' %};
 		//Wasnt sure what was going on here, empty if statement below so I fully commented it -Carter
         //{% if lead_scout %} document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true; {% endif %}

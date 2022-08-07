@@ -12,9 +12,9 @@ This SHOULD also apply to any viewports less than this. If this breaks on mobile
 #tileSchedule   {order: 7}
 #tileDownload 	{order: 8}
 #tileEvent 		{order: 9; max-width: 255px;}
-#tileUpload 	{order: 10}
-#tileAdmin 		{order: 11}
-#tileSettings 	{order: 12}
+#tileSettings 	{order: 10}
+#tileUpload 	{order: 11}
+#tileAdmin 		{order: 12}
 #tileTBA        {order: 13}
 #tileUpdate 	{order: 14}
 #tileActive 	{order: 15}
@@ -33,10 +33,10 @@ This SHOULD also apply to any viewports less than this. If this breaks on mobile
 	.tileContainer #tileDownload 	{order: 8}
 	.tileContainer #tileEvent 		{order: 9}
 	.tileContainer #tileActive 		{order: 10; min-width: 100px; max-width: 565px;}
-	.tileContainer #tileUpload 		{order: 11}
-	.tileContainer #tileAdmin 		{order: 12}
-    .tileContainer #tileTBA         {order: 13}
-	.tileContainer #tileSettings 	{order: 14}
+	.tileContainer #tileSettings 	{order: 11}
+	.tileContainer #tileUpload 		{order: 12}
+	.tileContainer #tileAdmin 		{order: 13}
+    .tileContainer #tileTBA         {order: 14}
 	.tileContainer #tileUpdate 		{order: 15}
 	.tileContainer #tileImport 		{order: 16}
 	.tileContainer #tileRegister	{order: 17}

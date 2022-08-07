@@ -32,7 +32,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</div>
 		<div class="swissLogo" id="swissLogo">
 			<a href="{% url 'entry:index' %}">
-			<img src="{{ MEDIA_URL }}{% static 'SwissIcon2x.png' %}" alt="SWISS Logo">
+			<img src="{{ MEDIA_URL }}{% static 'headers/00_MatchDataHeader.png' %}" alt="SWISS Logo">
 			</a>
 		</div>
 	</div>
@@ -66,9 +66,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	</div>
 	
 	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'StatsBackground.png' %})">
-		<div class="heroContent" id="heroSpace" style="padding-bottom: 0">
-		    <h1 style="font-size: 42px; margin: 0;">Raw Match Data</h1>
-		</div>
         <div style="display: flex; justify-content: center; ">
             <div class="formItem graphOption">
                 <button class="dataButton" onclick="window.location='{% url 'entry:match_data' %}';">Match Data</button>
@@ -84,7 +81,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<th class="teamStick" style="z-index: 200">Number</th>
 						<th>Names</th>
 						<th class="matchStick" style="z-index: 200">Match #</th>
-						<th>Robot Present?</th>
+	    				<th>Robot Present?</th>
 						<th>Auto Route</th>
 						<th>Exit Tarmac</th>
 						<th>Auto Low</th>
@@ -123,7 +120,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <tr>
                             <td class="teamStick" style="z-index: 100">{{ match.team.number }}</td>
                             <td  style="background: gray"> {{ match.team.name }}</td>
-                            <td class="matchStick" style="z-index: 100">{{ match.match_number }}</td>
+                            <td class="matchStick" style="z-index: 100">
+                            {% if user.is_staff %}
+                                <a href="{% get_edit_url 'match' match.id %}">
+                            {% endif %}
+                                {{ match.match_number }}
+                            {% if user.is_staff %}
+                                </a>
+                            {% endif %}
+                            </td>
                             <td>{{ match.on_field }}</td>
                             <td>{{ match.auto_route }}</td>
                             <td>{{ match.baseline }}</td>

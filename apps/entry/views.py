@@ -1,3 +1,4 @@
+import time
 from multiprocessing import context
 import os
 import ast
@@ -98,6 +99,12 @@ def match_scout_submit(request, pk):
         match.scouter_name = request.user.username
         match.comment = request.POST.get('comment', 'na')
         match.team_ownership = request.user.teammember.team
+
+        schedule = Schedule.objects.get(match_number=match.match_number, event=match.event)
+
+        if schedule:
+            schedule.completed = True
+            schedule.save()
 
         # GOUDA POINT CALCS
         # print("GOUDA v")
@@ -558,8 +565,8 @@ def validate_registration(request):
 def admin_redirect(request, **kwargs):
     if request.user.is_staff:
         if 'whereto' in kwargs:
-            return HttpResponseRedirect(reverse_lazy('admin:index') + 'entry/' + kwargs['whereto'] + "/")
-
+            path = reverse_lazy('admin:index') + 'entry/'
+            return HttpResponseRedirect( reverse_lazy('admin:index') + 'entry/' + kwargs['whereto'] + "/")
         return HttpResponseRedirect(reverse_lazy('admin:index'))
     return HttpResponseRedirect(reverse_lazy('entry:index'))
 
@@ -703,6 +710,7 @@ class ScheduleView(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/schedule.html'
     context_object_name = "schedule_list"
     model = Schedule
+    show_completed = False
 
     def get_queryset(self):
         try:
@@ -711,7 +719,9 @@ class ScheduleView(LoginRequiredMixin, generic.ListView):
             print(str(e) + ": There are no team settings for this query.")
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
-        return Schedule.objects.filter(event_id=teamsettings.current_event).order_by("match_type").order_by("match_number")
+        if self.show_completed:
+            return Schedule.objects.filter(event_id=teamsettings.current_event).order_by("match_type").order_by("match_number")
+        return Schedule.objects.filter(event_id=teamsettings.current_event, completed=False).order_by("match_type").order_by("match_number")
 
 
 class ScheduleDetails(LoginRequiredMixin, generic.DetailView):
@@ -832,7 +842,6 @@ class MatchData(LoginRequiredMixin, generic.ListView):
             teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
         except IndexError:
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
-
         return Match.objects.all().filter(event_id=teamsettings.current_event).filter(
             team_ownership=self.request.user.teammember.team.id)
 
@@ -868,6 +877,7 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
         response.set_cookie('districtTeams', request.POST.get('districtTeams', ''))
         response.set_cookie('tutorialCompleted', request.POST.get('tutorialCompleted', ''))
         response.set_cookie('teamsBehaviour', request.POST.get('teamsBehaviour', ''))
+        response.set_cookie('teamListType', request.POST.get('teamListType', ''))
 
         if self.request.user.teammember.position == "LS":
             new_settings = TeamSettings()

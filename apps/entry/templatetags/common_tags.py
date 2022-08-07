@@ -5,6 +5,7 @@ import math
 from django import template
 from django.contrib.sessions.models import Session
 from django.db.models import Count, Q
+from django.urls import reverse_lazy
 from django.utils import timezone
 
 from apps.entry.models import *
@@ -25,6 +26,11 @@ def divide(num, val):
     return num / val
 
 
+@register.filter
+def define(val):
+    return val
+
+
 @register.simple_tag
 def get_current_event(request):
     try:
@@ -37,6 +43,16 @@ def get_current_event(request):
         return event
     except:
         return Event.objects.all()[0]
+
+
+@register.simple_tag
+def get_admin_url():
+    return reverse_lazy('admin:index')
+
+
+@register.simple_tag
+def get_edit_url(model, model_id):
+    return reverse_lazy('admin:index') + 'entry/' + str(model) + '/' + str(model_id) + '/change/'
 
 
 @register.simple_tag

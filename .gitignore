@@ -2,6 +2,8 @@
 *.sw[po]
 venv/*
 venv/
+/venv/
+/venv/*
 settings.py
 media/json/*
 media/robots/*

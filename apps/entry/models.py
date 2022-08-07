@@ -76,6 +76,7 @@ class Schedule(models.Model):
     match_type = models.TextField(default="NA", max_length=40)
     description = models.TextField(default="NA", max_length=100)
     placeholder = models.BooleanField(default=True)
+    completed = models.BooleanField(default=False)
 
     red1 = models.IntegerField(Team, default=0)
     red2 = models.IntegerField(Team, default=0)
