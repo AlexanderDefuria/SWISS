@@ -51,6 +51,11 @@ def get_admin_url():
 
 
 @register.simple_tag
+def get_edit_url(model, model_id):
+    return reverse_lazy('admin:index') + 'entry/' + str(model) + '/' + str(model_id) + '/change/'
+
+
+@register.simple_tag
 def get_current_event_id():
     return get_current_event.id
 

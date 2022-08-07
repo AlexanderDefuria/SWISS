@@ -122,8 +122,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <td  style="background: gray"> {{ match.team.name }}</td>
                             <td class="matchStick" style="z-index: 100">
                             {% if user.is_staff %}
-                                {% get_admin_url as admin %}
-                                <a href="{{admin}}entry/match/{{match.id}}/change/">
+                                <a href="{% get_edit_url 'match' match.id %}">
                             {% endif %}
                                 {{ match.match_number }}
                             {% if user.is_staff %}

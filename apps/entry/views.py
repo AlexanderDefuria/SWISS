@@ -1,3 +1,4 @@
+import time
 from multiprocessing import context
 import os
 import ast
@@ -841,7 +842,6 @@ class MatchData(LoginRequiredMixin, generic.ListView):
             teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
         except IndexError:
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
-        Match.objects.select_related()
         return Match.objects.all().filter(event_id=teamsettings.current_event).filter(
             team_ownership=self.request.user.teammember.team.id)
 
