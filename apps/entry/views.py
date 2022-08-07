@@ -564,8 +564,8 @@ def validate_registration(request):
 def admin_redirect(request, **kwargs):
     if request.user.is_staff:
         if 'whereto' in kwargs:
-            return HttpResponseRedirect(reverse_lazy('admin:index') + 'entry/' + kwargs['whereto'] + "/")
-
+            path = reverse_lazy('admin:index') + 'entry/'
+            return HttpResponseRedirect( reverse_lazy('admin:index') + 'entry/' + kwargs['whereto'] + "/")
         return HttpResponseRedirect(reverse_lazy('admin:index'))
     return HttpResponseRedirect(reverse_lazy('entry:index'))
 
@@ -841,7 +841,7 @@ class MatchData(LoginRequiredMixin, generic.ListView):
             teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
         except IndexError:
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
-
+        Match.objects.select_related()
         return Match.objects.all().filter(event_id=teamsettings.current_event).filter(
             team_ownership=self.request.user.teammember.team.id)
 

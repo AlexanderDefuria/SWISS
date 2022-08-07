@@ -81,7 +81,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<th class="teamStick" style="z-index: 200">Number</th>
 						<th>Names</th>
 						<th class="matchStick" style="z-index: 200">Match #</th>
-						<th>Robot Present?</th>
+	    				<th>Robot Present?</th>
 						<th>Auto Route</th>
 						<th>Exit Tarmac</th>
 						<th>Auto Low</th>
@@ -120,7 +120,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <tr>
                             <td class="teamStick" style="z-index: 100">{{ match.team.number }}</td>
                             <td  style="background: gray"> {{ match.team.name }}</td>
-                            <td class="matchStick" style="z-index: 100">{{ match.match_number }}</td>
+                            <td class="matchStick" style="z-index: 100">
+                            {% if user.is_staff %}
+                                {% get_admin_url as admin %}
+                                <a href="{{admin}}entry/match/{{match.id}}/change/">
+                            {% endif %}
+                                {{ match.match_number }}
+                            {% if user.is_staff %}
+                                </a>
+                            {% endif %}
+                            </td>
                             <td>{{ match.on_field }}</td>
                             <td>{{ match.auto_route }}</td>
                             <td>{{ match.baseline }}</td>
