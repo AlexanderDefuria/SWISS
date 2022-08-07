@@ -88,7 +88,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</div>
 			</div>
             <div>
-                <a href="{% url 'entry:schedule_all' %}">ALL MATCHES</a>
+                {%  if 'all' in request.path_info %}
+                    <a href="{% url 'entry:schedule' %}">UPCOMING MATCHES</a>
+                {% else %}
+                    <a href="{% url 'entry:schedule_all' %}">ALL MATCHES</a>
+                {% endif %}
             </div>
 		</div>		
         <div class="scheduleContainer" style="flex-wrap: wrap; white-space: nowrap; justify-content: center">
