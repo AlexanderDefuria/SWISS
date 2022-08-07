@@ -51,11 +51,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				<div class="pillContainer">
                     <ul>
 		    			{% for team in team_list %}
-                            <li class="teamLink" data-content="{{ team.name }} {{ team.number }}">
-                                <div onclick="window.location='{% url 'entry:match_scout' team.id %}'"  class="teamnumberPill" style="background-color: {{team.colour}}; cursor: pointer;">
-                                    <p>{{ team.number }}</p>
-                                </div>
-                            </li>
+                            {% get_team_link team 'entry:match_scout' %}
 	    				{% endfor %}
                     </ul>
 				</div>
@@ -64,10 +60,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		{% else %}
 		<div style="display: flex; flex-wrap: wrap; justify-content: center">
 			{% for team in team_list %}
-			<div class="teamCardSelect teamLink" data-content="{{ team.name }} {{ team.number }}" style="height: auto" onclick="window.location='{% url 'entry:match_scout' team.id %}'">
-				<div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
-				<div class="teamnamePill"><p>{{ team.name }}</p></div>
-			</div>
+                {% get_team_card_select team 'entry:match_scout'  %}
 			{% endfor %}
 		</div>
 		{% endif %}
