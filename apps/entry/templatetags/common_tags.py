@@ -14,6 +14,16 @@ from apps.entry import views
 register = template.Library()
 
 
+@register.inclusion_tag("entry/sidebar.html", takes_context=True)
+def get_sidebar(context):
+    return {'user': context['user']}
+
+
+@register.inclusion_tag("entry/topbar.html")
+def get_topbar(image):
+    return {'image': image}
+
+
 @register.filter
 def modulo(num, val):
     return num % val == 0

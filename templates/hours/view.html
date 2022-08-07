@@ -21,16 +21,7 @@
 </head>
 
 <body>
-	<div class="topbar">
-		<div class="hamburgerButton" onClick="openNav()">
-			<button class="hamburgerButton" onClick="openNav()">☰</button>
-		</div>
-		<div class="swissLogo" id="swissLogo">
-			<a href="{% url 'entry:index' %}">
-			<img src="{{ MEDIA_URL }}{% static 'SwissIcon2x.png' %}" alt="SWISS Logo">
-			</a>
-		</div>
-	</div>
+{% get_topbar 'SwissIcon2x.png' %}
 	<div id="sideNav" class="sidebar">
 		<div>
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
