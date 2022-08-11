@@ -1,4 +1,5 @@
 import datetime
+from inspect import getframeinfo, currentframe
 from json import dumps
 
 from django.contrib.auth.decorators import login_required
@@ -13,29 +14,25 @@ from apps.hours.models import *
 from apps.entry.views import decode_ajax, validate_types
 
 
-class Index(generic.TemplateView):
-    login_url = 'entry:login'
-    template_name = 'hours/entry.html'
-
-
-class HoursAPI(generic.View):
-    # {
-    #     'UUID': Card UUID
-    # }
-    def post(self, request, *args, **kwargs):
+@csrf_exempt
+def hours_api_post(request):
+    if request.method == 'POST':
         try:
             log = Log()
             uuid = request.POST.get('UUID', 0)
-            log.user = Card.objects.get(uuid=uuid).user
-            log.datetime = datetime.datetime.now()
+            log.gremlin = Card.objects.get(uuid=uuid).user
             log.clean_and_save()
             return HttpResponse(status=200)
         except Exception as e:
             print(e)
+        return HttpResponse(status=500)
+    else:
         return HttpResponse(status=403)
 
-    def get(self, request, *args, **kwargs):
-        return HttpResponse(status=403)
+
+class Index(generic.TemplateView):
+    login_url = 'entry:login'
+    template_name = 'hours/entry.html'
 
 
 class EnterHours(LoginRequiredMixin, generic.TemplateView):

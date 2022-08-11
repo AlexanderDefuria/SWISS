@@ -36,7 +36,7 @@ class Log(models.Model):
     # Auto Fill
     # 0-Pending 1-Accepted 2-Rejected 3-Issue
     status = models.IntegerField(default=0, validators=[MaxValueValidator(2), MinValueValidator(0)])
-    datetime = models.DateField(auto_now=False, auto_now_add=True)
+    datetime = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     out = models.BooleanField(default=False)
     duration = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(24*60)])  # Minutes
     total = models.IntegerField(default=0, validators=[MinValueValidator(0)])  # Minutes
@@ -45,24 +45,30 @@ class Log(models.Model):
     gremlin = models.ForeignKey(Gremlin, on_delete=models.CASCADE)
 
     def clean_and_save(self, *args, **kwargs):
-        last = Log.objects.last()
+        last = Log.objects.filter(gremlin=self.gremlin).last()
 
-        if last.datetime.day is not self.datetime.day:
-            if Log.objects.count() % 2 is 1:
+        if last is None:
+            self.save()
+            return
+
+        if last.datetime.day != datetime.now().day:
+            if Log.objects.count() % 2 == 1:
                 # OUT entry across days (almost definitely forgot to clock out)
                 last.status = 3  # Mark as an Issue entry
                 last.save()
 
-        if Log.objects.count() % 2 is 0:
+        if Log.objects.count() % 2 == 0:
             # IN entry
+            self.total = last.total
             self.save(*args, **kwargs)  # Call the "real" save() method.
             return
-        elif Log.objects.count() % 2 is 1:
+        elif Log.objects.count() % 2 == 1:
             # OUT entry
-            duration_dt = self.datetime - last.datetime
+            duration_dt = datetime.now() - last.datetime
             self.duration = duration_dt.total_seconds() % 60  # To minutes
-            self.total += self.duration
+            self.total = self.duration + last.total
             self.out = True
+            self.save(*args, **kwargs)
             return
 
     def __str__(self):
