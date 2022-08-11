@@ -1,3 +1,4 @@
+import datetime
 from json import dumps
 
 from django.contrib.auth.decorators import login_required
@@ -12,12 +13,36 @@ from apps.hours.models import *
 from apps.entry.views import decode_ajax, validate_types
 
 
+class Index(generic.TemplateView):
+    login_url = 'entry:login'
+    template_name = 'hours/entry.html'
+
+
+class HoursAPI(generic.View):
+    # {
+    #     'UUID': Card UUID
+    # }
+    def post(self, request, *args, **kwargs):
+        try:
+            log = Log()
+            UUID = request.POST.get('UUID')
+            log.user = Card.objects.get(uuid=UUID).user
+            log.datetime = datetime.datetime.now()
+            log.save()
+            return HttpResponse(status=200)
+        except Exception as e:
+            print(e)
+        return HttpResponse(status=403)
+
+    def get(self, request, *args, **kwargs):
+        return HttpResponse(status=403)
+
+
 class EnterHours(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
     template_name = 'hours/entry.html'
 
     def post(self, request, *args, **kwargs):
-
         log = Log()
         log.minutes = int(request.POST.get('minutes', 0)) + int(request.POST.get('hours', 0)) * 60
         log.completedDate = request.POST.get('completedDate', ' ')

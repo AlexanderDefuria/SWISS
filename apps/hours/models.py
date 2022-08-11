@@ -1,5 +1,3 @@
-import datetime
-
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
@@ -19,18 +17,27 @@ class Mentor(models.Model):
         return self.user.username
 
 
+class Card(models.Model):
+    user = models.ForeignKey(Gremlin, on_delete=models.CASCADE)
+    uuid = models.UUIDField()
+
+    def __str__(self):
+        return self.uuid
+
+
 class Log(models.Model):
-    gremlin = models.ForeignKey(Gremlin, on_delete=models.CASCADE)
+    # Fill in later
     mentor = models.ForeignKey(Mentor, on_delete=models.PROTECT, null=True)
+    tasks = models.TextField(default="", null=True)
+
+    # Auto Fill
     # 0-Pending 1-Accepted 2-Rejected
     status = models.IntegerField(default=0, validators=[MaxValueValidator(2), MinValueValidator(0)])
     datetime = models.DateField(auto_now=False, auto_now_add=True)
-    minutes = models.IntegerField(default=0, validators=[MaxValueValidator(24*60), MinValueValidator(0)])
-    tasks = models.TextField(default="")
-    completedDate = models.TextField(default="")
+
+    # Required
+    gremlin = models.ForeignKey(Gremlin, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.gremlin.user.username + " " + str(self.datetime) + " " + str(self.minutes)
-
-
+        return self.gremlin.user.username + " " + str(self.datetime)
 
