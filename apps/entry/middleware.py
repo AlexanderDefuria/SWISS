@@ -50,7 +50,7 @@ class ValidateUser:
             print("\n")
             return HttpResponseRedirect(reverse_lazy('entry:index'))
 
-        if app == "hours" and view == "view":
+        if app == "hours" and view in ["view", "card"]:
             return response
 
         if view == "logout" or view == "login" or app == "media" or view == "register":
