@@ -25,10 +25,10 @@ class HoursAPI(generic.View):
     def post(self, request, *args, **kwargs):
         try:
             log = Log()
-            UUID = request.POST.get('UUID')
-            log.user = Card.objects.get(uuid=UUID).user
+            uuid = request.POST.get('UUID', 0)
+            log.user = Card.objects.get(uuid=uuid).user
             log.datetime = datetime.datetime.now()
-            log.save()
+            log.clean_and_save()
             return HttpResponse(status=200)
         except Exception as e:
             print(e)
