@@ -21,8 +21,8 @@ void loop() {
   doc["sensor"] = "gps";
   serializeJson(doc, payload);
   
-  String response = http.post("/hours/card", "{ 'UUID':'14466e66-b880-4b24-8e9b-e4ed69b38e85' }");
+  String response = http.post("/hours/card", "{ \"UUID\" : \"14466e66-b880-4b24-8e9b-e4ed69b38e85\" }");
   Serial.println(response);
 
-  delay(10000);
+  delay(1000000000);
 }

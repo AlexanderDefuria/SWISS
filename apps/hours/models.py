@@ -38,8 +38,8 @@ class Log(models.Model):
     status = models.IntegerField(default=0, validators=[MaxValueValidator(2), MinValueValidator(0)])
     datetime = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     out = models.BooleanField(default=False)
-    duration = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(24*60)])  # Minutes
-    total = models.IntegerField(default=0, validators=[MinValueValidator(0)])  # Minutes
+    duration = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(24*60)])  # Seconds
+    total = models.IntegerField(default=0, validators=[MinValueValidator(0)])  # Seconds
 
     # Required
     gremlin = models.ForeignKey(Gremlin, on_delete=models.CASCADE)
@@ -65,7 +65,7 @@ class Log(models.Model):
         elif Log.objects.count() % 2 == 1:
             # OUT entry
             duration_dt = datetime.now() - last.datetime
-            self.duration = duration_dt.total_seconds() % 60  # To minutes
+            self.duration = duration_dt.total_seconds() % 60  # To Seconds
             self.total = self.duration + last.total
             self.out = True
             self.save(*args, **kwargs)

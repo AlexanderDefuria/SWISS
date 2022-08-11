@@ -1,4 +1,5 @@
 import datetime
+import json
 from inspect import getframeinfo, currentframe
 from json import dumps
 
@@ -16,10 +17,13 @@ from apps.entry.views import decode_ajax, validate_types
 
 @csrf_exempt
 def hours_api_post(request):
+    # {
+    #     "UUID": "14466e66-b880-4b24-8e9b-e4ed69b38e85"
+    # }
     if request.method == 'POST':
         try:
             log = Log()
-            uuid = request.POST.get('UUID', 0)
+            uuid = json.loads(request.body)['UUID']
             log.gremlin = Card.objects.get(uuid=uuid).user
             log.clean_and_save()
             return HttpResponse(status=200)
