@@ -1,8 +1,14 @@
 ## HARDWARE
-
-This is the hardware for the hours app.
+This is the hardware for the hours app. 
 
 It runs on ESP32-C3 using the PN532 NFC RFID module.
+
+### Plan
+1. Tap NFC/RFID tag to PN532
+2. Read UUID from card
+3. POST UUID to SWISS Hours
+4. SWISS returns status (in/out/error) 
+5. Display status on integrated RGB LED
 
 ### Docs
 - [PN532 NXP Datasheet](https://www.nxp.com/docs/en/nxp/data-sheets/PN532_C1.pdf)
