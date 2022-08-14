@@ -90,6 +90,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     {% if match.match_type == "Playoff" %}
 					<a href="{% url 'entry:schedule_details' match.pk %}" class="scheduleLink" id="{{ match.match_number }}" name="{{ match.blue1 }} {{ match.blue2 }} {{ match.blue3 }} {{ match.red1 }} {{ match.red2 }} {{ match.red3 }}">
                         <div class="scheduleTile">
+                            {% if match.completed %}
+{#                                checkmark div     #}
+                            {% endif %}
+
                             <div style="margin-right: 20px;">
                                 <h3>P-{{ match.match_number }}</h3>
                             </div>
