@@ -26,29 +26,23 @@ void setup() {
 void loop() {
   uint8_t uuid[16]; // Buffer to try and find the uuid (128 bits or 16 octets)
 
-  boolean success;
+  boolean success = false;
 
   while (!connected)
     connected = connect();
 
   if (connected) {
-     success = readUUID();
-     if (success) {
-        DynamicJsonDocument doc(32);
-        String payload = "";
+        while (!success) {
+            success = readUUID(*uuid);
+            if (success) {
+                postData(*uuid)
+            }
+        }
 
-        doc["sensor"] = "gps";
-        serializeJson(doc, payload);
-
-        String response = http.post("/hours/card", "{ \"UUID\" : \"14466e66-b880-4b24-8e9b-e4ed69b38e85\" }");
-        Serial.println(response);
-
-        delay(100);
-     }
   }
 }
 
-bool readUUID() {
+bool readUUID(uint8_t data[16]) {
   // Wait for an ISO14443A type cards (Mifare, etc.).  When one is found
   // 'uid' will be populated with the UID, and uidLength will indicate
   // if the uid is 4 bytes (Mifare Classic) or 7 bytes (Mifare Ultralight)
@@ -58,7 +52,6 @@ bool readUUID() {
   uint8_t currentblock;                     // Counter to keep track of which block we're on
   bool authenticated = false;               // Flag to indicate if the sector is authenticated
   bool success = false;
-  uint8_t data[16];                         // Array to store block data during reads
 
   uint8_t keyuniversal[6] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }; // Keyb on NDEF and Mifare Classic should be the same
 
@@ -80,8 +73,6 @@ bool readUUID() {
     Serial.println("");
 
     if (uidLength != 4) return false;
-
-
     if (uidLength == 4) {
       Serial.println("Seems to be a Mifare Classic card (4 byte UID)");
 
@@ -89,8 +80,9 @@ bool readUUID() {
         if (nfc.mifareclassic_IsFirstBlock(currentblock)) authenticated = false;  // Check if this is a new block so that we can reauthenticate
         if (!authenticated) {  // If the sector hasn't been authenticated, do so first
           // Starting of a new sector ... try to to authenticate
-          Serial.print("------------------------Sector ")
-          ;Serial.print(currentblock/4, DEC);Serial.println("-------------------------");
+          Serial.print("------------------------Sector ");
+          Serial.print(currentblock/4, DEC);
+          Serial.println("-------------------------");
           if (currentblock == 0) {
               // This will be 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF for Mifare Classic (non-NDEF!)
               // or 0xA0 0xA1 0xA2 0xA3 0xA4 0xA5 for NDEF formatted cards using key a,
@@ -130,8 +122,6 @@ bool readUUID() {
         }
       }
     }
-
-    delay(1000);
     connected = connect();
   } else {
     // PN532 probably timed out waiting for a card
@@ -143,30 +133,45 @@ bool readUUID() {
 
 
 bool connect() {
-  nfc.begin();
-  // Connected, show version
-  uint32_t versiondata = nfc.getFirmwareVersion();
-  if (! versiondata) {
-    Serial.println("PN53x card not found!");
-    return false;
-  }
+    nfc.begin();
+    // Connected, show version
+    uint32_t versiondata = nfc.getFirmwareVersion();
+    if (! versiondata) {
+        Serial.println("PN53x card not found!");
+        return false;
+    }
 
-  //port
-  Serial.print("Found chip PN5"); Serial.println((versiondata >> 24) & 0xFF, HEX);
-  Serial.print("Firmware version: "); Serial.print((versiondata >> 16) & 0xFF, DEC);
-  Serial.print('.'); Serial.println((versiondata >> 8) & 0xFF, DEC);
+    //port
+    Serial.print("Found chip PN5"); Serial.println((versiondata >> 24) & 0xFF, HEX);
+    Serial.print("Firmware version: "); Serial.print((versiondata >> 16) & 0xFF, DEC);
+    Serial.print('.'); Serial.println((versiondata >> 8) & 0xFF, DEC);
 
-  // Set the max number of retry attempts to read from a card
-  // This prevents us from waiting forever for a card, which is
-  // the default behaviour of the PN532.
-  // I think we want to wait forever tbh.
-  // nfc.setPassiveActivationRetries(0xFF);
+    // Set the max number of retry attempts to read from a card
+    // This prevents us from waiting forever for a card, which is
+    // the default behaviour of the PN532.
+    // I think we want to wait forever tbh.
+    // nfc.setPassiveActivationRetries(0xFF);
 
-  // configure board to read RFID tags
-  nfc.SAMConfig();
+    // configure board to read RFID tags
+    nfc.SAMConfig();
 
-  Serial.println("Waiting for card (ISO14443A Mifare)...");
-  Serial.println("");
+    Serial.println("Waiting for card (ISO14443A Mifare)...");
+    Serial.println("");
 
-  return true;
+    return true;
+}
+
+void postData(uint8_t data[]) {
+    DynamicJsonDocument doc(32);
+    String payload = "";
+
+    doc["UUID"] = "";
+    for (int i = 0; i < 16; i++) {
+        doc["UUID"] = doc["UUID"] + i.str()
+    }
+
+    serializeJson(doc, payload);
+
+    String response = http.post("/hours/card", "{ \"UUID\" : \"14466e66-b880-4b24-8e9b-e4ed69b38e85\" }");
+    Serial.println(response);
 }
