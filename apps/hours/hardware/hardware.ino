@@ -13,10 +13,9 @@ volatile bool connected = false;
 // Network info
 char* ssid = "wanderlust807";
 char* password = "Its506VFast!";
-
 String baseURL = "https://webhook.site/3fea52c4-898d-4c75-b2cb-15af71922012";
-
 EasyHTTP http(ssid, password);
+
 
 void setup() {
   Serial.begin(115200);
@@ -25,14 +24,12 @@ void setup() {
 }
 
 void loop() {
-  uint8_t uuid[16];                         // Buffer to try and find the uuid (128 bits or 16 octets)
+  uint8_t uuid[16]; // Buffer to try and find the uuid (128 bits or 16 octets)
 
   boolean success;
-  // Buffer to store the UID
 
-  while (!connected) {
+  while (!connected)
     connected = connect();
-  }
 
   if (connected) {
      success = readUUID();
@@ -49,12 +46,7 @@ void loop() {
         delay(100);
      }
   }
-    
-
-
 }
-
-
 
 bool readUUID() {
   // Wait for an ISO14443A type cards (Mifare, etc.).  When one is found
@@ -91,67 +83,46 @@ bool readUUID() {
 
 
     if (uidLength == 4) {
-
-      // We probably have a Mifare Classic card ...
       Serial.println("Seems to be a Mifare Classic card (4 byte UID)");
 
-      // Now we try to go through all 16 sectors (each having 4 blocks)
-      // authenticating each sector, and then dumping the blocks
-      for (currentblock = 0; currentblock < 64; currentblock++)
-      {
-        // Check if this is a new block so that we can reauthenticate
-        if (nfc.mifareclassic_IsFirstBlock(currentblock)) authenticated = false;
-
-
-        // If the sector hasn't been authenticated, do so first
-        if (!authenticated)
-        {
+      for (currentblock = 0; currentblock < 64; currentblock++) {  // Try to go through all 16 sectors (each having 4 blocks
+        if (nfc.mifareclassic_IsFirstBlock(currentblock)) authenticated = false;  // Check if this is a new block so that we can reauthenticate
+        if (!authenticated) {  // If the sector hasn't been authenticated, do so first
           // Starting of a new sector ... try to to authenticate
-          Serial.print("------------------------Sector ");Serial.print(currentblock/4, DEC);Serial.println("-------------------------");
-          if (currentblock == 0)
-          {
+          Serial.print("------------------------Sector ")
+          ;Serial.print(currentblock/4, DEC);Serial.println("-------------------------");
+          if (currentblock == 0) {
               // This will be 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF for Mifare Classic (non-NDEF!)
               // or 0xA0 0xA1 0xA2 0xA3 0xA4 0xA5 for NDEF formatted cards using key a,
               // but keyb should be the same for both (0xFF 0xFF 0xFF 0xFF 0xFF 0xFF)
               success = nfc.mifareclassic_AuthenticateBlock (uid, uidLength, currentblock, 1, keyuniversal);
-          }
-          else
-          {
+          } else {
               // This will be 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF for Mifare Classic (non-NDEF!)
               // or 0xD3 0xF7 0xD3 0xF7 0xD3 0xF7 for NDEF formatted cards using key a,
               // but keyb should be the same for both (0xFF 0xFF 0xFF 0xFF 0xFF 0xFF)
               success = nfc.mifareclassic_AuthenticateBlock (uid, uidLength, currentblock, 1, keyuniversal);
           }
-          if (success)
-          {
+
+          if (success) {
             authenticated = true;
-          }
-          else
-          {
+          } else {
             Serial.println("Authentication error");
           }
         }
 
-        if (authenticated) {
-                    // Dump the data into the 'data' array
+        if (authenticated) { // Dump the data into the 'data' array
           success = nfc.mifareclassic_ReadDataBlock(currentblock, data);
-          if (success)
-          {
+          if (success) {
             // Read successful
             Serial.print("Block ");Serial.print(currentblock, DEC);
-            if (currentblock < 10)
-            {
+            if (currentblock < 10) {
               Serial.print("  ");
-            }
-            else
-            {
+            } else {
               Serial.print(" ");
             }
             // Dump the raw data
             nfc.PrintHexChar(data, 16);
-          }
-          else
-          {
+          } else {
             // Oops ... something happened
             Serial.print("Block ");Serial.print(currentblock, DEC);
             Serial.println(" unable to read this block");
@@ -160,15 +131,11 @@ bool readUUID() {
       }
     }
 
-
-    
     delay(1000);
     connected = connect();
-  }
-  else
-  {
+  } else {
     // PN532 probably timed out waiting for a card
-    // Serial.println("Timed out waiting for a card");
+    Serial.println("Timed out waiting for a card");
   }
 
   return false;
@@ -176,13 +143,10 @@ bool readUUID() {
 
 
 bool connect() {
-  
   nfc.begin();
-
   // Connected, show version
   uint32_t versiondata = nfc.getFirmwareVersion();
-  if (! versiondata)
-  {
+  if (! versiondata) {
     Serial.println("PN53x card not found!");
     return false;
   }
@@ -195,7 +159,8 @@ bool connect() {
   // Set the max number of retry attempts to read from a card
   // This prevents us from waiting forever for a card, which is
   // the default behaviour of the PN532.
-  nfc.setPassiveActivationRetries(0xFF);
+  // I think we want to wait forever tbh.
+  // nfc.setPassiveActivationRetries(0xFF);
 
   // configure board to read RFID tags
   nfc.SAMConfig();
