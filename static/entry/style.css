@@ -369,7 +369,7 @@ ul {
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
-.infoBox:hover { 
+.infoBox:hover {
 	border-color: #777;
 	border-radius: 25px;
 	box-shadow: 2px 5px 25px 2px #232323;
@@ -811,8 +811,9 @@ th {
 	transition: all 0.1s ease-in-out;
 }
 .changeTeam:hover {
-	border-color: #777;
+	background-color: #13161e;
 	border-radius: 25px;
+	border-color: #222734;
 }
 .teamDrawer {
 	padding-top: 20px;
