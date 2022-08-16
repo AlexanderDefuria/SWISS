@@ -1,5 +1,8 @@
 // Javascript file for various functions across ALL pages in SWISS. 
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 //Functions that control the Side Navbar on all pages
 function openNav() {
@@ -13,16 +16,17 @@ function closeNav() {
 
 //Function that controls the bottom bar
 function expandBottomBar() {
+	document.getElementById("bottomBarContent").style.visibility = "visible";
 	document.getElementById("bottomBar").style.height = "auto";
 	document.getElementById("bottomBarButton").style.height = "80px";
 	document.getElementById("bottomBarButton").onclick = function () {collapseBottomBar()};
-	document.getElementById("bottomBarContent").style.visibility = "visible";
 	document.getElementById("bodyContainer").style.paddingBottom = "0px";
 }	
-function collapseBottomBar() {
+async function collapseBottomBar() {
+	document.getElementById("bottomBarContent").style.visibility = "hidden";
+	await sleep(200);
 	document.getElementById("bottomBar").style.height = "30px";
 	document.getElementById("bottomBarButton").style.height = "30px";
-	document.getElementById("bottomBarContent").style.visibility = "hidden";
 	document.getElementById("bodyContainer").style.paddingBottom = "20px";
 	document.getElementById("bottomBarButton").onclick = function () {expandBottomBar()};
 }
@@ -32,8 +36,8 @@ function collapseBottomBar() {
 
 function closeAlertBar() {
     setTimeout(function () {
-        x.className = "hide";
         setTimeout(function(){ x.className = x.className.replace("hide", ""); }, 450);
+        x.className = "hide";
     }) 
 }
 
@@ -98,9 +102,9 @@ function logFilter(field) {
 // Function that filters schedule elements on Match Schedule page by match number
 
 
-function scheduleFilter(field) {
+async function scheduleFilter(field) {
 	let filter = document.getElementById(field).value.toString();
-	let all = document.getElementsByClassName('scheduleLink')
+	let all = document.getElementsByClassName('scheduleLink');
 	if (field === "matchNumber") {
 		for (let i = 0; i < all.length; i++) {
 			if (all[i].id.toString().indexOf(filter) > -1)
@@ -115,7 +119,6 @@ function scheduleFilter(field) {
 				all[i].style.display = "";
 			else
 				all[i].style.display = "none";
-
 		}
 	}
 	document.getElementsByClassName("teamChip")
