@@ -22,6 +22,7 @@
 	font-size: 21px;
 	transition: all 0.1s ease-in-out;
 	user-select: none;
+	z-index: 2;
 }
 .formItem:hover{ 	
 	background-color: #333;
@@ -489,7 +490,16 @@ input:-webkit-autofill:focus {
 	height: 35px; position: relative; top: 5px; left: -5px
 }
 
+@keyframes squeeze {
+	0% {opacity: 1}
+	25% {margin-bottom: 10px;}
+	50% {opacity: 0;}
+	100% {margin-bottom: -60px; opacity: 0}
+}
 
+.hidden {
+	animation: squeeze 0.5s forwards 0.1s;
+}
 	
 	
 	

@@ -212,7 +212,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				}
             </script>
 			-->
-			
 <!--	OFFENSE		-->
 			
 			<h1>TELEOP - OFFENSE</h1>
@@ -275,9 +274,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				function hideDefendedBy() {
 					var x = document.getElementById("under_defense").value;
 					if (x != 0){
-						document.getElementById("defendedByDiv").style.display="flex";
+						document.getElementById("defendedByDiv").classList.remove("hidden");
 					} else {
-						document.getElementById("defendedByDiv").style.display="none";
+						document.getElementById("defendedByDiv").classList.add("hidden");
 					}
 				}
 			</script>
@@ -319,73 +318,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</div>
 			</div>
 			<script>
-				function hideDefenseStuff() {
+				async function hideDefenseStuff() {
 					var x = document.getElementById("playedDefense_false").checked;
 					if (x != true){
-						document.getElementById("teamDefendedDiv").style.display="flex";
-						document.getElementById("defenseQualityDiv").style.display="flex";
+						document.getElementById("teamDefendedDiv").classList.remove("hidden");
+						document.getElementById("defenseQualityDiv").classList.remove("hidden");
 					} else {
-						document.getElementById("teamDefendedDiv").style.display="none";
+						document.getElementById("teamDefendedDiv").classList.add("hidden");
+						document.getElementById("defenseQualityDiv").classList.add("hidden");
+						await sleep(500);
 						document.getElementById("teamDefendedDiv").value="0";
 						document.getElementById("defense_rating").value="0";
-						document.getElementById("defenseQualityDiv").style.display="none";
 					}
 				}
 			</script>
-			<!-- 
-			<div class="formItem" id="defense_timer">
-				<label for="defense_time">Defense Timer - Coming Soon</label>
-				<div>
-					<input type="number" name="defense_time" id="defense_time" pattern="[-+]?[0-9]*[.,]?[0-9]+" readonly>
-					<input type="button" value="&#9658;" onclick="startstoptimer()">
-					<input type="button" value="&#x21bb;" onclick="resettimer()">
-				</div>
-			<script>
-				var millisec = 0;
-				var seconds = 0;
-				var timer;
-
-				function display(){
-
-				  if (millisec>=9){
-					 millisec=0
-					 seconds+=1
-				  }
-				  else
-					 millisec+=1
-					 document.getElementById('defense_time').value = seconds + "." + millisec;
-					 timer = setTimeout("display()",100);
-				  }
-
-				function starttimer() {
-
-				  if (timer > 0) {
-					return;
-				  }
-				  display();	
-				}
-				function stoptimer() {
-				  clearTimeout(timer);
-				  timer = 0;
-				}
-
-				function startstoptimer() {
-				  if (timer > 0) {
-					 clearTimeout(timer);
-					 timer = 0;
-				  } else {
-					 display();
-				  }
-				}
-
-				function resettimer() {
-					stoptimer();
-					millisec = 0;
-					seconds = 0;
-				}
-				</script>	
-			</div>
--->
 			<div class="formItem" id="teamDefendedDiv">
 				<label for="team_defended">Team Defended</label>
 				<input type="number" name="team_defended" id="team_defended" placeholder="Team #" min="0" max="9999" autocomplete="off">
