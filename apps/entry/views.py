@@ -478,8 +478,8 @@ def login(request):
 
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
-        print(username)
-        print(password)
+        #print(username)
+        #print(password)
         user = auth.authenticate(request, username=username, password=password)
 
         print(user)
@@ -809,10 +809,16 @@ class Registration(generic.TemplateView):
         if request.POST.get('team_number'):
             user.teammember = TeamMember()
             user.teammember.team = Team.objects.get(id=make_int(request.POST.get('team_number')))
-            if request.POST.get('team_reg_id')[:6] != str(user.teammember.team.reg_id)[:6]:
-                return HttpResponse(reverse_lazy('entry:register'))
-            user.save()
-            user.teammember.save()
+            # If the team has users. TODO Can I optimize this query?
+            if User.objects.all().filter(teammember__team_id__exact=user.teammember.team).exists():
+                # Validate uuid and TODO login
+                if request.POST.get('team_reg_id').strip()[:6] != str(user.teammember.team.reg_id)[:6]:
+                    return HttpResponse(reverse_lazy('entry:register'))
+            # Instantiate new team - Temp Disabled using 'False and'
+            elif False and request.POST.get('team_reg_id') == "register_first_team_user" + str(user.teammember.team.reg_id)[:6]:
+                user.teammember.position = 'LS'
+        else:
+            return HttpResponse(reverse_lazy('entry:register'))
 
         if request.POST.get('password') == request.POST.get('password_validate'):
             user.set_password(request.POST.get('password'))
