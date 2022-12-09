@@ -809,13 +809,15 @@ class Registration(generic.TemplateView):
         if request.POST.get('team_number'):
             user.teammember = TeamMember()
             user.teammember.team = Team.objects.get(id=make_int(request.POST.get('team_number')))
+
+            print(user.teammember.team)
             # If the team has users. TODO Can I optimize this query?
             if User.objects.all().filter(teammember__team_id__exact=user.teammember.team).exists():
                 # Validate uuid and TODO login
                 if request.POST.get('team_reg_id').strip()[:6] != str(user.teammember.team.reg_id)[:6]:
                     return HttpResponse(reverse_lazy('entry:register'))
             # Instantiate new team - Temp Disabled using 'False and'
-            elif False and request.POST.get('team_reg_id') == "register_first_team_user" + str(user.teammember.team.reg_id)[:6]:
+            else: #if False and request.POST.get('team_reg_id') == "register_first_team_user" + str(user.teammember.team.reg_id)[:6]:
                 user.teammember.position = 'LS'
         else:
             return HttpResponse(reverse_lazy('entry:register'))
@@ -834,6 +836,7 @@ class Registration(generic.TemplateView):
         user.email = request.POST.get('email')
 
         user.save()
+        user.teammember.save()
 
         return HttpResponseRedirect(reverse_lazy('entry:update_fields'))
 
