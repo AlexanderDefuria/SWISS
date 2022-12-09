@@ -167,7 +167,6 @@ if USE_MEDIA_SPACES:
     # public media settings
     PUBLIC_MEDIA_LOCATION = 'media'
     MEDIA_URL = '%s%s' % (AWS_S3_ENDPOINT_URL, AWS_MEDIA_LOCATION)
-    print(MEDIA_URL)
     DEFAULT_FILE_STORAGE = 'FRC-Scouting.storage_backends.MediaStorage'
 
 else:
@@ -183,7 +182,6 @@ if USE_STATIC_SPACES:
         os.path.join(BASE_DIR, "media/static"),
     ]
     STATIC_URL = '%s%s' % (AWS_S3_ENDPOINT_URL, AWS_STATIC_LOCATION)
-    print(STATIC_URL)
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 else:
     # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -192,3 +190,7 @@ else:
         os.path.join(BASE_DIR, "static"),
         os.path.join(BASE_DIR, "media/static"),
     ]
+
+print("MEDIA_URL:     " + MEDIA_URL)
+print("STATIC_URL:    " + STATIC_URL)
+print("DATABASE NAME: " + DATABASES.get('default').get('NAME'))
