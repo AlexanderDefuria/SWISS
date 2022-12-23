@@ -15,6 +15,9 @@ import json
 import boto3
 from django.core.exceptions import ImproperlyConfigured
 
+from django.forms.renderers import TemplatesSetting
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -56,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.forms',
     'apps.entry.apps.EntryConfig',
     'apps.promotional.apps.PromotionalConfig',
     'apps.hours.apps.HoursConfig',
@@ -93,6 +97,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'FRC-Scouting.wsgi.application'
+
+
+# Forms
+class CustomFormRenderer(TemplatesSetting):
+    form_template_name = "entry/components/forms/form_snippet.html"
+
+FORM_RENDERER = "FRC-Scouting.settings.CustomFormRenderer"
+
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases

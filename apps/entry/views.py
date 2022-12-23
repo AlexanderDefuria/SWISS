@@ -24,6 +24,7 @@ from django.contrib.auth.decorators import login_required
 from apps.entry.graphing import *
 from apps.entry.templatetags.common_tags import *
 from apps import importFRC
+from apps.entry.forms import TestForm
 
 register = Library
 
@@ -755,6 +756,12 @@ class Experimental(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
     model = Team
     template_name = 'entry/experimental.html'
+
+    def get(self, request, *args, **kwargs):
+        form = TestForm()
+        rendered_form = form.render()
+        context = {'form': rendered_form}
+        return render(request, 'entry/experimental.html', context)
 
 
 class About(LoginRequiredMixin, generic.TemplateView):
