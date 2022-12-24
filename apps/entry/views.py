@@ -1,19 +1,15 @@
-import time
-from multiprocessing import context
 import os
 import ast
 import re
 from datetime import datetime
 import json
 
-from PIL import Image
 from openpyxl import Workbook
 
 from django.core import serializers
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, HttpResponse, Http404, JsonResponse
-from django.urls import reverse_lazy
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
 from django_ajax.decorators import ajax

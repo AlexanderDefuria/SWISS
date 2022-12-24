@@ -1,0 +1,14 @@
+{% load i18n static common_tags %}
+
+{% regroup form by field.group as field_groups %}
+{% for field_group in field_groups %}
+    {% if not forloop.first %}
+    <h1 id="{{ field_group.grouper }}">{{ field_group.grouper }}</h1>
+    {% endif %}
+    {% for field in field_group.list %}
+        <div class="formItem">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+        </div>
+    {% endfor %}
+{% endfor %}

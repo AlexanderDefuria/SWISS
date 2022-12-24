@@ -101,7 +101,7 @@ WSGI_APPLICATION = 'FRC-Scouting.wsgi.application'
 
 # Forms
 class CustomFormRenderer(TemplatesSetting):
-    form_template_name = "entry/components/forms/form_snippet.html"
+    form_template_name = "entry/components/forms/experimental.html"
 
 FORM_RENDERER = "FRC-Scouting.settings.CustomFormRenderer"
 
