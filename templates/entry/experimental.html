@@ -31,6 +31,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	{% get_sidebar %}
 
     <div class="bodyContainer bodyBackground" id="bodyContainer">
+        <div class="heroContent" id="heroSpace">
+			<div class="stickyChip">
+				<div class="teamnumberPill" style="background-color: {{team.colour}} #34ce57">
+						<p>{{ team.number }}1111</p>
+				</div>
+				<div class="teamnamePill">
+						<p>{{ team.name }}Placeholder</p>
+				</div>
+			</div>
+		</div>
+
         <div class="formContainer" name="mainForm" id="mainForm">
             {{ form }}
         </div>

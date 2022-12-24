@@ -1,10 +1,10 @@
 {% load i18n static common_tags %}
 
-<div class="ticker">
-    {% if widget.image %}
-    <img class="goalIcon" src="{{ MEDIA_URL }}{% static widget.image %}" alt="inner">
-    {% endif %}
-	<input type="button" onclick="decrementValue('{{ widget.name }}')" value="-">
-	<input name={{ widget.name }} id="{{ widget.name }}" type="number" min="0" max="100" value="0" readonly>
-    <input type="button" onclick="incrementValue('{{ widget.name }}')" value="+">
+<div>
+{% if widget.image %}
+<img class="goalIcon" src="{{ MEDIA_URL }}{% static widget.image %}" alt="inner">
+{% endif %}
+<input type="button" onclick="decrementValue('{{ widget.name }}')" value="-">
+<input name={{ widget.name }} id="{{ widget.name }}" type="number" min="0" max="100" value="0" readonly>
+<input type="button" onclick="incrementValue('{{ widget.name }}')" value="+">
 </div>

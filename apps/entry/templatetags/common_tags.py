@@ -119,12 +119,12 @@ def get_team_colour(team_number):
 def get_team_onfield(user, team_number):
     try:
         total = Match.objects.all().filter(team_id=team_number,
-                                             event=TeamSettings.objects.get(team=user.teammember.team).current_event)
+                                           event=TeamSettings.objects.get(team=user.teammember.team).current_event)
         present = total.filter(on_field=True).count()
         total = total.count()
         if total == 0:
             return 1
-        return int(present/total * 100)
+        return int(present / total * 100)
     except IndexError as e:
         return "NA"
 
@@ -242,7 +242,8 @@ def get_info(user, team, field, *args):
         if len(model.objects.all().filter(team_id=team.id,
                                           event_id=teamsettings.current_event.id,
                                           team_ownership=user.teammember.team.id,
-                                          event=TeamSettings.objects.get(team=user.teammember.team).current_event)) == 0:
+                                          event=TeamSettings.objects.get(
+                                              team=user.teammember.team).current_event)) == 0:
             return "No Data"
 
         if "dependant" in args:

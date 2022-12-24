@@ -4,6 +4,7 @@ import re
 from datetime import datetime
 import json
 
+from django.views.generic.edit import FormMixin
 from openpyxl import Workbook
 
 from django.core import serializers
@@ -20,7 +21,7 @@ from django.contrib.auth.decorators import login_required
 from apps.entry.graphing import *
 from apps.entry.templatetags.common_tags import *
 from apps import importFRC
-from apps.entry.forms import TestForm
+from apps.entry.forms import MatchScoutForm
 
 register = Library
 
@@ -155,8 +156,9 @@ def validate_match_scout(request, pk):
     # The parsing of the db to check if a team has played at a particular match already is done server side
     # The ajax post sends only the match number in a JSON file to comply with AJAX datatype specification
     # dumps() is to convert dictionary into JSON format for HttpResponse to keep it simple stupid
-
+    print("HIT")
     data = decode_ajax(request)
+    print(data)
 
     redo, data = validate_types(request, data, True)
 
@@ -202,7 +204,7 @@ def validate_types(request, data, reqlist):
 
         if not data.__contains__(field):
             logout(request)
-            print("logged out on: " + field)
+            print("logged out on: " + field) # TODO Note this is logging out need to update to work with forms now.
 
         try:
             alpha = True
@@ -667,10 +669,12 @@ class Index(LoginRequiredMixin, generic.TemplateView):
     model = Team
 
 
-class MatchScout(LoginRequiredMixin, generic.DetailView):
+class MatchScout(LoginRequiredMixin, FormMixin, generic.DetailView):
     login_url = 'entry:login'
     model = Team
     template_name = 'entry/matchscout.html'
+    form_class = MatchScoutForm
+    success_url = 'entry:match_scout_landing'
 
 
 class MatchScoutLanding(LoginRequiredMixin, generic.ListView):
@@ -754,7 +758,7 @@ class Experimental(LoginRequiredMixin, generic.TemplateView):
     template_name = 'entry/experimental.html'
 
     def get(self, request, *args, **kwargs):
-        form = TestForm()
+        form = MatchScoutForm()
         rendered_form = form.render()
         context = {'form': rendered_form}
         return render(request, 'entry/experimental.html', context)
