@@ -21,8 +21,7 @@
         {% else %}
             <div>
                 {% for field in group.list %}
-                    <div class="formItem">
-                        {{ field.errors }}
+                    <div class="formItem {% if field.errors %} invalid {% endif %}" >
                         {{ field.label_tag }}{{ field }}
                     </div>
                 {% endfor %}
@@ -31,6 +30,6 @@
     {% endfor %}
 {% endfor %}
 
-<div class="formItem" id="submit" onclick="validate('mainForm', true)">
-    <input name="submit" id="submitButton" type="submit" style="pointer-events: none">
+<div class="formItem" id="submit">
+    <button name="submit" id="submitButton" type="submit" >Submit</button>
 </div>

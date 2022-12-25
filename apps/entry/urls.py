@@ -7,8 +7,9 @@ urlpatterns = [
 
     path('matchscout/', views.MatchScoutLanding.as_view(), name='match_scout_landing'),
     path('matchscout/<slug:pk>/', views.MatchScout.as_view(), name='match_scout'),
-    path('matchscout/<slug:pk>/check/', views.validate_match_scout, name='validate_match_scout'),
-    path('matchscout/<slug:pk>/submit/', views.match_scout_submit, name='write_match_scout'),
+    # TODO Deprecated vv
+    # path('matchscout/<slug:pk>/check/', views.validate_match_scout, name='validate_match_scout'),
+    # path('matchscout/<slug:pk>/submit/', views.match_scout_submit, name='write_match_scout'),
 
     path('pitscout/', views.PitScoutLanding.as_view(), name='pit_scout_landing'),
     path('pitscout/<slug:pk>/', views.PitScout.as_view(), name='pit_scout'),

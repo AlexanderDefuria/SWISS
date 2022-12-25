@@ -186,7 +186,6 @@ function decrementValue(idminus) {
 }
 
 function registerChange() {
-	console.log();
 	window.navigator.vibrate(40);
 }
 

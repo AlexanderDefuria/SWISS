@@ -9,6 +9,7 @@
 <script src="{% static 'entry/jquery.min.js' %}"></script>
 <script src="{% static 'entry/validate.js' %}"></script>
 <script src="{% static 'entry/script.js' %}"></script>
+<script src="{% static 'entry/matchscout.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'entry/formstyle.css' %}">
@@ -53,7 +54,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</div>
 	</div>
 	<div>
-		<form action="{% url 'entry:write_match_scout' team.id %}" class="formContainer" method="post" name="mainForm" id="mainForm">
+		<form action="{% url 'entry:match_scout' team.id %}" class="formContainer" method="post" name="mainForm" id="mainForm">
             {% csrf_token %}
             {{ form }}
         </form>
@@ -62,74 +63,5 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<p id="snacktext">Default Text</p>
 	</div>
 	</div>
-	
-<script> 
-var modal = document.getElementById("myModal");
-var opn = document.getElementById("onField_false");
-var bad = document.getElementById("onFieldCancel");
-var good = document.getElementById("onFieldConfirm");
-var main = document.getElementById("mainForm");
-var modhead = document.getElementById("modal-header")
-var moddesc = document.getElementById("modal-desc")
-
-// When the user clicks on the button, open the modal
-opn.onclick = function() {
-	modal.style.visibility = "visible";
-	main.style.filter="blur(2px)";
-	const canVibrate = window.navigator.vibrate;
-	if (canVibrate) window.navigator.vibrate(40);
-    modhead.innerHTML="Are you sure the Robot is not Present?";
-    moddesc.innerHTML="Clicking yes will set all form values to ZERO and scroll you to the bottom of the page."
-}
-
-// When the user clicks on "no", close the modal
-bad.onclick = function() {
-	modal.style.visibility = "hidden";
-	document.getElementById("onField_false").checked = false;
-	document.getElementById("onField_true").checked = true;
-	main.style.filter="blur(0)";
-	const canVibrate = window.navigator.vibrate;
-	if (canVibrate) window.navigator.vibrate(40);
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-	modal.style.visibility = "hidden";
-	document.getElementById("onField_false").checked = false;
-	document.getElementById("onField_true").checked = true;
-	main.style.filter="blur(0)";
-	const canVibrate = window.navigator.vibrate
-	if (canVibrate) window.navigator.vibrate(40)
-  }
-}
-
-good.onclick = function() {
-	modal.style.visibility = "hidden";
-	const canVibrate = window.navigator.vibrate
-	if (canVibrate) window.navigator.vibrate(40)
-	main.style.filter="blur(0)";
-	document.getElementById("coordinate_x").value = "0";
-	document.getElementById("coordinate_y").value = "0";
-	document.getElementById("preloaded_ball_false").checked = true;
-	document.getElementById("autoRoute").value = "0";
-	document.getElementById("baseline_false").checked = true;
-	document.getElementById("auto_fouls").value = "0";
-	document.getElementById("auto_comment").value = "NOT PRESENT";
-	document.getElementById("intakeType").value = "0";
-	document.getElementById("under_defense").value = "0";
-	document.getElementById("offensive_fouls").value = "0";
-	document.getElementById("playedDefense_false").checked = true;
-	document.getElementById("defense_rating").value = "0";
-	document.getElementById("defense_fouls").value = "0";	
-	document.getElementById("pushRating").value = "0";
-	document.getElementById("lock_status").value = "0";
-	document.getElementById("endgame_action").value = "0";
-	document.getElementById("climb_attempts").value = "0";
-	document.getElementById("comment").value = "NOT PRESENT";
-	document.getElementById("disabled_true").checked = true;
-    setTimeout(() => { document.getElementById("submit").scrollIntoView({behavior: 'smooth'	}); }, 500);
-}
-</script>
 </body>
 </html>

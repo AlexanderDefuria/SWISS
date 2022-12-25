@@ -119,12 +119,10 @@ class Match(models.Model):
     # Teleop
     upper = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     lower = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    balls_collected = models.fields.SmallIntegerField(default=0,
-                                                      validators=[MaxValueValidator(100), MinValueValidator(0)])
     missed_balls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     intake_type = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     under_defense = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
-    defended_by = models.IntegerField(default=0)
+    defended_by = models.IntegerField(default=0, blank=True, null=True)
     offensive_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
 
     # Defense
@@ -132,7 +130,7 @@ class Match(models.Model):
     defense_time = models.IntegerField(default=0)
     defense_rating = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     defense_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(250), MinValueValidator(0)])
-    team_defended = models.IntegerField(default=0)
+    team_defended = models.IntegerField(default=0, blank=True, null=True)
     able_to_push = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
 
     # Climb
@@ -156,7 +154,7 @@ class Match(models.Model):
     team_ownership = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
 
     def __str__(self):
-        return self.team.name + "  Match: " + str(self.match_number)
+        return self.team.name + " Match: " + str(self.match_number) + " at " + str(self.event)
 
 
 class Pits(models.Model):

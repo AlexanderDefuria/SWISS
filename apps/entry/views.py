@@ -25,157 +25,168 @@ from apps.entry.forms import MatchScoutForm
 
 register = Library
 
+# Deprecated
+# @login_required(login_url='entry:login')
+# def match_scout_submit(request, pk):
+#     form = MatchScoutForm()
+#     if request.method == 'POST':
+#         form = MatchScoutForm(request.POST)
+#     elif request.method == 'POST':
+#         print(request)
+#
+#
+#
+#         team = Team.objects.get(id=pk)
+#         match = Match()
+#         match.team = team
+#         teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
+#         first_key = Event.objects.all().filter(id=make_int(teamsettings.current_event.id))[0].FIRST_key
+#
+#         match.event = Event.objects.get(FIRST_key=first_key)
+#         match_number = request.POST.get('matchNumber', -1)
+#         # match.match_number = match_number if match_number != '' else -1
+#
+#         # PRE MATCH
+#         match.on_field = request.POST.get('onField', True)
+#         try:
+#             match.auto_start_x = float(request.POST.get('coordinate_x', '0.0'))
+#             match.auto_start_y = float(request.POST.get('coordinate_y', '0.0'))
+#         except Exception as e:
+#             print(e)
+#             match.auto_start_x = 0
+#             match.auto_start_y = 0
+#
+#         match.preloaded_balls = request.POST.get('preloadedBalls', 1)
+#
+#         # AUTO
+#         match.auto_route = request.POST.get('autoRoute', 0)
+#         match.baseline = request.POST.get('baseline', False)
+#         match.upper_auto = request.POST.get('upper_auto', 0)
+#         match.lower_auto = request.POST.get('lower_auto', 0)
+#         match.missed_balls_auto = request.POST.get('missed_balls_auto', 0)
+#         match.auto_fouls = request.POST.get('auto_fouls', 0)
+#         match.auto_comment = request.POST.get('auto_comment', 'na')
+#
+#         # TELEOP
+#         match.lower = request.POST.get('lower', 0)
+#         match.upper = request.POST.get('upper', 0)
+#         match.missed_balls = request.POST.get('missed_balls', 0)
+#         match.intake_type = request.POST.get('intakeType', 0)
+#         match.under_defense = request.POST.get('under_defense', 0)
+#         defended_by = make_int(request.POST.get('defended_by', ''))
+#         match.defended_by = defended_by if defended_by != '' else -1
+#         match.offensive_fouls = request.POST.get('offensive_fouls', 0)
+#
+#         # DEFENSE
+#         match.defense_played = request.POST.get('playedDefense', False)
+#         match.defense_time = 0  # request.POST.get('defense_time', 0) TODO FIX THIS
+#         match.defense_rating = request.POST.get('defense_rating', 0)
+#         team_defended = make_int(request.POST.get('team_defended', ''))
+#         match.team_defended = team_defended if team_defended != '' else -1
+#         match.defense_fouls = request.POST.get('defenseFouls', 0)
+#         match.able_to_push = request.POST.get('pushRating', 0)
+#
+#         # CLIMB
+#         match.lock_status = request.POST.get('lock_status', 0)
+#         match.endgame_action = request.POST.get('endgame_action', 0)
+#         match.climb_time = 0  # request.POST.get('climb_time', 0) TODO FIX THIS
+#         match.climb_attempts = make_int(request.POST.get('climb_attempts', 0))
+#         match.climb_comments = request.POST.get('climb_comments', "na")
+#
+#         # COMMENTS AND RANDOM IDEAS
+#         match.fouls_hp = request.POST.get('humanFouls', 0)
+#         match.fouls_driver = request.POST.get('driverFouls', 0)
+#         match.yellow_card = True if request.POST.get('cardFouls', '') != '' else False
+#         match.yellow_card_description = request.POST.get('cardFouls', 'na')
+#
+#         match.scouter_name = request.user.username
+#         match.comment = request.POST.get('comment', 'na')
+#         match.team_ownership = request.user.teammember.team
+#         print(match.match_number)
+#         print(match.event)
+#         schedule = Schedule.objects.get(match_number=match.match_number, event=match.event)
+#
+#         if schedule:
+#             schedule.completed = True
+#             schedule.save()
+#
+#         # GOUDA POINT CALCS
+#         print("GOUDA v")
+#         gouda = 100
+#         gouda += 0 if match.on_field else -15
+#         print(0 if match.on_field else -15)
+#         gouda += 5 * match.auto_route
+#         gouda += 5 if match.baseline else 0
+#         print(gouda)
+#         gouda += 4 * make_int(match.upper_auto)
+#         gouda += 2 * make_int(match.lower_auto)
+#         gouda += -0.5 * make_int(match.missed_balls_auto)
+#         gouda += -6 * make_int(match.auto_fouls)
+#         gouda += 2 * make_int(match.upper)
+#         gouda += 1 * make_int(match.lower)
+#         gouda += -0.5 * make_int(match.missed_balls)
+#         gouda += 5 * make_int(match.intake_type)
+#         gouda += (0, -5, 10)[make_int(match.under_defense)]
+#         gouda += -6 * make_int(match.offensive_fouls)
+#         gouda += 5 if make_int(match.defense_played) else 0
+#         gouda += make_int(match.defense_played) ** 2
+#         gouda += -6 * make_int(match.defense_fouls)
+#         gouda += (0, -5, 10)[make_int(match.able_to_push)]
+#         gouda += make_int(match.endgame_action) * (0.5 if make_int(match.lock_status) == 1 or make_int(match.lock_status) == 2 else 1)
+#         gouda += (0, 4, 6, 10, 15)[make_int(match.endgame_action)]
+#         gouda += 10*(1/make_int(match.climb_attempts))
+#         gouda += (0, -3, -10)[make_int(match.fouls_hp)]
+#         gouda += (0, -3, -10)[make_int(match.fouls_driver)]
+#         gouda += -15 if make_int(match.disabled )else 0
+#
+#         print(gouda)
+#         match.gouda = gouda
+#
+#         try:
+#             match.save()
+#             print('Match Scout Submission Success')
+#         except Exception as e:
+#             print(e)
+#
+#         return HttpResponseRedirect(reverse_lazy('entry:match_scout_landing'))
+#
+#
+#     return render(request, 'entry/matchscout.html', {'form': form, 'pk': pk})
+#
+#     # else:
+#     #     print('Match Scout Submission Fail')
+#     #     return HttpResponseRedirect(reverse_lazy('entry:match_scout_landing'))
+#
 
-@login_required(login_url='entry:login')
-def match_scout_submit(request, pk):
-    if request.method == 'POST':
-        print(request)
-
-        team = Team.objects.get(id=pk)
-        match = Match()
-        match.team = team
-        teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
-        first_key = Event.objects.all().filter(id=make_int(teamsettings.current_event.id))[0].FIRST_key
-
-        match.event = Event.objects.get(FIRST_key=first_key)
-        match_number = request.POST.get('matchNumber', -1)
-        match.match_number = match_number if match_number != '' else -1
-
-        # PRE MATCH
-        match.on_field = request.POST.get('onField', True)
-        try:
-            match.auto_start_x = float(request.POST.get('coordinate_x', '0.0'))
-            match.auto_start_y = float(request.POST.get('coordinate_y', '0.0'))
-        except Exception as e:
-            print(e)
-            match.auto_start_x = 0
-            match.auto_start_y = 0
-
-        match.preloaded_balls = request.POST.get('preloadedBalls', 1)
-
-        # AUTO
-        match.auto_route = request.POST.get('autoRoute', 0)
-        match.baseline = request.POST.get('baseline', False)
-        match.upper_auto = request.POST.get('upper_auto', 0)
-        match.lower_auto = request.POST.get('lower_auto', 0)
-        match.missed_balls_auto = request.POST.get('missed_balls_auto', 0)
-        match.auto_fouls = request.POST.get('auto_fouls', 0)
-        match.auto_comment = request.POST.get('auto_comment', 'na')
-
-        # TELEOP
-        match.lower = request.POST.get('lower', 0)
-        match.upper = request.POST.get('upper', 0)
-        match.missed_balls = request.POST.get('missed_balls', 0)
-        match.intake_type = request.POST.get('intakeType', 0)
-        match.under_defense = request.POST.get('under_defense', 0)
-        defended_by = make_int(request.POST.get('defended_by', ''))
-        match.defended_by = defended_by if defended_by != '' else -1
-        match.offensive_fouls = request.POST.get('offensive_fouls', 0)
-
-        # DEFENSE
-        match.defense_played = request.POST.get('playedDefense', False)
-        match.defense_time = 0  # request.POST.get('defense_time', 0) TODO FIX THIS
-        match.defense_rating = request.POST.get('defense_rating', 0)
-        team_defended = make_int(request.POST.get('team_defended', ''))
-        match.team_defended = team_defended if team_defended != '' else -1
-        match.defense_fouls = request.POST.get('defenseFouls', 0)
-        match.able_to_push = request.POST.get('pushRating', 0)
-
-        # CLIMB
-        match.lock_status = request.POST.get('lock_status', 0)
-        match.endgame_action = request.POST.get('endgame_action', 0)
-        match.climb_time = 0  # request.POST.get('climb_time', 0) TODO FIX THIS
-        match.climb_attempts = make_int(request.POST.get('climb_attempts', 0))
-        match.climb_comments = request.POST.get('climb_comments', "na")
-
-        # COMMENTS AND RANDOM IDEAS
-        match.fouls_hp = request.POST.get('humanFouls', 0)
-        match.fouls_driver = request.POST.get('driverFouls', 0)
-        match.yellow_card = True if request.POST.get('cardFouls', '') != '' else False
-        match.yellow_card_description = request.POST.get('cardFouls', 'na')
-
-        match.scouter_name = request.user.username
-        match.comment = request.POST.get('comment', 'na')
-        match.team_ownership = request.user.teammember.team
-
-        schedule = Schedule.objects.get(match_number=match.match_number, event=match.event)
-
-        if schedule:
-            schedule.completed = True
-            schedule.save()
-
-        # GOUDA POINT CALCS
-        # print("GOUDA v")
-        # gouda = 100
-        # gouda += 0 if match.on_field else -15
-        # print(0 if match.on_field else -15)
-        # gouda += 5 * match.auto_route
-        # gouda += 5 if match.baseline else 0
-        # print(gouda)
-        # gouda += 4 * make_int(match.upper_auto)
-        # gouda += 2 * make_int(match.lower_auto)
-        # gouda += -0.5 * make_int(match.missed_balls_auto)
-        # gouda += -6 * make_int(match.auto_fouls)
-        # gouda += 2 * make_int(match.upper)
-        # gouda += 1 * make_int(match.lower)
-        # gouda += -0.5 * make_int(match.missed_balls)
-        # gouda += 5 * make_int(match.intake_type)
-        # gouda += (0, -5, 10)[make_int(match.under_defense)]
-        # gouda += -6 * make_int(match.offensive_fouls)
-        # gouda += 5 if make_int(match.defense_played) else 0
-        # gouda += make_int(match.defense_played) ** 2
-        # gouda += -6 * make_int(match.defense_fouls)
-        # gouda += (0, -5, 10)[make_int(match.able_to_push)]
-        # gouda += make_int(match.endgame_action) * (0.5 if make_int(match.lock_status) == 1 or make_int(match.lock_status) == 2 else 1)
-        # gouda += (0, 4, 6, 10, 15)[make_int(match.endgame_action)]
-        # gouda += 10*(1/make_int(match.climb_attempts))
-        # gouda += (0, -3, -10)[make_int(match.fouls_hp)]
-        # gouda += (0, -3, -10)[make_int(match.fouls_driver)]
-        # gouda += -15 if make_int(match.disabled )else 0
-
-        # print(gouda)
-        # match.gouda = gouda
-
-        try:
-            match.save()
-            print('Match Scout Submission Success')
-        except Exception as e:
-            print(e)
-
-        return HttpResponseRedirect(reverse_lazy('entry:match_scout_landing'))
-
-    else:
-        print('Match Scout Submission Fail')
-        return HttpResponseRedirect(reverse_lazy('entry:match_scout_landing'))
+# Deprecated
+# @ajax
+# @csrf_exempt
+# @login_required(login_url='entry:login')
+# def validate_match_scout(request, pk):
+#     # The parsing of the db to check if a team has played at a particular match already is done server side
+#     # The ajax post sends only the match number in a JSON file to comply with AJAX datatype specification
+#     # dumps() is to convert dictionary into JSON format for HttpResponse to keep it simple stupid
+#     print("HIT")
+#     data = decode_ajax(request)
+#     print(data)
+#
+#     redo, data = validate_types(request, data, True)
+#
+#     if data['matchNumber'][0] == 0:
+#         redo['matchNumber'] = True
+#
+#     teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
+#
+#     if Match.objects.filter(team_id=pk, event_id=teamsettings.current_event,
+#                             match_number=data['matchNumber'][0]).exists():
+#         # Check if there are already 6 teams that have played this match
+#         if Match.objects.filter(match_number=data['matchNumber'][0]).count() <= 6:
+#             redo['matchNumber'] = True
+#
+#     return HttpResponse(json.dumps(redo), content_type="application/json")
 
 
-@ajax
-@csrf_exempt
-@login_required(login_url='entry:login')
-def validate_match_scout(request, pk):
-    # The parsing of the db to check if a team has played at a particular match already is done server side
-    # The ajax post sends only the match number in a JSON file to comply with AJAX datatype specification
-    # dumps() is to convert dictionary into JSON format for HttpResponse to keep it simple stupid
-    print("HIT")
-    data = decode_ajax(request)
-    print(data)
-
-    redo, data = validate_types(request, data, True)
-
-    if data['matchNumber'][0] == 0:
-        redo['matchNumber'] = True
-
-    teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
-
-    if Match.objects.filter(team_id=pk, event_id=teamsettings.current_event,
-                            match_number=data['matchNumber'][0]).exists():
-        # Check if there are already 6 teams that have played this match
-        if Match.objects.filter(match_number=data['matchNumber'][0]).count() <= 6:
-            redo['matchNumber'] = True
-
-    return HttpResponse(json.dumps(redo), content_type="application/json")
-
-
+# TODO This should eventually be deprecated.
 def validate_types(request, data, reqlist):
     # TODO Add emoji validation in text fields
     reqfields = {}
@@ -675,6 +686,46 @@ class MatchScout(LoginRequiredMixin, FormMixin, generic.DetailView):
     template_name = 'entry/matchscout.html'
     form_class = MatchScoutForm
     success_url = 'entry:match_scout_landing'
+
+    @staticmethod
+    def post(request, pk, *args, **kwargs):
+        team_settings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
+
+        form = MatchScoutForm(request.POST, event=team_settings.current_event)
+        team = Team.objects.get(id=pk)
+        context = {'form': form, 'team': team}
+
+        if form.is_valid():
+            print("Valid Match Scout")
+            print(form.cleaned_data)
+            first_key = Event.objects.all().filter(id=make_int(team_settings.current_event.id))[0].FIRST_key
+
+            match = Match(**form.cleaned_data)
+            match.team = team
+            match.event = Event.objects.get(FIRST_key=first_key)
+            match.scouter_name = request.user.username
+            match.team_ownership = request.user.teammember.team
+            try:
+                match.save()
+                print('Match Scout Submission Success')
+            except Exception as e:
+                print(e)
+
+            try:
+                schedule = Schedule.objects.get(match_number=match.match_number, event=match.event)
+                schedule.completed = True
+                schedule.save()
+            except Schedule.DoesNotExist as e:
+                print("Schedule does not exist")
+            except Exception as e:
+                print("Could not update schedule")
+                print(e)
+
+            print(match)
+
+            return HttpResponseRedirect(reverse_lazy('entry:match_scout_landing'))
+
+        return render(request, 'entry/matchscout.html', context)
 
 
 class MatchScoutLanding(LoginRequiredMixin, generic.ListView):
