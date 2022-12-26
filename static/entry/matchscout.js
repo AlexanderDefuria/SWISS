@@ -58,10 +58,66 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 });
 
+// STOP WATCH
+let Intervals = []
+
+function buttonStart(widgetName) {
+	let tens = document.getElementById(widgetName+'-tens').innerHTML
+	let seconds = document.getElementById(widgetName+'-seconds').innerHTML
+	let appendTens = document.getElementById(widgetName+'-tens')
+	let appendSeconds = document.getElementById(widgetName+'-seconds')
 
 
+    clearInterval(Intervals[widgetName] );
 
+    Intervals[widgetName] = setInterval(startTimer, 10);
 
+	function startTimer() {
+		tens++;
+		if (tens <= 9)
+			appendTens.innerHTML = "0" + tens;
+		if (tens > 9)
+			appendTens.innerHTML = tens;
+		if (tens > 99) {
+			seconds++;
+			appendSeconds.innerHTML = "0" + seconds;
+			tens = 0;
+			appendTens.innerHTML = "0" + 0;
+		}
+		if (seconds > 9)
+			appendSeconds.innerHTML = seconds;
+	}
+}
 
+function buttonStop(widgetName) {
+	let timerInput = document.getElementById(widgetName)
+	let tens = document.getElementById(widgetName+'-tens').innerHTML
+	let seconds = document.getElementById(widgetName+'-seconds').innerHTML
+
+    clearInterval(Intervals[widgetName]);
+    timerInput.value = parseInt(seconds) + (tens > 50 ? 1 : 0); // Set input to rounded time
+}
+
+function buttonReset(widgetName) {
+	let appendTens = document.getElementById(widgetName+'-tens')
+	let appendSeconds = document.getElementById(widgetName+'-seconds')
+	let timerInput = document.getElementById(widgetName)
+
+    clearInterval(Intervals[widgetName]);
+
+    let tens = "00";
+    let seconds = "00";
+    appendTens.innerHTML = tens;
+    appendSeconds.innerHTML = seconds;
+    timerInput.value = 0;
+}
+
+function closeRunningTimers() {
+	for (const [key, value] of Object.entries(Intervals)) {
+  		buttonStop(key);
+	}
+}
+
+window.addEventListener("beforeunload", closeRunningTimers);
 
 

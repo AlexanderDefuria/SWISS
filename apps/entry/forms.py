@@ -90,6 +90,7 @@ class MatchScoutForm(forms.Form):
                 ]), label='Ability to Push')
 
     # ENDGAME
+    climb_time = forms.IntegerField(widget=StopWatchWidget(), label="Climb Time", initial=0)
     lock_status = forms.IntegerField(widget=widgets.Select(choices=[
                     (1, "foo"),
                     (2, "bar")

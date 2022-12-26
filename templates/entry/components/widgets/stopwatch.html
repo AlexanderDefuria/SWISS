@@ -1,67 +1,10 @@
+
 <div class="timerGroup">
-    <div style="display: flex; justify-content: center"><span id="seconds">00</span>:<span id="tens">00</span></div>
+    <div style="display: flex; justify-content: center"><span id="{{ widget.name }}-seconds">00</span>:<span id="{{ widget.name }}-tens">00</span></div>
     <div class="timerControls">
-        <button class="timerButton" style="width: 100px;" type="button" id="button-start">Start</button>
-        <button class="timerButton" style="width: 100px;" type="button" id="button-stop">Stop</button>
-        <button class="timerButton" style="width: 100px;" type="button" id="button-reset">Reset</button>
+        <button class="timerButton" style="width: 100px;" type="button" id="{{ widget.name }}-button-start" onclick="buttonStart('{{ widget.name }}')">Start</button>
+        <button class="timerButton" style="width: 100px;" type="button" id="{{ widget.name }}-button-stop" onclick="buttonStop('{{ widget.name }}')">Stop</button>
+        <button class="timerButton" style="width: 100px;" type="button" id="{{ widget.name }}-button-reset" onclick="buttonReset('{{ widget.name }}')">Reset</button>
     </div>
     <input type="hidden" id="{{ widget.name }}" name="{{ widget.name }}" value="{{ widget.value }}">
 </div>
-
-<script>
-    window.onclose = function () {
-        let buttonStop = document.getElementById('button-stop');
-        buttonStop.click();
-    }
-
-    window.onload = function () {
-        let seconds = 0;
-        let tens = 0;
-        let appendTens = document.getElementById("tens")
-        let appendSeconds = document.getElementById("seconds")
-        let buttonStart = document.getElementById('button-start');
-        let buttonStop = document.getElementById('button-stop');
-        let buttonReset = document.getElementById('button-reset');
-        let timerInput = document.getElementById('{{ widget.name }}')
-        let Interval;
-
-        seconds = timerInput.value;
-        appendSeconds.innerHTML = timerInput.value;
-
-        buttonStart.onclick = function () {
-            clearInterval(Interval);
-            Interval = setInterval(startTimer, 10);
-        }
-
-        buttonStop.onclick = function () {
-            clearInterval(Interval);
-            timerInput.value = seconds + (tens > 50 ? 1 : 0); // Set input to rounded time
-        }
-
-        buttonReset.onclick = function () {
-            clearInterval(Interval);
-            tens = "00";
-            seconds = "00";
-            appendTens.innerHTML = tens;
-            appendSeconds.innerHTML = seconds;
-            timerInput.value = 0;
-        }
-
-        function startTimer() {
-            tens++;
-            if (tens <= 9)
-                appendTens.innerHTML = "0" + tens;
-            if (tens > 9)
-                appendTens.innerHTML = tens;
-            if (tens > 99) {
-                console.log("seconds");
-                seconds++;
-                appendSeconds.innerHTML = "0" + seconds;
-                tens = 0;
-                appendTens.innerHTML = "0" + 0;
-            }
-            if (seconds > 9)
-                appendSeconds.innerHTML = seconds;
-        }
-    }
-</script>
