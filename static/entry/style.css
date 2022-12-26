@@ -953,6 +953,9 @@ th {
 #collapseBottomBar {
 	visibility: hidden;
 }
+.mb-3{
+	margin-bottom: 3px;
+}
 @media screen and (max-width: 1280px) {
 	.glanceImage {
 		background-position: center -10vh;
@@ -998,6 +1001,13 @@ th {
     .documentContainer {
         width: 100%;
     }
+	.dataButton{
+		width: 80%;
+	}
+	.centerMobile{
+		display: flex;
+		justify-content: center;
+	}
     .documentContent {
         max-width: 100%;
         width: 100%;
