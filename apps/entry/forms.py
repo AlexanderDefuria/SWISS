@@ -267,3 +267,25 @@ class ImportForm(forms.Form):
         if self.cleaned_data['key'] == '':
             raise ValidationError('Field cannot be empty.')
         return self.cleaned_data['key']
+
+class SettingsForm(forms.Form):
+    # TODO This will take more time, Should probably be done after Organization Redo.
+    template_name = 'entry/components/forms/scout.html'
+
+    # Tutorial
+    tutorial_completed = forms.BooleanField(widget=BooleanWidget(), label='Tutorial Completed', required=False)
+
+    # Teams Page
+    images = forms.BooleanField(widget=BooleanWidget(), label='Display Robot Photos', required=False)
+    filters = forms.BooleanField(widget=BooleanWidget(), label='Display Team Filters', required=False)
+    district_teams = forms.BooleanField(widget=BooleanWidget(), label='Show All Teams in the District', required=False)
+    teams_behaviour = forms.IntegerField(widget=widgets.Select(choices=[
+                    (1, "Go to Glance (Default)"),
+                    (2, "Go to Match Scouting"),
+                    (3, "Go to Pit Scouting"),
+                    # (4, "Go to Team Info (Coming soon)"),
+                ]), label='Click/Tap Behaviour')
+
+    # Landing Pages
+    team_list_type = forms.BooleanField(widget=BooleanWidget(), label='Display Robot Photos', required=False)
+
