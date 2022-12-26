@@ -20,7 +20,7 @@ from django_ajax.decorators import ajax
 from apps.entry.graphing import *
 from apps.entry.templatetags.common_tags import *
 from apps import importFRC
-from apps.entry.forms import MatchScoutForm, RegistrationForm, PitScoutForm, LoginForm
+from apps.entry.forms import MatchScoutForm, RegistrationForm, PitScoutForm, LoginForm, ImportForm
 
 register = Library
 
@@ -474,33 +474,34 @@ def write_pit_upload(request):
         return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 
-def login(request):
-    if request.method == 'GET':
-        template = loader.get_template('entry/login.html')
-
-        if request.user.is_authenticated:
-            return HttpResponseRedirect(reverse_lazy('entry:index'))
-
-        return HttpResponse(template.render({}, request))
-
-    elif request.method == 'POST':
-
-        username = request.POST.get('username', '')
-        password = request.POST.get('password', '')
-        print(username)
-        print(password)
-        user = auth.authenticate(request, username=username, password=password)
-
-        print(user)
-
-        if user is not None:
-            auth.login(request, user)
-            if not TeamMember.objects.filter(user=user).exists():
-                TeamMember.objects.create(user_id=user.id)
-
-        return HttpResponseRedirect(reverse_lazy('entry:index'))
-
-    return HttpResponseRedirect(reverse_lazy('entry:login'))
+# def login(request):
+#     if request.method == 'GET':
+#         template = loader.get_template('entry/login.html')
+#
+#         if request.user.is_authenticated:
+#             return HttpResponseRedirect(reverse_lazy('entry:index'))
+#
+#         return HttpResponse(template.render({}, request))
+#
+#     elif request.method == 'POST':
+#
+#         username = request.POST.get('username', '')
+#         password = request.POST.get('password', '')
+#         print(username)
+#         print(password)
+#         user = auth.authenticate(request, username=username, password=password)
+#
+#         print(user)
+#
+#         if user is not None:
+#             auth.login(request, user)
+#             if not TeamMember.objects.filter(user=user).exists():
+#                 TeamMember.objects.create(user_id=user.id)
+#
+#
+#         return HttpResponseRedirect(reverse_lazy('entry:index'))
+#
+#     return HttpResponseRedirect(reverse_lazy('entry:login'))
 
 
 @login_required(login_url='entry:login')
@@ -640,10 +641,29 @@ class TeamList(LoginRequiredMixin, generic.ListView):
         return teams
 
 
-class Import(LoginRequiredMixin, generic.TemplateView):
+class Import(LoginRequiredMixin, FormMixin, generic.TemplateView):
     login_url = 'entry:login'
     template_name = 'entry/import.html'
     model = Team
+    form_class = ImportForm
+    success_url = 'entry:index'
+
+    def post(self, request, *args, **kwargs):
+        form = ImportForm(request.POST)
+        context = {'form': form}
+        if form.is_valid():
+            import_type = form.cleaned_data['import_type']
+            key = form.cleaned_data['key']
+            year = '2022'
+
+            if import_type == 0:
+                importFRC.import_district(key, year)
+            elif import_type == 1:
+                importFRC.import_event(key, year)
+            elif import_type == 2:
+                importFRC.import_team(key, year)
+
+        return render(request, 'entry/import.html', context)
 
 
 class Index(LoginRequiredMixin, generic.TemplateView):

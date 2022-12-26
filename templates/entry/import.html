@@ -38,27 +38,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<form action="{% url 'entry:import_from_first' %}" method="post" enctype="multipart/form-data" id="form">
 				{% csrf_token %}
 				<p>Info on what everything means will go here in the future.</p>
-				<div class="formItem" style="margin-top:10px; background:none; justify-content: space-between;">
-					<label class="requiredField" for="importType">Data Type</label>
-					<select name="importType" id="importType" required>
-						<option value="" disabled selected hidden>&#8230;</option>
-						<option value="0">By District Key</option>
-						<option value="1">By Event Key</option>
-						<option value="2" disabled>By Geographical Location</option>
-						<option value="3">Individual Team Number</option>
-					</select>
-				</div>
-				<div class="formItem" style="margin-top:10px; background:none; justify-content: space-between">
-					<label class="requiredField" for="key">Key</label>
-					<input style="width: 100px" type="text" name="key" id="key" autocomplete="off" required>
-				</div>
-				<div class="formItem" style="margin-top:10px; background:none; justify-content: space-between">
-					<label for="year">Year</label>
-					<input style="width: 100px" type="number" name="year" id="year" maxlength="4">
-				</div>
-				<div class="formItem" style="margin-top:10px; background:none; justify-content: flex-start">
-					<input type="submit" value="Import">
-				</div>
+				{{ form }}
 			</form>
 		</div>
 	</div>

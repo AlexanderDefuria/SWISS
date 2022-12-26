@@ -208,7 +208,7 @@ class PitScoutForm(forms.Form):
 
 
 class RegistrationForm(forms.Form):
-    template_name = 'entry/components/forms/register.html'
+    template_name = 'entry/components/forms/generic.html'
 
     username = forms.CharField(widget=widgets.TextInput, max_length=150, validators=[UnicodeUsernameValidator()])
     password = forms.CharField(widget=widgets.PasswordInput, max_length=128)
@@ -247,9 +247,23 @@ class RegistrationForm(forms.Form):
 
 
 class LoginForm(forms.Form):
-    template_name = 'entry/components/forms/register.html'
+    template_name = 'entry/components/forms/generic.html'
 
     username = forms.CharField(widget=widgets.TextInput, max_length=150, validators=[UnicodeUsernameValidator()])
     password = forms.CharField(widget=widgets.PasswordInput, max_length=128)
 
 
+class ImportForm(forms.Form):
+    template_name = 'entry/components/forms/generic.html'
+
+    import_type = forms.IntegerField(widget=widgets.Select(choices=[
+                    (0, "By District Key"),
+                    (1, "By Event Key"),
+                    (2, "Individual Team Number"),
+                ]), label='Import Type')
+    key = forms.CharField(widget=widgets.TextInput, label="Key", min_length=2, max_length=6, required=False)
+
+    def clean_key(self):
+        if self.cleaned_data['key'] == '':
+            raise ValidationError('Field cannot be empty.')
+        return self.cleaned_data['key']
