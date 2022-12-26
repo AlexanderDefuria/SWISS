@@ -1,8 +1,9 @@
-import datetime
 import json
-from inspect import getframeinfo, currentframe
+import ast
+import os
 from json import dumps
 
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseRedirect
@@ -12,7 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django_ajax.decorators import ajax
 
 from apps.hours.models import *
-from apps.entry.views import decode_ajax, validate_types
+from apps.entry.views import decode_ajax, logout
 
 
 @csrf_exempt
@@ -83,6 +84,75 @@ class ViewHours(LoginRequiredMixin, generic.ListView):
                 print('Nothing found at all...')
         return None
 
+# TODO This should eventually be deprecated.
+def validate_types(request, data, reqlist):
+    # TODO Add emoji validation in text fields
+    reqfields = {}
+    redo = {}
+
+    try:
+        path = 'reqfields.json'
+        path = os.path.join(settings.BASE_DIR, path)
+        with open(path) as f:
+            if reqlist:
+                if request.path.__contains__("register"):
+                    reqfields = json.load(f)['registration']
+                elif request.path.__contains__("hours"):
+                    reqfields = json.load(f)['hours']
+                else:
+                    reqfields = json.load(f)['matchScout']
+    except IOError:
+        print("reqfields file not found")
+
+    print("Data:")
+    print(data)
+
+    for field in reqfields.keys():
+        # This would mean someone is editing the HTML therefore we log them out to ensure data integrity.
+        # print("FIELD: " + field)
+
+        if not data.__contains__(field):
+            logout(request)
+            print("logged out on: " + field) # TODO Note this is logging out need to update to work with forms now.
+
+        try:
+            alpha = True
+            for each in data[field][0].split():
+                alpha = (alpha and each.isalpha())
+
+            if data[field][0] != '' and not alpha and len(data[field][0].split()) == 1:
+                data[field][0] = ast.literal_eval(data[field][0])
+        except ValueError:
+            try:
+                if data[field][0] != '':
+                    data[field][0] = ast.literal_eval(data[field][0][0])
+            except ValueError as e:
+                print("\nVALUE ERROR:")
+                print(data[field])
+                print(e)
+
+        # print("type")
+        # print(type(data[field][0]))
+        # print(type(reqfields[field]))
+        redo[field] = False if (isinstance(data[field][0], type(reqfields[field]))) else True
+
+    for field in request.POST:
+        try:
+            redo[field] = not is_ascii(request.POST.get(field))
+            # print(request.POST.get(field))
+
+        except AttributeError:
+            print('issue')
+    if request.path.__contains__("scout") and data['scouterName'][0] == '':
+        redo['scouterName'] = True
+
+    print("Keys: " + str(redo.keys()))
+    print("Needs Correcting: " + str(redo.values()))
+
+    return redo, data
+
+def is_ascii(s):
+    return all(ord(c) < 128 for c in s)
 
 @ajax
 @csrf_exempt

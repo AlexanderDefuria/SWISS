@@ -149,6 +149,11 @@ input [type=text], input [type=button] {
 .formItem input[type=number]:invalid {
 	background-color: #904444;
 }
+
+.invalid {
+	background-color: #904444;
+}
+
 /* FOLLOWING CODE FIXES SOME ISSUES WITH THE NUMBER SPINNER */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
