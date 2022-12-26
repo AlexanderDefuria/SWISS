@@ -144,55 +144,55 @@ class PitScoutForm(forms.Form):
     drivetrain_style = forms.IntegerField(widget=widgets.Select(choices=[
                     (1, "foo"),
                     (2, "bar")
-                ]), label='Driver/Coach Fouls')
+                ]), label='Drivetrain Style')
     drivetrain_wheels = forms.CharField(
                     widget=widgets.Textarea(attrs={'rows': 2, 'cols': 50, 'placeholder': 'Auto Notes'}),
-                    label="Climb Performance Comment",
+                    label="Drivetrain Wheels",
                     required=False
                 )
     drivetrain_motortype = forms.IntegerField(widget=widgets.Select(choices=[
                     (1, "foo"),
                     (2, "bar")
-                ]), label='Driver/Coach Fouls')
-    drivetrain_motorquantity = forms.IntegerField(widget=widgets.NumberInput, required=False)
+                ]), label='Motor Type')
+    drivetrain_motorquantity = forms.IntegerField(widget=widgets.NumberInput, required=False, label='Motor Quantity')
 
     # Auto
-    auto_route = models.BooleanField(default=False)
+    auto_route = forms.BooleanField(widget=BooleanWidget, label="Auto Route",  required=False)
     auto_description = forms.CharField(
                     widget=widgets.Textarea(attrs={'rows': 2, 'cols': 50, 'placeholder': 'Auto Notes'}),
-                    label="Auto Notes",
+                    label="Auto Description",
                     required=False
                 )
     auto_scoring = forms.IntegerField(widget=widgets.Select(choices=[
                     (1, "foo"),
                     (2, "bar")
-                ]), label='Driver/Coach Fouls')
+                ]), label='Auto Scoring')
 
     # Teleop
     tele_scoring = forms.IntegerField(widget=widgets.Select(choices=[
                     (1, "foo"),
                     (2, "bar")
-                ]), label='Driver/Coach Fouls')
+                ]), label='Scoring')
     tele_positions = forms.IntegerField(widget=widgets.Select(choices=[
                     (1, "foo"),
                     (2, "bar")
-                ]), label='Driver/Coach Fouls')
+                ]), label='Locations')
     ball_intake = forms.CharField(
                     widget=widgets.Textarea(attrs={'rows': 2, 'cols': 50, 'placeholder': 'Auto Notes'}),
-                    label="Auto Notes",
+                    label="Intake Description",
                     required=False
                 )
-    ball_capacity = forms.IntegerField(widget=TickerWidget(), initial=0)
+    ball_capacity = forms.IntegerField(widget=TickerWidget(), initial=0, label="Ball Capacity")
     shooter_style = forms.IntegerField(widget=widgets.Select(choices=[
                     (1, "foo"),
                     (2, "bar")
-                ]), label='Driver/Coach Fouls')
+                ]), label='Shooter Style')
 
     # Endgame
     climb_locations = forms.IntegerField(widget=widgets.Select(choices=[
                     (1, "foo"),
                     (2, "bar")
-                ]), label='Driver/Coach Fouls')
+                ]), label='Climb Locations')
 
     # Other
 

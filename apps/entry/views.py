@@ -21,7 +21,7 @@ from django.contrib.auth.decorators import login_required
 from apps.entry.graphing import *
 from apps.entry.templatetags.common_tags import *
 from apps import importFRC
-from apps.entry.forms import MatchScoutForm, RegistrationForm
+from apps.entry.forms import MatchScoutForm, RegistrationForm, PitScoutForm
 
 register = Library
 
@@ -299,13 +299,13 @@ def pit_scout_submit(request, pk):
         return HttpResponseRedirect(reverse_lazy('entry:pit_scout_landing'))
 
 
-@ajax
-@csrf_exempt
-@login_required(login_url='entry:login')
-def validate_pit_scout(request, pk):
-    data = decode_ajax(request)
-    redo, data = validate_types(request, data, False)
-    return HttpResponse(json.dumps(redo), content_type="application/json")
+# @ajax
+# @csrf_exempt
+# @login_required(login_url='entry:login')
+# def validate_pit_scout(request, pk):
+#     data = decode_ajax(request)
+#     redo, data = validate_types(request, data, False)
+#     return HttpResponse(json.dumps(redo), content_type="application/json")
 
 
 @ajax
@@ -716,6 +716,40 @@ class MatchScoutLanding(LoginRequiredMixin, generic.ListView):
         return teams
 
 
+class PitScout(LoginRequiredMixin, FormMixin, generic.DetailView):
+    login_url = 'entry:login'
+    template_name = 'entry/pitscout.html'
+    model = Team
+    context_object_name = "team"
+    form_class = PitScoutForm
+    success_url = 'entry:pit_scout_landing'
+
+    @staticmethod
+    def post(request, pk, *args, **kwargs):
+        form = PitScoutForm(request.POST)
+        team = Team.objects.get(id=pk)
+        context = {'form': form, 'team': team}
+
+        if form.is_valid():
+            pits = Pits(**form.cleaned_data)
+
+            return HttpResponseRedirect(reverse_lazy('entry:pit_scout_landing'))
+        return render(request, 'entry/pitscout.html', context)
+
+
+class PitScoutLanding(LoginRequiredMixin, generic.ListView):
+    login_url = 'entry:login'
+    template_name = 'entry/pitlanding.html'
+    context_object_name = "team_list"
+
+    def get_queryset(self):
+        teams = get_present_teams(self.request.user)
+        if teams.count() == 1 and teams.first() == Team.objects.first():
+            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
+
+        return teams
+
+
 class Visualize(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     template_name = 'entry/visualization.html'
@@ -754,26 +788,6 @@ class ScheduleDetails(LoginRequiredMixin, generic.DetailView):
     template_name = 'entry/schedule-details.html'
     model = Schedule
     context_object_name = "schedule"
-
-
-class PitScout(LoginRequiredMixin, generic.DetailView):
-    login_url = 'entry:login'
-    template_name = 'entry/pitscout.html'
-    model = Team
-    context_object_name = "team"
-
-
-class PitScoutLanding(LoginRequiredMixin, generic.ListView):
-    login_url = 'entry:login'
-    template_name = 'entry/pitlanding.html'
-    context_object_name = "team_list"
-
-    def get_queryset(self):
-        teams = get_present_teams(self.request.user)
-        if teams.count() == 1 and teams.first() == Team.objects.first():
-            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
-
-        return teams
 
 
 class Experimental(LoginRequiredMixin, generic.TemplateView):

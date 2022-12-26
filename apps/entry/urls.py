@@ -14,8 +14,8 @@ urlpatterns = [
     path('pitscout/', views.PitScoutLanding.as_view(), name='pit_scout_landing'),
     path('pitscout/<slug:pk>/', views.PitScout.as_view(), name='pit_scout'),
     # TODO Deprecated vv
-    path('pitscout/<slug:pk>/check/', views.validate_pit_scout, name='validate_pit_scout'),
-    path('pitscout/<slug:pk>/submit/', views.pit_scout_submit, name='write_pit_scout'),
+    # path('pitscout/<slug:pk>/check/', views.validate_pit_scout, name='validate_pit_scout'),
+    # path('pitscout/<slug:pk>/submit/', views.pit_scout_submit, name='write_pit_scout'),
 
     path('visual/', views.Visualize.as_view(), name='visualize'),
     path('visual/update/', views.update_graph, name='update_graph'),

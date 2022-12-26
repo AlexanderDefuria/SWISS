@@ -41,189 +41,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</div>
 			</div>
 		</div>
-	<form action="{% url 'entry:write_pit_scout' team.id %}" class="formContainer" method="POST" name="mainForm" id="mainForm">
+	<form action="{% url 'entry:pit_scout' team.id %}" class="formContainer" method="POST" name="mainForm" id="mainForm">
         {% csrf_token %}
-		<h1>Drivetrain</h1>
-		<div class="formItem">
-			<label for="drivetrainStyle">Style of Drivetrain</label>
-			<select name="drivetrainStyle" id="drivetrainStyle" required> 
-				<option value="" selected disabled hidden>&#8230;</option>
-				<option value="Kitbot">Kitbot</option>
-				<option value="Tank">Tank</option>
-				<option value="West Coast Drive">West Coast</option>
-				<option value="Swerve">Swerve</option>
-				<option value="Mecanum">Mecanum</option>
-				<option value="Custom">Custom</option>
-			</select>
-		</div>
-		<div class="formItem">
-			<label for="drivetrainWheels">Type of Drive Wheels</label>
-			<input type="text" name="drivetrainWheels" id="drivetrainWheels" placeholder="Drivetrain Wheels" autocomplete="off" required>
-		</div>
-		<div class="formItem">
-			<label for="drivetrainMotor">Types of Motors in Drivetrain</label>
-			<select name="drivetrainMotor" id="drivetrainMottor" required> 
-				<option value="" selected disabled hidden="">&#8230;</option>
-				<option value="Falcon 500">Falcon 500</option>
-				<option value="Neo">Neo</option>
-				<option value="CIM">CIM</option>
-				<option value="Mini CIM">Mini CIM</option>
-			</select>
-		</div>
-		<div class="formItem">
-			<label for="drivetrainMotorAmount">Number of Motors in Drivetrain</label>
-			<input id="drivetrainMotorAmount" name="drivetrainMotorAmount" type="number" min="2" max="20" value="0" step="2" required>
-		</div>
-		<h1>Autonomous</h1>
-		<div class="formItem">
-			<label for="hasAuto">Has Autonomous Route?</label>			
-			<div class="radioGroup">
-				<label>
-					<input type="radio" name="hasAuto" id="hasAuto_false" value="False" onClick="registerChange(),hideAutoStuff()" required>
-					<span>N</span>
-				</label>
-				<label>
-					<input type="radio" name="hasAuto" id="hasAuto_true" value="True" onClick="registerChange()">
-					<span>Y</span>
-				</label>
-			</div>
-		</div>
-		<div class="formItem">
-			<label for="autoDescription">Short Description of Autonomous Routes</label>
-			<input type="text" name="autoDescription" id="autoDescription" placeholder="Auto Route" autocomplete="off" required>
-		</div>
-		<div class="formItem">
-			<label for="autoScoring">Scoring Goals in Autonomous</label>
-			<select name="autoScoring" id="autoScoring" required>
-				<option value="" selected disabled hidden>&#8230;</option>
-				<option value="0">No Scoring Ability</option>
-				<option value="1">Low Hub</option>
-				<option value="2">High Hub</option>
-			</select>
-		</div>
-		<div class="formItem">
-			<label for="autoScoringPositions">Scoring Locations in Autonomous</label>
-			<div class="checkboxGroup" >
-				<label class="checkContainer" onClick="registerChange()">Against Fender
-				<input type="checkbox" id="againstFenderAuto" name="autoScoringPositions" value="1">
-				<span class="checkmark"></span>
-				</label>
-				<label class="checkContainer" onClick="registerChange()">In/Edge of Tarmac
-				<input type="checkbox" id="tarmacAuto" name="autoScoringPositions" value="2">
-				<span class="checkmark"></span>
-				</label>
-				<label class="checkContainer" onClick="registerChange()">Launch Pad
-				<input type="checkbox" id="launchPadAuto" name="autoScoringPositions" value="3">
-				<span class="checkmark"></span>
-				</label>
-				<label class="checkContainer" onClick="registerChange()">Anywhere
-				<input type="checkbox" id="anywhereAuto" name="autoScoringPositions" value="4">
-				<span class="checkmark"></span>
-				</label>
-			</div>
-		</div>
-		<h1>Teleoperated</h1>
-		<div class="formItem">
-			<label for="teleScoring">Scoring Goals in Teleoperated</label>
-			<select name="teleScoring" id="teleScoring" required>
-				<option value="" selected disabled hidden>&#8230;</option>
-				<option value="0">No Scoring Ability</option>
-				<option value="1">Low Hub</option>
-				<option value="2">High Hub</option>
-			</select>
-		</div>
-		<div class="formItem">
-			<label for="teleScoringPositions">Scoring Locations in Teleop</label>
-			<div class="checkboxGroup" >
-				<label class="checkContainer" onClick="registerChange()">Against Fender
-				<input type="checkbox" id="againstFenderTele" name="teleScoringPositions" value="1">
-				<span class="checkmark"></span>
-				</label>
-				<label class="checkContainer" onClick="registerChange()">In/Edge of Tarmac
-				<input type="checkbox" id="tarmacTele" name="teleScoringPositions" value="2">
-				<span class="checkmark"></span>
-				</label>
-				<label class="checkContainer" onClick="registerChange()">Launch Pad
-				<input type="checkbox" id="launchPadTele" name="teleScoringPositions" value="3">
-				<span class="checkmark"></span>
-				</label>
-				<label class="checkContainer" onClick="registerChange()">Anywhere
-				<input type="checkbox" id="anywhereTele" name="teleScoringPositions" value="4">
-				<span class="checkmark"></span>
-				</label>
-			</div>
-		</div>
-		<div class="formItem">
-			<label for="ballIntake">Ball Intake Style</label>
-			<input type="text" name="ballIntake" id="ballIntake" placeholder="Ball Intake" autocomplete="off" required>
-		</div>
-		<div class="formItem">
-			<label for="ballCapacity">Ball Capacity</label>
-			<select name="ballCapacity" id="ballCapacity" required>
-				<option value="" selected disabled hidden>&#8230;</option>
-				<option value="0">0</option>
-				<option value="1">1</option>
-				<option value="2">2</option>
-			</select>
-		</div>
-		<div class="formItem">
-			<label for="shooterStyle">Style of Shooter</label>
-			<input type="text" name="shooterStyle" id="shooterStyle" autocomplete="off" placeholder="Shooter Style" required>
-		</div>
-		<h1>Endgame</h1>
-		<div class="formItem">
-			<label for="climbLocations">Highest Possible Climb Level</label>
-			<select name="climbLocations" id="climbLocations" required>
-				<option value="" selected disabled hidden>&#8230;</option>
-				<option value="0">Cannot Climb</option>
-				<option value="1">Low Rung</option>
-				<option value="2">Mid Rung</option>
-				<option value="3">High Rung</option>
-				<option value="4">Traversal Rung</option>
-			</select>
-		</div>
-		<div class="formItem">
-			<label for="climbTime">Expected Time to Climb (in sec.)</label>
-			<input type="number" name="climbTime" id="climbTime" min="0" max="30" autocomplete="off" placeholder="in sec." required>
-		</div>
-		<div class="formItem">
-			<label for="climbDescription">Expected Climb Description</label>
-			<input type="text" name="climbDescription" id="climbDescription" autocomplete="off" required>
-		</div>
-		<h1>Other</h1>
-		<div class="formItem">
-			<label for="weight">Robot Weight (in pounds)</label>
-			<input type="number" name="weight" id="weight" min="0" max="150" autocomplete="off" placeholder="lbs" required>
-		</div>
-		<div class="formItem">
-			<label for="height">Robot Height (in inches)</label>
-			<input type="number" name="height" id="height" min="0" max="52" autocomplete="off" placeholder="inches" required>
-		</div>
-		<div class="formItem">
-			<label for="scouterName">Scouter's Name</label>
-			<input type="text" name="scouterName" id="scouterName" placeholder="Scouter Name" value="{{ user.get_username }}" required>
-		</div>
-		<br>
-		<div class="formItem" id="submit" onclick="validate('mainForm')">
-                <input name="submit" id="submitButton" type="submit" style="pointer-events: none">
-		</div>
+        {{ form }}
 	</form>
     <div id="snackbar">
 		<p id="snacktext">Default Text</p>
 	</div>
 	</div>
-<script>
-    function hideAutoStuff() {
-        var x = document.getElementById("hasAuto_false").checked;
-        if (x != true){
-            document.getElementById("teamDefendedDiv").style.display="flex";
-            document.getElementById("defenseQualityDiv").style.display="flex";
-        } else {
-            document.getElementById("teamDefendedDiv").style.display="none";
-            document.getElementById("defenseRating").value="0";
-            document.getElementById("defenseQualityDiv").style.display="none";
-        }
-    }
-</script>
+{#<script>#}
+{#    function hideAutoStuff() {#}
+{#        var x = document.getElementById("hasAuto_false").checked;#}
+{#        if (x != true){#}
+{#            document.getElementById("teamDefendedDiv").style.display="flex";#}
+{#            document.getElementById("defenseQualityDiv").style.display="flex";#}
+{#        } else {#}
+{#            document.getElementById("teamDefendedDiv").style.display="none";#}
+{#            document.getElementById("defenseRating").value="0";#}
+{#            document.getElementById("defenseQualityDiv").style.display="none";#}
+{#        }#}
+{#    }#}
+{#</script>#}
 </body>
 </html>
