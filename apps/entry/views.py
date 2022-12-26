@@ -1,11 +1,9 @@
 import os
 import ast
-import re
-from datetime import datetime
 import json
 
-from django.views.generic.edit import FormMixin
 from openpyxl import Workbook
+from datetime import datetime
 
 from django.core import serializers
 from django.shortcuts import render
@@ -13,10 +11,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, HttpResponse, Http404, JsonResponse
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
-from django_ajax.decorators import ajax
 from django.template import Library, loader
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import FormMixin
+from django_ajax.decorators import ajax
 
 from apps.entry.graphing import *
 from apps.entry.templatetags.common_tags import *
@@ -186,117 +185,117 @@ register = Library
 #     return HttpResponse(json.dumps(redo), content_type="application/json")
 
 
-# TODO This should eventually be deprecated.
-def validate_types(request, data, reqlist):
-    # TODO Add emoji validation in text fields
-    reqfields = {}
-    redo = {}
+# # TODO This should eventually be deprecated.
+# def validate_types(request, data, reqlist):
+#     # TODO Add emoji validation in text fields
+#     reqfields = {}
+#     redo = {}
+#
+#     try:
+#         path = 'reqfields.json'
+#         path = os.path.join(settings.BASE_DIR, path)
+#         with open(path) as f:
+#             if reqlist:
+#                 if request.path.__contains__("register"):
+#                     reqfields = json.load(f)['registration']
+#                 elif request.path.__contains__("hours"):
+#                     reqfields = json.load(f)['hours']
+#                 else:
+#                     reqfields = json.load(f)['matchScout']
+#     except IOError:
+#         print("reqfields file not found")
+#
+#     print("Data:")
+#     print(data)
+#
+#     for field in reqfields.keys():
+#         # This would mean someone is editing the HTML therefore we log them out to ensure data integrity.
+#         # print("FIELD: " + field)
+#
+#         if not data.__contains__(field):
+#             logout(request)
+#             print("logged out on: " + field) # TODO Note this is logging out need to update to work with forms now.
+#
+#         try:
+#             alpha = True
+#             for each in data[field][0].split():
+#                 alpha = (alpha and each.isalpha())
+#
+#             if data[field][0] != '' and not alpha and len(data[field][0].split()) == 1:
+#                 data[field][0] = ast.literal_eval(data[field][0])
+#         except ValueError:
+#             try:
+#                 if data[field][0] != '':
+#                     data[field][0] = ast.literal_eval(data[field][0][0])
+#             except ValueError as e:
+#                 print("\nVALUE ERROR:")
+#                 print(data[field])
+#                 print(e)
+#
+#         # print("type")
+#         # print(type(data[field][0]))
+#         # print(type(reqfields[field]))
+#         redo[field] = False if (isinstance(data[field][0], type(reqfields[field]))) else True
+#
+#     for field in request.POST:
+#         try:
+#             redo[field] = not is_ascii(request.POST.get(field))
+#             # print(request.POST.get(field))
+#
+#         except AttributeError:
+#             print('issue')
+#     if request.path.__contains__("scout") and data['scouterName'][0] == '':
+#         redo['scouterName'] = True
+#
+#     print("Keys: " + str(redo.keys()))
+#     print("Needs Correcting: " + str(redo.values()))
+#
+#     return redo, data
+#
+#
+# def is_ascii(s):
+#     return all(ord(c) < 128 for c in s)
 
-    try:
-        path = 'reqfields.json'
-        path = os.path.join(settings.BASE_DIR, path)
-        with open(path) as f:
-            if reqlist:
-                if request.path.__contains__("register"):
-                    reqfields = json.load(f)['registration']
-                elif request.path.__contains__("hours"):
-                    reqfields = json.load(f)['hours']
-                else:
-                    reqfields = json.load(f)['matchScout']
-    except IOError:
-        print("reqfields file not found")
-
-    print("Data:")
-    print(data)
-
-    for field in reqfields.keys():
-        # This would mean someone is editing the HTML therefore we log them out to ensure data integrity.
-        # print("FIELD: " + field)
-
-        if not data.__contains__(field):
-            logout(request)
-            print("logged out on: " + field) # TODO Note this is logging out need to update to work with forms now.
-
-        try:
-            alpha = True
-            for each in data[field][0].split():
-                alpha = (alpha and each.isalpha())
-
-            if data[field][0] != '' and not alpha and len(data[field][0].split()) == 1:
-                data[field][0] = ast.literal_eval(data[field][0])
-        except ValueError:
-            try:
-                if data[field][0] != '':
-                    data[field][0] = ast.literal_eval(data[field][0][0])
-            except ValueError as e:
-                print("\nVALUE ERROR:")
-                print(data[field])
-                print(e)
-
-        # print("type")
-        # print(type(data[field][0]))
-        # print(type(reqfields[field]))
-        redo[field] = False if (isinstance(data[field][0], type(reqfields[field]))) else True
-
-    for field in request.POST:
-        try:
-            redo[field] = not is_ascii(request.POST.get(field))
-            # print(request.POST.get(field))
-
-        except AttributeError:
-            print('issue')
-    if request.path.__contains__("scout") and data['scouterName'][0] == '':
-        redo['scouterName'] = True
-
-    print("Keys: " + str(redo.keys()))
-    print("Needs Correcting: " + str(redo.values()))
-
-    return redo, data
-
-
-def is_ascii(s):
-    return all(ord(c) < 128 for c in s)
-
-
-@login_required(login_url='entry:login')
-def pit_scout_submit(request, pk):
-    if request.method == 'POST':
-        team = Team.objects.get(id=pk)
-        pits = Pits()
-        pits.team = team
-        teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
-        first_key = Event.objects.all().filter(id=make_int(teamsettings.current_event.id))[0].FIRST_key
-
-        pits.event = Event.objects.get(FIRST_key=first_key)
-        pits.drivetrain_style = request.POST.get('drivetrainStyle', ' ')
-        pits.drivetrain_wheels = request.POST.get('drivetrainWheels', ' ')
-        pits.drivetrain_motortype = request.POST.get('drivetrainMotor', ' ')
-        pits.drivetrain_motorquantity = request.POST.get('drivetrainMotorAmount', 0)
-        pits.auto_route = request.POST.get('hasAuto', False)
-        pits.auto_description = request.POST.get('autoDescription', ' ')
-        pits.auto_scoring = request.POST.get('autoScoring', 0)
-        pits.tele_scoring = request.POST.get('teleScoring', 0)
-        pits.tele_positions = request.POST.get('telePositions', 0)
-        pits.ball_intake = request.POST.get('ballIntake', ' ')
-        pits.ball_capacity = request.POST.get('ballCapacity', 0)
-        pits.shooter_style = request.POST.get('shooterStyle', ' ')
-        pits.low_bot = request.POST.get('lowBot', False)
-        pits.wheel_manipulator = request.POST.get('wheelManipulator', False)
-        pits.weight = request.POST.get('weight', 0)
-        pits.climb_locations = request.POST.get('climbLocations', 0)
-        pits.climb_buddy = request.POST.get('climbBuddy', False)
-        pits.climb_balance = request.POST.get('climbBalance', False)
-        pits.scouter_name = request.POST.get('scouterName', '0')
-        pits.team_ownership = request.user.teammember.team
-        pits.save()
-
-        print(pits)
-
-        print('Pit Scout Submission Success')
-        return HttpResponseRedirect(reverse_lazy('entry:pit_scout_landing'))
-    else:
-        print('Pit Scout Submission Fail')
-        return HttpResponseRedirect(reverse_lazy('entry:pit_scout_landing'))
+#
+# @login_required(login_url='entry:login')
+# def pit_scout_submit(request, pk):
+#     if request.method == 'POST':
+#         team = Team.objects.get(id=pk)
+#         pits = Pits()
+#         pits.team = team
+#         teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
+#         first_key = Event.objects.all().filter(id=make_int(teamsettings.current_event.id))[0].FIRST_key
+#
+#         pits.event = Event.objects.get(FIRST_key=first_key)
+#         pits.drivetrain_style = request.POST.get('drivetrainStyle', ' ')
+#         pits.drivetrain_wheels = request.POST.get('drivetrainWheels', ' ')
+#         pits.drivetrain_motortype = request.POST.get('drivetrainMotor', ' ')
+#         pits.drivetrain_motorquantity = request.POST.get('drivetrainMotorAmount', 0)
+#         pits.auto_route = request.POST.get('hasAuto', False)
+#         pits.auto_description = request.POST.get('autoDescription', ' ')
+#         pits.auto_scoring = request.POST.get('autoScoring', 0)
+#         pits.tele_scoring = request.POST.get('teleScoring', 0)
+#         pits.tele_positions = request.POST.get('telePositions', 0)
+#         pits.ball_intake = request.POST.get('ballIntake', ' ')
+#         pits.ball_capacity = request.POST.get('ballCapacity', 0)
+#         pits.shooter_style = request.POST.get('shooterStyle', ' ')
+#         pits.low_bot = request.POST.get('lowBot', False)
+#         pits.wheel_manipulator = request.POST.get('wheelManipulator', False)
+#         pits.weight = request.POST.get('weight', 0)
+#         pits.climb_locations = request.POST.get('climbLocations', 0)
+#         pits.climb_buddy = request.POST.get('climbBuddy', False)
+#         pits.climb_balance = request.POST.get('climbBalance', False)
+#         pits.scouter_name = request.POST.get('scouterName', '0')
+#         pits.team_ownership = request.user.teammember.team
+#         pits.save()
+#
+#         print(pits)
+#
+#         print('Pit Scout Submission Success')
+#         return HttpResponseRedirect(reverse_lazy('entry:pit_scout_landing'))
+#     else:
+#         print('Pit Scout Submission Fail')
+#         return HttpResponseRedirect(reverse_lazy('entry:pit_scout_landing'))
 
 
 # @ajax
