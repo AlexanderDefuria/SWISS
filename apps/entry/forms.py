@@ -244,3 +244,12 @@ class RegistrationForm(forms.Form):
         if str(Team.objects.get(number=team_number).reg_id)[:6] != reg_uuid[:6]:
             raise ValidationError('Incorrect RegID for Team ' + str(team_number) + '.')
         return uuid
+
+
+class LoginForm(forms.Form):
+    template_name = 'entry/components/forms/register.html'
+
+    username = forms.CharField(widget=widgets.TextInput, max_length=150, validators=[UnicodeUsernameValidator()])
+    password = forms.CharField(widget=widgets.PasswordInput, max_length=128)
+
+

@@ -20,7 +20,7 @@ from django_ajax.decorators import ajax
 from apps.entry.graphing import *
 from apps.entry.templatetags.common_tags import *
 from apps import importFRC
-from apps.entry.forms import MatchScoutForm, RegistrationForm, PitScoutForm
+from apps.entry.forms import MatchScoutForm, RegistrationForm, PitScoutForm, LoginForm
 
 register = Library
 
@@ -837,8 +837,32 @@ class GlanceLanding(LoginRequiredMixin, generic.ListView):
         return handle_query_present_teams(self)
 
 
+class Login(FormMixin, generic.TemplateView):
+    template_name = 'entry/login.html'
+    form_class = LoginForm
+    success_url = 'entry:index'
+
+    def post(self, request, *args, **kwargs):
+        form = LoginForm(request.POST)
+        context = {'form': form}
+        if form.is_valid():
+            user = auth.authenticate(
+                request,
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password'])
+            if user is not None:
+                auth.login(request, user)
+                if not TeamMember.objects.filter(user=user).exists():
+                    TeamMember.objects.create(user_id=user.id)
+            return HttpResponseRedirect(reverse_lazy('entry:index'))
+
+        form.add_error('username', 'Username or password is incorrect')
+        form.add_error('password', 'Username or password is incorrect')
+        context = {'form': form}
+        return render(request, 'entry/login.html', context)
+
+
 class Registration(FormMixin, generic.TemplateView):
-    model = Team
     template_name = 'entry/register.html'
     form_class = RegistrationForm
     success_url = 'entry:index'
@@ -865,6 +889,7 @@ class Registration(FormMixin, generic.TemplateView):
             user.teammember.save()
 
             user = auth.authenticate(request, username=user.username, password=user.password)
+            auth.login(request, user)
             return HttpResponseRedirect(reverse_lazy('entry:index'))
 
         return render(request, 'entry/register.html', context)

@@ -45,7 +45,7 @@ urlpatterns = [
     path('import/schedule/submit', views.import_schedule_from_first, name='import_schedule_from_first'),
 
     path('logout/', views.logout, name='logout'),
-    path('login/', views.login, name='login'),
+    path('login/', views.Login.as_view(), name='login'),
     path('register/', views.Registration.as_view(), name='register'),
     # path('register/check/', views.validate_registration, name='validate_register'),
 
