@@ -13,6 +13,7 @@ urlpatterns = [
 
     path('pitscout/', views.PitScoutLanding.as_view(), name='pit_scout_landing'),
     path('pitscout/<slug:pk>/', views.PitScout.as_view(), name='pit_scout'),
+    # TODO Deprecated vv
     path('pitscout/<slug:pk>/check/', views.validate_pit_scout, name='validate_pit_scout'),
     path('pitscout/<slug:pk>/submit/', views.pit_scout_submit, name='write_pit_scout'),
 
@@ -46,7 +47,7 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('login/', views.login, name='login'),
     path('register/', views.Registration.as_view(), name='register'),
-    path('register/check/', views.validate_registration, name='validate_register'),
+    # path('register/check/', views.validate_registration, name='validate_register'),
 
     path('admin_redirect/<str:whereto>', views.admin_redirect, name='admin_redirect'),
     path('admin_redirect/', views.admin_redirect, name='admin_redirect'),

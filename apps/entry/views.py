@@ -21,7 +21,7 @@ from django.contrib.auth.decorators import login_required
 from apps.entry.graphing import *
 from apps.entry.templatetags.common_tags import *
 from apps import importFRC
-from apps.entry.forms import MatchScoutForm
+from apps.entry.forms import MatchScoutForm, RegistrationForm
 
 register = Library
 
@@ -544,33 +544,6 @@ def logout(request):
     return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 
-@ajax
-@csrf_exempt
-def validate_registration(request):
-    data = decode_ajax(request)
-    redo, data = validate_types(request, data, False)
-
-    print("redo")
-    print(redo)
-    print("data")
-    print(data)
-    print(data['email'][0])
-    if not re.fullmatch(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b', str(data['email'][0])):
-        if len(str(data['email'][0]).strip(" ")) != 0:
-            redo['email'] = True
-    if len(str(data['username'])) < 5:
-        redo['username'] = True
-    if len(str(data['password'])) < 5:
-        redo['password'] = True
-    if data['password'] != data['password_validate']:
-        redo['password'] = True
-        redo['password_validate'] = True
-    if len(str(data['team_reg_id']).strip(" ")) != 10:  # len==10 because the uuid is 6 + 4 for ['uuidxx']
-        redo['team_reg_id'] = True
-
-    return HttpResponse(json.dumps(redo), content_type="application/json")
-
-
 @login_required(login_url='entry:login')
 def admin_redirect(request, **kwargs):
     if request.user.is_staff:
@@ -851,9 +824,11 @@ class GlanceLanding(LoginRequiredMixin, generic.ListView):
         return handle_query_present_teams(self)
 
 
-class Registration(generic.TemplateView):
+class Registration(FormMixin, generic.TemplateView):
     model = Team
     template_name = 'entry/register.html'
+    form_class = RegistrationForm
+    success_url = 'entry:index'
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -862,32 +837,24 @@ class Registration(generic.TemplateView):
             return super(Registration, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        user = User()
-
-        if request.POST.get('team_number'):
+        form = RegistrationForm(request.POST)
+        context = {'form': form}
+        if form.is_valid():
+            user = User()
             user.teammember = TeamMember()
-            user.teammember.team = Team.objects.get(id=make_int(request.POST.get('team_number')))
-            if request.POST.get('team_reg_id')[:6] != str(user.teammember.team.reg_id)[:6]:
-                return HttpResponse(reverse_lazy('entry:register'))
+            user.set_password(form.cleaned_data['password'])
+            user.username = form.cleaned_data['username']
+            user.first_name = form.cleaned_data['first_name']
+            user.last_name = form.cleaned_data['last_name']
+            user.email = form.cleaned_data['email']
+            user.teammember.team = Team.objects.get(number=form.cleaned_data['team_number'])
             user.save()
             user.teammember.save()
 
-        if request.POST.get('password') == request.POST.get('password_validate'):
-            user.set_password(request.POST.get('password'))
-        else:
-            return HttpResponse(reverse_lazy('entry:register'))
+            user = auth.authenticate(request, username=user.username, password=user.password)
+            return HttpResponseRedirect(reverse_lazy('entry:index'))
 
-        if request.POST.get('username') == "":
-            return HttpResponse(reverse_lazy('entry:register'))
-
-        user.username = request.POST.get('username')
-        user.first_name = request.POST.get('first_name')
-        user.last_name = request.POST.get('last_name')
-        user.email = request.POST.get('email')
-
-        user.save()
-
-        return HttpResponseRedirect(reverse_lazy('entry:update_fields'))
+        return render(request, 'entry/register.html', context)
 
 
 class MatchData(LoginRequiredMixin, generic.ListView):

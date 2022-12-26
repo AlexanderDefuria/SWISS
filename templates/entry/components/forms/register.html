@@ -1,0 +1,21 @@
+
+{% for field in form %}
+    <div class="formItem {% if field.errors %} invalid {% endif %}">
+        {{ field.label_tag }}{{ field }}
+
+    </div>
+    {% if field.errors %}
+        <span>{{ field.errors }}</span>
+        <br>
+    {% endif %}
+{% endfor %}
+
+<div class="formItem" id="submit">
+    <button name="submit" id="submitButton" type="submit" >Submit</button>
+</div>
+
+<style>
+    .formItem label {
+        margin-right: 2vw;
+    }
+</style>

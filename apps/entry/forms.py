@@ -1,23 +1,24 @@
 from django import forms
+from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.core.exceptions import ValidationError
 from django.forms import widgets
 from apps.entry.models import *
 from apps.entry.widgets import *
 
 
+def grouping(group_name, objects, subgroup=None):
+    for i in objects:
+        i.subgroup = subgroup
+        i.group = group_name
+    return objects
+
+
 class MatchScoutForm(forms.Form):
-    template_name = 'entry/components/forms/matchscout.html'
+    template_name = 'entry/components/forms/scout.html'
 
     def __init__(self, *args, **kwargs):
         self.event = kwargs.pop('event', None)
         super(MatchScoutForm, self).__init__(*args, **kwargs)
-
-    @staticmethod
-    def grouping(group_name, objects, subgroup=None):
-        for i in objects:
-            i.subgroup = subgroup
-            i.group = group_name
-        return objects
 
     def clean_match_number(self):
         self.get_context()
@@ -135,3 +136,111 @@ class MatchScoutForm(forms.Form):
         model = Match()
         widgets = {'auto_high': TickerWidget()}
 
+
+class PitScoutForm(forms.Form):
+    template_name = 'entry/components/forms/scout.html'
+
+    # Drivetrain
+    drivetrain_style = forms.IntegerField(widget=widgets.Select(choices=[
+                    (1, "foo"),
+                    (2, "bar")
+                ]), label='Driver/Coach Fouls')
+    drivetrain_wheels = forms.CharField(
+                    widget=widgets.Textarea(attrs={'rows': 2, 'cols': 50, 'placeholder': 'Auto Notes'}),
+                    label="Climb Performance Comment",
+                    required=False
+                )
+    drivetrain_motortype = forms.IntegerField(widget=widgets.Select(choices=[
+                    (1, "foo"),
+                    (2, "bar")
+                ]), label='Driver/Coach Fouls')
+    drivetrain_motorquantity = forms.IntegerField(widget=widgets.NumberInput, required=False)
+
+    # Auto
+    auto_route = models.BooleanField(default=False)
+    auto_description = forms.CharField(
+                    widget=widgets.Textarea(attrs={'rows': 2, 'cols': 50, 'placeholder': 'Auto Notes'}),
+                    label="Auto Notes",
+                    required=False
+                )
+    auto_scoring = forms.IntegerField(widget=widgets.Select(choices=[
+                    (1, "foo"),
+                    (2, "bar")
+                ]), label='Driver/Coach Fouls')
+
+    # Teleop
+    tele_scoring = forms.IntegerField(widget=widgets.Select(choices=[
+                    (1, "foo"),
+                    (2, "bar")
+                ]), label='Driver/Coach Fouls')
+    tele_positions = forms.IntegerField(widget=widgets.Select(choices=[
+                    (1, "foo"),
+                    (2, "bar")
+                ]), label='Driver/Coach Fouls')
+    ball_intake = forms.CharField(
+                    widget=widgets.Textarea(attrs={'rows': 2, 'cols': 50, 'placeholder': 'Auto Notes'}),
+                    label="Auto Notes",
+                    required=False
+                )
+    ball_capacity = forms.IntegerField(widget=TickerWidget(), initial=0)
+    shooter_style = forms.IntegerField(widget=widgets.Select(choices=[
+                    (1, "foo"),
+                    (2, "bar")
+                ]), label='Driver/Coach Fouls')
+
+    # Endgame
+    climb_locations = forms.IntegerField(widget=widgets.Select(choices=[
+                    (1, "foo"),
+                    (2, "bar")
+                ]), label='Driver/Coach Fouls')
+
+    # Other
+
+    grouping("Drivetrain", [drivetrain_style, drivetrain_wheels, drivetrain_motortype, drivetrain_motorquantity])
+    grouping("Autonomous", [auto_route, auto_description, auto_scoring])
+    grouping("Teleoperated", [tele_scoring, tele_positions, ball_intake, ball_capacity, shooter_style])
+    grouping("Endgame", [climb_locations])
+    grouping("Other", [])
+
+    class Meta:
+        model = Pits()
+        widgets = {'ball_capacity': TickerWidget()}
+
+
+class RegistrationForm(forms.Form):
+    template_name = 'entry/components/forms/register.html'
+
+    username = forms.CharField(widget=widgets.TextInput, max_length=150, validators=[UnicodeUsernameValidator()])
+    password = forms.CharField(widget=widgets.PasswordInput, max_length=128)
+    password_validate = forms.CharField(widget=widgets.PasswordInput, label="Verify Password")
+    first_name = forms.CharField(widget=widgets.TextInput, label="First Name", min_length=3, max_length=150)
+    last_name = forms.CharField(widget=widgets.TextInput, label="Last Name", min_length=3, max_length=150)
+    email = forms.EmailField(widget=widgets.EmailInput, label="Email Address")
+    email_validate = forms.EmailField(widget=widgets.EmailInput, label="Verify Email Address")
+    team_number = forms.IntegerField(widget=widgets.NumberInput, min_value=0, max_value=9999, label="Team Number")
+    team_reg_id = forms.CharField(widget=widgets.TextInput, label="Team RegID", min_length=6, max_length=6)
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        try:
+            User.objects.get(username=username)
+        except User.DoesNotExist:
+            return username
+        raise ValidationError('Username already exists.')
+
+    def clean_password_validate(self):
+        if self.cleaned_data['password_validate'] != self.cleaned_data['password']:
+            raise ValidationError('Passwords must match.')
+        return self.cleaned_data['password_validate']
+
+    def clean_email_validate(self):
+        if self.cleaned_data['email_validate'] != self.cleaned_data['email']:
+            raise ValidationError('Emails must match.')
+        return self.cleaned_data['email_validate']
+
+    def clean_team_reg_id(self):
+        reg_uuid = self.cleaned_data['team_reg_id']
+        team_number = self.cleaned_data['team_number']
+        if str(Team.objects.get(number=team_number).reg_id)[:6] != reg_uuid[:6]:
+            raise ValidationError('Incorrect RegID for Team ' + str(team_number) + '.')
+        return uuid
