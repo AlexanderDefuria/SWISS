@@ -91,13 +91,14 @@ sudo ufw allow 'Nginx Full'
 
 if [ "$DB_CHOICE" == "1" ]; then
     cd /usr/share/FRC-Scouting/ || exit
+    read -r -p "Enter your org name: " ORG_NAME
     read -r -p "Enter your team number: " TEAM_NUMBER
-    read -r -p "Enter your team name: " TEAM_NAME
-    sudo -u postgres bash -c "psql -d $DBNAME -c \"INSERT INTO entry_team (id, number, name, colour, pick_status, reg_id, glance) values($TEAM_NUMBER, $TEAM_NUMBER, '$TEAM_NAME', '#0', 0, '$(uuidgen)', '');\""
+    sudo -u postgres bash -c "psql -d $DBNAME -c \"INSERT INTO entry_team (id, number, name, colour, pick_status, glance) values($TEAM_NUMBER, $TEAM_NUMBER, 'ORG_NAME', '#0', 0, '');\""
     sudo -u postgres bash -c "psql -d $DBNAME -c \"INSERT INTO entry_event values(0, 'default', 'default', 0, '2000-01-01', '2000-01-02', false, 'default');\""
-    sudo -u postgres bash -c "psql -d $DBNAME -c \"INSERT INTO entry_teamsettings (id, allow_photos, allow_schedule, new_user_creation, new_user_position, current_event_id, team_id) values(0, true, true, 'AA', 'GS', 0, $TEAM_NUMBER);\""
+    sudo -u postgres bash -c "psql -d $DBNAME -c \"INSERT INTO entry_orgsettings (id, allow_photos, new_user_creation, new_user_position, current_event_id, team_id) values(0, true, 'AA', 'GS', 0, $TEAM_NUMBER);\""
+    sudo -u postgres bash -c "psql -d $DBNAME -c \"INSERT INTO entry_organization (id, name, reg_id, settings_id, team_id) values(0, $ORG_NAME, $(uuidgen), 0, $TEAM_NUMBER);\""
     ./venv/bin/python3 manage.py createsuperuser
-    sudo -u postgres bash -c "psql -d $DBNAME -c \"INSERT INTO entry_teammember (id, tutorial_completed, position, user_id, team_id) values(0, false, 'LS', 1, $TEAM_NUMBER);\""
+    sudo -u postgres bash -c "psql -d $DBNAME -c \"INSERT INTO entry_orgmember (id, tutorial_completed, position, user_id, team_id) values(0, false, 'LS', 1, $TEAM_NUMBER);\""
 
     printf "\n"
     printf "***************************************************************\n"

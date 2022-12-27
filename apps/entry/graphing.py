@@ -50,7 +50,7 @@ def bar_graph(req_fields, teams, request):
 
     for team in teams:
         # TODO Total the values from each field per team and package the totals into a json under each team id or number
-        matches = Match.objects.filter(team_id=team, team_ownership=request.user.teammember.team_id)
+        matches = Match.objects.filter(team_id=team, ownership=request.user.orgmember.organization)
         team_data = default_out.copy()
 
         # TODO Separate out dependants like in glance, meaning only contribute quality to average if defense was actually played
