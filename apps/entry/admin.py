@@ -6,11 +6,7 @@ from django.contrib.auth.models import User
 
 # Define an inline admin descriptor for Employee model
 # which acts a bit like a singleton
-<<<<<<< HEAD
 class OrgMemberInline(admin.StackedInline):
-=======
-class TeamMemberInline(admin.StackedInline):
->>>>>>> 77cc7f077a516e0416a85cbddd6fda83757921d9
     model = OrgMember
     can_delete = True
     verbose_name_plural = 'Team Info'
