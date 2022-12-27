@@ -591,12 +591,6 @@ class Registration(FormMixin, generic.TemplateView):
             user.first_name = form.cleaned_data['first_name']
             user.last_name = form.cleaned_data['last_name']
             user.email = form.cleaned_data['email']
-<<<<<<< HEAD
-=======
-            user.orgmember.team = Team.objects.get(number=form.cleaned_data['team_number'])
-            user.save()
-            user.teammember.save()
->>>>>>> 77cc7f077a516e0416a85cbddd6fda83757921d9
 
             try:
                 if form.cleaned_data['create_new_org']:
@@ -678,11 +672,7 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
         response.set_cookie('teamsBehaviour', request.POST.get('teamsBehaviour', ''))
         response.set_cookie('teamListType', request.POST.get('teamListType', ''))
 
-<<<<<<< HEAD
         if self.request.user.orgmember.position == "LS":
-=======
-        if self.request.user.teammember.position == "LS":
->>>>>>> 77cc7f077a516e0416a85cbddd6fda83757921d9
             new_settings = OrgSettings()
             print("making")
             try:
