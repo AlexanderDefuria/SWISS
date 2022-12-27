@@ -138,7 +138,11 @@ class Organization(models.Model):
         verbose_name_plural = "Organizations"
 
     name = models.CharField(max_length=100, blank=False, unique=True)
+<<<<<<< HEAD
     team = models.ForeignKey(Team, on_delete=models.CASCADE, blank=True, null=True)
+=======
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, blank=True)
+>>>>>>> 77cc7f077a516e0416a85cbddd6fda83757921d9
     reg_id = models.UUIDField(primary_key=False, default=uuid.uuid4, editable=True)
     settings = models.OneToOneField(OrgSettings, on_delete=models.CASCADE, default=0)
 
