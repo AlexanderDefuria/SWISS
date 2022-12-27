@@ -38,16 +38,18 @@ class MatchScoutForm(forms.Form):
 
     # AUTO
     auto_route = forms.IntegerField(widget=widgets.Select(choices=[
-                    (1, "foo"),
-                    (2, "bar")
+                    (0, "None"),
+                    (1, "Yes, Simple"),
+                    (2, "Yes, Complex")
                 ]), label='Autonomous Route')
     baseline = forms.BooleanField(widget=BooleanWidget(image='AllTarmacs.png'), label='Exit Tarmac', required=False)
     upper_auto = forms.IntegerField(widget=TickerWidget(image='HubUpper.png'), initial=0)
     lower_auto = forms.IntegerField(widget=TickerWidget(image='HubLower.png'), initial=0)
     missed_balls_auto = forms.IntegerField(widget=TickerWidget(image='MissedIcon.png'), initial=0)
     auto_fouls = forms.IntegerField(widget=widgets.Select(choices=[
-                    (1, "foo"),
-                    (2, "bar")
+                    (0, "None"),
+                    (1, "Yes, Minor"),
+                    (2, "Yes, Major")
                 ]), label='Auto Fouls')
     auto_comment = forms.CharField(
                     widget=widgets.Textarea(attrs={'rows': 2, 'cols': 50, 'placeholder': 'Auto Notes'}),
@@ -60,17 +62,21 @@ class MatchScoutForm(forms.Form):
     lower = forms.IntegerField(widget=TickerWidget(image='HubLower.png'), initial=0)
     missed_balls = forms.IntegerField(widget=TickerWidget(image='MissedIcon.png'), initial=0)
     intake_type = forms.IntegerField(widget=widgets.Select(choices=[
-                    (1, "foo"),
-                    (2, "bar")
+                    (0, "Did not Intake"),
+                    (1, "Ground"),
+                    (2, "Human"),
+                    (3, "Both"),
                 ]), label='Intake Type')
     under_defense = forms.IntegerField(widget=widgets.Select(choices=[
-                    (1, "foo"),
-                    (2, "bar")
+                    (0, "Not Defended"),
+                    (1, "Played Poorly"),
+                    (2, "Played Well"),
                 ]), label='Performance Under Defence')
     defended_by = forms.IntegerField(widget=widgets.NumberInput, required=False)
     offensive_fouls = forms.IntegerField(widget=widgets.Select(choices=[
-                    (1, "foo"),
-                    (2, "bar")
+                    (0, "None"),
+                    (1, "Yes, Minor"),
+                    (2, "Yes, Major")
                 ]), label='Offense Fouls')
 
     # DEFENSE
@@ -78,27 +84,38 @@ class MatchScoutForm(forms.Form):
     team_defended = forms.IntegerField(widget=widgets.NumberInput, required=False)  # TODO Can this now become a popup?
     defense_time = forms.IntegerField(widget=StopWatchWidget(), label="Defense Stopwatch", initial=0)
     defense_rating = forms.IntegerField(widget=widgets.Select(choices=[
-                    (1, "foo"),
-                    (2, "bar")
+                    (0, "Not Applicable"),
+                    (1, "Attempted, Poor"),
+                    (2, "Minor Annoyance"),
+                    (3, "Good"),
+                    (4, "Excellent"),
+                    (5, "God-like"),
                 ]), label='Quality of Defense')
     defense_fouls = forms.IntegerField(widget=widgets.Select(choices=[
-                    (1, "foo"),
-                    (2, "bar")
+                    (0, "None"),
+                    (1, "Yes, Minor"),
+                    (2, "Yes, Major")
                 ]), label='Defense Fouls')
     able_to_push = forms.IntegerField(widget=widgets.Select(choices=[
-                    (1, "foo"),
-                    (2, "bar")
+                    (0, "N/A"),
+                    (1, "Poorly"),
+                    (2, "Well")
                 ]), label='Ability to Push')
 
     # ENDGAME
     climb_time = forms.IntegerField(widget=StopWatchWidget(), label="Climb Time", initial=0)
     lock_status = forms.IntegerField(widget=widgets.Select(choices=[
-                    (1, "foo"),
-                    (2, "bar")
+                    (0, "None"),
+                    (1, "Unsuccessful"),
+                    (2, "Invalidated"),
+                    (3, "Successful Climb"),
                 ]), label='Field Timeout Position (t=+5s')
     endgame_action = forms.IntegerField(widget=widgets.Select(choices=[
-                    (1, "foo"),
-                    (2, "bar")
+                    (0, "No Attempt"),
+                    (1, "Low Rung"),
+                    (2, "Mid Rung"),
+                    (3, "High Rung"),
+                    (4, "Traversal Rung"),
                 ]), label='Climb Height')
     climb_attempts = forms.IntegerField(widget=TickerWidget(), label='Climb Attempts', initial=0)
     climb_comments = forms.CharField(
@@ -109,12 +126,14 @@ class MatchScoutForm(forms.Form):
 
     # MORE
     fouls_hp = forms.IntegerField(widget=widgets.Select(choices=[
-                    (1, "foo"),
-                    (2, "bar")
+                    (0, "None"),
+                    (1, "Yes"),
+                    (2, "Yes, Repeatedly")
                 ]), label='Human Player Fouls')
     fouls_driver = forms.IntegerField(widget=widgets.Select(choices=[
-                    (1, "foo"),
-                    (2, "bar")
+                    (0, "None"),
+                    (1, "Yes"),
+                    (2, "Yes, Repeatedly")
                 ]), label='Driver/Coach Fouls')
     yellow_card = forms.BooleanField(widget=BooleanWidget(), label='Yellow Card Given', required=False)
     comment = forms.CharField(
