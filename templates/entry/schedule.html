@@ -66,14 +66,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					<a href="{% url 'entry:schedule_details' match.pk %}" class="scheduleLink" id="{{ match.match_number }}" name="{{ match.blue1 }} {{ match.blue2 }} {{ match.blue3 }} {{ match.red1 }} {{ match.red2 }} {{ match.red3 }}">
                         <div class="scheduleTile">
                             <div class="matchNumber">
-								{% if match.completed %}
-                                <h3>Q{{ match.match_number }} ✅</h3>
-								{% else %}
+{#								{% if match.completed %} TODO Completed in schedule #}
+{#                                <h3>Q{{ match.match_number }} ✅</h3>#}
+{#								{% else %}#}
 								<h3>Q{{ match.match_number }}</h3>
 								<span onClick class="matchCompletedButton">
 									<img src="{{ MEDIA_URL }}{% static 'ScoutIcon.png' %}">
 								</span>
-								{% endif %}
+{#								{% endif %}#}
                             </div>
                             <div>
                                 <div class="infoRow" style="background-color: #092e55">

@@ -2,13 +2,12 @@ from django.contrib import admin
 from .models import *
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
-from apps.entry.models import TeamMember
 
 
 # Define an inline admin descriptor for Employee model
 # which acts a bit like a singleton
 class TeamMemberInline(admin.StackedInline):
-    model = TeamMember
+    model = OrgMember
     can_delete = True
     verbose_name_plural = 'Team Info'
     fields = ('team', 'position', 'tutorial_completed')
@@ -76,17 +75,16 @@ class EventFilter(admin.ChoicesFieldListFilter):
 class OwnershipFilter(admin.SimpleListFilter):
     template = 'admin/integer_filter.html'  # templates/admin/integer_filter.html
     title = 'Ownership'
-    parameter_name = 'team_ownership'
+    parameter_name = 'ownership'
 
     def lookups(self, request, model_admin):
         return [('', ''), ('', '')]
 
     def queryset(self, request, queryset):
         if not request.user.is_superuser:
-            return queryset.filter(team_ownership=request.user.teammember.team)
+            return queryset.filter(ownership=request.user.orgmember.organization)
         if self.value() is not None:
-            team = self.value()
-            return queryset.filter(team_ownership=team)
+            return queryset.filter(ownership=request.user.orgmember.organization)
         return queryset
 
 
@@ -99,7 +97,7 @@ class MatchAdmin(admin.ModelAdmin):
         qs = super(MatchAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
-        return qs.filter(team_ownership_id=request.user.teammember.team_id)
+        return qs.filter(townership=request.user.orgmember.organization)
 
 
 class PitsAdmin(admin.ModelAdmin):
@@ -107,22 +105,22 @@ class PitsAdmin(admin.ModelAdmin):
         qs = super(PitsAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
-        return qs.filter(team_ownership_id=request.user.teammember.team_id)
+        return qs.filter(ownership=request.user.orgmember.organization)
 
 
-class TeamMemberAdmin(admin.ModelAdmin):
+class OrgMemberAdmin(admin.ModelAdmin):
     readonly_fields = ('user',)
 
     def get_queryset(self, request):
-        qs = super(TeamMemberAdmin, self).get_queryset(request)
+        qs = super(OrgMemberAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
-        return qs.filter(team=request.user.teammember.team_id)
+        return qs.filter(organization=request.user.orgmember.organization)  # get org members from same org
 
     def get_fields(self, request, obj=None):
-        fields = super(TeamMemberAdmin, self).get_fields(request, obj)
+        fields = super(OrgMemberAdmin, self).get_fields(request, obj)
         if not request.user.is_superuser:
-            self.readonly_fields = ('user', 'team')
+            self.readonly_fields = ('user', 'organization')
         return fields
 
 
@@ -141,7 +139,7 @@ class ImagesAdmin(admin.ModelAdmin):
         qs = super(ImagesAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
-        return qs.filter(team_ownership_id=request.user.teammember.team_id)
+        return qs.filter(ownership=request.user.orgmember.organization)
 
 
 # REGISTRATIONS
@@ -153,5 +151,6 @@ admin.site.register(Match, MatchAdmin)
 admin.site.register(Schedule)
 admin.site.register(Pits, PitsAdmin)
 admin.site.register(Images, ImagesAdmin)
-admin.site.register(TeamMember, TeamMemberAdmin)
-admin.site.register(TeamSettings)
+admin.site.register(OrgMember, OrgMemberAdmin)
+admin.site.register(OrgSettings)
+admin.site.register(Organization)
