@@ -281,13 +281,13 @@ class Pits(models.Model):
 
 
 class Result(models.Model):
-    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, default=0)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
     match = models.ForeignKey(Match, on_delete=models.CASCADE, blank=True)
     completed = models.BooleanField(default=False)
-    red_gouda = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
-    blue_gouda = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
-    ownership = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
+    gouda = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0, related_name='+')
+    ownership = models.ForeignKey(Organization, on_delete=models.CASCADE, default=0, related_name='+')
 
     def __str__(self):
-        return str(self.schedule.match_number) + ' from ' + self.schedule.event.name
+        return str(self.match.match_number) + ' from ' + self.event.name
 

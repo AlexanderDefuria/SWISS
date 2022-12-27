@@ -364,9 +364,11 @@ class MatchScout(LoginRequiredMixin, FormMixin, generic.DetailView):
 
     @staticmethod
     def post(request, pk, *args, **kwargs):
-        org_settings = OrgSettings.objects.all().filter(org=request.user.orgmember.organization)[0]
+        org_settings = request.user.orgmember.organization.settings
 
-        form = MatchScoutForm(request.POST, event=org_settings.current_event)
+        form = MatchScoutForm(request.POST,
+                              event=org_settings.current_event,
+                              ownership=request.user.orgmember.organization)
         team = Team.objects.get(id=pk)
         context = {'form': form, 'team': team}
 
@@ -379,7 +381,7 @@ class MatchScout(LoginRequiredMixin, FormMixin, generic.DetailView):
             match.team = team
             match.event = Event.objects.get(FIRST_key=first_key)
             match.scouter_name = request.user.username
-            match.ownership = request.user.orgmember.organization_id
+            match.ownership = request.user.orgmember.organization
             try:
                 match.save()
                 print('Match Scout Submission Success')
@@ -392,6 +394,8 @@ class MatchScout(LoginRequiredMixin, FormMixin, generic.DetailView):
                 result.schedule = Schedule.objects.get(match_number=match.match_number, event=match.event)
                 result.match = match
                 result.ownership = match.ownership
+                result.completed = True
+                result.event = org_settings.current_event
                 result.save()
             except Schedule.DoesNotExist as e:
                 print("Schedule does not exist")
@@ -580,7 +584,8 @@ class Registration(FormMixin, generic.TemplateView):
         else:
             return super(Registration, self).get(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
+    @staticmethod
+    def post(request, *args, **kwargs):
         form = RegistrationForm(request.POST)
         context = {'form': form}
         if form.is_valid():
@@ -598,6 +603,7 @@ class Registration(FormMixin, generic.TemplateView):
                     org.settings = OrgSettings()
                     org.settings.current_event = Event.objects.first()
                     org.name = form.cleaned_data['org_name']
+                    user.orgmember.position = 'LS'
                     user.orgmember.organization = org
                 else:
                     org = Organization.objects.get(name=form.cleaned_data['org_name'])
