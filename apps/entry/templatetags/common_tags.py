@@ -173,7 +173,7 @@ def get_all_logged_in_users(*args):
     if "unique" in args:
         return len(User.objects.filter(id__in=uid_list))
     else:
-        return count
+        return 1 if count == 0 else count  # There is always at least someone logged in
 
 
 @register.simple_tag

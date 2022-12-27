@@ -25,11 +25,12 @@ class MatchScoutForm(forms.Form):
         self.get_context()
         match_number = self.cleaned_data['match_number']
         try:
-            if Result.objects.get(match__match_number=match_number, ownership=self.ownership).completed:
+            if Result.objects.get(match__match_number=match_number,
+                                  ownership=self.ownership,
+                                  event__match=self.event).completed:
                 raise ValidationError("Match has already been completed.")
         except Result.DoesNotExist as e:
             return match_number
-            raise ValidationError("Match is not in schedule.")
 
         return match_number
 

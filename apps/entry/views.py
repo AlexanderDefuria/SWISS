@@ -25,6 +25,7 @@ from apps.entry.forms import MatchScoutForm, RegistrationForm, PitScoutForm, Log
 
 register = Library
 
+
 @ajax
 @csrf_exempt
 @login_required(login_url='entry:login')
@@ -51,7 +52,8 @@ def update_graph(request):
 @login_required(login_url='entry:login')
 def update_glance(request, pk):
     matches = Match.objects.filter(team_id=pk,
-                                   ownership_id=request.user.orgmember.organization_id).order_by('event', 'match_number')
+                                   ownership_id=request.user.orgmember.organization_id).order_by('event',
+                                                                                                 'match_number')
     count = matches.count()
     try:
         if make_int(Team.objects.get(id=pk).glance.name.split('_')[2]) == count:
@@ -234,7 +236,7 @@ def logout(request):
 def admin_redirect(request, **kwargs):
     if request.user.is_staff:
         if 'whereto' in kwargs:
-            return HttpResponseRedirect( reverse_lazy('admin:index') + 'entry/' + kwargs['whereto'] + "/")
+            return HttpResponseRedirect(reverse_lazy('admin:index') + 'entry/' + kwargs['whereto'] + "/")
         return HttpResponseRedirect(reverse_lazy('admin:index'))
     return HttpResponseRedirect(reverse_lazy('entry:index'))
 
@@ -390,7 +392,13 @@ class MatchScout(LoginRequiredMixin, FormMixin, generic.DetailView):
 
             try:
                 # TODO Fill in Gouda
-                result = Result()
+                try:
+                    result = Result.objects.get(match__match_number=match.match_number,
+                                                ownership=match.ownership,
+                                                event__match=match.event)
+                except Result.DoesNotExist as e:
+                    result = Result()
+
                 result.schedule = Schedule.objects.get(match_number=match.match_number, event=match.event)
                 result.match = match
                 result.ownership = match.ownership
@@ -487,10 +495,12 @@ class ScheduleView(LoginRequiredMixin, generic.ListView):
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
         if self.show_completed:
-            return Schedule.objects.filter(event_id=org_settings.current_event).order_by("match_type").order_by("match_number")
+            return Schedule.objects.filter(event_id=org_settings.current_event).order_by("match_type").order_by(
+                "match_number")
         # return Schedule.objects.filter(event_id=org_settings.current_event, completed=False).order_by("match_type").order_by("match_number")
         # TODO Filter by completed
-        return Schedule.objects.filter(event_id=org_settings.current_event).order_by("match_type").order_by("match_number")
+        return Schedule.objects.filter(event_id=org_settings.current_event).order_by("match_type").order_by(
+            "match_number")
 
 
 class ScheduleDetails(LoginRequiredMixin, generic.DetailView):
@@ -657,7 +667,7 @@ class PitData(LoginRequiredMixin, generic.ListView):
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
         return Pits.objects.all().filter(event_id=org_settings.current_event).filter(
-           ownership=self.request.user.orgmember.organization_id)
+            ownership=self.request.user.orgmember.organization_id)
 
 
 class Upload(LoginRequiredMixin, generic.TemplateView):
