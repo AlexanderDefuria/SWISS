@@ -60,20 +60,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
 		</div>		
         <div class="scheduleContainer" id="scheduleContainer" style="flex-wrap: wrap; white-space: nowrap; justify-content: center">
-            {% for match in schedule_list %}
-                {% if match.match_number > 0 %}
-                    {% if match.match_type == "Qualification" %}
-					<a href="{% url 'entry:schedule_details' match.pk %}" class="scheduleLink" id="{{ match.match_number }}" name="{{ match.blue1 }} {{ match.blue2 }} {{ match.blue3 }} {{ match.red1 }} {{ match.red2 }} {{ match.red3 }}">
+            {% for match in schedule_list.0 %}
+                {% if not schedule_list.2 and match.match_number in schedule_list.1 %}
+                {% else %}
+                    {% if match.match_type == "Qualification"%}
+                    <a href="{% url 'entry:schedule_details' match.pk %}" class="scheduleLink" id="{{ match.match_number }}" name="{{ match.blue1 }} {{ match.blue2 }} {{ match.blue3 }} {{ match.red1 }} {{ match.red2 }} {{ match.red3 }}">
                         <div class="scheduleTile">
                             <div class="matchNumber">
-{#								{% if match.completed %} TODO Completed in schedule #}
-{#                                <h3>Q{{ match.match_number }} ✅</h3>#}
-{#								{% else %}#}
-								<h3>Q{{ match.match_number }}</h3>
-								<span onClick class="matchCompletedButton">
-									<img src="{{ MEDIA_URL }}{% static 'ScoutIcon.png' %}">
-								</span>
-{#								{% endif %}#}
+                                {% if match.match_number in schedule_list.1 %}
+                                    <h3>Q{{ match.match_number }}</h3>
+                                    <span style="font-size: x-large; margin-top: 10px">✅</span>
+                                {% else %}
+                                    <h3>Q{{ match.match_number }}</h3>
+                                    <span onClick class="matchCompletedButton">
+                                        <img src="{{ MEDIA_URL }}{% static 'ScoutIcon.png' %}">
+                                    </span>
+                                {% endif %}
                             </div>
                             <div>
                                 <div class="infoRow" style="background-color: #092e55">
@@ -88,7 +90,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 </div>
                             </div>
                         </div>
-					</a>
+                    </a>
                     {% endif %}
                 {% endif %}
             {% endfor %}

@@ -390,27 +390,6 @@ class MatchScout(LoginRequiredMixin, FormMixin, generic.DetailView):
             except Exception as e:
                 print(e)
 
-            try:
-                # TODO Fill in Gouda
-                try:
-                    result = Result.objects.get(match__match_number=match.match_number,
-                                                ownership=match.ownership,
-                                                event__match=match.event)
-                except Result.DoesNotExist as e:
-                    result = Result()
-
-                result.schedule = Schedule.objects.get(match_number=match.match_number, event=match.event)
-                result.match = match
-                result.ownership = match.ownership
-                result.completed = True
-                result.event = org_settings.current_event
-                result.save()
-            except Schedule.DoesNotExist as e:
-                print("Schedule does not exist")
-            except Exception as e:
-                print("Could not update schedule")
-                print(e)
-
             print(match)
 
             return HttpResponseRedirect(reverse_lazy('entry:match_scout_landing'))
@@ -494,13 +473,18 @@ class ScheduleView(LoginRequiredMixin, generic.ListView):
             print(str(e) + ": There are no team settings for this query.")
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
+        schedule = Schedule.objects.filter(event_id=org_settings.current_event)\
+                    .exclude(match_number=0)\
+                    .order_by("match_type")\
+                    .order_by("match_number")
+        results = Result.objects \
+            .filter(event=org_settings.current_event, ownership=org_settings.organization, completed=True) \
+            .values_list('match__match_number', flat=True)
+
         if self.show_completed:
-            return Schedule.objects.filter(event_id=org_settings.current_event).order_by("match_type").order_by(
-                "match_number")
-        # return Schedule.objects.filter(event_id=org_settings.current_event, completed=False).order_by("match_type").order_by("match_number")
-        # TODO Filter by completed
-        return Schedule.objects.filter(event_id=org_settings.current_event).order_by("match_type").order_by(
-            "match_number")
+            return schedule, results, True
+
+        return schedule, results, False
 
 
 class ScheduleDetails(LoginRequiredMixin, generic.DetailView):

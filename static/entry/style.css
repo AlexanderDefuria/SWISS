@@ -672,14 +672,21 @@ th {
 }
 .scheduleTile h3 {
 	width: 45px;
-    margin: 5px 20px 0 0;
+    margin: 5px 0px 5px 0px;
+	text-align: center;
+}
+.scheduleTile span {
+	text-align: center;
 }
 .matchNumber {
 	display: flex;
 	flex-direction: column;
 }
+.scheduleTile .matchNumber {
+	margin-right: 5px;
+}
 .matchCompletedButton {
-	margin: 7px;
+	margin: 5px 0px 5px 0px;
 	border: 2px solid white; 
 	border-radius: 50px;
 	width: 2.5rem;

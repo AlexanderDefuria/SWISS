@@ -164,7 +164,6 @@ class Match(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
     match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(-1)])
-    gouda = models.FloatField(default=0, blank=True, null=True)
 
     # Pre Match
     auto_start_x = models.fields.FloatField(default=0, validators=[MaxValueValidator(1), MinValueValidator(0)])
@@ -220,6 +219,20 @@ class Match(models.Model):
 
     def __str__(self):
         return self.team.name + " Match: " + str(self.match_number) + " at " + str(self.event)
+
+    def save(self, *args, **kwargs):
+        try:
+            result = Result()
+            result.schedule = Schedule.objects.get(match_number=self.match_number, event=self.event)
+            result.match = self
+            result.ownership = self.ownership
+            result.completed = True
+            result.event = self.ownership.settings.current_event
+
+            result.save()
+        except Exception:
+            print("error updating result for " + str(self))
+        super(Match, self).save(*args, **kwargs)
 
 
 class Pits(models.Model):
