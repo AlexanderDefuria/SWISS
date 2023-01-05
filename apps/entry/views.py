@@ -691,9 +691,11 @@ class MatchScout(LoginRequiredMixin, FormMixin, generic.DetailView):
             print("Valid Match Scout")
             print(form.cleaned_data)
             first_key = Event.objects.all().filter(id=make_int(team_settings.current_event.id))[0].FIRST_key
+            auto_start = form.cleaned_data.pop('auto_start')
 
             match = Match(**form.cleaned_data)
             match.team = team
+            match.auto_start_x, match.auto_start_y = auto_start
             match.event = Event.objects.get(FIRST_key=first_key)
             match.scouter_name = request.user.username
             match.team_ownership = request.user.teammember.team

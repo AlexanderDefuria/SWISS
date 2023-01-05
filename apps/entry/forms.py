@@ -56,6 +56,7 @@ class MatchScoutForm(forms.Form):
                     label="Auto Notes",
                     required=False
                 )
+    auto_start = LocationField(widget=LocationWidget, label="Location Field", initial=[0, 0])
 
     # TELEOP
     upper = forms.IntegerField(widget=TickerWidget(image='HubUpper.png'), initial=0)
