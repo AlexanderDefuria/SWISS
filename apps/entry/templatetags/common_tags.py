@@ -74,7 +74,7 @@ def define(val):
 def get_current_event(request):
     try:
         # return Event.objects.filter(FIRST_key=config.get_current_event_key())[0]
-        return TeamSettings.objects.get(team=request.user.teammember.team).current_event
+        return request.user.orgmember.organization.settings.current_event
     except IndexError:
         event = Event()
         event.name = "Temp"
@@ -119,7 +119,7 @@ def get_team_colour(team_number):
 def get_team_onfield(user, team_number):
     try:
         total = Match.objects.all().filter(team_id=team_number,
-                                           event=TeamSettings.objects.get(team=user.teammember.team).current_event)
+                                           event=user.orgmember.organization.settings.current_event)
         present = total.filter(on_field=True).count()
         total = total.count()
         if total == 0:
@@ -143,12 +143,12 @@ def get_cookie(request, cookie_name):
 
 @register.simple_tag
 def get_user_role(request):
-    return request.user.teammember.get_position_display() + ": Team " + str(request.user.teammember.team.number)
+    return request.user.orgmember
 
 
 @register.simple_tag
 def get_team_uuid(request):
-    return str(request.user.teammember.team.reg_id)[:6]
+    return str(request.user.orgmember.organization.reg_id)[:6]
 
 
 @register.simple_tag
@@ -173,7 +173,7 @@ def get_all_logged_in_users(*args):
     if "unique" in args:
         return len(User.objects.filter(id__in=uid_list))
     else:
-        return count
+        return 1 if count == 0 else count  # There is always at least someone logged in
 
 
 @register.simple_tag
@@ -188,14 +188,13 @@ def get_all_teams():
 
 @register.simple_tag
 def get_all_events():
-    print(views.get_all_events().all())
     return views.get_all_events()
 
 
 @register.simple_tag
 def is_lead_scout(request):
-    # Check if user is highest level position
-    return request.user.teammember.position == 'LS'
+    # Check if user is the highest level position
+    return request.user.orgmember.position == 'LS'
 
 
 @register.simple_tag
@@ -238,12 +237,9 @@ def get_info(user, team, field, *args):
         if "match" in args:
             model = Match
 
-        teamsettings = TeamSettings.objects.all().filter(team_id=user.teammember.team)[0]
         if len(model.objects.all().filter(team_id=team.id,
-                                          event_id=teamsettings.current_event.id,
-                                          team_ownership=user.teammember.team.id,
-                                          event=TeamSettings.objects.get(
-                                              team=user.teammember.team).current_event)) == 0:
+                                          event_id=user.orgmember.organization.settings.current_event.id,
+                                          ownership=user.orgmember.organization)) == 0:
             return "No Data"
 
         if "dependant" in args:
@@ -277,16 +273,16 @@ def get_average(user, team, field, model):
 
     total = get_total(user, team, field, model)
     model_instances = model.objects.filter(team_id=team.id,
-                                           team_ownership=user.teammember.team,
-                                           event=TeamSettings.objects.get(team=user.teammember.team).current_event)
+                                           ownership=user.orgmember.organization,
+                                           event=user.orgmember.organization.settings.current_event)
 
     if field == 'lock_status' or field == 'endgame_action':
         most_common = model_instances.annotate(mc=Count(field)).order_by('-mc')[0].lock_status
         total = model_instances.filter(lock_status=most_common).count()
         model_instances = model.objects.filter(team_id=team.id,
-                                               team_ownership=user.teammember.team,
+                                               ownership=user.orgmember.organization,
                                                lock_status=most_common,
-                                               event=TeamSettings.objects.get(team=user.teammember.team).current_event)
+                                               event=user.orgmember.organization.settings.current_event)
 
     # If its to do with scoring or fouls return a percent
     scale = 1000 if model == Pits else 1000
@@ -299,8 +295,8 @@ def get_average(user, team, field, model):
 def get_total(user, team, field, model):
     total = 0
     object_list = model.objects.filter(team_id=team.id,
-                                       team_ownership=user.teammember.team,
-                                       event=TeamSettings.objects.get(team=user.teammember.team).current_event)
+                                       ownership=user.orgmember.organization,
+                                       event=user.orgmember.organization.settings.current_event)
     boolean = model.objects.first()._meta.get_field(field).get_internal_type() == 'BooleanField'
 
     for entry in object_list:
@@ -315,8 +311,8 @@ def get_total(user, team, field, model):
 
 def get_list(user, team, field, model):
     object_list = model.objects.filter(team_id=team.id,
-                                       team_ownership=user.teammember.team,
-                                       event=TeamSettings.objects.get(team=user.teammember.team).current_event)
+                                       ownership=user.orgmember.organization,
+                                       event=user.orgmember.organization.settings.current_event)
     result_list = []
     return_list = {}
 
@@ -362,8 +358,8 @@ def get_list(user, team, field, model):
 
 def get_possible(user, team, field, model):
     object_list = model.objects.filter(team_id=team.id,
-                                       team_ownership=user.teammember.team,
-                                       event=TeamSettings.objects.get(team=user.teammember.team).current_event)
+                                       ownership=user.orgmember.organization,
+                                       event=user.orgmember.organization.settings.current_event)
     default = model._meta.get_field(field).default
 
     # print("DEFAULT: " + str(default))
@@ -384,8 +380,8 @@ def dependant(user, team, field, model, args):
             return 0
 
     object_list = model.objects.filter(team_id=team.id,
-                                       team_ownership=user.teammember.team,
-                                       event=TeamSettings.objects.get(team=user.teammember.team).current_event)
+                                       ownership=user.orgmember.organization,
+                                       event=user.orgmember.organization.settings.current_event)
     return_list = []
     total = 0
 

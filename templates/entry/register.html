@@ -54,3 +54,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	</div>
 </body>
 </html>
+
+<style>
+    #mainForm h1 {
+        margin-left: 10px;
+        font-size: x-large;
+    }
+</style>
+
+<script>
+    // NOTE! all element values and ids are defined by Register form in entry/forms.py
+    window.addEventListener('DOMContentLoaded', function () {
+        let reg_id = document.getElementById('id_org_reg_id');
+        let formItem = reg_id.parentElement;
+        let initialDisplay = formItem.style['display'];
+
+        let yes = document.getElementById('create_new_org_true');
+        let no = document.getElementById('create_new_org_false');
+
+        yes.addEventListener('click', function () {
+            formItem.style['display'] = 'None';
+            reg_id.value = '';
+        })
+        no.addEventListener('click', function () {
+            formItem.style['display'] = initialDisplay;
+        })
+    })
+</script>

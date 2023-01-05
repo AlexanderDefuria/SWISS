@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from apps.entry.models import TeamMember
+from apps.entry.models import OrgMember, OrgSettings
 from django.http import HttpResponse
 from django.conf import settings
 import traceback
@@ -59,17 +59,17 @@ class ValidateUser:
         if not request.user.is_authenticated:
             return HttpResponseRedirect(reverse_lazy('entry:login'))
 
-        if request.user.teammember.position == "NA":
+        if request.user.orgmember.position == "NA":
             return HttpResponseRedirect(reverse_lazy('entry:logout'))
 
-        print(str(request.user) + " from " + str(request.user.teammember.team.number))
+        print(request.user.orgmember)
 
         if app == 'entry':
             if self.valid_perms(view, request.user):
                 return response
             else:
                 print(view)
-                print("\n" + str(request.user) + " [" + str(request.user.teammember.position)
+                print("\n" + str(request.user) + " [" + str(request.user.orgmember.position)
                       + "] IS REQUESTING " + request.path + " WITH INVALID PERMS!\n")
                 return HttpResponseRedirect(reverse_lazy('entry:index'))
 
@@ -86,7 +86,7 @@ class ValidateUser:
             view = 'index'
 
         reqlevel = 0
-        for each in TeamMember.AVAILABLE_POSITIONS:
+        for each in OrgSettings.AVAILABLE_POSITIONS:
             try:
                 if each[0] == self.permissions[view]:
                     break
@@ -95,14 +95,12 @@ class ValidateUser:
                 return False
 
         actlevel = 0
-        for each in TeamMember.AVAILABLE_POSITIONS:
-            if each[0] == user.teammember.position:
+        for each in OrgSettings.AVAILABLE_POSITIONS:
+            if each[0] == user.orgmember.position:
                 break
             else:
                 actlevel += 1
 
-        #print(reqlevel)
-        #print(each[0])
         return actlevel >= reqlevel
 
 

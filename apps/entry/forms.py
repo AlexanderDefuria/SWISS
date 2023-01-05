@@ -18,22 +18,26 @@ class MatchScoutForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         self.event = kwargs.pop('event', None)
+        self.ownership = kwargs.pop('ownership', None)
         super(MatchScoutForm, self).__init__(*args, **kwargs)
 
     def clean_match_number(self):
         self.get_context()
         match_number = self.cleaned_data['match_number']
         try:
-            if Schedule.objects.get(match_number=match_number, event=self.event).completed:
+            if Result.objects.get(match__match_number=match_number,
+                                  ownership=self.ownership,
+                                  event__match=self.event).completed:
                 raise ValidationError("Match has already been completed.")
-        except Exception as e:
-            raise ValidationError("Match is not in schedule.")
+        except Result.DoesNotExist as e:
+            return match_number
 
         return match_number
 
     match_number = forms.IntegerField(min_value=0, max_value=255)
     on_field = forms.BooleanField(widget=BooleanWidget(), label='Is Robot Present?', required=False)
-    preloaded_balls = forms.BooleanField(widget=BooleanWidget(image='SplitColourCargo.png'), label='Ball Preloaded', required=False)
+    preloaded_balls = forms.BooleanField(widget=BooleanWidget(image='SplitColourCargo.png'), label='Ball Preloaded',
+                                         required=False)
     # TODO Starting Position WIDGET Do this widget without the numerical inputs actually showing
 
     # AUTO
@@ -228,8 +232,9 @@ class PitScoutForm(forms.Form):
 
 
 class RegistrationForm(forms.Form):
-    template_name = 'entry/components/forms/generic.html'
+    template_name = 'entry/components/forms/scout.html'
 
+    # Personal
     username = forms.CharField(widget=widgets.TextInput, max_length=150, validators=[UnicodeUsernameValidator()])
     password = forms.CharField(widget=widgets.PasswordInput, max_length=128)
     password_validate = forms.CharField(widget=widgets.PasswordInput, label="Verify Password")
@@ -259,10 +264,10 @@ class RegistrationForm(forms.Form):
         return self.cleaned_data['email_validate']
 
     def clean_team_reg_id(self):
-        reg_uuid = self.cleaned_data['team_reg_id']
-        team_number = self.cleaned_data['team_number']
-        if str(Team.objects.get(number=team_number).reg_id)[:6] != reg_uuid[:6]:
-            raise ValidationError('Incorrect RegID for Team ' + str(team_number) + '.')
+        reg_uuid = self.cleaned_data['org_reg_id']
+        org_name = self.cleaned_data['org_name']
+        if str(Organization.objects.get(name=org_name).reg_id)[:6] != reg_uuid[:6]:
+            raise ValidationError('Incorrect RegID for Org: ' + str(org_name) + '.')
         return uuid
 
 
@@ -287,6 +292,7 @@ class ImportForm(forms.Form):
         if self.cleaned_data['key'] == '':
             raise ValidationError('Field cannot be empty.')
         return self.cleaned_data['key']
+
 
 class SettingsForm(forms.Form):
     # TODO This will take more time, Should probably be done after Organization Redo.
