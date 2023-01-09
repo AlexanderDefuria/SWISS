@@ -12,5 +12,11 @@ class MediaStorage(S3Boto3Storage):
     def path(self, name):
         pass
 
+    def get_accessed_time(self, name):
+        pass
+
+    def get_created_time(self, name):
+        pass
+
     bucket_name = 'media'
     location = ''
