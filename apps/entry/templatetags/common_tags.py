@@ -4,7 +4,7 @@ import math
 
 from django import template
 from django.contrib.sessions.models import Session
-from django.db.models import Count, Q
+from django.db.models import Count
 from django.urls import reverse_lazy
 from django.utils import timezone
 
