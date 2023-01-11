@@ -88,7 +88,7 @@ class Schedule(models.Model):
 
 
 class Attendance(models.Model):
-    team = models.IntegerField(Team, default=0)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, default=0)
     qualification_rank = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
     playoff_rank = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])

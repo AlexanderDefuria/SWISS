@@ -263,37 +263,26 @@ def make_int(s):
 
 def get_present_teams(user):
     try:
-        objects = Team.objects.filter(number__in=get_event_teams(
-            user.orgmember.organization.settings.current_event.FIRST_key))
+        # TODO See if this is actually the best way to query all teams from attendance...
+        # Note. We do need the actual Team objects (name, number, colour etc...) all that jazz
+        objects = Team.objects.filter(
+            number__in=Attendance.objects.filter(
+                event=user.orgmember.organization.settings.current_event
+            ).values_list('team_id', flat=True)
+        )
         return objects
     except OrgSettings.DoesNotExist:
         return Team.objects.all()
 
 
-def get_event_teams(event_key):
-    """
-    :param event_key: FIRST Event Key
-    :type event_key: str
-    :return : List of team IDs attending said event
-    :rtype : List
-    """
-    team_list = [0]
-    event_id = Event.objects.get(FIRST_key=event_key)
-    schedule_list = Schedule.objects.all().filter(event_id=event_id)
-    for match in schedule_list:
-        team_list.append(match.blue1)
-    team_list.remove(0)
-    team_list.sort()
-    present_team_list = team_list
-    return present_team_list
-
-
+# TODO Remove this
 def get_all_teams():
     objects = Team.objects.all()
     objects = objects.order_by('number')
     return objects
 
 
+# TODO Remove This
 def get_all_events():
     return Event.objects.all().order_by('start')
 
