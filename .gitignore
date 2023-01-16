@@ -13,3 +13,9 @@ media/robots/*
 !media/robots/4343.JPG
 !media/robots/default.jpg
 secrets.json
+.idea/*
+*.iml
+modules.xml
+.history
+.vscode/*
+*.vsix
