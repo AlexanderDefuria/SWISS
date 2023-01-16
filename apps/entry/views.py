@@ -189,6 +189,28 @@ def write_image_upload(request):
 @login_required(login_url='entry:login')
 def write_pit_upload(request):
     if request.method == 'GET':
+        template = loader.get_template('entry/login.html')
+
+        if request.user.is_authenticated:
+            return HttpResponseRedirect(reverse_lazy('entry:index'))
+
+        return HttpResponse(template.render({}, request))
+
+    elif request.method == 'POST':
+
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+        #print(username)
+        #print(password)
+        user = auth.authenticate(request, username=username, password=password)
+
+        print(user)
+
+        if user is not None:
+            auth.login(request, user)
+            if not TeamMember.objects.filter(user=user).exists():
+                TeamMember.objects.create(user_id=user.id)
+                
         return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 

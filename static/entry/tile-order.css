@@ -11,7 +11,7 @@ This SHOULD also apply to any viewports less than this. If this breaks on mobile
 #tileVisualize 	{order: 6}
 #tileSchedule   {order: 7}
 #tileDownload 	{order: 8}
-#tileEvent 		{order: 9; max-width: 255px;}
+#tileEvent 		{order: 9}
 #tileSettings 	{order: 10}
 #tileUpload 	{order: 11}
 #tileAdmin 		{order: 12}
@@ -32,7 +32,7 @@ This SHOULD also apply to any viewports less than this. If this breaks on mobile
 	.tileContainer #tlleSchedule 	{order: 7}
 	.tileContainer #tileDownload 	{order: 8}
 	.tileContainer #tileEvent 		{order: 9}
-	.tileContainer #tileActive 		{order: 10; min-width: 100px; max-width: 565px;}
+	.tileContainer #tileActive 		{order: 10}
 	.tileContainer #tileSettings 	{order: 11}
 	.tileContainer #tileUpload 		{order: 12}
 	.tileContainer #tileAdmin 		{order: 13}
@@ -56,7 +56,7 @@ This SHOULD also apply to any viewports less than this. If this breaks on mobile
 	.tileContainer #tileSettings 	{order: 12}
     .tileContainer #tileTBA         {order: 13}
 	.tileContainer #tileUpdate 		{order: 14}
-	.tileContainer #tileActive 		{order: 9; min-width: 100px; max-width: 565px;}
+	.tileContainer #tileActive 		{order: 9}
 	.tileContainer #tileImport 		{order: 16}
 	.tileContainer #tileRegister	{order: 17}
 	.tileContainer #tileHours		{order: 18}
@@ -70,7 +70,7 @@ This SHOULD also apply to any viewports less than this. If this breaks on mobile
 	.tileContainer #tileVisualize 	{order: 5}
 	.tileContainer #tileDownload 	{order: 7}
 	.tileContainer #tileEvent 		{order: 8}
-	.tileContainer #tileActive 		{order: 9; max-width: 255px;}
+	.tileContainer #tileActive 		{order: 9}
 	.tileContainer #tileUpload 		{order: 10}
 	.tileContainer #tileAdmin 		{order: 11}
 	.tileContainer #tileSettings 	{order: 12}
