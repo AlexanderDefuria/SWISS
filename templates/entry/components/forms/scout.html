@@ -1,0 +1,35 @@
+{% load i18n static common_tags %}
+
+{% regroup form by field.group as field_groups %}
+
+{% for field_group in field_groups %}
+    {% if field_group.grouper != None %}
+        <h1 id="{{ field_group.grouper }}">{{ field_group.grouper }}</h1>
+    {% endif %}
+    {% regroup field_group.list by field.subgroup as temp  %}
+    {% for group in temp %}
+        {% if group.grouper != None %}
+            <div class="formItem">
+                {{ group.grouper }}
+                <div class="ticker">
+                {% for field in group.list %}
+                    {{ field.errors }}
+                    {{ field }}
+                {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <div>
+                {% for field in group.list %}
+                    <div class="formItem {% if field.errors %} invalid {% endif %}" >
+                        {{ field.label_tag }}{{ field }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+<div class="formItem" id="submit">
+    <button name="submit" id="submitButton" type="submit" >Submit</button>
+</div>

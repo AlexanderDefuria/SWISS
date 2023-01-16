@@ -1,0 +1,4 @@
+<div class="teamCardSelect teamLink" data-content="{{ team.name }} {{ team.number }}" style="height: auto" onclick="window.location='{% url next_page team.id %}'">
+	<div class="teamnumberPill" style="background-color: {{ team.colour }}"><p>{{ team.number }}</p></div>
+	<div class="teamnamePill"><p>{{ team.name }}</p></div>
+</div>

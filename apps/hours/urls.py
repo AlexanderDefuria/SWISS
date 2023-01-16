@@ -5,7 +5,8 @@ from . import views
 
 urlpatterns = [
     path('', RedirectView.as_view(url=reverse_lazy('promotional:index'), permanent=True)),
-    path('enter', views.EnterHours.as_view(), name='enter'),
+    path('enter/', views.EnterHours.as_view(), name='enter'),
+    path('card/', views.hours_api_post, name='card'),
     path('check/', views.validate_hours, name='check'),
     path('view', views.ViewHours.as_view(), name='view'),
 ]

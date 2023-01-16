@@ -27,16 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N73L5WQ"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-	<div class="topbar">
-		<div class="hamburgerButton" onClick="openNav()">
-			<button class="hamburgerButton" onClick="openNav()">☰</button>
-		</div>
-		<div class="swissLogo" id="swissLogo">
-			<a href="{% url 'entry:index' %}">
-			<img src="{{ MEDIA_URL }}{% static 'SwissIcon2x.png' %}" alt="SWISS Logo">
-			</a>
-		</div>
-	</div>
+{% get_topbar 'SwissIcon2x.png' %}
 	<div id="sideNav" class="sidebar">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<a href="{% url 'entry:index' %}">Home</a>

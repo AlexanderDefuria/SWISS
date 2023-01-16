@@ -26,52 +26,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N73L5WQ"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-	<div class="topbar">
-		<div class="hamburgerButton" onClick="openNav()">
-			<button class="hamburgerButton" onClick="openNav()">☰</button>
-		</div>
-		<div class="swissLogo" id="swissLogo">
-			<a href="{% url 'entry:index' %}">
-			<img src="{{ MEDIA_URL }}{% static 'headers/00_MatchDataHeader.png' %}" alt="SWISS Logo">
-			</a>
-		</div>
-	</div>
-	<div id="sideNav" class="sidebar">
-		<div>
-			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-			<a href="{% url 'entry:index' %}">Home</a>
-			<a href="{% url 'entry:match_scout_landing' %}">Scout</a>
-			<a href="{% url 'entry:glance_landing' %}">Glance</a>
-			<a href="{% url 'entry:teams' %}">Teams</a>
-			<a href="{% url 'entry:match_data' %}">Data</a>
-			<a href="{% url 'entry:visualize' %}">Visualize</a>
-			<a href="{% url 'entry:schedule' %}">Schedule</a>
-			<a href="{% url 'entry:settings' %}">Settings</a>
-			<a href="{% url 'entry:about' %}">About</a>
-		</div>
-		<div class="greeting">
-			<p id="timeOfDay"></p>
-			<p style="padding-top: 0px">{{ user.get_username }}!</p>
-		</div>
-		<script>
-			var hour = new Date().getHours();
-			var greeting;
-			if (hour < 17) {
-				greeting = "Good day,";
-			} else {
-				greeting = "Good evening,";
-			}
-			document.getElementById("timeOfDay").innerHTML = greeting;
-		</script>
-	</div>
+    {% get_topbar 'headers/00_MatchDataHeader.png' %}
+	{% get_sidebar %}
 	
-	<div class="bodyContainer bodyBackground" id="bodyContainer" style="background-image: url({{ MEDIA_URL }}{% static 'StatsBackground.png' %})">
-        <div style="display: flex; justify-content: center; ">
-            <div class="formItem graphOption">
-                <button class="dataButton" onclick="window.location='{% url 'entry:match_data' %}';">Match Data</button>
+	<div class="bodyContainer bodyBackground" id="bodyContainer">
+        <div class="heroContent">
+            <div class="heroBox mb-3">
+                 <div class="filterBox" style="width: 90%;">
+                    <img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
+                    <input class="filterChip" type="text" id="teamNumber" onkeyup="tableFilter('teamNumber')" placeholder="Team Number" style="width: 100%;">
+                 </div>
             </div>
-            <div class="formItem graphOption">
-                <button class="dataButton" onclick="window.location='{% url 'entry:pit_data' %}';">Pit Data</button>
+            <br>
+            <div class="heroBox mb-3">
+                <div class="filterBox" style="width: 90%;">
+                    <img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
+                    <input class="filterChip" type="text" id="teamName" onkeyup="tableFilter('teamName')" placeholder="Team Name" style="width: 100%;">
+                </div>
+                <br>
+            </div>
+            <br>
+            <div class="heroBox mb-3">
+                <div class="filterBox" style="width: 90%;">
+                    <img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
+                    <input class="filterChip" type="text" id="matchNumber" onkeyup="tableFilter('matchNumber')" placeholder="Match Number" style="width: 100%;">
+                </div>
+            </div>
+            <div class="formItem graphOption centerMobile">
+                <button class="dataButton" onclick="window.location='{% url 'entry:pit_data' %}';">Go To Pit Data</button>
             </div>
         </div>
 
@@ -167,33 +149,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     {% endfor %}
 				</table>
 		</div>
-		<br>
-        <div class="bottomBar" id="bottomBar">
-			<div id="bottomBarContent">
-				<div class="filterBox">
-					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
-					<input class="filterChip" type="text" id="teamNumber" onkeyup="tableFilter('teamNumber')" placeholder="Team Number">
-				</div>
-				<br>
-				<div class="filterBox">
-					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
-					<input class="filterChip" type="text" id="teamName" onkeyup="tableFilter('teamName')" placeholder="Team Name">
-				</div>
-				<br>
-				<div class="filterBox">
-					<img src="{{ MEDIA_URL }}{% static 'SearchIcon.png' %}" style="height: 50px;" alt="Search">
-					<input class="filterChip" type="text" id="matchNumber" onkeyup="tableFilter('matchNumber')" placeholder="Match Number">
-				</div>
-				{% if user.is_staff %}
-				<div class="filterBox" onClick="location.href = '{% url 'entry:admin_redirect' 'match' %}';" style="cursor: pointer">
-					<img src="{{ MEDIA_URL }}{% static 'EditIcon.png' %}" style="height: 50px;" alt="Edit">
-					<h3>Edit Matches</h3>
-				</div>
-				{% endif %}
-			</div>
-			<button class="bottomBarButton" id="bottomBarButton" onclick="expandBottomBar()" style="background-image: url({{ MEDIA_URL }}{% static 'MoreIcon.png' %})"></button>
-		</div>
 	</div>
-
 </body>
 </html>

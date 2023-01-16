@@ -16,7 +16,7 @@
 body {
 	color: white;
 	background-color: #111;
-	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 30, 77, 0.24));
+	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 30, 77, 0.24));;
 	font-family: Roboto, Helvetica;
 	margin: 0px;
 }
@@ -87,7 +87,7 @@ ul {
 	background-color: #0c0e14;
 	border: 3px solid transparent;
 	border-radius: 15px;
-	padding: 10px;
+	padding: 7px;
 	margin: 0 1rem;
 	font-size: 21px;
 	transition: all 0.1s ease-in-out;
@@ -369,7 +369,7 @@ ul {
 	background-color: #0F4D8D;
 	transition: all .2s ease-in-out; 
 }
-.infoBox:hover { 
+.infoBox:hover {
 	border-color: #777;
 	border-radius: 25px;
 	box-shadow: 2px 5px 25px 2px #232323;
@@ -536,14 +536,13 @@ ul {
 .stickyChip {
 	display: flex;
 	flex-wrap: nowrap;
-	background-color: #1e1e1e;
+	background-color: #0c0e14;
 	border-radius: 15px;
 	height: auto;
 	min-width: 200px;
 	max-width: 80%;
 	padding: 15px;
 	margin-bottom: 10px;
-	box-shadow: 0px 0px 10px 2px #232323;
 	position: fixed;
 	z-index: 2;
 }
@@ -668,15 +667,38 @@ th {
 	transition: all .2s ease-in-out; 
 }
 .scheduleTile:hover { 
-	box-shadow: 2px 5px 25px 2px #232323;
 	border-color: #777;
 	border-radius: 25px;
 }
 .scheduleTile h3 {
 	width: 45px;
-    margin: 5px 0 0 0;
+    margin: 5px 0px 5px 0px;
+	text-align: center;
+}
+.scheduleTile span {
+	text-align: center;
+}
+.matchNumber {
+	display: flex;
+	flex-direction: column;
+}
+.scheduleTile .matchNumber {
+	margin-right: 5px;
+}
+.matchCompletedButton {
+	margin: 5px 0px 5px 0px;
+	border: 2px solid white; 
+	border-radius: 50px;
+	width: 2.5rem;
+	height: 2.5rem;
+	transition: all 0.1s ease-in-out;
+}
+.matchCompletedButton:hover {
+	filter: invert();
+	background: #111;
 }
 .scheduleContainer {
+	margin-top: 0.5rem;
     display: flex;
 }
 .scheduleLink {
@@ -811,8 +833,9 @@ th {
 	transition: all 0.1s ease-in-out;
 }
 .changeTeam:hover {
-	border-color: #777;
+	background-color: #13161e;
 	border-radius: 25px;
+	border-color: #222734;
 }
 .teamDrawer {
 	padding-top: 20px;
@@ -937,6 +960,9 @@ th {
 #collapseBottomBar {
 	visibility: hidden;
 }
+.mb-3{
+	margin-bottom: 3px;
+}
 @media screen and (max-width: 1280px) {
 	.glanceImage {
 		background-position: center -10vh;
@@ -972,6 +998,9 @@ th {
 }
 /* for mobile phones, portrait and landscape */
 @media screen and (max-width: 820px) {
+	.heroContent {
+		flex-direction: column;
+	}
 	.bodyBackground {
 		background-size: 150%;
 		background-position: center 3vh;
@@ -979,6 +1008,13 @@ th {
     .documentContainer {
         width: 100%;
     }
+	.dataButton{
+		width: 80%;
+	}
+	.centerMobile{
+		display: flex;
+		justify-content: center;
+	}
     .documentContent {
         max-width: 100%;
         width: 100%;

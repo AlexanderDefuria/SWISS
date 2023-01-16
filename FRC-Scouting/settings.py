@@ -15,6 +15,9 @@ import json
 import boto3
 from django.core.exceptions import ImproperlyConfigured
 
+from django.forms.renderers import TemplatesSetting
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -56,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.forms',
     'apps.entry.apps.EntryConfig',
     'apps.promotional.apps.PromotionalConfig',
     'apps.hours.apps.HoursConfig',
@@ -93,6 +97,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'FRC-Scouting.wsgi.application'
+
+
+# Forms
+class CustomFormRenderer(TemplatesSetting):
+    form_template_name = "entry/components/forms/experimental.html"
+
+FORM_RENDERER = "FRC-Scouting.settings.CustomFormRenderer"
+
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -167,7 +179,6 @@ if USE_MEDIA_SPACES:
     # public media settings
     PUBLIC_MEDIA_LOCATION = 'media'
     MEDIA_URL = '%s%s' % (AWS_S3_ENDPOINT_URL, AWS_MEDIA_LOCATION)
-    print(MEDIA_URL)
     DEFAULT_FILE_STORAGE = 'FRC-Scouting.storage_backends.MediaStorage'
 
 else:
@@ -183,7 +194,6 @@ if USE_STATIC_SPACES:
         os.path.join(BASE_DIR, "media/static"),
     ]
     STATIC_URL = '%s%s' % (AWS_S3_ENDPOINT_URL, AWS_STATIC_LOCATION)
-    print(STATIC_URL)
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 else:
     # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -192,3 +202,7 @@ else:
         os.path.join(BASE_DIR, "static"),
         os.path.join(BASE_DIR, "media/static"),
     ]
+
+print("MEDIA_URL:     " + MEDIA_URL)
+print("STATIC_URL:    " + STATIC_URL)
+print("DATABASE NAME: " + DATABASES.get('default').get('NAME'))
