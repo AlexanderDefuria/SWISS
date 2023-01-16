@@ -242,8 +242,15 @@ class RegistrationForm(forms.Form):
     last_name = forms.CharField(widget=widgets.TextInput, label="Last Name", min_length=3, max_length=150)
     email = forms.EmailField(widget=widgets.EmailInput, label="Email Address")
     email_validate = forms.EmailField(widget=widgets.EmailInput, label="Verify Email Address")
-    team_number = forms.IntegerField(widget=widgets.NumberInput, min_value=0, max_value=9999, label="Team Number")
-    team_reg_id = forms.CharField(widget=widgets.TextInput, label="Team RegID", min_length=6, max_length=6)
+
+    # Organization
+    create_new_org = forms.BooleanField(widget=BooleanWidget(), required=False, label="Create New?",
+                                        label_suffix="")
+    org_name = forms.CharField(widget=widgets.TextInput, min_length=5, max_length=250, label="Organization Name")
+    org_reg_id = forms.CharField(widget=widgets.TextInput, label="Registration Code", min_length=6, max_length=6, required=False)
+
+    grouping("Personal", [username, password, password_validate, first_name, last_name, email_validate, email])
+    grouping("Organization", [create_new_org, org_name, org_reg_id])
 
     def clean_username(self):
         username = self.cleaned_data['username']

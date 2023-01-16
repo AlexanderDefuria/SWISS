@@ -263,37 +263,26 @@ def make_int(s):
 
 def get_present_teams(user):
     try:
-        objects = Team.objects.filter(number__in=get_event_teams(
-            user.orgmember.organization.settings.current_event.FIRST_key))
+        # TODO See if this is actually the best way to query all teams from attendance...
+        # Note. We do need the actual Team objects (name, number, colour etc...) all that jazz
+        objects = Team.objects.filter(
+            number__in=Attendance.objects.filter(
+                event=user.orgmember.organization.settings.current_event
+            ).values_list('team_id', flat=True)
+        )
         return objects
     except OrgSettings.DoesNotExist:
         return Team.objects.all()
 
 
-def get_event_teams(event_key):
-    """
-    :param event_key: FIRST Event Key
-    :type event_key: str
-    :return : List of team IDs attending said event
-    :rtype : List
-    """
-    team_list = [0]
-    event_id = Event.objects.get(FIRST_key=event_key)
-    schedule_list = Schedule.objects.all().filter(event_id=event_id)
-    for match in schedule_list:
-        team_list.append(match.blue1)
-    team_list.remove(0)
-    team_list.sort()
-    present_team_list = team_list
-    return present_team_list
-
-
+# TODO Remove this
 def get_all_teams():
     objects = Team.objects.all()
     objects = objects.order_by('number')
     return objects
 
 
+# TODO Remove This
 def get_all_events():
     return Event.objects.all().order_by('start')
 
@@ -316,14 +305,12 @@ class TeamList(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/teams.html'
     context_object_name = "team_list"
     model = Team
-
     def get_queryset(self):
         teams = get_present_teams(self.request.user)
         if teams.count() == 1 and teams.first() == Team.objects.first():
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
         return teams
-
 
 class Import(LoginRequiredMixin, FormMixin, generic.TemplateView):
     login_url = 'entry:login'
@@ -590,7 +577,7 @@ class Registration(FormMixin, generic.TemplateView):
             user.first_name = form.cleaned_data['first_name']
             user.last_name = form.cleaned_data['last_name']
             user.email = form.cleaned_data['email']
-
+            print(user)
             try:
                 if form.cleaned_data['create_new_org']:
                     org = Organization()
@@ -601,14 +588,15 @@ class Registration(FormMixin, generic.TemplateView):
                     user.orgmember.organization = org
                 else:
                     org = Organization.objects.get(name=form.cleaned_data['org_name'])
-                    if org.reg_id[:6] != form.cleaned_data['org_reg_id']:
+                    if str(org.reg_id)[:6] != form.cleaned_data['org_reg_id']:
                         raise Organization.DoesNotExist
                     user.orgmember.organization = org
             except Organization.DoesNotExist:
                 form.add_error('org_name', "Org Name or UUID is incorrect.")
                 form.add_error('org_reg_id', "Org Name or UUID is incorrect.")
                 context = {'form': form}
-                return render(request, 'entry/login.html', context)
+                print('org does not exist ' + form.cleaned_data)
+                return render(request, 'entry/register.html', context)
 
             print(user)
             user.save()
