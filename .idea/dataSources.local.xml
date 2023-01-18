@@ -11,6 +11,7 @@
       <schema-mapping>
         <introspection-scope>
           <node negative="1">
+            <node kind="database" qname="_dodb" />
             <node kind="database" qname="swissdb2023">
               <node kind="schema" qname="public" />
             </node>
