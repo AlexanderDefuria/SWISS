@@ -27,17 +27,20 @@ class MatchScoutForm(forms.Form):
         try:
             if Result.objects.get(match__match_number=match_number,
                                   ownership=self.ownership,
-                                  event__match=self.event).completed:
+                                  event=self.event).completed:
                 raise ValidationError("Match has already been completed.")
         except Result.DoesNotExist as e:
             return match_number
 
         return match_number
 
+    def clean_grid_value(self):
+        return int(str(self.cleaned_data['preloaded_balls']), 2)
+
+    preloaded_balls = forms.IntegerField(widget=ConeCubeWidget(), label='Cone or Cube?', initial=0)
     match_number = forms.IntegerField(min_value=0, max_value=255)
     on_field = forms.BooleanField(widget=BooleanWidget(), label='Is Robot Present?', required=False)
-    preloaded_balls = forms.BooleanField(widget=BooleanWidget(image='SplitColourCargo.png'), label='Ball Preloaded',
-                                         required=False)
+    # TODO Preloaded ball must be changed to a one of (00, 01, 10) bit field.
     # TODO Starting Position WIDGET Do this widget without the numerical inputs actually showing
 
     # AUTO

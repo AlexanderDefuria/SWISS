@@ -1,0 +1,41 @@
+{% load i18n static common_tags %}
+<style>
+    .select-cube-cone-group {
+        border-radius: 10px;
+        background-color: violet;
+        padding: 10px;
+        margin: 5px;
+    }
+</style>
+<div class="radioGroup">
+    <div style="display: flex">
+        <div class="select-cube-cone-group">
+            <img class="icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            <img class="icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+        </div>
+        <div class="select-cube-cone-group">
+            <img class="icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            <img class="icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+        </div>
+        <div class="select-cube-cone-group">
+            <img class="icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            <img class="icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+        </div>
+    </div>
+        <div style="display: flex">
+
+    </div>
+
+
+
+    <label for="{{ widget.name }}" hidden></label>
+    <input type="text" id="{{ widget.name }}" name="{{ widget.name }}" hidden value="111">
+</div>
+
+<script>
+    function log(str) {
+        console.log(str);
+    }
+
+</script>
+

@@ -169,21 +169,13 @@ class Match(models.Model):
     auto_start_x = models.fields.FloatField(default=0, validators=[MaxValueValidator(1), MinValueValidator(0)])
     auto_start_y = models.fields.FloatField(default=0, validators=[MaxValueValidator(1), MinValueValidator(0)])
     on_field = models.BooleanField(default=False)
-    preloaded_balls = models.fields.BooleanField(default=True)
 
     # Auto
     auto_route = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
-    baseline = models.BooleanField(default=False)
-    upper_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    lower_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    missed_balls_auto = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     auto_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
     auto_comment = models.TextField(default="")
 
     # Teleop
-    upper = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    lower = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
-    missed_balls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     intake_type = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     under_defense = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     defended_by = models.IntegerField(default=0, blank=True, null=True)
@@ -197,12 +189,9 @@ class Match(models.Model):
     team_defended = models.IntegerField(default=0, blank=True, null=True)
     able_to_push = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
 
-    # Climb
-    lock_status = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
-    endgame_action = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
-    climb_time = models.IntegerField(default=0)
-    climb_attempts = models.IntegerField(default=0)
-    climb_comments = models.TextField(default="")
+    # Charger
+
+    charger_comments = models.TextField(default="")
 
     # Human Player
     fouls_hp = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
@@ -262,15 +251,9 @@ class Pits(models.Model):
     tele_positions = models.SmallIntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
 
     # Robot styles and stats
-    ball_intake = models.TextField(default="")
-    ball_capacity = models.SmallIntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
-    shooter_style = models.TextField(default="")
-    low_bot = models.BooleanField(default=False)
     weight = models.SmallIntegerField(default=0, validators=[MaxValueValidator(200), MinValueValidator(0)])
-    targeting_system = models.TextField(default="")
 
-    # Climb
-    climb_locations = models.SmallIntegerField(default=0, validators=[MaxValueValidator(4), MinValueValidator(0)])
+    # Charger
 
     # Name
     scouter_name = models.TextField(default="")
@@ -284,6 +267,11 @@ class Pits(models.Model):
         ("falcon", "Falcon 500 Motors"),
         ("neo", "NEO Motors"),
         ("other", "Unusual DriveTrain... See Comments")
+    ]
+
+    DRIVE_TRAIN = [
+        # TODO: Fill in the DRIVE TRAIN options
+        ('', '')
     ]
 
     def getData(self, field):

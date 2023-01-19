@@ -32,6 +32,25 @@ class BooleanWidget(TickerWidget):
     template_name = 'entry/components/widgets/boolean.html'
 
 
+class ConeCubeWidget(forms.Widget):
+    template_name = 'entry/components/widgets/select-cone-cube.html'
+
+    def get_context(self, name, value, attrs=None, **kwargs):
+        return {'widget': {
+            'name': name,
+            'value': value,
+        }}
+
+    def format_value(self, value):
+        # Format binary string into integer datatype
+        return int(value, 2)
+
+    def render(self, name, value, attrs=None, **kwargs):
+        context = self.get_context(name, value, attrs, **kwargs)
+        template = loader.get_template(self.template_name).render(context)
+        return mark_safe(template)
+
+
 class StopWatchWidget(forms.Widget):
     template_name = 'entry/components/widgets/stopwatch.html'
 
