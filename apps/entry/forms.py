@@ -20,6 +20,7 @@ class MatchScoutForm(forms.Form):
         self.event = kwargs.pop('event', None)
         self.ownership = kwargs.pop('ownership', None)
         super(MatchScoutForm, self).__init__(*args, **kwargs)
+        self.fields['preloaded_balls'].label = ""
 
     def clean_match_number(self):
         self.get_context()

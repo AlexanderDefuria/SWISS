@@ -11,6 +11,7 @@
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(3, 1fr);
         grid-gap: 10px;
+        margin-left: 10px;
     }
     .grid-item {
         text-align: center;
@@ -20,8 +21,13 @@
         position: relative;
         top: 5px;
     }
+    .cone_select_field {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+    }
 </style>
-<div class="radioGroup">
+<div class="radioGroup cone_select_field">
     <div class="grid-container">
         <div class="grid-item">
             <div class="select-cube-cone-group">
@@ -73,37 +79,107 @@
         </div>
     </div>
 
+    <div class="grid-container">
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+                <img class="clickable_icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+                <img class="clickable_icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+                <img class="clickable_icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
+    </div>
 
-
-{#    <div style="display: flex">#}
-{#       <div class="select-cube-cone-group">#}
-{#            <img class="icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">#}
-{#        </div>#}
-{#        <div class="select-cube-cone-group">#}
-{#            <img class="icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">#}
-{#        </div>#}
-{#        <div class="select-cube-cone-group">#}
-{#            <img class="icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">#}
-{#        </div>#}
-{#    </div>#}
-{##}
-{#    <div style="display: flex">#}
-{#        <div class="select-cube-cone-group">#}
-{#            <img class="icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">#}
-{#            <img class="icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">#}
-{#        </div>#}
-{#        <div class="select-cube-cone-group">#}
-{#            <img class="icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">#}
-{#            <img class="icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">#}
-{#        </div>#}
-{#        <div class="select-cube-cone-group">#}
-{#            <img class="icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">#}
-{#            <img class="icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">#}
-{#        </div>#}
-{#    </div>#}
-
-
-
+    <div class="grid-container">
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+                <img class="clickable_icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+                <img class="clickable_icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+                <img class="clickable_icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
+    </div>
 
 
     <label for="{{ widget.name }}" hidden></label>
