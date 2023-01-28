@@ -45,7 +45,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['https://*.swiss-scouting.ca']
+# CSRF_TRUSTED_ORIGINS = ['https://*.swiss-scouting.ca']
+CSRF_TRUSTED_ORIGINS = ['https://alexanderdefuria-urban-garbanzo-777gj97wxpjhrv59-8000.preview.app.github.dev']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 

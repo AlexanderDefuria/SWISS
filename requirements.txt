@@ -16,3 +16,5 @@ uuid
 boto3==1.21.3
 django-storages==1.13.2
 django-webtest==1.9.10
+pytest-django==4.5.2
+pytest==7.2.1

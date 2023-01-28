@@ -1,28 +1,24 @@
+import os
+import pytest
+
 from django.test import TestCase
 from apps.entry.models import *
+from apps.entry.tests.common import *
 
 # https://realpython.com/testing-in-django-part-1-best-practices-and-examples/#structure
 # https://realpython.com/django-pytest-fixtures/#creating-django-fixtures
+# Create fixtures data files `python3 manage.py dumpdata --format json entry.orgsettings -o organizations.json`
 
-class TeamTest(TestCase):
-    fixtures = ["/home/alexander/Desktop/FRC-Scouting/apps/entry/tests/test_data/teams.json"]
 
-    @classmethod
-    def create_team(cls):
-        return Team.objects.create(name="test team name",
-                                   number=4343,
-                                   colour="#000000")
+@pytest.mark.django_db
+def test_team_creation(create_team):
+    team = create_team
+    assert isinstance(team, Team)
+    assert str(team) == str(team.number) + "\t\t" + str(team.name)
 
-    def test_team_creation(self):
-        team = self.create_team()
-        self.assertTrue(isinstance(team, Team))
-        self.assertEqual(str(team), str(team.number) + "\t\t" + str(team.name))
 
-    def test_default_image(self):
-        team = self.create_team()
-        self.assertEqual(team.first_image(), 'robots/default.jpg')
-
-    def test_check_fixture(self):
-        team = Team.objects.get(pk=188)
-        self.assertEqual(team.name, "Blizzard")
+@pytest.mark.django_db
+def test_default_image(create_team):
+    team = create_team
+    assert team.first_image() == 'robots/default.jpg'
 
