@@ -81,7 +81,7 @@ class MatchScoutForm(forms.Form):
                     (1, "Played Poorly"),
                     (2, "Played Well"),
                 ]), label='Performance Under Defence')
-    defended_by = forms.IntegerField(widget=widgets.NumberInput, required=False)
+    defended_by = forms.IntegerField(widget=ConeCubeWidget(), required=False)
     offensive_fouls = forms.IntegerField(widget=widgets.Select(choices=[
                     (0, "None"),
                     (1, "Yes, Minor"),
