@@ -7,15 +7,9 @@ urlpatterns = [
 
     path('matchscout/', views.MatchScoutLanding.as_view(), name='match_scout_landing'),
     path('matchscout/<slug:pk>/', views.MatchScout.as_view(), name='match_scout'),
-    # TODO Deprecated vv
-    # path('matchscout/<slug:pk>/check/', views.validate_match_scout, name='validate_match_scout'),
-    # path('matchscout/<slug:pk>/submit/', views.match_scout_submit, name='write_match_scout'),
 
     path('pitscout/', views.PitScoutLanding.as_view(), name='pit_scout_landing'),
     path('pitscout/<slug:pk>/', views.PitScout.as_view(), name='pit_scout'),
-    # TODO Deprecated vv
-    # path('pitscout/<slug:pk>/check/', views.validate_pit_scout, name='validate_pit_scout'),
-    # path('pitscout/<slug:pk>/submit/', views.pit_scout_submit, name='write_pit_scout'),
 
     path('visual/', views.Visualize.as_view(), name='visualize'),
     path('visual/update/', views.update_graph, name='update_graph'),
@@ -24,16 +18,20 @@ urlpatterns = [
     path('glance/', views.GlanceLanding.as_view(), name='glance_landing'),
     path('glance/<slug:pk>/', views.Glance.as_view(), name='glance'),
     path('glance/<slug:pk>/update/', views.update_glance, name='glance_update'),
+
     path('download/', views.download, name='download'),
     path('upload/', views.Upload.as_view(), name='upload'),
     path('upload/submit/', views.write_image_upload, name='upload_submit'),
     path('teams/', views.TeamList.as_view(), name='teams'),
     path('stats/', views.TeamList.as_view(), name='stats'),
+
     path('matchdata/', views.MatchData.as_view(), name='match_data'),
     path('pitdata/', views.PitData.as_view(), name='pit_data'),
+
     path('schedule/', views.ScheduleView.as_view(), name='schedule'),
     path('schedule/all/', views.ScheduleView.as_view(show_completed=True), name='schedule_all'),
     path('schedule/details/<slug:pk>/', views.ScheduleDetails.as_view(), name='schedule_details'),
+
     path('experimental/', views.Experimental.as_view(), name='experimental'),
     path('about/', views.About.as_view(), name='about'),
     path('settings/', views.Settings.as_view(), name='settings'),
