@@ -43,13 +43,13 @@ class MatchScoutForm(forms.Form):
     preloaded_balls = forms.IntegerField(widget=BooleanWidget(), label='Preloaded Balls', initial=0)
 
     # AUTO
-    placement_auto = forms.IntegerField(widget=ConeCubeWidget(), label='', initial=0)
+    auto_placement = forms.IntegerField(widget=ConeCubeWidget(), label='', initial=0)
     auto_route = forms.IntegerField(widget=widgets.Select(choices=[
                     (0, "None"),
                     (1, "Yes, Simple"),
                     (2, "Yes, Complex")
                 ]), label='Autonomous Route')
-    baseline = forms.BooleanField(widget=BooleanWidget(image='AllTarmacs.png'), label='Exit Tarmac', required=False)
+    auto_baseline = forms.BooleanField(widget=BooleanWidget(image='AllTarmacs.png'), label='Exit Tarmac', required=False)
     auto_fouls = forms.IntegerField(widget=widgets.Select(choices=[
                     (0, "None"),
                     (1, "Yes, Minor"),
@@ -63,7 +63,7 @@ class MatchScoutForm(forms.Form):
     auto_start = LocationField(widget=LocationWidget, label="Location Field", initial=[0, 0])
 
     # TELEOP
-    placement_teleop = forms.IntegerField(widget=ConeCubeWidget(), label='', initial=0)
+    placement = forms.IntegerField(widget=ConeCubeWidget(), label='', initial=0)
     cycles = forms.IntegerField(widget=TickerWidget(), label='Teleop Cycles')
     intake_type = forms.IntegerField(widget=widgets.Select(choices=[
                     (0, "Did not Intake"),
@@ -147,8 +147,8 @@ class MatchScoutForm(forms.Form):
                 )
 
     grouping("PRE-MATCH", [match_number, on_field, preloaded_balls])
-    grouping("AUTONOMOUS", [placement_auto, baseline, auto_route, auto_fouls])
-    grouping("TELEOP - OFFENSE", [placement_teleop, cycles, intake_type, under_defense, defended_by, offensive_fouls])
+    grouping("AUTONOMOUS", [auto_placement, auto_baseline, auto_route, auto_fouls])
+    grouping("TELEOP - OFFENSE", [placement, cycles, intake_type, under_defense, defended_by, offensive_fouls])
     grouping("TELEOP - DEFENSE", [defense_played, team_defended, defense_rating, defense_fouls, able_to_push])
     grouping("ENDGAME", [lock_status, endgame_time, endgame_action, endgame_attempts, endgame_comments])
     grouping("MORE", [fouls_hp, fouls_driver, yellow_card, comment])

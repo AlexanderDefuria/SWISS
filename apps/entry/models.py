@@ -166,16 +166,21 @@ class Match(models.Model):
     match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(-1)])
 
     # Pre Match
+    on_field = models.BooleanField(default=False)
+    preloaded_balls = models.fields.IntegerField(default=0, validators=[MaxValueValidator(3), MinValueValidator(0)])
     auto_start_x = models.fields.FloatField(default=0, validators=[MaxValueValidator(1), MinValueValidator(0)])
     auto_start_y = models.fields.FloatField(default=0, validators=[MaxValueValidator(1), MinValueValidator(0)])
-    on_field = models.BooleanField(default=False)
 
     # Auto
+    auto_placement = models.fields.IntegerField(default=0)
     auto_route = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     auto_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
     auto_comment = models.TextField(default="")
+    auto_baseline = models.BooleanField(default=False)
 
     # Teleop
+    placement = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    cycles = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     intake_type = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     under_defense = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     defended_by = models.IntegerField(default=0, blank=True, null=True)
@@ -189,9 +194,12 @@ class Match(models.Model):
     team_defended = models.IntegerField(default=0, blank=True, null=True)
     able_to_push = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
 
-    # Charger
-
-    charger_comments = models.TextField(default="")
+    # Endgame
+    endgame_time = models.IntegerField(default=0, validators=[MaxValueValidator(165), MinValueValidator(0)])
+    lock_status = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    endgame_action = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    endgame_attempts = models.IntegerField(default=0)
+    endgame_comments = models.TextField(default="")
 
     # Human Player
     fouls_hp = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
