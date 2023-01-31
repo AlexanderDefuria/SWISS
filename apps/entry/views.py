@@ -2,6 +2,7 @@ import os
 import ast
 import json
 
+import requests
 from openpyxl import Workbook
 from datetime import datetime
 
@@ -288,6 +289,14 @@ def handle_query_present_teams(view):
 
     return teams
 
+class FRCdata(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'entry.login'
+    template_name = 'entry/frc.html'
+    def get(self,request):
+        responce = requests.get('https://frc-api.firstinspires.org/v3.0/2023/teams', headers = {'Authorization': 'Basic dm9ydGV4MTQ4OmFkY2E5ZDI5LTU3YWUtNDJiMi1hMTY3LWZjMDhiMzg2Mzg4OQ=='}).json()
+        # responce = responce[]
+        print(responce)
+        return render(request, 'entry/frc.html')
 
 class TeamSettingsNotFoundError(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
@@ -433,7 +442,6 @@ class Visualize(LoginRequiredMixin, generic.ListView):
         teams = get_present_teams(self.request.user)
         if teams.count() == 1 and teams.first() == Team.objects.first():
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
-
         return teams
 
 
