@@ -16,6 +16,7 @@ secrets.json
 .idea/*
 .idea
 /.idea/*
+/.idea/
 /.idea
 *.iml
 modules.xml
