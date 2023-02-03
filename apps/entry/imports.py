@@ -1,6 +1,9 @@
 import requests
 import json
 import os
+
+from django.core.exceptions import ImproperlyConfigured
+
 from apps.entry.models import *
 
 
