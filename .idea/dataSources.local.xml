@@ -7,7 +7,7 @@
       </database-info>
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
-      <user-name>swiss</user-name>
+      <user-name>john</user-name>
       <schema-mapping>
         <introspection-scope>
           <node kind="database">
