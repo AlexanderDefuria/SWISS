@@ -34,7 +34,12 @@ def get_team_list(event_code=None):
             team_info = page_info['teams'][team_index]
             print(f"{team_info['nameShort']} {team_info['teamNumber']} located "
                   f"in {team_info['stateProv']}, {team_info['country']}")
-            new_team = Team()
+
+            new_team: Team
+            try:
+                new_team = Team.objects.get(pk=team_info['teamNumber'])
+            except Team.DoesNotExist:
+                new_team = Team()
             new_team.number = team_info['teamNumber']
             new_team.name = team_info['nameShort']
             new_team.id = new_team.number
