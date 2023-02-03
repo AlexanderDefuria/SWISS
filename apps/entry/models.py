@@ -27,7 +27,7 @@ class Team(models.Model):
             return 'robots/default.jpg'
 
     def __str__(self):
-        return str(self.number) + "\t\t" + str(self.name)
+        return str(self.number) + " -- " + str(self.name)
 
 
 class Images(models.Model):
@@ -177,6 +177,8 @@ class Match(models.Model):
     auto_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
     auto_comment = models.TextField(default="")
     auto_baseline = models.BooleanField(default=False)
+    auto_cones = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    auto_cubes = models.IntegerField(default=0, validators=[MinValueValidator(0)])
 
     # Teleop
     placement = models.IntegerField(default=0, validators=[MinValueValidator(0)])
@@ -185,6 +187,8 @@ class Match(models.Model):
     under_defense = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     defended_by = models.IntegerField(default=0, blank=True, null=True)
     offensive_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
+    cones = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    cubes = models.IntegerField(default=0, validators=[MinValueValidator(0)])
 
     # Defense
     defense_played = models.BooleanField(default=False)
@@ -230,6 +234,16 @@ class Match(models.Model):
         except Exception:
             print("error updating result for " + str(self))
         super(Match, self).save(*args, **kwargs)
+
+    @staticmethod
+    def decode_grid(grid_val):
+        def _get_bit(value: int, location: int) -> bool:
+            return bool((value >> location) & 1)
+
+        positions: list[bool] = []
+        for i in range(0, 36):
+            for j in range(0, 4):
+                positions[i] = _get_bit(grid_val, i)
 
 
 class Pits(models.Model):

@@ -327,6 +327,7 @@ class TeamList(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/teams.html'
     context_object_name = "team_list"
     model = Team
+
     def get_queryset(self):
         teams = get_present_teams(self.request.user)
         if teams.count() == 1 and teams.first() == Team.objects.first():
@@ -413,11 +414,7 @@ class MatchScoutLanding(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/matchlanding.html'
 
     def get_queryset(self):
-        teams = get_present_teams(self.request.user)
-        if teams.count() == 1 and teams.first() == Team.objects.first():
-            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
-
-        return teams
+        return get_present_teams(self.request.user)
 
 
 class PitScout(LoginRequiredMixin, FormMixin, generic.DetailView):
