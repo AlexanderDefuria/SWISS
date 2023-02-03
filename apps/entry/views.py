@@ -23,6 +23,7 @@ from apps.entry.graphing import *
 from apps.entry.templatetags.common_tags import *
 from apps import importFRC
 from apps.entry.forms import MatchScoutForm, RegistrationForm, PitScoutForm, LoginForm, ImportForm
+from apps.entry.imports import import_first
 
 register = Library
 
@@ -108,6 +109,8 @@ def scout_lead_check(user):
 @login_required(login_url='entry:login')
 def download(request):
     # TODO find a way to prevent spamming this.
+
+    import_first()
 
     path = 'match_history.xlsx'
     path = os.path.join(settings.BASE_DIR, path)
