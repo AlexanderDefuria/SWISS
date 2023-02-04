@@ -235,6 +235,9 @@ class Match(models.Model):
             print(e)
         super(Match, self).save(*args, **kwargs)
 
+    def calculate_points(self):
+        pass
+
     @staticmethod
     def decode_grid(grid_val):
         def _get_bit(value: int, location: int) -> bool:
@@ -312,3 +315,9 @@ class Result(models.Model):
     def __str__(self):
         return str(self.match.match_number) + ' from ' + self.event.name
 
+
+class PointsConfig(models.Model):
+    # This class is created by Orgs to rank teams based on what they want to prioritize
+    # The defaults here are what we recommend.
+
+    pass
