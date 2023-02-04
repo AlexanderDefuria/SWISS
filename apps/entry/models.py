@@ -19,11 +19,9 @@ class Team(models.Model):
     glance = models.FileField(upload_to='json/', null=True, blank=True)
 
     def first_image(self):
-        # code to determine which image to show. The First in this case.
         try:
-            # TODO Replace references?
-            return self.images.all()[random.randint(0, len(self.images.all()) - 1)].image
-        except Exception:
+            return Images.objects.filter(team=self).first()
+        except Images.DoesNotExist:
             return 'robots/default.jpg'
 
     def __str__(self):
@@ -200,7 +198,6 @@ class Match(models.Model):
 
     # Endgame
     endgame_time = models.IntegerField(default=0, validators=[MaxValueValidator(165), MinValueValidator(0)])
-    lock_status = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     endgame_action = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     endgame_attempts = models.IntegerField(default=0)
     endgame_comments = models.TextField(default="")
@@ -231,8 +228,9 @@ class Match(models.Model):
             result.event = self.ownership.settings.current_event
 
             result.save()
-        except Exception:
+        except Exception as e:
             print("error updating result for " + str(self))
+            print(e)
         super(Match, self).save(*args, **kwargs)
 
     @staticmethod
@@ -275,8 +273,6 @@ class Pits(models.Model):
     # Robot styles and stats
     weight = models.SmallIntegerField(default=0, validators=[MaxValueValidator(200), MinValueValidator(0)])
 
-    # Charger
-
     # Name
     scouter_name = models.TextField(default="")
     ownership = models.ForeignKey(Organization, on_delete=models.CASCADE, default=0, related_name='+')
@@ -296,7 +292,7 @@ class Pits(models.Model):
         ('', '')
     ]
 
-    def getData(self, field):
+    def get_data(self, field):
         return getattr(self, field)
 
     def __str__(self):
