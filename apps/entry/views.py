@@ -2,6 +2,7 @@ import os
 import ast
 import json
 
+import requests
 from openpyxl import Workbook
 from datetime import datetime
 
@@ -22,6 +23,7 @@ from apps.entry.graphing import *
 from apps.entry.templatetags.common_tags import *
 from apps import importFRC
 from apps.entry.forms import MatchScoutForm, RegistrationForm, PitScoutForm, LoginForm, ImportForm
+from apps.entry.imports import import_first
 
 register = Library
 
@@ -107,6 +109,8 @@ def scout_lead_check(user):
 @login_required(login_url='entry:login')
 def download(request):
     # TODO find a way to prevent spamming this.
+
+    import_first()
 
     path = 'match_history.xlsx'
     path = os.path.join(settings.BASE_DIR, path)
@@ -288,6 +292,14 @@ def handle_query_present_teams(view):
 
     return teams
 
+class FRCdata(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'entry.login'
+    template_name = 'entry/frc.html'
+    def get(self,request):
+        responce = requests.get('https://frc-api.firstinspires.org/v3.0/2023/teams', headers = {'Authorization': 'Basic dm9ydGV4MTQ4OmFkY2E5ZDI5LTU3YWUtNDJiMi1hMTY3LWZjMDhiMzg2Mzg4OQ=='}).json()
+        # responce = responce[]
+        print(responce)
+        return render(request, 'entry/frc.html')
 
 class TeamSettingsNotFoundError(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
@@ -299,6 +311,7 @@ class TeamList(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/teams.html'
     context_object_name = "team_list"
     model = Team
+
     def get_queryset(self):
         teams = get_present_teams(self.request.user)
         if teams.count() == 1 and teams.first() == Team.objects.first():
@@ -360,7 +373,10 @@ class MatchScout(LoginRequiredMixin, FormMixin, generic.DetailView):
             print(form.cleaned_data)
             first_key = Event.objects.all().filter(id=make_int(org_settings.current_event.id))[0].FIRST_key
 
+            auto_start_x, auto_start_y = form.cleaned_data.pop('auto_start')
             match = Match(**form.cleaned_data)
+            match.auto_start_x = auto_start_x
+            match.auto_start_y = auto_start_y
             match.team = team
             match.event = Event.objects.get(FIRST_key=first_key)
             match.scouter_name = request.user.username
@@ -385,11 +401,7 @@ class MatchScoutLanding(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/matchlanding.html'
 
     def get_queryset(self):
-        teams = get_present_teams(self.request.user)
-        if teams.count() == 1 and teams.first() == Team.objects.first():
-            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
-
-        return teams
+        return get_present_teams(self.request.user)
 
 
 class PitScout(LoginRequiredMixin, FormMixin, generic.DetailView):
@@ -436,7 +448,6 @@ class Visualize(LoginRequiredMixin, generic.ListView):
         teams = get_present_teams(self.request.user)
         if teams.count() == 1 and teams.first() == Team.objects.first():
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
-
         return teams
 
 
