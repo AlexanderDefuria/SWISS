@@ -12,3 +12,32 @@ DevTools listening on ws://127.0.0.1:36745/devtools/browser/01314491-fe1b-4253-9
 1675627509148	Marionette	INFO	Stopped listening on port 43665
 console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
 Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675627689913	geckodriver	INFO	Listening on 127.0.0.1:41097
+1675627690343	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "34799" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileycPe2b"
+Gtk-Message: 15:08:10.357: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675627690726	Marionette	INFO	Marionette enabled
+1675627690728	Marionette	INFO	Listening on port 46845
+Read port: 46845
+WebDriver BiDi listening on ws://127.0.0.1:34799
+1675627690830	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileycPe2b/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:34799/devtools/browser/4f56c9b3-011e-419e-9793-1666e5e3228d
+1675627696036	Marionette	INFO	Stopped listening on port 46845
+1675627732128	geckodriver	INFO	Listening on 127.0.0.1:56287
+1675627732611	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "59063" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileblOBDZ"
+Gtk-Message: 15:08:52.625: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675627732990	Marionette	INFO	Marionette enabled
+1675627732992	Marionette	INFO	Listening on port 42941
+Read port: 42941
+WebDriver BiDi listening on ws://127.0.0.1:59063
+1675627733104	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileblOBDZ/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:59063/devtools/browser/4f858856-b03b-415c-bbae-62192a16fb74
+console.error: "Unable to find target with innerWindowId:4294967298"
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 572: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+1675627796825	Marionette	INFO	Stopped listening on port 42941
+1675627838135	geckodriver::marionette	ERROR	Failed to close browser connection: Transport endpoint is not connected (os error 107)
