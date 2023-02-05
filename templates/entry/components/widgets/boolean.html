@@ -1,0 +1,15 @@
+{% load i18n static common_tags %}
+
+<div class="radioGroup">
+    {% if widget.image %}
+	<img class="icon" src="{{ MEDIA_URL }}{% static widget.image %}" alt="Split Colour Cargo">
+    {% endif %}
+	<label>
+		<input type="radio" id="{{ widget.name }}_true" name="{{ widget.name }}" value="true" onclick="registerChange()" {% if widget.value == 'true' %} checked {% endif %}>
+		<span>Y</span>
+	</label>
+	<label>
+		<input type="radio" id="{{ widget.name }}_false" name="{{ widget.name }}" value="false" onClick="registerChange()" {% if widget.value != 'true' %} checked {% endif %}>
+		<span>N</span>
+	</label>
+</div>

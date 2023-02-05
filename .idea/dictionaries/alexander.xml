@@ -8,6 +8,7 @@
       <w>teamlist</w>
       <w>tele</w>
       <w>teleop</w>
+      <w>teleoperated</w>
     </words>
   </dictionary>
 </component>

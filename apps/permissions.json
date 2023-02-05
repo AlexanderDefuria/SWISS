@@ -33,7 +33,7 @@
     "minimum": "OV"
   },
   "experimental": {
-    "minimum": "NA"
+    "minimum": "OV"
   },
   "about": {
     "minimum": "OV"
@@ -55,5 +55,8 @@
   },
   "import": {
     "minimum": "DT"
+  },
+    "frc": {
+    "minimum": "OV"
   }
 }

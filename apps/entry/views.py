@@ -1,301 +1,31 @@
-import time
-from multiprocessing import context
 import os
 import ast
-import re
-from datetime import datetime
 import json
 
-from PIL import Image
+import requests
 from openpyxl import Workbook
+from datetime import datetime
 
 from django.core import serializers
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, HttpResponse, Http404, JsonResponse
-from django.urls import reverse_lazy
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
-from django_ajax.decorators import ajax
 from django.template import Library, loader
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import FormMixin
+from django_ajax.decorators import ajax
+from django.conf import settings
 
 from apps.entry.graphing import *
 from apps.entry.templatetags.common_tags import *
 from apps import importFRC
+from apps.entry.forms import MatchScoutForm, RegistrationForm, PitScoutForm, LoginForm, ImportForm
+from apps.entry.imports import import_first
 
 register = Library
-
-
-@login_required(login_url='entry:login')
-def match_scout_submit(request, pk):
-    if request.method == 'POST':
-        print(request)
-
-        team = Team.objects.get(id=pk)
-        match = Match()
-        match.team = team
-        teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
-        first_key = Event.objects.all().filter(id=make_int(teamsettings.current_event.id))[0].FIRST_key
-
-        match.event = Event.objects.get(FIRST_key=first_key)
-        match_number = request.POST.get('matchNumber', -1)
-        match.match_number = match_number if match_number != '' else -1
-
-        # PRE MATCH
-        match.on_field = request.POST.get('onField', True)
-        try:
-            match.auto_start_x = float(request.POST.get('coordinate_x', '0.0'))
-            match.auto_start_y = float(request.POST.get('coordinate_y', '0.0'))
-        except Exception as e:
-            print(e)
-            match.auto_start_x = 0
-            match.auto_start_y = 0
-
-        match.preloaded_balls = request.POST.get('preloadedBalls', 1)
-
-        # AUTO
-        match.auto_route = request.POST.get('autoRoute', 0)
-        match.baseline = request.POST.get('baseline', False)
-        match.upper_auto = request.POST.get('upper_auto', 0)
-        match.lower_auto = request.POST.get('lower_auto', 0)
-        match.missed_balls_auto = request.POST.get('missed_balls_auto', 0)
-        match.auto_fouls = request.POST.get('auto_fouls', 0)
-        match.auto_comment = request.POST.get('auto_comment', 'na')
-
-        # TELEOP
-        match.lower = request.POST.get('lower', 0)
-        match.upper = request.POST.get('upper', 0)
-        match.missed_balls = request.POST.get('missed_balls', 0)
-        match.intake_type = request.POST.get('intakeType', 0)
-        match.under_defense = request.POST.get('under_defense', 0)
-        defended_by = make_int(request.POST.get('defended_by', ''))
-        match.defended_by = defended_by if defended_by != '' else -1
-        match.offensive_fouls = request.POST.get('offensive_fouls', 0)
-
-        # DEFENSE
-        match.defense_played = request.POST.get('playedDefense', False)
-        match.defense_time = 0  # request.POST.get('defense_time', 0) TODO FIX THIS
-        match.defense_rating = request.POST.get('defense_rating', 0)
-        team_defended = make_int(request.POST.get('team_defended', ''))
-        match.team_defended = team_defended if team_defended != '' else -1
-        match.defense_fouls = request.POST.get('defenseFouls', 0)
-        match.able_to_push = request.POST.get('pushRating', 0)
-
-        # CLIMB
-        match.lock_status = request.POST.get('lock_status', 0)
-        match.endgame_action = request.POST.get('endgame_action', 0)
-        match.climb_time = 0  # request.POST.get('climb_time', 0) TODO FIX THIS
-        match.climb_attempts = make_int(request.POST.get('climb_attempts', 0))
-        match.climb_comments = request.POST.get('climb_comments', "na")
-
-        # COMMENTS AND RANDOM IDEAS
-        match.fouls_hp = request.POST.get('humanFouls', 0)
-        match.fouls_driver = request.POST.get('driverFouls', 0)
-        match.yellow_card = True if request.POST.get('cardFouls', '') != '' else False
-        match.yellow_card_description = request.POST.get('cardFouls', 'na')
-
-        match.scouter_name = request.user.username
-        match.comment = request.POST.get('comment', 'na')
-        match.team_ownership = request.user.teammember.team
-
-        schedule = Schedule.objects.get(match_number=match.match_number, event=match.event)
-
-        if schedule:
-            schedule.completed = True
-            schedule.save()
-
-        # GOUDA POINT CALCS
-        # print("GOUDA v")
-        # gouda = 100
-        # gouda += 0 if match.on_field else -15
-        # print(0 if match.on_field else -15)
-        # gouda += 5 * match.auto_route
-        # gouda += 5 if match.baseline else 0
-        # print(gouda)
-        # gouda += 4 * make_int(match.upper_auto)
-        # gouda += 2 * make_int(match.lower_auto)
-        # gouda += -0.5 * make_int(match.missed_balls_auto)
-        # gouda += -6 * make_int(match.auto_fouls)
-        # gouda += 2 * make_int(match.upper)
-        # gouda += 1 * make_int(match.lower)
-        # gouda += -0.5 * make_int(match.missed_balls)
-        # gouda += 5 * make_int(match.intake_type)
-        # gouda += (0, -5, 10)[make_int(match.under_defense)]
-        # gouda += -6 * make_int(match.offensive_fouls)
-        # gouda += 5 if make_int(match.defense_played) else 0
-        # gouda += make_int(match.defense_played) ** 2
-        # gouda += -6 * make_int(match.defense_fouls)
-        # gouda += (0, -5, 10)[make_int(match.able_to_push)]
-        # gouda += make_int(match.endgame_action) * (0.5 if make_int(match.lock_status) == 1 or make_int(match.lock_status) == 2 else 1)
-        # gouda += (0, 4, 6, 10, 15)[make_int(match.endgame_action)]
-        # gouda += 10*(1/make_int(match.climb_attempts))
-        # gouda += (0, -3, -10)[make_int(match.fouls_hp)]
-        # gouda += (0, -3, -10)[make_int(match.fouls_driver)]
-        # gouda += -15 if make_int(match.disabled )else 0
-
-        # print(gouda)
-        # match.gouda = gouda
-
-        try:
-            match.save()
-            print('Match Scout Submission Success')
-        except Exception as e:
-            print(e)
-
-        return HttpResponseRedirect(reverse_lazy('entry:match_scout_landing'))
-
-    else:
-        print('Match Scout Submission Fail')
-        return HttpResponseRedirect(reverse_lazy('entry:match_scout_landing'))
-
-
-@ajax
-@csrf_exempt
-@login_required(login_url='entry:login')
-def validate_match_scout(request, pk):
-    # The parsing of the db to check if a team has played at a particular match already is done server side
-    # The ajax post sends only the match number in a JSON file to comply with AJAX datatype specification
-    # dumps() is to convert dictionary into JSON format for HttpResponse to keep it simple stupid
-
-    data = decode_ajax(request)
-
-    redo, data = validate_types(request, data, True)
-
-    if data['matchNumber'][0] == 0:
-        redo['matchNumber'] = True
-
-    teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
-
-    if Match.objects.filter(team_id=pk, event_id=teamsettings.current_event,
-                            match_number=data['matchNumber'][0]).exists():
-        # Check if there are already 6 teams that have played this match
-        if Match.objects.filter(match_number=data['matchNumber'][0]).count() <= 6:
-            redo['matchNumber'] = True
-
-    return HttpResponse(json.dumps(redo), content_type="application/json")
-
-
-def validate_types(request, data, reqlist):
-    # TODO Add emoji validation in text fields
-    reqfields = {}
-    redo = {}
-
-    try:
-        path = 'reqfields.json'
-        path = os.path.join(settings.BASE_DIR, path)
-        with open(path) as f:
-            if reqlist:
-                if request.path.__contains__("register"):
-                    reqfields = json.load(f)['registration']
-                elif request.path.__contains__("hours"):
-                    reqfields = json.load(f)['hours']
-                else:
-                    reqfields = json.load(f)['matchScout']
-    except IOError:
-        print("reqfields file not found")
-
-    print("Data:")
-    print(data)
-
-    for field in reqfields.keys():
-        # This would mean someone is editing the HTML therefore we log them out to ensure data integrity.
-        # print("FIELD: " + field)
-
-        if not data.__contains__(field):
-            logout(request)
-            print("logged out on: " + field)
-
-        try:
-            alpha = True
-            for each in data[field][0].split():
-                alpha = (alpha and each.isalpha())
-
-            if data[field][0] != '' and not alpha and len(data[field][0].split()) == 1:
-                data[field][0] = ast.literal_eval(data[field][0])
-        except ValueError:
-            try:
-                if data[field][0] != '':
-                    data[field][0] = ast.literal_eval(data[field][0][0])
-            except ValueError as e:
-                print("\nVALUE ERROR:")
-                print(data[field])
-                print(e)
-
-        # print("type")
-        # print(type(data[field][0]))
-        # print(type(reqfields[field]))
-        redo[field] = False if (isinstance(data[field][0], type(reqfields[field]))) else True
-
-    for field in request.POST:
-        try:
-            redo[field] = not is_ascii(request.POST.get(field))
-            # print(request.POST.get(field))
-
-        except AttributeError:
-            print('issue')
-    if request.path.__contains__("scout") and data['scouterName'][0] == '':
-        redo['scouterName'] = True
-
-    print("Keys: " + str(redo.keys()))
-    print("Needs Correcting: " + str(redo.values()))
-
-    return redo, data
-
-
-def is_ascii(s):
-    return all(ord(c) < 128 for c in s)
-
-
-@login_required(login_url='entry:login')
-def pit_scout_submit(request, pk):
-    if request.method == 'POST':
-        team = Team.objects.get(id=pk)
-        pits = Pits()
-        pits.team = team
-        teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
-        first_key = Event.objects.all().filter(id=make_int(teamsettings.current_event.id))[0].FIRST_key
-
-        pits.event = Event.objects.get(FIRST_key=first_key)
-        pits.drivetrain_style = request.POST.get('drivetrainStyle', ' ')
-        pits.drivetrain_wheels = request.POST.get('drivetrainWheels', ' ')
-        pits.drivetrain_motortype = request.POST.get('drivetrainMotor', ' ')
-        pits.drivetrain_motorquantity = request.POST.get('drivetrainMotorAmount', 0)
-        pits.auto_route = request.POST.get('hasAuto', False)
-        pits.auto_description = request.POST.get('autoDescription', ' ')
-        pits.auto_scoring = request.POST.get('autoScoring', 0)
-        pits.tele_scoring = request.POST.get('teleScoring', 0)
-        pits.tele_positions = request.POST.get('telePositions', 0)
-        pits.ball_intake = request.POST.get('ballIntake', ' ')
-        pits.ball_capacity = request.POST.get('ballCapacity', 0)
-        pits.shooter_style = request.POST.get('shooterStyle', ' ')
-        pits.low_bot = request.POST.get('lowBot', False)
-        pits.wheel_manipulator = request.POST.get('wheelManipulator', False)
-        pits.weight = request.POST.get('weight', 0)
-        pits.climb_locations = request.POST.get('climbLocations', 0)
-        pits.climb_buddy = request.POST.get('climbBuddy', False)
-        pits.climb_balance = request.POST.get('climbBalance', False)
-        pits.scouter_name = request.POST.get('scouterName', '0')
-        pits.team_ownership = request.user.teammember.team
-        pits.save()
-
-        print(pits)
-
-        print('Pit Scout Submission Success')
-        return HttpResponseRedirect(reverse_lazy('entry:pit_scout_landing'))
-    else:
-        print('Pit Scout Submission Fail')
-        return HttpResponseRedirect(reverse_lazy('entry:pit_scout_landing'))
-
-
-@ajax
-@csrf_exempt
-@login_required(login_url='entry:login')
-def validate_pit_scout(request, pk):
-    data = decode_ajax(request)
-    redo, data = validate_types(request, data, False)
-    return HttpResponse(json.dumps(redo), content_type="application/json")
 
 
 @ajax
@@ -324,7 +54,8 @@ def update_graph(request):
 @login_required(login_url='entry:login')
 def update_glance(request, pk):
     matches = Match.objects.filter(team_id=pk,
-                                   team_ownership_id=request.user.teammember.team_id).order_by('event', 'match_number')
+                                   ownership_id=request.user.orgmember.organization_id).order_by('event',
+                                                                                                 'match_number')
     count = matches.count()
     try:
         if make_int(Team.objects.get(id=pk).glance.name.split('_')[2]) == count:
@@ -379,9 +110,11 @@ def scout_lead_check(user):
 def download(request):
     # TODO find a way to prevent spamming this.
 
+    import_first()
+
     path = 'match_history.xlsx'
     path = os.path.join(settings.BASE_DIR, path)
-    update_csv(request.user.teammember.team_id)
+    update_csv(request.user.orgmember.organization)
 
     if request.method == "GET" and os.path.exists(path):
         with open(path, 'rb') as fh:
@@ -398,7 +131,7 @@ def download(request):
 def get_csv_ajax(request):
     path = 'match_history.xlsx'
     path = os.path.join(settings.BASE_DIR, path)
-    update_csv(request.user.teammember.team_id)
+    update_csv(request.user.orgmember.organization)
 
     if os.path.exists(path):
         with open(path, 'rb') as fh:
@@ -408,7 +141,7 @@ def get_csv_ajax(request):
     return Http404
 
 
-def update_csv(team_id):
+def update_csv(organization):
     print("Updating XLSX File")
 
     workbook = Workbook()
@@ -422,7 +155,7 @@ def update_csv(team_id):
         for header in headers:
             sheet.cell(column=x, row=1, value=str(header))
             x += 1
-        data = model.objects.all().values_list()
+        data = model.objects.all().values_list().filter(ownership=organization)
         x = 1
         y = 2
         for entry in data:
@@ -438,7 +171,7 @@ def update_csv(team_id):
 @login_required(login_url='entry:login')
 def write_image_upload(request):
     if request.method == 'POST':
-        team_number = make_int(request.POST.get('teamNumber', 0))
+        team_number = make_int(request.POST.get('teamNumber'))
         team = Team.objects.get(number=team_number)
 
         request.session.set_test_cookie()
@@ -458,51 +191,14 @@ def write_image_upload(request):
 
 
 @login_required(login_url='entry:login')
-def write_pit_upload(request):
-    if request.method == 'POST':
-        team_number = 0
-    else:
-        return HttpResponseRedirect(reverse_lazy('entry:index'))
-
-
-def login(request):
-    if request.method == 'GET':
-        template = loader.get_template('entry/login.html')
-
-        if request.user.is_authenticated:
-            return HttpResponseRedirect(reverse_lazy('entry:index'))
-
-        return HttpResponse(template.render({}, request))
-
-    elif request.method == 'POST':
-
-        username = request.POST.get('username', '')
-        password = request.POST.get('password', '')
-        #print(username)
-        #print(password)
-        user = auth.authenticate(request, username=username, password=password)
-
-        print(user)
-
-        if user is not None:
-            auth.login(request, user)
-            if not TeamMember.objects.filter(user=user).exists():
-                TeamMember.objects.create(user_id=user.id)
-
-        return HttpResponseRedirect(reverse_lazy('entry:index'))
-
-    return HttpResponseRedirect(reverse_lazy('entry:login'))
-
-
-@login_required(login_url='entry:login')
 def import_from_first(request):
     if request.method == 'GET':
         return HttpResponseRedirect(reverse_lazy('entry:import'))
 
     elif request.method == 'POST':
-        import_type = make_int(request.POST.get('importType', 0))
-        key = request.POST.get('key', 0)
-        year = request.POST.get('year', 0)
+        import_type = make_int(request.POST.get('importType'))
+        key = request.POST.get('key')
+        year = request.POST.get('year')
 
         if year == 0:
             year = None
@@ -519,7 +215,7 @@ def import_from_first(request):
 
 @login_required(login_url='entry:login')
 def import_schedule_from_first(request):
-    teamsettings = TeamSettings.objects.all().filter(team_id=request.user.teammember.team)[0]
+    teamsettings = OrgSettings.objects.all().filter(org_id=request.user.orgmember.organization_id)[0]
     first_key = Event.objects.all().filter(id=make_int(teamsettings.current_event.id))[0].FIRST_key
     importFRC.import_schedule(first_key, playoffs=False)
     importFRC.import_schedule(first_key, playoffs=True)
@@ -534,44 +230,17 @@ def logout(request):
     return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 
-@ajax
-@csrf_exempt
-def validate_registration(request):
-    data = decode_ajax(request)
-    redo, data = validate_types(request, data, False)
-
-    print("redo")
-    print(redo)
-    print("data")
-    print(data)
-    print(data['email'][0])
-    if not re.fullmatch(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b', str(data['email'][0])):
-        if len(str(data['email'][0]).strip(" ")) != 0:
-            redo['email'] = True
-    if len(str(data['username'])) < 5:
-        redo['username'] = True
-    if len(str(data['password'])) < 5:
-        redo['password'] = True
-    if data['password'] != data['password_validate']:
-        redo['password'] = True
-        redo['password_validate'] = True
-    if len(str(data['team_reg_id']).strip(" ")) != 10:  # len==10 because the uuid is 6 + 4 for ['uuidxx']
-        redo['team_reg_id'] = True
-
-    return HttpResponse(json.dumps(redo), content_type="application/json")
-
-
 @login_required(login_url='entry:login')
 def admin_redirect(request, **kwargs):
     if request.user.is_staff:
         if 'whereto' in kwargs:
-            path = reverse_lazy('admin:index') + 'entry/'
-            return HttpResponseRedirect( reverse_lazy('admin:index') + 'entry/' + kwargs['whereto'] + "/")
+            return HttpResponseRedirect(reverse_lazy('admin:index') + 'entry/' + kwargs['whereto'] + "/")
         return HttpResponseRedirect(reverse_lazy('admin:index'))
     return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 
 def handler404(request, exception, template_name="entry/secret.html"):
+    print(exception)
     response = render(request, template_name)
     response.status_code = 404
     return response
@@ -591,42 +260,27 @@ def make_int(s):
 
 
 def get_present_teams(user):
-    # TODO This NEEDS to be faster
     try:
-        objects = Team.objects.filter(number__in=
-        get_event_teams(
-            TeamSettings.objects.get(team=user.teammember.team).
-                current_event.FIRST_key)).filter(number__lt=9500)
+        # TODO See if this is actually the best way to query all teams from attendance...
+        # Note. We do need the actual Team objects (name, number, colour etc...) all that jazz
+        objects = Team.objects.filter(
+            number__in=Attendance.objects.filter(
+                event=user.orgmember.organization.settings.current_event
+            ).values_list('team_id', flat=True)
+        )
         return objects
-    except TeamSettings.DoesNotExist:
-
+    except OrgSettings.DoesNotExist:
         return Team.objects.all()
 
 
-def get_event_teams(event_key):
-    """
-    :param event_key: FIRST Event Key
-    :type event_key: str
-    :return : List of team IDs attending said event
-    :rtype : List
-    """
-    team_list = [0]
-    event_id = Event.objects.get(FIRST_key=event_key)
-    schedule_list = Schedule.objects.all().filter(event_id=event_id)
-    for match in schedule_list:
-        team_list.append(match.blue1)
-    team_list.remove(0)
-    team_list.sort()
-    present_team_list = team_list
-    return present_team_list
-
-
+# TODO Remove this
 def get_all_teams():
     objects = Team.objects.all()
     objects = objects.order_by('number')
     return objects
 
 
+# TODO Remove This
 def get_all_events():
     return Event.objects.all().order_by('start')
 
@@ -638,6 +292,12 @@ def handle_query_present_teams(view):
 
     return teams
 
+class FRCdata(LoginRequiredMixin, generic.View):
+    login_url = 'entry.login'
+
+    def get(self, request, **kwargs):
+        import_first()
+        return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 class TeamSettingsNotFoundError(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
@@ -657,11 +317,30 @@ class TeamList(LoginRequiredMixin, generic.ListView):
 
         return teams
 
-
-class Import(LoginRequiredMixin, generic.TemplateView):
+class Import(LoginRequiredMixin, FormMixin, generic.TemplateView):
     login_url = 'entry:login'
     template_name = 'entry/import.html'
     model = Team
+    form_class = ImportForm
+    success_url = 'entry:index'
+
+    @staticmethod
+    def post(request, *args, **kwargs):
+        form = ImportForm(request.POST)
+        context = {'form': form}
+        if form.is_valid():
+            import_type = form.cleaned_data['import_type']
+            key = form.cleaned_data['key']
+            year = '2022'
+
+            if import_type == 0:
+                importFRC.import_district(key, year)
+            elif import_type == 1:
+                importFRC.import_event(key, year)
+            elif import_type == 2:
+                importFRC.import_team(key, year)
+
+        return render(request, 'entry/import.html', context)
 
 
 class Index(LoginRequiredMixin, generic.TemplateView):
@@ -670,10 +349,47 @@ class Index(LoginRequiredMixin, generic.TemplateView):
     model = Team
 
 
-class MatchScout(LoginRequiredMixin, generic.DetailView):
+class MatchScout(LoginRequiredMixin, FormMixin, generic.DetailView):
     login_url = 'entry:login'
     model = Team
     template_name = 'entry/matchscout.html'
+    form_class = MatchScoutForm
+    success_url = 'entry:match_scout_landing'
+
+    @staticmethod
+    def post(request, pk, *args, **kwargs):
+        org_settings = request.user.orgmember.organization.settings
+
+        form = MatchScoutForm(request.POST,
+                              event=org_settings.current_event,
+                              ownership=request.user.orgmember.organization)
+        team = Team.objects.get(id=pk)
+        context = {'form': form, 'team': team}
+
+        if form.is_valid():
+            print("Valid Match Scout")
+            print(form.cleaned_data)
+            first_key = Event.objects.all().filter(id=make_int(org_settings.current_event.id))[0].FIRST_key
+
+            auto_start_x, auto_start_y = form.cleaned_data.pop('auto_start')
+            match = Match(**form.cleaned_data)
+            match.auto_start_x = auto_start_x
+            match.auto_start_y = auto_start_y
+            match.team = team
+            match.event = Event.objects.get(FIRST_key=first_key)
+            match.scouter_name = request.user.username
+            match.ownership = request.user.orgmember.organization
+            try:
+                match.save()
+                print('Match Scout Submission Success')
+            except Exception as e:
+                print(e)
+
+            print(match)
+
+            return HttpResponseRedirect(reverse_lazy('entry:match_scout_landing'))
+
+        return render(request, 'entry/matchscout.html', context)
 
 
 class MatchScoutLanding(LoginRequiredMixin, generic.ListView):
@@ -683,8 +399,37 @@ class MatchScoutLanding(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/matchlanding.html'
 
     def get_queryset(self):
+        return get_present_teams(self.request.user)
+
+
+class PitScout(LoginRequiredMixin, FormMixin, generic.DetailView):
+    login_url = 'entry:login'
+    template_name = 'entry/pitscout.html'
+    model = Team
+    context_object_name = "team"
+    form_class = PitScoutForm
+    success_url = 'entry:pit_scout_landing'
+
+    @staticmethod
+    def post(request, pk, *args, **kwargs):
+        form = PitScoutForm(request.POST)
+        team = Team.objects.get(id=pk)
+        context = {'form': form, 'team': team}
+
+        if form.is_valid():
+            pits = Pits(**form.cleaned_data)
+            # TODO Finish This
+            return HttpResponseRedirect(reverse_lazy('entry:pit_scout_landing'))
+        return render(request, 'entry/pitscout.html', context)
+
+
+class PitScoutLanding(LoginRequiredMixin, generic.ListView):
+    login_url = 'entry:login'
+    template_name = 'entry/pitlanding.html'
+    context_object_name = "team_list"
+
+    def get_queryset(self):
         teams = get_present_teams(self.request.user)
-        # print(teams)
         if teams.count() == 1 and teams.first() == Team.objects.first():
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
@@ -701,7 +446,6 @@ class Visualize(LoginRequiredMixin, generic.ListView):
         teams = get_present_teams(self.request.user)
         if teams.count() == 1 and teams.first() == Team.objects.first():
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
-
         return teams
 
 
@@ -714,14 +458,23 @@ class ScheduleView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         try:
-            teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+            org_settings = self.request.user.orgmember.organization.settings
         except IndexError as e:
             print(str(e) + ": There are no team settings for this query.")
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
+        schedule = Schedule.objects.filter(event_id=org_settings.current_event)\
+                    .exclude(match_number=0)\
+                    .order_by("match_type")\
+                    .order_by("match_number")
+        results = Result.objects \
+            .filter(event=org_settings.current_event, ownership=org_settings.organization, completed=True) \
+            .values_list('match__match_number', flat=True)
+
         if self.show_completed:
-            return Schedule.objects.filter(event_id=teamsettings.current_event).order_by("match_type").order_by("match_number")
-        return Schedule.objects.filter(event_id=teamsettings.current_event, completed=False).order_by("match_type").order_by("match_number")
+            return schedule, results, True
+
+        return schedule, results, False
 
 
 class ScheduleDetails(LoginRequiredMixin, generic.DetailView):
@@ -731,30 +484,16 @@ class ScheduleDetails(LoginRequiredMixin, generic.DetailView):
     context_object_name = "schedule"
 
 
-class PitScout(LoginRequiredMixin, generic.DetailView):
-    login_url = 'entry:login'
-    template_name = 'entry/pitscout.html'
-    model = Team
-    context_object_name = "team"
-
-
-class PitScoutLanding(LoginRequiredMixin, generic.ListView):
-    login_url = 'entry:login'
-    template_name = 'entry/pitlanding.html'
-    context_object_name = "team_list"
-
-    def get_queryset(self):
-        teams = get_present_teams(self.request.user)
-        if teams.count() == 1 and teams.first() == Team.objects.first():
-            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
-
-        return teams
-
-
 class Experimental(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
     model = Team
     template_name = 'entry/experimental.html'
+
+    def get(self, request, *args, **kwargs):
+        form = MatchScoutForm()
+        rendered_form = form.render()
+        context = {'form': rendered_form}
+        return render(request, 'entry/experimental.html', context)
 
 
 class About(LoginRequiredMixin, generic.TemplateView):
@@ -793,9 +532,35 @@ class GlanceLanding(LoginRequiredMixin, generic.ListView):
         return handle_query_present_teams(self)
 
 
-class Registration(generic.TemplateView):
-    model = Team
+class Login(FormMixin, generic.TemplateView):
+    template_name = 'entry/login.html'
+    form_class = LoginForm
+    success_url = 'entry:index'
+
+    def post(self, request, *args, **kwargs):
+        form = LoginForm(request.POST)
+        context = {'form': form}
+        if form.is_valid():
+            user = auth.authenticate(
+                request,
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password'])
+            if user is not None:
+                auth.login(request, user)
+                if not OrgMember.objects.filter(user=user).exists():
+                    OrgMember.objects.create(user_id=user.id)
+            return HttpResponseRedirect(reverse_lazy('entry:index'))
+
+        form.add_error('username', 'Username or password is incorrect')
+        form.add_error('password', 'Username or password is incorrect')
+        context = {'form': form}
+        return render(request, 'entry/login.html', context)
+
+
+class Registration(FormMixin, generic.TemplateView):
     template_name = 'entry/register.html'
+    form_class = RegistrationForm
+    success_url = 'entry:index'
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -803,42 +568,52 @@ class Registration(generic.TemplateView):
         else:
             return super(Registration, self).get(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
-        user = User()
+    @staticmethod
+    def post(request, *args, **kwargs):
+        form = RegistrationForm(request.POST)
+        context = {'form': form}
+        if form.is_valid():
+            user = User()
+            user.orgmember = OrgMember()
+            user.set_password(form.cleaned_data['password'])
+            user.username = form.cleaned_data['username']
+            user.first_name = form.cleaned_data['first_name']
+            user.last_name = form.cleaned_data['last_name']
+            user.email = form.cleaned_data['email']
+            print(user)
+            try:
+                if form.cleaned_data['create_new_org']:
+                    org = Organization()
+                    org.settings = OrgSettings()
+                    org.settings.current_event = Event.objects.first()
+                    org.name = form.cleaned_data['org_name']
+                    user.orgmember.position = 'LS'
+                    user.orgmember.organization = org
+                else:
+                    org = Organization.objects.get(name=form.cleaned_data['org_name'])
+                    if str(org.reg_id)[:6] != form.cleaned_data['org_reg_id']:
+                        raise Organization.DoesNotExist
+                    user.orgmember.organization = org
+            except Organization.DoesNotExist:
+                form.add_error('org_name', "Org Name or UUID is incorrect.")
+                form.add_error('org_reg_id', "Org Name or UUID is incorrect.")
+                context = {'form': form}
+                print('org does not exist ' + form.cleaned_data)
+                return render(request, 'entry/register.html', context)
 
-        if request.POST.get('team_number'):
-            user.teammember = TeamMember()
-            user.teammember.team = Team.objects.get(id=make_int(request.POST.get('team_number')))
+            print(user)
+            user.save()
+            user.orgmember.organization.settings.save()
+            user.orgmember.organization.save()
+            user.orgmember.save()
+            user.save()
 
-            print(user.teammember.team)
-            # If the team has users. TODO Can I optimize this query?
-            if User.objects.all().filter(teammember__team_id__exact=user.teammember.team).exists():
-                # Validate uuid and TODO login
-                if request.POST.get('team_reg_id').strip()[:6] != str(user.teammember.team.reg_id)[:6]:
-                    return HttpResponse(reverse_lazy('entry:register'))
-            # Instantiate new team - Temp Disabled using 'False and'
-            else: #if False and request.POST.get('team_reg_id') == "register_first_team_user" + str(user.teammember.team.reg_id)[:6]:
-                user.teammember.position = 'LS'
-        else:
-            return HttpResponse(reverse_lazy('entry:register'))
+            user = auth.authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+            print(user)
+            auth.login(request, user)
+            return HttpResponseRedirect(reverse_lazy('entry:index'))
 
-        if request.POST.get('password') == request.POST.get('password_validate'):
-            user.set_password(request.POST.get('password'))
-        else:
-            return HttpResponse(reverse_lazy('entry:register'))
-
-        if request.POST.get('username') == "":
-            return HttpResponse(reverse_lazy('entry:register'))
-
-        user.username = request.POST.get('username')
-        user.first_name = request.POST.get('first_name')
-        user.last_name = request.POST.get('last_name')
-        user.email = request.POST.get('email')
-
-        user.save()
-        user.teammember.save()
-
-        return HttpResponseRedirect(reverse_lazy('entry:update_fields'))
+        return render(request, 'entry/register.html', context)
 
 
 class MatchData(LoginRequiredMixin, generic.ListView):
@@ -848,11 +623,11 @@ class MatchData(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         try:
-            teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+            org_settings = self.request.user.orgmember.organization.settings
         except IndexError:
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
-        return Match.objects.all().filter(event_id=teamsettings.current_event).filter(
-            team_ownership=self.request.user.teammember.team.id)
+        return Match.objects.all().filter(event_id=org_settings.current_event).filter(
+            ownership=self.request.user.orgmember.organization_id)
 
 
 class PitData(LoginRequiredMixin, generic.ListView):
@@ -862,12 +637,12 @@ class PitData(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         try:
-            teamsettings = TeamSettings.objects.all().filter(team_id=self.request.user.teammember.team)[0]
+            org_settings = self.request.user.orgmember.organization.settings
         except IndexError:
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
-        return Pits.objects.all().filter(event_id=teamsettings.current_event).filter(
-            team_ownership=self.request.user.teammember.team.id)
+        return Pits.objects.all().filter(event_id=org_settings.current_event).filter(
+            ownership=self.request.user.orgmember.organization_id)
 
 
 class Upload(LoginRequiredMixin, generic.TemplateView):
@@ -881,23 +656,23 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
 
     def post(self, request, *args, **kwargs):
         response = HttpResponseRedirect(reverse_lazy('entry:settings'))
-        response.set_cookie('images', request.POST.get('images', ''))
-        response.set_cookie('filters', request.POST.get('filters', ''))
-        response.set_cookie('districtTeams', request.POST.get('districtTeams', ''))
-        response.set_cookie('tutorialCompleted', request.POST.get('tutorialCompleted', ''))
-        response.set_cookie('teamsBehaviour', request.POST.get('teamsBehaviour', ''))
-        response.set_cookie('teamListType', request.POST.get('teamListType', ''))
+        response.set_cookie('images', request.POST.get('images'))
+        response.set_cookie('filters', request.POST.get('filters'))
+        response.set_cookie('districtTeams', request.POST.get('districtTeams'))
+        response.set_cookie('tutorialCompleted', request.POST.get('tutorialCompleted'))
+        response.set_cookie('teamsBehaviour', request.POST.get('teamsBehaviour'))
+        response.set_cookie('teamListType', request.POST.get('teamListType'))
 
-        if self.request.user.teammember.position == "LS":
-            new_settings = TeamSettings()
+        if self.request.user.orgmember.position == "LS":
+            new_settings = OrgSettings()
             print("making")
             try:
-                new_settings = TeamSettings.objects.get(team=self.request.user.teammember.team)
-                new_settings.current_event = Event.objects.get(FIRST_key=request.POST.get('currentEvent', '21ONT'))
+                new_settings = OrgSettings.objects.get(organization=self.request.user.orgmember.organization)
+                new_settings.current_event = Event.objects.get(FIRST_key=request.POST.get('currentEvent'))
 
-            except TeamSettings.DoesNotExist:
-                new_settings.team = self.request.user.teammember.team
-                new_settings.current_event = Event.objects.get(FIRST_key=request.POST.get('currentEvent', '21ONT'))
+            except OrgSettings.DoesNotExist:
+                new_settings.organization = self.request.user.orgmember.organization
+                new_settings.current_event = Event.objects.get(FIRST_key=request.POST.get('currentEvent'))
 
             except Event.DoesNotExist:
                 print("User entered event that doesn't exist")
