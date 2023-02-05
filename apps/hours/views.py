@@ -46,9 +46,9 @@ class EnterHours(LoginRequiredMixin, generic.TemplateView):
 
     def post(self, request, *args, **kwargs):
         log = Log()
-        log.minutes = int(request.POST.get('minutes', 0)) + int(request.POST.get('hours', 0)) * 60
-        log.completedDate = request.POST.get('completedDate', ' ')
-        log.tasks = request.POST.get('tasks', ' ')
+        log.minutes = int(request.POST.get('minutes')) + int(request.POST.get('hours')) * 60
+        log.completedDate = request.POST.get('completedDate')
+        log.tasks = request.POST.get('tasks')
         if int(log.minutes) <= 0:
             return HttpResponse(status=204)
 

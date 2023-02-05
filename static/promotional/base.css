@@ -365,7 +365,7 @@ a.anchor {
 .scout-background {
 	color: white;
 	min-height: 300px;
-	background-image: url("/static/ScoutIcon.png");
+	background-image: url("/static/img/ScoutIcon.png");
 	background-repeat: no-repeat;
 	background-size: 32%;
 	background-position: 0% 50%;
@@ -380,13 +380,13 @@ a.anchor {
 }
 
 .glance-background {
-    background-image: url("/static/StrategyIcon.png");
+    background-image: url("/static/img/StrategyIcon.png");
 }
 
 .analyze-background {
 	color: white;
 	min-height: 300px;
-	background-image: url("/static/StatsIcon.png");
+	background-image: url("/static/img/StatsIcon.png");
 	background-repeat: no-repeat;
 	background-size: 35%;
 	background-position: 0% 50%;

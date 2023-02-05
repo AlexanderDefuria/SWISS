@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 
 from apps.entry.models import *
-from apps.entry import views
+from apps.entry.views import *
 
 register = template.Library()
 
@@ -102,7 +102,7 @@ def get_current_event_id():
 @register.simple_tag
 def get_team_name(team_number):
     try:
-        return Team.objects.all().get(id=team_number).name
+        return Team.objects.all().get().name
     except IndexError as e:
         return "No Such Team"
 
@@ -110,7 +110,7 @@ def get_team_name(team_number):
 @register.simple_tag
 def get_team_colour(team_number):
     try:
-        return Team.objects.all().get(id=team_number).colour
+        return Team.objects.all().get().colour
     except IndexError as e:
         return "No Such Team"
 
@@ -137,7 +137,7 @@ def get_match_fields():
 
 @register.simple_tag
 def get_cookie(request, cookie_name):
-    result = request.COOKIES.get(cookie_name, '')
+    result = request.COOKIES.get(cookie_name)
     return result
 
 
@@ -166,7 +166,7 @@ def get_all_logged_in_users(*args):
         timediff = session.expire_date - time - datetime.timedelta(days=13, hours=23, minutes=57, seconds=30)
         if datetime.timedelta(seconds=0) < timediff:
             data = session.get_decoded()
-            uid_list.append(data.get('_auth_user_id', None))
+            uid_list.append(data.get('_auth_user_id'))
             count += 1
 
     # Query all logged in users based on id list and return the length of that queryset
@@ -178,17 +178,17 @@ def get_all_logged_in_users(*args):
 
 @register.simple_tag
 def get_all_present_teams(user):
-    return views.get_present_teams(user)
+    return get_present_teams(user)
 
 
 @register.simple_tag
 def get_all_teams():
-    return views.get_all_teams()
+    return get_all_teams()
 
 
 @register.simple_tag
 def get_all_events():
-    return views.get_all_events()
+    return get_all_events()
 
 
 @register.simple_tag
@@ -228,7 +228,7 @@ def get_info(user, team, field, *args):
                 return
         if type(team) is type(int()):
             try:
-                team = Team.objects.all().get(id=team)
+                team = Team.objects.all().get()
             except IndexError as e:
                 print(e)
                 return

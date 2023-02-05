@@ -1,0 +1,30 @@
+.select-cube-cone-group {
+    border-radius: 10px;
+    background-color: grey;
+    padding: 5px;
+    margin: 5px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 10px;
+    margin-left: 10px;
+}
+
+.grid-item {
+    text-align: center;
+}
+
+.clickable_icon {
+    height: 35px;
+    position: relative;
+    top: 5px;
+}
+
+.cone_select_field {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}

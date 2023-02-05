@@ -2,6 +2,7 @@ import os
 import ast
 import json
 
+import requests
 from openpyxl import Workbook
 from datetime import datetime
 
@@ -22,6 +23,7 @@ from apps.entry.graphing import *
 from apps.entry.templatetags.common_tags import *
 from apps import importFRC
 from apps.entry.forms import MatchScoutForm, RegistrationForm, PitScoutForm, LoginForm, ImportForm
+from apps.entry.imports import import_first
 
 register = Library
 
@@ -108,6 +110,8 @@ def scout_lead_check(user):
 def download(request):
     # TODO find a way to prevent spamming this.
 
+    import_first()
+
     path = 'match_history.xlsx'
     path = os.path.join(settings.BASE_DIR, path)
     update_csv(request.user.orgmember.organization)
@@ -167,7 +171,7 @@ def update_csv(organization):
 @login_required(login_url='entry:login')
 def write_image_upload(request):
     if request.method == 'POST':
-        team_number = make_int(request.POST.get('teamNumber', 0))
+        team_number = make_int(request.POST.get('teamNumber'))
         team = Team.objects.get(number=team_number)
 
         request.session.set_test_cookie()
@@ -187,42 +191,14 @@ def write_image_upload(request):
 
 
 @login_required(login_url='entry:login')
-def write_pit_upload(request):
-    if request.method == 'GET':
-        template = loader.get_template('entry/login.html')
-
-        if request.user.is_authenticated:
-            return HttpResponseRedirect(reverse_lazy('entry:index'))
-
-        return HttpResponse(template.render({}, request))
-
-    elif request.method == 'POST':
-
-        username = request.POST.get('username', '')
-        password = request.POST.get('password', '')
-        #print(username)
-        #print(password)
-        user = auth.authenticate(request, username=username, password=password)
-
-        print(user)
-
-        if user is not None:
-            auth.login(request, user)
-            if not TeamMember.objects.filter(user=user).exists():
-                TeamMember.objects.create(user_id=user.id)
-                
-        return HttpResponseRedirect(reverse_lazy('entry:index'))
-
-
-@login_required(login_url='entry:login')
 def import_from_first(request):
     if request.method == 'GET':
         return HttpResponseRedirect(reverse_lazy('entry:import'))
 
     elif request.method == 'POST':
-        import_type = make_int(request.POST.get('importType', 0))
-        key = request.POST.get('key', 0)
-        year = request.POST.get('year', 0)
+        import_type = make_int(request.POST.get('importType'))
+        key = request.POST.get('key')
+        year = request.POST.get('year')
 
         if year == 0:
             year = None
@@ -316,6 +292,12 @@ def handle_query_present_teams(view):
 
     return teams
 
+class FRCdata(LoginRequiredMixin, generic.View):
+    login_url = 'entry.login'
+
+    def get(self, request, **kwargs):
+        import_first()
+        return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 class TeamSettingsNotFoundError(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
@@ -327,6 +309,7 @@ class TeamList(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/teams.html'
     context_object_name = "team_list"
     model = Team
+
     def get_queryset(self):
         teams = get_present_teams(self.request.user)
         if teams.count() == 1 and teams.first() == Team.objects.first():
@@ -388,7 +371,10 @@ class MatchScout(LoginRequiredMixin, FormMixin, generic.DetailView):
             print(form.cleaned_data)
             first_key = Event.objects.all().filter(id=make_int(org_settings.current_event.id))[0].FIRST_key
 
+            auto_start_x, auto_start_y = form.cleaned_data.pop('auto_start')
             match = Match(**form.cleaned_data)
+            match.auto_start_x = auto_start_x
+            match.auto_start_y = auto_start_y
             match.team = team
             match.event = Event.objects.get(FIRST_key=first_key)
             match.scouter_name = request.user.username
@@ -413,11 +399,7 @@ class MatchScoutLanding(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/matchlanding.html'
 
     def get_queryset(self):
-        teams = get_present_teams(self.request.user)
-        if teams.count() == 1 and teams.first() == Team.objects.first():
-            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
-
-        return teams
+        return get_present_teams(self.request.user)
 
 
 class PitScout(LoginRequiredMixin, FormMixin, generic.DetailView):
@@ -464,7 +446,6 @@ class Visualize(LoginRequiredMixin, generic.ListView):
         teams = get_present_teams(self.request.user)
         if teams.count() == 1 and teams.first() == Team.objects.first():
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
-
         return teams
 
 
@@ -675,23 +656,23 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
 
     def post(self, request, *args, **kwargs):
         response = HttpResponseRedirect(reverse_lazy('entry:settings'))
-        response.set_cookie('images', request.POST.get('images', ''))
-        response.set_cookie('filters', request.POST.get('filters', ''))
-        response.set_cookie('districtTeams', request.POST.get('districtTeams', ''))
-        response.set_cookie('tutorialCompleted', request.POST.get('tutorialCompleted', ''))
-        response.set_cookie('teamsBehaviour', request.POST.get('teamsBehaviour', ''))
-        response.set_cookie('teamListType', request.POST.get('teamListType', ''))
+        response.set_cookie('images', request.POST.get('images'))
+        response.set_cookie('filters', request.POST.get('filters'))
+        response.set_cookie('districtTeams', request.POST.get('districtTeams'))
+        response.set_cookie('tutorialCompleted', request.POST.get('tutorialCompleted'))
+        response.set_cookie('teamsBehaviour', request.POST.get('teamsBehaviour'))
+        response.set_cookie('teamListType', request.POST.get('teamListType'))
 
         if self.request.user.orgmember.position == "LS":
             new_settings = OrgSettings()
             print("making")
             try:
                 new_settings = OrgSettings.objects.get(organization=self.request.user.orgmember.organization)
-                new_settings.current_event = Event.objects.get(FIRST_key=request.POST.get('currentEvent', '21ONT'))
+                new_settings.current_event = Event.objects.get(FIRST_key=request.POST.get('currentEvent'))
 
             except OrgSettings.DoesNotExist:
                 new_settings.organization = self.request.user.orgmember.organization
-                new_settings.current_event = Event.objects.get(FIRST_key=request.POST.get('currentEvent', '21ONT'))
+                new_settings.current_event = Event.objects.get(FIRST_key=request.POST.get('currentEvent'))
 
             except Event.DoesNotExist:
                 print("User entered event that doesn't exist")
