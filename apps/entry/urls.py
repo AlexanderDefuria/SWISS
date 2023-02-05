@@ -52,5 +52,5 @@ urlpatterns = [
 
     path('team_settings_not_found_error/', views.TeamSettingsNotFoundError.as_view(), name='team_settings_not_found_error'),
 
-    path('frc/', views.FRCdata.as_view())
+    path('import_first/', views.FRCdata.as_view())
 ]

@@ -248,7 +248,7 @@ class RegistrationForm(forms.Form):
     def clean_username(self):
         username = self.cleaned_data['username']
         try:
-            User.objects.get(username=username)
+            User.objects.get()
         except User.DoesNotExist:
             return username
         raise ValidationError('Username already exists.')
