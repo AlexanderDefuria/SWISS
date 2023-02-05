@@ -51,6 +51,11 @@ class ConeCubeWidget(forms.Widget):
         return mark_safe(template)
 
 
+class SingleConeCubeWidget(forms.Widget):
+    template_name = 'entry/components/widgets/single-select-cone-cube.html'
+
+
+
 class StopWatchWidget(forms.Widget):
     template_name = 'entry/components/widgets/stopwatch.html'
 

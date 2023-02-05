@@ -37,22 +37,19 @@ class MatchScoutForm(forms.Form):
     def clean_grid_value(self):
         return int(str(self.cleaned_data['preloaded_balls']), 2)
 
-    preloaded_balls = forms.IntegerField(widget=ConeCubeWidget(), label='Cone or Cube?', initial=0)
+    # PRE GAME
     match_number = forms.IntegerField(min_value=0, max_value=255)
     on_field = forms.BooleanField(widget=BooleanWidget(), label='Is Robot Present?', required=False)
-    # TODO Preloaded ball must be changed to a one of (00, 01, 10) bit field.
-    # TODO Starting Position WIDGET Do this widget without the numerical inputs actually showing
+    preloaded_balls = forms.BooleanField(widget=BooleanWidget(), label='Preloaded Balls', initial=0)
 
     # AUTO
+    auto_placement = forms.IntegerField(widget=ConeCubeWidget(), label='', initial=0)
     auto_route = forms.IntegerField(widget=widgets.Select(choices=[
                     (0, "None"),
                     (1, "Yes, Simple"),
                     (2, "Yes, Complex")
                 ]), label='Autonomous Route')
-    baseline = forms.BooleanField(widget=BooleanWidget(image='AllTarmacs.png'), label='Exit Tarmac', required=False)
-    upper_auto = forms.IntegerField(widget=TickerWidget(image='HubUpper.png'), initial=0)
-    lower_auto = forms.IntegerField(widget=TickerWidget(image='HubLower.png'), initial=0)
-    missed_balls_auto = forms.IntegerField(widget=TickerWidget(image='MissedIcon.png'), initial=0)
+    auto_baseline = forms.BooleanField(widget=BooleanWidget(image='AllTarmacs.png'), label='Exit Tarmac', required=False)
     auto_fouls = forms.IntegerField(widget=widgets.Select(choices=[
                     (0, "None"),
                     (1, "Yes, Minor"),
@@ -63,12 +60,11 @@ class MatchScoutForm(forms.Form):
                     label="Auto Notes",
                     required=False
                 )
-    auto_start = LocationField(widget=LocationWidget, label="Location Field", initial=[0, 0])
+    auto_start = LocationField(widget=LocationWidget(), label="Location Field", initial=[0, 0])
 
     # TELEOP
-    upper = forms.IntegerField(widget=TickerWidget(image='HubUpper.png'), initial=0)
-    lower = forms.IntegerField(widget=TickerWidget(image='HubLower.png'), initial=0)
-    missed_balls = forms.IntegerField(widget=TickerWidget(image='MissedIcon.png'), initial=0)
+    placement = forms.IntegerField(widget=ConeCubeWidget(), label='', initial=0)
+    cycles = forms.IntegerField(widget=TickerWidget(), label='Teleop Cycles')
     intake_type = forms.IntegerField(widget=widgets.Select(choices=[
                     (0, "Did not Intake"),
                     (1, "Ground"),
@@ -111,22 +107,15 @@ class MatchScoutForm(forms.Form):
                 ]), label='Ability to Push')
 
     # ENDGAME
-    climb_time = forms.IntegerField(widget=StopWatchWidget(), label="Climb Time", initial=0)
-    lock_status = forms.IntegerField(widget=widgets.Select(choices=[
-                    (0, "None"),
-                    (1, "Unsuccessful"),
-                    (2, "Invalidated"),
-                    (3, "Successful Climb"),
-                ]), label='Field Timeout Position (t=+5s')
+    endgame_time = forms.IntegerField(widget=StopWatchWidget(), label="Time Spent Balancing", initial=0)
     endgame_action = forms.IntegerField(widget=widgets.Select(choices=[
                     (0, "No Attempt"),
-                    (1, "Low Rung"),
-                    (2, "Mid Rung"),
-                    (3, "High Rung"),
-                    (4, "Traversal Rung"),
-                ]), label='Climb Height')
-    climb_attempts = forms.IntegerField(widget=TickerWidget(), label='Climb Attempts', initial=0)
-    climb_comments = forms.CharField(
+                    (1, "Successful Balance"),
+                    (2, "Unsuccessful Balance"),
+                    (3, "Invalidated"),
+                ]), label='Field Timeout Position (t=+5s')
+    endgame_attempts = forms.IntegerField(widget=TickerWidget(), label='Climb Attempts', initial=0)
+    endgame_comments = forms.CharField(
                     widget=widgets.Textarea(attrs={'rows': 2, 'cols': 50, 'placeholder': 'Auto Notes'}),
                     label="Climb Performance Comment",
                     required=False
@@ -151,17 +140,18 @@ class MatchScoutForm(forms.Form):
                 )
 
     grouping("PRE-MATCH", [match_number, on_field, preloaded_balls])
-    grouping("AUTONOMOUS", [baseline, auto_route, auto_fouls])
-    grouping("AUTONOMOUS", [upper_auto, lower_auto, missed_balls_auto], subgroup="Power Port Goals")
-    grouping("TELEOP - OFFENSE", [intake_type, under_defense, defended_by, offensive_fouls])
-    grouping("TELEOP - OFFENSE", [upper, lower, missed_balls], subgroup="Power Port Goals")
+    grouping("AUTONOMOUS", [auto_placement, auto_baseline, auto_route, auto_fouls])
+    grouping("TELEOP - OFFENSE", [placement, cycles, intake_type, under_defense, defended_by, offensive_fouls])
     grouping("TELEOP - DEFENSE", [defense_played, team_defended, defense_rating, defense_fouls, able_to_push])
-    grouping("ENDGAME", [lock_status, endgame_action, climb_attempts, climb_comments])
+    grouping("ENDGAME", [endgame_time, endgame_action, endgame_attempts, endgame_comments])
     grouping("MORE", [fouls_hp, fouls_driver, yellow_card, comment])
 
     class Meta:
         model = Match()
-        widgets = {'auto_high': TickerWidget()}
+        widgets = {'cycles': TickerWidget(),
+                   'endgame_time': StopWatchWidget(),
+                   'placement_teleop': ConeCubeWidget(),
+                   'auto_start': LocationWidget()}
 
 
 class PitScoutForm(forms.Form):

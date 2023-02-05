@@ -19,15 +19,13 @@ class Team(models.Model):
     glance = models.FileField(upload_to='json/', null=True, blank=True)
 
     def first_image(self):
-        # code to determine which image to show. The First in this case.
         try:
-            # TODO Replace references?
-            return self.images.all()[random.randint(0, len(self.images.all()) - 1)].image
-        except Exception:
+            return Images.objects.filter(team=self).first()
+        except Images.DoesNotExist:
             return 'robots/default.jpg'
 
     def __str__(self):
-        return str(self.number) + "\t\t" + str(self.name)
+        return str(self.number) + " -- " + str(self.name)
 
 
 class Images(models.Model):
@@ -166,20 +164,29 @@ class Match(models.Model):
     match_number = models.IntegerField(default=0, validators=[MaxValueValidator(255), MinValueValidator(-1)])
 
     # Pre Match
+    on_field = models.BooleanField(default=False)
+    preloaded_balls = models.fields.IntegerField(default=0, validators=[MaxValueValidator(3), MinValueValidator(0)])
     auto_start_x = models.fields.FloatField(default=0, validators=[MaxValueValidator(1), MinValueValidator(0)])
     auto_start_y = models.fields.FloatField(default=0, validators=[MaxValueValidator(1), MinValueValidator(0)])
-    on_field = models.BooleanField(default=False)
 
     # Auto
+    auto_placement = models.fields.IntegerField(default=0)
     auto_route = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     auto_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
     auto_comment = models.TextField(default="")
+    auto_baseline = models.BooleanField(default=False)
+    auto_cones = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    auto_cubes = models.IntegerField(default=0, validators=[MinValueValidator(0)])
 
     # Teleop
+    placement = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    cycles = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     intake_type = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     under_defense = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     defended_by = models.IntegerField(default=0, blank=True, null=True)
     offensive_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
+    cones = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    cubes = models.IntegerField(default=0, validators=[MinValueValidator(0)])
 
     # Defense
     defense_played = models.BooleanField(default=False)
@@ -189,9 +196,11 @@ class Match(models.Model):
     team_defended = models.IntegerField(default=0, blank=True, null=True)
     able_to_push = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
 
-    # Charger
-
-    charger_comments = models.TextField(default="")
+    # Endgame
+    endgame_time = models.IntegerField(default=0, validators=[MaxValueValidator(165), MinValueValidator(0)])
+    endgame_action = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    endgame_attempts = models.IntegerField(default=0)
+    endgame_comments = models.TextField(default="")
 
     # Human Player
     fouls_hp = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
@@ -219,9 +228,20 @@ class Match(models.Model):
             result.event = self.ownership.settings.current_event
 
             result.save()
-        except Exception:
+        except Exception as e:
             print("error updating result for " + str(self))
+            print(e)
         super(Match, self).save(*args, **kwargs)
+
+    @staticmethod
+    def decode_grid(grid_val):
+        def _get_bit(value: int, location: int) -> bool:
+            return bool((value >> location) & 1)
+
+        positions: list[bool] = []
+        for i in range(0, 36):
+            for j in range(0, 4):
+                positions[i] = _get_bit(grid_val, i)
 
 
 class Pits(models.Model):
@@ -253,8 +273,6 @@ class Pits(models.Model):
     # Robot styles and stats
     weight = models.SmallIntegerField(default=0, validators=[MaxValueValidator(200), MinValueValidator(0)])
 
-    # Charger
-
     # Name
     scouter_name = models.TextField(default="")
     ownership = models.ForeignKey(Organization, on_delete=models.CASCADE, default=0, related_name='+')
@@ -274,7 +292,7 @@ class Pits(models.Model):
         ('', '')
     ]
 
-    def getData(self, field):
+    def get_data(self, field):
         return getattr(self, field)
 
     def __str__(self):

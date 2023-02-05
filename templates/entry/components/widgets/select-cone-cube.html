@@ -1,41 +1,222 @@
 {% load i18n static common_tags %}
-<style>
-    .select-cube-cone-group {
-        border-radius: 10px;
-        background-color: violet;
-        padding: 10px;
-        margin: 5px;
-    }
-</style>
-<div class="radioGroup">
-    <div style="display: flex">
-        <div class="select-cube-cone-group">
-            <img class="icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
-            <img class="icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+
+<div class="radioGroup cone_select_field">
+    <div class="grid-container">
+        <div class="grid-item">
+            <div class="select-cube-cone-group" id="{{ widget.name }}-000" onclick="select_game_piece('{{ widget.name }}-000', 'cone')">
+                <img class="clickable_icon" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
         </div>
-        <div class="select-cube-cone-group">
-            <img class="icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
-            <img class="icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+        <div class="grid-item">
+            <div class="select-cube-cone-group" id="{{ widget.name }}-001" onclick="select_game_piece('{{ widget.name }}-001', 'cube')">
+                <img class="clickable_icon" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cone">
+            </div>
         </div>
-        <div class="select-cube-cone-group">
-            <img class="icon" onclick="log('cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
-            <img class="icon" onclick="log('cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+        <div class="grid-item">
+            <div class="select-cube-cone-group" id="{{ widget.name }}-002" onclick="select_game_piece('{{ widget.name }}-002', 'cone')">
+                <img class="clickable_icon" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group" id="{{ widget.name }}-010" onclick="select_game_piece('{{ widget.name }}-010', 'cone')">
+                <img class="clickable_icon" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group" id="{{ widget.name }}-011" onclick="select_game_piece('{{ widget.name }}-011', 'cube')">
+                <img class="clickable_icon" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group" id="{{ widget.name }}-012" onclick="select_game_piece('{{ widget.name }}-012', 'cone')">
+                <img class="clickable_icon" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" id="{{ widget.name }}-020" onclick="select_game_piece('{{ widget.name }}-020', 'cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+                <img class="clickable_icon" id="{{ widget.name }}-030" onclick="select_game_piece('{{ widget.name }}-030', 'cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" id="{{ widget.name }}-021" onclick="select_game_piece('{{ widget.name }}-021', 'cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+                <img class="clickable_icon" id="{{ widget.name }}-031" onclick="select_game_piece('{{ widget.name }}-031', 'cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" id="{{ widget.name }}-022" onclick="select_game_piece('{{ widget.name }}-022', 'cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+                <img class="clickable_icon" id="{{ widget.name }}-032" onclick="select_game_piece('{{ widget.name }}-032', 'cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
         </div>
     </div>
-        <div style="display: flex">
 
+    <div class="grid-container">
+        <div class="grid-item">
+            <div class="select-cube-cone-group" id="{{ widget.name }}-100" onclick="select_game_piece('{{ widget.name }}-100', 'cone')">
+                <img class="clickable_icon" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group" id="{{ widget.name }}-101" onclick="select_game_piece('{{ widget.name }}-101', 'cube')">
+                <img class="clickable_icon" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group" id="{{ widget.name }}-102" onclick="select_game_piece('{{ widget.name }}-102', 'cone')">
+                <img class="clickable_icon" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group" id="{{ widget.name }}-110" onclick="select_game_piece('{{ widget.name }}-110', 'cone')">
+                <img class="clickable_icon" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group" id="{{ widget.name }}-111" onclick="select_game_piece('{{ widget.name }}-111', 'cube')">
+                <img class="clickable_icon" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group" id="{{ widget.name }}-112" onclick="select_game_piece('{{ widget.name }}-112', 'cone')">
+                <img class="clickable_icon" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" id="{{ widget.name }}-120" onclick="select_game_piece('{{ widget.name }}-120', 'cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+                <img class="clickable_icon" id="{{ widget.name }}-130" onclick="select_game_piece('{{ widget.name }}-130', 'cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" id="{{ widget.name }}-121" onclick="select_game_piece('{{ widget.name }}-121', 'cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+                <img class="clickable_icon" id="{{ widget.name }}-131" onclick="select_game_piece('{{ widget.name }}-131', 'cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" id="{{ widget.name }}-122" onclick="select_game_piece('{{ widget.name }}-122', 'cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+                <img class="clickable_icon" id="{{ widget.name }}-132" onclick="select_game_piece('{{ widget.name }}-132', 'cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
     </div>
 
-
+    <div class="grid-container">
+        <div class="grid-item">
+            <div class="select-cube-cone-group" id="{{ widget.name }}-200" onclick="select_game_piece('{{ widget.name }}-200', 'cone')">
+                <img class="clickable_icon" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group" id="{{ widget.name }}-201" onclick="select_game_piece('{{ widget.name }}-201', 'cube')">
+                <img class="clickable_icon" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group" id="{{ widget.name }}-202" onclick="select_game_piece('{{ widget.name }}-202', 'cone')">
+                <img class="clickable_icon" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group" id="{{ widget.name }}-210" onclick="select_game_piece('{{ widget.name }}-210', 'cone')">
+                <img class="clickable_icon" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group" id="{{ widget.name }}-211" onclick="select_game_piece('{{ widget.name }}-211', 'cube')">
+                <img class="clickable_icon" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group" id="{{ widget.name }}-212" onclick="select_game_piece('{{ widget.name }}-212', 'cone')">
+                <img class="clickable_icon" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" id="{{ widget.name }}-220" onclick="select_game_piece('{{ widget.name }}-220', 'cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+                <img class="clickable_icon" id="{{ widget.name }}-230" onclick="select_game_piece('{{ widget.name }}-230', 'cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" id="{{ widget.name }}-221" onclick="select_game_piece('{{ widget.name }}-221', 'cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+                <img class="clickable_icon" id="{{ widget.name }}-231" onclick="select_game_piece('{{ widget.name }}-231', 'cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="select-cube-cone-group">
+                <img class="clickable_icon" id="{{ widget.name }}-222" onclick="select_game_piece('{{ widget.name }}-222', 'cone')" src="{{ MEDIA_URL }}{% static '2023/2023Cone.png' %}" alt="cone">
+                <img class="clickable_icon" id="{{ widget.name }}-232" onclick="select_game_piece('{{ widget.name }}-232', 'cube')" src="{{ MEDIA_URL }}{% static '2023/2023Cube.png' %}" alt="cube">
+            </div>
+        </div>
+    </div>
 
     <label for="{{ widget.name }}" hidden></label>
-    <input type="text" id="{{ widget.name }}" name="{{ widget.name }}" hidden value="111">
+    <input type="number" id="{{ widget.name }}" name="{{ widget.name }}" hidden value=0>
 </div>
 
 <script>
-    function log(str) {
-        console.log(str);
+    let clicked = []
+
+    const toRGB = (color) => {
+        const { style } = new Option();
+        style.color = color;
+        return style.color;
     }
 
+    const baseTwoLocation = (game_piece_id) => {
+        // There are actually 4 Rows.
+        // There is a hidden row that represents the cube
+        // The 3rd is cubes
+        // The 4th is cones
+
+        const re = new RegExp("[0-3]{3}");
+        const id = re.exec(game_piece_id);
+        const grid = Math.floor(id / 100)
+        const row = Math.floor((id % 100) / 10)
+        const location = id % 10
+        const bit_id = grid*12 + row*3 + location // (grid #) * Grid size = starting point + location...
+
+        return bit_id
+    }
+
+    function select_game_piece(id, str) {
+        const yellow = toRGB('#f5e923')
+        const purple = toRGB('#9b3b96')
+
+        let item = document.getElementById(id);
+        let input = document.getElementById("{{ widget.name }}");
+        if (item.tagName === 'IMG') {
+            let sibling = item.previousElementSibling ? item.previousElementSibling : item.nextElementSibling
+
+            if (clicked.includes(sibling.id)) {
+                console.log('sibling clicked')
+                clicked = clicked.filter(x => x !== sibling.id);
+                input.value = parseInt(input.value) - Math.pow(2, baseTwoLocation(sibling.id));
+                item.parentElement.style.background = 'grey'
+                return;
+            }
+            console.log(sibling)
+            item = item.parentElement
+        }
+
+        if (item.style.backgroundColor !== purple && item.style.backgroundColor !== yellow)
+            item.style.background = str === 'cone' ? yellow : purple
+        else
+            item.style.background = 'grey'
+
+        if (clicked.includes(id)) {
+            clicked = clicked.filter(x => x !== id);
+            input.value = parseInt(input.value) - Math.pow(2, baseTwoLocation(id));
+        } else {
+            clicked.push(id)
+            input.value = parseInt(input.value) + Math.pow(2, baseTwoLocation(id));
+        }
+
+        console.log(input.value.toString(2))
+    }
 </script>
 
