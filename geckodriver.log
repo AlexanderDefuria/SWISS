@@ -1,0 +1,14 @@
+1675627481850	geckodriver	INFO	Listening on 127.0.0.1:53047
+1675627482243	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "36745" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileRkO2J6"
+Gtk-Message: 15:04:42.258: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675627482637	Marionette	INFO	Marionette enabled
+1675627482639	Marionette	INFO	Listening on port 43665
+Read port: 43665
+WebDriver BiDi listening on ws://127.0.0.1:36745
+1675627482729	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileRkO2J6/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:36745/devtools/browser/01314491-fe1b-4253-9fb5-b6c396a96e29
+1675627509148	Marionette	INFO	Stopped listening on port 43665
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo

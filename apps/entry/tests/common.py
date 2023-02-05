@@ -1,8 +1,6 @@
 import os
 import pytest
 
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
 from apps.entry.models import *
 
 base_test_dir = os.path.dirname(os.path.realpath(__file__))
@@ -21,6 +19,7 @@ def create_user() -> User:
     )
     user.save()
     assert user.username == 'test_account_swiss'
+    return user
 
 
 @pytest.fixture

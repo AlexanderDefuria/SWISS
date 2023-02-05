@@ -5,7 +5,7 @@ from apps.entry.tests.common import *
 
 @pytest.mark.django_db
 def test_should_create_org_settings(create_org_settings: OrgSettings) -> None:
-    assert create_org_settings.pk != None
+    assert create_org_settings.pk is not None
 
 
 @pytest.mark.django_db
