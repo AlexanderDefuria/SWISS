@@ -11,14 +11,14 @@ from apps.entry.tests.common import *
 
 
 @pytest.mark.django_db
-def test_team_creation(create_team):
-    team = create_team
+def test_team_creation(create_team_factory):
+    team = create_team_factory
     assert isinstance(team, Team)
-    assert str(team) == str(team.number) + "\t\t" + str(team.name)
+    assert str(team) == str(team.number) + " -- " + str(team.name)
 
 
 @pytest.mark.django_db
-def test_default_image(create_team):
-    team = create_team
-    assert team.first_image() == 'robots/default.jpg'
+def test_default_image(create_team_factory):
+    team = create_team_factory
+    assert team.first_image() is None
 

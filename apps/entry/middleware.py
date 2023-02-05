@@ -46,8 +46,8 @@ class ValidateUser:
                 return response
 
             print("\nINDEX ERROR FROM PATH SPLITTING IN MIDDLEWARE:")
-            print(request.path)
-            print("\n")
+            # print(request.path)
+            # print("\n")
             return HttpResponseRedirect(reverse_lazy('entry:index'))
 
         if app == "hours" and view in ["view", "card"]:
@@ -62,7 +62,7 @@ class ValidateUser:
         if request.user.orgmember.position == "NA":
             return HttpResponseRedirect(reverse_lazy('entry:logout'))
 
-        print(request.user.orgmember)
+        #print(request.user.orgmember)
 
         if app == 'entry':
             if self.valid_perms(view, request.user):

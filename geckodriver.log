@@ -41,3 +41,918 @@ console.warn: LoginRecipes: "Falling back to a synchronous message for: http://l
 JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 572: NotFoundError: No such JSWindowActor 'DevToolsFrame'
 1675627796825	Marionette	INFO	Stopped listening on port 42941
 1675627838135	geckodriver::marionette	ERROR	Failed to close browser connection: Transport endpoint is not connected (os error 107)
+1675628320250	geckodriver	INFO	Listening on 127.0.0.1:50001
+1675628320708	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "33273" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileQ2xeNG"
+Gtk-Message: 15:18:40.722: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675628321086	Marionette	INFO	Marionette enabled
+1675628321088	Marionette	INFO	Listening on port 33475
+Read port: 33475
+WebDriver BiDi listening on ws://127.0.0.1:33273
+1675628321183	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileQ2xeNG/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:33273/devtools/browser/c60dbca6-1e01-4ed6-92fa-63e04564b593
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675628370769	geckodriver	INFO	Listening on 127.0.0.1:60659
+1675628371239	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "51231" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilejltxoD"
+Gtk-Message: 15:19:31.253: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675628371621	Marionette	INFO	Marionette enabled
+1675628371623	Marionette	INFO	Listening on port 46803
+Read port: 46803
+WebDriver BiDi listening on ws://127.0.0.1:51231
+1675628371719	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilejltxoD/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:51231/devtools/browser/8c03c820-0403-4a4f-b901-6de0e41c9290
+console.error: "Unable to find target with innerWindowId:4294967298"
+console.error: "Unable to find target with innerWindowId:4294967301"
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675628489103	geckodriver	INFO	Listening on 127.0.0.1:42933
+1675628489567	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "41247" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileXP3ip9"
+Gtk-Message: 15:21:29.581: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675628489947	Marionette	INFO	Marionette enabled
+1675628489950	Marionette	INFO	Listening on port 45109
+Read port: 45109
+WebDriver BiDi listening on ws://127.0.0.1:41247
+1675628490047	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileXP3ip9/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:41247/devtools/browser/c4dc0bc0-e27f-4e55-a3a2-60b868fe2e1e
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675628595869	Marionette	INFO	Stopped listening on port 45109
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675628625407	geckodriver	INFO	Listening on 127.0.0.1:42247
+1675628625891	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "36627" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilesXaGoZ"
+Gtk-Message: 15:23:45.905: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675628626284	Marionette	INFO	Marionette enabled
+1675628626286	Marionette	INFO	Listening on port 42517
+Read port: 42517
+WebDriver BiDi listening on ws://127.0.0.1:36627
+1675628626413	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilesXaGoZ/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:36627/devtools/browser/ea00a134-75ba-4ed3-907b-375739323ade
+1675628630989	Marionette	INFO	Stopped listening on port 42517
+1675628653347	geckodriver	INFO	Listening on 127.0.0.1:51051
+1675628653831	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "44513" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile8vPSsi"
+Gtk-Message: 15:24:13.845: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675628654227	Marionette	INFO	Marionette enabled
+1675628654230	Marionette	INFO	Listening on port 37359
+Read port: 37359
+WebDriver BiDi listening on ws://127.0.0.1:44513
+1675628654333	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile8vPSsi/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:44513/devtools/browser/b7a45efc-aa24-4299-bf54-982aabfc4527
+1675628658909	Marionette	INFO	Stopped listening on port 37359
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675628690254	geckodriver	INFO	Listening on 127.0.0.1:54765
+1675628690739	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "56561" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileU5Vsf6"
+Gtk-Message: 15:24:50.753: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675628691127	Marionette	INFO	Marionette enabled
+1675628691130	Marionette	INFO	Listening on port 44441
+Read port: 44441
+WebDriver BiDi listening on ws://127.0.0.1:56561
+1675628691237	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileU5Vsf6/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:56561/devtools/browser/9c5d9ddd-0fb0-4704-94a3-0d99c9a3c079
+1675628695679	Marionette	INFO	Stopped listening on port 44441
+1675628720691	geckodriver	INFO	Listening on 127.0.0.1:39129
+1675628721175	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "53627" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileHGlKJ3"
+Gtk-Message: 15:25:21.189: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675628721555	Marionette	INFO	Marionette enabled
+1675628721557	Marionette	INFO	Listening on port 39003
+Read port: 39003
+WebDriver BiDi listening on ws://127.0.0.1:53627
+1675628721655	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileHGlKJ3/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:53627/devtools/browser/ff070090-2af3-4191-a4df-42bebbf96f7c
+1675628726167	Marionette	INFO	Stopped listening on port 39003
+1675628754612	geckodriver	INFO	Listening on 127.0.0.1:58907
+1675628755099	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "51631" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileJY4MCk"
+Gtk-Message: 15:25:55.113: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675628755487	Marionette	INFO	Marionette enabled
+1675628755489	Marionette	INFO	Listening on port 40113
+Read port: 40113
+WebDriver BiDi listening on ws://127.0.0.1:51631
+1675628755610	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileJY4MCk/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:51631/devtools/browser/2658f246-3428-4ee4-a217-c00ef27ad1e4
+1675628760236	Marionette	INFO	Stopped listening on port 40113
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675628784380	geckodriver	INFO	Listening on 127.0.0.1:57521
+1675628784859	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "35449" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileD5sAo8"
+Gtk-Message: 15:26:24.873: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675628785240	Marionette	INFO	Marionette enabled
+1675628785243	Marionette	INFO	Listening on port 43217
+Read port: 43217
+WebDriver BiDi listening on ws://127.0.0.1:35449
+1675628785336	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileD5sAo8/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:35449/devtools/browser/5b676057-1b77-48aa-bc4f-f124e9625c55
+1675628891552	Marionette	INFO	Stopped listening on port 43217
+JavaScript error: , line 0: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675629103791	geckodriver	INFO	Listening on 127.0.0.1:36123
+1675629104275	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "47167" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileP7om6z"
+Gtk-Message: 15:31:44.289: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675629104656	Marionette	INFO	Marionette enabled
+1675629104658	Marionette	INFO	Listening on port 35363
+Read port: 35363
+WebDriver BiDi listening on ws://127.0.0.1:47167
+1675629104763	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileP7om6z/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:47167/devtools/browser/f791abc9-fb20-47bb-b0f5-94b30682f7b8
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675629110665	Marionette	INFO	Stopped listening on port 35363
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675629137361	geckodriver	INFO	Listening on 127.0.0.1:50651
+1675629137847	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "55313" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofiletMslba"
+Gtk-Message: 15:32:17.861: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675629138226	Marionette	INFO	Marionette enabled
+1675629138228	Marionette	INFO	Listening on port 39253
+Read port: 39253
+WebDriver BiDi listening on ws://127.0.0.1:55313
+1675629138315	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofiletMslba/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:55313/devtools/browser/453b25da-1ac6-48d3-9029-83723de61dfa
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675629233016	geckodriver	INFO	Listening on 127.0.0.1:34001
+1675629233491	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "46439" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilebCE2XO"
+Gtk-Message: 15:33:53.505: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675629233871	Marionette	INFO	Marionette enabled
+1675629233874	Marionette	INFO	Listening on port 37009
+Read port: 37009
+WebDriver BiDi listening on ws://127.0.0.1:46439
+1675629233964	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilebCE2XO/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:46439/devtools/browser/56b83215-b653-4de9-9a20-9da14b7e1cc8
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675629292940	geckodriver	INFO	Listening on 127.0.0.1:50099
+1675629293423	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "33543" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile3wjKQq"
+Gtk-Message: 15:34:53.437: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675629293801	Marionette	INFO	Marionette enabled
+1675629293803	Marionette	INFO	Listening on port 34597
+Read port: 34597
+WebDriver BiDi listening on ws://127.0.0.1:33543
+1675629293912	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile3wjKQq/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:33543/devtools/browser/bbf2d495-e90a-4303-8e6d-bc908854b863
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675629301189	Marionette	INFO	Stopped listening on port 34597
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675629371557	geckodriver	INFO	Listening on 127.0.0.1:42921
+1675629372039	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "41863" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileQL4JPX"
+Gtk-Message: 15:36:12.053: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675629372420	Marionette	INFO	Marionette enabled
+1675629372422	Marionette	INFO	Listening on port 40195
+Read port: 40195
+WebDriver BiDi listening on ws://127.0.0.1:41863
+1675629372515	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileQL4JPX/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:41863/devtools/browser/63968ff4-1bb3-47ba-a299-15f0e6cb4cdd
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675629383402	Marionette	INFO	Stopped listening on port 40195
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675629448697	geckodriver	INFO	Listening on 127.0.0.1:57761
+1675629449179	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "60469" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileo4sVpB"
+Gtk-Message: 15:37:29.194: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675629449562	Marionette	INFO	Marionette enabled
+1675629449565	Marionette	INFO	Listening on port 34937
+Read port: 34937
+WebDriver BiDi listening on ws://127.0.0.1:60469
+1675629449671	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileo4sVpB/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:60469/devtools/browser/d9a35722-fffd-41b1-9a4c-7a1b4f60b336
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675629470453	Marionette	INFO	Stopped listening on port 34937
+1675629503408	geckodriver	INFO	Listening on 127.0.0.1:41933
+1675629503892	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "37891" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileDAErP1"
+Gtk-Message: 15:38:23.907: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675629504285	Marionette	INFO	Marionette enabled
+1675629504287	Marionette	INFO	Listening on port 45997
+Read port: 45997
+WebDriver BiDi listening on ws://127.0.0.1:37891
+1675629504392	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileDAErP1/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:37891/devtools/browser/09811758-6ac8-4f52-9852-2e70efc2d83c
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675629520426	Marionette	INFO	Stopped listening on port 45997
+1675629559464	geckodriver	INFO	Listening on 127.0.0.1:39915
+1675629559947	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "49561" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileVTzbr9"
+Gtk-Message: 15:39:19.961: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675629560327	Marionette	INFO	Marionette enabled
+1675629560330	Marionette	INFO	Listening on port 46075
+Read port: 46075
+WebDriver BiDi listening on ws://127.0.0.1:49561
+1675629560423	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileVTzbr9/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:49561/devtools/browser/84ae9aa7-b41b-4407-a2fe-986014b48669
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675629571030	Marionette	INFO	Stopped listening on port 46075
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675629618944	geckodriver	INFO	Listening on 127.0.0.1:44617
+1675629619432	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "37755" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilepqtDC4"
+Gtk-Message: 15:40:19.446: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675629619820	Marionette	INFO	Marionette enabled
+1675629619822	Marionette	INFO	Listening on port 35089
+Read port: 35089
+WebDriver BiDi listening on ws://127.0.0.1:37755
+1675629619933	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilepqtDC4/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:37755/devtools/browser/2c3c9397-b386-4f39-8a21-be716f2c4f15
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675629631311	Marionette	INFO	Stopped listening on port 35089
+1675629676058	geckodriver	INFO	Listening on 127.0.0.1:42157
+1675629676543	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "44065" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile1hvjxV"
+Gtk-Message: 15:41:16.557: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675629676924	Marionette	INFO	Marionette enabled
+1675629676927	Marionette	INFO	Listening on port 45037
+Read port: 45037
+WebDriver BiDi listening on ws://127.0.0.1:44065
+1675629677032	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile1hvjxV/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:44065/devtools/browser/e88c3716-f4ce-4bcc-a6f7-3d58dfce39ab
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675629688163	Marionette	INFO	Stopped listening on port 45037
+1675629735778	geckodriver	INFO	Listening on 127.0.0.1:58503
+1675629736259	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "43643" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileABbKHo"
+Gtk-Message: 15:42:16.273: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675629736639	Marionette	INFO	Marionette enabled
+1675629736641	Marionette	INFO	Listening on port 45443
+Read port: 45443
+WebDriver BiDi listening on ws://127.0.0.1:43643
+1675629736735	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileABbKHo/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:43643/devtools/browser/8bca46df-e669-4db4-b949-410150720989
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675629887720	geckodriver	INFO	Listening on 127.0.0.1:55705
+1675629888203	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "35021" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilePiOz9K"
+Gtk-Message: 15:44:48.217: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675629888592	Marionette	INFO	Marionette enabled
+1675629888595	Marionette	INFO	Listening on port 41973
+Read port: 41973
+WebDriver BiDi listening on ws://127.0.0.1:35021
+1675629888697	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilePiOz9K/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:35021/devtools/browser/6e399419-946b-487a-8df3-7c455b0ce454
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675630227342	geckodriver	INFO	Listening on 127.0.0.1:35927
+1675630227823	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "50003" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileLIaN50"
+Gtk-Message: 15:50:27.837: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675630228215	Marionette	INFO	Marionette enabled
+1675630228217	Marionette	INFO	Listening on port 38841
+Read port: 38841
+WebDriver BiDi listening on ws://127.0.0.1:50003
+1675630228331	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileLIaN50/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:50003/devtools/browser/6d270f14-58ac-48ba-9ac5-45992ba5a984
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675630238976	Marionette	INFO	Stopped listening on port 38841
+1675630265286	geckodriver	INFO	Listening on 127.0.0.1:50115
+1675630265767	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "40341" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileVDZ3lW"
+Gtk-Message: 15:51:05.781: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675630266146	Marionette	INFO	Marionette enabled
+1675630266149	Marionette	INFO	Listening on port 39661
+Read port: 39661
+WebDriver BiDi listening on ws://127.0.0.1:40341
+1675630266248	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileVDZ3lW/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:40341/devtools/browser/1dcf6942-08c4-4ada-be32-753e648e6162
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675630278495	Marionette	INFO	Stopped listening on port 39661
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675630315255	geckodriver	INFO	Listening on 127.0.0.1:56495
+1675630315739	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "45267" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileAdB2ls"
+Gtk-Message: 15:51:55.753: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675630316133	Marionette	INFO	Marionette enabled
+1675630316135	Marionette	INFO	Listening on port 45775
+Read port: 45775
+WebDriver BiDi listening on ws://127.0.0.1:45267
+1675630316252	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileAdB2ls/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:45267/devtools/browser/c0ab5936-68fb-4df5-ac91-632263dc96e3
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675630329322	Marionette	INFO	Stopped listening on port 45775
+1675630364851	geckodriver	INFO	Listening on 127.0.0.1:53993
+1675630365323	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "60377" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileUkk89A"
+Gtk-Message: 15:52:45.337: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675630365708	Marionette	INFO	Marionette enabled
+1675630365710	Marionette	INFO	Listening on port 36775
+Read port: 36775
+WebDriver BiDi listening on ws://127.0.0.1:60377
+1675630365814	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileUkk89A/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:60377/devtools/browser/05450f91-9305-4f3e-9e87-3c32b6ee67e5
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675630379284	Marionette	INFO	Stopped listening on port 36775
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675630404683	geckodriver	INFO	Listening on 127.0.0.1:43659
+1675630405167	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "45171" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileou8PpZ"
+Gtk-Message: 15:53:25.182: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675630405550	Marionette	INFO	Marionette enabled
+1675630405552	Marionette	INFO	Listening on port 38981
+Read port: 38981
+WebDriver BiDi listening on ws://127.0.0.1:45171
+1675630405652	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileou8PpZ/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:45171/devtools/browser/0599f459-f3b6-4570-a631-049a5973a441
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675630418730	Marionette	INFO	Stopped listening on port 38981
+1675630556387	geckodriver	INFO	Listening on 127.0.0.1:53577
+1675630556867	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "56569" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileLHnUaj"
+Gtk-Message: 15:55:56.882: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675630557248	Marionette	INFO	Marionette enabled
+1675630557251	Marionette	INFO	Listening on port 46775
+Read port: 46775
+WebDriver BiDi listening on ws://127.0.0.1:56569
+1675630557352	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileLHnUaj/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:56569/devtools/browser/1561682f-89ec-4fe4-842e-432012c0636f
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675630708240	Marionette	INFO	Stopped listening on port 46775
+1675630903621	geckodriver	INFO	Listening on 127.0.0.1:46025
+1675630904087	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "58363" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileziXlXh"
+Gtk-Message: 16:01:44.102: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675630904489	Marionette	INFO	Marionette enabled
+1675630904491	Marionette	INFO	Listening on port 32871
+WebDriver BiDi listening on ws://127.0.0.1:58363
+Read port: 32871
+1675630904675	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileziXlXh/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:58363/devtools/browser/cf730b81-6109-470e-bf23-e0e888347314
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675630920305	Marionette	INFO	Stopped listening on port 32871
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675631023952	geckodriver	INFO	Listening on 127.0.0.1:40579
+1675631024435	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "52451" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileadxenM"
+Gtk-Message: 16:03:44.449: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675631024816	Marionette	INFO	Marionette enabled
+1675631024818	Marionette	INFO	Listening on port 37347
+Read port: 37347
+WebDriver BiDi listening on ws://127.0.0.1:52451
+1675631024919	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileadxenM/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:52451/devtools/browser/5abfa2c0-f20a-4fbc-b319-7faa6bf4b112
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675631038398	Marionette	INFO	Stopped listening on port 37347
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675631095040	geckodriver	INFO	Listening on 127.0.0.1:44967
+1675631095523	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "54299" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile8XilFb"
+Gtk-Message: 16:04:55.537: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675631095904	Marionette	INFO	Marionette enabled
+1675631095906	Marionette	INFO	Listening on port 35113
+Read port: 35113
+WebDriver BiDi listening on ws://127.0.0.1:54299
+1675631096005	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile8XilFb/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:54299/devtools/browser/198b8326-dff4-445f-bbce-7ce25bbe309b
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675631108775	Marionette	INFO	Stopped listening on port 35113
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675631289214	geckodriver	INFO	Listening on 127.0.0.1:33957
+1675631289703	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "57975" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileJTNQv9"
+Gtk-Message: 16:08:09.717: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675631290083	Marionette	INFO	Marionette enabled
+1675631290086	Marionette	INFO	Listening on port 44709
+Read port: 44709
+WebDriver BiDi listening on ws://127.0.0.1:57975
+1675631290179	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileJTNQv9/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:57975/devtools/browser/5a765aaf-9b44-4eab-a8b4-012d5b912542
+1675631299228	Marionette	INFO	Stopped listening on port 44709
+1675631370058	geckodriver	INFO	Listening on 127.0.0.1:42259
+1675631370535	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "51061" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile3eNMxS"
+Gtk-Message: 16:09:30.549: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675631370925	Marionette	INFO	Marionette enabled
+1675631370927	Marionette	INFO	Listening on port 40105
+Read port: 40105
+WebDriver BiDi listening on ws://127.0.0.1:51061
+1675631371024	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile3eNMxS/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:51061/devtools/browser/441341ac-bdf4-452f-af96-8b4e2f83c84a
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675631401400	Marionette	INFO	Stopped listening on port 40105
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675631617841	geckodriver	INFO	Listening on 127.0.0.1:51023
+1675631618327	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "44659" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileA4YIt5"
+Gtk-Message: 16:13:38.342: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675631618711	Marionette	INFO	Marionette enabled
+1675631618714	Marionette	INFO	Listening on port 35309
+Read port: 35309
+WebDriver BiDi listening on ws://127.0.0.1:44659
+1675631618832	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileA4YIt5/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:44659/devtools/browser/739acac4-3fcc-44d6-82ac-dd4123801808
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675631649120	Marionette	INFO	Stopped listening on port 35309
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675631771648	geckodriver	INFO	Listening on 127.0.0.1:54601
+1675631772131	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "41731" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilehNMajt"
+Gtk-Message: 16:16:12.146: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675631772516	Marionette	INFO	Marionette enabled
+1675631772519	Marionette	INFO	Listening on port 39885
+Read port: 39885
+WebDriver BiDi listening on ws://127.0.0.1:41731
+1675631772615	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilehNMajt/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:41731/devtools/browser/fb01d115-5c18-4a74-b764-cf2148990fe5
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675631802283	Marionette	INFO	Stopped listening on port 39885
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675631823138	geckodriver	INFO	Listening on 127.0.0.1:48045
+1675631823615	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "44825" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilekTf6jk"
+Gtk-Message: 16:17:03.630: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675631824003	Marionette	INFO	Marionette enabled
+1675631824005	Marionette	INFO	Listening on port 45999
+Read port: 45999
+WebDriver BiDi listening on ws://127.0.0.1:44825
+1675631824112	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilekTf6jk/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:44825/devtools/browser/4266b1b4-e68b-4c06-8d9b-fa0cfb1c2824
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675631854910	Marionette	INFO	Stopped listening on port 45999
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675631898308	geckodriver	INFO	Listening on 127.0.0.1:44227
+1675631898795	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "42661" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilemMfR8g"
+Gtk-Message: 16:18:18.810: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675631899179	Marionette	INFO	Marionette enabled
+1675631899181	Marionette	INFO	Listening on port 41459
+Read port: 41459
+WebDriver BiDi listening on ws://127.0.0.1:42661
+1675631899279	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilemMfR8g/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:42661/devtools/browser/2660f9cf-3522-4af5-baff-3a2fbf163460
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675631929155	Marionette	INFO	Stopped listening on port 41459
+JavaScript error: resource://gre/modules/PromiseWorker.jsm, line 106: Error: IOUtils: Shutting down and refusing additional I/O tasks
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675631995394	geckodriver	INFO	Listening on 127.0.0.1:48979
+1675631995879	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "36491" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilee8kvP0"
+Gtk-Message: 16:19:55.894: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675631996291	Marionette	INFO	Marionette enabled
+1675631996294	Marionette	INFO	Listening on port 43797
+WebDriver BiDi listening on ws://127.0.0.1:36491
+Read port: 43797
+1675631996458	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilee8kvP0/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:36491/devtools/browser/a5f70ee9-369b-4630-93bc-d4c4b9b7f1a5
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675632054440	Marionette	INFO	Stopped listening on port 43797
+1675632097377	geckodriver	INFO	Listening on 127.0.0.1:58117
+1675632097863	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "59977" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileFlN0km"
+Gtk-Message: 16:21:37.878: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675632098253	Marionette	INFO	Marionette enabled
+1675632098255	Marionette	INFO	Listening on port 36933
+Read port: 36933
+WebDriver BiDi listening on ws://127.0.0.1:59977
+1675632098364	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileFlN0km/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:59977/devtools/browser/30b26b64-4fdf-403d-ba3e-f45fd8fd2c78
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675632130765	Marionette	INFO	Stopped listening on port 36933
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675632173170	geckodriver	INFO	Listening on 127.0.0.1:58719
+1675632173643	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "60221" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileVpQS8V"
+Gtk-Message: 16:22:53.658: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675632174039	Marionette	INFO	Marionette enabled
+1675632174041	Marionette	INFO	Listening on port 39237
+Read port: 39237
+WebDriver BiDi listening on ws://127.0.0.1:60221
+1675632174136	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileVpQS8V/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:60221/devtools/browser/87680a24-082f-44f2-915a-08f1f52eae0f
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675632204424	Marionette	INFO	Stopped listening on port 39237
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675632231776	geckodriver	INFO	Listening on 127.0.0.1:39715
+1675632232251	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "36491" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileGSZpF6"
+Gtk-Message: 16:23:52.265: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675632232634	Marionette	INFO	Marionette enabled
+1675632232637	Marionette	INFO	Listening on port 46861
+Read port: 46861
+WebDriver BiDi listening on ws://127.0.0.1:36491
+1675632232747	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileGSZpF6/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:36491/devtools/browser/bc1b3697-2e21-499c-9b7b-e4663165ec90
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675632265875	Marionette	INFO	Stopped listening on port 46861
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675632363743	geckodriver	INFO	Listening on 127.0.0.1:35885
+1675632364227	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "33809" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilelUULL5"
+Gtk-Message: 16:26:04.241: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675632364623	Marionette	INFO	Marionette enabled
+1675632364625	Marionette	INFO	Listening on port 39321
+Read port: 39321
+WebDriver BiDi listening on ws://127.0.0.1:33809
+1675632364741	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilelUULL5/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:33809/devtools/browser/d880edee-9b08-43cc-9414-870b55bd61e3
+1675632391988	geckodriver	INFO	Listening on 127.0.0.1:54823
+1675632392471	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "35109" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileLRHWKX"
+Gtk-Message: 16:26:32.485: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675632392851	Marionette	INFO	Marionette enabled
+1675632392854	Marionette	INFO	Listening on port 39725
+Read port: 39725
+WebDriver BiDi listening on ws://127.0.0.1:35109
+1675632392960	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileLRHWKX/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:35109/devtools/browser/52dd1902-cd1e-4506-a2b3-c80b443a905a
+1675632416020	geckodriver	INFO	Listening on 127.0.0.1:38631
+1675632416503	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "45303" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileXRFoCn"
+Gtk-Message: 16:26:56.517: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675632416888	Marionette	INFO	Marionette enabled
+1675632416891	Marionette	INFO	Listening on port 34819
+Read port: 34819
+WebDriver BiDi listening on ws://127.0.0.1:45303
+1675632416992	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileXRFoCn/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:45303/devtools/browser/8b5e97ae-093b-48a8-b813-4f19f5db22db
+1675632561238	geckodriver	INFO	Listening on 127.0.0.1:33921
+1675632561704	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "40953" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilelr1hU1"
+Gtk-Message: 16:29:21.718: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675632562092	Marionette	INFO	Marionette enabled
+1675632562094	Marionette	INFO	Listening on port 44825
+Read port: 44825
+WebDriver BiDi listening on ws://127.0.0.1:40953
+1675632562196	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilelr1hU1/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:40953/devtools/browser/ae3ecd98-dab2-4733-b5f5-40916936d869
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1675632677457	geckodriver	INFO	Listening on 127.0.0.1:47899
+1675632677943	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "55985" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilelQ6FRt"
+Gtk-Message: 16:31:17.957: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675632678328	Marionette	INFO	Marionette enabled
+1675632678331	Marionette	INFO	Listening on port 36769
+Read port: 36769
+WebDriver BiDi listening on ws://127.0.0.1:55985
+1675632678431	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilelQ6FRt/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:55985/devtools/browser/7353fc14-c53d-4408-8b6b-30c9e8fbe194
+1675632707770	geckodriver	INFO	Listening on 127.0.0.1:60045
+1675632708255	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "52787" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileZ3nAQu"
+Gtk-Message: 16:31:48.269: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675632708635	Marionette	INFO	Marionette enabled
+1675632708637	Marionette	INFO	Listening on port 44547
+Read port: 44547
+WebDriver BiDi listening on ws://127.0.0.1:52787
+1675632708734	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileZ3nAQu/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:52787/devtools/browser/b04133be-566b-476b-a58e-9181c33ed5f0
+1675632785190	Marionette	INFO	Stopped listening on port 44547
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+1675632792517	geckodriver	INFO	Listening on 127.0.0.1:40735
+1675632793003	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "60001" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilexO4UbW"
+Gtk-Message: 16:33:13.017: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675632793382	Marionette	INFO	Marionette enabled
+1675632793385	Marionette	INFO	Listening on port 36705
+Read port: 36705
+WebDriver BiDi listening on ws://127.0.0.1:60001
+1675632793491	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilexO4UbW/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:60001/devtools/browser/480405fb-0878-4643-b796-8b2703dcfb06
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675632823326	Marionette	INFO	Stopped listening on port 36705
+1675633094806	geckodriver	INFO	Listening on 127.0.0.1:46061
+1675633095287	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "59001" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileKHBgq8"
+Gtk-Message: 16:38:15.301: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675633095668	Marionette	INFO	Marionette enabled
+1675633095671	Marionette	INFO	Listening on port 36633
+Read port: 36633
+WebDriver BiDi listening on ws://127.0.0.1:59001
+1675633095764	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileKHBgq8/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:59001/devtools/browser/fb776690-5291-4ce6-8d62-cdb5d8e44c43
+1675633231578	geckodriver	INFO	Listening on 127.0.0.1:56827
+1675633232064	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "37187" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileP3z4SP"
+Gtk-Message: 16:40:32.078: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675633232448	Marionette	INFO	Marionette enabled
+1675633232450	Marionette	INFO	Listening on port 41059
+Read port: 41059
+WebDriver BiDi listening on ws://127.0.0.1:37187
+1675633232558	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileP3z4SP/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:37187/devtools/browser/67a5bc85-e72b-4327-81dd-076cd12df57b
+1675633233615	Marionette	INFO	Stopped listening on port 41059
+console.error: (new TypeError("NetworkError: Network request failed", "resource://services-settings/Utils.jsm", 230))
+console.error: Region.sys.mjs: "Error fetching region" (new TypeError("NetworkError when attempting to fetch resource.", ""))
+console.error: Region.sys.mjs: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.sys.mjs", 416))
+WARNING: A blocker encountered an error while we were waiting.
+          Blocker:  Waiting for ping task
+          Phase: TelemetryController: Waiting for pending ping activity
+          State: (none)
+WARNING: Error: Phase "profile-before-change" is finished, it is too late to register completion condition "OS.File: flush I/O queued before profileBeforeChange"
+WARNING: addBlocker@resource://gre/modules/AsyncShutdown.jsm:718:15
+addBlocker@resource://gre/modules/AsyncShutdown.jsm:523:26
+addBlocker@resource://gre/modules/AsyncShutdown.jsm:462:15
+setupShutdown@resource://gre/modules/osfile/osfile_async_front.jsm:1548:28
+@resource://gre/modules/osfile/osfile_async_front.jsm:1568:16
+@resource://gre/modules/osfile.jsm:12:30
+@resource://gre/modules/TelemetryStorage.jsm:19:28
+promiseArchivePing@resource://gre/modules/TelemetryArchive.jsm:103:5
+promiseArchivePing@resource://gre/modules/TelemetryArchive.jsm:63:33
+_submitPingLogic@resource://gre/modules/TelemetryControllerParent.jsm:540:48
+send@resource://gre/modules/TelemetryControllerParent.jsm:628:24
+submitExternalPing@resource://gre/modules/TelemetryControllerParent.jsm:182:17
+sendPing@resource://gre/modules/EventPing.jsm:51:30
+_submitPing@resource://gre/modules/EventPing.jsm:229:12
+shutdown@resource://gre/modules/EventPing.jsm:112:10
+_cleanupOnShutdown@resource://gre/modules/TelemetryControllerParent.jsm:940:31
+shutdown/<@resource://gre/modules/TelemetryControllerParent.jsm:1010:24
+observe@resource://gre/modules/AsyncShutdown.jsm:572:16
+
+WARNING: A blocker encountered an error while we were waiting.
+          Blocker:  Waiting for ping task
+          Phase: TelemetryController: Waiting for pending ping activity
+          State: (none)
+WARNING: Error: Phase "profile-before-change" is finished, it is too late to register completion condition "OS.File: flush I/O queued before profileBeforeChange"
+WARNING: addBlocker@resource://gre/modules/AsyncShutdown.jsm:718:15
+addBlocker@resource://gre/modules/AsyncShutdown.jsm:523:26
+addBlocker@resource://gre/modules/AsyncShutdown.jsm:462:15
+setupShutdown@resource://gre/modules/osfile/osfile_async_front.jsm:1548:28
+@resource://gre/modules/osfile/osfile_async_front.jsm:1568:16
+@resource://gre/modules/osfile.jsm:12:30
+@resource://gre/modules/TelemetryStorage.jsm:19:28
+promiseArchivePing@resource://gre/modules/TelemetryArchive.jsm:103:5
+promiseArchivePing@resource://gre/modules/TelemetryArchive.jsm:63:33
+_submitPingLogic@resource://gre/modules/TelemetryControllerParent.jsm:540:48
+send@resource://gre/modules/TelemetryControllerParent.jsm:628:24
+submitExternalPing@resource://gre/modules/TelemetryControllerParent.jsm:182:17
+saveShutdownPings@resource://gre/modules/TelemetrySession.jsm:982:34
+shutdownChromeProcess/cleanup/<@resource://gre/modules/TelemetrySession.jsm:1232:20
+cleanup@resource://gre/modules/TelemetrySession.jsm:1239:9
+shutdownChromeProcess@resource://gre/modules/TelemetrySession.jsm:1256:14
+shutdown@resource://gre/modules/TelemetrySession.jsm:247:17
+_cleanupOnShutdown@resource://gre/modules/TelemetryControllerParent.jsm:959:35
+observe@resource://gre/modules/AsyncShutdown.jsm:572:16
+
+WARNING: A blocker encountered an error while we were waiting.
+          Blocker:  Waiting for ping task
+          Phase: TelemetryController: Waiting for pending ping activity
+          State: (none)
+WARNING: Error: Phase "profile-before-change" is finished, it is too late to register completion condition "OS.File: flush I/O queued before profileBeforeChange"
+WARNING: addBlocker@resource://gre/modules/AsyncShutdown.jsm:718:15
+addBlocker@resource://gre/modules/AsyncShutdown.jsm:523:26
+addBlocker@resource://gre/modules/AsyncShutdown.jsm:462:15
+setupShutdown@resource://gre/modules/osfile/osfile_async_front.jsm:1548:28
+@resource://gre/modules/osfile/osfile_async_front.jsm:1568:16
+@resource://gre/modules/osfile.jsm:12:30
+@resource://gre/modules/TelemetryStorage.jsm:19:28
+promiseArchivePing@resource://gre/modules/TelemetryArchive.jsm:103:5
+promiseArchivePing@resource://gre/modules/TelemetryArchive.jsm:63:33
+_submitPingLogic@resource://gre/modules/TelemetryControllerParent.jsm:540:48
+send@resource://gre/modules/TelemetryControllerParent.jsm:628:24
+submitExternalPing@resource://gre/modules/TelemetryControllerParent.jsm:182:17
+saveShutdownPings@resource://gre/modules/TelemetrySession.jsm:1014:36
+shutdownChromeProcess/cleanup/<@resource://gre/modules/TelemetrySession.jsm:1232:20
+cleanup@resource://gre/modules/TelemetrySession.jsm:1239:9
+shutdownChromeProcess@resource://gre/modules/TelemetrySession.jsm:1256:14
+shutdown@resource://gre/modules/TelemetrySession.jsm:247:17
+_cleanupOnShutdown@resource://gre/modules/TelemetryControllerParent.jsm:959:35
+observe@resource://gre/modules/AsyncShutdown.jsm:572:16
+
+WARNING: A blocker encountered an error while we were waiting.
+          Blocker:  TelemetryController: shutting down
+          Phase: profile-before-change-telemetry
+          State: Error getting state: Error: Phase "profile-before-change" is finished, it is too late to register completion condition "OS.File: flush I/O queued before profileBeforeChange" at addBlocker@resource://gre/modules/AsyncShutdown.jsm:718:15
+addBlocker@resource://gre/modules/AsyncShutdown.jsm:523:26
+addBlocker@resource://gre/modules/AsyncShutdown.jsm:462:15
+setupShutdown@resource://gre/modules/osfile/osfile_async_front.jsm:1548:28
+@resource://gre/modules/osfile/osfile_async_front.jsm:1568:16
+@resource://gre/modules/osfile.jsm:12:30
+@resource://gre/modules/TelemetryStorage.jsm:19:28
+getShutdownState@resource://gre/modules/TelemetrySend.jsm:1692:7
+getShutdownState@resource://gre/modules/TelemetrySend.jsm:374:30
+_getState@resource://gre/modules/TelemetryControllerParent.jsm:1058:38
+setupTelemetry/<@resource://gre/modules/TelemetryControllerParent.jsm:917:18
+safeGetState@resource://gre/modules/AsyncShutdown.jsm:254:17
+Barrier/_internalAddBlocker/promise<@resource://gre/modules/AsyncShutdown.jsm:773:20
+observe@resource://gre/modules/AsyncShutdown.jsm:572:16
+
+WARNING: Error: Phase "profile-before-change" is finished, it is too late to register completion condition "OS.File: flush I/O queued before profileBeforeChange"
+WARNING: addBlocker@resource://gre/modules/AsyncShutdown.jsm:718:15
+addBlocker@resource://gre/modules/AsyncShutdown.jsm:523:26
+addBlocker@resource://gre/modules/AsyncShutdown.jsm:462:15
+setupShutdown@resource://gre/modules/osfile/osfile_async_front.jsm:1548:28
+@resource://gre/modules/osfile/osfile_async_front.jsm:1568:16
+@resource://gre/modules/osfile.jsm:12:30
+@resource://gre/modules/TelemetryStorage.jsm:19:28
+removeAbortedSessionPing@resource://gre/modules/TelemetryControllerParent.jsm:721:5
+removeAbortedSessionPing@resource://gre/modules/TelemetryControllerParent.jsm:249:17
+shutdownChromeProcess/cleanup/<@resource://gre/modules/TelemetrySession.jsm:1235:42
+observe@resource://gre/modules/AsyncShutdown.jsm:572:16
+
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 718: Error: Phase "profile-before-change" is finished, it is too late to register completion condition "OS.File: flush I/O queued before profileBeforeChange"
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 718: Error: Phase "profile-before-change" is finished, it is too late to register completion condition "OS.File: flush I/O queued before profileBeforeChange"
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 718: Error: Phase "profile-before-change" is finished, it is too late to register completion condition "OS.File: flush I/O queued before profileBeforeChange"
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 718: Error: Phase "profile-before-change" is finished, it is too late to register completion condition "OS.File: flush I/O queued before profileBeforeChange"
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 718: Error: Phase "profile-before-change" is finished, it is too late to register completion condition "OS.File: flush I/O queued before profileBeforeChange"
+JavaScript error: resource://gre/modules/AsyncShutdown.jsm, line 718: Error: Phase "profile-before-change" is finished, it is too late to register completion condition "OS.File: flush I/O queued before profileBeforeChange"
+1675633309274	geckodriver	INFO	Listening on 127.0.0.1:59687
+1675633309769	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "35999" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilegjSgzl"
+Gtk-Message: 16:41:49.788: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675633310196	Marionette	INFO	Marionette enabled
+1675633310199	Marionette	INFO	Listening on port 33057
+Read port: 33057
+WebDriver BiDi listening on ws://127.0.0.1:35999
+1675633310304	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilegjSgzl/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:35999/devtools/browser/852b4f30-aa8d-427f-8eae-c3b6ad9cd2c1
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675633324160	Marionette	INFO	Stopped listening on port 33057
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675633382201	Marionette	INFO	Stopped listening on port 36633
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+1675633383965	Marionette	INFO	Stopped listening on port 39725
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+1675633385909	Marionette	INFO	Stopped listening on port 39321
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675633388059	Marionette	INFO	Stopped listening on port 34819
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+1675633389938	Marionette	INFO	Stopped listening on port 36769
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675633408765	geckodriver	INFO	Listening on 127.0.0.1:40853
+1675633409247	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "46823" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilez42Go3"
+Gtk-Message: 16:43:29.261: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675633409640	Marionette	INFO	Marionette enabled
+1675633409643	Marionette	INFO	Listening on port 34437
+Read port: 34437
+WebDriver BiDi listening on ws://127.0.0.1:46823
+1675633409740	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilez42Go3/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:46823/devtools/browser/56d50561-2031-4432-aaf0-00a31fcd85c1
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675633439128	Marionette	INFO	Stopped listening on port 34437
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
+1675633855072	geckodriver	INFO	Listening on 127.0.0.1:36013
+1675633855559	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "34179" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileCjbQkX"
+Gtk-Message: 16:50:55.573: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675633855939	Marionette	INFO	Marionette enabled
+1675633855942	Marionette	INFO	Listening on port 40615
+Read port: 40615
+WebDriver BiDi listening on ws://127.0.0.1:34179
+1675633856049	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileCjbQkX/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:34179/devtools/browser/b9c4b432-a88e-482d-9eb1-62de704cbd18
+1675633865568	Marionette	INFO	Stopped listening on port 40615
+1675633995304	geckodriver	INFO	Listening on 127.0.0.1:33513
+1675633995787	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "53117" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilex7COgR"
+Gtk-Message: 16:53:15.802: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675633996168	Marionette	INFO	Marionette enabled
+1675633996170	Marionette	INFO	Listening on port 33491
+Read port: 33491
+WebDriver BiDi listening on ws://127.0.0.1:53117
+1675633996269	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilex7COgR/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:53117/devtools/browser/4bc64bfa-07b9-4973-906f-427b851f917a
+1675634004945	Marionette	INFO	Stopped listening on port 33491
+1675634051565	geckodriver	INFO	Listening on 127.0.0.1:35611
+1675634052047	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "41839" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilearEwrf"
+Gtk-Message: 16:54:12.061: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675634052429	Marionette	INFO	Marionette enabled
+1675634052431	Marionette	INFO	Listening on port 46531
+Read port: 46531
+WebDriver BiDi listening on ws://127.0.0.1:41839
+1675634052528	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilearEwrf/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:41839/devtools/browser/1b858228-830c-42e8-95a5-1b03e4d40601
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+JavaScript error: http://localhost:8888/entry/experimental/, line 627: SyntaxError: redeclaration of let clicked
+JavaScript error: http://localhost:8888/entry/settings/, line 189: TypeError: document.getElementById(...) is null
+1675634096013	Marionette	INFO	Stopped listening on port 46531
+1675634239591	geckodriver	INFO	Listening on 127.0.0.1:59643
+1675634240075	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "42497" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileOySFqZ"
+Gtk-Message: 16:57:20.090: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675634240458	Marionette	INFO	Marionette enabled
+1675634240460	Marionette	INFO	Listening on port 33913
+Read port: 33913
+WebDriver BiDi listening on ws://127.0.0.1:42497
+1675634240556	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileOySFqZ/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:42497/devtools/browser/e64ffcfc-3485-407a-8fbb-b232f7f403a4
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675634269810	Marionette	INFO	Stopped listening on port 33913
+1675634330679	geckodriver	INFO	Listening on 127.0.0.1:36847
+1675634331163	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "--remote-debugging-port" "50963" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilewZVsuw"
+Gtk-Message: 16:58:51.177: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1675634331543	Marionette	INFO	Marionette enabled
+1675634331545	Marionette	INFO	Listening on port 45081
+Read port: 45081
+WebDriver BiDi listening on ws://127.0.0.1:50963
+1675634331644	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilewZVsuw/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:50963/devtools/browser/3ec30de1-738e-40a4-8e81-a8727bd4439c
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+1675634370277	Marionette	INFO	Stopped listening on port 45081
+Sandbox: Unexpected EOF, op 0 flags 00 path /proc/cpuinfo
