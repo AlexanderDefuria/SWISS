@@ -1,4 +1,4 @@
-import datetime
+from datetime import timedelta
 import inspect
 import math
 
@@ -163,8 +163,8 @@ def get_all_logged_in_users(*args):
     # Build a list of user ids from that query that have last refreshed
     # their expiry date within the last 2:30 minutes to ensure and accurate count
     for session in sessions:
-        timediff = session.expire_date - time - datetime.timedelta(days=13, hours=23, minutes=57, seconds=30)
-        if datetime.timedelta(seconds=0) < timediff:
+        timediff = session.expire_date - time - timedelta(days=13, hours=23, minutes=57, seconds=30)
+        if timedelta(seconds=0) < timediff:
             data = session.get_decoded()
             uid_list.append(data.get('_auth_user_id'))
             count += 1
