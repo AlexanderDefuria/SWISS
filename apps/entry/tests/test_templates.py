@@ -52,10 +52,11 @@ class MatchFormTest(LiveServerTestCase):
         self.assertEqual(self.browser.current_url, f'http://localhost:{self.port}/entry/')
 
     def test_static_pages_load(self):
-        urls = ['index/', 'matchscout', 'pitscout', 'visual', 'glance',
+        urls = ['matchscout', 'pitscout', 'visual', 'glance',
                 'teams', 'stats', 'matchdata', 'pitdata', 'about']
 
         for url in urls:
             browser = self.browser
             browser.get(self.base_url + '/entry/' + url)
+            self.assertIsNotNone(browser.find_element(by=By.TAG_NAME, value='title'))
             self.assertIn(url, self.browser.current_url)

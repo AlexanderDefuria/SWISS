@@ -264,7 +264,7 @@ def get_present_teams(user):
     try:
         # TODO See if this is actually the best way to query all teams from attendance...
         # Note. We do need the actual Team objects (name, number, colour etc...) all that jazz
-        objects = Team.objects.filter(
+        objects = Team.objects.all().filter(
             number__in=Attendance.objects.filter(
                 event=user.orgmember.organization.settings.current_event
             ).values_list('team_id', flat=True)

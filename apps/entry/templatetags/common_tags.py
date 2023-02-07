@@ -10,6 +10,7 @@ from django.utils import timezone
 
 from apps.entry.models import *
 from apps.entry.views import *
+from apps.entry import views
 
 register = template.Library()
 
@@ -177,8 +178,8 @@ def get_all_logged_in_users(*args):
 
 
 @register.simple_tag
-def get_all_present_teams(user):
-    return get_present_teams(user)
+def get_present_teams(user):
+    return views.get_present_teams(user)
 
 
 @register.simple_tag
