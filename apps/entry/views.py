@@ -23,7 +23,7 @@ from apps.entry.graphing import *
 from apps.entry.templatetags.common_tags import *
 from apps import importFRC
 from apps.entry.forms import MatchScoutForm, RegistrationForm, PitScoutForm, LoginForm, ImportForm
-from apps.entry.imports import import_first
+from apps.entry.imports import import_first, get_team_list,get_team_logos
 
 register = Library
 
@@ -295,11 +295,23 @@ def handle_query_present_teams(view):
 class FRCdata(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry.login'
     template_name = 'entry/frc.html'
-    def get(self,request):
-        responce = requests.get('https://frc-api.firstinspires.org/v3.0/2023/teams', headers = {'Authorization': 'Basic dm9ydGV4MTQ4OmFkY2E5ZDI5LTU3YWUtNDJiMi1hMTY3LWZjMDhiMzg2Mzg4OQ=='}).json()
-        # responce = responce[]
-        print(responce)
-        return render(request, 'entry/frc.html')
+    def get(self, request,):
+        # get_team_logos()
+        # import_first()
+        # get_team_list()
+        try:
+            context = {
+
+            "img":Team.objects.get(number=167).avatar
+            }
+        except:
+            context = {
+
+            "img":"NA"
+            }
+
+        print(Team.objects.get(number=68).avatar)
+        return render(request, 'entry/frc.html', context)
 
 class TeamSettingsNotFoundError(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
