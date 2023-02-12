@@ -29,6 +29,32 @@ def get_single_event(event_code: str):
     return requests.get(f'{_baseUrl}events?eventCode={event_code}', headers=_headers).json()
 
 
+def get_events(event_code: str):
+    if event_code:
+        _events = get_single_event(event_code)['Events']
+    else:
+        _events = get_all_events()['Events']
+
+    for event_info in _events:
+        _events.append(event_info['code'])
+
+        eventExists = Event.objects.filter(name=event_info['name']).exists()
+
+        if eventExists:
+            theEvent = Event.objects.get(name=event_info['name'])
+        else:
+            theEvent = Event()
+
+        theEvent.name = event_info['name']
+        theEvent.FIRST_key = event_info['code']
+        theEvent.FIRST_eventType = event_info['type']
+        theEvent.start = datetime.datetime.now()
+        theEvent.end = datetime.datetime.now()
+        theEvent.imported = True
+
+        theEvent.save()
+
+
 def get_team_list(event_code: str = None, team_number: int = None):
     if team_number:
         base_team_info = requests.get(f'{_baseUrl}teams?teamNumber={team_number}', headers=_headers).json()
@@ -42,35 +68,18 @@ def get_team_list(event_code: str = None, team_number: int = None):
         getTeamNumbers = page_info['teamCountPage']
         for team_index in range(getTeamNumbers):
             team_info = page_info['teams'][team_index]
-            teamExists = Team.objects.filter(id=team_info['teamNumber']).exists()
-            if teamExists:
-                currTeam = Team.objects.get(id=team_info['teamNumber'])
-            else:
-                currTeam = Team()
 
-            currTeam.number = team_info['teamNumber']
-            currTeam.id = team_info['teamNumber']
-            currTeam.name = team_info['nameShort']
-            currTeam.colour = '#000000'
-            currTeam.pick_status = 0
-
-
-            # print(currTeam)
-
-            currTeam.save()
-
-            # # print(f"{team_info['nameShort']} {team_info['teamNumber']} located "
-            #       f"in {team_info['stateProv']}, {team_info['country']}")
-
-            new_team: Team
+            team: Team
             try:
-                new_team = Team.objects.get(pk=team_info['teamNumber'])
+                team = Team.objects.get(pk=team_info['teamNumber'])
             except Team.DoesNotExist:
-                new_team = Team()
-            new_team.number = team_info['teamNumber']
-            new_team.name = team_info['nameShort']
-            new_team.id = new_team.number
-            new_team.save()
+                team = Team()
+            team.number = team_info['teamNumber']
+            team.name = team_info['nameShort']
+            team.colour = '#000000'
+            team.id = team.number
+            team.pick_status = 0
+            team.save()
 
 def get_team_logos():
     base_team_logo_info = requests.get(f'{_baseUrl}avatars', headers=_headers).json()
@@ -88,31 +97,15 @@ def get_team_logos():
                 currentImage = image_data["encodedAvatar"]
             team_image.save()
 
-def import_first():
-    event = get_all_events()['Events']
 
 def import_first(event_code: str = None, team_number: int = None):
-    if event_code:
-        _events = get_single_event(event_code)['Events']
-    else:
-        _events = get_all_events(team_number=team_number)['Events']
-
-    for event_info in _events:
-        _events.append(event_info['code'])
-
-        eventExists = Event.objects.filter(name=event_info['name']).exists()
-
-        if eventExists:
-            theEvent = Event.objects.get(name=eventInfo['name'])
-        else:
-            theEvent = Event()
-
-        theEvent.name = event_info['name']
-        theEvent.FIRST_key = event_info['code']
-        theEvent.FIRST_eventType = event_info['type']
-        theEvent.start = datetime.datetime.now()
-        theEvent.end = datetime.datetime.now()
-        theEvent.imported = True
-
-        theEvent.save()
+    """
+    Imports data from FIRST API
+    Pass None, None to import all teams and all events
+    :param event_code:
+    :param team_number:
+    :return:
+    """
+    get_events(event_code)
+    get_team_list(event_code, team_number)
 
