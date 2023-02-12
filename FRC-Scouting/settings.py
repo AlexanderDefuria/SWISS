@@ -189,3 +189,4 @@ else:
 print("MEDIA_URL:     " + MEDIA_URL)
 print("STATIC_URL:    " + STATIC_URL)
 print("DATABASE NAME: " + DATABASES.get('default').get('NAME'))
+1

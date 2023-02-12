@@ -1,3 +1,5 @@
+from time import sleep
+
 import pytest
 from django.contrib.auth.models import User
 from django.test import LiveServerTestCase, override_settings
@@ -52,11 +54,22 @@ class MatchFormTest(LiveServerTestCase):
         self.assertEqual(self.browser.current_url, f'http://localhost:{self.port}/entry/')
 
     def test_static_pages_load(self):
-        urls = ['matchscout', 'pitscout', 'visual', 'glance',
+        urls = ['matchscout', 'pitscout', 'visual', 'glance', 'settings'
                 'teams', 'stats', 'matchdata', 'pitdata', 'about']
 
         for url in urls:
-            browser = self.browser
-            browser.get(self.base_url + '/entry/' + url)
-            self.assertIsNotNone(browser.find_element(by=By.TAG_NAME, value='title'))
+            self.browser.get(self.base_url + '/entry/' + url)
+            self.assertIsNotNone(self.browser.find_element(by=By.TAG_NAME, value='title'))
             self.assertIn(url, self.browser.current_url)
+
+    def test_lead_scout_settings(self):
+        self.assertEqual(self.user.orgmember.position, 'GS')
+        self.browser.get(self.base_url + '/entry/settings/')
+        self.assertIsNone(self.browser.find_element(by=By.ID, value='currentEvent'))
+
+        self.user.orgmember.position = 'LS'
+        self.user.orgmember.save()
+        self.assertEqual(self.user.orgmember.position, 'LS')
+
+        self.browser.get(self.base_url + '/entry/settings/')
+        self.assertEqual(self.browser.find_element(by=By.ID, value='currentEvent').text, 'asd')

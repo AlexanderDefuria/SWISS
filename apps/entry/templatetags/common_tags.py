@@ -184,12 +184,12 @@ def get_present_teams(user):
 
 @register.simple_tag
 def get_all_teams():
-    return get_all_teams()
+    return views.get_all_teams()
 
 
 @register.simple_tag
 def get_all_events():
-    return get_all_events()
+    return views.get_all_events()
 
 
 @register.simple_tag
