@@ -583,7 +583,7 @@ class Registration(FormMixin, generic.TemplateView):
         form = RegistrationForm(request.POST)
         context = {'form': form}
         if form.is_valid():
-            if not Event.objects.get(id=0).exists(): # Settings needs an event to exist
+            if not Event.objects.filter(id=0).exists(): # Settings needs an event to exist
                 # This should only happen on the first server run
                 event = Event()
                 event.save()
