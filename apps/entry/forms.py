@@ -282,11 +282,12 @@ class ImportForm(forms.Form):
     template_name = 'entry/components/forms/generic.html'
 
     import_type = forms.IntegerField(widget=widgets.Select(choices=[
-                    (0, "By District Key"),
+                    # (0, "By District Key"), This is currently disabled. waiting of FIRST api
                     (1, "By Event Key"),
                     (2, "Individual Team Number"),
+                    (3, "Import All"), # TODO Disable this before release
                 ]), label='Import Type')
-    key = forms.CharField(widget=widgets.TextInput, label="Key", min_length=2, max_length=6, required=False)
+    key = forms.CharField(widget=widgets.TextInput, label="Value", min_length=2, max_length=6, required=False)
 
     def clean_key(self):
         if self.cleaned_data['key'] == '':
