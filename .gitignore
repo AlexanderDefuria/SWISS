@@ -15,6 +15,7 @@ media/robots/*
 secrets.json
 .idea/*
 .idea
+.idea/
 /.idea/*
 /.idea/
 /.idea

@@ -37,7 +37,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			</div>
 			<form action="{% url 'entry:import_from_first' %}" method="post" enctype="multipart/form-data" id="form">
 				{% csrf_token %}
-				<p>Info on what everything means will go here in the future.</p>
 				{{ form }}
 			</form>
 		</div>
