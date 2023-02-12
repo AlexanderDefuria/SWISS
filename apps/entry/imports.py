@@ -1,4 +1,5 @@
 import datetime
+import traceback
 
 import requests
 from apps.entry.models import Team, Event
@@ -7,6 +8,14 @@ from utils import get_secret
 _headers = {'Authorization': f'Basic {get_secret("FIRST_API_BASE64")}'}
 events = []
 _baseUrl = 'https://frc-api.firstinspires.org/v3.0/2023/'
+
+
+def make_request(request: str):
+    response = requests.get(request, headers=_headers)
+    if response.status_code != 200:
+        raise Exception(f'FIRST API returned {response.status_code}')
+    return response
+
 
 def get_teams(page=None, event_code=None):
     request = f'{_baseUrl}teams'
@@ -17,31 +26,40 @@ def get_teams(page=None, event_code=None):
     elif page:
         request += f'?page={page}'
 
-    team_count = requests.get(request, headers=_headers).json()
+    team_count = make_request(request).json()
     return team_count
 
 
-def get_all_events():
-    return requests.get(f'{_baseUrl}events', headers=_headers).json()
+def get_all_events() -> dict:
+    events_json = make_request(f'{_baseUrl}events').json()
+    if type(events_json) is not dict:
+        print(events_json)
+        raise Exception('FIRST API returned invalid data')
+    return events_json
 
 
 def get_single_event(event_code: str):
-    return requests.get(f'{_baseUrl}events?eventCode={event_code}', headers=_headers).json()
+    return make_request(f'{_baseUrl}events?eventCode={event_code}').json()
 
 
-def get_events(event_code: str):
+def get_events(event_code: str = None):
     if event_code:
         _events = get_single_event(event_code)['Events']
     else:
         _events = get_all_events()['Events']
 
+    print(_events)
+
     for event_info in _events:
+        if type(event_info) is not dict:
+            continue
+
         _events.append(event_info['code'])
 
-        eventExists = Event.objects.filter(name=event_info['name']).exists()
+        eventExists = Event.objects.filter(FIRST_key=event_info['code']).exists()
 
         if eventExists:
-            theEvent = Event.objects.get(name=event_info['name'])
+            theEvent = Event.objects.get(FIRST_key=event_info['code'])
         else:
             theEvent = Event()
 
@@ -57,9 +75,9 @@ def get_events(event_code: str):
 
 def get_team_list(event_code: str = None, team_number: int = None):
     if team_number:
-        base_team_info = requests.get(f'{_baseUrl}teams?teamNumber={team_number}', headers=_headers).json()
+        base_team_info = make_request(f'{_baseUrl}teams?teamNumber={team_number}').json()
     else:
-        base_team_info = requests.get(f'{_baseUrl}teams', headers=_headers).json()
+        base_team_info = make_request(f'{_baseUrl}teams').json()
 
     page_total = int(base_team_info['pageTotal'])
 
@@ -82,7 +100,8 @@ def get_team_list(event_code: str = None, team_number: int = None):
             team.save()
 
 def get_team_logos():
-    base_team_logo_info = requests.get(f'{_baseUrl}avatars', headers=_headers).json()
+    base_team_logo_info = make_request(f'{_baseUrl}avatars').json()
+
     for currentPage in range(base_team_logo_info["pageTotal"]):
         teams_on_page = base_team_logo_info["teamCountPage"]
         for teamSelected in range(teams_on_page):
@@ -98,7 +117,7 @@ def get_team_logos():
             team_image.save()
 
 
-def import_first(event_code: str = None, team_number: int = None):
+def import_first(event_code: str = None, team_number: int = None) -> bool:
     """
     Imports data from FIRST API
     Pass None, None to import all teams and all events
@@ -106,6 +125,22 @@ def import_first(event_code: str = None, team_number: int = None):
     :param team_number:
     :return:
     """
-    get_events(event_code)
-    get_team_list(event_code, team_number)
-
+    try:
+        if event_code and not team_number:
+            get_events(event_code)
+            get_team_list(event_code)
+        elif team_number and not event_code:
+            get_team_list(team_number=team_number)
+            get_team_logos()
+        elif event_code and team_number:
+            get_team_list(event_code=event_code, team_number=team_number)
+            get_team_logos()
+        else:
+            # get_team_logos()
+            get_events()
+            get_team_list()
+    except Exception as e:
+        print(e)
+        print(traceback.print_exc())
+        return False
+    return True

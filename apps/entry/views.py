@@ -322,23 +322,36 @@ class Import(LoginRequiredMixin, FormMixin, generic.TemplateView):
     model = Team
     form_class = ImportForm
     success_url = 'entry:index'
+    importing: bool = False
 
-    @staticmethod
-    def post(request, *args, **kwargs):
+    @classmethod
+    def post(cls, request, *args, **kwargs):
+        if cls.importing:
+            return render(request, 'entry/import.html', {'importing': True, 'form': ImportForm()})
+
         form = ImportForm(request.POST)
         context = {'form': form}
+        success = False
         if form.is_valid():
             import_type = form.cleaned_data['import_type']
             key = form.cleaned_data['key']
+            cls.importing = True
 
-            if import_type == 1: # Event key
-                import_first()
-            elif import_type == 2: # Team Number key
-                pass
-            elif import_type == 3: # Import all. TODO disable before release
-                import_first()
+            if import_type == 1:  # Event key
+                success = import_first(event_code=key)
+            elif import_type == 2:  # Team Number key
+                success = import_first(team_number=key)
+            elif import_type == 3:  # Import all. TODO disable before release
+                success = import_first()
 
+        cls.importing = False
+        context['importing'] = False
+        context['success'] = success
         return render(request, 'entry/import.html', context)
+
+    @classmethod
+    def get(cls, request, *args, **kwargs):
+        return render(request, 'entry/import.html', {'form': ImportForm(), 'importing': cls.importing})
 
 
 class Index(LoginRequiredMixin, generic.TemplateView):

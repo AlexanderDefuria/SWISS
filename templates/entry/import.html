@@ -35,10 +35,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'DownloadIcon.png' %}" alt="Download Icon">
 				<h1>Import Data from FIRST</h1>
 			</div>
+            {% if importing %}
+                <p>Importing data from FIRST. This may take a while.</p>
+            {% else %}
 			<form action="{% url 'entry:import_from_first' %}" method="post" enctype="multipart/form-data" id="form">
 				{% csrf_token %}
 				{{ form }}
 			</form>
+            {% endif %}
 		</div>
 	</div>
 </body>
