@@ -23,7 +23,7 @@ from apps.entry.graphing import *
 from apps.entry.templatetags.common_tags import *
 from apps import importFRC
 from apps.entry.forms import MatchScoutForm, RegistrationForm, PitScoutForm, LoginForm, ImportForm
-from apps.entry.imports import import_first
+from apps.entry.imports import import_first, get_team_list,get_team_logos
 
 register = Library
 
@@ -168,7 +168,7 @@ def update_csv(organization):
 @login_required(login_url='entry:login')
 def write_image_upload(request):
     if request.method == 'POST':
-        team_number = make_int(request.POST.get('teamNumber'))
+        team_number = make_int(request.POST.get('teamNumber', 0))
         team = Team.objects.get(number=team_number)
 
         request.session.set_test_cookie()
@@ -289,6 +289,26 @@ def handle_query_present_teams(view):
 
     return teams
 
+class FRCdata(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'entry.login'
+    template_name = 'entry/frc.html'
+    def get(self, request,):
+        # get_team_logos()
+        # import_first()
+        # get_team_list()
+        try:
+            context = {
+
+            "img":Team.objects.get(number=167).avatar
+            }
+        except:
+            context = {
+
+            "img":"NA"
+            }
+
+        print(Team.objects.get(number=68).avatar)
+        return render(request, 'entry/frc.html', context)
 
 class TeamSettingsNotFoundError(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
@@ -646,12 +666,12 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
 
     def post(self, request, *args, **kwargs):
         response = HttpResponseRedirect(reverse_lazy('entry:settings'))
-        response.set_cookie('images', request.POST.get('images'))
-        response.set_cookie('filters', request.POST.get('filters'))
-        response.set_cookie('districtTeams', request.POST.get('districtTeams'))
-        response.set_cookie('tutorialCompleted', request.POST.get('tutorialCompleted'))
-        response.set_cookie('teamsBehaviour', request.POST.get('teamsBehaviour'))
-        response.set_cookie('teamListType', request.POST.get('teamListType'))
+        response.set_cookie('images', request.POST.get('images', ''))
+        response.set_cookie('filters', request.POST.get('filters', ''))
+        response.set_cookie('districtTeams', request.POST.get('districtTeams', ''))
+        response.set_cookie('tutorialCompleted', request.POST.get('tutorialCompleted', ''))
+        response.set_cookie('teamsBehaviour', request.POST.get('teamsBehaviour', ''))
+        response.set_cookie('teamListType', request.POST.get('teamListType', ''))
 
         if self.request.user.orgmember.position == "LS":
             new_settings = OrgSettings()

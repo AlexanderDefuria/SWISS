@@ -1,5 +1,7 @@
+import datetime
+
 import requests
-from apps.entry.models import Team
+from apps.entry.models import Team, Event
 from utils import get_secret
 
 _headers = {'Authorization': f'Basic {get_secret("FIRST_API_BASE64")}'}
@@ -40,8 +42,25 @@ def get_team_list(event_code: str = None, team_number: int = None):
         getTeamNumbers = page_info['teamCountPage']
         for team_index in range(getTeamNumbers):
             team_info = page_info['teams'][team_index]
-            print(f"{team_info['nameShort']} {team_info['teamNumber']} located "
-                  f"in {team_info['stateProv']}, {team_info['country']}")
+            teamExists = Team.objects.filter(id=team_info['teamNumber']).exists()
+            if teamExists:
+                currTeam = Team.objects.get(id=team_info['teamNumber'])
+            else:
+                currTeam = Team()
+
+            currTeam.number = team_info['teamNumber']
+            currTeam.id = team_info['teamNumber']
+            currTeam.name = team_info['nameShort']
+            currTeam.colour = '#000000'
+            currTeam.pick_status = 0
+
+
+            # print(currTeam)
+
+            currTeam.save()
+
+            # # print(f"{team_info['nameShort']} {team_info['teamNumber']} located "
+            #       f"in {team_info['stateProv']}, {team_info['country']}")
 
             new_team: Team
             try:
@@ -53,6 +72,24 @@ def get_team_list(event_code: str = None, team_number: int = None):
             new_team.id = new_team.number
             new_team.save()
 
+def get_team_logos():
+    base_team_logo_info = requests.get(f'{_baseUrl}avatars', headers=_headers).json()
+    for currentPage in range(base_team_logo_info["pageTotal"]):
+        teams_on_page = base_team_logo_info["teamCountPage"]
+        for teamSelected in range(teams_on_page):
+            image_data = base_team_logo_info["teams"][teamSelected]
+            if len(image_data['encodedAvatar']) < 1:
+                team_image = Team.objects.get(id=image_data['teamNumber'])
+                team_image.avatar = "NA"
+            else:
+                team_image = Team.objects.get(id=image_data['teamNumber'])
+                team_image.avatar = image_data["encodedAvatar"]
+                currentTeam = image_data["teamNumber"]
+                currentImage = image_data["encodedAvatar"]
+            team_image.save()
+
+def import_first():
+    event = get_all_events()['Events']
 
 def import_first(event_code: str = None, team_number: int = None):
     if event_code:
@@ -61,7 +98,21 @@ def import_first(event_code: str = None, team_number: int = None):
         _events = get_all_events(team_number=team_number)['Events']
 
     for event_info in _events:
-        events.append(event_info['code'])
-        print(f"{event_info['name']} has the first key of {event_info['code']}, and the district "
-              f"key of {event_info['districtCode']}, is the event type of {event_info['type']},"
-              f" starts on {event_info['dateStart']}, and ends on {event_info['dateEnd']}")
+        _events.append(event_info['code'])
+
+        eventExists = Event.objects.filter(name=event_info['name']).exists()
+
+        if eventExists:
+            theEvent = Event.objects.get(name=eventInfo['name'])
+        else:
+            theEvent = Event()
+
+        theEvent.name = event_info['name']
+        theEvent.FIRST_key = event_info['code']
+        theEvent.FIRST_eventType = event_info['type']
+        theEvent.start = datetime.datetime.now()
+        theEvent.end = datetime.datetime.now()
+        theEvent.imported = True
+
+        theEvent.save()
+

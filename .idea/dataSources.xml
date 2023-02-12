@@ -10,5 +10,12 @@
       <jdbc-url>jdbc:postgresql://db-postgresql-nyc3-00259-do-user-7775406-0.b.db.ondigitalocean.com:25060/swissdb2022</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="swissdb2023@10.39.12.201" uuid="7367fe9b-9e27-4c49-9e7e-64d152041983">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://10.39.12.201:25060/swissdb2023</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

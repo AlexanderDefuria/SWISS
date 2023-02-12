@@ -96,7 +96,7 @@ DATABASES = {
         'PASSWORD': get_secret("PASSWORD"),
         'HOST': get_secret("HOST"),
         'PORT': get_secret("PORT"),
-        'OPTIONS': {'sslmode': get_secret("sslmode")},
+        # 'OPTIONS': {'sslmode': get_secret("sslmode")},
     }
 }
 
