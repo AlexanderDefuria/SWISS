@@ -583,6 +583,11 @@ class Registration(FormMixin, generic.TemplateView):
         form = RegistrationForm(request.POST)
         context = {'form': form}
         if form.is_valid():
+            if not Event.objects.get(id=0).exists(): # Settings needs an event to exist
+                # This should only happen on the first server run
+                event = Event()
+                event.save()
+
             user = User()
             user.orgmember = OrgMember()
             user.set_password(form.cleaned_data['password'])
@@ -590,7 +595,6 @@ class Registration(FormMixin, generic.TemplateView):
             user.first_name = form.cleaned_data['first_name']
             user.last_name = form.cleaned_data['last_name']
             user.email = form.cleaned_data['email']
-            print(user)
             try:
                 if form.cleaned_data['create_new_org']:
                     org = Organization()
@@ -608,10 +612,9 @@ class Registration(FormMixin, generic.TemplateView):
                 form.add_error('org_name', "Org Name or UUID is incorrect.")
                 form.add_error('org_reg_id', "Org Name or UUID is incorrect.")
                 context = {'form': form}
-                print('org does not exist ' + form.cleaned_data)
+                print('org does not exist ' + str(form.cleaned_data))
                 return render(request, 'entry/register.html', context)
 
-            print(user)
             user.save()
             user.orgmember.organization.settings.save()
             user.orgmember.organization.save()
@@ -630,6 +633,7 @@ class MatchData(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     template_name = 'entry/matchdata.html'
     model = Match
+    context_object_name = "match_list"
 
     def get_queryset(self):
         try:
