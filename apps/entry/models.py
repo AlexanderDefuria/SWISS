@@ -17,6 +17,7 @@ class Team(models.Model):
     # TODO Remove and move somewhere else.
     pick_status = models.IntegerField(default=0, validators=[MaxValueValidator(2), MinValueValidator(0)])
     glance = models.FileField(upload_to='json/', null=True, blank=True)
+    avatar = models.CharField(default="NA", max_length=10000)
 
     def first_image(self):
         try:
@@ -59,7 +60,8 @@ class Event(models.Model):
     imported = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return str(self.id)
+
 
 
 class Schedule(models.Model):
