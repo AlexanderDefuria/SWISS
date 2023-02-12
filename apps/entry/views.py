@@ -273,18 +273,6 @@ def get_present_teams(user):
         return Team.objects.all()
 
 
-# TODO Remove this
-def get_all_teams():
-    objects = Team.objects.all()
-    objects = objects.order_by('number')
-    return objects
-
-
-# TODO Remove This
-def get_all_events():
-    return Event.objects.all().order_by('start')
-
-
 def handle_query_present_teams(view):
     teams = get_present_teams(view.request.user)
     if teams.count() == 1 and teams.first() == Team.objects.first():
