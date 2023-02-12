@@ -60,7 +60,7 @@ class Event(models.Model):
     imported = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.name)
 
 
 

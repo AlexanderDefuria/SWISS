@@ -5,12 +5,30 @@
     margin: 5px;
 }
 
+.display-cube-cone-group {
+    background-color: greenyellow;
+    border-color: #0c0e14;
+    border-width: 2px;
+    height: 10px;
+    width: 10px;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     grid-gap: 10px;
     margin-left: 10px;
+}
+
+.glance-container {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-column-gap: 10px;
+    margin-left: 10px;
+
 }
 
 .grid-item {
@@ -21,10 +39,4 @@
     height: 35px;
     position: relative;
     top: 5px;
-}
-
-.cone_select_field {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
 }

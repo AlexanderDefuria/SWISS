@@ -183,12 +183,15 @@ def get_all_present_teams(user):
 
 @register.simple_tag
 def get_all_teams():
-    return get_all_teams()
+    objects = Team.objects.all()
+    objects = objects.order_by('number')
+    return objects
 
 
 @register.simple_tag
 def get_all_events():
-    return get_all_events()
+    return Event.objects.all().order_by('start')
+
 
 
 @register.simple_tag
