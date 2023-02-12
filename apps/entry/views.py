@@ -109,9 +109,6 @@ def scout_lead_check(user):
 @login_required(login_url='entry:login')
 def download(request):
     # TODO find a way to prevent spamming this.
-
-    import_first()
-
     path = 'match_history.xlsx'
     path = os.path.join(settings.BASE_DIR, path)
     update_csv(request.user.orgmember.organization)
@@ -292,12 +289,6 @@ def handle_query_present_teams(view):
 
     return teams
 
-class FRCdata(LoginRequiredMixin, generic.View):
-    login_url = 'entry.login'
-
-    def get(self, request, **kwargs):
-        import_first()
-        return HttpResponseRedirect(reverse_lazy('entry:index'))
 
 class TeamSettingsNotFoundError(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
@@ -331,14 +322,13 @@ class Import(LoginRequiredMixin, FormMixin, generic.TemplateView):
         if form.is_valid():
             import_type = form.cleaned_data['import_type']
             key = form.cleaned_data['key']
-            year = '2022'
 
-            if import_type == 0:
-                importFRC.import_district(key, year)
-            elif import_type == 1:
-                importFRC.import_event(key, year)
-            elif import_type == 2:
-                importFRC.import_team(key, year)
+            if import_type == 1: # Event key
+                import_first()
+            elif import_type == 2: # Team Number key
+                pass
+            elif import_type == 3: # Import all. TODO disable before release
+                import_first()
 
         return render(request, 'entry/import.html', context)
 
