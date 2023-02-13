@@ -6,12 +6,12 @@
 <head>
 <meta charset="utf-8">
 <title>SWISS Settings</title>
-<link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'entry/formstyle.css' %}">
-<script src="{% static 'entry/jquery.min.js' %}"></script>
-<script src="{% static 'entry/validate.js' %}"></script>
-<script src="{% static 'entry/script.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'entry/css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/css/colorsheet.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/css/formstyle.css' %}">
+<script src="{% static 'entry/js/jquery.min.js' %}"></script>
+<script src="{% static 'entry/js/validate.js' %}"></script>
+<script src="{% static 'entry/js/script.js' %}"></script>
 <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
@@ -144,7 +144,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h2>Current Event</h2>
             <div class="formItem">
 				<label for="currentEvent">Current Event for Team</label>
-				<select name="currentEvent" id="currentEvent" style="display: block" required>
+                <input type="text" class="typeahead" id="typeahead" style="display: block">
+				<select name="currentEvent" id="currentEvent"  required>
                     {% get_current_event request as curEvent %}
                     <option value="{{ curEvent.FIRST_key }}">{{ curEvent.name }}</option>
                     {% get_all_events as eventList %}
@@ -152,6 +153,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					<option value="{{ event.FIRST_key }}">{{ event.name }}</option>
                     {% endfor %}
 				</select>
+<style></style>
+            <script>
+                const typeahead = document.querySelector('#typeahead');
+const select = document.querySelector('#currentEvent');
+
+typeahead.addEventListener('input', function() {
+  const value = this.value.toLowerCase();
+  for (const option of select.options) {
+    if (option.text.toLowerCase().startsWith(value)) {
+      option.selected = true;
+      break;
+    }
+  }
+});
+            </script>
+
+
 			</div>
             {% endif %}
             <h1 class="sectionHeader">More</h1>

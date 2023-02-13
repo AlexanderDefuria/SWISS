@@ -12,13 +12,13 @@
 <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
-<script src="{% static 'entry/js/jquery.min.js' %}"></script>
-<script src="{% static 'entry/js/charts.js' %}"></script>
-<script src="{% static 'entry/js/glance.js' %}"></script>
-<script src="{% static 'entry/js/script.js' %}"></script>
-<script src="{% static 'entry/js/highcharts.js' %}"></script>
-<script src="{% static 'entry/js/highcharts-more.js' %}"></script>
-<script src="{% static 'entry/js/solid-gauge.js' %}"></script>
+<script src="{% static 'entry/jquery.min.js' %}"></script>
+<script src="{% static 'entry/charts.js' %}"></script>
+<script src="{% static 'entry/glance.js' %}"></script>
+<script src="{% static 'entry/script.js' %}"></script>
+<script src="{% static 'entry/highcharts.js' %}"></script>
+<script src="{% static 'entry/highcharts-more.js' %}"></script>
+<script src="{% static 'entry/solid-gauge.js' %}"></script>
 <meta name="theme-color" content="0F4D8D">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -85,11 +85,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Climb</p></div>
-					<div class="infoLColumn">
-                        <p>
-                            {% get_info user team 'climb_locations' 'possible' 'pits' %},
-						    {% get_info user team 'endgame_action' 'list' 'match' as teleTimeOutList %}
-						    {{ teleTimeOutList.0 }}
+					<div class="infoLColumn"><p>{% get_info user team 'climb_locations' 'possible' 'pits' %},
+						{% get_info user team 'endgame_action' 'list' 'match' as teleTimeOutList %}
+						{{ teleTimeOutList.0 }}
 						</p>
 					</div>
 				</div>	
@@ -105,10 +103,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			</div>
             {% endif %}
 			<div class="graphBoxWide" id="totalGraphTile">
-                {% include "entry/components/glance/cone-cube-grid-glance.html" with name='average' %}
+				<div id="avg_balls" style="height: 300px; width:auto"></div>		
 			</div>
 			<div class="graphBoxWide" id="lineGraphTile">
-                {% include "entry/components/glance/cone-cube-grid-glance.html" with name='average' %}
+				<div id="line" style="height: 300px; width: auto"></div>
 			</div>
 			<div class="infoBox infoReg" id="foulsTile">
 				<div class="infoHeader">
@@ -192,21 +190,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				<!-- The following need to be updated to 2022 -->
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Upper Goal</p></div>
-{#                    {% get_info user team 'upper' 'total' 'match' as totalTeleUpper%}#}
-{#                    {% get_info user team 'upper_auto' 'total' 'match' as totalAutoUpper%}#}
-{#					<div class="infoLColumn"><p>{{totalTeleUpper|add:totalAutoUpper }} Balls</p></div>#}
+                    {% get_info user team 'upper' 'total' 'match' as totalTeleUpper%}
+                    {% get_info user team 'upper_auto' 'total' 'match' as totalAutoUpper%}
+					<div class="infoLColumn"><p>{{totalTeleUpper|add:totalAutoUpper }} Balls</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Lower Goal</p></div>
-{#                    {% get_info user team 'lower' 'total' 'match' as totalTeleLower%}#}
-{#                    {% get_info user team 'lower_auto' 'total' 'match' as totalAutoLower%}#}
-{#					<div class="infoLColumn"><p>{{totalTeleLower|add:totalAutoLower }} Balls</p></div>#}
+                    {% get_info user team 'lower' 'total' 'match' as totalTeleLower%}
+                    {% get_info user team 'lower_auto' 'total' 'match' as totalAutoLower%}
+					<div class="infoLColumn"><p>{{totalTeleLower|add:totalAutoLower }} Balls</p></div>
 				</div>				
                 <div class="infoRow">
                     <div class="infoLColumn"><p>Missed</p></div>
-{#                    {% get_info user team 'missed_balls' 'total' 'match' as totalTeleMissed%}#}
-{#                    {% get_info user team 'missed_balls_auto' 'total' 'match' as totalAutoMissed%}#}
-{#					<div class="infoLColumn"><p>{{totalTeleMissed|add:totalAutoMissed }} Balls</p></div>#}
+                    {% get_info user team 'missed_balls' 'total' 'match' as totalTeleMissed%}
+                    {% get_info user team 'missed_balls_auto' 'total' 'match' as totalAutoMissed%}
+					<div class="infoLColumn"><p>{{totalTeleMissed|add:totalAutoMissed }} Balls</p></div>
                 </div>
 			</div>			
 			<div class="infoBox infoReg" id="endgameTile">
@@ -221,14 +219,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Average Climb Success</p></div>
 					<div class="infoLColumn">
-{#                        {% get_info user team 'endgame_action' 'list' 'match' as teleTimeOutList %}#}
-{#						<p>{{ teleTimeOutList.0 }}</p>#}
-{#						<p>{{ teleTimeOutList.1 }}</p>#}
+                        {% get_info user team 'endgame_action' 'list' 'match' as teleTimeOutList %}
+						<p>{{ teleTimeOutList.0 }}</p>
+						<p>{{ teleTimeOutList.1 }}</p>
 					</div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Climb Percentage</p></div>
-{#					<div class="infoLColumn"><p>{% get_info user team 'endgame_action' 'average' 'match' %}%</p></div>#}
+					<div class="infoLColumn"><p>{% get_info user team 'endgame_action' 'average' 'match' %}%</p></div>
 				</div>
 			</div>
 			<div class="infoBox infoReg" id="driveTrainTile">
@@ -238,19 +236,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Drivetrain Type</p></div>
-{#					<div class="infoLColumn"><p>{% get_info user team 'drivetrain_style' 'average' 'pits' %}</p></div>#}
+					<div class="infoLColumn"><p>{% get_info user team 'drivetrain_style' 'average' 'pits' %}</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Wheel Type</p></div>
-{#					<div class="infoLColumn"><p>{% get_info user team 'drivetrain_wheels' 'average' 'pits' %}</p></div>#}
+					<div class="infoLColumn"><p>{% get_info user team 'drivetrain_wheels' 'average' 'pits' %}</p></div>
 				</div>				
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Motor Type</p></div>
-{#					<div class="infoLColumn"><p>{% get_info user team 'drivetrain_motortype' 'average' 'pits' %}: {% get_info user team 'drivetrain_motorquantity' 'average' 'pits' %}</p></div>#}
+					<div class="infoLColumn"><p>{% get_info user team 'drivetrain_motortype' 'average' 'pits' %}: {% get_info user team 'drivetrain_motorquantity' 'average' 'pits' %}</p></div>
 				</div>
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Pushing Score</p></div>
-{#					<div class="infoLColumn"><p>{% get_info user team 'able_to_push' 'average' 'match' %}</p></div>#}
+					<div class="infoLColumn"><p>{% get_info user team 'able_to_push' 'average' 'match' %}</p></div>
 				</div>
 			</div>
             <div class="infoBox infoReg" id="onFieldTile">
@@ -258,10 +256,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'ScheduleIcon.png' %}" alt="Schedule Icon">
 					<h1>Match Play</h1>
 				</div>
-{#                {% get_info user team 'on_field' 'total' 'match' as MATCHES %}#}
+                {% get_info user team 'on_field' 'total' 'match' as MATCHES %}
 				<div class="infoRow">
 					<div class="infoLColumn"><p>Matches Played</p></div>
-{#					<div class="infoLColumn"><p>{{ MATCHES }}</p></div>#}
+					<div class="infoLColumn"><p>{{ MATCHES }}</p></div>
 				</div>
                 <div class="infoRow">
 					<div class="infoLColumn"><p>Scheduled Matches</p></div>
@@ -269,7 +267,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				</div>
 				<div class="infoRow" id="onFieldBG">
 					<div class="infoLColumn"><p>Percent On Field</p></div>
-{#					<div class="infoLColumn"><p id="onFieldValue">{% get_team_onfield user team.number %}</p></div>#}
+					<div class="infoLColumn"><p id="onFieldValue">{% get_team_onfield user team.number %}</p></div>
 				</div>
 				<div class="infoRow" id="disabledBG">
 					<div class="infoLColumn"><p>Disabled/Offline</p></div>

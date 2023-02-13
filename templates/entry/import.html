@@ -6,10 +6,10 @@
 <head>
 <meta charset="utf-8">
 <title>SWISS Import</title>
-<link rel="stylesheet" type="text/css" href="{% static 'entry/style.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'entry/colorsheet.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'entry/formstyle.css' %}">
-<script src="{% static 'entry/script.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'entry/css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/css/colorsheet.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'entry/css/formstyle.css' %}">
+<script src="{% static 'entry/js/script.js' %}"></script>
 <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
@@ -35,11 +35,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'DownloadIcon.png' %}" alt="Download Icon">
 				<h1>Import Data from FIRST</h1>
 			</div>
+            {% if importing %}
+                <p>Importing data from FIRST. This may take a while.</p>
+            {% else %}
 			<form action="{% url 'entry:import_from_first' %}" method="post" enctype="multipart/form-data" id="form">
 				{% csrf_token %}
-				<p>Info on what everything means will go here in the future.</p>
 				{{ form }}
 			</form>
+            {% endif %}
 		</div>
 	</div>
 </body>

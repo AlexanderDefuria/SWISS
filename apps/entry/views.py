@@ -2,6 +2,7 @@ import os
 import ast
 import json
 
+import requests
 from openpyxl import Workbook
 from datetime import datetime
 
@@ -22,6 +23,7 @@ from apps.entry.graphing import *
 from apps.entry.templatetags.common_tags import *
 from apps import importFRC
 from apps.entry.forms import MatchScoutForm, RegistrationForm, PitScoutForm, LoginForm, ImportForm
+from apps.entry.imports import import_first, get_team_list,get_team_logos
 
 register = Library
 
@@ -107,7 +109,6 @@ def scout_lead_check(user):
 @login_required(login_url='entry:login')
 def download(request):
     # TODO find a way to prevent spamming this.
-
     path = 'match_history.xlsx'
     path = os.path.join(settings.BASE_DIR, path)
     update_csv(request.user.orgmember.organization)
@@ -187,20 +188,14 @@ def write_image_upload(request):
 
 
 @login_required(login_url='entry:login')
-def write_pit_upload(request):
-    if request.method == 'GET':
-        return HttpResponseRedirect(reverse_lazy('entry:index'))
-
-
-@login_required(login_url='entry:login')
 def import_from_first(request):
     if request.method == 'GET':
         return HttpResponseRedirect(reverse_lazy('entry:import'))
 
     elif request.method == 'POST':
-        import_type = make_int(request.POST.get('importType', 0))
-        key = request.POST.get('key', 0)
-        year = request.POST.get('year', 0)
+        import_type = make_int(request.POST.get('importType'))
+        key = request.POST.get('key')
+        year = request.POST.get('year')
 
         if year == 0:
             year = None
@@ -275,18 +270,6 @@ def get_present_teams(user):
         return Team.objects.all()
 
 
-# TODO Remove this
-def get_all_teams():
-    objects = Team.objects.all()
-    objects = objects.order_by('number')
-    return objects
-
-
-# TODO Remove This
-def get_all_events():
-    return Event.objects.all().order_by('start')
-
-
 def handle_query_present_teams(view):
     teams = get_present_teams(view.request.user)
     if teams.count() == 1 and teams.first() == Team.objects.first():
@@ -294,6 +277,26 @@ def handle_query_present_teams(view):
 
     return teams
 
+class FRCdata(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'entry.login'
+    template_name = 'entry/frc.html'
+    def get(self, request,):
+        # get_team_logos()
+        # import_first()
+        # get_team_list()
+        try:
+            context = {
+
+            "img":Team.objects.get(number=167).avatar
+            }
+        except:
+            context = {
+
+            "img":"NA"
+            }
+
+        print(Team.objects.get(number=68).avatar)
+        return render(request, 'entry/frc.html', context)
 
 class TeamSettingsNotFoundError(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
@@ -305,6 +308,7 @@ class TeamList(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/teams.html'
     context_object_name = "team_list"
     model = Team
+
     def get_queryset(self):
         teams = get_present_teams(self.request.user)
         if teams.count() == 1 and teams.first() == Team.objects.first():
@@ -318,24 +322,36 @@ class Import(LoginRequiredMixin, FormMixin, generic.TemplateView):
     model = Team
     form_class = ImportForm
     success_url = 'entry:index'
+    importing: bool = False
 
-    @staticmethod
-    def post(request, *args, **kwargs):
+    @classmethod
+    def post(cls, request, *args, **kwargs):
+        if cls.importing:
+            return render(request, 'entry/import.html', {'importing': True, 'form': ImportForm()})
+
         form = ImportForm(request.POST)
         context = {'form': form}
+        success = False
         if form.is_valid():
             import_type = form.cleaned_data['import_type']
             key = form.cleaned_data['key']
-            year = '2022'
+            cls.importing = True
 
-            if import_type == 0:
-                importFRC.import_district(key, year)
-            elif import_type == 1:
-                importFRC.import_event(key, year)
-            elif import_type == 2:
-                importFRC.import_team(key, year)
+            if import_type == 1:  # Event key
+                success = import_first(event_code=key)
+            elif import_type == 2:  # Team Number key
+                success = import_first(team_number=key)
+            elif import_type == 3:  # Import all. TODO disable before release
+                success = import_first()
 
+        cls.importing = False
+        context['importing'] = False
+        context['success'] = success
         return render(request, 'entry/import.html', context)
+
+    @classmethod
+    def get(cls, request, *args, **kwargs):
+        return render(request, 'entry/import.html', {'form': ImportForm(), 'importing': cls.importing})
 
 
 class Index(LoginRequiredMixin, generic.TemplateView):
@@ -366,7 +382,10 @@ class MatchScout(LoginRequiredMixin, FormMixin, generic.DetailView):
             print(form.cleaned_data)
             first_key = Event.objects.all().filter(id=make_int(org_settings.current_event.id))[0].FIRST_key
 
+            auto_start_x, auto_start_y = form.cleaned_data.pop('auto_start')
             match = Match(**form.cleaned_data)
+            match.auto_start_x = auto_start_x
+            match.auto_start_y = auto_start_y
             match.team = team
             match.event = Event.objects.get(FIRST_key=first_key)
             match.scouter_name = request.user.username
@@ -391,11 +410,7 @@ class MatchScoutLanding(LoginRequiredMixin, generic.ListView):
     template_name = 'entry/matchlanding.html'
 
     def get_queryset(self):
-        teams = get_present_teams(self.request.user)
-        if teams.count() == 1 and teams.first() == Team.objects.first():
-            return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
-
-        return teams
+        return get_present_teams(self.request.user)
 
 
 class PitScout(LoginRequiredMixin, FormMixin, generic.DetailView):
@@ -442,7 +457,6 @@ class Visualize(LoginRequiredMixin, generic.ListView):
         teams = get_present_teams(self.request.user)
         if teams.count() == 1 and teams.first() == Team.objects.first():
             return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
-
         return teams
 
 
@@ -570,6 +584,11 @@ class Registration(FormMixin, generic.TemplateView):
         form = RegistrationForm(request.POST)
         context = {'form': form}
         if form.is_valid():
+            if not Event.objects.filter(id=0).exists(): # Settings needs an event to exist
+                # This should only happen on the first server run
+                event = Event()
+                event.save()
+
             user = User()
             user.orgmember = OrgMember()
             user.set_password(form.cleaned_data['password'])
@@ -577,7 +596,6 @@ class Registration(FormMixin, generic.TemplateView):
             user.first_name = form.cleaned_data['first_name']
             user.last_name = form.cleaned_data['last_name']
             user.email = form.cleaned_data['email']
-            print(user)
             try:
                 if form.cleaned_data['create_new_org']:
                     org = Organization()
@@ -595,10 +613,9 @@ class Registration(FormMixin, generic.TemplateView):
                 form.add_error('org_name', "Org Name or UUID is incorrect.")
                 form.add_error('org_reg_id', "Org Name or UUID is incorrect.")
                 context = {'form': form}
-                print('org does not exist ' + form.cleaned_data)
+                print('org does not exist ' + str(form.cleaned_data))
                 return render(request, 'entry/register.html', context)
 
-            print(user)
             user.save()
             user.orgmember.organization.settings.save()
             user.orgmember.organization.save()
@@ -617,6 +634,7 @@ class MatchData(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     template_name = 'entry/matchdata.html'
     model = Match
+    context_object_name = "match_list"
 
     def get_queryset(self):
         try:
@@ -665,11 +683,11 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
             print("making")
             try:
                 new_settings = OrgSettings.objects.get(organization=self.request.user.orgmember.organization)
-                new_settings.current_event = Event.objects.get(FIRST_key=request.POST.get('currentEvent', '21ONT'))
+                new_settings.current_event = Event.objects.get(FIRST_key=request.POST.get('currentEvent'))
 
             except OrgSettings.DoesNotExist:
                 new_settings.organization = self.request.user.orgmember.organization
-                new_settings.current_event = Event.objects.get(FIRST_key=request.POST.get('currentEvent', '21ONT'))
+                new_settings.current_event = Event.objects.get(FIRST_key=request.POST.get('currentEvent'))
 
             except Event.DoesNotExist:
                 print("User entered event that doesn't exist")
