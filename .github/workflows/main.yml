@@ -155,4 +155,7 @@ jobs:
             AWS_S3_ENDPOINT_URL=${{ secrets.AWS_S3_ENDPOINT_URL }}
             AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
             AWS_STORAGE_BUCKET_NAME=${{ secrets.AWS_STORAGE_BUCKET_NAME }}
+            FIRST_API_USER=${{ secrets.FIRST_API_USER }}
+            FIRST_API_TOKEN=${{ secrets.FIRST_API_TOKEN }}
+            FIRST_API_BASE64=${{ secrets.FIRST_API_BASE64 }}
             
