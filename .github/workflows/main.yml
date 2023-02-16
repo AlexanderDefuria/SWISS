@@ -3,6 +3,8 @@ name: Debian Packer Example
 on:
   push:
     branches: '**'
+  pull_request:
+    branches: 'master'
   workflow_dispatch:
 
 jobs:
@@ -27,14 +29,14 @@ jobs:
         run: |
           touch secrets.json
           echo { >> secrets.json
-          echo "\"DJANGO_SECRET_KEY\": \"${{ secrets.DJANGO_SECRET_KEY }}\"," >> secrets.json
-          echo "\"DB_ENGINE\": \"${{ secrets.DB_ENGINE }}\"," >> secrets.json
-          echo "\"DB_NAME\": \"${{ secrets.DB_NAME }}\"," >> secrets.json
-          echo "\"DB_USER\": \"${{ secrets.DB_USER }}\"," >> secrets.json
-          echo "\"DB_PASSWORD\": \"${{ secrets.DB_PASSWORD }}\"," >> secrets.json
-          echo "\"DB_HOST\": \"${{ secrets.DB_HOST }}\"," >> secrets.json
-          echo "\"DB_PORT\": \"${{ secrets.DB_PORT }}\"," >> secrets.json
-          echo "\"DB_SSLMODE\": \"${{ secrets.DB_SSLMODE }}\"," >> secrets.json
+          echo "\"SECRET_KEY\": \"${{ secrets.DJANGO_SECRET_KEY }}\"," >> secrets.json
+          echo "\"ENGINE\": \"${{ secrets.DB_ENGINE }}\"," >> secrets.json
+          echo "\"NAME\": \"${{ secrets.DB_NAME }}\"," >> secrets.json
+          echo "\"USER\": \"${{ secrets.DB_USER }}\"," >> secrets.json
+          echo "\"PASSWORD\": \"${{ secrets.DB_PASSWORD }}\"," >> secrets.json
+          echo "\"HOST\": \"${{ secrets.DB_HOST }}\"," >> secrets.json
+          echo "\"PORT\": \"${{ secrets.DB_PORT }}\"," >> secrets.json
+          echo "\"sslmode\": \"${{ secrets.DB_SSLMODE }}\"," >> secrets.json
           echo "\"AWS_ACCESS_KEY_ID\": \"${{ secrets.AWS_ACCESS_KEY_ID }}\"," >> secrets.json
           echo "\"AWS_STATIC_LOCATION\": \"${{ secrets.AWS_STATIC_LOCATION }}\"," >> secrets.json
           echo "\"AWS_MEDIA_LOCATION\": \"${{ secrets.AWS_MEDIA_LOCATION }}\"," >> secrets.json
