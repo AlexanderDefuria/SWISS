@@ -2,14 +2,70 @@ name: Debian Packer Example
 
 on:
   push:
-    branches: [ master, main ]
+    branches: '**'
   workflow_dispatch:
 
 jobs:
+  tests:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install Secrets
+        run: |
+          touch secrets.json
+          echo "\"DJANGO_SECRET_KEY\": \"${{ secrets.DJANGO_SECRET_KEY }}\"" >> secrets.json
+          echo "\"DB_ENGINE\": \"${{ secrets.DB_ENGINE }}\"" >> secrets.json
+          echo "\"DB_NAME\": \"${{ secrets.DB_NAME }}\"" >> secrets.json
+          echo "\"DB_USER\": \"${{ secrets.DB_USER }}\"" >> secrets.json
+          echo "\"DB_PASSWORD\": \"${{ secrets.DB_PASSWORD }}\"" >> secrets.json
+          echo "\"DB_HOST\": \"${{ secrets.DB_HOST }}\"" >> secrets.json
+          echo "\"DB_PORT\": \"${{ secrets.DB_PORT }}\"" >> secrets.json
+          echo "\"DB_SSLMODE\": \"${{ secrets.DB_SSLMODE }}\"" >> secrets.json
+          echo "\"AWS_ACCESS_KEY_ID\": \"${{ secrets.AWS_ACCESS_KEY_ID }}\"" >> secrets.json
+          echo "\"AWS_STATIC_LOCATION\": \"${{ secrets.AWS_STATIC_LOCATION }}\"" >> secrets.json
+          echo "\"AWS_MEDIA_LOCATION\": \"${{ secrets.AWS_MEDIA_LOCATION }}\"" >> secrets.json
+          echo "\"AWS_S3_ENDPOINT_URL\": \"${{ secrets.AWS_S3_ENDPOINT_URL }}\"" >> secrets.json
+          echo "\"AWS_SECRET_ACCESS_KEY\": \"${{ secrets.AWS_SECRET_ACCESS_KEY }}\"" >> secrets.json
+          echo "\"AWS_STORAGE_BUCKET_NAME\": \"${{ secrets.AWS_STORAGE_BUCKET_NAME }}\"" >> secrets.json
+
+      - name: Run Tests
+        run: |
+          python manage.py test
+          
+
+  deployment:
+    needs: tests
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+    - name: Deploy Stage
+      id: request
+      uses: fjogeleit/http-request-action@master
+      with:
+        url: 'https://update.swiss-scouting.ca/'
+        method: 'GET'
+        timeout: 60000
+    - name: Show Response
+      run: echo ${{ steps.request.outputs.response }}
+
+
   deb-control-file-build:
     name: Generate Debian Package
+    needs: test
     runs-on: ubuntu-20.04
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -56,8 +112,11 @@ jobs:
           name: swiss.deb
           path: "${{ steps.container.outputs.generated_package_path }}"
           if-no-files-found: error
-          
+
+
   docker:
+    name: Build and push Docker image
+    needs: deb-control-file-build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

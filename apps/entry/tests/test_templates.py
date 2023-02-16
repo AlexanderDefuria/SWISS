@@ -1,15 +1,10 @@
 from time import sleep
-
-import pytest
-from django.contrib.auth.models import User
 from django.test import LiveServerTestCase, override_settings
 from selenium import webdriver
+from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
 
 from apps.entry.tests.common import *
-from apps.entry.urls import urlpatterns
-from apps.entry.tests.test_common import test_should_create_organization
-
 
 @pytest.mark.django_db
 @pytest.mark.usefixtures("firefox_driver_init")
@@ -23,7 +18,9 @@ class MatchFormTest(LiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.browser = webdriver.Firefox()
+        opts = webdriver.FirefoxOptions()
+        opts.headless = True
+        cls.browser = webdriver.Firefox(options=opts)
         cls.base_url = cls.live_server_url
 
     @classmethod
@@ -54,7 +51,7 @@ class MatchFormTest(LiveServerTestCase):
         self.assertEqual(self.browser.current_url, f'http://localhost:{self.port}/entry/')
 
     def test_static_pages_load(self):
-        urls = ['matchscout', 'pitscout', 'visual', 'glance', 'settings'
+        urls = ['matchscout', 'pitscout', 'visual', 'glance', 'settings',
                 'teams', 'stats', 'matchdata', 'pitdata', 'about']
 
         for url in urls:
@@ -65,11 +62,13 @@ class MatchFormTest(LiveServerTestCase):
     def test_lead_scout_settings(self):
         self.assertEqual(self.user.orgmember.position, 'GS')
         self.browser.get(self.base_url + '/entry/settings/')
-        self.assertIsNone(self.browser.find_element(by=By.ID, value='currentEvent'))
+        try:
+            self.assertIsNone(self.browser.find_element(by=By.ID, value='currentEvent'))
+        except NoSuchElementException:
+            self.assertTrue(True, 'Element not found, this is expected')
 
         self.user.orgmember.position = 'LS'
         self.user.orgmember.save()
         self.assertEqual(self.user.orgmember.position, 'LS')
-
         self.browser.get(self.base_url + '/entry/settings/')
-        self.assertEqual(self.browser.find_element(by=By.ID, value='currentEvent').text, 'asd')
+        self.assertEqual(self.browser.find_element(by=By.ID, value='currentEvent').get_attribute('value'), 'NA')
