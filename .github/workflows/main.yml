@@ -64,7 +64,7 @@ jobs:
 
   deb-control-file-build:
     name: Generate Debian Package
-    needs: test
+    needs: tests
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
