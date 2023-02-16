@@ -1,4 +1,4 @@
-name: Debian Packer Example
+name: CI
 
 on:
   push:
@@ -124,6 +124,7 @@ jobs:
   docker:
     name: Build and push Docker image
     needs: deb-control-file-build
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
