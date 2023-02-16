@@ -123,6 +123,10 @@ AUTHENTICATION_BACKENDS = [
     'apps.entry.backends.HashedPasswordAuthBackend',
 ]
 
+FIXTURE_DIRS = [
+    'apps.entry.tests.test_data'
+]
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 

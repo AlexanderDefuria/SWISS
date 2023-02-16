@@ -1,10 +1,9 @@
-asgiref==3.5.0
+asgiref==3.6.0
 certifi==2022.12.7
 chardet==4.0.0
-Django==4.0.9
+Django==4.1.5
 djangoajaxswiss==4.1
 gunicorn==20.1.0
-idna==3.3
 jsonfield==3.1.0
 openpyxl==3.0.9
 Pillow==9.3.0
@@ -15,4 +14,8 @@ sqlparse==0.4.2
 urllib3
 uuid
 boto3==1.21.3
-django-storages==1.12.3
+django-storages==1.13.2
+django-webtest==1.9.10
+pytest-django==4.5.2
+pytest==7.2.1
+selenium==4.8.0

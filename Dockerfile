@@ -36,6 +36,9 @@ ARG AWS_MEDIA_LOCATION
 ARG AWS_S3_ENDPOINT_URL
 ARG AWS_SECRET_ACCESS_KEY
 ARG AWS_STORAGE_BUCKET_NAME
+ARG FIRST_API_USER
+ARG FIRST_API_TOKEN
+ARG FIRST_API_BASE64
 
 
 RUN set -ex \
@@ -54,6 +57,9 @@ RUN set -ex \
         printf '\t"AWS_S3_ENDPOINT_URL": "%s",\n' "$AWS_S3_ENDPOINT_URL"; \
         printf '\t"AWS_SECRET_ACCESS_KEY": "%s",\n' "$AWS_SECRET_ACCESS_KEY"; \
         printf '\t"AWS_STORAGE_BUCKET_NAME": "%s"\n' "$AWS_STORAGE_BUCKET_NAME"; \
+        printf '\t"FIRST_API_USER": "%s"\n' "$FIRST_API_USER"; \
+        printf '\t"FIRST_API_TOKEN": "%s"\n' "$FIRST_API_TOKEN"; \
+        printf '\t"FIRST_API_BASE64": "%s"\n' "$FIRST_API_BASE64"; \
         printf '\n\n}'; \
     } > secrets.json
 
