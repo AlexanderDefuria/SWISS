@@ -3,6 +3,7 @@ import ast
 import json
 
 import requests
+from django.urls import reverse_lazy
 from openpyxl import Workbook
 from datetime import datetime
 
@@ -75,7 +76,7 @@ def update_glance(request, pk):
         team = Team.objects.get(id=pk)
         team.glance.delete()
         team.glance.save(
-            'glance_' + str(pk) + '_' + str(count) + '_' + str(datetime.datetime.now()) + '.json', f)
+            'glance_' + str(pk) + '_' + str(count) + '_' + str(datetime.now()) + '.json', f)
     return HttpResponse(matches_json, content_type='application/json')
 
 
@@ -258,8 +259,6 @@ def make_int(s):
 
 def get_present_teams(user):
     try:
-        # TODO See if this is actually the best way to query all teams from attendance...
-        # Note. We do need the actual Team objects (name, number, colour etc...) all that jazz
         objects = Team.objects.filter(
             number__in=Attendance.objects.filter(
                 event=user.orgmember.organization.settings.current_event
@@ -276,6 +275,7 @@ def handle_query_present_teams(view):
         return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
 
     return teams
+
 
 class FRCdata(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry.login'
@@ -538,6 +538,16 @@ class GlanceLanding(LoginRequiredMixin, generic.ListView):
     login_url = 'entry:login'
     model = Team
     template_name = 'entry/glancelanding.html'
+
+    def get_queryset(self):
+        return handle_query_present_teams(self)
+
+
+class Event(LoginRequiredMixin, generic.ListView):
+    login_url = 'entry:login'
+    model = Team
+    template_name = 'entry/event.html'
+    context_object_name = "team_list"
 
     def get_queryset(self):
         return handle_query_present_teams(self)
