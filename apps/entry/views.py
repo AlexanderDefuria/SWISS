@@ -23,7 +23,7 @@ from apps.entry.graphing import *
 from apps.entry.templatetags.common_tags import *
 from apps import importFRC
 from apps.entry.forms import MatchScoutForm, RegistrationForm, PitScoutForm, LoginForm, ImportForm
-from apps.entry.imports import import_first, get_team_list,get_team_logos
+from apps.entry.imports import import_first, get_team_list,get_team_logos,get_match_data
 
 register = Library
 
@@ -284,6 +284,7 @@ class FRCdata(LoginRequiredMixin, generic.TemplateView):
         # get_team_logos()
         # import_first()
         # get_team_list()
+        get_match_data()
         try:
             context = {
 
@@ -294,8 +295,6 @@ class FRCdata(LoginRequiredMixin, generic.TemplateView):
 
             "img":"NA"
             }
-
-        print(Team.objects.get(number=68).avatar)
         return render(request, 'entry/frc.html', context)
 
 class TeamSettingsNotFoundError(LoginRequiredMixin, generic.TemplateView):
