@@ -155,52 +155,64 @@
     </div>
 
     <label for="{{ widget.name }}" hidden></label>
-    <input type="number" id="{{ widget.name }}" name="{{ widget.name }}" hidden value=0>
+    <input type="text" id="{{ widget.name }}" name="{{ widget.name }}" hidden value="000000000000000000000000000000000000">
 </div>
 
 <script>
-    let clicked = []
-
     const toRGB = (color) => {
         const { style } = new Option();
         style.color = color;
         return style.color;
     }
 
-    const baseTwoLocation = (game_piece_id) => {
+    const yellow = toRGB('#f5e923')
+    const purple = toRGB('#9b3b96')
+    const input = document.getElementById("{{ widget.name }}");
+
+    const get_bit_id = (game_piece_id) => {
         // There are actually 4 Rows.
         // There is a hidden row that represents the cube
         // The 3rd is cubes
         // The 4th is cones
-
         const re = new RegExp("[0-3]{3}");
         const id = re.exec(game_piece_id);
         const grid = Math.floor(id / 100)
         const row = Math.floor((id % 100) / 10)
         const location = id % 10
         const bit_id = grid*12 + row*3 + location // (grid #) * Grid size = starting point + location...
-
+        console.log(bit_id)
         return bit_id
     }
 
-    function select_game_piece(id, str) {
-        const yellow = toRGB('#f5e923')
-        const purple = toRGB('#9b3b96')
+    String.prototype.replaceAt = function(index, replacement) {
+        return this.substring(0, index) + replacement + this.substring(index + replacement.length);
+    }
 
+    function toggle_bit(string, bit) {
+        const arr = [...string];
+        arr[bit] = (parseInt(string.charAt(bit), 10) + 1) % 2;
+        console.log(arr.join(''))
+        return arr.join('');
+    }
+
+    function select_game_piece(id, str) {
         let item = document.getElementById(id);
-        let input = document.getElementById("{{ widget.name }}");
+        if (isNaN(input.value))
+            input.value = input.defaultValue;
         if (item.tagName === 'IMG') {
             let sibling = item.previousElementSibling ? item.previousElementSibling : item.nextElementSibling
 
-            if (clicked.includes(sibling.id)) {
-                console.log('sibling clicked')
-                clicked = clicked.filter(x => x !== sibling.id);
-                input.value = parseInt(input.value) - Math.pow(2, baseTwoLocation(sibling.id));
-                item.parentElement.style.background = 'grey'
-                return;
+            item.parentElement.style.background = str === 'cone' ? yellow : purple;
+            if (input.value.charAt(get_bit_id(sibling.id)) === '1') {
+                console.log('Sibling had been selected')
+                input.value = toggle_bit(input.value, get_bit_id(sibling.id));
             }
-            console.log(sibling)
-            item = item.parentElement
+            input.value = toggle_bit(input.value, get_bit_id(item.id));
+
+            if (input.value.charAt(get_bit_id(item.id)) !== '1')
+                item.parentElement.style.background = 'grey';
+
+            return;
         }
 
         if (item.style.backgroundColor !== purple && item.style.backgroundColor !== yellow)
@@ -208,15 +220,8 @@
         else
             item.style.background = 'grey'
 
-        if (clicked.includes(id)) {
-            clicked = clicked.filter(x => x !== id);
-            input.value = parseInt(input.value) - Math.pow(2, baseTwoLocation(id));
-        } else {
-            clicked.push(id)
-            input.value = parseInt(input.value) + Math.pow(2, baseTwoLocation(id));
-        }
-
-        console.log(input.value.toString(2))
+        input.value = toggle_bit(input.value, get_bit_id(item.id))
+        console.log(input)
     }
 </script>
 

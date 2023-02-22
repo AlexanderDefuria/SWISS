@@ -43,7 +43,7 @@ class MatchScoutForm(forms.Form):
     preloaded_balls = forms.BooleanField(widget=BooleanWidget(), label='Preloaded Balls', initial=0)
 
     # AUTO
-    auto_placement = forms.IntegerField(widget=ConeCubeWidget(), label='', initial=0)
+    auto_placement = forms.CharField(widget=ConeCubeWidget(), label='', initial="000000000000000000000000000000000000")
     auto_route = forms.IntegerField(widget=widgets.Select(choices=[
                     (0, "None"),
                     (1, "Yes, Simple"),
@@ -63,7 +63,7 @@ class MatchScoutForm(forms.Form):
     auto_start = LocationField(widget=LocationWidget(), label="Location Field", initial=[0, 0])
 
     # TELEOP
-    placement = forms.IntegerField(widget=ConeCubeWidget(), label='', initial=0)
+    placement = forms.CharField(widget=ConeCubeWidget(), label='', initial="000000000000000000000000000000000000")
     cycles = forms.IntegerField(widget=TickerWidget(), label='Teleop Cycles')
     intake_type = forms.IntegerField(widget=widgets.Select(choices=[
                     (0, "Did not Intake"),
@@ -210,8 +210,6 @@ class PitScoutForm(forms.Form):
                     (1, "foo"),
                     (2, "bar")
                 ]), label='Climb Locations')
-
-    # Other
 
     grouping("Drivetrain", [drivetrain_style, drivetrain_wheels, drivetrain_motortype, drivetrain_motorquantity])
     grouping("Autonomous", [auto_route, auto_description, auto_scoring])
