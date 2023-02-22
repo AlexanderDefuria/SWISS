@@ -1,5 +1,7 @@
 ## Welcome to FRC-Scouting
 
+![img.png](img.png)
+
 ### Registering For Use
 We are proud to offer SWISS free of charge to all teams. In order to register users need the first 6 characters of their team's internal uuid. This is to prevent users from registering under teams that they are not a part of as we keep all data seperate based on the team that initially collected it. This means all data collected belongs to the team that collected it and them alone. No other team has access to that data. 
 In order to register as the first user of a team, please email [defuria.alexander@outlook.com](mailto:defuria.alexander@outlook.com) and you will be provided with the information to register you and your team upon verification that you are indeed apart of the team you claim to be. 

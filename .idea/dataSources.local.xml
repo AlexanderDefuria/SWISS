@@ -10,8 +10,11 @@
       <user-name>swiss</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="database" negative="1">
-            <node kind="schema" negative="1" />
+          <node kind="database">
+            <name qname="swissdb2022" />
+            <name qname="swissdb2023" />
+            <name qname="swissdbdev" />
+            <node kind="schema" qname="public" />
           </node>
         </introspection-scope>
       </schema-mapping>
