@@ -123,52 +123,37 @@ def get_team_logos():
                 currentTeam = image_data["teamNumber"]
                 currentImage = image_data["encodedAvatar"]
             team_image.save()
-def get_match_data():
-    for event in Event.objects.all():
+def get_match_data_event(event: Event):
+    try:
+        base_data = make_request(f'{_baseUrl}matches/{event.FIRST_key}?tournamentLevel=Qualification').json()
+        base_data = base_data["Matches"]
+        number_of_matches = len(base_data)
+        for match in range(number_of_matches):
 
-        try:
-            base_data = make_request(f'{_baseUrl}matches/{event.FIRST_key}?tournamentLevel=Qualification').json()
-            base_data = base_data['Matches']
-            number_of_matches = len(base_data)
-            for match in range(number_of_matches):
+            current_match = base_data[match]
+            if current_match["scoreRedFinal"] > current_match["scoreBlueFinal"]:
+                winner = "R"
+            elif current_match["scoreRedFinal"] < current_match["scoreBlueFinal"]:
+                winner = "B"
 
-                current_match = base_data[match]
-                if current_match["scoreRedFinal"] > current_match["scoreBlueFinal"]:
-                    winner = "R"
-                elif current_match["scoreRedFinal"] < current_match["scoreBlueFinal"]:
-                    winner = "B"
+            for team in current_match["teams"]:
 
-                for team in current_match["teams"]:
-                    team_number = team["teamNumber"]
-                    team_info = Team.objects.get(id=team_number)
+                team_number = team["teamNumber"]
+                team_info = Team.objects.get(id=team_number)
 
-                    if team["station"][0] == winner:
-                        team_info.totalMatchesWon += 1
-                        # team_info.totalMatchesWon = 0
-                        # team_info.totalMatchesLost = 0
-                        # team_info.totalMatchesPlayed = 0
-                        # print(f'{team["teamNumber"]} won')
-                    else:
-                        # team_info.totalMatchesWon = 0
-                        # team_info.totalMatchesLost = 0
-                        # team_info.totalMatchesPlayed = 0
-                        team_info.totalMatchesLost += 1
-                        # print(f'{team["teamNumber"]} lost')
+                if team["station"][0] == winner:
+                    team_info.totalMatchesWon += 1
 
-                    team_info.totalMatchesPlayed += 1
+                else:
+                    team_info.totalMatchesLost += 1
 
-                    calculate_WinLoss(team_number)
-        except:
-            print(f"data missing for {event.FIRST_key}")
+                team_info.totalMatchesPlayed += 1
 
-        print(event)
+                team_info.save()
 
-
-
-
-
-            # print(f"Match Number is {current_match['matchNumber']} Video Link is {current_match['matchVideoLink']} Reds score was {current_match['scoreRedFinal']} Blues score was {current_match['scoreBlueFinal']} The winner was {winner}")
-
+                calculate_WinLoss(team_info)
+    except:
+        print(f"Error, event not in database for {event.FIRST_key}")
 
 def import_first(event_code: str = None, team_number: int = None) -> bool:
     """

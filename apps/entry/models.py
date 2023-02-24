@@ -6,6 +6,8 @@ from django.db import models
 from picklefield.fields import PickledObjectField
 from datetime import date
 from django.contrib.auth.models import User
+from django.contrib.postgres.fields import ArrayField
+
 
 
 class Team(models.Model):
@@ -23,6 +25,7 @@ class Team(models.Model):
     totalMatchesLost = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
     totalMatchesPlayed = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
     winRate = models.FloatField(default=0, validators=[MinValueValidator(0.0), MaxValueValidator(100.0)])
+    eventsAttended = ArrayField(models.CharField(max_length=6, blank=True))
 
 
     def first_image(self):

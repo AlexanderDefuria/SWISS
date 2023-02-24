@@ -23,7 +23,7 @@ from apps.entry.graphing import *
 from apps.entry.templatetags.common_tags import *
 from apps import importFRC
 from apps.entry.forms import MatchScoutForm, RegistrationForm, PitScoutForm, LoginForm, ImportForm
-from apps.entry.imports import import_first, get_team_list,get_team_logos,get_match_data
+from apps.entry.imports import import_first, get_team_list,get_team_logos,get_match_data_event
 
 register = Library
 
@@ -284,7 +284,7 @@ class FRCdata(LoginRequiredMixin, generic.TemplateView):
         # get_team_logos()
         # import_first()
         # get_team_list()
-        get_match_data()
+        get_match_data_event(Event.objects.get(id=121))
         try:
             context = {
 
