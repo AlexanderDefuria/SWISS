@@ -21,4 +21,9 @@ class Migration(migrations.Migration):
             name='placement_score',
             field=models.IntegerField(default=0, validators=[django.core.validators.MaxValueValidator(9999), django.core.validators.MinValueValidator(0)]),
         ),
+        migrations.AddField(
+            model_name='team',
+            name='avatar',
+            field=models.CharField(default='NA', max_length=10000),
+        ),
     ]

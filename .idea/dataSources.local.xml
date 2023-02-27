@@ -19,5 +19,9 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
+    <data-source name="swissdb2023@10.39.12.201" uuid="7367fe9b-9e27-4c49-9e7e-64d152041983">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
+      <schema-mapping />
+    </data-source>
   </component>
 </project>
