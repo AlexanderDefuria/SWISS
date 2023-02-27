@@ -63,17 +63,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<th class="teamStick" style="z-index: 200">Number</th>
 						<th>Names</th>
 						<th class="matchStick" style="z-index: 200">Match #</th>
-	    				<th>Robot Present?</th>
+						<th>Preloaded Balls</th>
 						<th>Auto Route</th>
-						<th>Exit Tarmac</th>
-						<th>Auto Low</th>
-						<th>Auto High</th>
-						<th>Auto Missed</th>
+						<th>Baseline</th>
+						<th>Auto Placement Score</th>
 						<th>Auto Fouls</th>
 
-						<th>Tele Low</th>
-						<th>Tele High</th>
-                        <th>Tele Missed</th>
+						<th>Placement Score</th>
 						<th>Intake Type</th>
 						<th>Under Defense</th>
 						<th>Defended By</th>
@@ -85,7 +81,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<th>Push Ability</th>
 
                         <th>Endgame Level</th>
-						<th>Climb Attempts</th>
+                        <th>Endgame Time</th>
+                        <th>Endgame Attempts</th>
 						<th>Timeout Position</th>
 
 						<th>Human Fouls</th>
@@ -95,6 +92,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <th>Auto Comment</th>
                         <th>Climb Comment</th>
                         <th>Comment</th>
+                        <th>Disabled</th>
 
 						<th>Scouter</th>
 					</tr>
@@ -111,17 +109,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 </a>
                             {% endif %}
                             </td>
-                            <td>{{ match.on_field }}</td>
+                            <td>{{ match.preloaded_balls }}</td>
                             <td>{{ match.auto_route }}</td>
                             <td>{{ match.baseline }}</td>
-                            <td>{{ match.lower_auto }}</td>
-                            <td>{{ match.upper_auto }}</td>
+                            <td>{{ match.auto_placement_score }}</td>
+                            <td>{{ match.auto_placement }}</td>
 							<td>{{ match.missed_balls_auto }}</td>
                             <td>{{ match.auto_fouls }}</td>
 
-                            <td>{{ match.lower }}</td>
-                            <td>{{ match.upper }}</td>
-                            <td>{{ match.missed_balls }}</td>
+                            <td>{{ match.placement_score }}</td>
+                            <td>{{ match.placement }}</td>
                             <td>{{ match.intake_type }}</td>
                             <td>{{ match.under_defense }}</td>
 							<td>{{ match.defended_by }}</td>
@@ -133,7 +130,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <td>{{ match.able_to_push }}</td>
 
                             <td>{{ match.endgame_action }}</td>
-                            <td>{{ match.climb_attempts }}</td>
+                            <td>{{ match.endgame_time }}</td>
+                            <td>{{ match.endgame_attempts }}</td>
                             <td>{{ match.lock_status }}</td>
 
                             <td>{{ match.fouls_driver }}</td>
@@ -143,6 +141,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <td>{{ match.auto_comment }}</td>
                             <td>{{ match.climb_comments }}</td>
                             <td>{{ match.comment }}</td>
+                            <td>{{ match.disabled }}</td>
 
                             <td style="background-color: grey">{{ match.scouter_name }}</td>
                     </tr>

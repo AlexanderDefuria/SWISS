@@ -41,10 +41,6 @@ class ConeCubeWidget(forms.Widget):
             'value': value,
         }}
 
-    def format_value(self, value):
-        # Format binary string into integer datatype
-        return int(value, 2)
-
     def render(self, name, value, attrs=None, **kwargs):
         context = self.get_context(name, value, attrs, **kwargs)
         template = loader.get_template(self.template_name).render(context)
@@ -53,7 +49,6 @@ class ConeCubeWidget(forms.Widget):
 
 class SingleConeCubeWidget(forms.Widget):
     template_name = 'entry/components/widgets/single-select-cone-cube.html'
-
 
 
 class StopWatchWidget(forms.Widget):

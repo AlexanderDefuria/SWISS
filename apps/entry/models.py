@@ -172,16 +172,19 @@ class Match(models.Model):
     auto_start_y = models.fields.FloatField(default=0, validators=[MaxValueValidator(1), MinValueValidator(0)])
 
     # Auto
-    auto_placement = models.fields.IntegerField(default=0)
+    auto_placement = models.fields.TextField(default='000000000000000000000000000000000000', max_length=36)
+    auto_placement_score = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
     auto_route = models.fields.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     auto_fouls = models.SmallIntegerField(default=0, validators=[MaxValueValidator(25), MinValueValidator(0)])
     auto_comment = models.TextField(default="")
     auto_baseline = models.BooleanField(default=False)
     auto_cones = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     auto_cubes = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    # auto_endgame_action = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
 
     # Teleop
-    placement = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    placement = models.TextField(default='000000000000000000000000000000000000', max_length=36)
+    placement_score = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
     cycles = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     intake_type = models.SmallIntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(0)])
     under_defense = models.SmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
@@ -228,22 +231,111 @@ class Match(models.Model):
             result.ownership = self.ownership
             result.completed = True
             result.event = self.ownership.settings.current_event
-
             result.save()
+
+            self.placement_score = self.calculate_grid_points(False)
+            self.auto_placement_score = self.calculate_grid_points(True)
+
         except Exception as e:
             print("error updating result for " + str(self))
             print(e)
         super(Match, self).save(*args, **kwargs)
 
     @staticmethod
+    def load_grid(placement) -> list[list[str]]:
+        """
+        Loads the placement grid into a 2D array of characters
+
+        :param placement:
+        :return:
+        """
+        grid = [[]]
+        for i in range(4):
+            grid.append([])
+            for j in range(9):
+                grid[i].append(placement[i*9 + j])
+        return grid
+
+    def calculate_grid_points(self, auto: bool) -> int:
+        """
+        Calculates the points earned by the auto placement grid
+
+        :param auto: Whether or not the auto placement grid should be used
+        :return: The number of points the team earned from the grid
+        """
+        total = 0
+        placement = self.auto_placement if auto else self.placement
+        index = 0
+        if not auto:
+            for char in self.auto_placement:
+                if char == '1':
+                    placement = placement[:index] + '0' + placement[index + 1:]
+                index += 1
+
+        # print(placement)
+        for row in range(4):
+            for index in range(9):
+                bit_index = row*9 + index
+                if placement[bit_index] == '1':
+                    # print(bit_index)
+                    if row == 0:  # The top row of the grid
+                        total += 6 if auto else 5
+                    elif row == 1:  # The second
+                        total += 4 if auto else 3
+                    else:  # The bottom rows 3 and 4 (indices 2 and 3)
+                        total += 3 if auto else 2
+
+        return total
+
+    def calculate_line_bonus(self):
+        total = 0
+        # For the endgame we need to check for the 3 in a row
+        # This includes the cubes and cones from the auto
+        index = 0
+        placement = self.placement
+        for char in self.auto_placement:
+            if char == '1':
+                placement = placement[:index] + '1' + placement[index + 1:]
+            index += 1
+
+        print(placement)
+
+        grid = self.load_grid(placement)
+        for row in range(2):  # Count the top two rows of either cones or cubes
+            con_count = 0
+            for index in range(9):
+                if grid[row][index] == '1':
+                    con_count += 1
+                if con_count >= 3:
+                    total += 5
+                    con_count = 0
+
+        con_count = 0
+        for index in range(9):  # Count the bottom row of either cones or cubes
+            if grid[2][index] == '1' or grid[3][index] == '1':
+                con_count += 1
+            if con_count >= 3:
+                total += 5
+                con_count = 0
+
+        return total
+
+    def calculate_points(self) -> int:
+        total = self.calculate_grid_points(auto=True)  # Correct
+        total += self.calculate_grid_points(auto=False)  # Correct
+        total += self.calculate_line_bonus()
+        # total += self.auto_baseline * 3
+        return total
+
+    @staticmethod
     def decode_grid(grid_val):
         def _get_bit(value: int, location: int) -> bool:
             return bool((value >> location) & 1)
 
-        positions: list[bool] = []
-        for i in range(0, 36):
+        positions: list[list[bool]] = [[]]
+        for i in range(0, 9):
             for j in range(0, 4):
-                positions[i] = _get_bit(grid_val, i)
+                positions[j][i] = _get_bit(grid_val, i*j + j)
 
 
 class Pits(models.Model):
@@ -312,3 +404,9 @@ class Result(models.Model):
     def __str__(self):
         return str(self.match.match_number) + ' from ' + self.event.name
 
+
+class PointsConfig(models.Model):
+    # This class is created by Orgs to rank teams based on what they want to prioritize
+    # The defaults here are what we recommend.
+
+    pass
