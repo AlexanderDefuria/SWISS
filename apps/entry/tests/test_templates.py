@@ -12,14 +12,14 @@ from apps.entry.tests.common import *
 class MatchFormTest(LiveServerTestCase):
     browser = None
     port = 8888
-    user:User = None
-    base_url:str = None
+    user: User = None
+    base_url: str = None
 
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         opts = webdriver.FirefoxOptions()
-        opts.headless = True
+        opts.headless = False
         cls.browser = webdriver.Firefox(options=opts)
         cls.base_url = cls.live_server_url
 

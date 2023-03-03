@@ -21,10 +21,10 @@ from django_ajax.decorators import ajax
 from django.conf import settings
 
 from apps.entry.graphing import *
-from apps.entry.templatetags.common_tags import *
 from apps import importFRC
 from apps.entry.forms import MatchScoutForm, RegistrationForm, PitScoutForm, LoginForm, ImportForm
-from apps.entry.imports import import_first, get_team_list,get_team_logos
+from apps.entry.imports import import_first, get_team_list, get_team_logos
+from apps.entry.models import *
 
 register = Library
 

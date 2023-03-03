@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 
 from apps.entry.models import *
-from apps.entry.views import *
+from apps.entry.views import get_present_teams
 
 register = template.Library()
 
@@ -177,7 +177,7 @@ def get_all_logged_in_users(*args):
 
 
 @register.simple_tag
-def get_all_present_teams(user):
+def get_event_teams(user):
     return get_present_teams(user)
 
 
@@ -191,7 +191,6 @@ def get_all_teams():
 @register.simple_tag
 def get_all_events():
     return Event.objects.all().order_by('start')
-
 
 
 @register.simple_tag
