@@ -20,7 +20,9 @@ class MatchFormTest(LiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
         opts = webdriver.FirefoxOptions()
+        os.environ.pop('GITHUB_ACTION_RUNNING', None)
         opts.headless = bool(os.getenv('GITHUB_ACTION_RUNNING', False))
+        opts.headless = False
         cls.browser = webdriver.Firefox(options=opts)
         cls.base_url = cls.live_server_url
 
