@@ -24,3 +24,5 @@ modules.xml
 .history
 .vscode/*
 *.vsix
+*.log
+match_history.xlsx
