@@ -47,7 +47,7 @@ jobs:
           echo "\"FIRST_API_TOKEN\": \"${{ secrets.FIRST_API_TOKEN }}\"," >> secrets.json
           echo "\"FIRST_API_BASE64\": \"${{ secrets.FIRST_API_BASE64 }}\"" >> secrets.json
           echo } >> secrets.json
-          $GITHUB_ACTION_RUNNING = "True"
+          $GITHUB_ACTION_RUNNING="True"
 
       - name: Run Tests
         run: |
