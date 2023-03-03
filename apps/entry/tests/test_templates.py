@@ -1,4 +1,5 @@
-from time import sleep
+import sys
+
 from django.test import LiveServerTestCase, override_settings
 from selenium import webdriver
 from selenium.common import NoSuchElementException
@@ -19,7 +20,7 @@ class MatchFormTest(LiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
         opts = webdriver.FirefoxOptions()
-        opts.headless = False
+        opts.headless = bool(os.getenv('GITHUB_ACTION_RUNNING', True))
         cls.browser = webdriver.Firefox(options=opts)
         cls.base_url = cls.live_server_url
 

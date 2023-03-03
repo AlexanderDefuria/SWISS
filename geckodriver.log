@@ -1638,3 +1638,53 @@ ALSA lib conf.c:4120:(snd_config_update_r) Cannot access file /usr/share/alsa/al
 ALSA lib seq.c:935:(snd_seq_open_noupdate) Unknown SEQ default
 JavaScript error: http://localhost:8888/entry/settings/, line 189: TypeError: document.getElementById(...) is null
 1677837258592	Marionette	INFO	Stopped listening on port 40273
+1677837724109	geckodriver	INFO	Listening on 127.0.0.1:58805
+1677837724606	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "-headless" "--remote-debugging-port" "34965" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilesJsSoi"
+*** You are running in headless mode.
+Gtk-Message: 05:02:04.688: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+Gtk-Message: 05:02:04.689: Failed to load module "appmenu-gtk-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1677837724993	Marionette	INFO	Marionette enabled
+1677837724995	Marionette	INFO	Listening on port 37937
+Read port: 37937
+WebDriver BiDi listening on ws://127.0.0.1:34965
+1677837725070	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilesJsSoi/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:34965/devtools/browser/9981d85a-0f2a-4e01-8060-f2cc143bf3aa
+JavaScript error: http://localhost:8888/entry/settings/, line 189: TypeError: document.getElementById(...) is null
+JavaScript error: http://localhost:8888/entry/settings/, line 238: TypeError: document.getElementById(...) is null
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+ALSA lib conf.c:4120:(snd_config_update_r) Cannot access file /usr/share/alsa/alsa.conf
+ALSA lib seq.c:935:(snd_seq_open_noupdate) Unknown SEQ default
+JavaScript error: http://localhost:8888/entry/settings/, line 189: TypeError: document.getElementById(...) is null
+1677837757435	Marionette	INFO	Stopped listening on port 37937
+ALSA lib conf.c:4120:(snd_config_update_r) Cannot access file /usr/share/alsa/alsa.conf
+ALSA lib seq.c:935:(snd_seq_open_noupdate) Unknown SEQ default
+1677837795234	geckodriver	INFO	Listening on 127.0.0.1:56567
+1677837795694	mozrunner::runner	INFO	Running command: "/snap/firefox/current/firefox.launcher" "--marionette" "-headless" "--remote-debugging-port" "37425" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileECoDnz"
+*** You are running in headless mode.
+Gtk-Message: 05:03:15.714: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+Gtk-Message: 05:03:15.714: Failed to load module "appmenu-gtk-module"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1677837795940	Marionette	INFO	Marionette enabled
+1677837795942	Marionette	INFO	Listening on port 38167
+Read port: 38167
+WebDriver BiDi listening on ws://127.0.0.1:37425
+1677837796037	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileECoDnz/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:37425/devtools/browser/dae28302-99b5-48bd-83f6-2f292d2bf261
+JavaScript error: http://localhost:8888/entry/settings/, line 189: TypeError: document.getElementById(...) is null
+JavaScript error: http://localhost:8888/entry/settings/, line 238: TypeError: document.getElementById(...) is null
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:8888."
+ALSA lib conf.c:4120:(snd_config_update_r) Cannot access file /usr/share/alsa/alsa.conf
+ALSA lib seq.c:935:(snd_seq_open_noupdate) Unknown SEQ default
+JavaScript error: http://localhost:8888/entry/settings/, line 189: TypeError: document.getElementById(...) is null
+1677837828698	Marionette	INFO	Stopped listening on port 38167
