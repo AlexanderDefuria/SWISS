@@ -7,7 +7,7 @@ from utils import get_secret
 
 _headers = {'Authorization': f'Basic {get_secret("FIRST_API_BASE64")}'}
 events = []
-_baseUrl = 'https://frc-api.firstinspires.org/v3.0/2023/'
+_baseUrl = 'https://frc-api.firstinspires.org/v3.0/2022/'
 
 
 def make_request(request: str):
@@ -98,6 +98,14 @@ def get_team_list(event_code: str = None, team_number: int = None):
             team.id = team.number
             team.pick_status = 0
             team.save()
+def calculate_WinLoss(team: Team):
+    try:
+        team.winRate = (team.totalMatchesWon / team.totalMatchesPlayed) * 100
+        team.save()
+    except:
+        print("Error, team not in database")
+
+    return
 
 def get_team_logos():
     base_team_logo_info = make_request(f'{_baseUrl}avatars').json()
@@ -115,7 +123,37 @@ def get_team_logos():
                 currentTeam = image_data["teamNumber"]
                 currentImage = image_data["encodedAvatar"]
             team_image.save()
+def get_match_data_event(event: Event):
+    try:
+        base_data = make_request(f'{_baseUrl}matches/{event.FIRST_key}?tournamentLevel=Qualification').json()
+        base_data = base_data["Matches"]
+        number_of_matches = len(base_data)
+        for match in range(number_of_matches):
 
+            current_match = base_data[match]
+            if current_match["scoreRedFinal"] > current_match["scoreBlueFinal"]:
+                winner = "R"
+            elif current_match["scoreRedFinal"] < current_match["scoreBlueFinal"]:
+                winner = "B"
+
+            for team in current_match["teams"]:
+
+                team_number = team["teamNumber"]
+                team_info = Team.objects.get(id=team_number)
+
+                if team["station"][0] == winner:
+                    team_info.totalMatchesWon += 1
+
+                else:
+                    team_info.totalMatchesLost += 1
+
+                team_info.totalMatchesPlayed += 1
+
+                team_info.save()
+
+                calculate_WinLoss(team_info)
+    except:
+        print(f"Error, event not in database for {event.FIRST_key}")
 
 def import_first(event_code: str = None, team_number: int = None) -> bool:
     """

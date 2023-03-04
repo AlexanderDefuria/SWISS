@@ -3,8 +3,11 @@ import uuid as uuid
 
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from picklefield.fields import PickledObjectField
 from datetime import date
 from django.contrib.auth.models import User
+from django.contrib.postgres.fields import ArrayField
+
 
 
 class Team(models.Model):
@@ -18,6 +21,12 @@ class Team(models.Model):
     pick_status = models.IntegerField(default=0, validators=[MaxValueValidator(2), MinValueValidator(0)])
     glance = models.FileField(upload_to='json/', null=True, blank=True)
     avatar = models.CharField(default="NA", max_length=10000)
+    totalMatchesWon = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
+    totalMatchesLost = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
+    totalMatchesPlayed = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
+    winRate = models.FloatField(default=0, validators=[MinValueValidator(0.0), MaxValueValidator(100.0)])
+    eventsAttended = ArrayField(models.CharField(max_length=6, blank=True))
+
 
     def first_image(self):
         try:
