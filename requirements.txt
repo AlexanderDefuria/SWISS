@@ -1,7 +1,7 @@
 asgiref==3.5.0
 certifi==2022.12.7
 chardet==4.0.0
-Django==4.1.7
+Django==4.1.10
 djangoajaxswiss==4.1
 gunicorn==20.1.0
 idna==3.3
