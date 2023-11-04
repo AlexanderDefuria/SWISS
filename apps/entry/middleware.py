@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from apps.entry.models import OrgMember, OrgSettings
+from apps.organizations.models import OrgMember, OrgSettings
 from django.http import HttpResponse
 from django.conf import settings
 import traceback

@@ -7,6 +7,7 @@ from django.contrib.sessions.models import Session
 from django.db.models import Count
 from django.urls import reverse_lazy
 from django.utils import timezone
+from gunicorn.config import User
 
 from apps.entry.models import *
 from apps.entry.views import *

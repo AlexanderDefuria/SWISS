@@ -4,7 +4,6 @@ venv/*
 venv/
 /venv/
 /venv/*
-settings.py
 media/json/*
 media/robots/*
 !media/robots/0.png

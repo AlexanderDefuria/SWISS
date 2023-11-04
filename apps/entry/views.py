@@ -1,29 +1,28 @@
-import os
-import ast
+import datetime
 import json
+import os
 
-import requests
-from openpyxl import Workbook
-from datetime import datetime
-
-from django.core import serializers
-from django.shortcuts import render
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect, HttpResponse, Http404, JsonResponse
-from django.views import generic
-from django.views.decorators.csrf import csrf_exempt
-from django.template import Library, loader
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core import serializers
+from django.http import HttpResponseRedirect, HttpResponse, Http404, JsonResponse, QueryDict
+from django.shortcuts import render
+from django.template import Library
+from django.views import generic
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import FormMixin
 from django_ajax.decorators import ajax
-from django.conf import settings
+from openpyxl.workbook import Workbook
 
-from apps.entry.graphing import *
 from apps.entry.templatetags.common_tags import *
-from apps import importFRC
-from apps.entry.forms import MatchScoutForm, RegistrationForm, PitScoutForm, LoginForm, ImportForm
-from apps.entry.imports import import_first, get_team_list,get_team_logos,get_match_data_event
+from apps.common import importFRC
+from apps.entry.forms import MatchScoutForm, PitScoutForm, LoginForm, ImportForm
+from apps.entry.imports import import_first, get_match_data_event
+from apps.entry.errors import NoTeamsProvided, NoFieldsProvided
+from apps.entry.graphing import graph
+from apps.organizations.forms import RegistrationForm
+from apps.organizations.models import OrgSettings, OrgMember, Organization
 
 register = Library
 
@@ -168,7 +167,7 @@ def update_csv(organization):
 @login_required(login_url='entry:login')
 def write_image_upload(request):
     if request.method == 'POST':
-        team_number = make_int(request.POST.get('teamNumber', 0))
+        team_number = make_int(request.POST.get('teamNumber'))
         team = Team.objects.get(number=team_number)
 
         request.session.set_test_cookie()
@@ -280,7 +279,8 @@ def handle_query_present_teams(view):
 class FRCdata(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry.login'
     template_name = 'entry/frc.html'
-    def get(self, request,):
+
+    def get(self, request, **kwargs):
         # get_team_logos()
         # import_first()
         # get_team_list()
@@ -296,6 +296,7 @@ class FRCdata(LoginRequiredMixin, generic.TemplateView):
             "img":"NA"
             }
         return render(request, 'entry/frc.html', context)
+
 
 class TeamSettingsNotFoundError(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry:login'
@@ -604,7 +605,7 @@ class Registration(FormMixin, generic.TemplateView):
                     user.orgmember.position = 'LS'
                     user.orgmember.organization = org
                 else:
-                    org = Organization.objects.get(name=form.cleaned_data['org_name'])
+                    org = Organization.objects.get()
                     if str(org.reg_id)[:6] != form.cleaned_data['org_reg_id']:
                         raise Organization.DoesNotExist
                     user.orgmember.organization = org
@@ -670,12 +671,12 @@ class Settings(LoginRequiredMixin, generic.TemplateView):
 
     def post(self, request, *args, **kwargs):
         response = HttpResponseRedirect(reverse_lazy('entry:settings'))
-        response.set_cookie('images', request.POST.get('images', ''))
-        response.set_cookie('filters', request.POST.get('filters', ''))
-        response.set_cookie('districtTeams', request.POST.get('districtTeams', ''))
-        response.set_cookie('tutorialCompleted', request.POST.get('tutorialCompleted', ''))
-        response.set_cookie('teamsBehaviour', request.POST.get('teamsBehaviour', ''))
-        response.set_cookie('teamListType', request.POST.get('teamListType', ''))
+        response.set_cookie('images', request.POST.get('images'))
+        response.set_cookie('filters', request.POST.get('filters'))
+        response.set_cookie('districtTeams', request.POST.get('districtTeams'))
+        response.set_cookie('tutorialCompleted', request.POST.get('tutorialCompleted'))
+        response.set_cookie('teamsBehaviour', request.POST.get('teamsBehaviour'))
+        response.set_cookie('teamListType', request.POST.get('teamListType'))
 
         if self.request.user.orgmember.position == "LS":
             new_settings = OrgSettings()
