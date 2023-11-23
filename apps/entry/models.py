@@ -208,7 +208,9 @@ class Pits(models.Model):
         ("none", "Doesn't Drive?"),
         ("cim", "CIM Motors"),
         ("falcon", "Falcon 500 Motors"),
+        ("kraken", "Kraken X60"),
         ("neo", "NEO Motors"),
+        ("neovtx", "NEO Vortex"),
         ("other", "Unusual DriveTrain... See Comments")
     ]
 
