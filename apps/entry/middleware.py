@@ -53,10 +53,14 @@ class ValidateUser:
         if app == "hours" and view in ["view", "card"]:
             return response
 
+        if view == "login" and request.user.is_authenticated:
+            return HttpResponseRedirect(reverse_lazy('entry:index'))
+
         if view == "logout" or view == "login" or app == "media" or view == "register":
             return response
 
         if not request.user.is_authenticated:
+            print("\n" + str(request.user) + " IS REQUESTING " + request.path + " WITHOUT AUTHENTICATION!\n")
             return HttpResponseRedirect(reverse_lazy('entry:login'))
 
         if request.user.orgmember.position == "NA":

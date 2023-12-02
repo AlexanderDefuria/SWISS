@@ -15,6 +15,7 @@ from django.views.generic.edit import FormMixin
 from django_ajax.decorators import ajax
 from openpyxl.workbook import Workbook
 
+from swiss import settings
 from apps.entry.templatetags.common_tags import *
 from apps.common import importFRC
 from apps.entry.forms import MatchScoutForm, PitScoutForm, LoginForm, ImportForm
@@ -550,7 +551,6 @@ class Login(FormMixin, generic.TemplateView):
 
     def post(self, request, *args, **kwargs):
         form = LoginForm(request.POST)
-        context = {'form': form}
         if form.is_valid():
             user = auth.authenticate(
                 request,

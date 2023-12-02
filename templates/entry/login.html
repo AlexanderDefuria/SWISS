@@ -43,7 +43,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'UserIcon.png' %}" alt="Download Icon">
 				<h1>Log In</h1>
 			</div>
-			<form action="{% url 'entry:login' %}" method="POST" enctype="multipart/form-data" id="form">
+			<form action="{% url 'entry:login' %}" method="POST" enctype="multipart/form-data" id="form" name="loginForm">
 				{% csrf_token %}
 				<div class="formItem" style="margin-top:10px; background:none;">
 					<label for="username">Username:</label>
@@ -53,7 +53,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					<label for="password">Password:</label>
 					<input type="password" name="password" id="password" style="margin-left: 1rem">
 				</div>
-				<button class="updateButton loginButton" type="submit">Log In</button>
+				<button class="updateButton loginButton" type="submit" name="loginButton">Log In</button>
 				<a id="registerBox" class="div formItem" href="{% url 'entry:register' %}" style="background-color: #1e1e1e">
 					<button name="submit" id="submitButton" type="submit" style="pointer-events: none;">Register</button>
 				</a>

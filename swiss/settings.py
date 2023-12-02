@@ -12,10 +12,21 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import json
-import boto3
-from utils import get_secret, BASE_DIR
 from django.core.exceptions import ImproperlyConfigured
 from django.forms.renderers import TemplatesSetting
+
+
+BASE_DIR = os.path.join(os.path.dirname(__file__), os.pardir)
+with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
+    secrets = json.load(secrets_file)
+
+def get_secret(setting, secrets=secrets) -> str:
+    """Get secret setting or fail with ImproperlyConfigured"""
+    try:
+        return secrets[setting]
+    except KeyError:
+        raise ImproperlyConfigured("Set the {} setting".format(setting))
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_secret('SECRET_KEY')
@@ -31,6 +42,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Application definition
 INSTALLED_APPS = [
+    'behave_django',
     'django_ajax',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,7 +54,6 @@ INSTALLED_APPS = [
     'apps.organizations.apps.OrganizationsConfig',
     'apps.entry.apps.EntryConfig',
     'apps.promotional.apps.PromotionalConfig',
-    'django_rename_app',
     'storages'
 ]
 

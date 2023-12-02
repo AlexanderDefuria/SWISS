@@ -24,6 +24,7 @@ class Event(models.Model):
     def __str__(self):
         return str(self.name)
 
+
 class OrgSettings(models.Model):
     # Organization wide settings for users.
     class Meta:
@@ -66,7 +67,7 @@ class Organization(models.Model):
 
     name = models.CharField(max_length=100, blank=False, unique=True)
     reg_id = models.UUIDField(primary_key=False, default=uuid.uuid4, editable=True)
-    settings = models.OneToOneField(OrgSettings, on_delete=models.CASCADE, default=0)
+    settings = models.OneToOneField(OrgSettings, on_delete=models.PROTECT, default=0)
 
     def __str__(self):
         return self.name
@@ -74,8 +75,8 @@ class Organization(models.Model):
 
 class OrgMember(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, blank=True, null=True)
     tutorial_completed = models.BooleanField(default=False)
+    organization = models.ForeignKey(Organization, on_delete=models.PROTECT, default=0)
     position = models.CharField(max_length=2, choices=OrgSettings.AVAILABLE_POSITIONS, default="GS")
 
     def __str__(self):

@@ -26,6 +26,9 @@
     <orderEntry type="library" name="@types/jquery" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
   </component>
+  <component name="PyBDDFrameworkConfig">
+    <option name="preferedFrameworkName" value="behave" />
+  </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
     <option name="TEMPLATE_FOLDERS">

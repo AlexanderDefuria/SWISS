@@ -24,6 +24,7 @@ urlpatterns = [
     path('entry/', include(('apps.entry.urls', 'entry'), namespace='entry')),
     path('promotional/', include(('apps.promotional.urls', 'promotional'), namespace='promotional')),
     path('admin/', admin.site.urls),
+    path('login/', RedirectView.as_view(url=reverse_lazy('entry:index'), permanent=True)),
     path('', RedirectView.as_view(url=reverse_lazy('promotional:index'), permanent=False))
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

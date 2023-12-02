@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				<img class="infoIcon" src="{{ MEDIA_URL }}{% static 'NewUserIcon.png' %}" alt="Download Icon">
 				<h1>Register New User</h1>
 			</div>
-			<form action="{% url 'entry:register' %}" class="" method="post" name="mainForm" id="mainForm">
+			<form action="{% url 'entry:register' %}" class="" method="post" name="registrationForm" id="mainForm">
 				{% csrf_token %}
 				{{ form }}
 			</form>

@@ -5,7 +5,7 @@ WORKDIR /usr/share/FRC-Scouting
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-ADD ./ /usr/share/FRC-Scouting/
+ADD ../.. /usr/share/FRC-Scouting/
 
 RUN set -ex \
     && apt-get update \
@@ -14,7 +14,7 @@ RUN set -ex \
     && python3 -m venv --copies ./venv \
     && ./venv/bin/pip3 install -r requirements.txt
 
-ADD ./FRC-Scouting.nginx /etc/nginx/sites-available/FRC-Scouting
+ADD FRC-Scouting.nginx /etc/nginx/sites-available/FRC-Scouting
 RUN set -ex \
     && ln -s /etc/nginx/sites-available/FRC-Scouting /etc/nginx/sites-enabled \
     && echo "STATIC_ROOT = os.path.join(BASE_DIR, 'static')" >> ./FRC-Scouting/settings.py

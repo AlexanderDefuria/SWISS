@@ -3,7 +3,7 @@ import traceback
 
 import requests
 from apps.entry.models import Team, Event
-from utils import get_secret
+from swiss.settings import get_secret
 
 _headers = {'Authorization': f'Basic {get_secret("FIRST_API_BASE64")}'}
 events = []
