@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.forms',
-    'apps.organizations.apps.OrganizationsConfig',
+    'apps.organization.apps.OrganizationConfig',
     'apps.entry.apps.EntryConfig',
     'apps.promotional.apps.PromotionalConfig',
     'storages'
@@ -132,7 +132,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'apps.organizations.backends.HashedPasswordAuthBackend',
+    'apps.organization.backends.HashedPasswordAuthBackend',
 ]
 
 # Internationalization

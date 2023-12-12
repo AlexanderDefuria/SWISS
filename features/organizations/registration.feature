@@ -14,11 +14,10 @@ Feature: Registration
    And I should see the dashboard
 
  Scenario: Registering a new organization
-   Given I am logged in
+   Given I am anonymous
    When I access the registration page
    Then I should see the registration form
-   When I register a new user
-   And a new organization
-   And click ""
+   When I add a new organization's details
+   And I submit a valid registration form
    Then I should be redirected to /entry/
    And I should see the dashboard

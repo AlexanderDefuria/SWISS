@@ -3,14 +3,16 @@ import inspect
 import math
 
 from django import template
+from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 from django.db.models import Count
 from django.urls import reverse_lazy
 from django.utils import timezone
-from gunicorn.config import User
 
-from apps.entry.models import *
-from apps.entry.views import *
+
+from apps.entry.views.views import get_present_teams
+from apps.entry.models import Team, Match, Pits
+from apps.organization.models import Event
 
 register = template.Library()
 

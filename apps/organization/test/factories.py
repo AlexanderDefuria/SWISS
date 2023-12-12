@@ -2,8 +2,7 @@ import factory
 from django.contrib.auth.models import User
 from apps.common.tests.faker import faker
 
-from apps.organizations.models import Organization, Event, OrgSettings, OrgMember
-
+from apps.organization.models import Organization, Event, OrgSettings, OrgMember
 
 
 class EventFactory(factory.django.DjangoModelFactory):
@@ -44,7 +43,6 @@ class UserFactory(factory.django.DjangoModelFactory):
     username = factory.Sequence(lambda n: f'user{n}')
     email = factory.LazyAttribute(lambda obj: f'{obj.username}@example.com')
     password = factory.PostGenerationMethodCall('set_password', 'password!')
-
 
 
 class OrgMemberFactory(factory.django.DjangoModelFactory):

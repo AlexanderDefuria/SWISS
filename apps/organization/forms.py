@@ -6,7 +6,7 @@ from django.forms import widgets
 
 from apps.entry.forms import grouping
 from apps.entry.widgets import BooleanWidget
-from apps.organizations.models import Organization
+from apps.organization.models import Organization
 
 
 class RegistrationForm(forms.Form):
@@ -33,9 +33,11 @@ class RegistrationForm(forms.Form):
     def clean_username(self):
         username = self.cleaned_data['username']
         try:
-            User.objects.get()
+            User.objects.get(username=username)
         except User.DoesNotExist:
             return username
+        except User.MultipleObjectsReturned:
+            raise ValidationError('Username already exists and multiple users have it.')
         raise ValidationError('Username already exists.')
 
     def clean_password_validate(self):

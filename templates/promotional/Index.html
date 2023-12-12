@@ -55,7 +55,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <a href="#functions" class="highLevelLink" id="menuServices"> <span>What does it do?</span> </a>
             </div>
             <!-- LINK TO ENTRY LOGIN PAGE GOES BELOW -->
-            <button id="loginButton" onClick="location.href = '{% url 'entry:login' %}' ">Login</button>
+            <button id="loginButton" onClick="location.href = '{% url 'organization:login' %}' ">Login</button>
 		</div>
         <div class="menuItems" id="mobile">
             <div class="hamburgerButton" onClick="openNav()">
@@ -70,7 +70,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <a href="#functions">What does it do?</a>
                 <a href="#">Contact</a>
                 <!-- LINK TO ENTRY LOGIN PAGE GOES BELOW -->
-                <a href="{% url 'entry:login' %}" id="loginLink">Login / Sign Up </a>
+                <a href="{% url 'organization:login' %}" id="loginLink">Login / Sign Up </a>
                 <style>
                     #loginLink:after { content: ' \279C';}
                     #loginButton:after { content: ' \279C';}

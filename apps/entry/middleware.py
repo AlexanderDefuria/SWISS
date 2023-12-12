@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from apps.organizations.models import OrgMember, OrgSettings
+from apps.organization.models import OrgMember, OrgSettings
 from django.http import HttpResponse
 from django.conf import settings
 import traceback
@@ -61,10 +61,10 @@ class ValidateUser:
 
         if not request.user.is_authenticated:
             print("\n" + str(request.user) + " IS REQUESTING " + request.path + " WITHOUT AUTHENTICATION!\n")
-            return HttpResponseRedirect(reverse_lazy('entry:login'))
+            return HttpResponseRedirect(reverse_lazy('organization:login'))
 
         if request.user.orgmember.position == "NA":
-            return HttpResponseRedirect(reverse_lazy('entry:logout'))
+            return HttpResponseRedirect(reverse_lazy('organization:logout'))
 
         print(request.user.orgmember)
 

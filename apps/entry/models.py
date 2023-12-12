@@ -2,7 +2,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
-from apps.organizations.models import Organization, Event
+from apps.organization.models import Organization, Event
 
 
 class Team(models.Model):

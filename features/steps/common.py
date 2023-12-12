@@ -1,3 +1,5 @@
+from time import sleep
+
 from behave import *
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
@@ -44,7 +46,7 @@ def step_impl(context):
     assert check_password('password!', context.user.password)
 
     client = Client()
-    client.login(email='test@email.com', password='password')
+    client.login(username=context.user.username, password='password!')
     cookie = client.cookies['sessionid']
 
     # Selenium will set cookie domain based on current page domain.

@@ -193,7 +193,7 @@ typeahead.addEventListener('input', function() {
 	</div>
 <script>
 	function logout() {
-		window.location.replace("{% url 'entry:logout' %}");
+		window.location.replace("{% url 'organization:logout' %}");
 	}
     function update_cookie_fields(){
         document.getElementById('images_'.concat('{% get_cookie request 'images' %}'.toLowerCase())).checked = true;

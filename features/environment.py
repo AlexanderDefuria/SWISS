@@ -1,12 +1,10 @@
 from selenium import webdriver
-from selenium.webdriver.support.wait import WebDriverWait
-from apps.organizations.test.factories import OrgMemberFactory
+from apps.organization.test.factories import OrgMemberFactory
 
 
 def before_all(context):
     context.browser = webdriver.Chrome()
     context.browser.implicitly_wait(1)
-    # context.wait = WebDriverWait(context.browser, 3)
 
 
 def after_all(context):
