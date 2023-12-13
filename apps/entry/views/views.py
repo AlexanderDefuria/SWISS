@@ -1,111 +1,25 @@
 import datetime
-import json
 import os
 
-from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
-from django.core import serializers
-from django.http import HttpResponseRedirect, HttpResponse, Http404, JsonResponse, QueryDict
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render
 from django.template import Library
 from django.urls import reverse_lazy
 from django.views import generic
-from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import FormMixin
-from django_ajax.decorators import ajax
 from openpyxl.workbook import Workbook
 
-from swiss import settings
 from apps.common import importFRC
-from apps.entry.forms import MatchScoutForm, LoginForm, ImportForm
-from apps.entry.models import Images, Schedule, Result, Attendance, Team, Match, Pits
+from apps.entry.forms import MatchScoutForm, ImportForm
 from apps.entry.imports import import_first, get_match_data_event
-from apps.entry.errors import NoTeamsProvided, NoFieldsProvided
-from apps.entry.graphing import graph
-from apps.organization.forms import RegistrationForm
-from apps.organization.models import OrgSettings, OrgMember, Organization, Event
+from apps.entry.models import Images, Team, Match, Pits
+from apps.organization.models import OrgSettings, Event
+from apps.entry.views.helpers import get_present_teams, make_int
+from swiss import settings
 
 register = Library
-
-
-@ajax
-@csrf_exempt
-@login_required(login_url='organization:login')
-def update_graph(request):
-    graph_type = request.POST.getlist('graphType')[0]
-    try:
-        output = graph(graph_type, request)
-        if output == "lazy":
-            return HttpResponseRedirect(reverse_lazy('entry:visualize'))
-        print(output)
-        response = HttpResponse(json.dumps(output), content_type="application/json")
-        return response
-    except IOError:
-        print("Image not found")
-        return Http404
-    except NoTeamsProvided:
-        return NoTeamsProvided
-    except NoFieldsProvided:
-        return NoFieldsProvided
-
-
-@ajax
-@csrf_exempt
-@login_required(login_url='organization:login')
-def update_glance(request, pk):
-    matches = Match.objects.filter(team_id=pk,
-                                   ownership_id=request.user.orgmember.organization_id).order_by('event',
-                                                                                                 'match_number')
-    count = matches.count()
-    try:
-        if make_int(Team.objects.get(id=pk).glance.name.split('_')[2]) == count:
-            return HttpResponse(Team.objects.get(id=pk).glance.read(), content_type='application/json')
-    except IndexError:
-        print("")
-    except AttributeError:
-        print("")
-    except FileNotFoundError:
-        print("Creating new glance json file for " + str(Team.objects.get(id=pk).glance))
-
-    matches_json = serializers.serialize('json', matches)
-    if not settings.USE_MEDIA_SPACES:
-        f = open(os.path.join(settings.BASE_DIR, 'glance_temp.json'), 'w')
-        f.write(str(matches_json))
-        f = open(os.path.join(settings.BASE_DIR, 'glance_temp.json'), 'r', encoding='UTF-8')
-        team = Team.objects.get(id=pk)
-        team.glance.delete()
-        team.glance.save(
-            'glance_' + str(pk) + '_' + str(count) + '_' + str(datetime.datetime.now()) + '.json', f)
-    return HttpResponse(matches_json, content_type='application/json')
-
-
-@ajax
-@csrf_exempt
-@login_required(login_url='organization:login')
-def update_fields(request):
-    if request.method == "GET":
-        try:
-            path = 'scoring.json'
-            path = os.path.join(settings.BASE_DIR, path)
-            with open(path) as f:
-                result = json.load(f)
-            return JsonResponse(result)
-        except IOError:
-            print("Fields file not found")
-            return Http404
-    else:
-        return HttpResponseRedirect(reverse_lazy('entry:visualize'))
-
-
-def decode_ajax(request):
-    return dict(QueryDict(request.body.decode()))
-
-
-def scout_lead_check(user):
-    return user.groups.filter(name="Scouting").exists()
-
 
 # @user_passes_test(scout_lead_check, login_url='organization:login')
 @login_required(login_url='organization:login')
@@ -121,22 +35,6 @@ def download(request):
             response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(path)
             return response
 
-    return Http404
-
-
-@ajax
-@csrf_exempt
-@login_required(login_url='organization:login')
-def get_csv_ajax(request):
-    path = 'match_history.xlsx'
-    path = os.path.join(settings.BASE_DIR, path)
-    update_csv(request.user.orgmember.organization)
-
-    if os.path.exists(path):
-        with open(path, 'rb') as fh:
-            response = HttpResponse(fh.read(), content_type="text/xlsx")
-            response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(path)
-            return response
     return Http404
 
 
@@ -237,40 +135,6 @@ def handler404(request, exception, template_name="entry/secret.html"):
     response.status_code = 404
     return response
 
-
-def make_int(s):
-    if isinstance(s, str):
-        if len(s) == 0:
-            return 0
-    if s == 'False':
-        return False
-    elif s == 'True':
-        return True
-    s = str(s)
-    s = s.strip()
-    return int(s) if s else 0
-
-
-def get_present_teams(user):
-    try:
-        # TODO See if this is actually the best way to query all teams from attendance...
-        # Note. We do need the actual Team objects (name, number, colour etc...) all that jazz
-        objects = Team.objects.filter(
-            number__in=Attendance.objects.filter(
-                event=user.orgmember.organization.settings.current_event
-            ).values_list('team_id', flat=True)
-        )
-        return objects
-    except OrgSettings.DoesNotExist:
-        return Team.objects.all()
-
-
-def handle_query_present_teams(view):
-    teams = get_present_teams(view.request.user)
-    if teams.count() == 1 and teams.first() == Team.objects.first():
-        return HttpResponseRedirect(reverse_lazy('entry:team_settings_not_found_error'))
-
-    return teams
 
 class FRCdata(LoginRequiredMixin, generic.TemplateView):
     login_url = 'entry.login'

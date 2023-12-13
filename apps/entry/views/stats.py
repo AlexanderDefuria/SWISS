@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from apps.entry.models import Team, Match, Pits, Schedule, Result
-from apps.entry.views.views import handle_query_present_teams, get_present_teams
+from apps.entry.views.helpers import handle_query_present_teams, get_present_teams
 
 
 class Glance(LoginRequiredMixin, generic.DetailView):

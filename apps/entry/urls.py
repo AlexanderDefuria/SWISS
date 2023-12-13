@@ -1,7 +1,6 @@
-from django.urls import path, reverse_lazy
-from django.views.generic import RedirectView
+from django.urls import path
 
-from apps.entry.views import views, scout, stats
+from apps.entry.views import views, scout, stats, ajax
 
 urlpatterns = [
     path('', views.Index.as_view(), name='index'),
@@ -10,11 +9,11 @@ urlpatterns = [
     path('pitscout/', scout.PitScoutLanding.as_view(), name='pit_scout_landing'),
     path('pitscout/<slug:pk>/', scout.PitScout.as_view(), name='pit_scout'),
     path('visual/', stats.Visualize.as_view(), name='visualize'),
-    path('visual/update/', views.update_graph, name='update_graph'),
-    path('visual/update/fields', views.update_fields, name='update_fields'),
+    path('visual/update/', ajax.update_graph, name='update_graph'),
+    path('visual/update/fields', ajax.update_fields, name='update_fields'),
     path('glance/', stats.GlanceLanding.as_view(), name='glance_landing'),
     path('glance/<slug:pk>/', stats.Glance.as_view(), name='glance'),
-    path('glance/<slug:pk>/update/', views.update_glance, name='glance_update'),
+    path('glance/<slug:pk>/update/', ajax.update_glance, name='glance_update'),
     path('download/', views.download, name='download'),
     path('upload/', views.Upload.as_view(), name='upload'),
     path('upload/submit/', views.write_image_upload, name='upload_submit'),
@@ -28,7 +27,7 @@ urlpatterns = [
     path('experimental/', views.Experimental.as_view(), name='experimental'),
     path('about/', views.About.as_view(), name='about'),
     path('settings/', views.Settings.as_view(), name='settings'),
-    path('experimental/getcsv/', views.get_csv_ajax, name='getcsv'),
+    path('experimental/getcsv/', ajax.get_csv_ajax, name='getcsv'),
     path('tutorial/', views.Tutorial.as_view(), name='tutorial'),
     path('welcome/', views.Welcome.as_view(), name='welcome'),
     path('import/', views.Import.as_view(), name='import_from_first'),

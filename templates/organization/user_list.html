@@ -1,0 +1,73 @@
+{% load static %}
+{% load common_tags %}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SWISS Schedule</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'entry/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'entry/css/colorsheet.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'entry/css/formstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'entry/css/flickity.min.css' %}" media="screen">
+    <script src="{% static 'entry/js/script.js' %}"></script>
+    <script src="{% static 'entry/js/flickity.pkgd.min.js' %}"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
+    <meta name="theme-color" content="0F4D8D">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N73L5WQ');</script>
+    <!-- End Google Tag Manager -->
+</head>
+
+<body><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N73L5WQ"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+{% get_topbar 'headers/00_SettingsHeader.png' %}
+{% get_sidebar %}
+
+<div class="bodyContainer bodyBackground" id="bodyContainer">
+    <div class="heroContent">
+        <div class="heroText">
+            <h1>User List</h1>
+            <p>View/Edit/Delete Users from your organization.</p>
+        </div>
+    </div>
+    <div class="scheduleContainer" id="scheduleContainer" style="flex-wrap: wrap; white-space: nowrap; justify-content: center">
+        {% for user in user_list %}
+            <a href="{% url 'organization:user_detail' user.pk %}" class="scheduleLink" id="user_{{ user }}">
+                <div class="scheduleTile">
+                    <div style="width: auto">
+                        <h3>{{ user }}</h3>
+                        <p>{{ user.email }}</p>
+                        <p>{{ user }}</p>
+                        <p>{{ user }}</p>
+                        <p>{{ user }}</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+        {% for user in user_list %}
+            <a href="{% url 'organization:user_detail' user.pk %}" class="scheduleLink" id="user_{{ user }}">
+                <div class="scheduleTile">
+                    <div style="width: auto">
+                        <h3>{{ user }}</h3>
+                        <p>{{ user.email }}</p>
+                        <p>{{ user }}</p>
+                        <p>{{ user }}</p>
+                        <p>{{ user }}</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

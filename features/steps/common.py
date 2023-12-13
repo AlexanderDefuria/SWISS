@@ -1,12 +1,15 @@
 from time import sleep
 
 from behave import *
+from behave_django.decorators import fixtures
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import WebDriverWait
 from django.contrib.auth.hashers import check_password
 from django.test import Client
 
+from apps.entry.test.factories import ScheduleFactory
+from apps.organization.test.factories import EventFactory
 
 use_step_matcher("parse")
 
@@ -58,3 +61,67 @@ def step_impl(context):
         'path': '/',
     })
 
+
+@given("I am authenticated")
+def step_impl(context):
+    """
+    This means I am logged in and authenticated properly
+
+    :type context: behave.runner.Context
+    """
+    context.execute_steps("Given I am logged in")
+
+
+@when("I access the {page_name} page")
+def step_impl(context, page_name):
+    """
+    :param page_name: str
+    :type context: behave.runner.Context
+    """
+    context.execute_steps(f"Given I access the {page_name} page")
+
+
+@step("I access the {page_name} page")
+def step_impl(context, page_name):
+    """
+    :param page_name: str
+    :type context: behave.runner.Context
+    """
+    pages = {
+        'login': '/organization/login/',
+        'registration': '/organization/register/',
+        'logout': '/organization/logout/',
+        'home': '/entry/',
+        'settings': '/organization/settings/',
+    }
+    context.browser.get(context.base_url + pages[page_name])
+
+
+@when('I click the {tile_name} tile on the dashboard')
+def step_impl(context, tile_name):
+    """
+    :param tile_name: str
+    :type context: behave.runner.Context
+    """
+    if "tile" not in tile_name:
+        tile_name = "tile" + tile_name
+
+    context.browser.find_element(By.ID, tile_name).click()
+
+
+# @fixtures('fixtures.json')
+@given("We have a season")
+def step_impl(context):
+    """
+    :type context: behave.runner.Context
+    """
+    for i in range(10):
+        ScheduleFactory(event=context.organization.settings.current_event)
+
+
+@then("I should see the team details")
+def step_impl(context):
+    """
+    :type context: behave.runner.Context
+    """
+    raise NotImplementedError(u'STEP: Then I should see the team details')

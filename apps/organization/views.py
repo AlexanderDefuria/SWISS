@@ -1,5 +1,6 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -43,7 +44,7 @@ class Login(FormMixin, generic.TemplateView):
 
 
 class Registration(FormMixin, generic.TemplateView):
-    template_name = 'entry/register.html'
+    template_name = 'entry/registration.html'
     form_class = RegistrationForm
     success_url = 'entry:index'
 
@@ -88,7 +89,7 @@ class Registration(FormMixin, generic.TemplateView):
                 form.add_error('org_reg_id', "Org Name or UUID is incorrect.")
                 context = {'form': form}
                 print('org does not exist ' + str(form.cleaned_data))
-                return render(request, 'entry/register.html', context)
+                return render(request, 'entry/registration.html', context)
 
             user.save()
             user.orgmember.organization.settings.save()
@@ -101,4 +102,51 @@ class Registration(FormMixin, generic.TemplateView):
             auth.login(request, user)
             return HttpResponseRedirect(reverse_lazy('entry:index'))
 
-        return render(request, 'entry/register.html', context)
+        return render(request, 'entry/registration.html', context)
+
+
+class UserList(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'organization:login'
+    template_name = 'organization/user_list.html'
+
+    def get(self, request, *args, **kwargs):
+        if request.user.orgmember.position != 'LS':
+            return HttpResponseRedirect(reverse_lazy('entry:index'))
+        return super(UserList, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(UserList, self).get_context_data(**kwargs)
+        # context['users'] = User.objects.filter(orgmember__organization=self.request.user.orgmember.organization)
+        context['user_list'] = User.objects.all()
+        return context
+
+
+class UserDetail(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'organization:login'
+    template_name = 'organization/user_details.html'
+
+    def get(self, request, *args, **kwargs):
+        if request.user.orgmember.position != 'LS':
+            return HttpResponseRedirect(reverse_lazy('entry:index'))
+        return super(UserDetail, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(UserDetail, self).get_context_data(**kwargs)
+        context['user'] = User.objects.get(id=self.kwargs['pk'])
+        return context
+
+
+class Management(LoginRequiredMixin, generic.TemplateView):
+    login_url = 'organization:login'
+    template_name = 'organization/management.html'
+
+    def get(self, request, *args, **kwargs):
+        if request.user.orgmember.position != 'LS':
+            return HttpResponseRedirect(reverse_lazy('entry:index'))
+        return super(Management, self).get(request, *args, **kwargs)
+
+    @staticmethod
+    def post(request, *args, **kwargs):
+        if request.user.orgmember.position != 'LS':
+            return HttpResponseRedirect(reverse_lazy('entry:index'))
+        return HttpResponseRedirect(reverse_lazy('organization:management'))

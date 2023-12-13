@@ -21,6 +21,7 @@ class Team(models.Model):
     totalMatchesPlayed = models.IntegerField(default=0, validators=[MaxValueValidator(9999), MinValueValidator(0)])
     winRate = models.FloatField(default=0, validators=[MinValueValidator(0.0), MaxValueValidator(100.0)])
     eventsAttended = ArrayField(models.CharField(max_length=6, blank=True, default=''), default=list)
+    exists = models.BooleanField(default=True)
 
     def first_image(self):
         try:
@@ -30,6 +31,9 @@ class Team(models.Model):
 
     def __str__(self):
         return str(self.number) + " -- " + str(self.name)
+
+    def dne(self):
+        return self.number == 0 or self.exists is False
 
 
 class Images(models.Model):
@@ -236,4 +240,3 @@ class Result(models.Model):
 
     def __str__(self):
         return str(self.match.match_number) + ' from ' + self.event.name
-

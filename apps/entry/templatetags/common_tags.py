@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 
 
-from apps.entry.views.views import get_present_teams
+from apps.entry.views.helpers import get_present_teams
 from apps.entry.models import Team, Match, Pits
 from apps.organization.models import Event
 

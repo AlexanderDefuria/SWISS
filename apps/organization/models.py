@@ -2,8 +2,10 @@ import uuid
 from datetime import date
 
 from django.contrib.auth.models import User
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+
 
 class Event(models.Model):
     class Meta:
@@ -18,11 +20,17 @@ class Event(models.Model):
                                          MinValueValidator(date(2020, 1, 1))])
     end = models.DateField(default=date(2020, 1, 1),
                            validators=[MaxValueValidator(date(2220, 12, 31)), MinValueValidator(date(2020, 1, 1))])
-
     imported = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.name)
+
+    def save(
+        self, force_insert=False, force_update=False, using=None, update_fields=None
+    ):
+        if self.start > self.end:
+            raise ValueError("Start date cannot be after end date")
+        super().save(force_insert, force_update, using, update_fields)
 
 
 class OrgSettings(models.Model):

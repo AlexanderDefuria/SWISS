@@ -1,19 +1,20 @@
-import factory
+from factory.django import DjangoModelFactory
+from factory import SubFactory, LazyAttribute, Sequence, PostGenerationMethodCall
 from django.contrib.auth.models import User
-from apps.common.tests.faker import faker
 
+from apps.common.tests.faker import faker
 from apps.organization.models import Organization, Event, OrgSettings, OrgMember
 
 
-class EventFactory(factory.django.DjangoModelFactory):
+class EventFactory(DjangoModelFactory):
     class Meta:
         model = Event
         django_get_or_create = ('name',)
 
-    name = 'event' + faker.unique.name()
+    name = LazyAttribute(lambda x: "EVENT  " + faker.unique.city())
 
 
-class OrgSettingsFactory(factory.django.DjangoModelFactory):
+class OrgSettingsFactory(DjangoModelFactory):
     class Meta:
         model = OrgSettings
         django_get_or_create = ('allow_photos', 'allow_schedule', 'new_user_creation', 'new_user_position',
@@ -23,33 +24,33 @@ class OrgSettingsFactory(factory.django.DjangoModelFactory):
     allow_schedule = True
     new_user_creation = 'MM'
     new_user_position = 'OV'
-    current_event = factory.SubFactory(EventFactory)
+    current_event = SubFactory(EventFactory)
 
 
-class OrganizationFactory(factory.django.DjangoModelFactory):
+class OrganizationFactory(DjangoModelFactory):
     class Meta:
         model = Organization
         django_get_or_create = ('name', 'settings')
 
-    name = 'Organization ' + faker.unique.name()
-    settings = factory.SubFactory(OrgSettingsFactory)
+    name = LazyAttribute(lambda x: "ORG " + faker.unique.company())
+    settings = SubFactory(OrgSettingsFactory)
 
 
-class UserFactory(factory.django.DjangoModelFactory):
+class UserFactory(DjangoModelFactory):
     class Meta:
         model = User
 
     # Defaults (can be overrided)
-    username = factory.Sequence(lambda n: f'user{n}')
-    email = factory.LazyAttribute(lambda obj: f'{obj.username}@example.com')
-    password = factory.PostGenerationMethodCall('set_password', 'password!')
+    username = Sequence(lambda n: f'user{n}')
+    email = LazyAttribute(lambda obj: f'{obj.username}@example.com')
+    password = PostGenerationMethodCall('set_password', 'password!')
 
 
-class OrgMemberFactory(factory.django.DjangoModelFactory):
+class OrgMemberFactory(DjangoModelFactory):
     class Meta:
         model = OrgMember
         django_get_or_create = ('user', 'organization', 'position')
 
-    user = factory.SubFactory(UserFactory)
-    organization = factory.SubFactory(OrganizationFactory)
+    user = SubFactory(UserFactory)
+    organization = SubFactory(OrganizationFactory)
     position = 'LS'

@@ -1,0 +1,154 @@
+{% load static %}
+{% load common_tags %}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SWISS Settings</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'entry/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'entry/css/colorsheet.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'entry/css/formstyle.css' %}">
+    <script src="{% static 'entry/js/jquery.min.js' %}"></script>
+    <script src="{% static 'entry/js/validate.js' %}"></script>
+    <script src="{% static 'entry/js/script.js' %}"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}{% static 'favicon/favicon-16x16.png' %}">
+    <meta name="theme-color" content="0F4D8D">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N73L5WQ');</script>
+    <!-- End Google Tag Manager -->
+</head>
+
+<body onload="update_cookie_fields()"><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N73L5WQ"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+{% get_topbar 'headers/00_SettingsHeader.png' %}
+{% get_sidebar %}
+{% is_lead_scout request as lead_scout %}
+
+<div class="bodyContainer bodyBackground" id="bodyContainer" style="{# background-image: url({{ MEDIA_URL }}{% static 'SettingsBackground.png' %}) #}">
+    <form class="formContainer" method="post" name="mainForm" id="mainForm" method="POST">
+        {% csrf_token %}
+        <div style="display: flex; justify-content: space-between">
+            {% if lead_scout %}
+                <a href="{% url 'entry:settings' %}">
+                    <div class="formItem" >
+                        <button class="dataButton" disabled>Personal Settings</button>
+                    </div>
+                </a>
+                <a href="{% url 'organization:management' %}">
+                    <div class="formItem" >
+                        <button class="dataButton" disabled>Organization Settings</button>
+                    </div>
+                </a>
+            {% else %}
+                <h1 class="sectionHeader">Personal Settings</h1>
+            {% endif %}
+        </div>
+        {% if lead_scout %}
+            <h1 class="sectionHeader">Management</h1>
+            <a href="{% url 'organization:user_list' %}">
+                <div class="formItem">
+                    <label for="userList">User List</label>
+                </div>
+            </a>
+            <a href="{% url 'organization:match_list' %}">
+                <div class="formItem">
+                    <label for="userList">Match List</label>
+                </div>
+            </a>
+
+            <h1 class="sectionHeader">Organization Settings</h1>
+            <p style="margin: 0">
+                You are seeing these options because you are listed as a Team Lead Scout or Mentor
+            </p>
+
+            <h2>User Registration</h2>
+            <div class="formItem">
+                <label for="intakeType">Registration -- IMPLEMENTING</label>
+                <select name="intakeType" id="intakeType" required>
+                    <option value="0">Manual Approval, Open Registration</option>
+                    <option value="1">Manual Creation of All Users</option>
+                    <option value="2">Open Registration, Free Entry </option>
+                </select>
+            </div>
+            <div class="formItem">
+                <label>Unique Team ID</label>
+                <div>
+                    <p style="user-select: all">{% get_team_uuid request %}</p>
+                </div>
+            </div>
+            <h2>Current Event</h2>
+            <div class="formItem">
+                <label for="currentEvent">Current Event for Team</label>
+                <input type="text" class="typeahead" id="typeahead" style="display: block">
+                <select name="currentEvent" id="currentEvent"  required>
+                    {% get_current_event request as curEvent %}
+                    <option value="{{ curEvent.FIRST_key }}">{{ curEvent.name }}</option>
+                    {% get_all_events as eventList %}
+                    {% for event in eventList %}
+                        <option value="{{ event.FIRST_key }}">{{ event.name }}</option>
+                    {% endfor %}
+                </select>
+                <style></style>
+                <script>
+                    const typeahead = document.querySelector('#typeahead');
+                    const select = document.querySelector('#currentEvent');
+
+                    typeahead.addEventListener('input', function() {
+                        const value = this.value.toLowerCase();
+                        for (const option of select.options) {
+                            if (option.text.toLowerCase().startsWith(value)) {
+                                option.selected = true;
+                                break;
+                            }
+                        }
+                    });
+                </script>
+
+
+            </div>
+            <h1 class="sectionHeader">More</h1>
+            <div class="formItem" style="justify-content: center; flex-direction: row">
+                <a href="https://github.com/AlexanderDefuria/FRC-Scouting" target="_blank">
+                    <img class="socialIcon" src="{{ MEDIA_URL }}{% static 'GithubIcon.png' %}" alt="Github Logo">
+                </a>
+                <a href="http://www.frc914.ca/" target="_blank">
+                    <img class="socialIcon" src="{{ MEDIA_URL }}{% static '914Logo.png' %}" alt="FRC Team 914 Logo">
+                </a>
+                <a href="http://4343.ca/" target="_blank">
+                    <img class="socialIcon" src="{{ MEDIA_URL }}{% static '4343Logo.png' %}" alt="FRC Team 4334 Logo">
+                </a>
+            </div>
+            <br>
+            <div class="formItem" id="submit" onclick="validate('mainForm', false)">
+                <input name="submit" id="submitButton" type="submit" style="pointer-events: none" value="Save Settings">
+            </div>
+            <a class="formItem logoutbtn" id="logout" href="/entry/logout">Log Out</a>
+        {% endif %}
+    </form>
+</div>
+<script>
+    function logout() {
+        window.location.replace("{% url 'organization:logout' %}");
+    }
+    function update_cookie_fields(){
+        document.getElementById('images_'.concat('{% get_cookie request 'images' %}'.toLowerCase())).checked = true;
+        document.getElementById('filters_'.concat('{% get_cookie request 'filters' %}'.toLowerCase())).checked = true;
+        document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true;
+        document.getElementById('tutorialCompleted_'.concat('{% get_cookie request 'tutorialCompleted' %}'.toLowerCase())).checked = true;
+        document.getElementById('teamListType_'.concat('{% get_cookie request 'teamListType' %}'.toLowerCase())).checked = true;
+        //document.getElementById('teamsBehaviour').value={% get_cookie request 'teamsBehaviour' %};
+        //Wasnt sure what was going on here, empty if statement below so I fully commented it -Carter
+        //{% if lead_scout %} document.getElementById('districtTeams_'.concat('{% get_cookie request 'districtTeams' %}'.toLowerCase())).checked = true; {% endif %}
+    }
+</script>
+</body >
+</html>

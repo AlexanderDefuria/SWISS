@@ -14,4 +14,5 @@ def after_all(context):
 
 def before_scenario(context, scenario):
     context.org_member = OrgMemberFactory()
+    context.organization = context.org_member.organization
     context.user = context.org_member.user

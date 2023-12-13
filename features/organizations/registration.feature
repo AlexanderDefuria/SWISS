@@ -21,3 +21,15 @@ Feature: Registration
    And I submit a valid registration form
    Then I should be redirected to /entry/
    And I should see the dashboard
+   When I access the registration page
+   Then I should be redirected to /entry/
+
+ Scenario: Registering to an existing organization
+   Given I am anonymous
+   And there is an existing organization 'Test Organization'
+   When I access the registration page
+   Then I should see the registration form
+   When I add an existing organization's details
+   And I submit a valid registration form
+   Then I should be redirected to /entry/
+   And I should see the dashboard
