@@ -53,3 +53,9 @@ To reach the server running off the raspberry pi one must first connect to to th
     <img src="/docs/Step%202%20-%20Bluetooth%20in%20Windows%20Settings.png" width="32%" height="32%"> <img src="/docs/Step%203%20-%20Add%20A%20Device.png" width="32%" height="32%"> <img src="/docs/Step%204a%20-%20Change%20Adapter%20Settings.png" width="32%" height="32%">
     <img src="/docs/Step%204b%20-%20Network%20Connection%20Control%20Panel.png" width="32%" height="32%"> <img src="/docs/Step%205%20-%20View%20Bluetooth%20Network%20Devices.png" width="32%" height="32%"> <img src="/docs/Step%206%20-%20Connect%20To%20Access%20Point.png" width="32%" height="32%">
 </details>
+
+#### Power Reqs
+![image](https://github.com/AlexanderDefuria/SWISS/assets/23636955/b63f37bf-53c8-4413-97d4-7fd99342cf68)
+![image](https://github.com/AlexanderDefuria/SWISS/assets/23636955/49954f71-23b8-4bd1-befa-0847628c7262)
+![image](https://github.com/AlexanderDefuria/SWISS/assets/23636955/6bddb8f1-9d76-4dc9-b729-cd5d5c3c5987)
+
