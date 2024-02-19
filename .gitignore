@@ -23,3 +23,5 @@ modules.xml
 .history
 .vscode/*
 *.vsix
+.devenv
+.direnv
