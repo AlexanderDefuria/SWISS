@@ -33,11 +33,27 @@
         devenv.shells.default = {
           name = "SWISS";
 
-          languages.python.enable = true;
-          languages.python.version = "3.11.3";
-          languages.python.venv.enable = true;
-          languages.python.venv.quiet = true;
-          languages.python.venv.requirements = ./requirements.txt;
+          languages.python = {
+            enable = true;
+            version = "3.11.3";
+            venv.enable = true;
+            venv.quiet = true;
+            venv.requirements = ./requirements.txt;
+          };
+
+          services.postgres = {
+            enable = true;
+            # TODO: use secrets for username, password, team #, etc.
+            initialScript = ''
+              CREATE USER developer WITH PASSWORD 'DEVELOPER';
+              INSERT INTO entry_team (id, number, name, colour, pick_status, glance) values(0000, 0000, 'DeveloperTech 0000', '#0', 0, '\');
+              INSERT INTO entry_event values(0, 'default', 'default', 0, '2000-01-01', '2000-01-02', false, 'default');
+              INSERT INTO entry_orgsettings (id, allow_photos, new_user_creation, new_user_position, current_event_id, team_id) values(0, true, 'AA', 'GS', 0, 0000);
+              INSERT INTO entry_organization (id, name, reg_id, settings_id, team_id) values(0, 'DeveloperTech 0000', '4710e98a-e55a-4941-8963-5d6e12179f22', 0, 0000);
+              INSERT INTO entry_orgmember (id, tutorial_completed, position, user_id, team_id) values(0, false, 'LS', 1, 0000);
+            '';
+            listen_addresses = "*";
+          };
 
           imports = [
             # This is just like the imports in devenv.nix.
@@ -53,7 +69,9 @@
           ];
 
           enterShell = ''
-            hello
+            echo python manage.py makemigrations
+            echo python manage.py migrate
+            echo python manage.py createsuperuser
           '';
         };
 
